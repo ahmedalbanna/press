@@ -2018,26 +2018,13 @@ class ReleaseGroup(Document, TagHelpers):
 		return frappe.get_cached_value("Frappe Version", self.version, "number") >= version
 
 	def setup_default_feature_flags(self):
-		basic_config = {
-			"merge_default_and_short_rq_queues": True,
-		}
-
-		higher_version_config = {
-			"gunicorn_threads_per_worker": "4",
-			"use_rq_workerpool": True,
-		}
-
-		if self.version == "Version 14":
-			flags = basic_config
-
-		elif self.is_this_version_or_above(15):
-			flags = {**basic_config, **higher_version_config}
-
-		else:
-			flags = {}
-
-		for key, value in flags.items():
+		for key, value in default_feature_flags(self.version, self.version_number).items():
 			setattr(self, key, value)
+
+	@property
+	def version_number(self) -> int:
+		"""This group's Frappe Version number, e.g. 15 for `Version 15`."""
+		return frappe.get_cached_value("Frappe Version", self.version, "number") or 0
 
 	@dashboard_whitelist()
 	def clone_group(self, title: str | None):
@@ -2430,3 +2417,30 @@ def can_run_patch_build(release_group: str) -> bool:
 	)
 
 	return state_unchanged and _has_active_benches(pc)
+
+
+def default_feature_flags(version: str, version_number: int) -> dict:
+	"""The rq/gunicorn feature flags a group of this version should default to.
+
+	Module level rather than a method so the backfill patch can reach the same
+	decision without instantiating a ReleaseGroup and running its validators.
+	Called with the version number, not looked up, because the patch has a map
+	of all versions already and `frappe.get_cached_value` per group is a query
+	it does not need.
+	"""
+	basic_config = {
+		"merge_default_and_short_rq_queues": True,
+	}
+
+	higher_version_config = {
+		"gunicorn_threads_per_worker": "4",
+		"use_rq_workerpool": True,
+	}
+
+	if version == "Version 14":
+		return basic_config
+
+	if version_number >= 15:
+		return {**basic_config, **higher_version_config}
+
+	return {}
