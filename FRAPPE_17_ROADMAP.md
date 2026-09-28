@@ -84,6 +84,7 @@ Comparing `v16.35.0` against `develop` (commit `4ac9eb13`, 1775 files changed):
 | `frappe.utils.telemetry` | **Still present on v17.** Reworked again around a `pulse` client, exposing `capture`, `add_bootinfo`, `is_pulse_enabled`. No `init_telemetry`, same as v16. | Our fix holds. `press/utils/telemetry.py` already uses its own implementation and defines its own `capture_pulse`. Re-check `press/utils/telemetry.py` against v17's pulse API when it lands. |
 | `frappe.pulse` | **New on v17** (`frappe/pulse/__init__.py` is empty; the surface moved to `frappe/pulse/utils.py`). v16 has only 2 files under `frappe/pulse/`. | Confirm what v17's pulse client expects before wiring anything to it. |
 | `frappe.mcp` | **Gone.** Zero files matching `mcp` anywhere in v17's tree. | **Already safe.** `frappe-mcp` is an optional extra and is *not installed* on this bench — `press/mcp/__init__.py` falls back to `_MCPUnavailable`, so every module in `press/mcp/tools/` stays importable. The incident support agent imports `press.mcp.tools.telemetry.clients`, so this matters beyond MCP itself. Nothing to do; do not re-add `frappe-mcp` as a hard dependency. |
+| Module imports | **No regressions.** A full walk of all 1006 press modules against a real v17 env (frappe 17.0.0-dev, commit `4ac9eb13`, own venv, press installed on top) produced byte-identical results to v16: 1003 imported, 3 failed, all three pre-existing. See "Import probe" below. | Nothing to fix. Re-run the probe when `version-17` branches. |
 | `order_by` validation | Not re-checked against v17; v16 introduced it and v17 may tighten further. | Keep the grep clean (Phase 1.2 / 2.1). |
 | `utils/weasyprint.py` | Removed in the v16→v17 diff. | Press does not reference it (0 hits). No action. |
 | `doctype_layout`, `changelog_feed`, `sidebar_item_group`, `print_format_builder_beta` | All removed in the v16→v17 diff. | Press references none of them (0 hits each). No action. |
@@ -221,6 +222,50 @@ Repeat what the v16 upgrade required, and expect new instances.
 | Redis stale-hook class of failure | Medium | Cost us a failed migrate on v16. Flushing first is the whole mitigation. |
 | Box-specific code in the way | Medium | `press/api/analytics.py` has cAdvisor and log-server workarounds with no V16/V17 guarantee. |
 
+## Import probe — how the compatibility check was run
+
+Every v16 breakage found on this box was an import problem, and **none of them
+surfaced in the test suite**: `order_by` and `init_telemetry` both passed tests
+while doing nothing. So the compatibility check imports every module rather than
+running tests.
+
+`press/utils/probe_module_imports.py` walks all 1006 press modules in whichever
+env it is pointed at and writes a sorted report of what failed. Two reports diff
+directly. A module that imports on one and not the other is a compatibility
+finding; one that fails on both is pre-existing.
+
+```bash
+# v16 (the live env)
+PROBE_OUTPUT=/tmp/v16.txt bench --site press.localhost execute \
+    press.utils.probe_module_imports.probe
+
+# a non-live env
+PROBE_OUTPUT=/tmp/v17.txt /path/to/env/bin/python run_probe.py
+diff /tmp/v16.txt /tmp/v17.txt
+```
+
+The env must be one where `press` is installed alongside the framework version
+under test. For v17 that means its own venv: `frappe` editable-installed from a
+`develop` checkout, then `press` on top. Both use Python 3.14 — v17's
+`requires-python` is identical to v16's, so **no env change is part of a v17
+upgrade**, which removes the riskiest part of the migration.
+
+### Result: 1003 imported, 3 failed, identical on both
+
+All three failures are pre-existing and unrelated to the version under test:
+
+| Module | Failure | Note |
+|---|---|---|
+| `press.api.cookies` | `ImportError: cannot import name 'get_cookie_dict_from_headers' from 'frappe.oauth'` | Absent from `frappe/oauth.py` on **both** v16.35.0 and v17. Not a v17 regression. |
+| `press.press.doctype.deploy_candidate.cache_utils` | `TypeError: TypedDict() got an unexpected keyword argument 'cwd'` | Pre-existing. `TypedDict` takes keyword args only in 3.13+ and this passes them positionally-by-keyword. Fails identically on both. |
+| `press.press.doctype.bench_get_app_cache.bench_get_app_cache` | same `TypedDict(cwd=)` failure | Same root cause. |
+
+The two `TypedDict` failures are the kind of thing the v16→v17 comparison
+misleadingly suggested were new: they fail on v16 too, so they are latent bugs
+in the current code rather than compatibility problems. Worth fixing separately
+— they are not in the deploy path (nothing imports them on a running site) but
+they are dead modules as written.
+
 ## Progress
 
 - [x] **Phase 1.1 — Python 3.15 blockers.** All five `datetime.utcnow()` call
@@ -230,6 +275,8 @@ Repeat what the v16 upgrade required, and expect new instances.
       query window is unchanged. Covered by `press/utils/test_utils_cache.py`.
 - [x] **Phase 1.3 — Python floor.** `requires-python` corrected to `>=3.14`.
 - [x] **Phase 2 — audit against `develop`.** Results in the table above.
+- [x] **Import probe against a real v17 env.** 1003/1006 modules import, byte-identical
+      to v16. Committed as `press/utils/probe_module_imports.py`. Findings above.
 - [x] **Phase 1.2 — CI lint rule.** `DTZ003` added to `ruff.toml`, so
       `datetime.utcnow()` now fails the pre-commit hook rather than reaching
       runtime. Verified it catches the aliased form (`import datetime as dt`)
