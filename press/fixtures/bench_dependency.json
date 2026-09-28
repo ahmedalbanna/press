@@ -49,6 +49,10 @@
 			{
 				"supported_frappe_version": "Version 16",
 				"version": "3.14"
+			},
+			{
+				"supported_frappe_version": "Version 17",
+				"version": "3.14"
 			}
 		],
 		"title": "Python Version"
@@ -90,6 +94,10 @@
 			},
 			{
 				"supported_frappe_version": "Version 16",
+				"version": "24.12.0"
+			},
+			{
+				"supported_frappe_version": "Version 17",
 				"version": "24.12.0"
 			}
 		],
@@ -148,6 +156,14 @@
 			},
 			{
 				"supported_frappe_version": "Version 16",
+				"version": "0.12.6"
+			},
+			{
+				"supported_frappe_version": "Version 17",
+				"version": "0.12.5"
+			},
+			{
+				"supported_frappe_version": "Version 17",
 				"version": "0.12.6"
 			}
 		],
@@ -231,6 +247,10 @@
 			{
 				"supported_frappe_version": "Version 16",
 				"version": "5.31.0"
+			},
+			{
+				"supported_frappe_version": "Version 17",
+				"version": "5.31.0"
 			}
 		],
 		"title": "Bench Version"
@@ -264,6 +284,10 @@
 			},
 			{
 				"supported_frappe_version": "Version 16",
+				"version": "0.39.1"
+			},
+			{
+				"supported_frappe_version": "Version 17",
 				"version": "0.39.1"
 			}
 		],
@@ -322,6 +346,14 @@
 			},
 			{
 				"supported_frappe_version": "Version 16",
+				"version": "25.2"
+			},
+			{
+				"supported_frappe_version": "Version 17",
+				"version": "25.3"
+			},
+			{
+				"supported_frappe_version": "Version 17",
 				"version": "25.2"
 			}
 		],

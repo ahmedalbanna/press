@@ -19,8 +19,12 @@ Nothing here flips Frappe 17 to the default. `Version 17` remains `status=Develo
 - `get_usage` returns the shape its callers expect and no longer half-initialises chart data.
 - `hooks.py` no longer queries the database at import time.
 
+### Fixed
+- The Release Group dependency editor offered an empty dropdown for every Version 17 group. A group takes its dependency versions from `Frappe Version.dependencies`, but the editor lists its options from `Bench Dependency Version` filtered on `supported_frappe_version`, and the V17 record landed in 5cbacfd42 without matching rows. The same omission 0.8.0 fixed for Version 16. Covered by a new test in `test_frappe_version.py` that checks every pickable version has an option for each of its dependencies, so the next version cannot land half-wired.
+
 ### Note
 - `press/press/__init__.py` still declares `__version__ = "0.7.0"`. Nothing imports it, so it is inert rather than wrong, but it now disagrees with the real version in `press/__init__.py`.
+- A new Version 17 group defaults `NVM_VERSION` to 0.36.0, which the editor does not offer — it lists 0.39.1, the value the Version 16 rows use. Pre-existing on the `Frappe Version` record and left alone: changing the default would alter what new groups build with, which is a separate decision.
 
 ---
 
