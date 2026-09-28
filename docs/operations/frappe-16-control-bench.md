@@ -1,15 +1,66 @@
-# Operating the control bench on Frappe 16
+# Operating the control bench on Frappe
 
 Written 2026-09-28 while moving `/home/press/benches/control` from Frappe 15 to
-Frappe 16.35.0 on Python 3.14.3. Everything here is something that cost time to
-discover, so it is recorded rather than remembered.
+Frappe 16.35.0 on Python 3.14.3, then on to Frappe 17.0.0-dev. Everything here is
+something that cost time to discover, so it is recorded rather than remembered.
 
 - Control bench: `/home/press/benches/control`, apps `frappe` + `press`
 - Site used for verification: `press.localhost`
-- Press version: 0.8.0 (branch `frappe-16`, local only, not pushed)
-- Rollback: `git -C apps/frappe checkout version-15` (was `4fa1b14`), then
-  `uv pip install -e apps/frappe --python ./env/bin/python`, then
-  `bench migrate-env` back to a 3.11 interpreter
+- Press version: 0.8.0 (branch `v17`, local only, not pushed)
+- Currently on: frappe `4ac9eb13` (17.0.0-dev), Python 3.14.3
+- Rollback: `git -C apps/frappe checkout 012667b9c4e` (v16.35.0), reinstall,
+  restore from `/home/press/backups/`
+
+## After any framework version switch: rebuild the assets
+
+**This is not optional and it is not in the upgrade checklist anywhere.** A
+version switch leaves `sites/assets/frappe/dist` holding bundles built for the
+*previous* version. The server serves them happily, every file the page
+references exists, and nothing looks broken — until the SPA boots and its route
+table no longer matches what the older bundle expects:
+
+```
+Page desk not found
+The resource you are looking for is not available
+```
+
+Do not chase this as a routing problem. `frappe/hooks.py` has the identical
+`{"from_route": "/desk/<path:app_path>", "to_route": "desk"}` rule in v16 and
+v17, and every asset the login page references is present on disk. The tell is
+the bundle timestamp: assets dated before the switch are stale by definition.
+
+```bash
+cd /home/press/benches/control
+bash -lc 'NODE_OPTIONS="--max-old-space-size=1024" yarn install --cwd apps/frappe'
+bash -lc 'NODE_OPTIONS="--max-old-space-size=1536" bench build --app frappe'
+bash -lc 'NODE_OPTIONS="--max-old-space-size=1536" bench build --app press'
+```
+
+Build **both** apps. `bench build` with no `--app` does not cover press, and the
+dashboard bundle goes stale just the same.
+
+Verify by comparing what the page asks for against what is on disk; they should
+match and be newer than the switch:
+
+```bash
+curl -s -H "Host: press.localhost" "http://127.0.0.1:8003/login?redirect-to=%2Fdesk" \
+  | grep -oE 'desk\.bundle\.[A-Z0-9]+\.js' | sort -u
+ls sites/assets/frappe/dist/js/desk.bundle.*.js
+```
+
+### The press build is the one that gets OOM-killed
+
+`bench build --app frappe` uses esbuild and completes in ~35s. `bench build --app
+press` builds the Vue dashboard and has been killed with **exit 137** (SIGKILL,
+i.e. the OOM killer) at both 1536MB and 1024MB of V8 heap. This box has 7.8Gi
+with swap 100% full, so a webpack-scale build has almost nothing to work with.
+
+If it is killed, that is a memory limit, not a code error — the frappe build
+succeeding in the same session is the control. Free memory first
+(`supervisorctl stop` the build/sync workers), and prefer
+`--max-old-space-size=1024 --max-semi-space-size=16` so V8 collects rather than
+growing into the OOM killer.
+
 
 ## Toolchain prerequisites
 
@@ -35,6 +86,9 @@ non-interactive `bash -c` will not read it; use a login shell or source
 `/etc/profile.d/frappe16-toolchain.sh`).
 
 ## Building frontend assets
+
+See "After any framework version switch" above — that is the version-switch
+case, which has its own failure mode.
 
 ```bash
 cd /home/press/benches/control
