@@ -137,6 +137,42 @@ Some suites cannot pass on this bench because its database is not empty.
 correctly reports `Failure`. That is test isolation, not a product bug — do not
 "fix" it by weakening the audit.
 
+## Audit tooling is not installed in the control env
+
+`semgrep` is an optional extra (`pip install -e .[audit]`) and is **deliberately not
+installed here**. Press only ever invokes it as a CLI subprocess, and the marketplace
+app audit resolves it in one of two ways:
+
+1. `Marketplace Settings.audit_bench_path` -> `<bench>/env/bin/semgrep`
+2. `shutil.which("semgrep")` on PATH
+
+The audit runs as a background job in a worker, and the workers' PATH does not
+include the bench `env/bin`:
+
+```
+$ tr '\0' '\n' < /proc/<worker pid>/environ | grep ^PATH
+PATH=/home/press/.opencode/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:...
+```
+
+So an installed semgrep is unreachable by the only caller that needs it, while
+still forcing `click`, `pyjwt` and `opentelemetry-api` to versions that conflict
+with what Frappe pins. It was removed for that reason.
+
+Until a dedicated audit bench exists, the marketplace app audit reports a
+`semgrep_unavailable` result with remediation text. That is the honest state,
+not a regression. To turn the checks on properly, stand up a separate bench with
+semgrep installed and point `Marketplace Settings.audit_bench_path` at it — that
+is what the setting exists for.
+
+`opentelemetry-api` is kept even though it is only reachable via
+`google-api-core`, which Frappe uses.
+
+Verify the dependency tree is clean after any env change:
+
+```bash
+cd /home/press/benches/control && ./env/bin/pip check    # expect: No broken requirements found.
+```
+
 ## Memory
 
 7.8Gi total, swap routinely full. Workers have already been OOM-killed
