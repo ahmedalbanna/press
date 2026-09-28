@@ -1905,13 +1905,25 @@ def get_frappe_release_timestamp(bench: str | None) -> datetime | None:
 	`timestamp` is the commit time, but it is unset on most releases, so fall
 	back to `creation`, the time Press recorded the release. Reading `timestamp`
 	alone leaves 37% of active sites without an age, and the banner silent.
+
+	Returns None when the bench names no release, or names one that has no
+	`App Release` record -- a test site whose fixtures rolled back, or a release
+	that was deleted. Both are ordinary states, not errors.
 	"""
 	if not bench:
 		return None
 	release = frappe.db.get_value("Bench App", {"parent": bench, "app": "frappe"}, "release")
 	if not release:
 		return None
-	commit_time, recorded_at = frappe.db.get_value("App Release", release, ("timestamp", "creation"))
+	recorded = frappe.db.get_value("App Release", release, ("timestamp", "creation"))
+	if not recorded:
+		# A bench can name a release that has no `App Release` record -- a test site
+		# whose fixtures rolled back, or a release that was deleted. `get_value`
+		# returns None rather than a row of Nones, so unpacking it raises a
+		# TypeError, and because `Site.get_doc` calls this for every site page load
+		# that turns one dangling reference into a 500 for the whole site.
+		return None
+	commit_time, recorded_at = recorded
 	return commit_time or recorded_at
 
 

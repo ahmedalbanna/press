@@ -417,6 +417,20 @@ class TestBench(FrappeTestCase):
 
 		self.assertIsNone(get_frappe_release_timestamp(bench.name))
 
+	def test_get_frappe_release_timestamp_is_none_when_the_release_record_is_missing(self):
+		"""A bench can name a release that has no `App Release` record.
+
+		`Site.get_doc` calls this on every site page load, so unpacking the `None`
+		that `get_value` returns for a missing record made the whole site page
+		return 500, rather than just leaving the release-age banner blank.
+		"""
+		bench = create_test_bench()
+		frappe.db.set_value(
+			"Bench App", {"parent": bench.name, "app": "frappe"}, "release", "no-such-release"
+		)
+
+		self.assertIsNone(get_frappe_release_timestamp(bench.name))
+
 	def test_get_frappe_release_timestamp_is_none_without_a_bench(self):
 		self.assertIsNone(get_frappe_release_timestamp(None))
 
