@@ -1389,7 +1389,9 @@ def get_new_site_options(group: str | None = None):
 		"Frappe Version",
 		["name", "number", "default", "status"],
 		filters=versions_filters,
-		order_by="`default` desc, number desc",
+		# `tabDocType`.`field` on both sides: a bare `default` no longer parses as of
+		# Frappe 17, so the whole endpoint raised instead of returning the dropdown.
+		order_by="`tabFrappe Version`.`default` desc, `tabFrappe Version`.`number` desc",
 	)
 
 	for version in versions:
