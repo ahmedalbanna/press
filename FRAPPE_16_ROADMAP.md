@@ -107,11 +107,57 @@ Press's persistent cache keys (`press/hooks.py:531-567`) are unaffected, but the
 
 ## Final state (2026-09-28)
 
-Control bench `/home/press/benches/control` is live on **Python 3.14.3 + frappe 16.35.0**:
-- `migrate --skip-failing` EXIT 0
-- services restarted and confirmed on 3.14 (`supervisorctl restart press-bench-web: press-bench-workers: press-bench-build-worker:... press-bench-sync-worker`)
-- `http://press.localhost:8003/` -> 200, `/api/method/ping` -> 200, scheduler healthy
-- `community.mysql 5.0.2` installed to `~/.ansible/collections` for the two roles that need it
+Control bench `/home/press/benches/control` is live on **Python 3.14.3 + frappe 16.35.0**, and
+press now reports **0.8.0**. Work is committed on the local `frappe-16` branch (11 commits,
+not pushed). Confirmed working: `/desk` and `/dashboard`.
+
+Suite results after the series:
+
+| Module | Result |
+|---|---|
+| `press.test_telegram_utils` | 7/7 OK |
+| `press.patches.v0_8_0.test_dedupe_release_group_dependencies` | 7/7 OK |
+| `press.press.doctype.frappe_version.test_frappe_version` | 1/1 OK |
+| `press.press.doctype.site_group_deploy.test_site_group_deploy` | OK |
+| `press.incident_management.support_agent.test_investigation` | 13/13 OK |
+
+### Third v16-era data bug: dependency rows duplicated by the bump patches
+`bump_v{15,16}_bench_version_to_5_31_0` selected every `BENCH_VERSION` row whose version was
+not 5.31.0 and set it to 5.31.0, so a group that already had a 5.31.0 row gained a second one.
+`press.api.bench.update_dependencies` matches the submitted list against the group's rows
+positionally, so a repeated key raises `Invalid dependency` and **the group can never have its
+dependencies edited again**. The live V16 group had `BENCH_VERSION 5.27.0+5.31.0`,
+`NODE_VERSION 14.19.0+24.12.0`, `PYTHON_VERSION 3.10+3.14`.
+
+Fixed at the source (delete the stale row rather than write a second), plus
+`dedupe_release_group_dependencies` to collapse what was already left behind, keeping the highest
+version. Applied to live data: `bench-0001` now resolves to bench 5.31.0 / Node 24.12.0 /
+Python 3.14 / pip 25.3.
+
+### Default version flipped to Version 16
+`Version 16 default=1`, `Version 15 default=0`, migrated and verified with the exact query new
+Release Groups use. Existing groups keep their version; only new ones move.
+
+### Environment prerequisites discovered (outside git)
+The frontend was serving with an empty `sites/assets/frappe/` and a manifest from 15 Sept, so
+`/desk` could not boot — this was **not** a v16 regression. Rebuilding needed, and this box did
+not have:
+- `yarn` — installed to `~/.local` (npm's global prefix is root-owned)
+- **Node 24** — frappe v16's `package.json` requires `>=24`; installed `v24.12.0` to
+  `~/.local/node24`, matching the Version 16 fixture pin. The box had Node 20.20.2.
+- `community.mysql 5.0.2` in `~/.ansible/collections`, needed by the
+  `install_tcmalloc_udf` and `mariadb_prepare_replica` roles.
+
+`bench build` was OOM-killed on the first attempt (258Mi free, swap full); it completed on the
+second with `NODE_OPTIONS=--max-old-space-size=1536`.
+
+### Two things deliberately not done
+- **Bench CLI 5.29 -> 5.31: skipped.** The 5.31 that matters is the tenant-image `BENCH_VERSION`
+  written into `Release Group Dependency`, applied by the patches and fixtures, not the control
+  CLI. Everything works on 5.29, and upgrading needs `--break-system-packages` on a PEP 668
+  system python.
+- **`Nightly number: 15` collision left alone** — it duplicates Version 15's number, but
+  renumbering a fixture affects the dashboard filter and the v0_8_0 patches. Worth its own change.
 
 ### Open follow-ups
 1. **Telegram live round-trip** — `press/test_telegram_utils.py` now covers the v21 async rewrite offline (7 tests: truncation, parse mode, topic routing, no-op, error swallowing, `reraise`, `get_username`). What is *not* covered is an actual call to the Bot API: no token is configured on `press.localhost` (`tabTelegram Group` is empty), so someone with a real token should send one alert.
