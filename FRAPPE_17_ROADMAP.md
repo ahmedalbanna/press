@@ -31,6 +31,11 @@ behaviour.
 Trigger to start: `refs/heads/version-17` appears, or `develop` stabilises
 enough that a release candidate is announced.
 
+**Status as of 2026-09-28: the code is already verified ready.** Press 0.8.0
+installs, migrates, and passes its test suites on `develop` (17.0.0-dev) with no
+changes needed. What is missing is a *stable* v17 to pin to, not readiness.
+See "Verified: press installs and migrates on v17".
+
 ## Phase 1 — Readiness work, safe on v16
 
 Do these now. Each removes a known v17 risk without needing v17 to exist.
@@ -279,6 +284,73 @@ CommandOutput = TypedDict("CommandOutput", cwd=str, image_tag=str, ...)   # Type
 import time and took `bench_get_app_cache` down with it. Fixed to the dict
 form. Both now import on v16 and v17.
 
+## Verified: press installs and migrates on v17
+
+The import probe covers code that loads. It does not cover install, schema, or
+patch execution — and those are where v16's worst bug hid. So this was run for
+real, on a throwaway bench, against frappe `17.0.0-dev` (`4ac9eb1`) with this
+branch's press as an editable install.
+
+| Step | Result |
+|---|---|
+| `bench new-site v17probe.localhost` | OK, frappe 17.x.x-develop |
+| `install-app press` | **EXIT 0**, no traceback |
+| `migrate` | **EXIT 0**, no orphaned DocTypes |
+| Patch Log | 440 rows, every v0_8_0 patch including `set_default_feature_flags_on_release_groups` and `dedupe_release_group_dependencies` |
+| `Product Trial Request` DocType | **Present** after install — the v16 import bug does not recur on v17 |
+| 7 test suites, 60 tests | **All green** |
+
+The suites run are the ones that matter for the v16 work: `test_utils_cache`,
+`test_deploy_candidate` (imports the `TypedDict` module fixed above),
+`test_app_version_compatibility`, both patch tests, and both Telegram suites.
+
+**Press 0.8.0 installs and migrates cleanly on Frappe 17.0.0-dev.** The live
+control plane was never pointed at v17 to establish this.
+
+### Setting up the throwaway bench
+
+Reusable, and the reason it fits on this box is reusing the venv rather than
+installing a second one (7.8Gi RAM, swap full):
+
+```bash
+# bench root: apps, sites, config, config/pids, logs  (bench checks all five)
+ln -s /home/press/v17-probe/frappe-v17   apps/frappe
+ln -s /home/press/benches/control/apps/press apps/press   # this branch, editable
+ln -s /home/press/v17-probe/env-v17      env
+
+bench new-site v17probe.localhost \
+  --db-root-username v17admin --db-root-password <pw> \
+  --admin-password <pw> --mariadb-user-host-login-scope=localhost
+```
+
+Test deps are not in press's dependencies — they come from frappe's test extra.
+Without them, `run-tests` fails at collection with `No module named 'moto'`:
+
+```bash
+uv pip install moto "Faker~=40.23.0" freezegun hypothesis responses
+```
+
+### MariaDB access on this box
+
+`root@localhost` uses `unix_socket` auth and the password in
+`Database Server.mariadb_root_password` is not that root's. What works is the
+OS-level `mysql` user, which holds `ALL PRIVILEGES ... WITH GRANT OPTION`:
+
+```bash
+sudo -u mysql mysql -e "SHOW GRANTS;"   # mysql@localhost
+```
+
+`bench` connects over TCP, so socket auth does not help it. Give it a real
+user rather than the root password:
+
+```bash
+sudo -u mysql mysql -e "CREATE USER 'v17admin'@'localhost' IDENTIFIED BY '...';
+                         GRANT ALL PRIVILEGES ON *.* TO 'v17admin'@'localhost' WITH GRANT OPTION;"
+```
+
+Worth knowing: a site user cannot `CREATE DATABASE` for itself, so
+`bench new-site` will always fail against the control bench's own credentials.
+
 ## Progress
 
 - [x] **Phase 1.1 — Python 3.15 blockers.** All five `datetime.utcnow()` call
@@ -292,6 +364,8 @@ form. Both now import on v16 and v17.
       to v16. Committed as `press/utils/probe_module_imports.py`. Findings above.
 - [x] **Fixed 2 pre-existing import failures** the probe surfaced (`TypedDict` declared in
       the pre-3.13 positional style), so v16 and v17 both import cleanly.
+- [x] **Real install + migrate on a throwaway v17 bench.** EXIT 0 both times, 440 patches
+      applied, no orphaned DocTypes, 7 suites / 60 tests green. Details above.
 - [x] **Phase 1.2 — CI lint rule.** `DTZ003` added to `ruff.toml`, so
       `datetime.utcnow()` now fails the pre-commit hook rather than reaching
       runtime. Verified it catches the aliased form (`import datetime as dt`)
