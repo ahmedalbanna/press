@@ -214,7 +214,23 @@ The v20+ async rewrite is asserted against mocks of `Bot.initialize` and
 `Bot.send_message`, which cover the migration's actual risk (that press drives
 the coroutine correctly), not the network.
 
-### Two Frappe 16 breakages found in the same file
+### Existing data this migration left wrong
+
+The upgrade also fixed state that was already wrong on the site, not just code.
+Both are recorded here because they are invisible without a query.
+
+**Release Group feature flags were never backfilled.** `setup_default_feature_flags`
+runs from `before_insert`, so groups created earlier kept the DocType defaults of
+0 — a Version 16 group built without `use_rq_workerpool`. `bench-0001` read
+`0/0/0` and now reads `4/1/1`. The linked cloud report showed every group unset,
+which is how it was spotted. Frappe/press#4601.
+
+**The Telegram backlog was 595 undeliverable messages**, all recorded as never
+sent. They are now `Error` with the real reason rather than a misleading
+`InvalidToken` traceback. Nothing was ever delivered; delete them when alerting
+is actually on.
+
+## Two Frappe 16 breakages found in the same file
 
 `TelegramMessage.get_one` ordered by `FIELD(priority, 'High', 'Medium',
 'Low')`. Frappe 16 validates the `order_by` string

@@ -26,6 +26,7 @@ This file documents changes (current commit level since, no tagged releases yet)
 - The five scheduled jobs that selected a random slice of rows with `order_by="RAND()"` no longer raise `Invalid field format in Order By: RAND`. Frappe 16 validates `order_by` and accepts only plain field names, so all five were failing before doing any work. Randomness now goes through the query builder, which is not subject to that check.
 - `TelegramMessage.get_one` no longer orders by MariaDB `FIELD()`, which Frappe 16 rejects, so the sender had been raising before reading a single queued message. Priority now ranks through a query builder `Case`.
 - An unconfigured Telegram deployment no longer fails every send with `InvalidToken`, which `telegram.Bot` raises in the constructor before opening a connection. A missing token is now treated as "Telegram is off here" rather than a delivery failure, so the queue drains instead of retrying forever. `enqueue` is deliberately unchanged, so the misconfiguration stays visible rather than being silently swallowed.
+- Release Groups created before the rq/gunicorn feature flags existed no longer keep the DocType defaults of 0. A Version 16 group could previously be built without `use_rq_workerpool` or with a single gunicorn thread per worker. Groups with any flag already set are left alone.
 
 ### Note
 - The MCP endpoint is unavailable on Python 3.14 until `frappe/mcp` relaxes its `pydantic<2.12` pin. Everything else, including the incident support agent that imports from `press.mcp`, works without it.
