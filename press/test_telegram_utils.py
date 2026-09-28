@@ -26,9 +26,7 @@ class TestTelegram(FrappeTestCase):
 		# Telegram Group, and a scalar for the topic.
 		def get_value(doctype, name=None, fields=None, **kwargs):
 			if doctype == "Press Settings":
-				return frappe._dict(
-					{"telegram_bot_token": "token", "telegram_alerts_chat_group": "Errors"}
-				)
+				return frappe._dict({"telegram_bot_token": "token", "telegram_alerts_chat_group": "Errors"})
 			if doctype == "Telegram Group":
 				return ("token", "123")
 			return 42
@@ -110,3 +108,53 @@ class TestTelegram(FrappeTestCase):
 		with patch.object(telegram.Bot, "initialize", new=AsyncMock()):
 			with patch.object(telegram.Bot, "username", new_callable=PropertyMock, return_value="mybot"):
 				self.assertEqual(client.get_username(), "mybot")
+
+
+class TestTelegramUnconfigured(FrappeTestCase):
+	"""Telegram is off on this bench: there is no bot token to send with.
+
+	`telegram.Bot` raises `InvalidToken` for a missing token before it opens a
+	connection, so without this branch every alert would raise and write an
+	Error Log blaming the network.
+	"""
+
+	def _unconfigured(self):
+		# No Telegram Group row and no token in Press Settings, which is the
+		# state of press.localhost.
+		def get_value(doctype, name=None, fields=None, **kwargs):
+			if doctype == "Press Settings":
+				return frappe._dict({"telegram_bot_token": None, "telegram_alerts_chat_group": ""})
+			return None
+
+		with patch("frappe.db.get_value", side_effect=get_value):
+			return Telegram()
+
+	def test_configured_is_false_without_a_token(self):
+		self.assertFalse(self._unconfigured().configured)
+
+	def test_send_is_a_silent_noop(self):
+		"""No token is a deployment choice, not an incident: log nothing."""
+		client = self._unconfigured()
+
+		with patch.object(telegram.Bot, "send_message", new=AsyncMock()) as send:
+			with patch("press.telegram_utils.log_error") as log_error:
+				self.assertIsNone(client.send("hello"))
+
+		send.assert_not_awaited()
+		log_error.assert_not_called()
+
+	def test_send_is_a_noop_even_when_reraise_is_asked(self):
+		"""`reraise` must not turn "off" into an exception."""
+		client = self._unconfigured()
+
+		self.assertIsNone(client.send("hello", reraise=True))
+
+	def test_get_username_is_none(self):
+		self.assertIsNone(self._unconfigured().get_username())
+
+	def test_respond_ignores_anything_without_a_handle(self):
+		"""With no @handle to match, the webhook must not answer a message."""
+		client = self._unconfigured()
+		client.respond(
+			{"chat": {"id": 1}, "text": "ping", "entities": [{"type": "mention", "offset": 0, "length": 4}]}
+		)

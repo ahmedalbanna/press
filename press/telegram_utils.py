@@ -36,7 +36,8 @@ def _run(coro):
 
 	async def runner():
 		async with telegram.Bot(
-			token=coro.token, request=HTTPXRequest(connect_timeout=REQUEST_TIMEOUT, read_timeout=REQUEST_TIMEOUT)
+			token=coro.token,
+			request=HTTPXRequest(connect_timeout=REQUEST_TIMEOUT, read_timeout=REQUEST_TIMEOUT),
 		) as bot:
 			return await coro.run(bot)
 
@@ -61,8 +62,20 @@ class Telegram:
 			"Telegram Group Topic", {"parent": self.group, "topic": topic}, "topic_id"
 		)
 
+	@property
+	def configured(self) -> bool:
+		"""Whether there is a bot token to send with.
+
+		`telegram.Bot` rejects a missing token before it opens a connection, so an
+		unconfigured deployment cannot send at all. Callers need to tell that apart
+		from a send that was attempted and failed: one is a deployment choice, the
+		other is an incident worth an Error Log.
+		"""
+
+		return bool(self.token)
+
 	def send(self, message, html=False, reraise=False):
-		if not message:
+		if not message or not self.configured:
 			return None
 		try:
 			text = message[: MessageLimit.MAX_TEXT_LENGTH]
@@ -98,7 +111,13 @@ class Telegram:
 
 		`Bot.username` is only populated after `initialize()`, which is async in
 		v20+ (it used to be a plain cached attribute in v13).
+
+		Returns None when unconfigured, which makes the `@handle` comparison in
+		`respond` match nothing and the webhook a no-op.
 		"""
+
+		if not self.configured:
+			return None
 
 		async def run(bot):
 			await bot.initialize()

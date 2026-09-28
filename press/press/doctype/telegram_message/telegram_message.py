@@ -5,7 +5,7 @@ import traceback
 
 import frappe
 from frappe.model.document import Document
-from frappe.query_builder import Interval
+from frappe.query_builder import Case, Interval
 from frappe.query_builder.functions import Now
 from telegram.error import NetworkError, RetryAfter
 
@@ -33,12 +33,24 @@ class TelegramMessage(Document):
 	def send(self):
 		try:
 			telegram = Telegram(self.topic, self.group)
-			if not self.group:
-				self.group = telegram.group
-			if not self.topic:
-				self.topic = telegram.topic
-			telegram.send(self.message, reraise=True)
-			self.status = "Sent"
+			if not telegram.configured:
+				# No bot token on the group or in Press Settings. `telegram.Bot`
+				# raises InvalidToken for a missing token, which reads like a
+				# delivery failure and walks straight into the "don't retry"
+				# branch. Nothing will change on a retry either, so record the
+				# actual reason. Leaving it Queued is worse: the sender would
+				# walk the whole backlog on every tick and never drain it.
+				self.status = "Error"
+				self.error = (
+					"Telegram is not configured: set a bot token on the Telegram Group or in Press Settings"
+				)
+			else:
+				if not self.group:
+					self.group = telegram.group
+				if not self.topic:
+					self.topic = telegram.topic
+				telegram.send(self.message, reraise=True)
+				self.status = "Sent"
 		except RetryAfter:
 			# Raise an exception that will be caught by the scheduler
 			# Try again after some time
@@ -80,15 +92,25 @@ class TelegramMessage(Document):
 
 	@staticmethod
 	def get_one() -> "TelegramMessage | None":
-		first = frappe.get_all(
-			"Telegram Message",
-			filters={"status": "Queued"},
-			order_by="FIELD(priority, 'High', 'Medium', 'Low'), creation ASC",
-			limit=1,
-			pluck="name",
+		# Frappe 16 validates `order_by` and accepts only plain field names, so
+		# the MariaDB FIELD() trick this used to rely on now raises
+		# `Invalid field format in Order By: FIELD(priority`. A `Case` expresses
+		# the same High -> Medium -> Low ranking, and the query builder is not
+		# subject to that check.
+		table = frappe.qb.DocType("Telegram Message")
+		priority = (
+			Case().when(table.priority == "High", 0).when(table.priority == "Medium", 1).else_(2)  # Low
+		)
+		first = (
+			frappe.qb.from_(table)
+			.select(table.name)
+			.where(table.status == "Queued")
+			.orderby(priority, table.creation)
+			.limit(1)
+			.run()
 		)
 		if first:
-			return frappe.get_doc("Telegram Message", first[0])
+			return frappe.get_doc("Telegram Message", first[0][0])
 		return None
 
 	@staticmethod
