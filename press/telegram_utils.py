@@ -2,10 +2,45 @@
 # For license information, please see license.txt
 
 
+import asyncio
+
 import frappe
 import telegram
+from telegram.constants import MessageLimit, ParseMode
+from telegram.request import HTTPXRequest
 
 from press.utils import log_error
+
+# Network calls are short and one-shot: alerts are sent from request handlers and
+# background jobs, neither of which run inside an event loop.
+REQUEST_TIMEOUT = 3.0
+
+
+class _Call:
+	"""A token plus the coroutine body to run against a freshly opened bot."""
+
+	__slots__ = ("token", "run")
+
+	def __init__(self, token, run):
+		self.token = token
+		self.run = run
+
+
+def _run(coro):
+	"""Run one Telegram coroutine on a throwaway event loop.
+
+	The bot is opened *inside* the loop and closed with it, because the HTTPX
+	connection pool is bound to the loop that created it. Reusing a bot across
+	`asyncio.run` calls leaks connections and eventually fails.
+	"""
+
+	async def runner():
+		async with telegram.Bot(
+			token=coro.token, request=HTTPXRequest(connect_timeout=REQUEST_TIMEOUT, read_timeout=REQUEST_TIMEOUT)
+		) as bot:
+			return await coro.run(bot)
+
+	return asyncio.run(runner())
 
 
 class Telegram:
@@ -30,15 +65,18 @@ class Telegram:
 		if not message:
 			return None
 		try:
-			text = message[: telegram.MAX_MESSAGE_LENGTH]
+			text = message[: MessageLimit.MAX_TEXT_LENGTH]
 			parse_mode = self._get_parse_mode(html)
-			return self.bot.send_message(
-				chat_id=self.chat_id,
-				text=text,
-				parse_mode=parse_mode,
-				message_thread_id=self.topic_id,
-				timeout=3,
-			)
+
+			async def run(bot):
+				return await bot.send_message(
+					chat_id=self.chat_id,
+					text=text,
+					parse_mode=parse_mode,
+					message_thread_id=self.topic_id,
+				)
+
+			return _run(_Call(self.token, run))
 		except Exception:
 			if reraise:
 				raise
@@ -52,12 +90,21 @@ class Telegram:
 
 	def _get_parse_mode(self, html):
 		if html:
-			return telegram.ParseMode.HTML
-		return telegram.ParseMode.MARKDOWN
+			return ParseMode.HTML
+		return ParseMode.MARKDOWN
 
-	@property
-	def bot(self):
-		return telegram.Bot(token=self.token)
+	def get_username(self):
+		"""The bot's own @handle.
+
+		`Bot.username` is only populated after `initialize()`, which is async in
+		v20+ (it used to be a plain cached attribute in v13).
+		"""
+
+		async def run(bot):
+			await bot.initialize()
+			return bot.username
+
+		return _run(_Call(self.token, run))
 
 	def respond(self, message):
 		if not message:
@@ -82,7 +129,7 @@ class Telegram:
 
 		mention = text[begin:end]
 		# Only respond to messages mentioning the bot
-		if mention != f"@{self.bot.username}":
+		if mention != f"@{self.get_username()}":
 			return
 
 		command = text.replace(mention, "")
