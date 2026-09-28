@@ -17,10 +17,12 @@ This file documents changes (current commit level since, no tagged releases yet)
 
 ### Fixed
 - `ProductTrialRequest` no longer imports `init_telemetry` from `frappe.utils.telemetry`, which Frappe 16 removed. This mattered more than a failing page: `remove_orphan_doctypes` deletes the DocType record of any controller that fails to import, so the migrate silently dropped the DocType.
+- An App Source with no known versions is no longer rejected as incompatible. Versions come from GitHub, so an empty list means "could not read the tags"; the check now needs evidence before it refuses a deploy, and a known-incompatible source is still rejected.
 - Release Group dependency bumps no longer append a second row for a dependency, which had locked affected groups out of dependency editing.
 - `SiteGroupDeploy.set_latest_version` filtered on a lowercase `stable` status that matched no option, so it always resolved to nothing.
 - Version lookups sort by `number` rather than `name`, and `limit=1` lookups pin an explicit `creation desc` order.
 - `frappe.local.cookie_manager` is read defensively so a fresh request context cannot raise.
+- `create_test_press_settings` seeds the offsite backup credentials that every Site Backup insert reads.
 
 ### Note
 - The MCP endpoint is unavailable on Python 3.14 until `frappe/mcp` relaxes its `pydantic<2.12` pin. Everything else, including the incident support agent that imports from `press.mcp`, works without it.
