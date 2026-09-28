@@ -52,9 +52,15 @@ already clean.
 
 ### 1.2 Add a static check so these cannot come back
 
-A CI lint rule for `datetime.utcnow()` fails the build rather than letting it
-reach runtime. Cheaper to add now than to rediscover during a v17 migrate at
-2am.
+Done. `DTZ003` is in `ruff.toml`, so the pre-commit hook fails on
+`datetime.utcnow()`. Scoped to that one rule deliberately: the rest of the
+`flake8-datetimez` ruleset flags naive local times that are correct throughout
+this codebase, and adopting it wholesale would bury the one rule that matters.
+
+Note `ruff.toml` still says `target-version = "py310"` while
+`requires-python` is now `>=3.14`. Raising it turns on 66 py311+ upgrade
+findings (`TC001-3`, `UP017/042/043/046/047`) — a real refactor, but a separate
+one. Left as its own change.
 
 ### 1.3 Widen the Python floor in `pyproject.toml`
 
@@ -224,7 +230,10 @@ Repeat what the v16 upgrade required, and expect new instances.
       query window is unchanged. Covered by `press/utils/test_utils_cache.py`.
 - [x] **Phase 1.3 — Python floor.** `requires-python` corrected to `>=3.14`.
 - [x] **Phase 2 — audit against `develop`.** Results in the table above.
-- [ ] **Phase 1.2 — CI lint rule** for `datetime.utcnow()`.
+- [x] **Phase 1.2 — CI lint rule.** `DTZ003` added to `ruff.toml`, so
+      `datetime.utcnow()` now fails the pre-commit hook rather than reaching
+      runtime. Verified it catches the aliased form (`import datetime as dt`)
+      too, and that the tree is clean against it.
 - [ ] **Phase 2.1 — re-run the `order_by`/`fields` greps** when `version-17` exists.
 
 ## What is deliberately not in this plan
