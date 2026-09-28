@@ -4,6 +4,26 @@ This file documents changes (current commit level since, no tagged releases yet)
 
 ---
 
+## 28-09-2026 — 0.9.0
+
+### Changed
+- Press declares support for Frappe 17. `[tool.bench.frappe-dependencies].frappe` moves from `>=15.0.0,<17.0.0` to `>=15.0.0,<18.0.0`, which is what made the version claim true. The old upper bound was self-declaring the opposite: `parse_frappe_version` resolves that spec to the Frappe Version records it names, so it resolved to Version 15, 16 and Nightly while press was installing and migrating cleanly on 17.0.0-dev.
+
+This is a declaration change, not a behaviour change. The compatibility itself was verified before the bound was moved: a full import probe of all 1006 press modules against a real Frappe 17.0.0-dev env gives 1005 importing and 1 pre-existing failure, byte-identical to the Frappe 16 result, and a throwaway bench completed `install-app press` and `migrate` at exit 0 with 440 patches, no orphaned DocTypes and 60 tests green. Details in [FRAPPE_17_ROADMAP.md](FRAPPE_17_ROADMAP.md).
+
+Nothing here flips Frappe 17 to the default. `Version 17` remains `status=Develop`, `default=0`, and existing Release Groups are untouched — v17 is still a moving target on `develop` rather than a release.
+
+### Fixed
+- Two modules that failed to import on *both* Frappe 16 and 17: `TypedDict` was declared in the pre-3.13 positional style, which raises `TypeError` at import time and took `deploy_candidate/cache_utils.py` and `press/api/bench.py` down with it. Found by the v17 import probe, not by the test suite.
+- `ProductTrialRequest` no longer imports `init_telemetry`, which is absent on both 16 and 17.
+- `get_usage` returns the shape its callers expect and no longer half-initialises chart data.
+- `hooks.py` no longer queries the database at import time.
+
+### Note
+- `press/press/__init__.py` still declares `__version__ = "0.7.0"`. Nothing imports it, so it is inert rather than wrong, but it now disagrees with the real version in `press/__init__.py`.
+
+---
+
 ## 28-09-2026 — 0.8.0
 
 ### Added

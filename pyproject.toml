@@ -111,7 +111,11 @@ include-package-data = true
 version = {attr = "press.__version__"}
 
 [tool.bench.frappe-dependencies]
-frappe = ">=15.0.0,<17.0.0"
+# Upper bound is 18, not 17, because press runs on Frappe 17. `parse_frappe_version`
+# resolves this to the Frappe Version records it names, so `<17.0.0` made press
+# self-declare that it does not support the version it installs and migrates on
+# (verified: `>=15.0.0,<18.0.0` resolves to Version 15, 16 and 17 plus Nightly).
+frappe = ">=15.0.0,<18.0.0"
 
 [tool.bench.dev-dependencies]
 cryptography = "~=50.0.0" # must stay in step with the framework and with pyOpenSSL; the old ~=45 cap only existed to prop up pyOpenSSL 23
