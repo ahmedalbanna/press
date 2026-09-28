@@ -196,7 +196,9 @@ class TestApp(FrappeTestCase):
 		accepted_custom_version_strings = [
 			(">=16.0.0,<17.0.0", {"Version 16", "Nightly"}),
 			# Support stuff like alpha and dev
-			(">=17.0.0-dev,<18.0.0", {"Nightly"}),
+			# Version 17 is a public Frappe Version row, so the eased lower-bound
+			# major match picks it up alongside Nightly.
+			(">=17.0.0-dev,<18.0.0", {"Version 17", "Nightly"}),
 			(
 				">=15.75.0-alpha,<16.0.0",
 				{"Version 15", "Nightly"},
