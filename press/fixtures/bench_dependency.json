@@ -45,6 +45,10 @@
 			{
 				"supported_frappe_version": "Nightly",
 				"version": "3.14"
+			},
+			{
+				"supported_frappe_version": "Version 16",
+				"version": "3.14"
 			}
 		],
 		"title": "Python Version"
@@ -82,6 +86,10 @@
 			},
 			{
 				"supported_frappe_version": "Nightly",
+				"version": "24.12.0"
+			},
+			{
+				"supported_frappe_version": "Version 16",
 				"version": "24.12.0"
 			}
 		],
@@ -132,6 +140,14 @@
 			},
 			{
 				"supported_frappe_version": "Version 15",
+				"version": "0.12.6"
+			},
+			{
+				"supported_frappe_version": "Version 16",
+				"version": "0.12.5"
+			},
+			{
+				"supported_frappe_version": "Version 16",
 				"version": "0.12.6"
 			}
 		],
@@ -245,6 +261,10 @@
 			{
 				"supported_frappe_version": "Version 15",
 				"version": "0.39.1"
+			},
+			{
+				"supported_frappe_version": "Version 16",
+				"version": "0.39.1"
 			}
 		],
 		"title": "NVM Version"
@@ -294,6 +314,14 @@
 			},
 			{
 				"supported_frappe_version": "Nightly",
+				"version": "25.2"
+			},
+			{
+				"supported_frappe_version": "Version 16",
+				"version": "25.3"
+			},
+			{
+				"supported_frappe_version": "Version 16",
 				"version": "25.2"
 			}
 		],

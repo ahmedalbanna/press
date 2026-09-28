@@ -12,7 +12,7 @@ DEFAULT_DEPENDENCIES = [
 	{"dependency": "NODE_VERSION", "version": "18.16.0"},
 	{"dependency": "PYTHON_VERSION", "version": "3.11"},
 	{"dependency": "WKHTMLTOPDF_VERSION", "version": "0.12.5"},
-	{"dependency": "BENCH_VERSION", "version": "5.25.1"},
+	{"dependency": "BENCH_VERSION", "version": "5.31.0"},
 ]
 
 
