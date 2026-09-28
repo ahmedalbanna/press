@@ -69,6 +69,19 @@ Run the same sweep that found the `order_by` and `init_telemetry` breakages.
 Those were found by grep, not by tests, and both failed *quietly* — which is the
 class of bug that costs the most.
 
+### Audit results, run against `develop` (17.0.0-dev) on 2026-09-28
+
+Comparing `v16.35.0` against `develop` (commit `4ac9eb13`, 1775 files changed):
+
+| Area | Finding | Action |
+|---|---|---|
+| `frappe.utils.telemetry` | **Still present on v17.** Reworked again around a `pulse` client, exposing `capture`, `add_bootinfo`, `is_pulse_enabled`. No `init_telemetry`, same as v16. | Our fix holds. `press/utils/telemetry.py` already uses its own implementation and defines its own `capture_pulse`. Re-check `press/utils/telemetry.py` against v17's pulse API when it lands. |
+| `frappe.pulse` | **New on v17** (`frappe/pulse/__init__.py` is empty; the surface moved to `frappe/pulse/utils.py`). v16 has only 2 files under `frappe/pulse/`. | Confirm what v17's pulse client expects before wiring anything to it. |
+| `frappe.mcp` | **Gone.** Zero files matching `mcp` anywhere in v17's tree. | **Already safe.** `frappe-mcp` is an optional extra and is *not installed* on this bench — `press/mcp/__init__.py` falls back to `_MCPUnavailable`, so every module in `press/mcp/tools/` stays importable. The incident support agent imports `press.mcp.tools.telemetry.clients`, so this matters beyond MCP itself. Nothing to do; do not re-add `frappe-mcp` as a hard dependency. |
+| `order_by` validation | Not re-checked against v17; v16 introduced it and v17 may tighten further. | Keep the grep clean (Phase 1.2 / 2.1). |
+| `utils/weasyprint.py` | Removed in the v16→v17 diff. | Press does not reference it (0 hits). No action. |
+| `doctype_layout`, `changelog_feed`, `sidebar_item_group`, `print_format_builder_beta` | All removed in the v16→v17 diff. | Press references none of them (0 hits each). No action. |
+
 ### 2.1 The `order_by` and `fields` validation
 
 v16 introduced `order_by` validation (`frappe/database/query.py`, ~line 1310)
@@ -201,6 +214,18 @@ Repeat what the v16 upgrade required, and expect new instances.
 | Python 3.15 required | Medium | `requires-python` will widen. Phase 1.1 clears the known blockers. |
 | Redis stale-hook class of failure | Medium | Cost us a failed migrate on v16. Flushing first is the whole mitigation. |
 | Box-specific code in the way | Medium | `press/api/analytics.py` has cAdvisor and log-server workarounds with no V16/V17 guarantee. |
+
+## Progress
+
+- [x] **Phase 1.1 — Python 3.15 blockers.** All five `datetime.utcnow()` call
+      sites replaced with an aware `press.utils.now()`. The cache TTL
+      comparison had naive datetimes on both sides; the AWS S3 report fed a
+      naive window to CloudWatch, which botocore already reads as UTC, so the
+      query window is unchanged. Covered by `press/utils/test_utils_cache.py`.
+- [x] **Phase 1.3 — Python floor.** `requires-python` corrected to `>=3.14`.
+- [x] **Phase 2 — audit against `develop`.** Results in the table above.
+- [ ] **Phase 1.2 — CI lint rule** for `datetime.utcnow()`.
+- [ ] **Phase 2.1 — re-run the `order_by`/`fields` greps** when `version-17` exists.
 
 ## What is deliberately not in this plan
 
