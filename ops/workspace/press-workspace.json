@@ -1,0 +1,336 @@
+{
+	"$schema_version": 1,
+	"description": "Inventory of the workspaces, services and wiring on this development box. This file is the single source of truth for ports, paths and service names. It contains no secrets. Actual secret values live in press-workspace.local.json (gitignored, mode 600).",
+
+	"paths": {
+		"control_bench": "/home/press/benches/control",
+		"tenants_root": "/home/press/benches",
+		"press_app": "/home/press/benches/control/apps/press",
+		"agent_source": "/home/press/agent",
+		"agent_data": "/home/press/agent-data",
+		"agent_runtime": "/home/press/agent-data/agent",
+		"press_mcp": "/home/press/press-mcp",
+		"supervisor_conf_d": "/etc/supervisor/conf.d",
+		"nginx_sites_enabled": "/etc/nginx/sites-enabled"
+	},
+
+	"agent_runtime": {
+		"_note": "The agent's generated state lives here, not in its source checkout. The agent resolves `.docker-builds`, `.clones` and `repo` from `os.getcwd()` (agent/builder.py:934, server.py:78), and its redis.conf hardcodes `dir`. So the paths were landing inside /home/press/agent -- 665M of build output, clone cache and AOF in a git checkout that also carries a real local fix to agent/site.py. They now live here, with symlinks left in the checkout so the agent needs no source edit and survives an upgrade. `redis_dir` is absolute and does NOT follow a symlink, so it is configured explicitly.",
+
+		"root": "/home/press/agent-data/agent",
+		"source_of_truth": "/home/press/agent",
+		"runtime_dirs": [".docker-builds", ".clones", "appendonlydir"],
+		"redis_dir": "/home/press/agent-data/agent",
+		"symlinked_into_source": true,
+		"why_not_edited_in_place": "agent/builder.py and agent/server.py are cwd-relative in the agent's own repo (frappe/agent, branch develop). Patching them here would be silently reverted by the next agent upgrade, and would leave the box looking fixed when it is not."
+	},
+
+	"workspaces": {
+		"control": {
+			"description": "The Press control plane. Owns the dashboard, the agent, and the Frappe Version / Bench Dependency records.",
+			"bench": "/home/press/benches/control",
+			"site": "press.localhost",
+			"public_host": "press.localhost",
+			"ports": {
+				"webserver": 8003,
+				"gunicorn": 8004,
+				"socketio": 9002,
+				"redis_cache": 13002,
+				"redis_queue": 11002
+			}
+		},
+		"tenant": {
+			"description": "The live tenant, running as a container. Sites here are created by the press-mcp chain (build_release_group -> deploy_build -> create_site -> retry_new_site -> retry_site_upstream), not by hand. Its bench sites/ dir is a bind mount owned by frappe mode 600, so it is deliberately NOT a render target: this user cannot read it.",
+			"kind": "container",
+			"container": "bench-0001-000014-apps0",
+			"host_bind_mount": "/home/press/benches/bench-0001-000014-apps0",
+			"site": "store.butterfly-ye.store",
+			"public_host": "store.butterfly-ye.store",
+			"_ports_note": "Host-published ports, which is what nginx and any host-side tool sees. The container's own bench listens on container_ports below and docker maps across.",
+			"ports": {
+				"webserver": 18003,
+				"gunicorn": 18003,
+				"socketio": 19003,
+				"redis_cache": 13003,
+				"redis_queue": 11003
+			},
+			"container_ports": {
+				"webserver": 8000,
+				"socketio": 9000,
+				"redis_cache": 13000,
+				"redis_queue": 11000
+			}
+		},
+		"test_bench": {
+			"description": "A separate bare-metal bench for trying things out. NOT the tenant, and not the tenant's bind mount; conflating the two is what made an earlier version of this inventory check the wrong bench.",
+			"bench": "/home/press/benches/test-bench-c0efcbe4",
+			"site": "test-tenant.localhost",
+			"ports": {
+				"webserver": 8000,
+				"socketio": 9000,
+				"redis_cache": 13000,
+				"redis_queue": 11000
+			}
+		}
+	},
+
+	"services": [
+		{
+			"name": "press-bench-web",
+			"kind": "web",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-web",
+			"supervisorctl_name": "press-bench-web",
+			"port": 8004,
+			"match": "gunicorn -b 0.0.0.0:8004"
+		},
+		{
+			"name": "press-bench-socketio",
+			"kind": "realtime",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-socketio",
+			"supervisorctl_name": "press-bench-web:press-bench-socketio",
+			"port": 9002,
+			"match": "/home/press/benches/control/apps/frappe/socketio.js"
+		},
+		{
+			"name": "press-bench-schedule",
+			"kind": "scheduler",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-schedule",
+			"supervisorctl_name": "press-bench-workers:press-bench-schedule",
+			"port": null,
+			"match": "/home/press/benches/control/env/bin/python -m frappe.utils.bench_helper frappe schedule"
+		},
+		{
+			"name": "press-bench-short-worker",
+			"kind": "worker",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-short-worker",
+			"supervisorctl_name": "press-bench-workers:press-bench-short-worker",
+			"port": null,
+			"match": "control/env/bin/python -m frappe.utils.bench_helper frappe worker --queue short,default"
+		},
+		{
+			"name": "press-bench-long-worker",
+			"kind": "worker",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-long-worker",
+			"supervisorctl_name": "press-bench-workers:press-bench-long-worker",
+			"port": null,
+			"match": "control/env/bin/python -m frappe.utils.bench_helper frappe worker --queue long,default,short"
+		},
+		{
+			"name": "press-bench-redis-cache",
+			"kind": "redis",
+			"role": "cache",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-redis-cache",
+			"supervisorctl_name": "press-bench-redis:press-bench-redis-cache",
+			"port": 13002,
+			"match": "redis-server 127.0.0.1:13002"
+		},
+		{
+			"name": "press-bench-redis-queue",
+			"kind": "redis",
+			"role": "queue",
+			"workspace": "control",
+			"required": true,
+			"owner": "press",
+			"supervisor_program": "press-bench-redis-queue",
+			"supervisorctl_name": "press-bench-redis:press-bench-redis-queue",
+			"port": 11002,
+			"match": "redis-server 127.0.0.1:11002"
+		},
+		{
+			"name": "agent-web",
+			"kind": "web",
+			"workspace": "control",
+			"required": true,
+			"owner": "frappe",
+			"supervisor_program": "web",
+			"supervisor_conf": "/etc/supervisor/conf.d/press-agent.conf",
+			"supervisorctl_name": "agent:web",
+			"port": 25052,
+			"match": "gunicorn --bind 127.0.0.1:25052"
+		},
+		{
+			"name": "agent-redis",
+			"kind": "redis",
+			"workspace": "control",
+			"required": true,
+			"owner": "frappe",
+			"supervisor_program": "redis",
+			"supervisor_conf": "/etc/supervisor/conf.d/press-agent.conf",
+			"supervisorctl_name": "agent:redis",
+			"port": 25025,
+			"match": "redis-server 127.0.0.1:25025"
+		},
+		{
+			"name": "agent-worker",
+			"kind": "worker",
+			"workspace": "control",
+			"required": true,
+			"owner": "frappe",
+			"supervisor_program": "worker",
+			"supervisor_conf": "/etc/supervisor/conf.d/press-agent.conf",
+			"supervisorctl_name": "agent:worker-0",
+			"port": null,
+			"match": "rq worker --url redis://127.0.0.1:25025 high"
+		},
+		{
+			"name": "agent-worker-backup",
+			"kind": "worker",
+			"workspace": "control",
+			"required": false,
+			"owner": "frappe",
+			"supervisor_program": "worker_backup",
+			"supervisor_conf": "/etc/supervisor/conf.d/press-agent.conf",
+			"supervisorctl_name": "agent:worker_backup-0",
+			"port": null,
+			"match": "rq worker --url redis://127.0.0.1:25025 backup"
+		},
+		{
+			"name": "press-mcp",
+			"kind": "mcp",
+			"workspace": "control",
+			"required": false,
+			"owner": "press",
+			"supervisor_program": "press-mcp",
+			"supervisor_conf": "/etc/supervisor/conf.d/press-mcp.conf",
+			"supervisorctl_name": "press-mcp",
+			"port": 8012,
+			"match": "press_mcp --transport http"
+		},
+		{
+			"name": "nginx",
+			"kind": "infra",
+			"workspace": "control",
+			"required": true,
+			"owner": "root",
+			"supervisor_program": null,
+			"port": 8003,
+			"match": "nginx: master process"
+		},
+		{
+			"name": "mariadb",
+			"kind": "infra",
+			"workspace": "control",
+			"required": true,
+			"owner": "mysql",
+			"supervisor_program": null,
+			"port": 3306,
+			"match": "mariadbd"
+		}
+	],
+
+	"_secrets_note": "Each secret names where its authoritative value already lives. The inventory never copies a value: copying would create a second copy to keep in sync, which is the problem this file exists to remove. `doctor` reads the named source and confirms a value is present, without printing it.",
+
+	"secrets": {
+		"press_mcp_agent_token": {
+			"description": "Bearer token the MCP server presents to the agent. Authoritative: the press-mcp supervisor environment line.",
+			"source": {
+				"type": "regex",
+				"file": "/etc/supervisor/conf.d/press-mcp.conf",
+				"key": "PRESS_MCP_AGENT_TOKEN"
+			},
+			"consumers": ["press-mcp"]
+		},
+		"press_mcp_token": {
+			"description": "Bearer token clients use against the MCP server. Authoritative: the press-mcp supervisor environment line.",
+			"source": {
+				"type": "regex",
+				"file": "/etc/supervisor/conf.d/press-mcp.conf",
+				"key": "PRESS_MCP_TOKEN"
+			},
+			"consumers": ["press-mcp"]
+		},
+		"encryption_key": {
+			"description": "Frappe site encryption key. Authoritative: site_config.json, which Frappe itself reads.",
+			"source": {
+				"type": "json",
+				"file": "/home/press/benches/control/sites/press.localhost/site_config.json",
+				"key": "encryption_key"
+			},
+			"consumers": ["frappe"]
+		},
+		"db_password": {
+			"description": "MariaDB password for the press database. Authoritative: site_config.json.",
+			"source": {
+				"type": "json",
+				"file": "/home/press/benches/control/sites/press.localhost/site_config.json",
+				"key": "db_password"
+			},
+			"consumers": ["frappe", "mariadb"]
+		}
+	},
+
+	"checks": {
+		"expected_supervisor_confs": [
+			"/etc/supervisor/conf.d/press-control-bench.conf",
+			"/etc/supervisor/conf.d/press-agent.conf",
+			"/etc/supervisor/conf.d/press-mcp.conf"
+		],
+		"expected_nginx_sites": [
+			"/etc/nginx/sites-enabled/press.localhost.conf"
+		]
+	},
+
+	"render": {
+		"_note": "Files this inventory is the source of truth for. `doctor` compares them; `render` writes them. Only the listed keys are managed -- everything else in the file is left exactly as it is, so a render is a minimal diff. Files outside the `press` user's write permission are check-only; `render --emit` prints the expected content so it can be applied with sudo.",
+
+		"common_site_config": {
+			"control": "/home/press/benches/control/sites/common_site_config.json",
+			"test_bench": "/home/press/benches/test-bench-c0efcbe4/sites/common_site_config.json"
+		},
+		"_common_site_config_excluded": {
+			"tenant": "The tenant container's sites/common_site_config.json is frappe:frappe mode 600. The press user can neither read nor write it, and the container owns it, so it is not a render target. Its published ports are checked by `doctor` via `docker inspect` instead."
+		},
+		"common_site_config_keys": {
+			"webserver_port": "{ports.webserver}",
+			"socketio_port": "{ports.socketio}",
+			"redis_cache": "redis://127.0.0.1:{ports.redis_cache}",
+			"redis_queue": "redis://127.0.0.1:{ports.redis_queue}"
+		},
+
+		"nginx_upstreams": {
+			"press.localhost": {
+				"path": "/etc/nginx/sites-enabled/press.localhost.conf",
+				"upstreams": {
+					"press-bench-frappe": "{ports.gunicorn}",
+					"press-bench-socketio": "{ports.socketio}"
+				}
+			}
+		}
+	},
+
+	"allocation": {
+		"_note": "Policy for handing a new tenant bench a port set. A port is only offered if it is neither listening on this box nor claimed by a workspace above. Allocation reads live sockets, not process command lines: a process can name a port it failed to bind, so a cmdline scan both over-reports and misses ports held by processes owned by other users.",
+
+		"webserver_port": { "start": 8000, "end": 8099, "reserve": [8003, 8004] },
+		"socketio_port": { "start": 9000, "end": 9099, "reserve": [9002] },
+		"redis_cache": { "start": 13000, "end": 13099, "reserve": [13002] },
+		"redis_queue": { "start": 11000, "end": 11099, "reserve": [11002] }
+	},
+
+	"agent": {
+		"_note": "How scripts reach the agent without retyping a URL or a token. The token value is never stored here; it is read from the named secret's authoritative source at call time. `agent env` emits a ready-to-eval snippet for a shell that does need the value.",
+
+		"_scheme_note": "The agent's gunicorn binds plain HTTP with no cert arguments, so this endpoint is http, not https. `ca_bundle` is unrelated to it: that is the CA Press uses for outbound TLS to tenant servers, kept here because the same scripts need both.",
+		"base_url": "http://127.0.0.1:25052",
+		"auth_token_secret": "press_mcp_agent_token",
+		"ca_bundle": "/home/press/agent-data/tls/ca-bundle.pem"
+	}
+}

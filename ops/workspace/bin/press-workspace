@@ -1,0 +1,814 @@
+#!/usr/bin/env python3
+"""Inspect and verify the development box against the workspace inventory.
+
+The inventory (`press-workspace.json`) is the single source of truth for ports,
+paths and service names. This tool never edits anything; `render` (a later
+phase) will. For now it answers the question that otherwise needs a manual
+grep session: "is the box actually wired the way the inventory says?"
+
+    press-workspace doctor      verify services, ports, nginx and site_config
+    press-workspace show        print the resolved inventory, secrets masked
+    press-workspace check-secrets
+
+Stdlib only, so it runs without a venv and without importing press or frappe.
+Exits non-zero if any required check fails, so it is usable from a script.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent.parent
+INVENTORY = HERE / "press-workspace.json"
+
+GREEN, RED, YELLOW, DIM, RESET = "\033[32m", "\033[31m", "\033[33m", "\033[2m", "\033[0m"
+if not sys.stdout.isatty():
+	GREEN = RED = YELLOW = DIM = RESET = ""
+
+
+def load_inventory() -> dict:
+	if not INVENTORY.exists():
+		sys.exit(f"inventory not found: {INVENTORY}")
+	with INVENTORY.open() as f:
+		return json.load(f)
+
+
+# --- probes ---------------------------------------------------------------
+
+
+def pgrep(pattern: str) -> list[str]:
+	try:
+		out = subprocess.run(
+			["pgrep", "-f", pattern], capture_output=True, text=True, timeout=15
+		)
+	except (subprocess.TimeoutExpired, FileNotFoundError):
+		return []
+	return [p for p in out.stdout.split() if p]
+
+
+def listening_ports() -> set[int]:
+	"""Ports with a listening socket. Uses `ss`; falls back to /proc/net/tcp."""
+	ports: set[int] = set()
+	try:
+		out = subprocess.run(["ss", "-tlnH"], capture_output=True, text=True, timeout=15)
+		for line in out.stdout.splitlines():
+			fields = line.split()
+			if len(fields) < 4:
+				continue
+			addr = fields[3]
+			if ":" in addr:
+				with_port = addr.rsplit(":", 1)[1]
+				if with_port.isdigit():
+					ports.add(int(with_port))
+		if ports:
+			return ports
+	except (subprocess.TimeoutExpired, FileNotFoundError):
+		pass
+
+	for name in ("/proc/net/tcp", "/proc/net/tcp6"):
+		path = Path(name)
+		if not path.exists():
+			continue
+		for line in path.read_text().splitlines()[1:]:
+			cols = line.split()
+			if len(cols) < 4 or cols[3] != "0A":  # 0A = LISTEN
+				continue
+			with_port = cols[1].rsplit(":", 1)[1]
+			ports.add(int(with_port, 16))
+	return ports
+
+
+def process_owner(pid: str) -> str | None:
+	try:
+		uid = int(
+			Path(f"/proc/{pid}/status").read_text().split("Uid:")[1].split()[0]
+		)
+	except (OSError, IndexError, ValueError):
+		return None
+	for line in Path("/etc/passwd").read_text().splitlines():
+		parts = line.split(":")
+		if len(parts) > 2 and parts[2].isdigit() and int(parts[2]) == uid:
+			return parts[0]
+	return str(uid)
+
+
+# --- checks ---------------------------------------------------------------
+
+
+class Report:
+	def __init__(self) -> None:
+		self.failures: list[str] = []
+		self.warnings: list[str] = []
+
+	def fail(self, msg: str) -> None:
+		self.failures.append(msg)
+		print(f"  {RED}FAIL{RESET}  {msg}")
+
+	def warn(self, msg: str) -> None:
+		self.warnings.append(msg)
+		print(f"  {YELLOW}WARN{RESET}  {msg}")
+
+	def ok(self, msg: str) -> None:
+		print(f"  {GREEN}ok{RESET}    {msg}")
+
+
+def check_agent_runtime(inv: dict, report: Report) -> None:
+	"""Generated agent state belongs in agent-data, not in the agent's source checkout.
+
+	The agent derives `.docker-builds`, `.clones` and `repo` from os.getcwd(), and
+	redis.conf hardcodes `dir`. If any of that is a real directory inside the
+	checkout again, the layout has regressed -- the usual cause being a re-clone of
+	the agent, which wipes the symlinks and leaves the directories behind.
+	"""
+	spec = inv.get("agent_runtime") or {}
+	root = Path(spec.get("root", ""))
+	source = Path(spec.get("source_of_truth", inv["paths"]["agent_source"]))
+
+	if not root.is_dir():
+		report.fail(f"agent runtime root missing: {root}")
+		return
+
+	for name in spec.get("runtime_dirs", []):
+		real, link = root / name, source / name
+		if not real.is_dir():
+			report.fail(f"{name:<16} absent from {root}")
+		elif link.is_symlink():
+			report.ok(f"{name:<16} {DIM}in {root}, symlinked from the checkout{RESET}")
+		elif link.is_dir():
+			report.fail(
+				f"{name:<16} is a real directory in the checkout again -- "
+				"the agent will write there, not to agent-data"
+			)
+		elif not link.exists():
+			report.warn(
+				f"{name:<16} in {root} but not linked into the checkout; "
+				"the agent will recreate it in the source tree"
+			)
+		else:
+			report.fail(f"{name:<16} unexpected file type at {link}")
+
+	# A checkout that is growing again is the symptom this whole layout exists to prevent.
+	conf = source / "redis.conf"
+	if conf.exists():
+		want = spec.get("redis_dir", "")
+		try:
+			line = next(
+				(l for l in conf.read_text().splitlines() if l.startswith("dir ")), ""
+			).strip()
+		except OSError:
+			line = ""
+		if want and line != f"dir {want}":
+			report.fail(f"redis.conf {DIM}{line!r}{RESET} -- expected 'dir {want}'")
+		elif want:
+			report.ok(f"redis dir      {DIM}{line}{RESET}")
+
+
+def check_services(inv: dict, report: Report) -> None:
+	print("\nServices")
+	ports = listening_ports()
+	for svc in inv["services"]:
+		pids = pgrep(svc["match"])
+		label = svc["name"]
+		if pids:
+			owner = process_owner(pids[0])
+			detail = f"{len(pids)} proc"
+			if owner and svc.get("owner") and owner != svc["owner"]:
+				report.warn(
+					f"{label}: running as {owner}, inventory says {svc['owner']}"
+				)
+			else:
+				detail += f", as {owner}"
+			report.ok(f"{label:<28} {DIM}{detail}{RESET}")
+		elif svc.get("required", True):
+			report.fail(f"{label:<28} not running (match: {svc['match']!r})")
+		else:
+			report.warn(f"{label:<28} not running (optional)")
+
+		port = svc.get("port")
+		if port and port not in ports:
+			report.fail(f"{label:<28} nothing listening on port {port}")
+
+
+def container_running() -> set:
+	try:
+		out = subprocess.run(
+			["docker", "ps", "--format", "{{.Names}}"],
+			capture_output=True, text=True, timeout=20,
+		)
+		return set(out.stdout.split())
+	except (subprocess.TimeoutExpired, FileNotFoundError):
+		return set()
+
+
+def container_published_ports(name: str) -> dict:
+	"""container port -> list of published host ports, from `docker inspect`.
+
+	The container's bench listens on its own ports; the host only ever sees the
+	published ones. Reading them is the only way to know what a host-side tool or
+	an nginx upstream can actually reach.
+	"""
+	try:
+		out = subprocess.run(
+			["docker", "inspect", name, "--format", "{{json .NetworkSettings.Ports}}"],
+			capture_output=True, text=True, timeout=20,
+		)
+		if out.returncode != 0:
+			return {}
+		raw = json.loads(out.stdout.strip() or "{}")
+	except (subprocess.TimeoutExpired, FileNotFoundError, json.JSONDecodeError):
+		return {}
+	published = {}
+	for container_port, bindings in (raw or {}).items():
+		if not bindings:
+			continue
+		internal = container_port.split("/")[0]
+		published[internal] = [b.get("HostPort") for b in bindings if b.get("HostPort")]
+	return published
+
+
+def check_workspaces(inv: dict, report: Report) -> None:
+	"""A container workspace is checked via docker, not via a bench config file."""
+	print("\nWorkspaces")
+	for name, ws in sorted(inv["workspaces"].items()):
+		if ws.get("kind") == "container":
+			container = ws.get("container", "")
+			if container not in container_running():
+				report.fail(f"{name:<12} container {container} is not running")
+				continue
+			published = container_published_ports(container)
+			want = {
+				"webserver": (ws["container_ports"]["webserver"], ws["ports"]["webserver"]),
+				"socketio": (ws["container_ports"]["socketio"], ws["ports"]["socketio"]),
+				"redis_cache": (ws["container_ports"]["redis_cache"], ws["ports"]["redis_cache"]),
+				"redis_queue": (ws["container_ports"]["redis_queue"], ws["ports"]["redis_queue"]),
+			}
+			bad = [
+				f"{key} {internal}->{expected} (has {published.get(str(internal))})"
+				for key, (internal, expected) in want.items()
+				if str(expected) not in published.get(str(internal), [])
+			]
+			if bad:
+				report.fail(f"{name:<12} published port drift: {bad}")
+			else:
+				report.ok(f"{name:<12} {DIM}container {container}, published ports match{RESET}")
+			continue
+
+		bench, cfg = Path(ws["bench"]), Path(ws["bench"]) / "sites" / "common_site_config.json"
+		if not cfg.exists():
+			report.fail(f"{name:<12} {cfg} not found")
+			continue
+		try:
+			data = json.loads(cfg.read_text())
+		except json.JSONDecodeError as e:
+			report.fail(f"{name:<12} {cfg.name} is not valid JSON: {e}")
+			continue
+		bad = []
+		for key, port_key in (("webserver_port", "webserver"), ("socketio_port", "socketio")):
+			want, got = ws["ports"].get(port_key), data.get(key)
+			if want is not None and got != want:
+				bad.append(f"{key}={got} (inventory says {want})")
+		for key, port_key in (("redis_cache", "redis_cache"), ("redis_queue", "redis_queue")):
+			want = ws["ports"].get(port_key)
+			got = data.get(key) or ""
+			if want and not got.endswith(f":{want}"):
+				bad.append(f"{key}={got or 'unset'} (inventory says port {want})")
+		if bad:
+			report.fail(f"{name:<12} " + "; ".join(bad))
+		else:
+			report.ok(f"{name:<12} {DIM}all four ports match{RESET}")
+
+
+def check_nginx(inv: dict, report: Report) -> None:
+	print("\nNginx wiring")
+	sites_dir = Path(inv["paths"]["nginx_sites_enabled"])
+	ws = inv["workspaces"]["control"]
+	gunicorn, socketio = ws["ports"]["gunicorn"], ws["ports"]["socketio"]
+
+	for site in inv["checks"]["expected_nginx_sites"]:
+		path = Path(site)
+		if not path.exists():
+			report.fail(f"missing nginx site {site}")
+			continue
+		text = path.read_text()
+		found = set(int(m) for m in re.findall(r"server\s+127\.0\.0\.1:(\d+)", text))
+		want = {gunicorn, socketio}
+		if want <= found:
+			report.ok(f"{path.name:<28} {DIM}upstreams {sorted(found)}{RESET}")
+		else:
+			report.fail(
+				f"{path.name:<28} upstreams {sorted(found)}, inventory expects {sorted(want)}"
+			)
+
+	for name, port_key in (("webserver", "webserver"),):
+		port = ws["ports"][port_key]
+		listening = any(
+			f"listen {port};" in Path(s).read_text() for s in sites_dir.glob("*.conf")
+		)
+		if listening:
+			report.ok(f"nginx listens on {port}")
+		else:
+			report.fail(f"no nginx site has 'listen {port};'")
+
+
+def check_supervisor_conf(inv: dict, report: Report) -> None:
+	print("\nSupervisor config")
+
+	# Map each declared program to the file that defines it, so a program name that
+	# happens to appear in more than one bench's config cannot be credited to the
+	# wrong file.
+	expected: dict[str, set] = {}
+	for svc in inv["services"]:
+		program = svc.get("supervisor_program")
+		if not program:
+			continue
+		conf = svc.get("supervisor_conf") or _default_conf_for(inv, svc)
+		expected.setdefault(conf, set()).add(program)
+
+	for conf, programs in sorted(expected.items()):
+		path = Path(conf)
+		if not path.exists():
+			report.fail(f"missing {conf}")
+			continue
+		defined = set(
+			re.findall(r"^\[program:([\w-]+)\]", path.read_text(), re.MULTILINE)
+		)
+		missing, extra = programs - defined, defined - programs
+		if missing:
+			report.fail(f"{path.name}: in inventory but not defined: {sorted(missing)}")
+		if extra:
+			report.warn(f"{path.name}: defined but not in inventory: {sorted(extra)}")
+		if not missing and not extra:
+			report.ok(f"{path.name:<28} {DIM}{len(defined)} programs, exact match{RESET}")
+
+	for conf in inv["checks"]["expected_supervisor_confs"]:
+		if not Path(conf).exists():
+			report.fail(f"missing {conf}")
+
+
+def _default_conf_for(inv: dict, svc: dict) -> str:
+	"""Which supervisor conf defines a service that did not name one."""
+	ws = svc.get("workspace", "control")
+	prefix = "press-control-bench" if ws == "control" else ws
+	return f"{inv['paths']['supervisor_conf_d']}/{prefix}.conf"
+
+
+def check_secrets(inv: dict, report: Report) -> None:
+	"""Confirm each secret is populated at its authoritative source.
+
+	Never prints a value. Reads whatever the owning tool already reads, so this
+	adds no second copy of any secret to keep in sync.
+	"""
+	print("\nSecrets (values never printed)")
+	for name, spec in inv["secrets"].items():
+		src = spec.get("source") or {}
+		path = Path(src.get("file", ""))
+		if not path.exists():
+			report.fail(f"{name:<24} source missing: {path}")
+			continue
+
+		key = src.get("key", "")
+		if src.get("type") == "json":
+			try:
+				data = json.loads(path.read_text())
+			except json.JSONDecodeError as e:
+				report.fail(f"{name:<24} {path.name} is not valid JSON: {e}")
+				continue
+			value = data.get(key, "")
+		elif src.get("type") == "regex":
+			# KEY="value" inside a supervisor environment line
+			match = re.search(rf'{re.escape(key)}="?([^"\s,]*)"?', path.read_text())
+			value = match.group(1) if match else ""
+		else:
+			report.fail(f"{name:<24} unknown source type {src.get('type')!r}")
+			continue
+
+		if str(value).strip():
+			report.ok(f"{name:<24} {DIM}set in {path.name}{RESET}")
+		else:
+			report.fail(f"{name:<24} empty or absent in {path.name}")
+
+
+# --- render ---------------------------------------------------------------
+
+# Frappe writes these files itself; match its exact shape so a render is a
+# minimal diff rather than a reformat. Note: no trailing newline.
+SITE_CONFIG_DUMP = {"indent": 1, "sort_keys": True}
+INTEGER_KEYS = ("webserver_port", "socketio_port")
+
+
+def _expand(template: str, ws: dict) -> str:
+	out = template
+	for key, value in ws["ports"].items():
+		out = out.replace("{ports." + key + "}", str(value))
+	return out
+
+
+def render_common_site_config(inv: dict, report: Report, apply: bool, only: str | None) -> int:
+	print("\ncommon_site_config.json")
+	drift = 0
+	targets = inv["render"]["common_site_config"]
+	key_templates = inv["render"]["common_site_config_keys"]
+
+	for ws_name, path_str in sorted(targets.items()):
+		if only and only != ws_name:
+			continue
+		ws = inv["workspaces"][ws_name]
+		path = Path(path_str)
+		if not path.exists():
+			report.fail(f"{ws_name}: {path} not found")
+			drift += 1
+			continue
+
+		try:
+			data = json.loads(path.read_text())
+		except json.JSONDecodeError as e:
+			report.fail(f"{ws_name}: not valid JSON: {e}")
+			drift += 1
+			continue
+
+		changed = {}
+		for key, template in key_templates.items():
+			want = _expand(template, ws)
+			got = data.get(key)
+			if str(want) != str(got):
+				changed[key] = (got, want)
+
+		if not changed:
+			report.ok(f"{ws_name:<28} {DIM}already matches{RESET}")
+			continue
+
+		for key, (got, want) in sorted(changed.items()):
+			report.fail(f"{ws_name:<28} {key}: {got!r} -> {want!r}")
+
+		if apply and os.access(path, os.W_OK):
+			for key, (_got, want) in changed.items():
+				data[key] = int(want) if key in INTEGER_KEYS else want
+			path.write_text(json.dumps(data, **SITE_CONFIG_DUMP))
+			report.ok(f"{ws_name:<28} {DIM}written{RESET}")
+		else:
+			reason = "not writable by this user" if not os.access(path, os.W_OK) else "check only"
+			report.warn(f"{ws_name:<28} {len(changed)} key(s) to write, {reason}")
+			drift += 1
+
+	return drift
+
+
+def render_nginx(inv: dict, report: Report, apply: bool, only: str | None, emit: bool) -> int:
+	print("\nnginx upstreams")
+	drift = 0
+	ws = inv["workspaces"]["control"]
+	for site, spec in sorted(inv["render"]["nginx_upstreams"].items()):
+		if only and only != site:
+			continue
+		path = Path(spec["path"])
+		if not path.exists():
+			report.fail(f"{site}: {path} not found")
+			drift += 1
+			continue
+
+		text = path.read_text()
+		mismatched = []
+		for upstream, template in spec["upstreams"].items():
+			want = _expand(template, ws)
+			block = re.search(
+				rf"upstream\s+{re.escape(upstream)}\s*\{{(.*?)\}}", text, re.DOTALL
+			)
+			if not block:
+				mismatched.append(f"{upstream}: not defined")
+				continue
+			ports = re.findall(r"127\.0\.0\.1:(\d+)", block.group(1))
+			if want not in ports:
+				mismatched.append(f"{upstream}: has {ports}, inventory says {want}")
+
+		if not mismatched:
+			report.ok(f"{site:<28} {DIM}already matches{RESET}")
+			continue
+
+		for m in mismatched:
+			report.fail(f"{site:<28} {m}")
+		drift += 1
+
+		if emit:
+			print(f"\n    --- expected upstream blocks for {site} ---")
+			for upstream, template in spec["upstreams"].items():
+				print(f"    upstream {upstream} {{")
+				print(f"        server 127.0.0.1:{_expand(template, ws)} fail_timeout=0;")
+				print("    }")
+			print(f"    --- then: sudo nginx -t && sudo systemctl reload nginx ---")
+		elif apply:
+			report.warn(
+				f"{site:<28} {path} is not writable by this user; "
+				"use --emit and apply with sudo"
+			)
+		else:
+			report.warn(f"{site:<28} drift found; run with --emit for the expected block")
+
+	return drift
+
+
+def cmd_render(inv: dict, args) -> int:
+	report = Report()
+	print(f"Render {'apply' if args.apply else 'check'}  {DIM}from {INVENTORY}{RESET}")
+
+	drift = render_common_site_config(inv, report, args.apply, args.only)
+	drift += render_nginx(inv, report, args.apply, args.only, args.emit)
+
+	if drift:
+		if not args.apply:
+			print(f"\n{drift} target(s) differ from the inventory. Re-run with --apply to write.")
+		else:
+			print(f"\n{drift} target(s) could not be written; see above.")
+		return 1
+	print("\nall render targets match the inventory")
+	return 0
+
+
+# --- allocation -----------------------------------------------------------
+
+
+def claimed_ports(inv: dict) -> set[int]:
+	"""Every port the inventory already assigns, so allocation never reuses one."""
+	claimed: set[int] = set()
+	for ws in inv["workspaces"].values():
+		claimed.update(int(p) for p in ws["ports"].values() if p)
+	for svc in inv["services"]:
+		if svc.get("port"):
+			claimed.add(int(svc["port"]))
+	for spec in inv.get("allocation", {}).values():
+		if isinstance(spec, dict):
+			claimed.update(int(p) for p in spec.get("reserve", []))
+	return claimed
+
+
+def allocate_ports(inv: dict) -> dict:
+	"""First free port in each range, skipping live listeners and claimed ports.
+
+	Two independent reasons to skip a port: something is already listening on it, or
+	the inventory has already promised it to a workspace. A bench that binds either
+	fails at supervisor start, long after the command that created it.
+	"""
+	live = listening_ports()
+	claimed = claimed_ports(inv)
+	out = {}
+	for name, spec in inv["allocation"].items():
+		if name.startswith("_"):
+			continue
+		out[name] = next(
+			(
+				p
+				for p in range(spec["start"], spec["end"] + 1)
+				if p not in live and p not in claimed
+			),
+			None,
+		)
+	return out
+
+
+def cmd_ports(inv: dict, args) -> int:
+	live = listening_ports()
+
+	print("Allocation ranges and what is live in them:")
+	for name, spec in sorted(inv["allocation"].items()):
+		if name.startswith("_"):
+			continue
+		in_range = sorted(p for p in live if spec["start"] <= p <= spec["end"])
+		print(f"  {name:<16} {spec['start']}-{spec['end']}  {DIM}in use: {in_range or 'none'}{RESET}")
+
+	allocation = allocate_ports(inv)
+	print("\nNext free set for a new tenant bench:")
+	for name, port in sorted(allocation.items()):
+		if port is None:
+			print(f"  {name:<16} {RED}no free port in range{RESET}")
+
+	if args.json:
+		print("\n" + json.dumps(allocation, indent=2))
+	else:
+		print(
+			f"  webserver {allocation['webserver_port']}  socketio {allocation['socketio_port']}  "
+			f"redis_cache {allocation['redis_cache']}  redis_queue {allocation['redis_queue']}"
+		)
+	return 1 if any(p is None for p in allocation.values()) else 0
+
+
+# --- agent ----------------------------------------------------------------
+
+
+def read_secret(inv: dict, name: str) -> str:
+	"""The value of a secret, read from wherever it is already authoritative."""
+	spec = (inv.get("secrets") or {}).get(name)
+	if not spec:
+		sys.exit(f"secret {name!r} is not declared in the inventory")
+	src = spec.get("source") or {}
+	path = Path(src.get("file", ""))
+	if not path.exists():
+		sys.exit(f"secret {name!r}: source missing: {path}")
+	if src.get("type") == "json":
+		return str(json.loads(path.read_text()).get(src.get("key", ""), ""))
+	match = re.search(rf'{re.escape(src.get("key", ""))}="?([^"\s,]*)"?', path.read_text())
+	return match.group(1) if match else ""
+
+
+def cmd_agent(inv: dict, args) -> int:
+	cfg = inv["agent"]
+	token = read_secret(inv, cfg["auth_token_secret"])
+
+	if args.print_token:
+		if not token:
+			sys.exit("auth token is empty at its source")
+		print(token)
+		return 0
+
+	self_path = Path(__file__).resolve()
+	print(f"Agent base URL   {cfg['base_url']}")
+	print(f"CA bundle        {cfg['ca_bundle']}")
+	print(
+		f"Auth             bearer token from secret {cfg['auth_token_secret']!r} "
+		f"({'set' if token else 'EMPTY'}; value not printed)"
+	)
+
+	if args.env:
+		if not token:
+			sys.exit("cannot emit env: the auth token is empty at its source")
+		print("\n# eval this instead of hardcoding a URL or a token in a script:")
+		print(f'export PRESS_AGENT_URL="{cfg["base_url"]}"')
+		print(
+			f'export PRESS_AGENT_TOKEN="$({sys.executable} {self_path} agent --print-token)"'
+		)
+		print(f'export REQUESTS_CA_BUNDLE="{cfg["ca_bundle"]}"')
+
+	if args.ping:
+		import urllib.request
+
+		# Plain HTTP: the agent's gunicorn binds no certificate. ca_bundle is for
+		# outbound TLS to tenant servers and is deliberately not used here.
+		req = urllib.request.Request(
+			f"{cfg['base_url']}/ping", headers={"Authorization": f"bearer {token}"}
+		)
+		try:
+			with urllib.request.urlopen(req, timeout=15) as r:
+				print(f"ping              HTTP {r.status} {r.read(80).decode(errors='replace')}")
+		except Exception as e:
+			print(f"ping              failed: {type(e).__name__}: {e}")
+	return 0
+
+
+# --- new-tenant -----------------------------------------------------------
+
+# The provisioning chain on this box belongs to press-mcp, not to this tool. Re-typing
+# these as raw bench commands would create a second path that drifts from the supported
+# one, and would get the ownership rules wrong (tenant bench dirs stay frappe:frappe and
+# must never be chowned to press). So this checks what can be checked without the control
+# plane, then prints the chain with the values already filled in.
+PROVISION_CHAIN = [
+	("check_site_placement", "read-only gate: an Active Proxy Server must be linked to the domain"),
+	("production_readiness_audit", "read-only gate: blocks on rental readiness"),
+	("build_release_group", "builds the bench image (long)"),
+	("deploy_build", "deploys the build"),
+	("retry_new_bench", "only if the Bench went Broken"),
+	("create_site", "acts as the team's user, so no permission error"),
+	("retry_new_site", "only if the Site failed"),
+	("retry_site_upstream", "only if the Site is Broken with New Site Success"),
+]
+
+
+def cmd_new_tenant(inv: dict, args) -> int:
+	report = Report()
+	site = args.site
+	print(f"new-tenant pre-flight for {site}  {DIM}(dry run: this provisions nothing){RESET}")
+
+	# 1. Is the name usable at all?
+	if not re.fullmatch(r"[a-z0-9][a-z0-9.-]*\.[a-z]{2,}", site or ""):
+		report.fail(f"site name {site!r} is not a valid hostname")
+	else:
+		report.ok(f"site name {site!r} is a valid hostname")
+
+	# 2. Ports. A new bench binds these before anything else is wrong.
+	allocation = allocate_ports(inv)
+	if site:
+		existing = [
+			name
+			for name, ws in inv["workspaces"].items()
+			if ws.get("site") == site or ws.get("public_host") == site
+		]
+		if existing:
+			report.warn(f"{site} is already the site for workspace {existing[0]!r}")
+		else:
+			report.ok(
+				"ports free: "
+				+ " ".join(f"{k}={v}" for k, v in sorted(allocation.items()) if v)
+			)
+
+	# 3. The agent has to answer, or every later step fails at the last moment.
+	agent = inv["agent"]
+	token = read_secret(inv, agent["auth_token_secret"])
+	import urllib.request
+
+	req = urllib.request.Request(
+		f"{agent['base_url']}/ping", headers={"Authorization": f"bearer {token}"}
+	)
+	try:
+		with urllib.request.urlopen(req, timeout=15) as r:
+			report.ok(f"agent reachable at {agent['base_url']} (HTTP {r.status})")
+	except Exception as e:
+		report.fail(f"agent not reachable at {agent['base_url']}: {type(e).__name__}: {e}")
+
+	# 4. The chain itself.
+	print("\nProvisioning chain (press-mcp; this tool does not run it):")
+	for i, (tool, why) in enumerate(PROVISION_CHAIN, 1):
+		print(f"  {i}. {tool:<28} {DIM}{why}{RESET}")
+	print(
+		"\nBefore a long build, set these or the build fails late:\n"
+		"  set_press_setting     domain + docker_registry_url set, and no_push=true on a\n"
+		"                        box with no pushable registry\n"
+		"  set_docker_registry_credentials  the agent always runs `docker login`, and\n"
+		"                        docker refuses an empty username\n"
+		"  set_bench_port_offset  only if a bench reports 'address already in use';\n"
+		"                        get_unused_port_offset is blind to this machine\n"
+		f"\nAgent URL and token for those calls:\n  $W agent --env"
+	)
+
+	if report.failures:
+		print(f"\n{len(report.failures)} pre-flight failure(s); do not start a build yet.")
+		return 1
+	print("\npre-flight clear. Start with check_site_placement.")
+	return 0
+
+
+# --- commands -------------------------------------------------------------
+
+
+def cmd_show(inv: dict, _args) -> int:
+	# The inventory holds no secret values, only their locations, so there is
+	# nothing to mask here. `check-secrets` is what confirms a value is present.
+	print(json.dumps(inv, indent=2))
+	return 0
+
+
+def cmd_check_secrets(inv: dict, _args) -> int:
+	report = Report()
+	check_secrets(inv, report)
+	return 1 if report.failures else 0
+
+
+def cmd_doctor(inv: dict, _args) -> int:
+	report = Report()
+	print(f"Workspace doctor  {DIM}{INVENTORY}{RESET}")
+	check_agent_runtime(inv, report)
+	check_services(inv, report)
+	check_workspaces(inv, report)
+	check_nginx(inv, report)
+	check_supervisor_conf(inv, report)
+	check_secrets(inv, report)
+
+	total = len(report.failures) + len(report.warnings)
+	print(
+		f"\n{len(report.failures)} failure(s), {len(report.warnings)} warning(s), "
+		f"{'all required checks passed' if not report.failures else 'action needed'}"
+	)
+	return 1 if report.failures else 0
+
+
+def main() -> int:
+	parser = argparse.ArgumentParser(prog="press-workspace", description=__doc__)
+	sub = parser.add_subparsers(dest="command", required=True)
+	sub.add_parser("doctor", help="verify services, ports, nginx and site_config")
+	sub.add_parser("show", help="print the resolved inventory, secrets masked")
+	sub.add_parser("check-secrets", help="confirm secret values are present")
+
+	rp = sub.add_parser("render", help="check (or write) the files the inventory owns")
+	rp.add_argument("--apply", action="store_true", help="write the changes (default: check only)")
+	rp.add_argument("--emit", action="store_true", help="print expected content for root-owned files")
+	rp.add_argument("--only", help="limit to one target, e.g. control or press.localhost")
+	pp = sub.add_parser("ports", help="show port ranges and the next free set for a tenant bench")
+	pp.add_argument("--json", action="store_true", help="print only the allocation as JSON")
+
+	nt = sub.add_parser("new-tenant", help="pre-flight a tenant and print the provisioning chain")
+	nt.add_argument("--site", required=True, help="the site hostname to create")
+
+	ap = sub.add_parser("agent", help="resolve agent URL and auth without retyping them")
+	ap.add_argument("--env", action="store_true", help="print a ready-to-eval export block")
+	ap.add_argument("--print-token", action="store_true", help="print the token (for scripts)")
+	ap.add_argument("--ping", action="store_true", help="call the agent /ping with the token")
+
+	args = parser.parse_args()
+
+	inv = load_inventory()
+	return {
+		"doctor": cmd_doctor,
+		"show": cmd_show,
+		"check-secrets": cmd_check_secrets,
+		"render": cmd_render,
+		"ports": cmd_ports,
+		"agent": cmd_agent,
+		"new-tenant": cmd_new_tenant,
+	}[args.command](inv, args)
+
+
+if __name__ == "__main__":
+	sys.exit(main())
