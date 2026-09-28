@@ -11,10 +11,12 @@ authors = [
 ]
 readme = "README.md"
 license = {text = "AGPL-3.0"}
-# Frappe 16 requires >=3.14,<3.15, so the previous floor of 3.10 understated what
-# actually installs. No upper bound: that is a statement about which Frappe
-# version to target, and v16 is a floor rather than a ceiling.
-requires-python = ">=3.14"
+# Stay at 3.10, not 3.14. This metadata describes what press's own code needs;
+# the interpreter floor is enforced by the `frappe` dependency below, which
+# resolves per Frappe version (v15 allows 3.10, v16+ requires 3.14). Raising this
+# would make press uninstallable on a Frappe 15 bench, which the range below
+# still claims to support.
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",

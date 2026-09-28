@@ -222,9 +222,10 @@ class StackedGroupByChart:
 	):
 		self.log_server = frappe.db.get_single_value("Press Settings", "log_server")
 		if not self.log_server:
-			# Return before assigning any attribute, so a subclass that
-			# initialises state from them (e.g. resource_type) ends up
-			# half-built. Set the fields the subclass reads first, then bail.
+			# Only `resource_type` and `database_name` are read when there is no
+			# log server: `SlowLogGroupByChart.run` checks both before it touches
+			# anything else. `database_name` is declared on the class, so this only
+			# pins it for a subclass that sets an instance attribute first.
 			self.resource_type = resource_type
 			self.database_name = None
 			return
@@ -631,7 +632,16 @@ def _parse_datetime_in_metrics(timestamp: float, timezone: str) -> str:
 	return str(datetime.fromtimestamp(timestamp, tz=pytz_timezone(timezone)))
 
 
-def _get_cadvisor_data(promql_query: str, timezone: str, timespan: int, timegrain: int):
+def _get_cadvisor_data(
+	promql_query: str, timezone: str, timespan: int, timegrain: int
+) -> tuple[list[dict], list[str]]:
+	"""Datasets and labels for a cAdvisor range query.
+
+	An empty result is a valid answer, not a failure: cAdvisor reports nothing for
+	a container runtime it cannot enumerate, and that is a steady state rather
+	than a transient one. So an empty series returns empty datasets, and the
+	caller renders an empty chart instead of an error.
+	"""
 	end = datetime.now(pytz_timezone(timezone))
 	start = frappe.utils.add_to_date(end, seconds=-timespan)
 	datasets = []
@@ -647,7 +657,7 @@ def _get_cadvisor_data(promql_query: str, timezone: str, timespan: int, timegrai
 	result = _query_prometheus(query)["data"]["result"]
 
 	if not result:
-		return None
+		return datasets, labels
 
 	for res in result:
 		datasets.append(
@@ -1462,7 +1472,15 @@ class GenerateReportReports(BackgroundJobGroupByChart):
 				self.search = self.search.exclude("match_phrase", json__site=path)
 
 
-def get_usage(site: str, type: str, timezone: str, start: datetime, end: datetime, timegrain: int):
+def get_usage(
+	site: str, type: str, timezone: str, start: datetime, end: datetime, timegrain: int
+) -> list[UsagePoint]:
+	"""Usage points for a site over a window. Empty when there is nothing to report.
+
+	Returns a list, not the `{datasets, labels}` shape the chart endpoints use:
+	all three callers iterate the result and read attributes off each item, so a
+	dict would surface there as an `AttributeError` on a string key.
+	"""
 	log_server = frappe.db.get_single_value("Press Settings", "log_server")
 	if not log_server:
 		return []
@@ -1508,10 +1526,6 @@ def get_usage(site: str, type: str, timezone: str, start: datetime, end: datetim
 	buckets: list[UsagePoint] = []
 
 	if not response.get("aggregations"):
-		# An empty list, not the {"datasets": ..., "labels": ...} shape the
-		# chart endpoints return: this function returns list[UsagePoint] and all
-		# three callers iterate it, so a dict would surface as a confusing
-		# AttributeError on a string key.
 		return []
 
 	for bucket in response["aggregations"]["date_histogram"]["buckets"]:

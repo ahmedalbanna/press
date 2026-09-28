@@ -61,8 +61,15 @@ def initialize_webdriver():
 	try:
 		chrome = webdriver.Chrome(service=service, options=options)
 	except WebDriverException as e:
-		version = re.search(r"is (\d+.\d+.\d+.\d+) with", e.msg).group(1)
-		download_chromedriver(version=version)
+		# The installed Chrome version is only knowable from the message, and selenium
+		# does not promise that wording. Calling `.group()` on a failed match raised
+		# `'NoneType' object has no attribute 'group'`, which hid the real cause behind
+		# an error in the recovery path -- so re-raise the original when it cannot be
+		# parsed, and let the caller report something actionable.
+		installed = re.search(r"is (\d+.\d+.\d+.\d+) with", e.msg or "")
+		if not installed:
+			raise
+		download_chromedriver(version=installed.group(1))
 		chrome = webdriver.Chrome(service=service, options=options)
 	return True
 

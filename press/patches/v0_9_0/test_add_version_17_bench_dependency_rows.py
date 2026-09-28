@@ -1,7 +1,7 @@
 import frappe
 from frappe.tests.utils import FrappeTestCase
 
-from press.patches.v0_8_0.add_version_17_bench_dependency_rows import (
+from press.patches.v0_9_0.add_version_17_bench_dependency_rows import (
 	FRAPPE_VERSION,
 	VERSIONS_BY_DEPENDENCY,
 	execute,
@@ -45,6 +45,16 @@ class TestAddVersion17BenchDependencyRows(FrappeTestCase):
 
 	def test_patch_is_idempotent(self):
 		execute()
+		execute()
+
+		self.assertEqual(self.picker_versions("WKHTMLTOPDF_VERSION"), ["0.12.5", "0.12.6"])
+
+	def test_patch_completes_a_partially_populated_dependency(self):
+		"""One hand-added row must not make the patch skip the rest."""
+		frappe.get_doc("Bench Dependency", "WKHTMLTOPDF_VERSION").append(
+			"supported_versions", {"version": "0.12.5", "supported_frappe_version": FRAPPE_VERSION}
+		).save()
+
 		execute()
 
 		self.assertEqual(self.picker_versions("WKHTMLTOPDF_VERSION"), ["0.12.5", "0.12.6"])

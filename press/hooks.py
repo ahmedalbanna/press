@@ -1,3 +1,5 @@
+import frappe
+
 from press.api.account import get_frappe_io_auth_url
 
 try:
@@ -6,6 +8,31 @@ except Exception:
 	_frappe_io_auth_url = "/"
 
 from . import __version__ as app_version
+
+
+def _resolve_frappe_io_auth_url() -> str:
+	"""Redirect target for `/dashboard/f-login`, resolved once at import.
+
+	Hooks are loaded before a site is bound, so the `Social Login Key` lookup
+	can legitimately fail: no such provider is the normal case (the function
+	already returns `None` for it), but an unmigrated or unreachable database is
+	not. The second case must not take the whole app down at import, and must not
+	pass silently either -- a wrong target here breaks frappe.io login for every
+	customer with no other symptom, so it is logged.
+	"""
+	try:
+		return get_frappe_io_auth_url() or "/"
+	except Exception:
+		# `log_error` degrades to a print when no database is bound, which is the
+		# case that got us here, so this cannot raise in turn.
+		frappe.log_error(
+			title="Could not resolve the frappe.io login URL",
+			message="Falling back to '/' for the /dashboard/f-login redirect.",
+		)
+		return "/"
+
+
+_frappe_io_auth_url = _resolve_frappe_io_auth_url()
 
 app_name = "press"
 app_title = "Press"

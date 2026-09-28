@@ -46,33 +46,52 @@ Do these now. Each removes a known v17 risk without needing v17 to exist.
 likely widen to 3.14+ once 3.15 is a supported target, so these become hard
 failures rather than deprecation warnings.
 
-| File | Lines | Risk |
-|---|---|---|
-| `press/utils/__init__.py` | 384, 388, 390 | Low. Both sides of the comparison are naive, so converting both to aware `datetime.now(UTC)` is behaviour-preserving. |
-| `press/press/report/aws_s3_storage_cost/aws_s3_storage_cost.py` | 110, 144 | Higher. Feeds an AWS query window. Read the surrounding code before changing; the fix is `datetime.now(UTC)` with a tz-aware formatter, and getting that wrong silently shifts the reporting window. |
+**Done**, in 0.9.0. Both call sites now go through `press.utils.clock.now_utc()`:
 
-Also worth a sweep: `grep -rn "utcnow()\|utcfromtimestamp\|datetime.utcnow" press/`.
-Five is the current count, and it is low, which suggests the codebase is mostly
-already clean.
+| File | Was | Risk, and how it was resolved |
+|---|---|---|
+| `press/utils/__init__.py` (`cache`) | 384, 388, 390 | Low. Both sides of the comparison were naive, so both became aware — behaviour-preserving. |
+| `press/press/report/aws_s3_storage_cost/aws_s3_storage_cost.py` | 110, 144 | Higher. Feeds an AWS query window. botocore serialises a timestamp with `calendar.timegm(value.timetuple())`, which reads naive as UTC, so the window sent to CloudWatch is unchanged. |
+
+Two things worth knowing if you touch this area:
+
+- The module is `press/utils/clock.py`, **not** `time.py`. Importing a submodule
+  binds it as an attribute on the parent package, so `press/utils/time.py` would
+  overwrite the stdlib `time` that `press.utils` itself imports. The symptom is
+  `AttributeError: module 'press.utils.time' has no attribute 'time'`, raised from
+  an unrelated module at runtime, not at import.
+- The helper is `now_utc`, not `now`. `frappe.utils.now()` returns a *string* and
+  `now_datetime` returns a naive datetime; a third `now` on the same import line is
+  a trap.
+
+`grep -rn "utcnow()" press/` is now clean.
 
 ### 1.2 Add a static check so these cannot come back
 
 Done. `DTZ003` is in `ruff.toml`, so the pre-commit hook fails on
 `datetime.utcnow()`. Scoped to that one rule deliberately: the rest of the
-`flake8-datetimez` ruleset flags naive local times that are correct throughout
-this codebase, and adopting it wholesale would bury the one rule that matters.
+`flake8-datetimez` ruleset reports 327 findings (`DTZ001/005/006/007/011` — naive
+`now()`, `date.today()`, strptime without `%z`), most of which are correct as
+written throughout this codebase. Widening it needs the per-call-site behaviour
+worked out first, so it is its own change.
 
-Note `ruff.toml` still says `target-version = "py310"` while
-`requires-python` is now `>=3.14`. Raising it turns on 66 py311+ upgrade
-findings (`TC001-3`, `UP017/042/043/046/047`) — a real refactor, but a separate
-one. Left as its own change.
+`ruff.toml` keeps `target-version = "py310"`, matching `requires-python`. Raising
+it turns on 66 py311+ upgrade findings (`TC001-3`, `UP017/042/043/046/047`) — a
+real refactor, but a separate one.
 
-### 1.3 Widen the Python floor in `pyproject.toml`
+### 1.3 Python floor in `pyproject.toml` — decided against
 
-Currently `requires-python = ">=3.10"`. That is already inaccurate: v16 requires
-`>=3.14,<3.15`, so the declared floor lies to anyone reading it. Correct it to
-match what v16 actually needs. Decide the ceiling separately, since it is a
-statement about what Press supports rather than what Frappe requires.
+`requires-python` **stays** at `>=3.10`. An earlier draft of this plan proposed
+raising it to `>=3.14` to match v16, on the reasoning that the old floor "lies to
+anyone reading it". That is wrong, and it would have broken installs.
+
+`requires-python` describes what **press's own code** needs. The interpreter floor
+is enforced by the `frappe` dependency, which resolves per version: v15 allows
+3.10, v16+ requires 3.14. Raising press's floor to 3.14 would make press
+uninstallable on a Frappe 15 bench — a bench the `frappe = ">=15.0.0,<18.0.0"`
+range still claims to support. The 3.10 floor is also load-bearing for the new
+`press/utils/clock.py`: `datetime.UTC` is 3.11+, so it uses `timezone.utc` instead.
+
 
 ## Phase 2 — Audit, once v17 exists
 
@@ -197,10 +216,27 @@ Repeat what the v16 upgrade required, and expect new instances.
 
 - **Version 17 fixture rows** in `press/fixtures/frappe_version.json`, with
   `number`, `status`, and bench dependency rows. v16's are the model — see the
-  V16 rows for Python, Node, nvm, pip, wkhtmltopdf.
-- **Decide the default.** v16 is currently `default=1`. When v17 ships, decide
-  whether to flip. Note the `Nightly` row has `number=15`, which collides with
-  `Version 15` — worth fixing before it collides with something that matters.
+  V16 rows for Python, Node, nvm, pip, wkhtmltopdf. **Done in 0.9.0** (`status:
+  Develop`, `default: 0`).
+- **The default stays on v16**, and that is the right call for now. `Frappe
+  Version.default` only orders the new-site dropdown, so flipping it is an
+  independent decision from making v17 the upgrade target — and v17 is `Develop`.
+  Flipping the flag to offer a `Develop` version to new customers is not something
+  to let follow from declaring the version supported. Revisit when v17 goes
+  `Stable`, at which point the same reasoning makes the flip correct.
+  Note this was tried and reverted once already, which is a useful reminder that
+  reverting a shipped patch needs a new patch: `patches.txt` only decides what
+  runs on a site that has not run it yet, so `restore_version_16_as_the_default`
+  exists to clear the flag on sites that already flipped.
+  Note the `Nightly` row has `number=15`, which collides with `Version 15` —
+  worth fixing before it collides with something that matters.
+- **Every pickable version's dependency defaults must be selectable.** A group
+  takes its versions from `Frappe Version.dependencies` while the editor offers
+  `Bench Dependency.supported_versions`, and where they disagree the operator is
+  stuck on whatever is already set. v17 landed with no rows at all, and `NVM`
+  had a gap on *every* version. Fixed by deriving the missing rows from
+  `Frappe Version.dependencies` rather than hand-listing them, so the next
+  version cannot land half-wired.
 - **Backfill Release Groups.** The `order_by` and feature-flag bugs both hid in
   existing rows, not in code. Once v17 exists, re-check:
   - feature flags on existing V17 groups

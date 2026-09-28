@@ -83,18 +83,29 @@ class TestAPISite(FrappeTestCase):
 				self.assertEqual(version["group"]["name"], group14.name)
 
 	@patch.object(AgentJob, "enqueue_http_request", new=Mock())
-	def test_options_returns_the_version_listing_without_raising(self):
-		"""Regression: a bare `default` in `order_by` no longer parses on Frappe 17.
+	def test_options_lists_the_default_frappe_version_first(self):
+		"""Regression: a bare `default` in `order_by` is rejected by the validator.
 
-		The whole endpoint raised, so the new-site form had no version dropdown at
-		all. The test above missed it because it only asserted inside a loop over
-		`options["versions"]`, which never ran once the call raised.
+		Frappe 16 validates `order_by` and rejects a bare backticked field, so the
+		whole endpoint raised and the new-site form lost its version dropdown
+		entirely. The test above missed it: it only asserted inside a loop over
+		`options["versions"]`, and the loop never ran once the call raised.
+
+		Asserting the resulting order, not just that the call returned, so that the
+		ordering this endpoint depends on is pinned rather than incidentally
+		exercised.
 		"""
 		from press.api.site import get_new_site_options
 
 		options = get_new_site_options()
 
 		self.assertTrue(options["versions"], "no Frappe Version offered for a new site")
+		offered = options["versions"]
+		self.assertEqual(
+			offered[0].name,
+			frappe.get_all("Frappe Version", filters={"default": 1}, pluck="name", limit=1)[0],
+			"the default Frappe Version must sort first, since it drives this order",
+		)
 
 	@patch.object(AgentJob, "enqueue_http_request", new=Mock())
 	def test_new_fn_creates_site_and_subscription(self):

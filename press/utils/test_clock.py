@@ -5,20 +5,20 @@ import time
 
 from frappe.tests.utils import FrappeTestCase
 
-from press.utils import cache, now
+from press.utils.clock import cache, now_utc
 
 
 class TestCache(FrappeTestCase):
-	"""The TTL cache in `press.utils.cache`.
+	"""The TTL cache in `press.utils.clock`.
 
 	Its expiry bookkeeping used `datetime.utcnow()`, which is removed in Python
 	3.15. Both sides of the comparison were naive, so switching to aware UTC is
 	behaviour-preserving.
 	"""
 
-	def test_now_is_timezone_aware_utc(self):
-		self.assertIsNotNone(now().tzinfo)
-		self.assertEqual(now().utcoffset().total_seconds(), 0)
+	def test_now_utc_is_timezone_aware_utc(self):
+		self.assertIsNotNone(now_utc().tzinfo)
+		self.assertEqual(now_utc().utcoffset().total_seconds(), 0)
 
 	def test_result_is_cached_within_the_ttl(self):
 		calls = []
@@ -53,6 +53,6 @@ class TestCache(FrappeTestCase):
 			return 1
 
 		self.assertIsNotNone(noop.expiration.tzinfo)
-		# The comparison inside the wrapper is what would raise if one side
-		# were naive and the other aware.
-		self.assertIsInstance(now() >= noop.expiration - noop.delta, bool)
+		# The wrapper compares `now_utc()` against `expiration`. A naive value on
+		# either side raises TypeError here, so a call is the assertion.
+		self.assertEqual(noop(), 1)

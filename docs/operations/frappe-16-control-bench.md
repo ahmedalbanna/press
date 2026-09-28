@@ -6,7 +6,7 @@ something that cost time to discover, so it is recorded rather than remembered.
 
 - Control bench: `/home/press/benches/control`, apps `frappe` + `press`
 - Site used for verification: `press.localhost`
-- Press version: 0.8.0 (branch `v17`, local only, not pushed)
+- Press version: 0.9.0 (branch `frappe-17`, local only, not pushed)
 - Currently on: frappe `4ac9eb13` (17.0.0-dev), Python 3.14.3
 - Rollback: `git -C apps/frappe checkout 012667b9c4e` (v16.35.0), reinstall,
   restore from `/home/press/backups/`

@@ -251,6 +251,10 @@
 			{
 				"supported_frappe_version": "Version 17",
 				"version": "5.31.0"
+			},
+			{
+				"supported_frappe_version": "Nightly",
+				"version": "5.27.0"
 			}
 		],
 		"title": "Bench Version"
@@ -289,6 +293,22 @@
 			{
 				"supported_frappe_version": "Version 17",
 				"version": "0.39.1"
+			},
+			{
+				"supported_frappe_version": "Nightly",
+				"version": "0.36.0"
+			},
+			{
+				"supported_frappe_version": "Version 15",
+				"version": "0.36.0"
+			},
+			{
+				"supported_frappe_version": "Version 16",
+				"version": "0.36.0"
+			},
+			{
+				"supported_frappe_version": "Version 17",
+				"version": "0.36.0"
 			}
 		],
 		"title": "NVM Version"
@@ -350,11 +370,11 @@
 			},
 			{
 				"supported_frappe_version": "Version 17",
-				"version": "25.3"
+				"version": "25.2"
 			},
 			{
 				"supported_frappe_version": "Version 17",
-				"version": "25.2"
+				"version": "25.3"
 			}
 		],
 		"title": "Pip Version"

@@ -9,8 +9,8 @@ import frappe
 from frappe.utils import flt
 from frappe.utils.caching import redis_cache
 
-from press.utils import now
 from press.utils.aws import EXCLUDED_REGIONS, get_press_aws_credentials
+from press.utils.clock import now_utc
 
 BYTES_PER_GB = 1024**3
 TRAILING_DAYS = 14
@@ -108,9 +108,9 @@ def get_storage_type_series(bucket_name, region, storage_type):
 	"""S3 only publishes BucketSizeBytes once a day, so re-fetching within the
 	same day is pure waste — cached for a day to match that update cadence."""
 	client = get_cloudwatch_client(region)
-	# Aware UTC rather than the removed `datetime.utcnow()`. botocore parses a
-	# naive datetime as UTC too, so the window sent to CloudWatch is unchanged.
-	end = now()
+	# botocore reads a naive datetime as UTC, so this window is unchanged from
+	# the `datetime.utcnow()` it replaces (removed in Python 3.15).
+	end = now_utc()
 	start = end - timedelta(days=TRAILING_DAYS + 1)
 
 	response = client.get_metric_statistics(
@@ -144,7 +144,7 @@ def get_combined_daily_history(series_by_type):
 @redis_cache(ttl=24 * 60 * 60)
 def get_latest_object_count(bucket_name, region):
 	client = get_cloudwatch_client(region)
-	end = now()
+	end = now_utc()
 	start = end - timedelta(days=3)
 
 	response = client.get_metric_statistics(

@@ -9,7 +9,7 @@ import re
 import socket
 import ssl
 import time
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 from functools import wraps
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal, TypedDict, TypeVar, overload
@@ -30,6 +30,7 @@ from frappe.utils import get_datetime, get_system_timezone
 from frappe.utils.caching import redis_cache, site_cache
 from pypika.terms import Function
 
+from press.utils.clock import cache
 from press.utils.email_validator import validate_email
 
 if TYPE_CHECKING:
@@ -375,35 +376,6 @@ class _RandomOrder(Function):
 
 	def get_sql(self, **kwargs) -> str:
 		return "RAND()"
-
-
-def now() -> datetime:
-	"""Timezone-aware current UTC time.
-
-	Replaces `datetime.utcnow()`, which is removed in Python 3.15. Both sides of
-	every comparison this feeds were naive, so making them aware is
-	behaviour-preserving; the naive ones were UTC throughout.
-	"""
-	return datetime.now(UTC)
-
-
-def cache(seconds: int, maxsize: int = 128, typed: bool = False):
-	def wrapper_cache(func):
-		func = functools.lru_cache(maxsize=maxsize, typed=typed)(func)
-		func.delta = timedelta(seconds=seconds)
-		func.expiration = now() + func.delta
-
-		@functools.wraps(func)
-		def wrapped_func(*args, **kwargs):
-			if now() >= func.expiration:
-				func.cache_clear()
-				func.expiration = now() + func.delta
-
-			return func(*args, **kwargs)
-
-		return wrapped_func
-
-	return wrapper_cache
 
 
 def chunk(iterable, size):

@@ -1389,8 +1389,9 @@ def get_new_site_options(group: str | None = None):
 		"Frappe Version",
 		["name", "number", "default", "status"],
 		filters=versions_filters,
-		# `tabDocType`.`field` on both sides: a bare `default` no longer parses as of
-		# Frappe 17, so the whole endpoint raised instead of returning the dropdown.
+		# Qualified on both sides: `order_by` is validated from Frappe 16 on, and a
+		# bare backticked field throws `Order By has invalid backtick notation`, so
+		# the whole endpoint raised instead of returning the dropdown.
 		order_by="`tabFrappe Version`.`default` desc, `tabFrappe Version`.`number` desc",
 	)
 
