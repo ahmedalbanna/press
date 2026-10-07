@@ -35,12 +35,12 @@ def _resolve_frappe_io_auth_url() -> str:
 _frappe_io_auth_url = _resolve_frappe_io_auth_url()
 
 app_name = "press"
-app_title = "Press"
-app_publisher = "Frappe"
-app_description = "Managed Frappe Hosting"
+app_title = "AlbannaTech"
+app_publisher = "AlbannaTech"
+app_description = "Managed ERPNext Hosting"
 app_icon = "octicon octicon-rocket"
-app_color = "grey"
-app_email = "aditya@frappe.io"
+app_color = "#0EA5E9"
+app_email = "support@albannatech.com"
 app_license = "GNU Affero General Public License v3.0"
 version = app_version
 
