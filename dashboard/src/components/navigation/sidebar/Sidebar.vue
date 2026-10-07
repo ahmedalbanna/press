@@ -7,6 +7,7 @@ import { getTeam } from '@/data/team'
 import { mobileNav, partnerRegistrationModalOpen } from '@/data/ui'
 import { isMobile } from '@/utils/device'
 import { setTheme } from '@/utils/useTheme'
+import { setLanguage, getLanguage } from '@/utils/language'
 import LucideBookText from '~icons/lucide/book-text'
 import LucideChevronDown from '~icons/lucide/chevron-down'
 import LucideGlobe from '~icons/lucide/globe'
@@ -95,6 +96,15 @@ const userDropdownOptions = [
 			// dropdown component as per this frappe-ui version doesnt support suffix slot
 			// so make the icon itself icon+label+beta badge
 			{ icon: DarkModeLabel, onClick: () => setTheme('dark') },
+		],
+	},
+
+	{
+		label: 'Language',
+		icon: LucideGlobe,
+		submenu: [
+			{ label: 'English', icon: 'check', onClick: () => setLanguage('en') },
+			{ label: 'العربية', icon: 'check', onClick: () => setLanguage('ar') },
 		],
 	},
 

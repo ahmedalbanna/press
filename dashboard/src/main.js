@@ -20,6 +20,7 @@ import {
 import registerGlobalComponents from './components/global/register';
 import './vendor/posthog.js';
 import { pulse } from './telemetry/pulse.js';
+import { initLanguage } from './utils/language';
 
 const request = (options) => {
 	const _options = options || {};
@@ -170,6 +171,7 @@ getInitialData().then(() => {
 	}
 
 	importGlobals().then(() => {
+		initLanguage();
 		router.isReady().then(() => app.mount('#app'));
 	});
 

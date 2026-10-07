@@ -6,6 +6,7 @@ import { debounce } from 'frappe-ui';
 import { getTeam } from './data/team';
 import * as formatters from './utils/format';
 import { getPlatform, isMobile } from './utils/device';
+import language from './utils/language';
 
 export default function globals(app) {
 	app.config.globalProperties.$session = session;
@@ -18,6 +19,8 @@ export default function globals(app) {
 	app.config.globalProperties.$log = console.log;
 	app.config.globalProperties.$debounce = debounce;
 	app.config.globalProperties.$isMobile = isMobile();
+	app.config.globalProperties.$t = language.t;
+	app.config.globalProperties.$lang = language;
 
 	// legacy globals for old dashboard
 	// TODO: remove later
