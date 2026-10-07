@@ -46,7 +46,7 @@ export default {
 			// Add your custom styles here
 			addUtilities({
 				'.bg-gradient-blue': {
-					'background-image': `linear-gradient(180deg,#2c9af1 0%, ${theme(
+					'background-image': `linear-gradient(180deg,#0EA5E9 0%, ${theme(
 						'colors.blue.500',
 					)} 100%)`,
 				},

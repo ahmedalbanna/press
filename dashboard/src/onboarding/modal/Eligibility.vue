@@ -22,9 +22,9 @@ const eligibilityCriteria = computed(() => [
 		icon: CertifiedIcon,
 	},
 	{
-		title: `Minimum ${mrrTargetLabel.value} MRR on Frappe Cloud`,
+		title: `Minimum ${mrrTargetLabel.value} MRR on AlbannaTech`,
 		description:
-			'Host client sites with Frappe apps on Frappe Cloud consistently to get started.',
+			'Host client sites with Frappe apps on AlbannaTech consistently to get started.',
 		icon: CashIcon,
 	},
 ])

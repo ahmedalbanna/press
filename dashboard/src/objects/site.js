@@ -24,7 +24,7 @@ const LOGIN_REASON_PREFIX = 'Investigating '
 // A scheduled action runs as Administrator, which means nothing to a customer.
 // Site.get_archival_details does the same for the banner.
 function getActorName(owner) {
-	return owner === 'Administrator' ? 'Frappe Cloud' : owner
+	return owner === 'Administrator' ? 'AlbannaTech' : owner
 }
 
 // The banner names who and when; the Activity tab carries the reason and the rest.
