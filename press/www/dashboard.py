@@ -49,6 +49,7 @@ def get_boot():
 		press_site_name=frappe.conf.site,
 		site_name=frappe.local.site,
 		default_team=default_team,
+		user_language=frappe.db.get_value("User", frappe.session.user, "language") or "en",
 		account_disabled=bool(get_disabled_team_of_user(frappe.session.user)),
 		valid_teams=get_valid_teams_for_user(frappe.session.user),
 		chat_enabled=chat_enabled(),

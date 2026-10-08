@@ -1,4 +1,5 @@
 import frappe
+from contextlib import contextmanager
 
 if frappe.TYPE_CHECKING:
 	from frappe.core.doctype.user.user import User
@@ -29,3 +30,20 @@ def is_desk_user(user: str | None = None) -> bool:
 	user = user or frappe.session.user
 	user_doc: User = frappe.get_cached_doc("User", user)
 	return user_doc.user_type == "System User"
+
+
+@contextmanager
+def user_language(user: str | None = None):
+	"""Run a block with the user's preferred language active.
+
+	Used when sending emails so the recipient sees
+	content in their own language.
+	"""
+	user = user or frappe.session.user
+	language = frappe.db.get_value("User", user, "language") or "en"
+	original = frappe.local.lang
+	frappe.local.lang = language
+	try:
+		yield
+	finally:
+		frappe.local.lang = original

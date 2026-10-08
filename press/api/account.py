@@ -392,6 +392,14 @@ def get_route_on_login():
 
 
 @frappe.whitelist()
+def set_language(language: str):
+	"""Save the dashboard language preference on the user profile."""
+	if language not in ("en", "ar"):
+		frappe.throw(_("Unsupported language"))
+	frappe.db.set_value("User", frappe.session.user, "language", language)
+
+
+@frappe.whitelist()
 def active_servers():
 	team = get_current_team()
 	return frappe.get_all("Server", {"team": team, "status": "Active"}, ["title", "name"])
