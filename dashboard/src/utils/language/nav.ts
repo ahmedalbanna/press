@@ -19,6 +19,19 @@ const nav: Dictionary = {
 	'Share Feedback': { en: 'Share Feedback', ar: 'مشاركة الملاحظات' },
 	'Find a Partner': { en: 'Find a Partner', ar: 'البحث عن شريك' },
 	'Release Notes': { en: 'Release Notes', ar: 'ملاحظات الإصدار' },
+	'Benches': { en: 'Benches', ar: 'البنشات' },
+	'Marketplace': { en: 'Marketplace', ar: 'السوق' },
+	'Status': { en: 'Status', ar: 'الحالة' },
+	'Welcome': { en: 'Welcome', ar: 'مرحباً' },
+	'Notifications': { en: 'Notifications', ar: 'الإشعارات' },
+	'Dev Tools': { en: 'Dev Tools', ar: 'أدوات المطور' },
+	'DB Analyzer': { en: 'DB Analyzer', ar: 'محلل قاعدة البيانات' },
+	'SQL Playground': { en: 'SQL Playground', ar: 'ملعب SQL' },
+	'Binlog Browser': { en: 'Binlog Browser', ar: 'متصفح البينلوغ' },
+	'Partnership': { en: 'Partnership', ar: 'الشراكة' },
+	'Language': { en: 'Language', ar: 'اللغة' },
+	'English': { en: 'English', ar: 'الإنجليزية' },
+	'Help': { en: 'Help', ar: 'المساعدة' },
 };
 
 export default nav;

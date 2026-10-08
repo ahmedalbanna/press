@@ -26,7 +26,7 @@ const translations: Dictionary = {
 };
 
 interface BootGlobals {
-	user?: { email?: string };
+	user_email?: string;
 	user_language?: string;
 }
 
@@ -50,8 +50,8 @@ export function setLanguage(lang: Language) {
 }
 
 function saveLanguage(lang: Language) {
-	const { user } = window as unknown as BootGlobals;
-	if (!user?.email || user.email === 'Guest') {
+	const email = (window as unknown as BootGlobals).user_email;
+	if (!email || email === 'Guest') {
 		return;
 	}
 	void frappeRequest({

@@ -6,6 +6,7 @@ import { session } from '@/data/session'
 import { getTeam } from '@/data/team'
 import { searchModalOpen } from '@/data/ui'
 import { isMac } from '@/utils/device'
+import { t } from '@/utils/language'
 import NotificationPanel from './Notifications.vue'
 import { useRealtimeNotifs } from './useRealtimeNotifs'
 
@@ -31,7 +32,7 @@ const list = computed(() => {
 
 	return [
 		{
-			name: 'Welcome',
+			name: t('Welcome'),
 			icon: LucideDoorOpen,
 			route: '/welcome',
 			isActive: routeName === 'Welcome',
@@ -40,7 +41,7 @@ const list = computed(() => {
 
 		{
 			icon: LucideSearch,
-			name: 'Search',
+			name: t('Search'),
 			is: 'BUTTON',
 			condition: onboardingComplete,
 			suffix: isMac() ? '⌘ K' : 'Ctrl+k',
@@ -48,14 +49,14 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Notifications',
+			name: t('Notifications'),
 			condition: onboardingComplete && !isSaasUser,
 			customComponent: NotificationPanel,
 			disabled: enforce2FA,
 		},
 
 		{
-			name: 'Sites',
+			name: t('Sites'),
 			icon: LucidePanelTopInactive,
 			route: '/sites',
 			class: 'mt-1.5',
@@ -66,7 +67,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Benches',
+			name: t('Benches'),
 			icon: LucideBoxes,
 			route: onboardingComplete ? '/groups' : '/enable-bench-groups',
 			isActive:
@@ -83,7 +84,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Servers',
+			name: t('Servers'),
 			icon: LucideServer,
 			route: onboardingComplete ? '/servers' : '/enable-servers',
 			isActive:
@@ -94,32 +95,32 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Dev Tools',
+			name: t('Dev Tools'),
 			icon: LucideCode,
 			route: '/devtools',
 			condition: onboardingComplete && !isSaasUser,
 			disabled: enforce2FA,
 			children: [
 				{
-					name: 'Log Browser',
+					name: t('Log Browser'),
 					icon: LucideScrollText,
 					route: '/log-browser',
 					isActive: routeName === 'Log Browser',
 				},
 				{
-					name: 'DB Analyzer',
+					name: t('DB Analyzer'),
 					icon: LucideActivity,
 					route: '/database-analyzer',
 					isActive: routeName === 'DB Analyzer',
 				},
 				{
-					name: 'SQL Playground',
+					name: t('SQL Playground'),
 					icon: LucideDatabaseZap,
 					route: '/sql-playground',
 					isActive: routeName === 'SQL Playground',
 				},
 				{
-					name: 'Binlog Browser',
+					name: t('Binlog Browser'),
 					icon: LucideFileSearch,
 					route: '/binlog-browser',
 					isActive: routeName === 'Binlog Browser',
@@ -136,7 +137,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Marketplace',
+			name: t('Marketplace'),
 			icon: LucideLayoutGrid,
 			route: '/apps',
 			isActive: routeName.startsWith('Marketplace'),
@@ -148,7 +149,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Billing',
+			name: t('Billing'),
 			icon: LucideWalletCards,
 			route: '/billing',
 			isActive: routeName.startsWith('Billing'),
@@ -157,7 +158,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Partnership',
+			name: t('Partnership'),
 			icon: LucideGlobe,
 			route: activePartner ? '/partners' : '/partner-onboarding',
 			isActive:
@@ -168,7 +169,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Settings',
+			name: t('Settings'),
 			icon: LucideSettings,
 			route: '/settings',
 			isActive: routeName.startsWith('Settings'),
@@ -176,7 +177,7 @@ const list = computed(() => {
 		},
 
 		{
-			name: 'Status',
+			name: t('Status'),
 			icon: LucideActivity,
 			route: '/status',
 			isActive: routeName === 'Status',

@@ -7,7 +7,7 @@ import { getTeam } from '@/data/team'
 import { mobileNav, partnerRegistrationModalOpen } from '@/data/ui'
 import { isMobile } from '@/utils/device'
 import { setTheme } from '@/utils/useTheme'
-import { setLanguage, getLanguage } from '@/utils/language'
+import { setLanguage, getLanguage, t } from '@/utils/language'
 import LucideBookText from '~icons/lucide/book-text'
 import LucideChevronDown from '~icons/lucide/chevron-down'
 import LucideGlobe from '~icons/lucide/globe'
@@ -70,9 +70,9 @@ watch(router.currentRoute, () => {
 	if (isMobile() && mobileNav.value) mobileNav.value = false
 })
 
-const userDropdownOptions = [
+const userDropdownOptions = computed(() => [
 	{
-		label: 'Change Team',
+		label: t('Change Team'),
 		icon: 'command',
 		condition: () =>
 			$team?.doc?.valid_teams?.length > 1 || $team?.doc?.is_desk_user,
@@ -80,10 +80,10 @@ const userDropdownOptions = [
 	},
 
 	{
-		label: 'Theme',
+		label: t('Theme'),
 		icon: LucideMoon,
 		submenu: [
-			{ label: 'Light Mode', icon: 'sun', onClick: () => setTheme('light') },
+			{ label: t('Light Mode'), icon: 'sun', onClick: () => setTheme('light') },
 			// dropdown component as per this frappe-ui version doesnt support suffix slot
 			// so make the icon itself icon+label+beta badge
 			{ icon: DarkModeLabel, onClick: () => setTheme('dark') },
@@ -91,35 +91,35 @@ const userDropdownOptions = [
 	},
 
 	{
-		label: 'Language',
+		label: t('Language'),
 		icon: LucideGlobe,
 		submenu: [
-			{ label: 'English', icon: 'check', onClick: () => setLanguage('en') },
+			{ label: t('English'), icon: 'check', onClick: () => setLanguage('en') },
 			{ label: 'العربية', icon: 'check', onClick: () => setLanguage('ar') },
 		],
 	},
 
 	{
-		label: 'Become a Partner',
+		label: t('Become a Partner'),
 		icon: LucideGlobe,
 		condition: () => canBecomePartner.value,
 		onClick: () => (partnerRegistrationModalOpen.value = true),
 	},
 
-	{ label: 'Logout', icon: 'log-out', onClick: $session.logout.submit },
-]
+	{ label: t('Logout'), icon: 'log-out', onClick: $session.logout.submit },
+])
 
-const helpDropdownOptions = [
-	{ label: 'Docs', icon: LucideBookText, onClick: docs },
-	{ label: 'Get Support', icon: LucideSupport, onClick: support },
-	{ label: 'Share Feedback', icon: LucideMessageSquareCode, onClick: feedback },
-]
+const helpDropdownOptions = computed(() => [
+	{ label: t('Docs'), icon: LucideBookText, onClick: docs },
+	{ label: t('Get Support'), icon: LucideSupport, onClick: support },
+	{ label: t('Share Feedback'), icon: LucideMessageSquareCode, onClick: feedback },
+])
 </script>
 
 <template>
 	<aside
 		class="relative flex md:min-h-screen p-2 gap-1 flex-col border-r transition-[width]
-    bg-surface-white  md:bg-surface-gray-1 dark:bg-transparent overflow-x-hidden"
+    bg-[#0F172A] dark:bg-[#020617] overflow-x-hidden"
 		:class='collapsed ? " md:w-12" : "w-full md:w-[256px]"'
 	>
 		<div
@@ -130,36 +130,36 @@ const helpDropdownOptions = [
 			<Dropdown :options="userDropdownOptions">
 				<template v-slot="{ open }">
 					<button
-						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 bg-surface-gray-2 md:bg-transparent   hover:bg-surface-gray-2"
-						:class="[open ? 'md:bg-surface-white dark:bg-surface-gray-2 shadow-sm' : ''
+						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 bg-white/10 md:bg-transparent   hover:bg-white/10"
+						:class="[open ? 'md:bg-white/10 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
 						<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-8 w-auto hidden md:flex shrink-0" />
-						<LucideUser class="size-3.5 -mr-1.5 md:hidden" />
+						<LucideUser class="size-3.5 -mr-1.5 md:hidden text-gray-300" />
 
 						<div
 							class="flex flex-col gap-0.5 ml-1 min-w-0 md:m-0"
 							:class="collapsedCss"
 						>
-							<div class="text-base font-medium hidden md:flex text-ink-gray-9">
-								AlbannaTech
-							</div>
-
-							<div class="text-sm text-left text-ink-gray-7 truncate">
-								{{ $team?.get.loading ? 'Loading...' : $team?.doc?.user }}
-							</div>
+						<div class="text-base font-medium hidden md:flex text-white">
+							AlbannaTech
 						</div>
 
-						<LucideChevronDown
-							class="md:ml-auto size-4 shrink-0"
-							:class="collapsedCss"
-						/>
+						<div class="text-sm text-left text-gray-300 truncate">
+							{{ $team?.get.loading ? $t('Loading...') : $team?.doc?.user }}
+						</div>
+						</div>
+
+					<LucideChevronDown
+						class="md:ml-auto size-4 shrink-0 text-gray-300"
+						:class="collapsedCss"
+					/>
 					</button>
 				</template>
 			</Dropdown>
 
 			<button
-				class="p-2 md:hidden bg-surface-gray-2 rounded"
+				class="p-2 md:hidden bg-white/10 rounded"
 				@click="mobileNav = !mobileNav"
 			>
 				<lucide-x v-if="mobileNav" class="size-3" />
@@ -194,20 +194,20 @@ const helpDropdownOptions = [
 				class="flex gap-1 justify-between items-center"
 			>
 				<Dropdown :options="helpDropdownOptions">
-					<Button variant="ghost">
+					<Button variant="ghost" class="text-gray-300">
 						<template #prefix v-if="!collapsed">
 							<LucideCircleQuestionMark class="size-4" />
 						</template>
 
 						<LucideCircleQuestionMark v-if="collapsed" class="size-4" />
 
-						<template v-if="!collapsed">Help</template>
+						<template v-if="!collapsed">{{ $t('Help') }}</template>
 					</Button>
 				</Dropdown>
 
 				<Button
 					variant="ghost"
-					class="hidden md:flex"
+					class="hidden md:flex text-gray-300"
 					:class='collapsed ? "mb-2" : ""'
 					@click="collapsePanel"
 				>
