@@ -10,7 +10,7 @@
 				<div v-for="field in section.fields" :key="field.name">
 					<FormControl
 						v-model="billingInformation[field.fieldname]"
-						:label="field.label || field.fieldname"
+						:label="field.label ? t(field.label) : field.fieldname"
 						:type="getInputType(field)"
 						:name="field.fieldname"
 						:options="field.options"
@@ -21,7 +21,7 @@
 			</div>
 			<div v-show="billingInformation.country == 'India'">
 				<FormControl
-					label="I have GSTIN"
+					:label="t('I have GSTIN')"
 					type="checkbox"
 					:disabled="props.disableForm"
 					v-model="gstApplicable"
@@ -44,6 +44,7 @@ import { FormControl, ErrorMessage, createResource } from 'frappe-ui';
 import { ref, computed, inject, watch } from 'vue';
 import { toast } from 'vue-sonner';
 import { DashboardError } from '../../utils/error';
+import { t, tr } from '../../utils/language';
 
 const emit = defineEmits(['success']);
 const team = inject('team');
@@ -63,7 +64,7 @@ const updateBillingInformation = createResource({
 		if (error) throw new DashboardError(error);
 	},
 	onSuccess: () => {
-		toast.success('Billing information updated');
+		toast.success(t('Billing information updated'));
 		emit('success');
 	},
 });
@@ -81,7 +82,7 @@ async function validate() {
 	// validate mandatory fields
 	for (let field of sections.value.flatMap((s) => s.fields)) {
 		if (field.required && !billingInformation.value[field.fieldname]) {
-			return `${field.label} is required`;
+			return tr('{label} is required', { label: t(field.label) });
 		}
 	}
 

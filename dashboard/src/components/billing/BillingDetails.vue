@@ -4,7 +4,7 @@
 			v-model="billingInformation.billing_name"
 			type="text"
 			name="billing_name"
-			label="Billing Name"
+			:label="t('Billing Name')"
 			:required="true"
 		/>
 		<NewAddressForm
@@ -19,7 +19,7 @@
 		<Button
 			class="w-full"
 			variant="solid"
-			label="Update billing details"
+			:label="t('Update billing details')"
 			:loading="addressFormRef.updateBillingInformation.loading"
 			@click="updateBillingInformation"
 		/>
@@ -29,6 +29,7 @@
 import { Button, createResource, ErrorMessage, FormControl } from 'frappe-ui'
 import { inject, reactive, ref } from 'vue'
 import { validateBillingName } from '../../utils/billing'
+import { t } from '../../utils/language'
 import NewAddressForm from './NewAddressForm.vue'
 
 const emit = defineEmits(['success'])
@@ -73,12 +74,12 @@ const errorMessage = ref('')
 
 function updateBillingInformation() {
 	if (!billingInformation.billing_name) {
-		errorMessage.value = 'Billing Name is required'
+		errorMessage.value = t('Billing Name is required')
 		return
 	}
 	const billing_name = validateBillingName(billingInformation.billing_name)
 	if (!billing_name) {
-		errorMessage.value = 'Billing Name contains invalid characters'
+		errorMessage.value = t('Billing Name contains invalid characters')
 		return
 	}
 	billingInformation.billing_name = billing_name

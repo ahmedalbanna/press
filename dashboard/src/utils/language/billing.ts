@@ -449,6 +449,25 @@ const billing: Dictionary = {
 		en: 'An error occurred while saving settings. Please try again.',
 		ar: 'حدث خطأ أثناء حفظ الإعدادات. يُرجى المحاولة مرة أخرى.',
 	},
+	// BillingDetails
+	'Billing Name': { en: 'Billing Name', ar: 'اسم الفوترة' },
+	'Update billing details': { en: 'Update billing details', ar: 'تحديث بيانات الفوترة' },
+	'Billing Name is required': { en: 'Billing Name is required', ar: 'اسم الفوترة مطلوب' },
+	'Billing Name contains invalid characters': {
+		en: 'Billing Name contains invalid characters',
+		ar: 'اسم الفوترة يحتوي على أحرف غير صالحة',
+	},
+	// NewAddressForm
+	'I have GSTIN': { en: 'I have GSTIN', ar: 'لدي رقم GSTIN' },
+	'Billing information updated': {
+		en: 'Billing information updated',
+		ar: 'تم تحديث معلومات الفوترة',
+	},
+	'{label} is required': { en: '{label} is required', ar: '{label} مطلوب' },
+	'State / Province / Region': {
+		en: 'State / Province / Region',
+		ar: 'الولاية / المقاطعة / المنطقة',
+	},
 };
 
 export default billing;
