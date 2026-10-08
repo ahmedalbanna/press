@@ -26,6 +26,12 @@ from press.utils.user import user_language
 
 CATALOG_LANG = "ar"
 
+# Kept in Latin on purpose: product and protocol identifiers that an Arabic
+# interface reads better untranslated than transliterated.
+UNTRANSLATED_BY_CHOICE = frozenset(
+	{"API Key", "API Secret", "SSH", "JSON", "Webhook", "Frappe Partner"}
+)
+
 # Templates whose copy is marked translatable and seeded in the catalog. Every
 # string they mark must resolve, or the Arabic render silently falls back to
 # English for that line only.
@@ -331,6 +337,9 @@ class TestArabicEmailCatalog(FrappeTestCase):
 		for source, translated in catalog.items():
 			self.assertIsNone(arabic.search(source), f"shifted column, CSV needs quoting: {source!r}")
 			self.assertTrue(translated.strip(), f"empty translation for {source!r}")
+			if source in UNTRANSLATED_BY_CHOICE:
+				self.assertEqual(translated, source, f"{source!r} should stay as-is")
+				continue
 			self.assertIsNotNone(arabic.search(translated), f"{source!r} has no Arabic translation")
 
 	def test_suspended_sites_strings_all_resolve(self):
@@ -368,8 +377,20 @@ class TestArabicEmailCatalog(FrappeTestCase):
 		# Guards a stray character from another script, which renders as a box
 		# in the customer's mail client and is easy to miss in a diff review.
 		# Latin is allowed: the brand name stays Latin inside Arabic copy.
-		foreign = re.compile(r"[Ͱ-ϿЀ-ӿ฀-鿿가-힯]")
+		#
+		# The ranges are written as \u escapes deliberately. Spelled out, the
+		# Thai range ended on U+9FFF rather than U+0EFF, which spans every maths
+		# symbol up to CJK and flagged a legitimate ">=" in a translation.
+		foreign = re.compile(
+			"[\u0370-\u03ff"  # Greek
+			"\u0400-\u04ff"  # Cyrillic
+			"\u4e00-\u9fff"  # CJK ideographs
+			"\uac00-\ud7af"  # Hangul
+			"\u0e00-\u0e7f]"  # Thai
+		)
 		for source, translated in self._catalog().items():
+			if source in UNTRANSLATED_BY_CHOICE:
+				continue
 			self.assertIsNone(
 				foreign.search(translated),
 				f"non-Arabic script in the translation of {source!r}",
