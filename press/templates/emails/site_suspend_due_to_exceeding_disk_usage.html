@@ -9,13 +9,13 @@
             {{ subject }}
         </p>
         <p class="mb-6">
-            Unfortunately, we must bring to your attention that your site hosted on AlbannaTech has been temporarily <strong>suspended</strong> due to <strong>exceeding disk / database usage</strong> for consecutive 7 days.<br>
+            {{ _('Unfortunately, your AlbannaTech site has been temporarily suspended because it exceeded the disk or database usage limit for 7 days in a row.') }}<br>
             <br>
-            To continue using your AlbannaTech site, please upgrade the plan of your site<br>
+            {{ _('To continue using your AlbannaTech site, please upgrade its plan.') }}<br>
             <br>
-            <strong>Once you upgrade to a new plan, your site will be activated immediately.</strong><br>
+            <strong>{{ _('Once you upgrade to a new plan, your site will be activated immediately.') }}</strong><br>
             <br>
-            If there is no action taken, your site will be archived after 3 weeks.
+            {{ _('If no action is taken, your site will be archived after 3 weeks.') }}
         </p>
 
         {{ utils.separator() }}

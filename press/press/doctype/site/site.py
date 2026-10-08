@@ -3226,7 +3226,7 @@ class Site(Document, TagHelpers):
 			send_user_email(
 				None,
 				recipients=get_communication_info("Email", "Site Activity", "Site", self.name),
-				subject=f"Action Required: Site {self.host_name} suspended",
+				subject=_("Action Required: Site {0} suspended").format(self.host_name),
 				template="site_suspend_due_to_exceeding_disk_usage",
 				args={
 					"subject": f"Site {self.host_name} has been suspended",
@@ -5700,7 +5700,7 @@ def notify_site_scheduled_for_archival(site: frappe._dict):
 		send_user_email(
 			None,
 			recipients=get_communication_info("Email", "Site Activity", "Site", site.name),
-			subject=f"Alert: Your site {site.host_name or site.name} will be archived in {NOTIFY_BEFORE_ARCHIVAL_DAYS} days",
+			subject=_("Alert: Your site {0} will be archived in {1} days").format(site.host_name or site.name, NOTIFY_BEFORE_ARCHIVAL_DAYS),
 			template="notify_before_site_archival",
 			args={
 				"site_name": site.host_name or site.name,
@@ -5766,7 +5766,7 @@ def send_warning_mail_regarding_sites_exceeding_disk_usage():
 			send_user_email(
 				None,
 				recipients=get_communication_info("Email", "Site Activity", "Site", site),
-				subject=f"Action Required: Site {site} exceeded plan limits",
+				subject=_("Action Required: Site {0} exceeded plan limits").format(site),
 				template="site_exceeded_disk_usage_warning",
 				args={
 					"site": site,

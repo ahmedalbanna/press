@@ -178,7 +178,10 @@ class PressWebhook(Document):
 			recipients=email,
 			subject="Important: Your Configured Webhook on AlbannaTech is disabled",
 			template="press_webhook_disabled",
-			args={"endpoint": self.endpoint},
+			args={
+				"endpoint": self.endpoint,
+				"dashboard_url": frappe.utils.get_url("/dashboard/settings/developer"),
+			},
 			now=True,
 		)
 

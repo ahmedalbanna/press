@@ -5,9 +5,9 @@
 
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white">
-		<p>Hi,</p>
-        <p>This is to inform you that your suspended site <strong>{{site_name}}</strong> will be automatically archived within <strong>{{site_archive_notification_days}} days</strong>. Once archived, the site will no longer be accessible.</p>
-        <p>A backup of your site will be retained for 6 months in case you want to restore.</p>
+		<p>{{ _('Hi,') }}</p>
+        <p>{{ _("Your suspended site <strong>{0}</strong> will be archived automatically within <strong>{1} days</strong>. Once archived, the site will no longer be accessible.").format(site_name, site_archive_notification_days) }}</p>
+        <p>{{ _('We will keep a backup of your site for 6 months in case you want to restore it.') }}</p>
 		{{ utils.separator() }}
 		{{ utils.signature() }}
 	</div>

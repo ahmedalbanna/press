@@ -6,32 +6,32 @@
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white from-markdown">
         <p class="mb-4 font-bold">
-            Site <strong>{{ site }}</strong> exceeded plan limit
+            {{ _("Site <strong>{0}</strong> exceeded the plan limit").format(site) }}
         </p>
         <p class="mb-6">
-            Your site has exceeded <br>
+            {{ _('Your site has exceeded:') }}<br>
 
             {% if current_disk_usage > 100 %}
-            - disk usage limit by <strong>{{ current_disk_usage - 100 }}%</strong><br>
+            - {{ _('disk usage limit') }} {{ current_disk_usage - 100 }}%<br>
             {% endif %}
             {% if current_database_usage > 100 %}
-            - database usage limit by <strong>{{ current_database_usage - 100 }}%</strong><br>
+            - {{ _('database usage limit') }} {{ current_database_usage - 100 }}%<br>
             {% endif %}
             <br>
-            To continue using your AlbannaTech site, please upgrade the plan of your site<br>
+            {{ _('To continue using your AlbannaTech site, please upgrade its plan.') }}<br>
             <br>
-            <strong>Need Help ?</strong><br>
-            1. How to change the plan ? Please refer the <a
+            <strong>{{ _('Need help?') }}</strong><br>
+            1. {{ _('To change the plan, see the') }} <a
                 href="https://docs.frappe.io/cloud/how-to-change-a-site-plan"
-                target="_blank"><b>documentation</b></a><br>
-            2. If you want to know, which database table is consuming more space, you can check it using <a
-                href="https://docs.frappe.io/cloud/database-analyzer" _target="blank"><b>Database Analyzer</b></a><br>
-            4. If you need some guide on which table can be truncated to reduce database storage, please check <a
-                href="https://docs.frappe.io/cloud/faq/site#clearing-logs"><b>documentation</b></a><br>
-            3. If you have any doubts or need help, please contact support at <a href="mailto:support@albannatech.com"
-                target="_blank"><b>AlbannaTech Support</b></a><br>
+                target="_blank"><b>{{ _('documentation') }}</b></a><br>
+            2. {{ _('To find which database table is using the most space, use') }} <a
+                href="https://docs.frappe.io/cloud/database-analyzer" _target="blank"><b>{{ _('Database Analyzer') }}</b></a><br>
+            3. {{ _('If you have any questions, contact') }} <a href="mailto:support@albannatech.com"
+                target="_blank"><b>{{ _('AlbannaTech Support') }}</b></a><br>
+            4. {{ _('For guidance on which tables can be cleared to reduce database storage, see the') }} <a
+                href="https://docs.frappe.io/cloud/faq/site#clearing-logs"><b>{{ _('documentation') }}</b></a><br>
             <br>
-            If there is no action taken, your site will be suspended in {{ no_of_days_left_to_suspend }} days.
+            {{ _('If no action is taken, your site will be suspended in {0} days.').format(no_of_days_left_to_suspend) }}
         </p>
 
         {{ utils.separator() }}

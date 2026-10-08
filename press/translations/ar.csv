@@ -121,3 +121,32 @@ Your UPI Autopay mandate has been,تم إلغاء تفويض الدفع التل
 transaction frequency limit,حد تكرار المعاملات
 "Thanks,",شكراً،
 Team AlbannaTech,فريق AlbannaTech
+Site <strong>{0}</strong> exceeded the plan limit,تجاوز الموقع <strong>{0}</strong> حد الخطة
+Your site has exceeded:,تجاوز موقعك الحدود التالية:
+disk usage limit,حد مساحة القرص
+database usage limit,حد مساحة قاعدة البيانات
+"To continue using your AlbannaTech site, please upgrade its plan.",للاستمرار في استخدام موقعك على AlbannaTech، يرجى ترقية خطته.
+Need help?,هل تحتاج مساعدة؟
+"To change the plan, see the",لتغيير الخطة، راجع
+documentation,التوثيق
+"To find which database table is using the most space, use",لمعرفة أي جدول في قاعدة البيانات يستهلك أكبر مساحة، استخدم
+Database Analyzer,محلل قاعدة البيانات
+"For guidance on which tables can be cleared to reduce database storage, see the",للإرشادات حول الجداول التي يمكن مسحها لتقليل مساحة قاعدة البيانات، راجع
+"If you have any questions, contact",إذا كان لديك أي استفسار، تواصل مع
+AlbannaTech Support,دعم AlbannaTech
+"If no action is taken, your site will be suspended in {0} days.",في حال عدم اتخاذ أي إجراء، سيتم تعليق موقعك خلال {0} يوماً.
+"Unfortunately, your AlbannaTech site has been temporarily suspended because it exceeded the disk or database usage limit for 7 days in a row.",للأسف، تم تعليق موقعك على AlbannaTech مؤقتاً لتجاوزه حد مساحة القرص أو قاعدة البيانات لمدة 7 أيام متتالية.
+"Once you upgrade to a new plan, your site will be activated immediately.",بمجرد ترقية خطتك، سيتم تفعيل موقعك فوراً.
+"If no action is taken, your site will be archived after 3 weeks.",في حال عدم اتخاذ أي إجراء، سيتم أرشفة موقعك بعد 3 أسابيع.
+"Hi,",مرحباً،
+"Your suspended site <strong>{0}</strong> will be archived automatically within <strong>{1} days</strong>. Once archived, the site will no longer be accessible.",سيتم أرشفة موقعك المعلق <strong>{0}</strong> تلقائياً خلال <strong>{1} يوماً</strong>. بعد الأرشفة لن يكون الموقع متاحاً.
+We will keep a backup of your site for 6 months in case you want to restore it.,سنحتفظ بنسخة احتياطية من موقعك لمدة 6 أشهر في حال أردت استعادته.
+"Because we saw a high number of failed webhook deliveries in the past hour, we disabled one of your webhooks.",نظراً لارتفاع عدد محاولات تسليم خطاف الويب الفاشلة خلال الساعة الماضية، قمنا بتعطيل أحد خطوطك.
+Disabled webhook endpoint:,خطاف الويب المعطّل:
+Visit the,قم بزيارة
+to review the failed attempts and find the cause. Once you fix it you can reactivate the webhook from there.,لمراجعة المحاولات الفاشلة وتحديد السبب. بعد حل المشكلة يمكنك تفعيل الخطاف من هناك.
+Action Required: Site {0} suspended,إجراء مطلوب: الموقع {0} تم تعليقه
+Alert: Your site {0} will be archived in {1} days,تنبيه: سيتم أرشفة موقعك {0} خلال {1} يوم
+Site {0} has been suspended,تم تعليق الموقع {0}
+Important: Your Configured Webhook on AlbannaTech is disabled,مهم: خطاف الويب الذي تم تهيئته على AlbannaTech معطّل
+AlbannaTech Dashboard,لوحة تحكم AlbannaTech
