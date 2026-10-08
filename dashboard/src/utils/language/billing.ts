@@ -244,6 +244,38 @@ const billing: Dictionary = {
 		en: 'Payment processed successfully, we will update your account shortly on confirmation from Stripe',
 		ar: 'تمت معالجة الدفع بنجاح، سنقوم بتحديث حسابك قريبًا بعد تأكيد Stripe',
 	},
+	// ChangeCardDialog
+	'Choose active card': { en: 'Choose active card', ar: 'اختر البطاقة النشطة' },
+	'Card ending in': { en: 'Card ending in', ar: 'بطاقة تنتهي بـ' },
+	Expiry: { en: 'Expiry', ar: 'تاريخ الانتهاء' },
+	'Add new card': { en: 'Add new card', ar: 'إضافة بطاقة جديدة' },
+	'Default card set': { en: 'Default card set', ar: 'تم تعيين البطاقة الافتراضية' },
+	'Could not set default card': {
+		en: 'Could not set default card',
+		ar: 'تعذر تعيين البطاقة الافتراضية',
+	},
+	'Could not remove card': { en: 'Could not remove card', ar: 'تعذرت إزالة البطاقة' },
+	// BillingUPIAutopay
+	'Setup UPI Autopay': { en: 'Setup UPI Autopay', ar: 'إعداد الدفع التلقائي عبر UPI' },
+	'No UPI Autopay mandates set up.': {
+		en: 'No UPI Autopay mandates set up.',
+		ar: 'لا توجد تفويضات دفع تلقائي عبر UPI.',
+	},
+	'UPI ID': { en: 'UPI ID', ar: 'معرّف UPI' },
+	'Max Amount': { en: 'Max Amount', ar: 'الحد الأقصى للمبلغ' },
+	'Expires On': { en: 'Expires On', ar: 'تنتهي في' },
+	'Cancel UPI Autopay': { en: 'Cancel UPI Autopay', ar: 'إلغاء الدفع التلقائي عبر UPI' },
+	'Are you sure you want to cancel this UPI Autopay mandate?': {
+		en: 'Are you sure you want to cancel this UPI Autopay mandate?',
+		ar: 'هل أنت متأكد أنك تريد إلغاء تفويض الدفع التلقائي هذا عبر UPI؟',
+	},
+	'Setup Autopay': { en: 'Setup Autopay', ar: 'إعداد الدفع التلقائي' },
+	'Mandate cancelled': { en: 'Mandate cancelled', ar: 'تم إلغاء التفويض' },
+	'Could not cancel mandate': { en: 'Could not cancel mandate', ar: 'تعذر إلغاء التفويض' },
+	'Opening payment window...': {
+		en: 'Opening payment window...',
+		ar: 'جاري فتح نافذة الدفع...',
+	},
 };
 
 export default billing;

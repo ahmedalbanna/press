@@ -16,7 +16,7 @@
 
 		<Dialog
 			v-model="showSetupDialog"
-			:options="{ title: 'Setup UPI Autopay' }"
+			:options="{ title: t('Setup UPI Autopay') }"
 			:class="{ 'razorpay-active': razorpayOpen }"
 		>
 			<template #body-content>
@@ -47,6 +47,7 @@ import { FeatherIcon, Dialog, Button } from 'frappe-ui';
 import Badge from '@/components/global/Badge.vue';
 import { toast } from 'vue-sonner';
 import { confirmDialog, icon } from '../utils/components';
+import { t } from '../utils/language';
 
 export default {
 	name: 'BillingUPIAutopay',
@@ -78,10 +79,10 @@ export default {
 			return {
 				url: 'press.api.billing.cancel_razorpay_mandate',
 				onSuccess() {
-					toast.success('Mandate cancelled');
+					toast.success(t('Mandate cancelled'));
 				},
 				onError() {
-					toast.error('Could not cancel mandate');
+					toast.error(t('Could not cancel mandate'));
 				},
 			};
 		},
@@ -110,7 +111,7 @@ export default {
 					'creation',
 				],
 				filterByTeam: true,
-				emptyStateMessage: 'No UPI Autopay mandates set up.',
+				emptyStateMessage: t('No UPI Autopay mandates set up.'),
 				columns: [
 					{
 						label: 'UPI ID',
@@ -149,12 +150,13 @@ export default {
 				rowActions: ({ listResource, row }) => {
 					return [
 						{
-							label: 'Cancel',
+							label: t('Cancel'),
 							onClick: () => {
 								confirmDialog({
-									title: 'Cancel UPI Autopay',
-									message:
+									title: t('Cancel UPI Autopay'),
+									message: t(
 										'Are you sure you want to cancel this UPI Autopay mandate?',
+									),
 									onSuccess: ({ hide }) => {
 										this.$resources.cancelMandate
 											.submit({
@@ -179,7 +181,7 @@ export default {
 					);
 					if (!hasActiveMandate) {
 						return {
-							label: 'Setup Autopay',
+							label: t('Setup Autopay'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -200,7 +202,7 @@ export default {
 		handleInitiate(amount) {
 			this.tempAmount = amount;
 			this.showSetupDialog = false;
-			this.loadingToast = toast.loading('Opening payment window...');
+			this.loadingToast = toast.loading(t('Opening payment window...'));
 			this.$nextTick(() => {
 				this.razorpayProcessing = true;
 			});

@@ -2,7 +2,7 @@
 	<div>
 		<Dialog
 			v-model="show"
-			:options="{ title: 'Choose active card' }"
+			:options="{ title: t('Choose active card') }"
 			:disableOutsideClickToClose="confirmDialogOpened"
 		>
 			<template #body-content>
@@ -19,19 +19,19 @@
 									<div>{{ card.name_on_card }}</div>
 									<div>&middot;</div>
 									<div class="flex gap-1 text-ink-gray-7">
-										<div>Card ending in ••••</div>
+										<div>{{ t('Card ending in') }} ••••</div>
 										<div>{{ card.last_4 }}</div>
 									</div>
 									<Badge
 										v-if="card.is_default"
 										class="ml-1.5"
-										label="Default"
+										:label="t('Default')"
 										variant="outline"
 										theme="green"
 									/>
 								</div>
 								<div class="text-ink-gray-6">
-									Expiry
+									{{ t('Expiry') }}
 									{{ card.expiry_month < 10
 											? `0${card.expiry_month}`
 											: card.expiry_month }}/{{ card.expiry_year }}
@@ -42,11 +42,11 @@
 							<Dropdown
 								:options="[
 									{
-										label: 'Set as default',
+										label: t('Set as default'),
 										onClick: () => setAsDefault(card.name),
 										condition: () => !card.is_default,
 									},
-									{ label: 'Remove', onClick: () => removeCard(card.name) },
+									{ label: t('Remove'), onClick: () => removeCard(card.name) },
 								]"
 							>
 								<Button icon="more-horizontal" variant="ghost" />
@@ -57,7 +57,7 @@
 			</template>
 			<template #actions>
 				<Button
-					label="Add new card"
+					:label="t('Add new card')"
 					class="w-full"
 					variant="solid"
 					@click="emit('addCard')"
@@ -83,6 +83,7 @@ import {
 import { ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { cardBrandIcon, confirmDialog } from '../../utils/components'
+import { t } from '../../utils/language'
 
 const emit = defineEmits(['success', 'addCard'])
 
@@ -102,10 +103,10 @@ const setAsDefault = (card) => {
 		onSuccess: () => {
 			cards.reload()
 			emit('success')
-			toast.success('Default card set')
+			toast.success(t('Default card set'))
 		},
 		onError: (error) => {
-			toast.error(error.messages?.join('\n') || 'Could not set default card')
+			toast.error(error.messages?.join('\n') || t('Could not set default card'))
 		},
 	})
 }
@@ -114,10 +115,10 @@ const confirmDialogOpened = ref(false)
 const removeCard = (card) => {
 	confirmDialogOpened.value = true
 	confirmDialog({
-		title: 'Remove Card',
-		message: 'Are you sure you want to remove this card?',
+		title: t('Remove Card'),
+		message: t('Are you sure you want to remove this card?'),
 		primaryAction: {
-			label: 'Remove',
+			label: t('Remove'),
 			variant: 'solid',
 			theme: 'red',
 			onClick: ({ hide }) => {
@@ -129,11 +130,11 @@ const removeCard = (card) => {
 						cards.reload()
 						confirmDialogOpened.value = false
 						hide()
-						toast.success('Card removed')
+						toast.success(t('Card removed'))
 					},
 					onError: (error) => {
 						confirmDialogOpened.value = false
-						toast.error(error.messages?.join('\n') || 'Could not remove card')
+						toast.error(error.messages?.join('\n') || t('Could not remove card'))
 					},
 				})
 			},
