@@ -154,7 +154,7 @@
 					<AlertBanner
 						v-if="serverProvider == 'Frappe Compute'"
 						type="warning"
-						title="Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا."
+						:title="frappeComputeBanner"
 					/>
 					<!-- Chose Region -->
 					<div
@@ -1041,6 +1041,12 @@ import { DashboardError } from '../utils/error'
 import { isSharedPlanType } from '../utils/serverPlanType'
 import { t } from '../utils/language'
 
+// The string carries HTML with double-quoted attributes, so it cannot live in a
+// template binding without escaping. Keeping it here leaves the template clean
+// and the key identical to the one in the dictionaries.
+const FRAPPE_COMPUTE_BANNER_KEY =
+	'Frappe Compute is currently experimental. <a href="https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider" target="_blank" style="font-weight: bold; text-decoration: underline;">Learn more</a> about what this means.'
+
 export default {
 	components: {
 		ServerPlansCards,
@@ -1049,6 +1055,9 @@ export default {
 		Header,
 	},
 	props: ['server'],
+	computed: {
+		frappeComputeBanner: () => t(FRAPPE_COMPUTE_BANNER_KEY),
+	},
 	data() {
 		return {
 			serverTitle: '',

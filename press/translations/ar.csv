@@ -1,253 +1,1732 @@
-"Unfortunately, we must inform you that your site hosted on AlbannaTech has been temporarily suspended due to an unpaid invoice.",للأسف، نود إبلاغك بأنه تم تعليق موقعك المستضاف على AlbannaTech مؤقتاً بسبب فاتورة غير مدفوعة.
-"To continue using your AlbannaTech site, please settle your invoices:",للاستمرار في استخدام موقعك على AlbannaTech، يرجى سداد فواتيرك:
-Settle invoices,سداد الفواتير
-"Once your invoices are settled, your site will be activated immediately.",بمجرد سداد فواتيرك، سيتم تفعيل موقعك فوراً.
-"Please complete the above steps before the 20th of this month, failing which your site will be dropped and any data on a subscribed plan may be lost permanently.",يرجى إتمام الخطوات أعلاه قبل اليوم 20 من هذا الشهر، وعندها سيتم حذف موقعك وقد تُفقد البيانات في الخطة المدفوعة نهائياً.
-"If you have any concerns or questions, contact our support team at",إذا كان لديك أي استفسار أو مخاوف، تواصل مع فريق الدعم على
-The following sites were suspended:,تم تعليق المواقع التالية:
-Your sites have been suspended on AlbannaTech,تم تعليق مواقعك على AlbannaTech
-Payment of {0} for AlbannaTech was unsuccessful.,لم تتم عملية دفع {0} الخاصة بـ AlbannaTech بنجاح.
-You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you update your card details in your account.,لم تُضِف بطاقة لاشتراك AlbannaTech الخاص بك. سيتم تعليق مواقعك حتى تُحدِّث بيانات بطاقتك في حسابك.
-Update Billing Settings,تحديث إعدادات الفوترة
-"We attempted to charge the card ending {0} for your AlbannaTech subscription, but were unsuccessful. Please update your card details or pay manually.",حاولنا الخصم من البطاقة المنتهية بالرقم {0} الخاصة باشتراك AlbannaTech،و لم ينجح. يرجى تحديث بيانات بطاقتك أو الدفع يدوياً.
-Billing Settings,إعدادات الفوترة
-Pay Invoice Now,ادفع الفاتورة الآن
-Insufficient balance for the upcoming AlbannaTech payment,الرصيد غير كافٍ لدفعة AlbannaTech القادمة
-Greetings from AlbannaTech! We noticed that your account does not have enough credits to pay for the upcoming invoice.,تحياتنا من AlbannaTech! لاحظنا أن حسابك لا يحتوي على رصيد كافٍ لسداد الفاتورة القادمة.
-"Please add credits to your account, or update your payment method and add a card with sufficient balance from your AlbannaTech dashboard:",يرجى إضافة رصيد إلى حسابك، أو تحديث طريقة الدفع وإضافة بطاقة برصيد كافٍ من لوحة تحكم AlbannaTech:
-"Hi,",مرحباً،
-All attempts to back up your site {0} have failed.,فشلت جميع محاولات النسخ الاحتياطي لموقعك {0}.
-"Please start a backup, and contact our support team if the problem persists:",يرجى بدء عملية نسخ احتياطي، وتواصل مع فريق الدعم إذا استمرت المشكلة:
-Invoice Payment Failed for AlbannaTech Subscription,فشل دفع فاتورة اشتراك AlbannaTech
-"Please click on the button below to reset your password. If this was not you, please ignore this email.",يرجى النقر على الزر أدناه لإعادة تعيين كلمة المرور. إذا لم تكن أنت من طلب ذلك، يرجى تجاهل هذه الرسالة.
-Reset Password,إعادة تعيين كلمة المرور
-"Hello,",مرحباً،
-Click the button below to log in to your AlbannaTech dashboard. This link expires in {0} minutes.,يرجى النقر على الزر أدناه لتسجيل الدخول إلى لوحة تحكم AlbannaTech. ستنتهي صلاحية هذا الرابط خلال {0} دقيقة.
-Login,تسجيل الدخول
-Hi {0},مرحباً {0}
-You requested a verification code to log in to your AlbannaTech account. The code is valid for 10 minutes.,طلبت رمز تحقق لتسجيل الدخول إلى حساب AlbannaTech الخاص بك. الرمز صالح لمدة 10 دقائق.
-Verification Code,رمز التحقق
-"If you did not request this, please ignore this email.",إذا لم تطلب هذا، يرجى تجاهل هذه الرسالة.
-Use the verification code below to log in to AlbannaTech.,استخدم رمز التحقق أدناه لتسجيل الدخول إلى AlbannaTech.
-"Hey there,",مرحباً،
-<strong>{0}</strong> just logged in to your site <strong>{1}</strong> as an administrator. They gave this reason:,قام <strong>{0}</strong> بتسجيل الدخول إلى موقعك <strong>{1}</strong> كمسؤول، وذكر أن السبب هو:
-"This may be one of our developers investigating an issue for you. If you do not recognise this activity, please raise a ticket with",قد يكون هذا أحد مطوّريننا يبحث عن مشكلة نيابة عنك. إذا لم تكن على علم بهذا النشاط، يرجى فتح تذكرة لدى
-Monitoring and alerting has been disabled for your site <strong>{0}</strong>. Reason:,تم تعطيل المراقبة والتنبيه لموقعك <strong>{0}</strong>. السبب:
-Please re-enable monitoring from the dashboard to receive alerts. See the documentation,يرجى إعادة تفعيل المراقبة من لوحة التحكم لاستلام التنبيهات. راجع التوثيق
-here,هنا
-"for the guide. If you need help, please raise a ticket with",للإرشادات. إذا كنت بحاجة إلى مساعدة، يرجى فتح تذكرة لدى
-Security Alert,تنبيه أمني
-Hey there!,مرحباً!
-Your two-factor authentication recovery codes were viewed at {0}.,تم الاطلاع على رموز استرداد المصادقة الثنائية الخاصة بك في {0}.
-"If you did not view your recovery codes, secure your account immediately:",إذا لم تطف رموز الاسترداد الخاصة بك، فامنح حسابك الأمان فوراً:
-Change your password,غيّر كلمة المرور
-Generate new recovery codes,أنشئ رموز استرداد جديدة
-Review any recent account activity,راجع أي نشاط حديث على حسابك
-You can reach your security settings here:,يمكنك الوصول إلى إعدادات الأمان هنا:
-Security Settings,إعدادات الأمان
-"If you recognise this activity, you can ignore this email.",إذا كنت تعرف هذا النشاط، يمكنك تجاهل هذه الرسالة.
-It has been a year since you last reviewed your two-factor authentication recovery codes.,مرّ عام منذ آخر مرة راجعت فيها رموز استرداد المصادقة الثنائية.
-Please check that you still have these codes. You need them to recover your account if you lose your authentication device.,يرجى التأكد من أن لديك هذه الرموز. ستحتاجها لاستعادة حسابك إذا فقدت جهاز المصادقة.
-View Your Recovery Codes,عرض رموز الاسترداد
-Login to AlbannaTech,تسجيل الدخول إلى AlbannaTech
-Reset Password,إعادة تعيين كلمة المرور
-Verification Code for AlbannaTech Login,رمز التحقق لتسجيل الدخول إلى AlbannaTech
-{0} - OTP for AlbannaTech Login,{0} - رمز الدخول لمرة واحدة إلى AlbannaTech
-{0} - OTP to view 2FA recovery codes for AlbannaTech,{0} - رمز لعرض رموز استرداد المصادقة الثنائية في AlbannaTech
-Administrator login to your site,تسجيل دخول مسؤول إلى موقعك
-Site Monitoring Disabled,تم تعطيل مراقبة الموقع
-Your 2FA Recovery Codes Were Viewed,تم الاطلاع على رموز استرداد المصادقة الثنائية
-Review Your 2FA Recovery Codes,راجع رموز استرداد المصادقة الثنائية
-Budget Alert Details:,تفاصيل تنبيه الميزانية:
-Monthly Alert Threshold:,حد التنبيه الشهري:
-Month-To-Date Invoice Amount:,قيمة الفواتير منذ بداية الشهر:
-Amount Over Budget:,المبلغ الزائد عن الميزانية:
-Invoice Period:,فترة الفاتورة:
-"To manage your budget alerts, visit your billing settings in the AlbannaTech dashboard.",لإدارة تنبيهات الميزانية، يرجى مراجعة إعدادات الفوترة في لوحة تحكم AlbannaTech.
-Your AlbannaTech cost for team <strong>{0}</strong> has exceeded the monthly budget alert threshold.,تجاوزت تكاليف AlbannaTech لفريق <strong>{0}</strong> حد التنبيه الشهري للميزانية.
-"We tried to charge your default card for your AlbannaTech invoice of <strong>{0}</strong>, but the card was not recognised. To fix this, remove the card from your account and add it again from your",حاولنا الخصم من بطاقتك الافتراضية لفاتورة AlbannaTech بقيمة <strong>{0}</strong>، ولكن لم يتم التعرف على البطاقة. لحل المشكلة، يرجى إزالة البطاقة من حسابك وإضافتها مرة أخرى من
-In the meantime we switched your payment method to,في هذه الأثناء، قمنا بتغيير طريقة الدفع إلى
-Prepaid Credits,الرصيد المسبق
-so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.,حتى لا تتأثر مواقعك. أضف رصيداً أو أعد إضافة بطاقتك لاستمرار اشتراكك دون انقطاع.
-"Your UPI Autopay mandate was set up, but your bank approved a monthly limit of",تم إعداد تفويض الدفع التلقائي عبر UPI، لكن البنك وافق على حد شهري قدره
-instead of the,بدلاً من
-you requested.,الذي طلبته.
-This limit is set by your bank. If a future invoice is more than,هذا الحد محدد من البنك. إذا تجاوزت أي فاتورة مستقبلية مبلغ
-the automatic debit will fail. Please contact your bank to raise your UPI Autopay limit.,فشل الخصم التلقائي. يرجى التواصل مع البنك لرفع حد الدفع التلقائي عبر UPI.
-Manage UPI Autopay,إدارة الدفع التلقائي عبر UPI
-We tried to auto-debit,حاولنا الخصم التلقائي لمبلغ
-from your UPI account,من حساب UPI الخاص بك
-but the payment failed because there were,لكن فشلت عملية الدفع بسبب عدم كفاية
-insufficient funds,الرصيد
-"Please make sure your UPI account has enough balance. We retry automatically, but if it keeps failing your sites may be suspended. If you need help,",يرجى التأكد من أن حساب UPI لديك يحتوي على رصيد كافٍ. سنعيد المحاولة تلقائياً، لكن إذا استمر الفشل قد يتم تعليق مواقعك. إذا احتجت مساعدة،
-contact support,تواصل مع الدعم
-Pay Now,ادفع الآن
-We could not auto-debit,تعذر الخصم التلقائي لمبلغ
-because the invoice is higher than your,لأن الفاتورة تتجاوز
-current mandate limit,حد التفويض الحالي
-"Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help,",يرجى إلغاء التفويض الحالي وإنشاء تفويض جديد بحد أعلى، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
-Your UPI Autopay mandate has,انتهت صلاحية تفويض الدفع التلقائي عبر UPI الخاص بك
-expired,منتهية الصلاحية
-We could not process the payment of,تعذر تنفيذ عملية الدفع بقيمة
-"Please set up a new UPI Autopay mandate to keep paying automatically, or pay this invoice now. If you need help,",يرجى إعداد تفويض دفع تلقائي جديد عبر UPI للاستمرار في الدفع التلقائي، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
-Set Up UPI Autopay,إعداد الدفع التلقائي عبر UPI
-Add Credits,إضافة رصيد
-cancelled,ملغى
-Your account currently has no active payment method.,لا يوجد حالياً أي طريقة دفع فعّالة في حسابك.
-"To avoid interruption and site suspension, please set up a new UPI Autopay mandate or update your billing details with a valid payment method.",لتجنب الانقطاع وتعليق المواقع، يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو تحديث بيانات الفوترة بطريقة دفع صالحة.
-Update Billing Details,تحديث بيانات الفوترة
-"for your AlbannaTech subscription, but the payment failed.",لاشتراك AlbannaTech الخاص بك، ولكن فشلت عملية الدفع.
-"Please check your UPI Autopay mandate or pay this invoice now. Your sites may be suspended while the invoice is unpaid. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. قد يتم تعليق مواقعك ما دامت الفاتورة غير مسددة. إذا احتجت مساعدة،
-Invoice Payment Failed for AlbannaTech Subscription,فشل دفع فاتورة اشتراك AlbannaTech
-Your UPI Autopay limit was adjusted by your bank,تم تعديل حد الدفع التلقائي عبر UPI من البنك
-Budget Alert for {0},تنبيه ميزانية {0}
-UPI Autopay Payment Failed for AlbannaTech Subscription,فشل الدفع التلقائي عبر UPI لاشتراك AlbannaTech
-Card on AlbannaTech could not be charged,تعذر الخصم من البطاقة على AlbannaTech
-{0} - OTP for AlbannaTech Site Login,{0} - رمز الدخول لمرة واحدة إلى موقع AlbannaTech
-Set Up New Mandate,إشاء تفويض جديد
-revoked or deactivated,ملغى أو معطّل
-but the payment failed because of a,لكن فشلت عملية الدفع بسبب
-temporary bank or gateway issue,مشكلة مؤقتة في البنك أو بوابة الدفع
-"No action is needed, we will retry the payment automatically. If it keeps failing, please contact your bank or pay now. You can also",لا حاجة لاتخاذ أي إجراء، سنعيد محاولة الدفع تلقائياً. إذا استمر الفشل، يرجى التواصل مع البنك أو الدفع الآن. يمكنك أيضاً
-set by your bank.,الذي حدده بنكك.
-"We will retry automatically once the limit resets, and you can also pay now if you prefer. If you need help,",سنعيد المحاولة تلقائياً بمجرد انتهاء الحد، ويمكنك أيضاً الدفع الآن إن أردت. إذا احتجت مساعدة،
-We could not start the UPI Autopay payment of,تعذر بدء عملية الدفع التلقائي عبر UPI بقيمة
-because of a technical error. Our team has been notified.,بسبب خطأ تقني. تم إبلاغ فريقنا.
-"Your UPI Autopay token was never confirmed for recurring payments, so we could not auto-debit",لم يتم تأكيد رمز الدفع التلقائي عبر UPI الخاص بك للمدفوعات المتكررة، لذلك تعذر الخصم التلقائي لمبلغ
-We cancelled this mandate and switched your payment method to,ألغينا هذا التفويض وقمنا بتغيير طريقة الدفع إلى
-so your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.,حتى لا تتأثر مواقعك. يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو إضافة رصيد إلى حسابك.
-"Please check your UPI Autopay mandate or pay this invoice now. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
-Your UPI Autopay mandate has been,تم إلغاء تفويض الدفع التلقائي عبر UPI أو تعطيله
-transaction frequency limit,حد تكرار المعاملات
-"Thanks,",شكراً،
-Team AlbannaTech,فريق AlbannaTech
-Site <strong>{0}</strong> exceeded the plan limit,تجاوز الموقع <strong>{0}</strong> حد الخطة
-Your site has exceeded:,تجاوز موقعك الحدود التالية:
-disk usage limit,حد مساحة القرص
-database usage limit,حد مساحة قاعدة البيانات
-"To continue using your AlbannaTech site, please upgrade its plan.",للاستمرار في استخدام موقعك على AlbannaTech، يرجى ترقية خطته.
-Need help?,هل تحتاج مساعدة؟
-"To change the plan, see the",لتغيير الخطة، راجع
-documentation,التوثيق
-"To find which database table is using the most space, use",لمعرفة أي جدول في قاعدة البيانات يستهلك أكبر مساحة، استخدم
-Database Analyzer,محلل قاعدة البيانات
-"For guidance on which tables can be cleared to reduce database storage, see the",للإرشادات حول الجداول التي يمكن مسحها لتقليل مساحة قاعدة البيانات، راجع
-"If you have any questions, contact",إذا كان لديك أي استفسار، تواصل مع
-AlbannaTech Support,دعم AlbannaTech
-"If no action is taken, your site will be suspended in {0} days.",في حال عدم اتخاذ أي إجراء، سيتم تعليق موقعك خلال {0} يوماً.
-"Unfortunately, your AlbannaTech site has been temporarily suspended because it exceeded the disk or database usage limit for 7 days in a row.",للأسف، تم تعليق موقعك على AlbannaTech مؤقتاً لتجاوزه حد مساحة القرص أو قاعدة البيانات لمدة 7 أيام متتالية.
-"Once you upgrade to a new plan, your site will be activated immediately.",بمجرد ترقية خطتك، سيتم تفعيل موقعك فوراً.
-"If no action is taken, your site will be archived after 3 weeks.",في حال عدم اتخاذ أي إجراء، سيتم أرشفة موقعك بعد 3 أسابيع.
-"Hi,",مرحباً،
-"Your suspended site <strong>{0}</strong> will be archived automatically within <strong>{1} days</strong>. Once archived, the site will no longer be accessible.",سيتم أرشفة موقعك المعلق <strong>{0}</strong> تلقائياً خلال <strong>{1} يوماً</strong>. بعد الأرشفة لن يكون الموقع متاحاً.
-We will keep a backup of your site for 6 months in case you want to restore it.,سنحتفظ بنسخة احتياطية من موقعك لمدة 6 أشهر في حال أردت استعادته.
-"Because we saw a high number of failed webhook deliveries in the past hour, we disabled one of your webhooks.",نظراً لارتفاع عدد محاولات تسليم خطاف الويب الفاشلة خلال الساعة الماضية، قمنا بتعطيل أحد خطوطك.
-Disabled webhook endpoint:,خطاف الويب المعطّل:
-Visit the,قم بزيارة
-to review the failed attempts and find the cause. Once you fix it you can reactivate the webhook from there.,لمراجعة المحاولات الفاشلة وتحديد السبب. بعد حل المشكلة يمكنك تفعيل الخطاف من هناك.
-Action Required: Site {0} suspended,إجراء مطلوب: الموقع {0} تم تعليقه
-Alert: Your site {0} will be archived in {1} days,تنبيه: سيتم أرشفة موقعك {0} خلال {1} يوم
-Site {0} has been suspended,تم تعليق الموقع {0}
-Important: Your Configured Webhook on AlbannaTech is disabled,مهم: خطاف الويب الذي تم تهيئته على AlbannaTech معطّل
-AlbannaTech Dashboard,لوحة تحكم AlbannaTech
-Server <strong>{0}</strong> has used more than 90% of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من 90% من مساحة التخزين المتاحة له.
-Your server is currently using {0} of the available {1},يستخدم خادمك حالياً {0} من أصل {1} المتاحة
-"To disable automatic disk expansion, see the",لتعطيل التوسع التلقائي في مساحة القرص، راجع
-"To enable automatic disk expansion, see the",لتفعيل التوسع التلقائي في مساحة القرص، راجع
-"For any questions, email support@albannatech.com.",لأي استفسار، يرجى مراسلة support@albannatech.com.
-We have noticed frequent incidents on your current plan and recommend upgrading your,لاحظنا تكرار الأعطال في خطتك الحالية، ونوصي بترقية
-to a plan that better fits your needs.,إلى خطة تناسب احتياجاتك بشكل أفضل.
-Here are the details of the recommended plan:,إليك تفاصيل الخطة الموصى بها:
-Instance Type:,نوع الجهاز:
-vCPU:,معالج افتراضي:
-Memory:,الذاكرة:
-"Upgrading can reduce incidents and improve your experience. If you have questions, our support team is happy to help.",الترقية تقلل الأعطال وتحسن تجربتك. وإذا كان لديك أي استفسار، فريق الدعم لدينا جاهز للمساعدة.
-Upgrade your plan,ترقية خطتك
-You can open the AlbannaTech dashboard and download the site backups.,يمكنك فتح لوحة تحكم AlbannaTech وتحميل النسخ الاحتياطية للموقع.
-"For any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
-"For any concerns or questions, please reach out to our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
-View Server Analytics,عرض تحليلات الخادم
-View Autoscale Job,عرض مهمة التوسع التلقائي
-View Deploy Job,عرض مهمة النشر
-Error occurred during auto scale,حدث خطأ أثناء التوسع التلقائي
-Automatic {0} triggered for server {1},تم تشغيل {0} تلقائياً للخادم {1}
-Disk Full Incident on {0},حادث امتلاء القرص على {0}
-"Dear User,",عزيزي المستخدم،
-You are receiving this mail because the storage on your server {0} is full and automatic storage expansion is disabled.,تصلك هذه الرسالة لأن مساحة التخزين على خادمك {0} ممتلئة وتم تعطيل التوسع التلقائي في مساحة التخزين.
-automatic addition,التوسع التلقائي
-"Please enable automatic storage expansion, or",يرجى تفعيل التوسع التلقائي في مساحة التخزين، أو
-add storage manually,إضافة مساحة تخزين يدوياً
-to resolve this.,لحل هذه المشكلة.
-"Best regards,",مع أطيب التحيات،
-Server <strong>{0}</strong> has used more than {1} of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من {1} من مساحة التخزين المتاحة له.
-"If you have any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
-To keep the server from being overloaded we are automatically adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نقوم تلقائياً بإضافة {0} من مساحة التخزين.
-To keep the server from being overloaded we recommend adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نوصي بإضافة {0} من مساحة التخزين.
-Recovery from snapshot {0} has completed.,تم الاسترجاع من لقطة {0}.
-Partner {0} has asked to link your certificate to their AlbannaTech team account.,طلب الشريك {0} ربط شهادتك بحساب فريق AlbannaTech الخاص به.
-Review the request and confirm by clicking the button below.,راجع الطلب وأكّد موافقتك بالنقر على الزر أدناه.
-Review request,مراجعة الطلب
-"Hello Partner Manager,",مرحباً مدير الشريك،
-User {0} has asked to link their team to Partner {1}.,طلب المستخدم {0} ربط فريقه بالشريك {1}.
-Confirm by clicking the button below.,أكّد موافقتك بالنقر على الزر أدناه.
-Accept,قبول
-AlbannaTech has requested access to your resources.,طلب AlbannaTech الوصول إلى مواردك.
-Reason:,السبب:
-Resources:,الموارد:
-View Access Requests,عرض طلبات الوصول
-Transfer Confirmation,تأكيد النقل
-The team {0} has asked to transfer the {1},طلب الفريق {0} نقل {1}
-to your team {0}. Click the button below to consent. Please note that consenting makes these changes:,إلى فريقك {0}. انقر الزر أدناه للموافقة. يرجى ملاحظة أن الموافقة ستؤدي إلى التغييرات التالية:
-The,ويتم نقل
-under {0} will be transferred to your team,الموجود لدى {0} إلى فريقك
-You will be billed for this site under the team {0},سيتم احتساب فواتير هذا الموقع على فريق {0}
-"If you were not expecting this request, ignore this email.",إذا لم تكن تتوقع هذا الطلب، تجاهل هذه الرسالة.
-Accept Transfer,قبول النقل
-Please confirm your email address by clicking the button below:,يرجى تأكيد بريدك الإلكتروني بالنقر على الزر أدناه:
-Verify Account,تأكيد الحساب
-"Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
-Your request for support access has been {0}.,تمت معالجة طلبك للوصول إلى الدعم كـ {0}.
-Please complete the following,يرجى إكمال
-review steps,خطوات المراجعة
-"for your app,",الخاصة بتطبيقك،
-Add a logo,أضف شعاراً
-Update the description for your app,حدّث وصف تطبيقك
-Add relevant links for your app,أضف روابط ذات صلة بتطبيقك
-Publish a release from the releases tab,انشر إصداراً من تبويب الإصدارات
-You requested a verification code to log in to your site on AlbannaTech.,طلبت رمز تحقق لتسجيل الدخول إلى موقعك على AlbannaTech.
-"Unfortunately, your approval request for the app release",للأسف، تم رفض طلب الموافقة على إصدار التطبيق
-has been rejected. The reason is:,سبب الرفض:
-"Good news, your approval request for the app release",خبر جيد، تم قبول طلب الموافقة على إصدار التطبيق
-"has been accepted, and the release will be published in the Marketplace.",وسيتم نشر هذا الإصدار في المتجر.
-"Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
-{0} issues found in,تم العثور على {0} مشكلة في
+/ month,/ شهرياً
+1 Day,يوم واحد
 1 issue found in,تم العثور على مشكلة واحدة في
-Summary,الملخص
-Review the failing checks below.,راجع الفحوصات الفاشلة أدناه.
-"Fix all the issues, then publish a new release (push to your source branch).",قم بإصلاح جميع المشكلات، ثم انشر إصداراً جديداً (ادفع إلى فرع المصدر).
-How to fix,كيفية الإصلاح
-This is an automated report from the AlbannaTech Marketplace Auditor (beta).,هذا تقرير آلي من مدقق متجر AlbannaTech (تجريبي).
-"If you believe this report is incorrect, or need help reading it, please contact",إذا اعتقدت أن هذا التقرير غير صحيح، أو احتجت مساعدة في قراءته، يرجى التواصل مع
-Audit Passed,اجتاز التدقيق
-Needs Improvement,يحتاج إلى تحسين
-Audit Passed with Warnings,اجتاز التدقيق مع تحذيرات
-Audit Failed,لم يجتز التدقيق
-Audit Inconclusive,نتيجة التدقيق غير حاسمة
-Certificate Link Request,طلب ربط شهادة
-Partner Approval Request,طلب موافقة شريك
+1 month,شهر واحد
+12 Hours,12 ساعة
+2FA Code from your Authenticator App,رمز 2FA من تطبيق المصادقة الخاص بك
+3 Days,3 أيام
+3 Hours,3 ساعات
+6 Hours,6 ساعات
+7 Days,7 أيام
+<b>Note:</b> This action is rate limited. Please allow some time for dns changes (if any) to propagate before retrying.,<b>ملاحظة:</b> هذا الإجراء محدود المعدل. يُرجى الانتظار بعض الوقت حتى تنتشر تغييرات DNS (إن وجدت) قبل إعادة المحاولة.
+"<strong>Important:</strong> If an invoice exceeds this limit, the auto-debit will fail. Set this slightly higher than your typical bill to ensure uninterrupted service.",<strong>مهم:</strong> إذا تجاوزت الفاتورة هذا الحد، فسيفشل الخصم التلقائي. اضبطه أعلى قليلًا من فاتورتك المعتادة لضمان خدمة دون انقطاع.
+<strong>{0}</strong> just logged in to your site <strong>{1}</strong> as an administrator. They gave this reason:,قام <strong>{0}</strong> بتسجيل الدخول إلى موقعك <strong>{1}</strong> كمسؤول، وذكر أن السبب هو:
+A local compliance app allows creating transactions as per statutory compliance. They're maintained by community partners.,يسمح تطبيق الامتثال المحلي بإنشاء معاملات وفقاً للامتثال النظامي. يتم صيانتها من قبل شركاء المجتمع.
+API Key,API Key
+API Secret,API Secret
+Accept,قبول
+Accept Transfer,قبول النقل
+Accepted,مقبول
+Access Mode,وضع الوصول
 Access Request,طلب وصول
 Access Request Approved,تمت الموافقة على طلب الوصول
-Marketplace App Review: {0},مراجعة تطبيق في المتجر: {0}
-Marketplace Audit Report: {0},تقرير تدقيق المتجر: {0}
+Access Requests,طلبات الوصول
+Access Status,حالة الوصول
+Access request submitted,تم إرسال طلب الوصول
+Access to 150+ marketplace apps,الوصول إلى أكثر من 150 تطبيقاً في المتجر
+Account balance,رصيد الحساب
+Account created,تم إنشاء الحساب
+Action,إجراء
+Action Required,إجراء مطلوب
+Action Required: Site {0} suspended,إجراء مطلوب: الموقع {0} تم تعليقه
+Actions,إجراءات
+Activate,تفعيل
+Activate Site,تنشيط الموقع
+Activate Webhook,تفعيل Webhook
+Activate site,تنشيط الموقع
+Activating Webhook,جاري تفعيل Webhook
+Active,نشط
+Active Benches,أرصفة نشطة
+Active Card,البطاقة النشطة
+Active Sites,مواقع نشطة
+Activity,النشاط
+Add,إضافة
+Add App,إضافة تطبيق
+Add Card,إضافة بطاقة
+Add Card Details,إضافة تفاصيل البطاقة
+Add Config,إضافة تكوين
+Add Credit,إضافة رصيد
+Add Credit Balance,إضافة رصيد
+Add Credits,إضافة رصيد
+Add Currency Exchange,إضافة سعر صرف
+Add Database User,إضافة مستخدم قاعدة البيانات
+Add Domain,إضافة نطاق
+Add Environment Variable,إضافة متغير بيئة
+Add Key,إضافة مفتاح
+Add M-Pesa Credentials,إضافة بيانات اعتماد M-Pesa
+Add Member,إضافة عضو
+Add New Webhook,إضافة Webhook جديد
+Add Partner Code,إضافة رمز الشريك
+Add Payment Gateway,إضافة بوابة دفع
+Add Region,إضافة منطقة
+Add SSH Key,إضافة مفتاح SSH
+Add Table,إضافة جدول
+Add Tag,إضافة علامة
+Add User,إضافة مستخدم
+Add Webhook,إضافة Webhook
+Add a logo,أضف شعاراً
+Add at least one card before changing the payment mode.,أضف بطاقة واحدة على الأقل قبل تغيير طريقة الدفع.
+Add billing address,إضافة عنوان فوترة
+Add billing details to your account before proceeding.,أضف بيانات الفوترة إلى حسابك قبل المتابعة.
+Add card,إضافة بطاقة
+Add credit,إضافة رصيد
+Add credits to your account before changing the payment mode.,أضف رصيدًا إلى حسابك قبل تغيير طريقة الدفع.
+Add more storage,أضف المزيد من التخزين
+Add new card,إضافة بطاقة جديدة
+Add relevant links for your app,أضف روابط ذات صلة بتطبيقك
+Add version support for {app},إضافة دعم الإصدار لـ {app}
+Add your billing details and payment method to activate your subscription. You won't be charged until your trial ends on {date}.,أضف تفاصيل الفوترة وطريقة الدفع لتفعيل اشتراكك. لن يتم تحصيل أي رسوم حتى ينتهي اشتراكك التجريبي في {date}.
+Added,تمت الإضافة
+Adding {user} to {role},جاري إضافة {user} إلى {role}
+Address,العنوان
+Admin,المشرف
+Admin Access,وصول المشرف
+Admin Role,دور المشرف
+Administrator login to your site,تسجيل دخول مسؤول إلى موقعك
+Advanced,متقدم
+"After linking with Partner, following details shall be shared with your partner team:",بعد الربط مع الشريك، سيتم مشاركة التفاصيل التالية مع فريق الشريك:
+Agent Job,مهمة الوكيل
+AlbannaTech Dashboard,لوحة تحكم AlbannaTech
+AlbannaTech Support,دعم AlbannaTech
+AlbannaTech has requested access to your resources.,طلب AlbannaTech الوصول إلى مواردك.
+AlbannaTech makes it easy to manage sites and apps like ERPNext in an,AlbannaTech تجعل من السهل إدارة المواقع والتطبيقات مثل ERPNext في
+Alert: Your site {0} will be archived in {1} days,تنبيه: سيتم أرشفة موقعك {0} خلال {1} يوم
+Alerts for resource consumption,تنبيهات لاستهلاك الموارد
+All,الكل
+All Roles,جميع الأدوار
+All attempts to back up your site {0} have failed.,فشلت جميع محاولات النسخ الاحتياطي لموقعك {0}.
+All fields are required,جميع الحقول مطلوبة
+All notifications marked as read,تم تعيين كل الإشعارات كمقروءة
+All the data from your site will be lost. Are you sure you want to reset your database?,ستفقد كل بيانات موقعك. هل تريد بالتأكيد إعادة تعيين قاعدة بياناتك؟
+Allow Apps Access,السماح بالوصول إلى التطبيقات
+Allow Bench Creation,السماح بإنشاء الأرصفة
+Allow Billing Access,السماح بالوصول إلى الفوترة
+Allow Contribution Access,السماح بالوصول للمساهمات
+Allow Customer Access,السماح بالوصول إلى العملاء
+Allow Dashboard Access,السماح بالوصول إلى لوحة التحكم
+Allow Leads Access,السماح بالوصول إلى العملاء المحتملين
+Allow Partner Access,السماح بالوصول للشريك
+Allow Server Creation,السماح بإنشاء الخوادم
+Allow Site Creation,السماح بإنشاء المواقع
+Allow Webhook Configuration,السماح بتكوين Webhook
+Already have an account? ,هل لديك حساب بالفعل؟ 
+Alternate Payment Methods,طرق دفع بديلة
+Amount,المبلغ
+Amount (Minimum Amount: {amount}),المبلغ (الحد الأدنى: {amount})
+Amount (USD),المبلغ (دولار أمريكي)
+Amount ({symbol}),المبلغ ({symbol})
+Amount Due,المبلغ المستحق
+Amount Over Budget:,المبلغ الزائد عن الميزانية:
+Amount Paid,المبلغ المدفوع
+Amount in KES (Exchange Rate: {rate} against 1 USD),المبلغ بشلن كيني (سعر الصرف: {rate} مقابل دولار واحد)
+Amount is less than the minimum allowed: {amount},المبلغ أقل من الحد الأدنى المسموح: {amount}
+Amount is more than the maximum allowed: {amount},المبلغ أعلى من الحد الأقصى المسموح: {amount}
+Amount must be greater than or equal to {amount},يجب أن يكون المبلغ أكبر من أو يساوي {amount}
+Amount should be equal to or greater than {amount},يجب أن يكون المبلغ مساويًا أو أكبر من {amount}
+An error occurred while saving settings. Please try again.,حدث خطأ أثناء حفظ الإعدادات. يُرجى المحاولة مرة أخرى.
+Analytics,التحليلات
+App,التطبيق
+App Changes,تغييرات التطبيق
+App Removed,تم إزالة التطبيق
+App Server IPs,عناوين IP لخادم التطبيق
+App {title} added,تم إضافة التطبيق {title}
+App {title} updated,تم تحديث التطبيق {title}
+Application Server,خادم التطبيقات
+Application Server Plan,خطة خادم التطبيق
+Applied Balance,الرصيد المطبق
+Applied To Invoice {invoice},تم تطبيقه على الفاتورة {invoice}
+Apply,تطبيق
+Apply Patch,تطبيق التصحيح
+Approval Request has already been sent to Partner,تم إرسال طلب الموافقة إلى الشريك بالفعل
+Approval Request has been sent to Partner. Please wait for Partner to accept the request,تم إرسال طلب الموافقة إلى الشريك. يرجى الانتظار حتى يقبل الشريك الطلب
+Approve,موافقة
+Approved,معتمد
+Apps,التطبيقات
+Apps Removed,تم إزالة التطبيقات
+Archive,أرشفة
+Archived,مؤرشف
+Archived by {by} on {date},أرشف بواسطة {by} في {date}
+Are you sure you want to activate this site?,هل تريد تنشيط هذا الموقع؟
+Are you sure you want to cancel the scheduled update?,هل تريد إلغاء التحديث المجدول؟
+Are you sure you want to cancel this UPI Autopay mandate?,هل أنت متأكد أنك تريد إلغاء تفويض الدفع التلقائي هذا عبر UPI؟
+Are you sure you want to deactivate this site?,هل تريد تعطيل هذا الموقع؟
+Are you sure you want to delete the config <b>{key}</b>?,هل تريد حذف الإعداد <b>{key}</b>؟
+Are you sure you want to delete the database user ?<br>,هل تريد حذف مستخدم قاعدة البيانات؟<br>
+Are you sure you want to delete the environment variable <b>{key}</b>?,هل تريد حذف متغير البيئة <b>{key}</b>؟
+Are you sure you want to delete this app?,هل تريد حذف هذا التطبيق؟
+Are you sure you want to delete this role?,هل أنت متأكد أنك تريد حذف هذا الدور؟
+Are you sure you want to delete this snapshot? This will delete the snapshot and all associated recovered data.,هل تريد حذف هذه اللقطة؟ سيؤدي ذلك إلى حذف اللقطة وكل البيانات المستعادة المرتبطة بها.
+Are you sure you want to lock this snapshot? This will prevent the snapshot from being deleted accidentally.,هل تريد قفل هذه اللقطة؟ سيمنع ذلك حذف اللقطة عن طريق الخطأ.
+Are you sure you want to login as administrator on the site <b>{name}</b>?,هل تريد تسجيل الدخول كمسؤول على الموقع <b>{name}</b>؟
+Are you sure you want to redirect the domain <b>{domain}</b> to the primary domain of the site <b>{host}</b>?,هل تريد إعادة توجيه النطاق <b>{domain}</b> إلى النطاق الأساسي للموقع <b>{host}</b>؟
+Are you sure you want to remove <b>{count}</b> app{plural}: {apps}?,هل تريد إزالة <b>{count}</b> من التطبيقات: {apps}؟
+Are you sure you want to remove the app <b>{title}</b>?,هل تريد إزالة التطبيق <b>{title}</b>؟
+Are you sure you want to remove the domain <b>{domain}</b> from the site <b>{name}</b>?,هل تريد إزالة النطاق <b>{domain}</b> من الموقع <b>{name}</b>؟
+Are you sure you want to remove the redirect from the domain <b>{domain}</b> to the primary domain of the site <b>{host}</b>?,هل تريد إزالة إعادة التوجيه من النطاق <b>{domain}</b> إلى النطاق الأساسي للموقع <b>{host}</b>؟
+Are you sure you want to remove the tag <b>{tag}</b>?,هل تريد إزالة الوسم <b>{tag}</b>؟
+Are you sure you want to remove this card?,هل تريد بالتأكيد إزالة هذه البطاقة؟
+Are you sure you want to restore your site to this offsite backup from <b>{date}</b> ?,هل تريد استعادة موقعك إلى هذه النسخة الاحتياطية الخارجية من <b>{date}</b>؟
+Are you sure you want to restore your site's database from physical backup taken on <b>{date}</b> ?,هل تريد استعادة قاعدة بيانات موقعك من النسخة الاحتياطية الفيزيائية المأخوذة في <b>{date}</b>؟
+Are you sure you want to retry fetching the certificate for the domain <b>{domain}</b>?,هل تريد إعادة محاولة جلب الشهادة للنطاق <b>{domain}</b>؟
+Are you sure you want to set the domain <b>{domain}</b> as the primary domain for the site <b>{name}</b>?,هل تريد تعيين النطاق <b>{domain}</b> كنطاق أساسي للموقع <b>{name}</b>؟
+"Are you sure you want to unlock this snapshot ? After unlocking, the snapshot can be deleted by end-user.",هل تريد فتح قفل هذه اللقطة؟ بعد الفتح، يمكن للمستخدم النهائي حذف اللقطة.
+Audit Failed,فشل التدقيق
+Audit Inconclusive,التدقيق غير حاسم
+Audit Passed,نجح التدقيق
+Audit Passed with Warnings,نجح التدقيق مع تحذيرات
+Audit Report,تقرير التدقيق
+Audit Trail,سجل التدقيق
+Audit Type,نوع التدقيق
+Audit error,خطأ التدقيق
+Audit error details,تفاصيل خطأ التدقيق
+Audit for,تدقيق لـ
+Authenticate to view 2FA recovery codes,مصادقة لعرض رموز استرداد 2FA
+Authenticated,مصادق
+Authorization cancelled,تم إلغاء التفويض
+Authorization failed,فشل التفويض
+Authorized,مصرح
+Auto Scale,التحجيم التلقائي
+Automatic billing is enabled,تم تفعيل الفوترة التلقائية
+Automatic {0} triggered for server {1},تم تشغيل {0} تلقائياً للخادم {1}
+Available,متاح
+Awaiting Deploy,في انتظار النشر
+Back,رجوع
+Back to 2FA Verification,العودة إلى التحقق من 2FA
+Back to audits,العودة إلى عمليات التدقيق
+Backup,نسخ احتياطي
+Backup Record,سجل النسخ الاحتياطي
+Backup Schedule,جدول النسخ الاحتياطي
+Backup on {date},نسخة احتياطية في {date}
+Backup restore scheduled successfully.,تم جدولة استعادة النسخة الاحتياطية بنجاح.
+Backups,النسخ الاحتياطية
+Balance,الرصيد
+Balances,الأرصدة
+Basic,أساسي
+"Because we saw a high number of failed webhook deliveries in the past hour, we disabled one of your webhooks.",نظراً لارتفاع عدد محاولات تسليم خطاف الويب الفاشلة خلال الساعة الماضية، قمنا بتعطيل أحد خطوطك.
+Become Marketplace Developer,تصبح مطوراً في المتجر
+Become a Partner,كن شريكاً
+Become a Publisher,تصبح ناشراً
+Become a marketplace app developer?,تصبح مطور تطبيقات في المتجر؟
+Become a marketplace app publisher,تصبح ناشر تطبيقات في المتجر
+Bench,البنش
+Bench Analytics,تحليلات البنش
+Benches,الأرصفة
+"Best regards,",مع أطيب التحيات،
+Billing,الفوترة
+Billing Address,عنوان الفوترة
+Billing City,مدينة الفوترة
+Billing Comparison,مقارنة الفوترة
+Billing Contact,جهات اتصال الفوترة
+Billing Country,دولة الفوترة
+Billing Details,تفاصيل الفوترة
+Billing Email,بريد الفوترة
+Billing History,سجل الفوترة
+Billing Name,اسم الفوترة
+Billing Name contains invalid characters,اسم الفوترة يحتوي على أحرف غير صالحة
+Billing Name is required,اسم الفوترة مطلوب
+Billing Overview,نظرة عامة على الفوترة
+Billing Phone,هاتف الفوترة
+Billing Postal Code,الرمز البريدي للفوترة
+Billing Settings,إعدادات الفوترة
+Billing State,ولاية الفوترة
+Billing Zip,رمز الفوترة البريدي
+Billing address,عنوان الفوترة
+Billing information updated,تم تحديث معلومات الفوترة
+Billing name,اسم الفوترة
+Billing setup complete,اكتمل إعداد الفوترة
+Binlog Browser,متصفح البينلوغ
+Block,حظر
+Blocking,حاجز
+Bookmark,إشارة مرجعية
+Boolean,منطقي
+Both partner and phone number are required for payment.,كلا من الشريك ورقم الهاتف مطلوبان لإتمام الدفع.
+Branch,الفرع
+Branch Deleted,تم حذف الفرع
+Broken,معطل
+Budget Alert Details:,تفاصيل تنبيه الميزانية:
+Budget Alert for {0},تنبيه ميزانية {0}
+Budget Alerts,تنبيهات الميزانية
+"By changing the payment mode to <strong>Paid by Partner</strong>, following details will be shared with your partner: <br><br><li>Site/Server name</li> <li>Plan name</li><li>Number of days site/server is active</li><br>Are you sure you want to proceed?",بتغيير طريقة الدفع إلى <strong>مدفوع من الشريك</strong>، ستتم مشاركة التفاصيل التالية مع شريكك: <br><br><li>اسم الموقع/الخادم</li> <li>اسم الخطة</li><li>عدد أيام نشاط الموقع/الخادم</li><br>هل تريد بالتأكيد المتابعة؟
+By confirming this action:,بتأكيد هذا الإجراء:
+"By signing up, you agree to our ",بالتسجيل، أنت توافق على 
+Cancel,إلغاء
+Cancel UPI Autopay,إلغاء الدفع التلقائي عبر UPI
+Cancel Update,إلغاء التحديث
+Cancelled,ملغي
+Cancelling update...,جاري إلغاء التحديث...
+Cannot remove default card,لا يمكن إزالة البطاقة الافتراضية
+Card,بطاقة
+Card Address,عنوان البطاقة
+Card Address City,مدينة عنوان البطاقة
+Card Address Country,دولة عنوان البطاقة
+Card Address Line1,سطر العنوان 1 للبطاقة
+Card Address Line2,سطر العنوان 2 للبطاقة
+Card Address Postal Code,الرمز البريدي لعنوان البطاقة
+Card Address State,ولاية عنوان البطاقة
+Card Address Zip,رمز عنوان البطاقة البريدي
+Card Brand,ماركة البطاقة
+Card CVC,رمز التحقق للبطاقة
+Card CVC Check,فحص رمز التحقق للبطاقة
+Card CVV,رمز الأمان للبطاقة
+Card City,مدينة البطاقة
+Card Country,دولة البطاقة
+Card Email,بريد البطاقة
+Card Expiry,انتهاء صلاحية البطاقة
+Card Fingerprint,بصمة البطاقة
+Card Funding,تمويل البطاقة
+Card Holder,حامل البطاقة
+Card ID,معرف البطاقة
+Card Last4,آخر 4 أرقام من البطاقة
+Card Month,شهر البطاقة
+Card Name,اسم البطاقة
+Card Network,شبكة البطاقة
+Card Number,رقم البطاقة
+Card Object,كائن البطاقة
+Card Phone,هاتف البطاقة
+Card Postal Code,الرمز البريدي للبطاقة
+Card State,ولاية البطاقة
+Card Type,نوع البطاقة
+Card Verified,تم التحقق من البطاقة
+Card Year,سنة البطاقة
+Card Zip,رمز البطاقة البريدي
+Card added successfully,تمت إضافة البطاقة بنجاح
+Card ending in,بطاقة تنتهي بـ
+Card on AlbannaTech could not be charged,تعذر الخصم من البطاقة على AlbannaTech
+Card removed,تمت إزالة البطاقة
+Cards,بطاقات
+Category,فئة
+Certificate Link Request,طلب ربط شهادة
+Certificate fetch scheduled. Please wait a few minutes.,تم جدولة جلب الشهادة. يُرجى الانتظار بضع دقائق.
+Change,تغيير
+Change Bench / Server / Region options moved to Migrations Tab,تم نقل خيارات تغيير البنش / الخادم / المنطقة إلى تبويب الترحيلات
+Change Branch,تغيير الفرع
+Change Password,تغيير كلمة المرور
+Change Payment Method,تغيير طريقة الدفع
+Change Payment Mode,تغيير طريقة الدفع
+Change Team,تغيير الفريق
+Change card,تغيير البطاقة
+Change your password,غيّر كلمة المرور
+Changed By,غيّرها
+Changed From,تغيير من
+Changed To,إلى
+Changes,التغييرات
+Check results,نتائج الفحوصات
+Choose Release Group,اختر مجموعة الإصدار
+Choose Scheduled Time,اختر الوقت المجدول
+Choose Server,اختر الخادم
+Choose active card,اختر البطاقة النشطة
+City,المدينة
+Cleanup Server,تنظيف الخادم
+Clear,مسح
+Clear Cache,مسح الذاكرة المؤقتة
+Clear Unpaid Invoice,تسوية الفاتورة غير المدفوعة
+Clear cache,مسح الذاكرة المؤقتة
+Click the button below to log in to your AlbannaTech dashboard. This link expires in {0} minutes.,يرجى النقر على الزر أدناه لتسجيل الدخول إلى لوحة تحكم AlbannaTech. ستنتهي صلاحية هذا الرابط خلال {0} دقيقة.
+Client IP,عنوان IP للعميل
+Client IP (Optional),عنوان IP للعميل (اختياري)
+Clone,استنساخ
+Close,إغلاق
+Code,الرمز
+Code Quality,جودة الكود
+Collapse,طي
+Collected,تم التحصيل
+Columns,الأعمدة
+Compare,مقارنة
+Compare Features,مقارنة الميزات
+Compatibility,التوافق
+Complete,مكتمل
+Complete billing setup,إكمال إعداد الفوترة
+Complete setup,إكمال الإعداد
+Completed,مكتمل
+Complex,معقد
+Compute,الحوسبة
+Config,الإعدادات
+Config Name,اسم الإعداد
+Config Value,قيمة الإعداد
+Configuration,التكوين
+Configure,تهيئة
+Configure Permissions,تكوين الأذونات
+Configure User,تكوين المستخدم
+Confirm,تأكيد
+Confirm Password,تأكيد كلمة المرور
+Confirm Payment Mode,تأكيد طريقة الدفع
+Confirm by clicking the button below.,أكّد موافقتك بالنقر على الزر أدناه.
+Confirming payment,جاري تأكيد الدفع
+Connected,متصل
+Consistent,متسق
+Contact Support,تواصل مع الدعم
+Containerised deployments,نشرات مجزأة
+Continue,متابعة
+Continue Onboarding,متابعة الإعداد الأولي
+Continue with Google,المتابعة مع Google
+Copy,نسخ
+Copy Recovery Codes,نسخ رموز الاسترداد
+Copy SSH Command,نسخ أمر SSH
+Correct,صحيح
+Correctness,الصحة
+Could not cancel mandate,تعذر إلغاء التفويض
+Could not remove card,تعذرت إزالة البطاقة
+Could not set default card,تعذر تعيين البطاقة الافتراضية
+Country,البلد
+Create,إنشاء
+Create A New Bench,إنشاء بنش جديد
+Create Account,إنشاء حساب
+Create Role,إنشاء دور
+Create Server,إنشاء خادم
+Create Site,إنشاء موقع
+Create User,إنشاء المستخدم
+Create a new account.,إنشاء حساب جديد.
+Create new,إنشاء جديد
+Create your first site,إنشاء موقعك الأول
+Create your {app} trial site,إنشاء موقعك التجريبي لـ {app}
+Created At,تاريخ الإنشاء
+Created By,أنشأها
+Created On,تاريخ الإنشاء
+Created by,أنشئ بواسطة
+Created on,تاريخ الإنشاء
+Creating site... This may take a while...,جاري إنشاء الموقع... قد يستغرق ذلك بعض الوقت...
+Credit Balance,الرصيد المتبقي
+Credit balance,الرصيد المتبقي
+Credit or Debit Card,بطاقة ائتمان أو خصم
+Critical,حرج
+Currency,العملة
+Currency Exchange Added Successfully,تمت إضافة سعر الصرف بنجاح
+Current,الحالي
+Current Password,كلمة المرور الحالية
+Current Plan,الخطة الحالية
+Current Version,الإصدار الحالي
+Current billing amount so far,إجمالي الفوترة حتى الآن
+Current subscribed amount,مبلغ الاشتراك الحالي
+Custom,مخصص
+Custom Key,مفتاح مخصص
+Custom app deployment,نشر تطبيقات مخصصة
+DB Analyzer,محلل قاعدة البيانات
+DB Connections,اتصالات قاعدة البيانات
+DB Server IPs,عناوين IP لخادم قاعدة البيانات
+DNS Type,نوع DNS
+Dangerous Actions,إجراءات خطيرة
+Dark Mode,الوضع الداكن
+Dashboard,لوحة التحكم
+Database,قاعدة البيانات
+Database Analyzer,محلل قاعدة البيانات
+Database Connections,اتصالات قاعدة البيانات
+Database Server,خادم قاعدة البيانات
+Database Server Plan,خطة خادم قاعدة البيانات
+Database User ({user}) Logs,سجلات مستخدم قاعدة البيانات ({user})
+Database User will be deleted shortly,سيتم حذف مستخدم قاعدة البيانات قريباً
+Database access is not available on your current plan.,الوصول إلى قاعدة البيانات غير متاح في خطتك الحالية.
+Database or Disk usage limits exceeded. Upgrade plan or reduce usage to avoid suspension.,تم تجاوز حدود استخدام قاعدة البيانات أو القرص. قم بترقية الخطة أو تقليل الاستخدام لتجنب التعليق.
+Database usage refreshed.,تم تحديث استخدام قاعدة البيانات.
+Database usage refreshed. You can refresh again after {minutes} minute(s).,تم تحديث استخدام قاعدة البيانات. يمكنك التحديث مرة أخرى بعد {minutes} دقيقة.
+Date,التاريخ
+Deactivate,إلغاء التفعيل
+Deactivate Site,تعطيل الموقع
+Deactivate site,تعطيل الموقع
+"Dear User,",عزيزي المستخدم،
+Dedicated Server,خادم مخصص
+Dedicated workers,عمال مخصصون
+Default,افتراضي
+Default card set,تم تعيين البطاقة الافتراضية
+Delete,حذف
+Delete App {app},حذف التطبيق {app}
+Delete Config,حذف الإعداد
+Delete Database User,حذف مستخدم قاعدة البيانات
+Delete Environment Variable,حذف متغير البيئة
+Delete Snapshot,حذف اللقطة
+Delete User,حذف المستخدم
+Deleting config...,جاري حذف الإعداد...
+Deleting environment variable...,جاري حذف متغير البيئة...
+Deleting snapshot...,جاري حذف اللقطة...
+Dependencies,التبعيات
+Deploy,نشر
+Deployment,نشر
+Deploys,النشرات
+Description,الوصف
+Dev Tools,أدوات المطور
+Disable,تعطيل
+Disable 2FA,تعطيل المصادقة الثنائية
+Disable Account,تعطيل الحساب
+Disable Two-Factor Authentication,تعطيل المصادقة الثنائية
+Disable two-factor authentication for your account,تعطيل المصادقة الثنائية لحسابك
+Disable your account and stop billing,تعطيل حسابك وإيقاف الفوترة
+Disabled,معطل
+Disabled webhook endpoint:,خطاف الويب المعطّل:
+Disconnected,غير متصل
+Disk Full Incident on {0},حادث امتلاء القرص على {0}
+Do you want to accept or reject this access request?,هل تريد قبول أو رفض طلب الوصول هذا؟
+Do you want to continue?,هل تريد المتابعة؟
+Docs,التوثيق
+Domain,النطاق
+Domain redirected,تم إعادة توجيه النطاق
+Domain removed,تم إزالة النطاق
+Domains,النطاقات
+Done,تم
+Downgrade,تخفيض
+Download,تحميل
+Download Backup,تنزيل النسخة الاحتياطية
+Download Config,تنزيل الإعدادات
+Download Database,تنزيل قاعدة البيانات
+Download Invoice,تنزيل الفاتورة
+Download Private,تنزيل الخاص
+Download Public,تنزيل العام
+Draft,مسودة
+Drop site,حذف الموقع
+Duplicate,تكرار
+Duration,المدة
+Duration (ms),المدة (مللي ثانية)
+Edit,تعديل
+Edit Config,تعديل التكوين
+Edit Database User,تعديل مستخدم قاعدة البيانات
+Edit Key,تعديل المفتاح
+Edit Plan,تعديل الخطة
+Edit Scheduled Update,تعديل التحديث المجدول
+Edit Secret,تعديل السر
+Edit Update,تعديل التحديث
+Edit Webhook,تعديل Webhook
+Editing scheduled update...,جاري تعديل التحديث المجدول...
+Email,البريد الإلكتروني
+Email is required,البريد الإلكتروني مطلوب
+Empty,فارغة
+Enable,تفعيل
+Enable 2FA,تفعيل المصادقة الثنائية
+Enable Account,تفعيل الحساب
+Enable Benches,تفعيل الأرصفة
+Enable Budget Alerts,تفعيل تنبيهات الميزانية
+Enable Monitoring,تفعيل المراقبة
+Enable Monthly Autopay,تفعيل الدفع التلقائي الشهري
+Enable Servers,تفعيل الخوادم
+Enable Two-Factor Authentication,تفعيل المصادقة الثنائية
+Enable benches for your team,تفعيل الأرصفة لفريقك
+Enable for Application and Database Server,تفعيل لخادم التطبيق وقاعدة البيانات
+Enable servers for your team,تفعيل الخوادم لفريقك
+Enable two-factor authentication for your account to add an extra layer of security,تفعيل المصادقة الثنائية لحسابك لإضافة طبقة أمنية إضافية
+Enable your account and resume billing,تفعيل حسابك واستئناف الفوترة
+Enabled,مفعل
+End Time,وقت الانتهاء
+Endpoint,نقطة النهاية
+Endpoint URL,عنوان URL للنقطة النهائية
+Endpoint has been validated,تم التحقق من صحة نقطة النهاية
+"Endpoint should return a status between 200 and 300
+Please check the endpoint and try again","يجب أن تُرجع نقطة النهاية حالة بين 200 و 300
+يرجى التحقق من نقطة النهاية والمحاولة مرة أخرى"
+Enforce 2FA,فرض المصادقة الثنائية
+English,الإنجليزية
+Enter API Key,أدخل API Key
+Enter API Secret,أدخل API Secret
+Enter Consumer Key,أدخل Consumer Key
+Enter Consumer Secret,أدخل Consumer Secret
+Enter Gateway Name,أدخل اسم بوابة الدفع
+Enter Partner,أدخل الشريك
+Enter Pass Key,أدخل Pass Key
+Enter Payment Gateway,أدخل بوابة الدفع
+Enter Security Credential,أدخل بيانات الاعتماد الأمنية
+Enter Short Code,أدخل الرمز المختصر
+Enter Taxes and Charges,أدخل الضرائب والرسوم
+Enter amount in {currency},أدخل المبلغ بـ {currency}
+Enter email address of the team for transfer of site ownership,أدخل عنوان البريد الإلكتروني للفريق لنقل ملكية الموقع
+Enter new title for the role,أدخل عنواناً جديداً للدور
+Enter the partner code provided by your Partner,أدخل رمز الشريك المقدم من شريكك
+Enter your 2FA code to confirm,أدخل رمز المصادقة الثنائية للتأكيد
+Enterprise,مؤسسي
+Env,البيئة
+Environment Variable Name,اسم متغير البيئة
+Environment Variable Value,قيمة متغير البيئة
+Error,خطأ
+Error adding currency exchange: {error},خطأ أثناء إضافة سعر الصرف: {error}
+Error fetching certificate,خطأ في جلب الشهادة
+Error fetching payments: {error},خطأ أثناء جلب المدفوعات: {error}
+Error occurred during auto scale,حدث خطأ أثناء التوسع التلقائي
+Error saving M-Pesa credentials,خطأ في حفظ بيانات اعتماد M-Pesa
+Error saving Payment Gateway settings,خطأ في حفظ إعدادات بوابة الدفع
+Error saving Payment Gateway settings: {error},خطأ في حفظ إعدادات بوابة الدفع: {error}
+Error submitting payments: {error},خطأ أثناء إرسال المدفوعات: {error}
+Event,الحدث
+Exchange Rate,سعر الصرف
+Existing Bench,بنش موجود
+Expand,توسيع
+Expire At,تنتهي في
+Expired,منتهي الصلاحية
+Expires On,تنتهي في
+Expiring,على وشك الانتهاء
+Expiry,الانتهاء
+Export,تصدير
+External,خارجي
+Failed,فشل
+Failed to add Partner Code,تعذرت إضافة رمز الشريك
+Failed to add currency exchange,تعذرت إضافة سعر الصرف
+Failed to create mandate,تعذر إنشاء التفويض
+Failed to edit scheduled update,فشل تعديل التحديث المجدول
+Failed to initiate database user deletion,فشل بدء حذف مستخدم قاعدة البيانات
+Failed to load payment gateway. Please refresh and try again.,تعذر تحميل بوابة الدفع. يُرجى تحديث الصفحة والمحاولة مرة أخرى.
+Failed to mark you as a developer,تعذر تسجيلك كمطور
+Failed to remove Partner. Please try again.,تعذرت إزالة الشريك. يرجى المحاولة مرة أخرى.
+Failed to send verification code.,تعذر إرسال رمز التحقق.
+Failed to update webhook. Please try again,تعذر تحديث Webhook. يرجى المحاولة مرة أخرى.
+Failed to verify authorization,تعذر التحقق من التفويض
+False,خطأ
+Features,الميزات
+"Features to install, upgrade, backup, monitor & develop apps",ميزات لتثبيت وتحديث ونسخ احتياطي ومراقبة وتطوير التطبيقات
+Fetch Certificate,جلب الشهادة
+Fetch Latest Updates,جلب أحدث التحديثات
+Fetch Payments,جلب المدفوعات
+Fetch Recovery Codes,جلب رموز الاسترداد
+Fetching Latest Updates for {title}...,جاري جلب أحدث التحديثات لـ {title}...
+Fetching certificate...,جاري جلب الشهادة...
+Fetching logs...,جاري جلب السجلات...
+Fetching table schemas,جاري جلب مخططات الجداول
+Files,الملفات
+Filter,تصفية
+Finalize Invoices,تسوية الفواتير
+Finalize Unsettled Invoices,تسوية الفواتير غير المدفوعة
+Find a Partner,البحث عن شريك
+Finish,إنهاء
+Finish onboarding to start using Benches.,أكمل الإعداد الأولي لبدء استخدام الأرصفة.
+Finished,منتهي
+Finished On,انتهى في
+Firewall,جدار الحماية
+First Name,الاسم الأول
+"Fix all the issues, then publish a new release (push to your source branch).",قم بإصلاح جميع المشكلات، ثم انشر إصداراً جديداً (ادفع إلى فرع المصدر).
+Flag,تمييز
+Follow,متابعة
+"For any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+"For any concerns or questions, please reach out to our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+"For any questions, email support@albannatech.com.",لأي استفسار، يرجى مراسلة support@albannatech.com.
+"For guidance on which tables can be cleared to reduce database storage, see the",للإرشادات حول الجداول التي يمكن مسحها لتقليل مساحة قاعدة البيانات، راجع
+Forcefully Purge Binlogs,حذف سجلات Binlog بالقوة
+Forecast,التوقعات
+"Forecast
+({month})","توقعات
+({month})"
+Forecasted Month End Cost,تكلفة نهاية الشهر المتوقعة
+Forfeit,تخلي
+Forgot Password?,نسيت كلمة المرور؟
+Fork,تفرع
+"Frappe Compute is currently experimental. <a href=""https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider"" target=""_blank"" style=""font-weight: bold; text-decoration: underline;"">Learn more</a> about what this means.",Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.
+Frappe Framework Version,إصدار Frappe Framework
+Frappe Partner,Frappe Partner
+Frappe Product Warranty for any 5 opted-in sites,ضمان منتج Frappe لأي 5 مواقع مشترك فيها
+Free,مجاني
+From,من
+From Currency,من عملة
+From Date,من تاريخ
+Full,كامل
+Full Name,الاسم الكامل
+Gateway Name,اسم بوابة الدفع
+General,عام
+General Actions,إجراءات عامة
+Generate new recovery codes,أنشئ رموز استرداد جديدة
+Get Started,ابدأ الآن
+Get Support,الحصول على الدعم
+Get an email every month until you review your recovery codes,احصل على بريد إلكتروني شهرياً حتى تراجع رموز الاسترداد الخاصة بك
+Global,عالمي
+Go Live,نشر مباشر
+Go to invoices,الانتقال إلى الفواتير
+"Good news, your approval request for the app release",خبر جيد، تم قبول طلب الموافقة على إصدار التطبيق
+Grace Period,فترة السماح
+Grand Total,الإجمالي النهائي
+Grants team owner like access to the members. Includes access to all pages and settings.,يمنح وصولاً مثل مالك الفريق للأعضاء. يتضمن الوصول إلى جميع الصفحات والإعدادات.
+Granular,مفصّل
+Granular access,وصول مفصّل
+Greetings from AlbannaTech! We noticed that your account does not have enough credits to pay for the upcoming invoice.,تحياتنا من AlbannaTech! لاحظنا أن حسابك لا يحتوي على رصيد كافٍ لسداد الفاتورة القادمة.
+Group,تجميع
+Growth,نمو
+Have a Frappe Partner Referral Code? Click on {button} to link with your Partner team.,هل لديك رمز إحالة Frappe Partner؟ انقر على {button} لربط حسابك بفريق الشريك.
+"Hello Partner Manager,",مرحباً مدير الشريك،
+"Hello,",مرحباً،
+Help,المساعدة
+Here are the details of the recommended plan:,إليك تفاصيل الخطة الموصى بها:
+Hey there!,مرحباً!
+"Hey there,",مرحباً،
+Hi {0},مرحباً {0}
+"Hi,",مرحباً،
+Hidden,مخفي
+Hide,إخفاء
+High,مرتفع
+Home,الرئيسية
+Host this site on your dedicated server,استضافة هذا الموقع على خادمك المخصص
+How tier upgrades work,كيف تعمل ترقية الفئات
+How to fix,خطوات الإصلاح
+How to fix?,كيف يتم الإصلاح؟
+I am okay if my details are shared with local partner,أوافق على مشاركة بياناتي مع الشريك المحلي
+I have GSTIN,لدي رقم GSTIN
+"If no action is taken, your site will be archived after 3 weeks.",في حال عدم اتخاذ أي إجراء، سيتم أرشفة موقعك بعد 3 أسابيع.
+"If no action is taken, your site will be suspended in {0} days.",في حال عدم اتخاذ أي إجراء، سيتم تعليق موقعك خلال {0} يوماً.
+"If the region you're looking for isn't available, please follow",إذا كانت المنطقة التي تبحث عنها غير متاحة، يُرجى اتباع
+"If the update fails, rollback will not occur as there is no backup. You will have to manually fix the issues over ssh.",إذا فشل التحديث، لن يحدث التراجع لأنه لا توجد نسخة احتياطية. سيتعين عليك إصلاح المشكلات يدوياً عبر ssh.
+"If you believe this report is incorrect, or need help reading it, please contact",إذا اعتقدت أن هذا التقرير غير صحيح، أو احتجت مساعدة في قراءته، يرجى التواصل مع
+"If you change the endpoint, make sure to activate the webhook again.",إذا قمت بتغيير نقطة النهاية، تأكد من إعادة تفعيل Webhook.
+"If you did not request this, please ignore this email.",إذا لم تطلب هذا، يرجى تجاهل هذه الرسالة.
+"If you did not view your recovery codes, secure your account immediately:",إذا لم تطف رموز الاسترداد الخاصة بك، فامنح حسابك الأمان فوراً:
+"If you have any concerns or questions, contact our support team at",إذا كان لديك أي استفسار أو مخاوف، تواصل مع فريق الدعم على
+"If you have any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+"If you have any questions, contact",إذا كان لديك أي استفسار، تواصل مع
+"If you recognise this activity, you can ignore this email.",إذا كنت تعرف هذا النشاط، يمكنك تجاهل هذه الرسالة.
+"If you select Razorpay, you can pay using Credit Card, Debit Card, Net Banking, UPI, Wallets, etc. If you are using Net Banking, it may take upto 5 days for balance to reflect.",إذا اخترت Razorpay، يمكنك الدفع باستخدام بطاقة الائتمان أو بطاقة الخصم أو الصرافة الإلكترونية أو UPI أو المحافظ الإلكترونية، وغيرها. إذا كنت تستخدم الصرافة الإلكترونية، فقد يستغرق ظهور الرصيد حتى 5 أيام.
+"If you were not expecting this request, ignore this email.",إذا لم تكن تتوقع هذا الطلب، تجاهل هذه الرسالة.
+Impersonate Group Owner,انتحال مالك المجموعة
+Impersonate Server Owner,انتحال مالك الخادم
+Impersonate Site Owner,انتحال مالك الموقع
+Import,استيراد
+Important: Your Configured Webhook on AlbannaTech is disabled,مهم: خطاف الويب الذي تم تهيئته على AlbannaTech معطّل
+In Progress,قيد التنفيذ
+In the meantime we switched your payment method to,في هذه الأثناء، قمنا بتغيير طريقة الدفع إلى
+In-Place Migrate Site,ترحيل الموقع في مكانه
+Inactive,غير نشط
+Inbound IP,عنوان IP الوارد
+Include,تضمين
+Include a resource in this role.,تضمين مورد في هذا الدور.
+Included,مشمول
+Includes private and public file uploads and backups,يتضمن رفع الملفات الخاصة والعامة والنسخ الاحتياطية
+Incomplete,غير مكتمل
+Incorrect,غير صحيح
+Info,معلومات
+Insights,الرؤى
+Install,تثبيت
+Install App,تثبيت تطبيق
+Install Local Compliance App?,تثبيت تطبيق الامتثال المحلي؟
+Installation,تثبيت
+Installed on,مثبّت على
+Instance Type:,نوع الجهاز:
+Insufficient balance for the upcoming AlbannaTech payment,الرصيد غير كافٍ لدفعة AlbannaTech القادمة
+Internal,داخلي
+International,دولي
+Invalid,غير صالح
+Invalid JSON,JSON غير صالح
+Invalid Tax Id,رقم ضريبي غير صالح
+Investigating ,جاري التحقيق في 
+Invite,دعوة
+Invite Member,دعوة عضو
+Invite Sent!,تم إرسال الدعوة!
+Invite User,دعوة مستخدم
+Invite a team member to this role.,ادعُ عضواً إلى فريق لهذا الدور.
+Invite someone to AlbannaTech and get {amount} in AlbannaTech credits,ادعُ شخصاً إلى AlbannaTech واحصل على {amount} من رصيد AlbannaTech
+Invoice,فاتورة
+Invoice Amount,مبلغ الفاتورة
+Invoice Cancelled,فاتورة ملغاة
+Invoice Created,تم إنشاء الفاتورة
+Invoice Date,تاريخ الفاتورة
+Invoice Due Date,تاريخ استحقاق الفاتورة
+Invoice Name,اسم الفاتورة
+Invoice Number,رقم الفاتورة
+Invoice Overdue,فاتورة متأخرة
+Invoice Paid,فاتورة مدفوعة
+Invoice Paid Date,تاريخ دفع الفاتورة
+Invoice Partial,فاتورة جزئية
+Invoice Payment Failed for AlbannaTech Subscription,فشل دفع فاتورة اشتراك AlbannaTech
+Invoice Period:,فترة الفاتورة:
+Invoice Refunded,فاتورة مستردة
+Invoice Status,حالة الفاتورة
+Invoice Unpaid,فاتورة غير مدفوعة
+Invoices,فواتير
+Invoices finalized successfully,تمت تسوية الفواتير بنجاح
+Isolated benches as separate environments,أرصفة معزولة كبيئات منفصلة
+It has been a year since you last reviewed your two-factor authentication recovery codes.,مرّ عام منذ آخر مرة راجعت فيها رموز استرداد المصادقة الثنائية.
+It might take up to 2 hours for the payment to reflect against your invoices.,قد يستغرق ظهور الدفع مقابل فواتيرك حتى ساعتين.
+JSON,JSON
+Jobs in progress,الوظائف قيد التنفيذ
+Join,انضمام
+Key,المفتاح
+Know More,معرفة المزيد
+Label,تسمية
+Label (to identify the user),التسمية (لتحديد المستخدم)
+Language,اللغة
+"Last Month
+({month})","الشهر الماضي
+({month})"
+Last Name,اسم العائلة
+Last paid invoice,آخر فاتورة مدفوعة
+Last paid invoice ≥ {amount},آخر فاتورة مدفوعة ≥ {amount}
+Latest Updates Fetched for {title},تم جلب أحدث التحديثات لـ {title}
+Launch,إطلاق
+Learn About Instance Types,معرفة المزيد عن أنواع النسخ
+Learn More,معرفة المزيد
+Learn about Cleanup Server,تعرف على تنظيف الخادم
+Learn about Forcefully Purge Binlogs,تعرف على حذف سجلات Binlog بالقوة
+Leave,مغادرة
+Less,أقل
+Light Mode,الوضع الفاتح
+Limits,الحدود
+Link Partner Account,ربط حساب الشريك
+Load More,تحميل المزيد
+Load more,تحميل المزيد
+Loading,جاري التحميل
+Loading analytics...,جاري تحميل التحليلات...
+Loading audit reports...,جاري تحميل تقارير التدقيق...
+Loading audit…,جاري تحميل التدقيق…
+Loading payment gateway...,جاري تحميل بوابة الدفع...
+Loading...,جاري التحميل...
+Local,محلي
+Lock,قفل
+Lock Snapshot,قفل اللقطة
+Locked,مقفل
+Locking snapshot...,جاري قفل اللقطة...
+Log Browser,متصفح السجلات
+Log in to your AlbannaTech account,تسجيل الدخول إلى حساب AlbannaTech الخاص بك
+Log in.,تسجيل الدخول.
+Login,تسجيل الدخول
+Login As Administrator,تسجيل الدخول كمسؤول
 Login Verification Email,رسالة تأكيد تسجيل الدخول
+Login as Administrator,تسجيل الدخول كمسؤول
+Login to AlbannaTech,تسجيل الدخول إلى AlbannaTech
+Logout,تسجيل الخروج
+Low,منخفض
+M-Pesa Phone Number,رقم هاتف M-Pesa
+M-Pesa credentials saved,تم حفظ بيانات اعتماد M-Pesa
+Major,رئيسي
+Make payment via M-Pesa,ادفع عبر M-Pesa
+Make payment via Stripe,ادفع عبر Stripe
+Making you a developer...,جاري تسجيلك كمطور...
+Manage,إدارة
+Manage Database Users,إدارة مستخدمي قاعدة البيانات
+Manage UPI Autopay,إدارة الدفع التلقائي عبر UPI
+Manage notification channels,إدارة قنوات الإشعارات
+Manage partner access to your account,إدارة وصول الشريك إلى حسابك
+Mandate cancelled,تم إلغاء التفويض
+Mandated,مفوض
+Mark all as read,تعيين الكل كمقروء
+Mark app ready for review,تحديد التطبيق جاهزاً للمراجعة
+Marketplace,السوق
+Marketplace App,تطبيق السوق
+Marketplace App Review: {0},مراجعة تطبيق في المتجر: {0}
+Marketplace Apps,تطبيقات السوق
+Marketplace Audit Report: {0},تقرير تدقيق المتجر: {0}
+Marketplace Payouts,مدفوعات السوق
+Marking all notifications as read...,جاري تعيين كل الإشعارات كمقروءة...
+Master,رئيسي
+Max Amount,الحد الأقصى للمبلغ
+"Maximum amount cannot exceed ₹1,00,000","لا يمكن أن يتجاوز الحد الأقصى للمبلغ ₹1,00,000"
+Maximum amount must be at least ₹500,يجب ألا يقل الحد الأقصى للمبلغ عن ₹500
+Medium,متوسط
+Members,الأعضاء
+Memory:,الذاكرة:
+Merge,دمج
+Message,الرسالة
+Metadata,البيانات الوصفية
+Migrate,ترحيل
+Migrate Site,ترحيل الموقع
+Migrate site,ترحيل الموقع
+Migration,الترحيل
+Migrations,الترحيلات
+Minor,ثانوي
+Mode,الوضع
+Mode of payment,طريقة الدفع
+Monitoring and alerting has been disabled for your site <strong>{0}</strong>. Reason:,تم تعطيل المراقبة والتنبيه لموقعك <strong>{0}</strong>. السبب:
+"Month To Date
+({month})","من بداية الشهر حتى تاريخه
+({month})"
+Month-To-Date Cost,التكلفة حتى تاريخه من الشهر
+Month-To-Date Cost Breakdown,تفصيل التكلفة حتى تاريخه من الشهر
+Month-To-Date Invoice Amount:,قيمة الفواتير منذ بداية الشهر:
+Monthly Alert Limit ({currency}),حد التنبيه الشهري ({currency})
+Monthly Alert Threshold:,حد التنبيه الشهري:
+Monthly Autopay Limit,حد الدفع التلقائي الشهري
+Monthly billing amount,مبلغ الفوترة الشهرية
+More,المزيد
+Move,نقل
+Move Site,نقل الموقع
+Move Site To Different Server / Bench,نقل الموقع إلى خادم / بنش مختلف
+Move this site to a bench in another region.,انقل هذا الموقع إلى بنش في منطقة أخرى.
+Move this site to another private bench or server.,انقل هذا الموقع إلى بنش أو خادم خاص آخر.
+Move to Private Bench,النقل إلى بنش خاص
+Move to a Different Region,النقل إلى منطقة مختلفة
+Move to a Different Server / Bench,النقل إلى خادم / بنش مختلف
+"Multi-environment (e.g. Staging, Production)",بيئات متعددة (مثل: التجهيز، الإنتاج)
+Multiple unpaid invoices,فواتير متعددة غير مدفوعة
+My Pro Plan,خطة برو الخاصة بي
+NOTE :,ملاحظة :
+Name,الاسم
+Name on Card,الاسم على البطاقة
+National,وطني
+Need a higher limit immediately? Reach out to,تحتاج إلى حد أعلى فورًا؟ تواصل مع
+Need help?,هل تحتاج مساعدة؟
+Needs Improvement,يحتاج إلى تحسين
+New,جديد
+New Bench,بنش جديد
+New Password,كلمة المرور الجديدة
+New Site,موقع جديد
+New Snapshot,لقطة جديدة
+New member? ,عضو جديد؟ 
+New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.,تبدأ الفرق الجديدة في الفئة الأساسية مع حد إنفاق افتراضي. يلزم إضافة طريقة دفع أو شراء رصيد مُسبق للبقاء في الفئة الأساسية أو أعلى منها.
+Next,التالي
+Next Version,الإصدار التالي
+Next charge date — {date},تاريخ الخصم القادم — {date}
+No,لا
+No Data,لا توجد بيانات
+No Expiry,بلا انتهاء
+No Output,لا يوجد ناتج
+No UPI Autopay mandates set up.,لا توجد تفويضات دفع تلقائي عبر UPI.
+"No action is needed, we will retry the payment automatically. If it keeps failing, please contact your bank or pay now. You can also",لا حاجة لاتخاذ أي إجراء، سنعيد محاولة الدفع تلقائياً. إذا استمر الفشل، يرجى التواصل مع البنك أو الدفع الآن. يمكنك أيضاً
+No active marketplace app subscriptions.,لا توجد اشتراكات تطبيقات سوق نشطة.
+No active server subscriptions.,لا توجد اشتراكات خوادم نشطة.
+No active site subscriptions.,لا توجد اشتراكات مواقع نشطة.
+No address,لا يوجد عنوان
+"No app changes found. The current and target benches run the same app versions, so there is nothing to update.",لم يتم العثور على تغييرات في التطبيقات. البنشات الحالية والهدف تشغل نفس إصدارات التطبيقات، لذا لا يوجد شيء للتحديث.
+No apps selected,لم يتم اختيار تطبيقات
+No apps to update,لا توجد تطبيقات للتحديث
+No audit has been run for this app yet.,لم يتم إجراء أي تدقيق لهذا التطبيق بعد.
+No audit reports found for this app.,لم يتم العثور على تقارير تدقيق لهذا التطبيق.
+No card added,لم تتم إضافة بطاقة
+No cards added.,لم تتم إضافة بطاقات.
+No check rows on this audit yet.,لا توجد صفوف فحوصات في هذا التدقيق بعد.
+No individual plans needed for sites on dedicated servers,لا حاجة لخطط فردية للمواقع على الخوادم المخصصة
+No members added to this role.,لم تتم إضافة أعضاء إلى هذا الدور.
+No members to show,لا يوجد أعضاء للعرض
+No payments found.,لم يتم العثور على مدفوعات.
+No plan set,لم يتم تعيين خطة
+No resources to show,لا توجد موارد للعرض
+No results,لا توجد نتائج
+No results found,لم يتم العثور على نتائج
+No usage data available for this month,لا توجد بيانات استخدام لهذا الشهر
+None,لا شيء
+Normal,عادي
+Not Applicable,غير قابل للتطبيق
+Not Included,غير مشمول
+Not Ready,غير جاهز
+Not Specified,غير محدد
+Not Supported,غير مدعوم
+Not set,غير معين
+Note,ملاحظة
+Note: Use this as last resort if site is broken and inaccessible,ملاحظة: استخدم هذا كحل أخير إذا كان الموقع معطلاً ولا يمكن الوصول إليه
+"Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
+"Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
+Nothing to show,لا شيء لعرضه
+Notification Settings,إعدادات الإشعارات
+Notifications,الإشعارات
+Now,الآن
+Number,رقم
+OK,موافق
+Object Storage,تخزين الكائنات
+Offline,غير متصل
+Offsite,خارجي
+Offsite Backups,النسخ الاحتياطية الخارجية
+Old,قديم
+On Hold,معلق
+"Once you upgrade to a new plan, your site will be activated immediately.",بمجرد ترقية خطتك، سيتم تفعيل موقعك فوراً.
+"Once your invoices are settled, your site will be activated immediately.",بمجرد سداد فواتيرك، سيتم تفعيل موقعك فوراً.
+One-click vertical scaling to higher plans,توسيع عمودي بضغطة واحدة إلى خطط أعلى
+Online,متصل
+Open,فتح
+Opening payment window...,جاري فتح نافذة الدفع...
+Operational,التشغيلي
+Options,الخيارات
+Other,أخرى
+Outbound IP,عنوان IP الصادر
+Overview,نظرة عامة
+Owned by,المالك
+Page Access,وصول الصفحات
+Pageviews,مشاهدات الصفحات
+Paid,مدفوع
+Paid by Partner,مدفوع من الشريك
+Partial,جزئي
+Partner,الشريك
+Partner Approval Request,طلب موافقة شريك
+Partner Payments Payouts,مدفوعات الشركاء
+Partner Permissions,أذونات الشريك
+Partner removed successfully,تمت إزالة الشريك بنجاح
+Partner {0} has asked to link your certificate to their AlbannaTech team account.,طلب الشريك {0} ربط شهادتك بحساب فريق AlbannaTech الخاص به.
+Partnership,الشراكة
+Partnership Fees,رسوم الشراكة
+Pass,ناجح
+Passed checks ({n}),الفحوصات الناجحة ({n})
+Password,كلمة المرور
+Paste,لصق
+Pause,إيقاف مؤقت
+Pay Invoice Now,ادفع الفاتورة الآن
+Pay Now,ادفع الآن
+Pay now,ادفع الآن
+Pay using PayPal,ادفع باستخدام PayPal
+Paying since,مدة الدفع منذ
+Paying user for at least {months} months,مستخدم مدفوع لمدة {months} أشهر على الأقل
+Payment,دفع
+Payment Amount,مبلغ الدفع
+Payment Cancelled,دفع ملغي
+Payment Chargeback,استرداد دفع
+Payment Completed,دفع مكتمل
+Payment Confirmation,تأكيد الدفع
+Payment Currency,عملة الدفع
+Payment Date,تاريخ الدفع
+Payment Disputed,دفع متنازع عليه
+Payment Failed,فشل الدفع
+Payment Failure,فشل الدفع
+Payment Gateway,بوابة الدفع
+Payment Gateway settings saved,تم حفظ إعدادات بوابة الدفع
+Payment Gateways,بوابات الدفع
+"Payment Initiated successfully, check your phone for instructions",تم بدء الدفع بنجاح، تحقق من هاتفك للحصول على التعليمات
+Payment Method,طريقة الدفع
+Payment Methods,طرق الدفع
+Payment Mode,طريقة الدفع
+Payment Partner,شريك الدفع
+Payment Pending,دفع قيد الانتظار
+Payment Processing,جاري معالجة الدفع
+Payment Receipt,إيصال الدفع
+Payment Reference,مرجع الدفع
+Payment Refunded,دفع مسترد
+Payment Status,حالة الدفع
+Payment Success,نجاح الدفع
+Payment Transaction,معاملة الدفع
+Payment details,تفاصيل الدفع
+Payment failed,فشل الدفع
+Payment failed. Please try again.,فشل الدفع. يُرجى المحاولة مرة أخرى.
+Payment method not added or prepaid credits available,لم تتم إضافة طريقة دفع أو يتوفر رصيد مُسبق
+Payment of {0} for AlbannaTech was unsuccessful.,لم تتم عملية دفع {0} الخاصة بـ AlbannaTech بنجاح.
+"Payment processed successfully, we will update your account shortly on confirmation from Stripe",تمت معالجة الدفع بنجاح، سنقوم بتحديث حسابك قريبًا بعد تأكيد Stripe
+Payment successful,تم الدفع بنجاح
+Payments,مدفوعات
+Payments submitted successfully,تم إرسال المدفوعات بنجاح
+Pending,قيد الانتظار
+Permissions,الأذونات
+Permissions:,الأذونات:
+Phone,الهاتف
+Phone Number,رقم الهاتف
+Physical,فيزيائي
+Physical Backups,النسخ الاحتياطية الفيزيائية
+Pin,تثبيت
+Plan,الخطة
+Plan History,سعر الخطة
+Plan created successfully,تم إنشاء الخطة بنجاح
+Plan name is required,اسم الخطة مطلوب
+Plan updated successfully,تم تحديث الخطة بنجاح
+Play,المهمة
+Plays,المهام
+"Please add credits to your account, or update your payment method and add a card with sufficient balance from your AlbannaTech dashboard:",يرجى إضافة رصيد إلى حسابك، أو تحديث طريقة الدفع وإضافة بطاقة برصيد كافٍ من لوحة تحكم AlbannaTech:
+Please agree to the above consent to create site,يُرجى الموافقة على الموافقة المذكورة أعلاه لإنشاء الموقع
+"Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help,",يرجى إلغاء التفويض الحالي وإنشاء تفويض جديد بحد أعلى، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+Please check that you still have these codes. You need them to recover your account if you lose your authentication device.,يرجى التأكد من أن لديك هذه الرموز. ستحتاجها لاستعادة حسابك إذا فقدت جهاز المصادقة.
+"Please check your UPI Autopay mandate or pay this invoice now. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+"Please check your UPI Autopay mandate or pay this invoice now. Your sites may be suspended while the invoice is unpaid. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. قد يتم تعليق مواقعك ما دامت الفاتورة غير مسددة. إذا احتجت مساعدة،
+Please choose a valid end time,يرجى اختيار وقت انتهاء صالح
+Please choose a valid start time,يرجى اختيار وقت بدء صالح
+"Please click on the button below to reset your password. If this was not you, please ignore this email.",يرجى النقر على الزر أدناه لإعادة تعيين كلمة المرور. إذا لم تكن أنت من طلب ذلك، يرجى تجاهل هذه الرسالة.
+"Please complete the above steps before the 20th of this month, failing which your site will be dropped and any data on a subscribed plan may be lost permanently.",يرجى إتمام الخطوات أعلاه قبل اليوم 20 من هذا الشهر، وعندها سيتم حذف موقعك وقد تُفقد البيانات في الخطة المدفوعة نهائياً.
+Please complete the following,يرجى إكمال
+Please confirm your email address by clicking the button below:,يرجى تأكيد بريدك الإلكتروني بالنقر على الزر أدناه:
+Please contact AlbannaTech support by clicking on the button below.,يرجى التواصل مع دعم AlbannaTech بالنقر على الزر أدناه.
+Please enable at least one event,يرجى تفعيل حدث واحد على الأقل
+"Please enable automatic storage expansion, or",يرجى تفعيل التوسع التلقائي في مساحة التخزين، أو
+Please enter a subdomain,يُرجى إدخال نطاق فرعي
+Please enter a valid Application Private IP,يرجى إدخال عنوان IP خاص صالح للتطبيق
+Please enter a valid Application Public IP,يرجى إدخال عنوان IP عام صالح للتطبيق
+Please enter a valid Database Private IP,يرجى إدخال عنوان IP خاص صالح لقاعدة البيانات
+Please enter a valid Database Public IP,يرجى إدخال عنوان IP عام صالح لقاعدة البيانات
+Please enter a valid positive amount,يُرجى إدخال مبلغ صحيح موجب
+Please fill all the IP addresses,يرجى ملء جميع عناوين IP
+Please fill required values,يرجى ملء القيم المطلوبة
+"Please finalize and settle them before removing all payment methods, switching to Paid by Partner method or disabling the account. You can check the details of invoices and make the payment from",يُرجى تسويتها وسدادها قبل إزالة جميع طرق الدفع، أو التبديل إلى طريقة الدفع بواسطة الشريك، أو تعطيل الحساب. يمكنك الاطلاع على تفاصيل الفواتير وإتمام الدفع من
+Please follow the instructions on your phone,يُرجى اتباع التعليمات على هاتفك
+"Please make sure your UPI account has enough balance. We retry automatically, but if it keeps failing your sites may be suspended. If you need help,",يرجى التأكد من أن حساب UPI لديك يحتوي على رصيد كافٍ. سنعيد المحاولة تلقائياً، لكن إذا استمر الفشل قد يتم تعليق مواقعك. إذا احتجت مساعدة،
+Please provide a label for the user,يُرجى تقديم تسمية للمستخدم
+Please re-enable monitoring from the dashboard to receive alerts. See the documentation,يرجى إعادة تفعيل المراقبة من لوحة التحكم لاستلام التنبيهات. راجع التوثيق
+Please select a dedicated server to deploy your site.,يُرجى اختيار خادم مخصص لنشر موقعك.
+Please select at least one event to add,يرجى تحديد حدث واحد على الأقل للإضافة
+"Please set up a new UPI Autopay mandate to keep paying automatically, or pay this invoice now. If you need help,",يرجى إعداد تفويض دفع تلقائي جديد عبر UPI للاستمرار في الدفع التلقائي، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+Please settle your outstanding invoices to create new servers.,يرجى تسوية فواتيرك المستحقة لإنشاء خوادم جديدة.
+Please settle your outstanding invoices to create new sites.,يُرجى تسديد الفواتير المعلقة لإنشاء مواقع جديدة.
+"Please start a backup, and contact our support team if the problem persists:",يرجى بدء عملية نسخ احتياطي، وتواصل مع فريق الدعم إذا استمرت المشكلة:
+Please type the site name to confirm.,يُرجى كتابة اسم الموقع للتأكيد.
+Please upgrade to a higher plan to use this feature.,يُرجى الترقية إلى خطة أعلى لاستخدام هذه الميزة.
+Postal Code,الرمز البريدي
+Posting Date,تاريخ الترحيل
+Premium,مميز
+Prepaid Credits,رصيد مسبق الدفع
+Prepaid credits,رصيد مسبق الدفع
+Press Notification,إشعار Press
+Press Webhook,خطاف Press على الويب
+Previous,السابق
+Price INR,السعر بالروبية الهندية
+Price USD,السعر بالدولار الأمريكي
+Primary,الأساسي
+Primary domain set,تم تعيين النطاق الأساسي
+Print Format,تنسيق الطباعة
+Priority,أولوية
+Private,خاص
+Private Files,الملفات الخاصة
+Private IP,عنوان IP خاص
+Proceed,متابعة
+Proceed to payment using Stripe,المتابعة للدفع باستخدام Stripe
+Proceed to payment using {gateway},المتابعة للدفع باستخدام {gateway}
+Product Warranty,ضمان المنتج
+Product support included,يتضمن دعم المنتج
+Professional,احترافي
+Profile,الملف الشخصي
+Provide New Bench Name,أدخل اسم البنش الجديد
+Provide a valid webhook endpoint,أدخل نقطة نهاية Webhook صالحة
+Provisioning private bench and creating site...,جاري تجهيز البنش الخاص وإنشاء الموقع...
+Public,عام
+Public Files,الملفات العامة
+Public IP,عنوان IP عام
+Publish,نشر
+Publish a release from the releases tab,انشر إصداراً من تبويب الإصدارات
+Quantity,الكمية
+Query,استعلام
+Queued,في قائمة الانتظار
+Ran {time},أُجري {time}
+"Range: ₹500 - ₹1,00,000","النطاق: ₹500 - ₹1,00,000"
+Rate,السعر
+Re-attempt the recovery manually?,هل تريد إعادة محاولة الاستعادة يدوياً؟
+Read,قراءة
+Read Only,للقراءة فقط
+Read Write,قراءة وكتابة
+Read more,اقرأ المزيد
+Read only access to all the tables,وصول للقراءة فقط إلى جميع الجداول
+Read/Write,قراءة/كتابة
+Read/Write access to all the tables,وصول للقراءة/الكتابة إلى جميع الجداول
+Ready,جاهز
+Reason,السبب
+Reason for transfer,سبب النقل
+Reason:,السبب:
+Receive,استلام
+Receive an email alert if monthly total exceeds limit set,تصلك رسالة تنبيه إذا تجاوز الإجمالي الشهري الحد المحدد
+Receive an email alert when monthly spend exceeds limit,استلم تنبيهًا بالبريد الإلكتروني عند تجاوز الإنفاق الشهري للحد المحدد
+Recover Sites,استعادة المواقع
+Recovery Code,رمز الاسترداد
+Recovery Code Reminders,تذكيرات برموز الاسترداد
+Recovery codes have been reset.,تمت إعادة تعيين رموز الاسترداد.
+Recovery from snapshot {0} has completed.,تم الاسترجاع من لقطة {0}.
+Recurring Charges,الرسوم المتكررة
+Redirect Domain,إعادة توجيه النطاق
+Redirect removed,تم إزالة إعادة التوجيه
+Redirect to Primary,إعادة التوجيه إلى الأساسي
+Redirecting domain...,جاري إعادة توجيه النطاق...
+Refer & Earn,أرشفة واكسب
+Referral Code {code} belongs to {partner},رمز الإحالة {code} ينتمي إلى {partner}
+Refresh,تحديث
+Refresh Schema,تحديث المخطط
+Refunded,مستردة
+Region,المنطقة
+Regional,إقليمي
+Regions,المناطق
+Reject,رفض
+Rejected,مرفوض
+Release Group,مجموعة الإصدار
+Release Notes,ملاحظات الإصدار
+Release Pipeline,خط أنابيب الإصدار
+Releases for {app} on {branch} branch,إصدارات {app} على الفرع {branch}
+Reload,إعادة تحميل
+Remove,إزالة
+Remove App,إزالة التطبيق
+Remove Apps,إزالة التطبيقات
+Remove Card,إزالة البطاقة
+Remove Domain,إزالة النطاق
+Remove Partner,إزالة الشريك
+Remove Redirect,إزالة إعادة التوجيه
+Remove Tag,إزالة الوسم
+Removing App...,جاري إزالة التطبيق...
+Removing Apps...,جاري إزالة التطبيقات...
+Removing card...,جاري إزالة البطاقة...
+Removing domain...,جاري إزالة النطاق...
+Removing redirect...,جاري إزالة إعادة التوجيه...
+Removing tag...,جاري إزالة الوسم...
+Removing {user} from {role},جاري إزالة {user} من {role}
+Rename,إعادة تسمية
+Rename Role,إعادة تسمية الدور
+Replace,استبدال
+Replica,نسخة مكررة
+Replication Server,خادم النسخ المتماثل
+Reply cannot be empty,لا يمكن أن يكون الرد فارغاً
+Report,إبلاغ
+Repository,المستودع
+Request {status},تم {status} الطلب
+Requested,مطلوب
+Require all team members to enable 2FA,مطالبة جميع أعضاء الفريق بتفعيل المصادقة الثنائية
+Requirements,المتطلبات
+Reset,إعادة تعيين
+Reset 2FA,إعادة تعيين 2FA
+Reset Password,إعادة تعيين كلمة المرور
+Reset Recovery Codes,إعادة تعيين رموز الاسترداد
+Reset Site,إعادة تعيين الموقع
+Reset site,إعادة تعيين الموقع
+Resource,المورد
+Resources,الموارد
+Resources:,الموارد:
+Response Status Code,رمز حالة الاستجابة
+Restart,إعادة تشغيل
+Restore,استعادة
+Restore Backup,استعادة النسخة الاحتياطية
+Restore Backup on another Site,استعادة النسخة على موقع آخر
+Restore Physical Backup,استعادة النسخة الفيزيائية
+Restore Tables,استعادة الجداول
+Result,النتيجة
+Resume,استئناف
+Review,مراجعة
+Review Your 2FA Recovery Codes,راجع رموز استرداد المصادقة الثنائية
+Review and fix the failing checks. Then push a new commit to your source branch to trigger a new audit.,راجع وأصلح الفحوصات الفاشلة. ثم ادفع التزاماً جديداً إلى فرع المصدر لبدء تدقيق جديد.
+Review any recent account activity,راجع أي نشاط حديث على حسابك
+Review request,مراجعة الطلب
+Review the failing checks below.,راجع الفحوصات الفاشلة أدناه.
+Review the request and confirm by clicking the button below.,راجع الطلب وأكّد موافقتك بالنقر على الزر أدناه.
+Revoke,إلغاء
+Role,الدور
+Roles,الأدوار
+Run bench migrate on the current bench to apply pending patches and schema changes.,تشغيل bench migrate على البنش الحالي لتطبيق التصحيحات وتغييرات المخطط المعلقة.
+Running,قيد التشغيل
+Runs `bench migrate` without a backup. Proceed with caution.,يُشغّل `bench migrate` بدون نسخة احتياطية. تابع بحذر.
+SQL Playground,ملعب SQL
+SSH,SSH
+SSH access,وصول SSH
+Save,حفظ
+Save Changes,حفظ التغييرات
+Save these recovery codes in a safe place. You can use them to reset two factor authentication if you lose access to your authenticator app.,احفظ رموز الاسترداد هذه في مكان آمن. يمكنك استخدامها لإعادة تعيين المصادقة الثنائية إذا فقدت الوصول إلى تطبيق المصادقة.
+Saving plan...,جاري حفظ الخطة...
+Scale,توسع
+Schedule Time in IST,جدولة الوقت (IST)
+Schedule backup,جدولة نسخة احتياطية
+Scheduled,مجدول
+Scheduled At,مجدولة في
+Scheduled update edited successfully,تم تعديل التحديث المجدول بنجاح
+Scheduling backup restore...,جاري جدولة استعادة النسخة الاحتياطية...
+Scheduling physical backup restore...,جاري جدولة استعادة النسخة الاحتياطية الفيزيائية...
+Search,بحث
+Search Keywords (Optional),كلمات بحث (اختياري)
+Search result will show max 500 logs.,سيظهر البحث حداً أقصى 500 سجل.
+Searching,جاري البحث
+Secret,السر
+Secret is optional. Check the documentation to learn more,السر اختياري. تحقق من الوثائق لمعرفة المزيد
+Security Alert,تنبيه أمني
+Security Settings,إعدادات الأمان
+Select,اختيار
+Select Bench,اختر البنش
+Select Country,اختر البلد
+Select End Date,اختر تاريخ النهاية
+Select Frappe Framework Version,اختر إصدار Frappe Framework
+Select Migration Option,اختر خيار الترحيل
+Select Migration Type,اختر نوع الترحيل
+Select Payment Gateway,اختر بوابة الدفع
+Select Payment Partner,اختر شريك الدفع
+Select Region,اختر المنطقة
+Select Server,اختر الخادم
+Select Server Type,اختر نوع الخادم
+Select Start Date,اختر تاريخ البداية
+Select a member to add,اختر عضواً للإضافة
+Select a role,اختر دوراً
+Select resources,اختر الموارد
+Select the webhook events,اختر أحداث Webhook
+Send,إرسال
+Send verification code,إرسال رمز التحقق
+Sending Invite...,جاري إرسال الدعوة...
+Server,الخادم
+Server <strong>{0}</strong> has used more than 90% of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من 90% من مساحة التخزين المتاحة له.
+Server <strong>{0}</strong> has used more than {1} of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من {1} من مساحة التخزين المتاحة له.
+Server Activity,نشاط الخادم
+Server Analytics,تحليلات الخادم
+Server Backup,نسخ احتياطي للخادم
+Server Database,قاعدة بيانات الخادم
+Server Detail,تفاصيل الخادم
+Server Domain,نطاق الخادم
+Server Downtime,وقت توقف الخادم
+Server Email,بريد الخادم
+Server Files,ملفات الخادم
+Server Health,صحة الخادم
+Server Jobs,مهام الخادم
+Server List,قائمة الخوادم
+Server Logs,سجلات الخادم
+Server Migration,ترحيل الخادم
+Server Name,اسم الخادم
+Server Notification,إشعارات الخادم
+Server Performance,أداء الخادم
+Server Plan,خطة الخادم
+Server Provider,مزود الخادم
+Server Region,منطقة الخادم
+Server SSL,شهادة SSL للخادم
+Server Settings,إعدادات الخادم
+Server Status,حالة الخادم
+Server Subdomain,النطاق الفرعي للخادم
+Server Type,نوع الخادم
+Server Update,تحديث الخادم
+Server Uptime,وقت تشغيل الخادم
+Server Users,مستخدمي الخادم
+Server Version,إصدار الخادم
+Server scripts,نصوص الخادم
+Servers,الخوادم
+Set Budget Alert,تعيين تنبيه الميزانية
+Set Primary,تعيين كأساسي
+Set Primary Domain,تعيين النطاق الأساسي
+Set Up New Mandate,إشاء تفويض جديد
+Set Up UPI Autopay,إعداد الدفع التلقائي عبر UPI
+Set as default,تعيين كافتراضي
+Set mode,تعيين الوضع
+Setting as default...,جاري التعيين كافتراضي...
+Setting primary domain...,جاري تعيين النطاق الأساسي...
+Settings,الإعدادات
+Settle invoices,سداد الفواتير
+Settle it now,تسويتها الآن
+Setup,إعداد
+Setup Account,إعداد الحساب
+Setup Autopay,إعداد الدفع التلقائي
+Setup Site,إعداد الموقع
+Setup UPI Autopay,إعداد الدفع التلقائي عبر UPI
+Share,مشاركة
+Share Feedback,مشاركة الملاحظات
+Shared Server,خادم مشترك
+Show,إظهار
+Signup,إنشاء حساب
+Signup to your AlbannaTech account,إنشاء حساب AlbannaTech جديد
+Simple,بسيط
+"Simplify your billing by authorizing <strong>recurring monthly payments</strong> for your AlbannaTech invoices via Razorpay. Once set up, we’ll handle your future invoices automatically—no manual intervention required.",بسّط فوتورتك من خلال تفويض <strong>مدفوعات شهرية متكررة</strong> لفواتير AlbannaTech عبر Razorpay. بمجرد الإعداد، سنتعامل مع فواتيرك المستقبلية تلقائيًا—دون حاجة إلى تدخل يدوي.
+Site,الموقع
+Site <strong>{0}</strong> exceeded the plan limit,تجاوز الموقع <strong>{0}</strong> حد الخطة
+Site Activity,نشاط الموقع
+Site Analytics,تحليلات الموقع
+Site Backup,نسخ احتياطي للموقع
+Site Config,إعدادات الموقع
+Site Database,قاعدة بيانات الموقع
+Site Database User,مستخدم قاعدة بيانات الموقع
+Site Detail,تفاصيل الموقع
+Site Domain,نطاق الموقع
+Site Downtime,وقت توقف الموقع
+Site Email,بريد الموقع
+Site Files,ملفات الموقع
+Site Health,صحة الموقع
+Site Information,معلومات الموقع
+Site Jobs,مهام الموقع
+Site List,قائمة المواقع
+Site Logs,سجلات الموقع
+Site Migration,ترحيل الموقع
+Site Monitoring Disabled,تم تعطيل مراقبة الموقع
+Site Name,اسم الموقع
+Site Notification,إشعارات الموقع
+Site Performance,أداء الموقع
+Site Plan,خطة الموقع
+Site SSL,شهادة SSL للموقع
+Site Settings,إعدادات الموقع
+Site Status,حالة الموقع
+Site Subdomain,النطاق الفرعي للموقع
+Site URL,رابط الموقع
+Site Update,تحديث الموقع
+Site Uptime,وقت تشغيل الموقع
+Site Users,مستخدمي الموقع
+Site Version,إصدار الموقع
+Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.,فشل إنشاء الموقع. يمكنك استعادة الموقع من نسخة احتياطية (من موقع آخر) أو حذف هذا الموقع لإنشاء موقع جديد. سيتم حذف الموقع تلقائياً بعد {days} أيام إذا لم يتم استعادته.
+"Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.",مراقبة الموقع معطلة، مما يعني أننا لن نتمكن من إخطارك بأي انقطاع. يرجى إعادة تفعيل المراقبة في أقرب فرصة.
+Site name does not match,اسم الموقع غير مطابق
+Site name does not match.,اسم الموقع غير مطابق.
+Site update started,بدأ تحديث الموقع
+Site will be unavailable during this process.,سيكون الموقع غير متاح خلال هذه العملية.
+Site {0} has been suspended,تم تعليق الموقع {0}
+Sites,المواقع
+Size,الحجم
+Skip,تخطي
+Skip Failing Patches,تخطي التصحيحات الفاشلة
+Skip failing patches if any,تخطي التصحيحات الفاشلة إن وجدت
+Skip patches if they fail during migration (Not recommended),تخطي التصحيحات إذا فشلت أثناء الترحيل (غير مستحسن)
+Skip taking backup for this update,تخطي النسخ الاحتياطي لهذا التحديث
+Snapshot,اللقطة
+Snapshot Name,اسم اللقطة
+Snapshots,اللقطات
 Someone tried to log in to your AlbannaTech account from the site:,حاول شخص ما تسجيل الدخول إلى حساب AlbannaTech الخاص بك من الموقع:
+Something went wrong,حدث خطأ ما
+Something went wrong. Please try again.,حدث خطأ ما. يُرجى المحاولة مرة أخرى.
+Sort,ترتيب
+Source,المصدر
+Source {source},المصدر {source}
+Spending Limit,حد الإنفاق
+Spending Limits,حدود الإنفاق
+Split,تقسيم
+Standard,قياسي
+Start,بدء
+Start Time,وقت البدء
+Start time must be before end time,يجب أن يكون وقت البدء قبل وقت الانتهاء
+Starter,مبتدئ
+Starting table restore...,جاري بدء استعادة الجداول...
+State,الولاية
+State / Province / Region,الولاية / المقاطعة / المنطقة
+Status,الحالة
+Step,الخطوة
+Steps to complete before the app can be published,الخطوات المطلوبة قبل نشر التطبيق
+Stop,إيقاف
+String,نص
+Subdomain,النطاق الفرعي
+Submit,إرسال
+Submit Payments,إرسال المدفوعات
+Subscribe,اشتراك
+Subscription Price,سعر الاشتراك
+Subscriptions,الاشتراكات
+Success,نجاح
+Summary,ملخص
+Supported,مدعوم
+Suspended,معلق
+Suspension Reason : {reason},سبب التعليق : {reason}
+Sync,مزامنة
+Table,الجدول
+Table restore started,بدأت استعادة الجداول
+Tag,الوسم
+Tag {tag} removed,تمت إزالة العلامة {tag}
+Tags,الوسوم
+Take Backup,أخذ نسخة احتياطية
+Tax ID,الرقم الضريبي
+Tax ID is required for payment.,الرقم الضريبي مطلوب لإتمام الدفع.
+Tax(%),الضريبة (%)
+Taxes and Charges(%),الضرائب والرسوم (%)
+Team,الفريق
+Team Activity,نشاط الفريق
+Team AlbannaTech,فريق AlbannaTech
+Team Apps,تطبيقات الفريق
+Team Billing,فوترة الفريق
+Team Credits,رصيد الفريق
+Team Invitations,دعوات الفريق
+Team Invoices,فواتير الفريق
+Team Logs,سجلات الفريق
+Team Members,أعضاء الفريق
+Team Name,اسم الفريق
+Team Notifications,إشعارات الفريق
+Team Ownership,ملكية الفريق
+Team Payments,مدفوعات الفريق
+Team Permissions,صلاحيات الفريق
+Team Roles,أدوار الفريق
+Team Servers,خوادم الفريق
+Team Settings,إعدادات الفريق
+Team Sites,مواقع الفريق
+Team Transfer,نقل ملكية الفريق
+Terms & Policies,الشروط والسياسات
+"Thanks,",شكراً،
+The,ويتم نقل
+The audit could not complete. Share this traceback with support if you need help.,لم يتمكن التدقيق من الإكمال. شارك هذا التتبع مع الدعم إذا كنت بحاجة إلى مساعدة.
+The following sites were suspended:,تم تعليق المواقع التالية:
+The last payment failed on this card. Please use a different card.,فشل آخر دفع على هذه البطاقة. يُرجى استخدام بطاقة مختلفة.
+The previous migration used up some storage.,استهلك الترحيل السابق بعض التخزين.
+The root domain can change depending on the region you choose,يمكن أن يتغير النطاق الجذري حسب المنطقة التي تختارها
+"The site database goes back to <b>{date}</b>, when the last update started. <b>Any data written to the site after that time is lost.</b> You cannot undo this.",تعود قاعدة بيانات الموقع إلى <b>{date}</b>، عندما بدأ التحديث الأخير. <b>أي بيانات كُتبت على الموقع بعد ذلك الوقت تُفقد.</b> لا يمكن التراجع عن هذا.
+The team {0} has asked to transfer the {1},طلب الفريق {0} نقل {1}
+The {update} failed and the {recovery} could not restore the tables.,فشلت {update} ولم تتمكن {recovery} من استعادة الجداول.
+Theme,المظهر
+There was an error creating your trial site for {app},حدث خطأ أثناء إنشاء موقعك التجريبي لـ {app}
+These determine your monthly spending limit on AlbannaTech. You are automatically moved to a higher tier once your usage and payment history meet the qualifying conditions.,تحدد هذه الحدود سقف إنفاقك الشهري على AlbannaTech. يتم نقلك تلقائيًا إلى فئة أعلى عندما يستوفي استخدامك وسجل دفعك الشروط المؤهلة.
+This can take upto 5 minutes,قد يستغرق ذلك حتى 5 دقائق
 This email was sent by AlbannaTech,تم إرسال هذه الرسالة بواسطة AlbannaTech
-approved,مقبول
-rejected,مرفوض
-pending,قيد المراجعة
-You do not have enough credits for your AlbannaTech site usage. Transfer credits or add a card for automatic billing. You can also pay this invoice manually using the link below.,لا يوجد لديك رصيد كافٍ لاستخدام مواقعك على AlbannaTech. قم بتحويل الرصيد أو إضافة بطاقة للفوترة التلقائية. يمكنك أيضاً سداد هذه الفاتورة يدوياً عبر الرابط أدناه.
+"This is an automated audit report generated by FC Marketplace Auditor (beta). If you believe this report is incorrect or need help interpreting it, reach out to",هذا تقرير تدقيق آلي تم إنشاؤه بواسطة FC Marketplace Auditor (تجريبي). إذا كنت تعتقد أن هذا التقرير غير صحيح أو تحتاج إلى مساعدة في تفسيره، تواصل مع
+This is an automated report from the AlbannaTech Marketplace Auditor (beta).,هذا تقرير آلي من مدقق متجر AlbannaTech (تجريبي).
+This is an experimental feature,هذه ميزة تجريبية
+This limit is set by your bank. If a future invoice is more than,هذا الحد محدد من البنك. إذا تجاوزت أي فاتورة مستقبلية مبلغ
+"This may be one of our developers investigating an issue for you. If you do not recognise this activity, please raise a ticket with",قد يكون هذا أحد مطوّريننا يبحث عن مشكلة نيابة عنك. إذا لم تكن على علم بهذا النشاط، يرجى فتح تذكرة لدى
+This provider is in beta. Click Compare Features above to learn more.,"هذا المزود في وضع التجربة. انقر على ""مقارنة الميزات"" أعلاه لمعرفة المزيد."
+This request has been accepted.,تم قبول هذا الطلب.
+This request has been forfeited.,تم التخلي عن هذا الطلب.
+This request has been rejected.,تم رفض هذا الطلب.
+This request has been revoked.,تم إلغاء هذا الطلب.
+This site,هذا الموقع
+"This site has custom domains pointing to an A record. After the migration, update them to <strong>{inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>{site}</strong>. Until then those domains will not resolve. <a href=""https://docs.frappe.io/cloud/sites/custom-domains"" target=""_blank"" class=""underline"">Read more</a>","لهذا الموقع نطاقات مخصصة تشير إلى سجل A. بعد الترحيل، قم بتحديثها إلى <strong>{inbound_ip}</strong>، أو بدّلها إلى سجل CNAME يشير إلى <strong>{site}</strong>. حتى ذلك الحين لن يتم حل تلك النطاقات. <a href=""https://docs.frappe.io/cloud/sites/custom-domains"" target=""_blank"" class=""underline"">اقرأ المزيد</a>"
+This site is archived. It cannot be used again.,هذا الموقع مؤرشف. لا يمكن استخدامه مرة أخرى.
+This site's server is out of disk space. The site may stop responding until space is freed up.,خادم هذا الموقع نفدت مساحة القرص. قد يتوقف الموقع عن الاستجابة حتى يتم تحرير المساحة.
+This version is under development and may have bugs. Do not use for production sites.,هذا الإصدار قيد التطوير وقد يحتوي على أخطاء. لا تستخدمه للمواقع الإنتاجية.
+This will remove the Partner associated with your account. Are you sure you want to remove the Partner?,سيؤدي هذا إلى إزالة الشريك المرتبط بحسابك. هل أنت متأكد أنك تريد إزالة الشريك؟
+Tier,الفئة
+Tiers control the maximum amount your team can spend in a billing cycle.,تتحكم الفئات في الحد الأقصى الذي يمكن لفريقك إنفاقه في دورة الفوترة.
+Time Period,الفترة الزمنية
+Timestamp,الطابع الزمني
+Title,العنوان
+To,إلى
+To Currency,إلى عملة
+To Date,إلى تاريخ
+"To avoid interruption and site suspension, please set up a new UPI Autopay mandate or update your billing details with a valid payment method.",لتجنب الانقطاع وتعليق المواقع، يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو تحديث بيانات الفوترة بطريقة دفع صالحة.
+"To change the plan, see the",لتغيير الخطة، راجع
+"To continue using your AlbannaTech site, please settle your invoices:",للاستمرار في استخدام موقعك على AlbannaTech، يرجى سداد فواتيرك:
+"To continue using your AlbannaTech site, please upgrade its plan.",للاستمرار في استخدام موقعك على AlbannaTech، يرجى ترقية خطته.
+"To disable automatic disk expansion, see the",لتعطيل التوسع التلقائي في مساحة القرص، راجع
+"To enable automatic disk expansion, see the",لتفعيل التوسع التلقائي في مساحة القرص، راجع
+"To find which database table is using the most space, use",لمعرفة أي جدول في قاعدة البيانات يستهلك أكبر مساحة، استخدم
+To keep the server from being overloaded we are automatically adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نقوم تلقائياً بإضافة {0} من مساحة التخزين.
+To keep the server from being overloaded we recommend adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نوصي بإضافة {0} من مساحة التخزين.
+"To manage your budget alerts, visit your billing settings in the AlbannaTech dashboard.",لإدارة تنبيهات الميزانية، يرجى مراجعة إعدادات الفوترة في لوحة تحكم AlbannaTech.
+Total,الإجمالي
+Total (Without Tax),الإجمالي (بدون ضريبة)
+Total Amount + GST ({gst}%),إجمالي المبلغ + ضريبة السلع والخدمات ({gst}%)
+Total Amount With Tax,إجمالي المبلغ مع الضريبة
+Total Cost,التكلفة الإجمالية
+Total Discount Amount,إجمالي الخصم
+Total Earnings,إجمالي الأرباح
+Total Installs,إجمالي التثبيتات
+Total Without Discount,الإجمالي بدون خصم
+Total usage for this month,إجمالي الاستخدام لهذا الشهر
+Transaction ID,معرّف العملية
+Transfer,نقل
+Transfer Confirmation,تأكيد النقل
+Transfer Site Ownership,نقل ملكية الموقع
+Transfer request sent to {email} successfully.,تم إرسال طلب النقل إلى {email} بنجاح.
+Transfer site,نقل الموقع
+Trial,تجريبي
+Trigger Migration,تشغيل الترحيل
+True,صحيح
+Two-Factor Authentication Recovery Codes,رموز استرداد المصادقة الثنائية
+Two-Factor Authentication is enforced for all members of the team <strong>{user}</strong> by the team owner/admin. You must enable it to continue.,المصادقة الثنائية مفروضة على جميع أعضاء الفريق <strong>{user}</strong> من قبل مالك/مشرف الفريق. يجب عليك تفعيلها للمتابعة.
+Type,النوع
+UPI Autopay,الدفع التلقائي عبر UPI
+UPI Autopay Authorization,تفويض الدفع التلقائي عبر UPI
+UPI Autopay Payment Failed for AlbannaTech Subscription,فشل الدفع التلقائي عبر UPI لاشتراك AlbannaTech
+UPI Autopay authorized successfully!,تم التفويض بالدفع التلقائي عبر UPI بنجاح!
+UPI ID,معرّف UPI
+Unarchive,إلغاء الأرشفة
+Unauthenticated,غير مصادق
+Unauthorized,غير مصرح
+Unavailable,غير متاح
+Unblock,إلغاء الحظر
+Unbookmark,إلغاء الإشارة المرجعية
+Uncollectible,غير قابلة للتحصيل
+Unfollow,إلغاء المتابعة
+"Unfortunately, we must inform you that your site hosted on AlbannaTech has been temporarily suspended due to an unpaid invoice.",للأسف، نود إبلاغك بأنه تم تعليق موقعك المستضاف على AlbannaTech مؤقتاً بسبب فاتورة غير مدفوعة.
+"Unfortunately, your AlbannaTech site has been temporarily suspended because it exceeded the disk or database usage limit for 7 days in a row.",للأسف، تم تعليق موقعك على AlbannaTech مؤقتاً لتجاوزه حد مساحة القرص أو قاعدة البيانات لمدة 7 أيام متتالية.
+"Unfortunately, your approval request for the app release",للأسف، تم رفض طلب الموافقة على إصدار التطبيق
+Unified Server Plan,خطة الخادم الموحد
+Uninstall,إلغاء التثبيت
+Uninstall Multiple,إلغاء تثبيت المتعدد
+Unique Visitors,زوار فريدون
+Unlimited sites & benches (no extra cost),مواقع وأرصفة غير محدودة (بدون تكلفة إضافية)
+Unlink Partner,إلغاء ربط الشريك
+Unlock,فتح القفل
+Unlock Snapshot,فتح اللقطة
+Unlocking snapshot...,جاري فتح اللقطة...
+Unpaid,غير مدفوعة
+Unpaid amount is,المبلغ غير المدفوع هو
+Unpin,إلغاء التثبيت
+Unpublish,إلغاء النشر
+Unsubscribe,إلغاء الاشتراك
+Update,تحديث
+Update Available,تحديث متاح
+Update Billing Details,تحديث بيانات الفوترة
+Update Billing Settings,تحديث إعدادات الفوترة
+Update Now,تحديث الآن
+Update Profile Information,تحديث معلومات الملف الشخصي
+Update Scheduled,التحديث مجدول
+Update billing details,تحديث بيانات الفوترة
+Update cancelled,تم إلغاء التحديث
+Update the description for your app,حدّث وصف تطبيقك
+Update {when},تحديث {when}
+Updated On,محدثة في
+Updates,التحديثات
+Updates Available,تحديثات متاحة
+Updating site...,جاري تحديث الموقع...
+Upgrade,ترقية
+Upgrade Plan,ترقية الخطة
+Upgrade Site Plan,ترقية خطة الموقع
+Upgrade your plan,ترقية خطتك
+"Upgrading can reduce incidents and improve your experience. If you have questions, our support team is happy to help.",الترقية تقلل الأعطال وتحسن تجربتك. وإذا كان لديك أي استفسار، فريق الدعم لدينا جاهز للمساعدة.
+Upload,رفع
+Urgent,عاجل
+Use Replica Server,استخدام خادم النسخة المكررة
+Use the verification code below to log in to AlbannaTech.,استخدم رمز التحقق أدناه لتسجيل الدخول إلى AlbannaTech.
+Use this for adding A records for your site,استخدم هذا لإضافة سجلات A لموقعك
+Use this for whitelisting our server on a 3rd party service,استخدم هذا لإدراج خادمنا في القائمة البيضاء لخدمة طرف ثالث
+User,المستخدم
+User created successfully,تم إنشاء المستخدم بنجاح
+User updated successfully,تم تحديث المستخدم بنجاح
+User {0} has asked to link their team to Partner {1}.,طلب المستخدم {0} ربط فريقه بالشريك {1}.
+Valid,صالح
+Valid For,صالح لمدة
+Validate,التحقق من صحة
+Validate Webhook,التحقق من Webhook
+Validating Webhook,جاري التحقق من Webhook
+Value,القيمة
+Value must be a JSON object or array,يجب أن تكون القيمة كائن JSON أو مصفوفة
+Verification Code,رمز التحقق
+Verification Code for AlbannaTech Login,رمز التحقق لتسجيل الدخول إلى AlbannaTech
+Verification code,رمز التحقق
+Verification code sent to your email.,تم إرسال رمز التحقق إلى بريدك الإلكتروني.
+Verify,تحقق
+Verify & Save Card,تحقق واحفظ البطاقة
+Verify Account,تأكيد الحساب
+Verifying Card,جاري التحقق من البطاقة
+Verifying authorization...,جاري التحقق من التفويض...
+Version,الإصدار
+Versioning,الإصدارات
+View,عرض
+View Access Requests,عرض طلبات الوصول
+View App Changes,عرض تغييرات التطبيق
+View Autoscale Job,عرض مهمة التوسع التلقائي
+View Credential,عرض بيانات الاعتماد
+View DB in Desk,عرض قاعدة البيانات في المكتب
+View Deploy Job,عرض مهمة النشر
+View Details,عرض التفاصيل
+View Error,عرض الخطأ
+View Invoice,عرض الفاتورة
+View Job,عرض الوظيفة
+View Logs,عرض السجلات
+View Recovery Codes,عرض رموز الاسترداد
+View Replication DB in Desk,عرض قاعدة بيانات النسخ في المكتب
+View Server Analytics,عرض تحليلات الخادم
+View Your Recovery Codes,عرض رموز الاسترداد
+View documentation,عرض التوثيق
+View in Desk,عرض في المكتب
+View your two-factor authentication recovery codes,عرض رموز استرداد المصادقة الثنائية الخاصة بك
+Visible,مرئي
+Visit Repo,زيارة المستودع
+Visit Server,زيارة الخادم
+Visit Site,زيارة الموقع
+Visit the,قم بزيارة
+Want to change the secret?,تريد تغيير السر؟
+Warning,تحذير
+We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.,نحاول خصم <strong>{amount}</strong> من بطاقتك للتأكد من أن البطاقة تعمل. سيتم <strong>استرداد</strong> هذا المبلغ إلى حسابك.
+"We attempted to charge the card ending {0} for your AlbannaTech subscription, but were unsuccessful. Please update your card details or pay manually.",حاولنا الخصم من البطاقة المنتهية بالرقم {0} الخاصة باشتراك AlbannaTech،و لم ينجح. يرجى تحديث بيانات بطاقتك أو الدفع يدوياً.
+We cancelled this mandate and switched your payment method to,ألغينا هذا التفويض وقمنا بتغيير طريقة الدفع إلى
+We could not auto-debit,تعذر الخصم التلقائي لمبلغ
+We could not process the payment of,تعذر تنفيذ عملية الدفع بقيمة
+We could not start the UPI Autopay payment of,تعذر بدء عملية الدفع التلقائي عبر UPI بقيمة
+We have noticed frequent incidents on your current plan and recommend upgrading your,لاحظنا تكرار الأعطال في خطتك الحالية، ونوصي بترقية
+We tried to auto-debit,حاولنا الخصم التلقائي لمبلغ
 We tried to charge the card ending,حاولنا الخصم من البطاقة المنتهية
-"for your AlbannaTech subscription, but it was declined. Please update your card details from your",لاشتراك AlbannaTech الخاص بك، لكن تم رفض العملية. يرجى تحديث بيانات بطاقتك من
-or pay manually using the link below.,أو السداد يدوياً عبر الرابط أدناه.
+"We tried to charge your default card for your AlbannaTech invoice of <strong>{0}</strong>, but the card was not recognised. To fix this, remove the card from your account and add it again from your",حاولنا الخصم من بطاقتك الافتراضية لفاتورة AlbannaTech بقيمة <strong>{0}</strong>، ولكن لم يتم التعرف على البطاقة. لحل المشكلة، يرجى إزالة البطاقة من حسابك وإضافتها مرة أخرى من
+We will keep a backup of your site for 6 months in case you want to restore it.,سنحتفظ بنسخة احتياطية من موقعك لمدة 6 أشهر في حال أردت استعادته.
+We will notify you about the increase via email.,سنقوم بإعلامك بالزيادة عبر البريد الإلكتروني.
+"We will retry automatically once the limit resets, and you can also pay now if you prefer. If you need help,",سنعيد المحاولة تلقائياً بمجرد انتهاء الحد، ويمكنك أيضاً الدفع الآن إن أردت. إذا احتجت مساعدة،
+Webhook,Webhook
+Webhook Attempt,محاولة Webhook
+Webhook Attempts,محاولات Webhook
+Webhook activated successfully,تم تفعيل Webhook بنجاح
+Webhook added successfully,تمت إضافة Webhook بنجاح
+Webhook updated successfully,تم تحديث Webhook بنجاح
+Weekly Installs,تثبيتات أسبوعية
+Welcome,مرحباً
+Welcome to AlbannaTech,مرحباً بك في AlbannaTech
+What to do after a failed audit,ماذا تفعل بعد فشل التدقيق
+"With Benches, you get more control. You can choose which apps to add, which apps to update, which region to deploy to and more.",مع الأرصفة، تحصل على تحكم أكبر. يمكنك اختيار التطبيقات التي تريد إضافتها وتحديثها والمنطقة التي تريد النشر إليها والمزيد.
+Worldwide,عالمي
+Write Reply,كتابة رد
+Yes,نعم
+You are automatically upgraded to a higher tier when your last paid subscription invoice meets that tier's threshold and you have at least three consecutive paid invoices.,يتم ترقية فريقك تلقائيًا إلى فئة أعلى عندما تستوفي آخر فاتورة اشتراك مدفوعة حدّ تلك الفئة وأن يكون لديك ثلاث فواتير مدفوعة متتالية على الأقل.
+You are receiving this mail because the storage on your server {0} is full and automatic storage expansion is disabled.,تصلك هذه الرسالة لأن مساحة التخزين على خادمك {0} ممتلئة وتم تعطيل التوسع التلقائي في مساحة التخزين.
+You aren't permitted to create new sites,غير مسموح لك بإنشاء مواقع جديدة
+You aren't permitted to view the billing page,غير مسموح لك بعرض صفحة الفوترة
+You can log in later to enable your account. Do you want to continue?,يمكنك تسجيل الدخول لاحقاً لتفعيل حسابك. هل تريد المتابعة؟
+You can now publish apps to our Marketplace,يمكنك الآن نشر التطبيقات في متجرنا
+You can only view logs of last 24 hours,يمكنك فقط عرض سجلات آخر 24 ساعة
+You can open the AlbannaTech dashboard and download the site backups.,يمكنك فتح لوحة تحكم AlbannaTech وتحميل النسخ الاحتياطية للموقع.
+You can pay using your PayPal account. Processing may take a few minutes for the balance to reflect.,يمكنك الدفع باستخدام حساب PayPal. قد تستغرق المعالجة بضع دقائق لظهور الرصيد.
+You can reach your security settings here:,يمكنك الوصول إلى إعدادات الأمان هنا:
+You can try out the {app} app for free by clicking on the button below.,يمكنك تجربة تطبيق {app} مجاناً بالنقر على الزر أدناه.
+You do not have enough credits for your AlbannaTech site usage. Transfer credits or add a card for automatic billing. You can also pay this invoice manually using the link below.,لا يوجد لديك رصيد كافٍ لاستخدام مواقعك على AlbannaTech. قم بتحويل الرصيد أو إضافة بطاقة للفوترة التلقائية. يمكنك أيضاً سداد هذه الفاتورة يدوياً عبر الرابط أدناه.
+You have an unpaid invoice of {symbol} {amount}. Please clear it before disabling the account.,لديك فاتورة غير مدفوعة بقيمة {symbol} {amount}. يرجى تسويتها قبل تعطيل الحساب.
+You have multiple unpaid invoices. Please pay them from the invoices page,لديك فواتير متعددة غير مدفوعة. يُرجى دفعها من صفحة الفواتير
+You have to be logged in as a <b>System Manager</b> <em>in your site</em> to download the backup.,يجب أن تكون مسجلاً الدخول كـ <b>مدير النظام</b> <em>في موقعك</em> لتنزيل النسخة الاحتياطية.
+You have unpaid invoices on your account for the following periods:,لديك فواتير غير مدفوعة على حسابك للفترات التالية:
+You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you update your card details in your account.,لم تُضِف بطاقة لاشتراك AlbannaTech الخاص بك. سيتم تعليق مواقعك حتى تُحدِّث بيانات بطاقتك في حسابك.
+You must be a developer to reply to reviews,يجب أن تكون مطوراً للرد على المراجعات
+You requested a verification code to log in to your AlbannaTech account. The code is valid for 10 minutes.,طلبت رمز تحقق لتسجيل الدخول إلى حساب AlbannaTech الخاص بك. الرمز صالح لمدة 10 دقائق.
+You requested a verification code to log in to your site on AlbannaTech.,طلبت رمز تحقق لتسجيل الدخول إلى موقعك على AlbannaTech.
+You will be able to publish apps to our Marketplace upon confirmation.,ستتمكن من نشر التطبيقات في متجرنا بعد التأكيد.
+You will be billed for this site under the team {0},سيتم احتساب فواتير هذا الموقع على فريق {0}
+You will be charged from your credit balance for monthly subscription,سيتم الخصم من رصيدك المتبقي للاشتراك الشهري
+You will be downloading the {file} backup of the site <b>{site}</b> that was created on {date}.,ستقوم بتنزيل النسخة الاحتياطية {file} للموقع <b>{site}</b> التي أُنشئت في {date}.
+You will still be charged for it.,سيستمر تحصيل الرسوم عليك.
+Your 2FA Recovery Codes Were Viewed,تم الاطلاع على رموز استرداد المصادقة الثنائية
+Your AlbannaTech cost for team <strong>{0}</strong> has exceeded the monthly budget alert threshold.,تجاوزت تكاليف AlbannaTech لفريق <strong>{0}</strong> حد التنبيه الشهري للميزانية.
+Your UPI Autopay limit was adjusted by your bank,تم تعديل حد الدفع التلقائي عبر UPI من البنك
+Your UPI Autopay mandate has,انتهت صلاحية تفويض الدفع التلقائي عبر UPI الخاص بك
+Your UPI Autopay mandate has been,تم إلغاء تفويض الدفع التلقائي عبر UPI أو تعطيله
+"Your UPI Autopay mandate was set up, but your bank approved a monthly limit of",تم إعداد تفويض الدفع التلقائي عبر UPI، لكن البنك وافق على حد شهري قدره
+"Your UPI Autopay token was never confirmed for recurring payments, so we could not auto-debit",لم يتم تأكيد رمز الدفع التلقائي عبر UPI الخاص بك للمدفوعات المتكررة، لذلك تعذر الخصم التلقائي لمبلغ
+Your UPI will be auto-debited at the end of the billing cycle. Payment may take up to 24 hours to reflect after debit is initiated.,سيتم خصم UPI تلقائيًا في نهاية دورة الفوترة. قد يستغرق ظهور الدفع حتى 24 ساعة بعد بدء الخصم.
+Your UPI will be auto-debited for monthly subscription,سيتم الخصم التلقائي من UPI للاشتراك الشهري
+Your account billing will be resumed,سيتم استئناف فوترة حسابك
+Your account billing will be stopped,سيتم إيقاف فوترة حسابك
+Your account currently has no active payment method.,لا يوجد حالياً أي طريقة دفع فعّالة في حسابك.
+Your account was disabled successfully,تم تعطيل حسابك بنجاح
+Your account was enabled successfully,تم تفعيل حسابك بنجاح
+Your account will be disabled,سيتم تعطيل حسابك
+Your account will be enabled,سيتم تفعيل حسابك
+Your active sites will be suspended immediately and will be deleted after a week.,سيتم تعليق مواقعك النشطة فوراً وسيتم حذفها بعد أسبوع.
+Your app is sent for review to our team. Please wait for the review to be completed.,تم إرسال تطبيقك للمراجعة من قبل فريقنا. يرجى الانتظار حتى تكتمل المراجعة.
+Your card was declined. It might be due to insufficient funds or you might've exceeded your daily limit. Please try with another card or contact your bank.,تم رفض بطاقتك. قد يكون السبب عدم كفاية الأموال أو تجاوز الحد اليومي. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.
+"Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.",تم رفض بطاقتك. قد يكون السبب قيوداً على بطاقتك، مثل المعاملات الدولية أو المدفوعات عبر الإنترنت. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.
+Your card will be charged for monthly subscription,سيتم خصم الاشتراك الشهري من بطاقتك
+Your feedback was submitted successfully,تم إرسال ملاحظاتك بنجاح
+Your partner will be charged for monthly subscription,سيتم تحصيل الاشتراك الشهري من شريكك
+Your partner will no longer have access to your sites and servers and will be removed as team member from your team.,لن يعد لشريكك حق الوصول إلى مواقعك وخوادمك وسيتم إزالته كعضو فريق من فريقك.
+"Your payment with the card ending <strong>{card}</strong> failed for this invoice due to the following reason:<div class=""text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2"">{error}</div><p class=""text-base"">Please change your payment method to pay this invoice.</p>","فشل الدفع ببطاقة تنتهي بـ <strong>{card}</strong> لهذه الفاتورة بسبب: <div class=""text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2"">{error}</div><p class=""text-base"">يُرجى تغيير طريقة الدفع لدفع هذه الفاتورة.</p>"
+Your profile was updated successfully,تم تحديث ملفك الشخصي بنجاح
+Your request for support access has been {0}.,تمت معالجة طلبك للوصول إلى الدعم كـ {0}.
+Your server is currently using {0} of the available {1},يستخدم خادمك حالياً {0} من أصل {1} المتاحة
+Your site has exceeded:,تجاوز موقعك الحدود التالية:
 Your site has expired,انتهت صلاحية موقعك
+Your site is currently on a shared bench. Upgrade plan to enjoy more benefits.,موقعك حاليًا على بنش مشترك. قم بترقية الخطة للاستفادة من مزايا إضافية.
+Your site is eligible to move to a private bench with server scripts and custom apps support enabled.,موقعك مؤهل للنقل إلى بنش خاص مع دعم سكريبتات الخادم والتطبيقات المخصصة.
+"Your site is on an End of Life version. Upgrade to the latest version to get support, latest features and security updates.",موقعك على إصدار منتهي الصلاحية. قم بالترقية إلى أحدث إصدار للحصول على الدعم والميزات الأحدث وتحديثات الأمان.
+Your sites have been suspended on AlbannaTech,تم تعليق مواقعك على AlbannaTech
+Your spending limit has been exceeded. Please,تم تجاوز حد الإنفاق. يُرجى
+"Your suspended site <strong>{0}</strong> will be archived automatically within <strong>{1} days</strong>. Once archived, the site will no longer be accessible.",سيتم أرشفة موقعك المعلق <strong>{0}</strong> تلقائياً خلال <strong>{1} يوماً</strong>. بعد الأرشفة لن يكون الموقع متاحاً.
+Your suspended sites will become active,ستصبح مواقعك المعلقة نشطة
+Your trial is set to expire on {date}. Set up billing now to ensure uninterrupted access to your site.,سينتهي اشتراكك التجريبي في {date}. قم بإعداد الفوترة الآن لضمان وصول مستمر إلى موقعك.
+Your trial site is ready,موقعك التجريبي جاهز
+Your two-factor authentication recovery codes were viewed at {0}.,تم الاطلاع على رموز استرداد المصادقة الثنائية الخاصة بك في {0}.
+Your unique referral link,رابط الإحالة الفريد الخاص بك
 Your {0} site has expired. Please update your billing to activate your site.,انتهت صلاحية موقع {0}. يرجى تحديث بيانات الفوترة لتفعيل موقعك.
+Zip Code,الرمز البريدي
+add storage manually,إضافة مساحة تخزين يدوياً
+and we will review your account.,وسنقوم بمراجعة حسابك.
+approved,مقبول
+at {time},في {time}
+automatic addition,التوسع التلقائي
+automatic recovery,الاستعادة التلقائية
+because of a technical error. Our team has been notified.,بسبب خطأ تقني. تم إبلاغ فريقنا.
+because the invoice is higher than your,لأن الفاتورة تتجاوز
+bench clear-cache and bench clear-website-cache commands will be executed on your site. Are you sure you want to run these commands?,سيتم تنفيذ أمرا bench clear-cache و bench clear-website-cache على موقعك. هل تريد تشغيل هذين الأمرين بالتأكيد؟
+bench migrate command will be executed on your site. Are you sure you want to run this command? We recommend that you take a database backup before continuing.,سيتم تنفيذ أمر bench migrate على موقعك. هل تريد تشغيل هذا الأمر بالتأكيد؟ نوصي بأخذ نسخة احتياطية من قاعدة البيانات قبل المتابعة.
+but the payment failed because of a,لكن فشلت عملية الدفع بسبب
+but the payment failed because there were,لكن فشلت عملية الدفع بسبب عدم كفاية
+cancelled,ملغى
+contact support,التواصل مع الدعم
+current mandate limit,حد التفويض الحالي
+database usage limit,حد مساحة قاعدة البيانات
+disk usage limit,حد مساحة القرص
+documentation,التوثيق
+expired,منتهية الصلاحية
+"for the guide. If you need help, please raise a ticket with",للإرشادات. إذا كنت بحاجة إلى مساعدة، يرجى فتح تذكرة لدى
+"for your AlbannaTech subscription, but it was declined. Please update your card details from your",لاشتراك AlbannaTech الخاص بك، لكن تم رفض العملية. يرجى تحديث بيانات بطاقتك من
+"for your AlbannaTech subscription, but the payment failed.",لاشتراك AlbannaTech الخاص بك، ولكن فشلت عملية الدفع.
+"for your app,",الخاصة بتطبيقك،
+from your UPI account,من حساب UPI الخاص بك
+"has been accepted, and the release will be published in the Marketplace.",وسيتم نشر هذا الإصدار في المتجر.
+has been rejected. The reason is:,سبب الرفض:
+here,هنا
+hours,ساعات
+instead of the,بدلاً من
+insufficient funds,الرصيد
+items,عنصر
+last update,التحديث الأخير
+line,سطر
+of,من
+or pay manually using the link below.,أو السداد يدوياً عبر الرابط أدناه.
+"or use the actions below, then try again.",أو استخدم الإجراءات أدناه، ثم حاول مرة أخرى.
+pending,قيد المراجعة
+per day,يومياً
+per month,شهرياً
+rejected,مرفوض
+review steps,خطوات المراجعة
+revoked or deactivated,ملغى أو معطّل
+set by your bank.,الذي حدده بنكك.
+so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.,حتى لا تتأثر مواقعك. أضف رصيداً أو أعد إضافة بطاقتك لاستمرار اشتراكك دون انقطاع.
+so your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.,حتى لا تتأثر مواقعك. يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو إضافة رصيد إلى حسابك.
+support,الدعم
+temporary bank or gateway issue,مشكلة مؤقتة في البنك أو بوابة الدفع
+the automatic debit will fail. Please contact your bank to raise your UPI Autopay limit.,فشل الخصم التلقائي. يرجى التواصل مع البنك لرفع حد الدفع التلقائي عبر UPI.
+this documentation,هذا التوثيق
+to a plan that better fits your needs.,إلى خطة تناسب احتياجاتك بشكل أفضل.
+to add it.,لإضافتها.
+to increase your limit.,لزيادة حدك.
+to resolve this.,لحل هذه المشكلة.
+to review the failed attempts and find the cause. Once you fix it you can reactivate the webhook from there.,لمراجعة المحاولات الفاشلة وتحديد السبب. بعد حل المشكلة يمكنك تفعيل الخطاف من هناك.
+to your team {0}. Click the button below to consent. Please note that consenting makes these changes:,إلى فريقك {0}. انقر الزر أدناه للموافقة. يرجى ملاحظة أن الموافقة ستؤدي إلى التغييرات التالية:
+transaction frequency limit,حد تكرار المعاملات
+under {0} will be transferred to your team,الموجود لدى {0} إلى فريقك
+vCPU:,معالج افتراضي:
+when they sign up and spend at least {amount}!,عند تسجيلهم وإنفاق ما لا يقل عن {amount}!
+you requested.,الذي طلبته.
+{0} - OTP for AlbannaTech Login,{0} - رمز الدخول لمرة واحدة إلى AlbannaTech
+{0} - OTP for AlbannaTech Site Login,{0} - رمز الدخول لمرة واحدة إلى موقع AlbannaTech
+{0} - OTP to view 2FA recovery codes for AlbannaTech,{0} - رمز لعرض رموز استرداد المصادقة الثنائية في AlbannaTech
+{0} issues found in,تم العثور على {0} مشكلة في
+{code} is Invalid Referral Code,{code} رمز إحالة غير صالح
+{label} is required,{label} مطلوب
+{months} months,{months} أشهر
+{n} Critical,{n} حرِج
+{n} Info,{n} معلومات
+{n} Major,{n} كبير
+{n} Minor,{n} طفيف
+{n} blocking,{n} حاجز
+{n} failed,فشل {n}
+{n} issue in,هناك {n} مشكلة في
+{n} issues in,هناك {n} مشاكل في
+{n} passed,نجح {n}
+{n} skipped,تم تخطي {n}
+{n} warning,تحذير {n}
+{n} warnings,{n} تحذيرات
+{user} added to {role},تمت إضافة {user} إلى {role}
+{user} removed from {role},تمت إزالة {user} من {role}
+{value} Connection,{value} اتصال
+{value} Connections,{value} اتصالات

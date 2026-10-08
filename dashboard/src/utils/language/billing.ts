@@ -177,7 +177,7 @@ const billing: Dictionary = {
 	// BillingBalances + BillingForecast
 	'Balance': { en: 'Balance', ar: 'الرصيد' },
 	'Applied To Invoice {invoice}': {
-		en: 'Applied to Invoice {invoice}',
+		en: 'Applied To Invoice {invoice}',
 		ar: 'تم تطبيقه على الفاتورة {invoice}',
 	},
 	'Month-To-Date Cost': {
@@ -442,7 +442,7 @@ const billing: Dictionary = {
 	},
 	'Enter amount in {currency}': { en: 'Enter amount in {currency}', ar: 'أدخل المبلغ بـ {currency}' },
 	'Please enter a valid positive amount': {
-		en: 'Please enter a valid amount',
+		en: 'Please enter a valid positive amount',
 		ar: 'يُرجى إدخال مبلغ صحيح موجب',
 	},
 	'An error occurred while saving settings. Please try again.': {

@@ -598,11 +598,10 @@ const misc: Dictionary = {
 		en: 'Please enter a valid Database Private IP',
 		ar: 'يرجى إدخال عنوان IP خاص صالح لقاعدة البيانات',
 	},
-	"Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.":
-		{
-			en: "Frappe Compute is currently experimental. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>Learn more</a> about what this means.",
-			ar: "Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.",
-		},
+	'Frappe Compute is currently experimental. <a href="https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider" target="_blank" style="font-weight: bold; text-decoration: underline;">Learn more</a> about what this means.': {
+		en: 'Frappe Compute is currently experimental. <a href="https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider" target="_blank" style="font-weight: bold; text-decoration: underline;">Learn more</a> about what this means.',
+		ar: "Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.",
+	},
 	Pass: { en: 'Pass', ar: 'ناجح' },
 	line: { en: 'line', ar: 'سطر' },
 	Info: { en: 'Info', ar: 'معلومات' },
