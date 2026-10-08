@@ -6,7 +6,11 @@
 				class="flex flex-col items-center"
 				@dblclick="redirectForFrappeioAuth"
 			>
-				<FCLogo class="inline-block h-12 w-12" />
+				<img
+					src="/albannatech-logo.svg"
+					alt="AlbannaTech"
+					class="inline-block h-10 w-auto"
+				/>
 			</div>
 			<!-- card -->
 			<div

@@ -3,9 +3,11 @@
 		<div class="relative z-10 mx-auto py-8 sm:w-max sm:py-24">
 			<div class="flex flex-col px-4" @dblclick="redirectForFrappeioAuth">
 				<slot name="logo">
-					<div class="flex items-center space-x-2">
-						<FCLogo class="inline-block h-[38px] w-[38px]" />
-					</div>
+					<img
+						src="/albannatech-logo.svg"
+						alt="AlbannaTech"
+						class="inline-block h-8 w-auto"
+					/>
 				</slot>
 			</div>
 			<div class="mx-auto w-full bg-surface-white px-4 py-6 sm:w-96 sm:rounded-lg">
@@ -31,14 +33,10 @@
 
 <script>
 import { toast } from 'vue-sonner';
-import FCLogo from '@/components/icons/FCLogo.vue';
 
 export default {
 	name: 'LoginBox',
 	props: ['title', 'logo', 'subtitle'],
-	components: {
-		FCLogo,
-	},
 	mounted() {
 		const params = new URLSearchParams(window.location.search);
 

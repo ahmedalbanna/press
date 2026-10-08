@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { createResource, Spinner } from 'frappe-ui'
 import { toast } from 'vue-sonner'
-import FCLogo from '@/components/icons/FCLogo.vue'
 import { getActiveSites } from '@/data/sites'
 import { getTeam } from '@/data/team'
 import { trialDays } from '@/utils/site'
@@ -99,7 +98,7 @@ onMounted(() => {
 		<!-- header -->
 		<div class="flex items-center gap-2"></div>
 
-		<FCLogo class="size-10 rounded mb-6" />
+		<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-8 w-auto mb-6" />
 
 		<h2 class="text-2xl font-semibold text-ink-gray-9">
 			Where do you want to go?

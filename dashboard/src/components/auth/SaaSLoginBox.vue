@@ -11,7 +11,12 @@
 					class="inline-block h-12 w-12 rounded-md"
 					:src="logo"
 				/>
-				<FCLogo v-else class="inline-block h-12 w-12" />
+				<img
+					v-else
+					src="/albannatech-logo.svg"
+					alt="AlbannaTech"
+					class="inline-block h-10 w-auto"
+				/>
 			</div>
 			<!-- card -->
 			<div
@@ -42,15 +47,11 @@
 </template>
 
 <script>
-import FCLogo from '@/components/icons/FCLogo.vue';
 import { notify } from '@/utils/toast';
 
 export default {
 	name: 'SaaSLoginBox',
 	props: ['title', 'subtitle', 'logo'],
-	components: {
-		FCLogo,
-	},
 	mounted() {
 		const params = new URLSearchParams(window.location.search);
 

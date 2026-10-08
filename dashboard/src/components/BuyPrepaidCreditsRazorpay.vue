@@ -113,12 +113,12 @@ export default {
 				key: data.key_id,
 				order_id: data.order_id,
 				name: "AlbannaTech",
-				image: "/assets/press/images/frappe-cloud-logo.png",
+				image: "/assets/press/images/albannatech-logo.svg",
 				prefill: {
 					email: this.$team.doc.user,
 				},
 				handler: this.handlePaymentSuccess,
-				theme: { color: "#171717" },
+				theme: { color: "#0F172A" },
 				...(this.paypalEnabled
 					? {
 							config: {
