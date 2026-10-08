@@ -1,17 +1,21 @@
 <template>
 	<div class="mx-auto max-w-2xl rounded-lg border-0 px-2 sm:border sm:p-8">
 		<div class="prose prose-sm max-w-none">
-			<h1 class="text-2xl font-semibold">Welcome to AlbannaTech</h1>
+			<h1 class="text-2xl font-semibold">{{ t('Welcome to AlbannaTech') }}</h1>
 			<p>
-				AlbannaTech makes it easy to manage sites and apps like ERPNext in an
-				easy to use dashboard with powerful features like automatic backups,
-				custom domains, SSL certificates, custom apps, automatic updates and
-				more.
+				{{
+					t(
+						'AlbannaTech makes it easy to manage sites and apps like ERPNext in an easy to use dashboard with powerful features like automatic backups, custom domains, SSL certificates, custom apps, automatic updates and more.',
+					)
+				}}
 			</p>
 		</div>
 		<p class="mt-6 text-base text-ink-gray-8">
-			Complete the steps below to unlock sites, benches, dedicated servers and
-			more.
+			{{
+				t(
+					'Complete the steps below to unlock sites, benches, dedicated servers and more.',
+				)
+			}}
 		</p>
 		<div class="mt-6 space-y-6">
 			<div class="rounded-md">
@@ -19,7 +23,9 @@
 					<div class="flex items-center justify-between space-x-2">
 						<div class="flex items-center space-x-2">
 							<TextInsideCircle>1</TextInsideCircle>
-							<span class="text-base font-medium"> Account created </span>
+							<span class="text-base font-medium">
+								{{ t('Account created') }}
+							</span>
 						</div>
 						<div
 							class="grid h-4 w-4 place-items-center rounded-full bg-green-500/90"
@@ -38,24 +44,41 @@
 							class="text-base font-medium"
 							v-if="pendingSiteRequest.status == 'Error'"
 						>
-							There was an error creating your trial site for
-							{{ pendingSiteRequest.title }}
+							{{
+								tr('There was an error creating your trial site for {app}', {
+									app: pendingSiteRequest.title,
+								})
+							}}
 						</span>
 						<span class="text-base font-medium" v-else>
-							Create your {{ pendingSiteRequest.title }} trial site
+							{{
+								tr('Create your {app} trial site', {
+									app: pendingSiteRequest.title,
+								})
+							}}
 						</span>
 					</div>
 				</div>
 				<div class="mt-2 pl-7" v-if="pendingSiteRequest.status == 'Error'">
 					<p class="mt-2 text-p-base text-ink-gray-8">
-						Please contact AlbannaTech support by clicking on the button below.
+						{{
+							t(
+								'Please contact AlbannaTech support by clicking on the button below.',
+							)
+						}}
 					</p>
-					<Button class="mt-2" link="/support"> Contact Support </Button>
+					<Button class="mt-2" link="/support">{{
+						t('Contact Support')
+					}}</Button>
 				</div>
 				<div class="mt-2 pl-7" v-else>
 					<p class="mt-2 text-p-base text-ink-gray-8">
-						You can try out the {{ pendingSiteRequest.title }} app for free by
-						clicking on the button below.
+						{{
+							tr(
+								'You can try out the {app} app for free by clicking on the button below.',
+								{ app: pendingSiteRequest.title },
+							)
+						}}
 					</p>
 					<Button
 						class="mt-2"
@@ -67,7 +90,7 @@
 							},
 						}"
 					>
-						Continue
+						{{ t('Continue') }}
 					</Button>
 				</div>
 			</div>
@@ -76,7 +99,7 @@
 					<div class="flex items-center space-x-2">
 						<TextInsideCircle>2</TextInsideCircle>
 						<span class="text-base font-medium">
-							Your trial site is ready
+							{{ t('Your trial site is ready') }}
 						</span>
 					</div>
 					<div
@@ -97,17 +120,21 @@
 						</a>
 					</div>
 					<p class="mt-2 text-p-base text-ink-gray-8">
-						Your trial is set to expire on
-						<span class="font-medium">
-							{{ $format.date(trialSite.trial_end_date, 'LL') }} </span
-						>. Set up billing now to ensure uninterrupted access to your site.
+						{{
+							tr(
+								'Your trial is set to expire on {date}. Set up billing now to ensure uninterrupted access to your site.',
+								{ date: $format.date(trialSite.trial_end_date, 'LL') },
+							)
+						}}
 					</p>
 				</div>
 			</div>
 			<div v-else class="rounded-md">
 				<div class="flex items-center space-x-2">
 					<TextInsideCircle>2</TextInsideCircle>
-					<div class="text-base font-medium">Create your first site</div>
+					<div class="text-base font-medium">
+						{{ t('Create your first site') }}
+					</div>
 				</div>
 
 				<Button
@@ -115,7 +142,7 @@
 					:route="{ name: 'SignupAppSelector' }"
 					variant="solid"
 				>
-					Create
+					{{ t('Create') }}
 				</Button>
 			</div>
 			<!-- Step 3 - Complete Billing Setup -->
@@ -128,17 +155,25 @@
 				<div v-if="!isBillingSetupComplete">
 					<div class="flex items-center space-x-2">
 						<TextInsideCircle>3</TextInsideCircle>
-						<span class="text-base font-medium"> Complete billing setup </span>
+						<span class="text-base font-medium">
+							{{ t('Complete billing setup') }}
+						</span>
 					</div>
-					<div class="pl-7 mt-2" v-if="$team.doc.onboarding.site_created && trialSite">
+					<div
+						class="pl-7 mt-2"
+						v-if="$team.doc.onboarding.site_created && trialSite"
+					>
 						<p class="text-p-base text-ink-gray-8">
-							Add your billing details and payment method to activate your
-							subscription.You won't be charged until your trial ends on
-							<span class="font-medium">
-								{{ $format.date(trialSite.trial_end_date, 'LL') }}
-							</span>
+							{{
+								tr(
+									"Add your billing details and payment method to activate your subscription. You won't be charged until your trial ends on {date}.",
+									{ date: $format.date(trialSite.trial_end_date, 'LL') },
+								)
+							}}
 						</p>
-						<Button class="mt-3" route="/billing"> Complete setup </Button>
+						<Button class="mt-3" route="/billing">
+							{{ t('Complete setup') }}
+						</Button>
 					</div>
 				</div>
 				<div v-else>
@@ -146,7 +181,7 @@
 						<div class="flex items-center space-x-2">
 							<TextInsideCircle>3</TextInsideCircle>
 							<span class="text-base font-medium">
-								Billing setup complete
+								{{ t('Billing setup complete') }}
 							</span>
 						</div>
 						<div
@@ -157,10 +192,11 @@
 					</div>
 					<div class="mt-1.5 pl-7 text-p-base text-ink-gray-8">
 						<span v-if="$team.doc.payment_mode === 'Card'">
-							Automatic billing is enabled
+							{{ t('Automatic billing is enabled') }}
 						</span>
 						<span v-else-if="$team.doc.payment_mode === 'Prepaid Credits'">
-							Account balance: {{ $format.userCurrency($team.doc.balance) }}
+							{{ t('Account balance') }}:
+							{{ $format.userCurrency($team.doc.balance) }}
 						</span>
 					</div>
 				</div>
@@ -285,8 +321,9 @@
 	</div>
 </template>
 <script>
-import { defineAsyncComponent } from 'vue';
-import TextInsideCircle from './TextInsideCircle.vue';
+import { defineAsyncComponent } from 'vue'
+import TextInsideCircle from './TextInsideCircle.vue'
+import { t, tr } from '../utils/language'
 
 export default {
 	name: 'Onboarding',
@@ -318,36 +355,36 @@ export default {
 				gstin: '',
 			},
 			isAutomatedBilling: true,
-		};
+		}
 	},
 	methods: {
 		onBuyCreditsSuccess() {
-			this.$team.reload();
-			this.$emit('payment-mode-added');
+			this.$team.reload()
+			this.$emit('payment-mode-added')
 		},
 		onAddCardSuccess() {
-			this.$team.reload();
-			this.$emit('payment-mode-added');
+			this.$team.reload()
+			this.$emit('payment-mode-added')
 		},
 		onBillingAddresUpdateSuccess() {
-			this.$team.reload();
+			this.$team.reload()
 		},
 	},
 	computed: {
 		isBillingDetailsSet() {
-			return Boolean(this.$team.doc.billing_details?.name);
+			return Boolean(this.$team.doc.billing_details?.name)
 		},
 		isBillingSetupComplete() {
-			return this.isBillingDetailsSet && Boolean(this.$team.doc.payment_mode);
+			return this.isBillingDetailsSet && Boolean(this.$team.doc.payment_mode)
 		},
 		minimumAmount() {
-			return this.$team.doc.currency == 'INR' ? 100 : 5;
+			return this.$team.doc.currency == 'INR' ? 100 : 5
 		},
 		pendingSiteRequest() {
-			return this.$team.doc.pending_site_request;
+			return this.$team.doc.pending_site_request
 		},
 		trialSite() {
-			return this.$team.doc.trial_sites?.[0];
+			return this.$team.doc.trial_sites?.[0]
 		},
 	},
 	resources: {
@@ -355,8 +392,8 @@ export default {
 			return {
 				url: 'press.api.marketplace.get_marketplace_apps_for_onboarding',
 				auto: true,
-			};
+			}
 		},
 	},
-};
+}
 </script>

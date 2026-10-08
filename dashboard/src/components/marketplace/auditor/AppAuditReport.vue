@@ -5,21 +5,21 @@ import {
 	ErrorMessage,
 	LoadingIndicator,
 	Tooltip,
-} from "frappe-ui";
+} from 'frappe-ui'
 import {
 	AccordionContent,
 	AccordionHeader,
 	AccordionItem,
 	AccordionRoot,
 	AccordionTrigger,
-} from "reka-ui";
-import { computed } from "vue";
+} from 'reka-ui'
+import { computed } from 'vue'
 import type {
 	GetAppAuditResult,
 	MarketplaceAppAuditCheckRow,
-} from "@/components/marketplace/auditor/auditReportTypes";
-import TextParser from "@/components/marketplace/auditor/TextParser.vue";
-import CopyBtn from "@/components/utils/CopyBtn.vue";
+} from '@/components/marketplace/auditor/auditReportTypes'
+import TextParser from '@/components/marketplace/auditor/TextParser.vue'
+import CopyBtn from '@/components/utils/CopyBtn.vue'
 import {
 	auditResultHeadline,
 	type BadgeTheme,
@@ -28,92 +28,93 @@ import {
 	themeCheckResult,
 	themeSeverity,
 	variantSeverity,
-} from "@/components/marketplace/auditor/utils";
-import dayjs from "@/utils/dayjs";
+} from '@/components/marketplace/auditor/utils'
+import dayjs from '@/utils/dayjs'
+import { t, tr } from '@/utils/language'
 
 const CATEGORY_ORDER = [
-	"Metadata",
-	"Versioning",
-	"Dependencies",
-	"Code Quality",
-	"Security",
-	"Compatibility",
-	"Correctness",
-	"Operational",
-] as const;
+	'Metadata',
+	'Versioning',
+	'Dependencies',
+	'Code Quality',
+	'Security',
+	'Compatibility',
+	'Correctness',
+	'Operational',
+] as const
 
 const SEVERITY_ORDER: Record<string, number> = {
 	Critical: 0,
 	Major: 1,
 	Minor: 2,
 	Info: 3,
-};
+}
 
 /** Sort after all known categories in `CATEGORY_ORDER` (indices 0..n). Arbitrary value. */
-const UNKNOWN_CATEGORY_SORT = 999;
+const UNKNOWN_CATEGORY_SORT = 999
 /**
  * Fallback ranks when ordering failing categories (lower = show first). Must be > Info (3). Arbitrary values.
  * Unknown label → 80; row has no severity → 100 (sorts after known severities). Arbitrary values again.
  */
-const UNKNOWN_SEVERITY_SORT = 80;
-const NO_SEVERITY_SORT = 100;
+const UNKNOWN_SEVERITY_SORT = 80
+const NO_SEVERITY_SORT = 100
 
 const props = defineProps<{
-	app: string;
-	auditName?: string;
-}>();
+	app: string
+	auditName?: string
+}>()
 
 const auditResource = createResource({
-	url: "press.api.marketplace.get_app_audit",
-	method: "GET",
+	url: 'press.api.marketplace.get_app_audit',
+	method: 'GET',
 	auto: true,
 	params: {
 		app: props.app,
 		audit_name: props.auditName || undefined,
 	},
-	cache: ["app-audit-report", props.auditName],
-});
+	cache: ['app-audit-report', props.auditName],
+})
 
-const doc = computed(() => auditResource.data as GetAppAuditResult);
+const doc = computed(() => auditResource.data as GetAppAuditResult)
 
 const visibleChecks = computed(() =>
 	(doc.value?.audit_checks ?? []).filter((row) => !row.is_internal_only),
-);
+)
 
 // Checks grouped by category (each accordion is one category).
 const byCategory = computed(() => {
-	const grouped: Record<string, MarketplaceAppAuditCheckRow[]> = {};
+	const grouped: Record<string, MarketplaceAppAuditCheckRow[]> = {}
 	for (const row of visibleChecks.value) {
-		(grouped[row.category] ??= []).push(row);
+		;(grouped[row.category] ??= []).push(row)
 	}
-	return grouped;
-});
+	return grouped
+})
 
 function categoryIndex(name: string): number {
-	const i = (CATEGORY_ORDER as readonly string[]).indexOf(name);
-	return i === -1 ? UNKNOWN_CATEGORY_SORT : i;
+	const i = (CATEGORY_ORDER as readonly string[]).indexOf(name)
+	return i === -1 ? UNKNOWN_CATEGORY_SORT : i
 }
 
 function categoryNeedsAttention(name: string): boolean {
 	return (
 		byCategory.value[name]?.some((r) =>
-			["Fail", "Warn", "Error"].includes(r.result),
+			['Fail', 'Warn', 'Error'].includes(r.result),
 		) ?? false
-	);
+	)
 }
 
 // for failing categories: sort by worst issue first (Critical before Major, etc.).
 function worstIssueRank(name: string): number {
-	let rank = UNKNOWN_CATEGORY_SORT;
+	let rank = UNKNOWN_CATEGORY_SORT
 	for (const r of byCategory.value[name] ?? []) {
-		if (!["Fail", "Warn", "Error"].includes(r.result)) continue;
+		if (!['Fail', 'Warn', 'Error'].includes(r.result)) continue
 		const sev =
 			r.severity != null
 				? (SEVERITY_ORDER[r.severity] ?? UNKNOWN_SEVERITY_SORT)
-				: NO_SEVERITY_SORT;
-		rank = Math.min(rank, sev);
+				: NO_SEVERITY_SORT
+		rank = Math.min(rank, sev)
 	}
-	return rank;
+	return rank
 }
 
 // failing categories first (severity), then alphabetically by CATEGORY_ORDER.
@@ -121,97 +122,99 @@ const attentionCategories = computed(() =>
 	Object.keys(byCategory.value)
 		.filter(categoryNeedsAttention)
 		.sort((a, b) => {
-			const bySeverity = worstIssueRank(a) - worstIssueRank(b);
-			return bySeverity !== 0
-				? bySeverity
-				: categoryIndex(a) - categoryIndex(b);
+			const bySeverity = worstIssueRank(a) - worstIssueRank(b)
+			return bySeverity !== 0 ? bySeverity : categoryIndex(a) - categoryIndex(b)
 		}),
-);
+)
 
 // passing-only categories: follow CATEGORY_ORDER for a consistent list.
 const passedOnlyCategories = computed(() =>
 	Object.keys(byCategory.value)
 		.filter((c) => !categoryNeedsAttention(c))
 		.sort((a, b) => categoryIndex(a) - categoryIndex(b)),
-);
+)
 
-const accordionValue = (category: string) => `cat:${category}`;
+const accordionValue = (category: string) => `cat:${category}`
 
 const defaultOpenAttention = computed(() =>
 	attentionCategories.value.map(accordionValue),
-);
+)
 
 function categoryLabel(category: string): string {
-	const rows = byCategory.value[category] ?? [];
+	const rows = byCategory.value[category] ?? []
 	const fails = rows.filter(
-		(r) => r.result === "Fail" || r.result === "Error",
-	).length;
-	const warns = rows.filter((r) => r.result === "Warn").length;
-	if (fails) return `${fails} failed`;
-	if (warns) return `${warns} warning${warns === 1 ? "" : "s"}`;
-	return "Pass";
+		(r) => r.result === 'Fail' || r.result === 'Error',
+	).length
+	const warns = rows.filter((r) => r.result === 'Warn').length
+	if (fails) return tr('{n} failed', { n: fails })
+	if (warns)
+		return warns === 1
+			? tr('{n} warning', { n: warns })
+			: tr('{n} warnings', { n: warns })
+	return t('Pass')
 }
 
 function categoryTheme(category: string): BadgeTheme {
-	const rows = byCategory.value[category] ?? [];
-	if (rows.some((r) => r.result === "Fail" || r.result === "Error"))
-		return "red";
-	if (rows.some((r) => r.result === "Warn")) return "orange";
-	return "green";
+	const rows = byCategory.value[category] ?? []
+	if (rows.some((r) => r.result === 'Fail' || r.result === 'Error'))
+		return 'red'
+	if (rows.some((r) => r.result === 'Warn')) return 'orange'
+	return 'green'
 }
 
 function categoryWorstSeverity(category: string): string | undefined {
-	let worst: string | undefined;
-	let rank = 999;
+	let worst: string | undefined
+	let rank = 999
 	for (const r of byCategory.value[category] ?? []) {
-		if (!["Fail", "Warn", "Error"].includes(r.result)) continue;
-		const s = r.severity;
-		if (!s) continue;
-		const rk = SEVERITY_ORDER[s] ?? 99;
+		if (!['Fail', 'Warn', 'Error'].includes(r.result)) continue
+		const s = r.severity
+		if (!s) continue
+		const rk = SEVERITY_ORDER[s] ?? 99
 		if (rk < rank) {
-			rank = rk;
-			worst = s;
+			rank = rk
+			worst = s
 		}
 	}
-	return worst;
+	return worst
 }
 
 const worstSeverityByCategory = computed(() => {
-	const m: Record<string, string> = {};
+	const m: Record<string, string> = {}
 	for (const cat of Object.keys(byCategory.value)) {
-		const s = categoryWorstSeverity(cat);
-		if (s) m[cat] = s;
+		const s = categoryWorstSeverity(cat)
+		if (s) m[cat] = s
 	}
-	return m;
-});
+	return m
+})
 
 const appDisplayName = computed(
 	// capitalize first letter and remove underscores
 	() =>
 		(doc.value?.marketplace_app || props.app)
-			.replace(/_/g, " ")
+			.replace(/_/g, ' ')
 			.replace(/\b\w/g, (char) => char.toUpperCase()),
-);
+)
 
 const sourceContext = computed(() => {
-	const parts: string[] = [];
-	if (doc.value?.source_version) parts.push(`${doc.value.source_version}`);
-	if (doc.value?.app_source) parts.push(`Source ${doc.value.app_source}`);
-	return parts.join(" · ");
-});
+	const parts: string[] = []
+	if (doc.value?.source_version) parts.push(`${doc.value.source_version}`)
+	if (doc.value?.app_source)
+		parts.push(tr('Source {source}', { source: doc.value.app_source }))
+	return parts.join(' · ')
+})
 
 const checkStats = computed(() => {
-	let pass = 0;
-	let warn = 0;
-	let fail = 0;
-	let skipped = 0;
-	let blocking = 0;
+	let pass = 0
+	let warn = 0
+	let fail = 0
+	let skipped = 0
+	let blocking = 0
 	for (const r of visibleChecks.value) {
-		if (r.is_blocking) blocking += 1;
-		if (r.result === "Pass") pass += 1;
-		else if (r.result === "Warn") warn += 1;
-		else if (r.result === "Fail" || r.result === "Error") fail += 1;
-		else if (r.result === "Skipped") skipped += 1;
+		if (r.is_blocking) blocking += 1
+		if (r.result === 'Pass') pass += 1
+		else if (r.result === 'Warn') warn += 1
+		else if (r.result === 'Fail' || r.result === 'Error') fail += 1
+		else if (r.result === 'Skipped') skipped += 1
 	}
 	return {
 		pass,
@@ -220,59 +223,60 @@ const checkStats = computed(() => {
 		skipped,
 		blocking,
 		total: visibleChecks.value.length,
-	};
-});
+	}
+})
 
-const issueCount = computed(
-	() => checkStats.value.fail + checkStats.value.warn,
-);
+const issueCount = computed(() => checkStats.value.fail + checkStats.value.warn)
 
 const failSeveritySummary = computed(() => {
-	const n = { Critical: 0, Major: 0, Minor: 0, Info: 0 };
+	const n = { Critical: 0, Major: 0, Minor: 0, Info: 0 }
 	for (const r of visibleChecks.value) {
-		if (r.result !== "Fail" && r.result !== "Error") continue;
-		if (r.severity && r.severity in n) n[r.severity as keyof typeof n] += 1;
+		if (r.result !== 'Fail' && r.result !== 'Error') continue
+		if (r.severity && r.severity in n) n[r.severity as keyof typeof n] += 1
 	}
-	const parts: string[] = [];
-	if (n.Critical) parts.push(`${n.Critical} Critical`);
-	if (n.Major) parts.push(`${n.Major} Major`);
-	if (n.Minor) parts.push(`${n.Minor} Minor`);
-	if (n.Info) parts.push(`${n.Info} Info`);
-	return parts.join(", ");
-});
+	const parts: string[] = []
+	if (n.Critical) parts.push(tr('{n} Critical', { n: n.Critical }))
+	if (n.Major) parts.push(tr('{n} Major', { n: n.Major }))
+	if (n.Minor) parts.push(tr('{n} Minor', { n: n.Minor }))
+	if (n.Info) parts.push(tr('{n} Info', { n: n.Info }))
+	return parts.join(', ')
+})
 
-const runAt = computed(() => doc.value?.finished_at || doc.value?.started_at);
+const runAt = computed(() => doc.value?.finished_at || doc.value?.started_at)
 const runRelative = computed(() =>
-	runAt.value ? `Ran ${dayjs(runAt.value).fromNow()}` : "",
-);
-const runExact = computed(() => formatDt(runAt.value));
+	runAt.value ? tr('Ran {time}', { time: dayjs(runAt.value).fromNow() }) : '',
+)
+const runExact = computed(() => formatDt(runAt.value))
 
 const heroSurface = computed(() => {
-	const st = doc.value?.status;
-	if (st === "Running" || st === "Queued")
-		return "border-outline-gray-2 bg-surface-blue-2";
-	if (st === "Failed") return "border-outline-gray-1 bg-surface-gray-2";
-	const r = doc.value?.audit_result;
-	if (r === "Fail") return "border-outline-gray-2 bg-surface-red-2";
-	if (r === "Pass") return "border-outline-gray-2 bg-surface-green-2";
-	return "border-outline-gray-1 bg-surface-gray-2";
-});
+	const st = doc.value?.status
+	if (st === 'Running' || st === 'Queued')
+		return 'border-outline-gray-2 bg-surface-blue-2'
+	if (st === 'Failed') return 'border-outline-gray-1 bg-surface-gray-2'
+	const r = doc.value?.audit_result
+	if (r === 'Fail') return 'border-outline-gray-2 bg-surface-red-2'
+	if (r === 'Pass') return 'border-outline-gray-2 bg-surface-green-2'
+	return 'border-outline-gray-1 bg-surface-gray-2'
+})
 
 const heroTitleClass = computed(() => {
-	const r = doc.value?.audit_result;
-	if (r === "Fail") return "text-ink-red-4";
-	if (r === "Pass") return "text-ink-green-3";
-	return "text-ink-gray-9";
-});
+	const r = doc.value?.audit_result
+	if (r === 'Fail') return 'text-ink-red-4'
+	if (r === 'Pass') return 'text-ink-green-3'
+	return 'text-ink-gray-9'
+})
 
-const nextStepsTooltip =
-	"Review and fix the failing checks. Then push a new commit to your source branch to trigger a new audit.";
+const nextStepsTooltip = computed(() =>
+	t(
+		'Review and fix the failing checks. Then push a new commit to your source branch to trigger a new audit.',
+	),
+)
 
 function remediationText(row: MarketplaceAppAuditCheckRow): string | undefined {
-	const r = row.remediation;
-	if (r == null) return undefined;
-	const s = String(r).trim();
-	return s || undefined;
+	const r = row.remediation
+	if (r == null) return undefined
+	const s = String(r).trim()
+	return s || undefined
 }
 </script>
 
@@ -281,12 +285,12 @@ function remediationText(row: MarketplaceAppAuditCheckRow): string | undefined {
 		<div v-if="auditResource.loading" class="flex justify-center py-12">
 			<div class="flex items-center gap-2 text-sm text-ink-gray-6">
 				<LoadingIndicator class="h-4 w-4" />
-				Loading audit…
+				{{ t('Loading audit…') }}
 			</div>
 		</div>
 
 		<ErrorMessage
-v-else-if="auditResource.error"
+			v-else-if="auditResource.error"
 			:message="auditResource.error.message"
 		/>
 
@@ -295,7 +299,7 @@ v-else-if="auditResource.error"
 				v-if="!doc"
 				class="rounded-lg border border-outline-gray-1 bg-surface-gray-2/50 px-4 py-6 text-center text-sm text-ink-gray-6"
 			>
-				No audit has been run for this app yet.
+				{{ t('No audit has been run for this app yet.') }}
 			</p>
 
 			<template v-else>
@@ -318,9 +322,13 @@ v-else-if="auditResource.error"
 								</h2>
 								<p class="text-sm leading-relaxed text-ink-gray-6">
 									<template v-if="issueCount > 0">
-										{{ issueCount }} issue{{ issueCount === 1 ? '' : 's' }} in
+										{{
+											issueCount === 1
+												? tr('{n} issue in', { n: issueCount })
+												: tr('{n} issues in', { n: issueCount })
+										}}
 									</template>
-									<template v-else>Audit for</template>
+									<template v-else>{{ t('Audit for') }}</template>
 									<span class="font-medium text-ink-gray-9">{{
 										appDisplayName
 									}}</span>
@@ -337,7 +345,9 @@ v-else-if="auditResource.error"
 									v-if="runRelative"
 									class="text-ink-gray-6 cursor-default"
 									:title="runExact"
-									>{{ runRelative }}</time
+									>{{
+										runRelative
+									}}</time
 								>
 							</div>
 						</div>
@@ -346,54 +356,62 @@ v-else-if="auditResource.error"
 					<div class="space-y-4 px-3.5 py-4 sm:px-5">
 						<div v-if="checkStats.total" class="space-y-3">
 							<div class="flex justify-between">
-								<div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm">
-
-
-
-
-
-
-								<span v-if="checkStats.pass > 0" class="font-medium text-ink-green-3">
-									{{ checkStats.pass }} passed
-								</span>
-								<template
-									v-if="
+								<div
+									class="flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm"
+								>
+									<span
+										v-if="checkStats.pass > 0"
+										class="font-medium text-ink-green-3"
+									>
+										{{ tr('{n} passed', { n: checkStats.pass }) }}
+									</span>
+									<template
+										v-if="
 										checkStats.pass > 0 &&
 										(checkStats.fail > 0 || checkStats.warn > 0)
 									"
-								>
-									<span class="text-ink-gray-4">·</span>
-								</template>
-								<span v-if="checkStats.fail > 0" class="font-medium text-ink-red-4">{{ checkStats.fail
-								}} failed</span>
-								<template v-if="checkStats.warn > 0">
-									<span v-if="checkStats.fail > 0" class="text-ink-gray-4"
-										>·</span
 									>
-									<span class="font-medium text-ink-gray-7">
-										{{ checkStats.warn }} warning{{
-											checkStats.warn === 1 ? '' : 's'
-										}}
+										<span class="text-ink-gray-4">·</span>
+									</template>
+									<span
+										v-if="checkStats.fail > 0"
+										class="font-medium text-ink-red-4"
+										>{{
+											tr('{n} failed', { n: checkStats.fail })
+										}}</span
+									>
+									<template v-if="checkStats.warn > 0">
+										<span v-if="checkStats.fail > 0" class="text-ink-gray-4"
+											>·</span
+										>
+										<span class="font-medium text-ink-gray-7">
+											{{
+												checkStats.warn === 1
+													? tr('{n} warning', { n: checkStats.warn })
+													: tr('{n} warnings', { n: checkStats.warn })
+											}}
+										</span>
+									</template>
+									<template v-if="checkStats.skipped > 0">
+										<span class="text-ink-gray-4">·</span>
+										<span class="text-ink-gray-7">{{
+											tr('{n} skipped', { n: checkStats.skipped })
+										}}</span>
+									</template>
+									<span v-if="failSeveritySummary" class="text-ink-gray-5">
+										({{ failSeveritySummary }})
 									</span>
-								</template>
-								<template v-if="checkStats.skipped > 0">
-									<span class="text-ink-gray-4">·</span>
-									<span class="text-ink-gray-7"
-										>{{ checkStats.skipped }} skipped</span
-									>
-								</template>
-								<span v-if="failSeveritySummary" class="text-ink-gray-5">
-									({{ failSeveritySummary }})
-								</span>
-							</div>
-								<div v-if="checkStats.blocking > 0" class="flex flex-wrap gap-2">
-
-								<Badge
-									:label="`${checkStats.blocking} blocking`"
-									theme="red"
-									size="sm"
-								/>
-							</div>
+								</div>
+								<div
+									v-if="checkStats.blocking > 0"
+									class="flex flex-wrap gap-2"
+								>
+									<Badge
+										:label="tr('{n} blocking', { n: checkStats.blocking })"
+										theme="red"
+										size="sm"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -402,26 +420,38 @@ v-else-if="auditResource.error"
 				<section
 					v-if="doc.status === 'Failed' && doc.error_traceback"
 					class="scroll-mt-20 overflow-hidden rounded-lg border border-outline-gray-1 bg-surface-white"
-					role="region" aria-label="Audit error details">
+					role="region"
+					:aria-label="t('Audit error details')"
+				>
 					<div class="border-b border-outline-gray-1 px-4 py-3">
 						<div class="flex min-w-0 items-start gap-2.5">
 							<lucide-alert-circle
-class="mt-0.5 h-4 w-4 shrink-0 text-ink-red-3" aria-hidden="true" />
+								class="mt-0.5 h-4 w-4 shrink-0 text-ink-red-3"
+								aria-hidden="true"
+							/>
 							<div class="min-w-0 space-y-0.5">
-								<p class="text-sm font-medium text-ink-red-3">Audit error</p>
+								<p class="text-sm font-medium text-ink-red-3">
+									{{ t('Audit error') }}
+								</p>
 								<p class="text-xs leading-relaxed text-ink-gray-5">
-									The audit could not complete. Share this traceback with support
-									if you need help.
+									{{
+										t(
+											'The audit could not complete. Share this traceback with support if you need help.',
+										)
+									}}
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="relative bg-surface-gray-2 p-3">
-						<CopyBtn :text="doc.error_traceback"
-							class="absolute right-2 top-2 rounded p-1 text-ink-gray-5 hover:bg-surface-gray-3 hover:text-ink-gray-7" />
+						<CopyBtn
+							:text="doc.error_traceback"
+							class="absolute right-2 top-2 rounded p-1 text-ink-gray-5 hover:bg-surface-gray-3 hover:text-ink-gray-7"
+						/>
 						<pre
-class="max-h-64 overflow-auto whitespace-pre-wrap break-words pr-7 font-mono text-xs leading-relaxed text-ink-gray-7"
-							translate="no">{{ doc.error_traceback }}</pre>
+							class="max-h-64 overflow-auto whitespace-pre-wrap break-words pr-7 font-mono text-xs leading-relaxed text-ink-gray-7"
+							translate="no"
+						>{{ doc.error_traceback }}</pre>
 					</div>
 				</section>
 
@@ -431,7 +461,7 @@ class="max-h-64 overflow-auto whitespace-pre-wrap break-words pr-7 font-mono tex
 							id="audit-checks-heading"
 							class="text-base font-semibold text-ink-gray-9"
 						>
-							Check results
+							{{ t('Check results') }}
 						</h3>
 						<Tooltip
 							v-if="issueCount > 0 && doc.status === 'Completed'"
@@ -440,7 +470,7 @@ class="max-h-64 overflow-auto whitespace-pre-wrap break-words pr-7 font-mono tex
 							<button
 								type="button"
 								class="rounded p-1 text-ink-gray-4 transition-colors hover:bg-surface-gray-2 hover:text-ink-gray-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-outline-gray-3"
-								aria-label="What to do after a failed audit"
+								:aria-label="t('What to do after a failed audit')"
 							>
 								<lucide-help-circle class="h-4 w-4" aria-hidden="true" />
 							</button>
@@ -469,12 +499,15 @@ class="max-h-64 overflow-auto whitespace-pre-wrap break-words pr-7 font-mono tex
 									<span
 										class="flex min-w-0 flex-1 flex-wrap items-center gap-2"
 									>
-										<span class="font-medium text-ink-gray-9">{{ cat }}</span>
+										<span class="font-medium text-ink-gray-9">{{
+											t(cat)
+										}}</span>
 										<Badge
-v-if="worstSeverityByCategory[cat]" :label="worstSeverityByCategory[cat]"
+											v-if="worstSeverityByCategory[cat]"
+											:label="t(worstSeverityByCategory[cat])"
 											:theme="themeSeverity(worstSeverityByCategory[cat])"
 											:variant="variantSeverity()"
-size="sm"
+											size="sm"
 										/>
 									</span>
 									<span class="flex shrink-0 items-center gap-2">
@@ -507,30 +540,31 @@ size="sm"
 													<span class="text-sm font-medium text-ink-gray-9">{{
 														row.check_name
 													}}</span>
-												<Badge
-													v-if="row.is_blocking"
-													label="Blocking"
-													theme="red"
-													size="sm"
-												/>
+													<Badge
+														v-if="row.is_blocking"
+														:label="t('Blocking')"
+														theme="red"
+														size="sm"
+													/>
+												</div>
+												<p
+													v-if="row.message"
+													class="mt-1 text-sm leading-relaxed text-ink-gray-7"
+												>
+													<TextParser :text="row.message" />
+												</p>
 											</div>
-											<p
-												v-if="row.message"
-												class="mt-1 text-sm leading-relaxed text-ink-gray-7"
-											>
-												<TextParser :text="row.message" />
-											</p>
-										</div>
-										<div class="flex shrink-0 flex-wrap gap-1.5">
-											<Badge
-												:label="row.result"
-												:theme="themeCheckResult(row.result)"
+											<div class="flex shrink-0 flex-wrap gap-1.5">
+												<Badge
+													:label="t(row.result)"
+													:theme="themeCheckResult(row.result)"
 													size="sm"
 												/>
 												<Badge
-v-if="row.severity" :label="row.severity"
+													v-if="row.severity"
+													:label="t(row.severity)"
 													:theme="themeSeverity(row.severity)"
-:variant="variantSeverity()"
+													:variant="variantSeverity()"
 													size="sm"
 												/>
 											</div>
@@ -554,7 +588,11 @@ v-if="row.severity" :label="row.severity"
 														class="rounded border border-outline-gray-2 bg-surface-gray-2/60 px-3 py-2.5"
 													>
 														<div v-if="occ.is_blocking" class="mb-2">
-															<Badge label="Blocking" theme="red" size="sm" />
+															<Badge
+																:label="t('Blocking')"
+																theme="red"
+																size="sm"
+															/>
 														</div>
 														<p
 															v-if="occ.rule_id"
@@ -567,7 +605,8 @@ v-if="row.severity" :label="row.severity"
 														>
 															{{ occ.path || '–' }}
 															<template v-if="occ.start?.line != null">
-																<span class="text-ink-gray-4"> · </span>line
+																<span class="text-ink-gray-4"> · </span>
+																{{ t('line') }}
 																{{ occ.start.line }}
 															</template>
 														</p>
@@ -583,29 +622,28 @@ v-if="row.severity" :label="row.severity"
 													v-else-if="parsed.kind === 'object'"
 													class="mt-3 max-h-48 overflow-auto rounded border border-outline-gray-2 bg-surface-white p-2 font-mono text-xs text-ink-gray-8"
 													translate="no"
-													>{{ JSON.stringify(parsed.data, null, 2) }}</pre
+												>{{ JSON.stringify(parsed.data, null, 2) }}</pre>
+												<p
+													v-else-if="parsed.kind === 'text'"
+													class="mt-3 text-sm text-ink-gray-7"
 												>
-											<p
-												v-else-if="parsed.kind === 'text'"
-												class="mt-3 text-sm text-ink-gray-7"
-											>
-												<TextParser :text="parsed.text" />
-											</p>
+													<TextParser :text="parsed.text" />
+												</p>
 											</template>
 										</template>
 
-									<div
-										v-if="remediationText(row)"
-										class="mt-4 border-l-[3px] border-l-outline-green-2 pl-3"
-									>
-										<p class="mb-0.5 text-sm font-medium text-ink-gray-6">
-											How to fix?
-										</p>
+										<div
+											v-if="remediationText(row)"
+											class="mt-4 border-l-[3px] border-l-outline-green-2 pl-3"
+										>
+											<p class="mb-0.5 text-sm font-medium text-ink-gray-6">
+												{{ t('How to fix?') }}
+											</p>
 
-										<p class="text-sm leading-relaxed text-ink-gray-7">
-											<TextParser :text="remediationText(row)!" />
-										</p>
-									</div>
+											<p class="text-sm leading-relaxed text-ink-gray-7">
+												<TextParser :text="remediationText(row)!" />
+											</p>
+										</div>
 									</div>
 								</div>
 							</AccordionContent>
@@ -619,7 +657,9 @@ v-if="row.severity" :label="row.severity"
 						<summary
 							class="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-ink-gray-9 transition-colors hover:bg-surface-gray-2 focus-visible:bg-surface-gray-2"
 						>
-							<span>Passed checks ({{ passedOnlyCategories.length }})</span>
+							<span>{{
+								tr('Passed checks ({n})', { n: passedOnlyCategories.length })
+							}}</span>
 							<lucide-chevron-down
 								class="h-4 w-4 shrink-0 text-ink-gray-4 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
 								aria-hidden="true"
@@ -644,9 +684,11 @@ v-if="row.severity" :label="row.severity"
 											type="button"
 											class="group inline-flex min-h-[44px] w-full touch-manipulation items-center justify-between gap-3 bg-surface-gray-2/30 px-4 py-3 text-left text-sm outline-none transition-colors hover:bg-surface-gray-2/60 focus-visible:bg-surface-gray-2/60"
 										>
-											<span class="font-medium text-ink-gray-9">{{ cat }}</span>
+											<span class="font-medium text-ink-gray-9">{{
+												t(cat)
+											}}</span>
 											<span class="flex shrink-0 items-center gap-2">
-												<Badge label="Pass" theme="green" size="sm" />
+												<Badge :label="t('Pass')" theme="green" size="sm" />
 												<lucide-chevron-down
 													class="h-4 w-4 shrink-0 text-ink-gray-4 transition-transform duration-200 group-hover:text-ink-gray-6 group-data-[state=open]:rotate-180 motion-reduce:transition-none"
 													aria-hidden="true"
@@ -667,34 +709,34 @@ v-if="row.severity" :label="row.severity"
 													class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between"
 												>
 													<div class="min-w-0">
-													<span class="text-sm font-medium text-ink-gray-9">{{
-														row.check_name
-													}}</span>
-													<p
-														v-if="row.message"
-														class="mt-1 text-sm leading-relaxed text-ink-gray-7"
-													>
-														<TextParser :text="row.message" />
+														<span class="text-sm font-medium text-ink-gray-9">{{
+															row.check_name
+														}}</span>
+														<p
+															v-if="row.message"
+															class="mt-1 text-sm leading-relaxed text-ink-gray-7"
+														>
+															<TextParser :text="row.message" />
+														</p>
+													</div>
+													<Badge
+														:label="t(row.result)"
+														:theme="themeCheckResult(row.result)"
+														size="sm"
+													/>
+												</div>
+												<div
+													v-if="remediationText(row)"
+													class="mt-3 border-l-[3px] border-l-outline-gray-3 pl-3"
+												>
+													<p class="mb-0.5 text-sm font-medium text-ink-gray-6">
+														{{ t('How to fix') }}
+													</p>
+
+													<p class="text-sm leading-relaxed text-ink-gray-7">
+														<TextParser :text="remediationText(row)!" />
 													</p>
 												</div>
-												<Badge
-													:label="row.result"
-													:theme="themeCheckResult(row.result)"
-													size="sm"
-												/>
-											</div>
-											<div
-												v-if="remediationText(row)"
-												class="mt-3 border-l-[3px] border-l-outline-gray-3 pl-3"
-											>
-												<p class="mb-0.5 text-sm font-medium text-ink-gray-6">
-													How to fix
-												</p>
-
-												<p class="text-sm leading-relaxed text-ink-gray-7">
-													<TextParser :text="remediationText(row)!" />
-												</p>
-											</div>
 											</div>
 										</div>
 									</AccordionContent>
@@ -707,14 +749,16 @@ v-if="row.severity" :label="row.severity"
 						v-if="!attentionCategories.length && !passedOnlyCategories.length"
 						class="rounded-lg border border-outline-gray-1 bg-surface-gray-2/30 px-4 py-3 text-sm text-ink-gray-6"
 					>
-						No check rows on this audit yet.
+						{{ t('No check rows on this audit yet.') }}
 					</p>
 				</section>
 			</template>
 			<p class="text-center text-xs text-ink-gray-4" role="status">
-				This is an automated audit report generated by FC Marketplace Auditor
-				(beta). If you believe this report is incorrect or need help
-				interpreting it, reach out to
+				{{
+					t(
+						'This is an automated audit report generated by FC Marketplace Auditor (beta). If you believe this report is incorrect or need help interpreting it, reach out to',
+					)
+				}}
 				<a href="https://support.frappe.io" class="underline"
 					>support.frappe.io</a
 				>.
@@ -744,11 +788,11 @@ v-if="row.severity" :label="row.severity"
 	}
 }
 
-.audit-acc-content[data-state='open'] {
+.audit-acc-content[data-state="open"] {
 	animation: audit-acc-down 200ms ease-out;
 }
 
-.audit-acc-content[data-state='closed'] {
+.audit-acc-content[data-state="closed"] {
 	animation: audit-acc-up 200ms ease-out;
 }
 </style>

@@ -25,8 +25,8 @@
 		<LucideAlertTriangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
 		<p>
 			Your spending limit has been exceeded. Please
-			<a href="https://support.frappe.io" target="_blank">contact support</a> to
-			increase your limit.
+			<a href="https://support.frappe.io" target="_blank">contact support</a>
+			to increase your limit.
 		</p>
 	</div>
 	<div
@@ -34,7 +34,9 @@
 		class="mx-auto mt-60 w-fit rounded-md border border-dashed px-12 py-8 text-center text-ink-gray-6"
 	>
 		<lucide-alert-triangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
-		<p>Please settle your outstanding invoices to create new servers.</p>
+		<p>
+			{{ t('Please settle your outstanding invoices to create new servers.') }}
+		</p>
 	</div>
 	<div
 		v-else-if="serverEnabled"
@@ -102,8 +104,10 @@
 									<template #prefix>
 										<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 									</template>
-									<span class="hidden sm:inline">Compare Features</span>
-									<span class="sm:hidden">Compare</span>
+									<span class="hidden sm:inline">{{
+										t('Compare Features')
+									}}</span>
+									<span class="sm:hidden">{{ t('Compare') }}</span>
 								</Button>
 							</div>
 						</div>
@@ -132,10 +136,10 @@
 										</div>
 										<Tooltip
 											v-if="provider.beta"
-											text="This provider is in beta. Click 'Compare Features' above to learn more."
+											:text="t('This provider is in beta. Click Compare Features above to learn more.')"
 										>
 											<Badge
-												label="Beta"
+												:label="t('Beta')"
 												theme="orange"
 												variant="subtle"
 												size="md"
@@ -150,7 +154,7 @@
 					<AlertBanner
 						v-if="serverProvider == 'Frappe Compute'"
 						type="warning"
-						title="Frappe Compute is currently experimental. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>Learn more</a> about what this means."
+						title="Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا."
 					/>
 					<!-- Chose Region -->
 					<div
@@ -248,8 +252,8 @@
 									<template #prefix>
 										<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 									</template>
-									<span class="hidden sm:inline">Know More</span>
-									<span class="sm:hidden">More</span>
+									<span class="hidden sm:inline">{{ t('Know More') }}</span>
+									<span class="sm:hidden">{{ t('More') }}</span>
 								</Button>
 							</div>
 						</div>
@@ -318,10 +322,10 @@
 											<template #prefix>
 												<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 											</template>
-											<span class="hidden sm:inline"
-												>Learn About Instance Types</span
-											>
-											<span class="sm:hidden">Learn More</span>
+											<span class="hidden sm:inline">{{
+												t('Learn About Instance Types')
+											}}</span>
+											<span class="sm:hidden">{{ t('Learn More') }}</span>
 										</Button>
 									</div>
 									<div v-else>
@@ -333,10 +337,10 @@
 											<template #prefix>
 												<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 											</template>
-											<span class="hidden sm:inline"
-												>Learn About Unified Server</span
-											>
-											<span class="sm:hidden">Learn More</span>
+											<span class="hidden sm:inline">{{
+												t('Learn About Instance Types')
+											}}</span>
+											<span class="sm:hidden">{{ t('Learn More') }}</span>
 										</Button>
 									</div>
 								</div>
@@ -390,9 +394,9 @@
 									class="flex flex-col rounded-md border border-outline-gray-2 p-3 gap-2"
 								>
 									<p class="text-base text-ink-gray-9">
-										<span class="font-medium"
-											>{{ availableAppPlanTypes[0].title }}</span
-										>
+										<span class="font-medium">{{
+											availableAppPlanTypes[0].title
+										}}</span>
 										machines are available.
 									</p>
 
@@ -445,10 +449,10 @@
 											<template #prefix>
 												<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 											</template>
-											<span class="hidden sm:inline"
-												>Learn About Instance Types</span
-											>
-											<span class="sm:hidden">Learn More</span>
+											<span class="hidden sm:inline">{{
+												t('Learn About Instance Types')
+											}}</span>
+											<span class="sm:hidden">{{ t('Learn More') }}</span>
 										</Button>
 									</div>
 								</div>
@@ -502,9 +506,9 @@
 									class="flex flex-col rounded-md border border-outline-gray-2 p-3 gap-2"
 								>
 									<p class="text-base text-ink-gray-9">
-										<span class="font-medium"
-											>{{ availableDbPlanTypes[0].title }}</span
-										>
+										<span class="font-medium">{{
+											availableDbPlanTypes[0].title
+										}}</span>
 										machines are available.
 									</p>
 
@@ -527,45 +531,45 @@
 				<div v-else-if="serverType === 'hybrid'" class="space-y-8">
 					<div class="flex flex-col space-y-2">
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-							App Server IP Addresses
+							{{ t('App Server IP Addresses') }}
 						</h2>
 						<div class="flex flex-col sm:flex-row gap-3">
 							<FormControl
 								class="w-full"
 								v-model="appPublicIP"
-								label="Public IP"
+								:label="t('Public IP')"
 								type="text"
 							/>
 							<FormControl
 								class="w-full"
 								v-model="appPrivateIP"
-								label="Private IP"
+								:label="t('Private IP')"
 								type="text"
 							/>
 						</div>
 					</div>
 					<div class="flex flex-col space-y-2">
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-							Database Server IP Addresses
+							{{ t('Database Server IP Addresses') }}
 						</h2>
 						<div class="flex flex-col sm:flex-row gap-3">
 							<FormControl
 								class="w-full"
 								v-model="dbPublicIP"
-								label="Public IP"
+								:label="t('Public IP')"
 								type="text"
 							/>
 							<FormControl
 								class="w-full"
 								v-model="dbPrivateIP"
-								label="Private IP"
+								:label="t('Private IP')"
 								type="text"
 							/>
 						</div>
 					</div>
 					<div class="flex flex-col space-y-2">
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-							Add SSH Key
+							{{ t('Add SSH Key') }}
 						</h2>
 						<span class="text-xs text-ink-gray-6">
 							Add this SSH Key to
@@ -579,12 +583,14 @@
 				</div>
 
 				<div class="flex flex-col space-y-3" v-if="showAutoAddStorageOption">
-					<h2 class="text-base font-semibold">Auto Add-on Storage</h2>
+					<h2 class="text-base font-semibold">
+						{{ t('Auto Add-on Storage') }}
+					</h2>
 
 					<FormControl
 						type="checkbox"
 						v-model="enableAutoAddStorage"
-						label="Enable for Application and Database Server"
+						:label="t('Enable for Application and Database Server')"
 						class="mb-2"
 					/>
 
@@ -602,7 +608,7 @@
 							in the event your server approaches or reaches its storage limit.
 						</p>
 
-						<strong>Note</strong>
+						<strong>{{ t('Note') }}</strong>
 
 						<ul>
 							<li v-if="this.storagePlanRate">
@@ -610,7 +616,9 @@
 								<b>{{ this.$format.userCurrency(this.storagePlanRate) }}/mo</b>
 								for each additional GB of storage.
 							</li>
-							<li>We will notify you about the increase via email.</li>
+							<li>
+								{{ t('We will notify you about the increase via email.') }}
+							</li>
 							<li>
 								It will be added to your invoice separately for your reference.
 							</li>
@@ -623,11 +631,11 @@
 					class="lg:hidden rounded border-outline-gray-3 bg-surface-white text-ink-gray-9 ring-gray-200 border p-6 space-y-4"
 					v-if="showSummary"
 				>
-					<h2 class="text-md font-semibold">Summary</h2>
+					<h2 class="text-md font-semibold">{{ t('Summary') }}</h2>
 
 					<!-- Server Name -->
 					<div class="flex flex-col space-y-1" v-if="serverTitle">
-						<div class="text-base text-ink-gray-7">Server Name</div>
+						<div class="text-base text-ink-gray-7">{{ t('Server Name') }}</div>
 						<div class="text-base font-medium">{{ serverTitle }}</div>
 					</div>
 
@@ -636,7 +644,9 @@
 						class="flex flex-col space-y-1"
 						v-if="serverType === 'dedicated' && serverProvider"
 					>
-						<div class="text-base text-ink-gray-7">Server Provider</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('Server Provider') }}
+						</div>
 						<div class="text-base font-medium">{{ selectedProviderTitle }}</div>
 					</div>
 
@@ -645,7 +655,9 @@
 						class="flex flex-col space-y-1"
 						v-if="serverType === 'dedicated' && serverRegion"
 					>
-						<div class="text-base text-ink-gray-7">Server Region</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('Server Region') }}
+						</div>
 						<div class="text-base font-medium">{{ serverRegion }}</div>
 					</div>
 
@@ -655,9 +667,11 @@
 						v-if="serverType === 'dedicated' && appServerPlan"
 					>
 						<div class="text-base text-ink-gray-7">
-							{{ unifiedServer
-									? 'Unified Server Plan'
-									: 'Application Server Plan' }}
+							{{
+								unifiedServer
+									? t('Unified Server Plan')
+									: t('Application Server Plan')
+							}}
 						</div>
 						<div class="text-base font-medium">
 							{{ $format.planTitle(appServerPlan) }}/mo -
@@ -679,7 +693,9 @@
 						class="flex flex-col space-y-1"
 						v-if="serverType === 'dedicated' && !unifiedServer && dbServerPlan"
 					>
-						<div class="text-base text-ink-gray-7">Database Server Plan</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('Database Server Plan') }}
+						</div>
 						<div class="text-base font-medium">
 							{{ $format.planTitle(dbServerPlan) }}/mo -
 							{{ getPlanTypeTitle(dbServerPlan) }}
@@ -699,7 +715,9 @@
 						class="flex flex-col space-y-1"
 						v-if="serverType === 'hybrid' && appPublicIP && appPrivateIP"
 					>
-						<div class="text-base text-ink-gray-7">App Server IPs</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('App Server IPs') }}
+						</div>
 						<div class="text-base font-medium">
 							{{ appPublicIP }}
 							/ {{ appPrivateIP }}
@@ -710,7 +728,9 @@
 						class="flex flex-col space-y-1"
 						v-if="serverType === 'hybrid' && dbPublicIP && dbPrivateIP"
 					>
-						<div class="text-base text-ink-gray-7">DB Server IPs</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('DB Server IPs') }}
+						</div>
 						<div class="text-base font-medium">
 							{{ dbPublicIP }}
 							/ {{ dbPrivateIP }}
@@ -725,7 +745,7 @@
 							$resources.hybridOptions?.data?.plans?.[0]
 						"
 					>
-						<div class="text-base text-ink-gray-7">Plan</div>
+						<div class="text-base text-ink-gray-7">{{ t('Plan') }}</div>
 						<div class="text-base font-medium">
 							{{ $format.planTitle($resources.hybridOptions.data.plans[0]) }}/mo
 						</div>
@@ -733,9 +753,11 @@
 
 					<!-- Auto Add-on Storage -->
 					<div class="flex flex-col space-y-1" v-if="showAutoAddStorageOption">
-						<div class="text-base text-ink-gray-7">Auto Add-on Storage</div>
+						<div class="text-base text-ink-gray-7">
+							{{ t('Auto Add-on Storage') }}
+						</div>
 						<div class="text-base font-medium text-green-900">
-							{{ enableAutoAddStorage ? 'Enabled' : 'Disabled' }}
+							{{ enableAutoAddStorage ? t('Enabled') : t('Disabled') }}
 						</div>
 					</div>
 
@@ -743,15 +765,15 @@
 
 					<!-- Total Cost -->
 					<div class="flex flex-col space-y-2" v-if="_totalPerMonth">
-						<div class="text-base text-ink-gray-7">Total Cost</div>
+						<div class="text-base text-ink-gray-7">{{ t('Total Cost') }}</div>
 						<div class="flex flex-col space-y-1">
 							<div class="text-lg font-semibold">
 								{{ totalPerMonth }}
-								/ month
+								{{ t('/ month') }}
 							</div>
 							<div class="text-base font-medium text-ink-gray-7">
 								{{ totalPerDay }}
-								per day
+								{{ t('per day') }}
 							</div>
 						</div>
 					</div>
@@ -761,7 +783,7 @@
 							type="checkbox"
 							size="sm"
 							variant="subtle"
-							:label="`I agree that the laws of the selected region apply to both me and Frappe.`"
+							:label="t('I agree that the laws of the selected region apply to both me and Frappe.')"
 							v-model="agreedToRegionConsent"
 						/>
 
@@ -797,11 +819,11 @@
 				class="hidden lg:block sticky top-[4.5rem] rounded border-outline-gray-3 bg-surface-white text-ink-gray-9 ring-gray-200 border p-6 h-fit w-[25rem] space-y-4"
 				v-if="showSummary"
 			>
-				<h2 class="text-md font-semibold">Summary</h2>
+				<h2 class="text-md font-semibold">{{ t('Summary') }}</h2>
 
 				<!-- Server Name -->
 				<div class="flex flex-col space-y-1" v-if="serverTitle">
-					<div class="text-base text-ink-gray-7">Server Name</div>
+					<div class="text-base text-ink-gray-7">{{ t('Server Name') }}</div>
 					<div class="text-base font-medium">{{ serverTitle }}</div>
 				</div>
 
@@ -810,7 +832,9 @@
 					class="flex flex-col space-y-1"
 					v-if="serverType === 'dedicated' && serverProvider"
 				>
-					<div class="text-base text-ink-gray-7">Server Provider</div>
+					<div class="text-base text-ink-gray-7">
+						{{ t('Server Provider') }}
+					</div>
 					<div class="text-base font-medium">{{ selectedProviderTitle }}</div>
 				</div>
 
@@ -819,7 +843,7 @@
 					class="flex flex-col space-y-1"
 					v-if="serverType === 'dedicated' && serverRegion"
 				>
-					<div class="text-base text-ink-gray-7">Server Region</div>
+					<div class="text-base text-ink-gray-7">{{ t('Server Region') }}</div>
 					<div class="text-base font-medium">{{ serverRegion }}</div>
 				</div>
 
@@ -829,7 +853,11 @@
 					v-if="serverType === 'dedicated' && appServerPlan"
 				>
 					<div class="text-base text-ink-gray-7">
-						{{ unifiedServer ? 'Unified Server Plan' : 'Application Server Plan' }}
+						{{
+							unifiedServer
+								? t('Unified Server Plan')
+								: t('Application Server Plan')
+						}}
 					</div>
 					<div class="text-base font-medium">
 						{{ $format.planTitle(appServerPlan) }}/mo -
@@ -850,7 +878,9 @@
 					class="flex flex-col space-y-1"
 					v-if="serverType === 'dedicated' && !unifiedServer && dbServerPlan"
 				>
-					<div class="text-base text-ink-gray-7">Database Server Plan</div>
+					<div class="text-base text-ink-gray-7">
+						{{ t('Database Server Plan') }}
+					</div>
 					<div class="text-base font-medium">
 						{{ $format.planTitle(dbServerPlan) }}/mo -
 						{{ getPlanTypeTitle(dbServerPlan) }}
@@ -870,7 +900,7 @@
 					class="flex flex-col space-y-1"
 					v-if="serverType === 'hybrid' && appPublicIP && appPrivateIP"
 				>
-					<div class="text-base text-ink-gray-7">App Server IPs</div>
+					<div class="text-base text-ink-gray-7">{{ t('App Server IPs') }}</div>
 					<div class="text-base font-medium">
 						{{ appPublicIP }}
 						/ {{ appPrivateIP }}
@@ -881,7 +911,7 @@
 					class="flex flex-col space-y-1"
 					v-if="serverType === 'hybrid' && dbPublicIP && dbPrivateIP"
 				>
-					<div class="text-base text-ink-gray-7">DB Server IPs</div>
+					<div class="text-base text-ink-gray-7">{{ t('DB Server IPs') }}</div>
 					<div class="text-base font-medium">
 						{{ dbPublicIP }}
 						/ {{ dbPrivateIP }}
@@ -896,7 +926,7 @@
 						$resources.hybridOptions?.data?.plans?.[0]
 					"
 				>
-					<div class="text-base text-ink-gray-7">Plan</div>
+					<div class="text-base text-ink-gray-7">{{ t('Plan') }}</div>
 					<div class="text-base font-medium">
 						{{ $format.planTitle($resources.hybridOptions.data.plans[0]) }}/mo
 					</div>
@@ -904,9 +934,11 @@
 
 				<!-- Auto Add-on Storage -->
 				<div class="flex flex-col space-y-1" v-if="showAutoAddStorageOption">
-					<div class="text-base text-ink-gray-7">Auto Add-on Storage</div>
+					<div class="text-base text-ink-gray-7">
+						{{ t('Auto Add-on Storage') }}
+					</div>
 					<div class="text-base font-medium text-ink-gray-9">
-						{{ enableAutoAddStorage ? 'Enabled' : 'Disabled' }}
+						{{ enableAutoAddStorage ? t('Enabled') : t('Disabled') }}
 					</div>
 				</div>
 
@@ -914,12 +946,14 @@
 
 				<!-- Total Cost -->
 				<div class="flex flex-col space-y-2" v-if="_totalPerMonth">
-					<div class="text-base text-ink-gray-7">Total Cost</div>
+					<div class="text-base text-ink-gray-7">{{ t('Total Cost') }}</div>
 					<div class="flex flex-col space-y-1">
-						<div class="text-lg font-semibold">{{ totalPerMonth }} / month</div>
+						<div class="text-lg font-semibold">
+							{{ totalPerMonth }} {{ t('/ month') }}
+						</div>
 						<div class="text-base font-medium text-ink-gray-7">
 							{{ totalPerDay }}
-							per day
+							{{ t('per day') }}
 						</div>
 					</div>
 				</div>
@@ -937,8 +971,11 @@
 							@click.stop
 						/>
 						<div class="text-base font-medium">
-							I agree that the laws of selected region<br />
-							apply to both me and frappe
+							{{
+								t(
+									'I agree that the laws of selected region apply to both me and frappe',
+								)
+							}}
 						</div>
 					</div>
 
@@ -1002,6 +1039,7 @@ import Header from '../components/Header.vue'
 import ServerPlansCards from '../components/server/ServerPlansCards.vue'
 import { DashboardError } from '../utils/error'
 import { isSharedPlanType } from '../utils/serverPlanType'
+import { t } from '../utils/language'
 
 export default {
 	components: {
@@ -1370,19 +1408,23 @@ export default {
 						!this.appPrivateIP ||
 						!this.dbPrivateIP
 					) {
-						throw new DashboardError('Please fill all the IP addresses')
+						throw new DashboardError(t('Please fill all the IP addresses'))
 					} else if (this.validateIP(this.appPublicIP)) {
 						throw new DashboardError(
-							'Please enter a valid Application Public IP',
+							t('Please enter a valid Application Public IP'),
 						)
 					} else if (this.validateIP(this.appPrivateIP)) {
 						throw new DashboardError(
-							'Please enter a valid Application Private IP',
+							t('Please enter a valid Application Private IP'),
 						)
 					} else if (this.validateIP(this.dbPublicIP)) {
-						throw new DashboardError('Please enter a valid Database Public IP')
+						throw new DashboardError(
+							t('Please enter a valid Database Public IP'),
+						)
 					} else if (this.validateIP(this.dbPrivateIP)) {
-						throw new DashboardError('Please enter a valid Database Private IP')
+						throw new DashboardError(
+							t('Please enter a valid Database Private IP'),
+						)
 						//} else if (this.dbPublicIP === this.appPublicIP) {
 						//throw new DashboardError(
 						//"Please don't use the same server as Application and Database servers",

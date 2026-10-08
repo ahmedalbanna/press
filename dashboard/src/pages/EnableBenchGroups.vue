@@ -4,20 +4,23 @@
 			class="mx-auto max-w-2xl rounded-lg border-0 px-2 py-8 sm:border sm:p-8 space-y-8 mt-10"
 		>
 			<div class="prose prose-sm max-w-none">
-				<h1 class="text-2xl font-semibold">Benches</h1>
+				<h1 class="text-2xl font-semibold">{{ t('Benches') }}</h1>
 				<p class="text-p-base">
-					With Benches, you get more control. You can choose which apps to
-					add, which apps to update, which region to deploy to and more.
+					{{
+						t(
+							'With Benches, you get more control. You can choose which apps to add, which apps to update, which region to deploy to and more.',
+						)
+					}}
 				</p>
 			</div>
 			<div class="space-y-3">
 				<h2 class="text-sm font-semibold tracking-wide text-ink-gray-7">
-					Features
+					{{ t('Features') }}
 				</h2>
 				<ul class="space-y-2">
 					<li v-for="f in features" :key="f" class="flex items-center gap-2">
 						<GreenCheckIcon class="h-4 w-4 shrink-0" />
-						<span class="text-sm text-ink-gray-7">{{ f }}</span>
+						<span class="text-sm text-ink-gray-7">{{ t(f) }}</span>
 					</li>
 				</ul>
 				<div>
@@ -25,16 +28,17 @@
 						href="https://docs.frappe.io/cloud/what-are-benches-and-bench-groups"
 						target="_blank"
 						class="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-700"
-						>Read more →</Link
+						>{{ t('Read more') }}
+						→</Link
 					>
 				</div>
 				<div v-if="!onboardingComplete" class="pt-2">
 					<p class="text-sm text-ink-gray-7">
-						Finish onboarding to start using Benches.
+						{{ t('Finish onboarding to start using Benches.') }}
 					</p>
 					<Button
 						:route="{ name: 'Welcome' }"
-						label="Continue Onboarding"
+						:label="t('Continue Onboarding')"
 						class="mt-3"
 					/>
 				</div>
@@ -43,7 +47,8 @@
 	</div>
 </template>
 <script>
-import Link from '@/components/Link.vue';
+import Link from '@/components/Link.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'EnableBenchGroups',
@@ -59,20 +64,20 @@ export default {
 				'SSH access',
 				'Dedicated workers',
 			],
-		};
+		}
 	},
 	computed: {
 		benchesEnabled() {
-			return Boolean(this.$team.doc.benches_enabled);
+			return Boolean(this.$team.doc.benches_enabled)
 		},
 		onboardingComplete() {
-			return Boolean(this.$team.doc.onboarding?.complete);
+			return Boolean(this.$team.doc.onboarding?.complete)
 		},
 	},
 	mounted() {
 		if (this.onboardingComplete && this.$team.doc.benches_enabled) {
-			this.$router.push({ name: 'Release Group List' });
+			this.$router.push({ name: 'Release Group List' })
 		}
 	},
-};
+}
 </script>
