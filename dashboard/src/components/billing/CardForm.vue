@@ -10,7 +10,7 @@
 			<div v-show="!tryingMicroCharge">
 				<label class="block">
 					<span class="block text-xs text-ink-gray-6">
-						Credit or Debit Card
+						{{ t('Credit or Debit Card') }}
 					</span>
 					<div
 						class="form-input mt-2 block h-[unset] w-full py-2 pl-3"
@@ -20,7 +20,7 @@
 				</label>
 				<FormControl
 					class="mt-4"
-					label="Name on Card"
+					:label="t('Name on Card')"
 					type="text"
 					v-model="billingInformation.cardHolderName"
 				/>
@@ -36,10 +36,12 @@
 
 			<div class="mt-3 space-y-4" v-show="tryingMicroCharge">
 				<p class="text-base text-ink-gray-7">
-					We are attempting to charge your card with
-					<strong>{{ formattedMicroChargeAmount }}</strong> to make sure the
-					card works. This amount will be <strong>refunded</strong> back to your
-					account.
+					{{
+					tr(
+						'We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.',
+						{ amount: formattedMicroChargeAmount },
+					)
+				}}
 				</p>
 			</div>
 
@@ -49,7 +51,7 @@
 				<PoweredByStripeLogo />
 				<Button
 					v-if="showAddAnotherCardButton"
-					label="Add Another Card"
+					:label="t('Add Another Card')"
 					@click="clearForm"
 				>
 					<template #prefix>
@@ -59,7 +61,7 @@
 				<Button
 					v-else-if="!tryingMicroCharge"
 					variant="solid"
-					label="Verify & Save Card"
+					:label="t('Verify & Save Card')"
 					:loading="addingCard"
 					@click="verifyWithMicroChargeIfApplicable"
 				/>
@@ -67,9 +69,9 @@
 				<Button
 					v-else-if="tryingMicroCharge"
 					:loading="!microChargeCompleted"
-					:loadingText="'Verifying Card'"
+					:loadingText="t('Verifying Card')"
 				>
-					Card Verified
+					{{ t('Card Verified') }}
 					<template #prefix>
 						<GreenCheckIcon class="h-4 w-4" />
 					</template>
@@ -93,6 +95,7 @@ import { currency } from '../../utils/format';
 import { loadStripe } from '@stripe/stripe-js';
 import { ref, reactive, computed, inject, onMounted } from 'vue';
 import { toast } from 'vue-sonner';
+import { t, tr } from '../../utils/language';
 
 const emit = defineEmits(['success']);
 const props = defineProps({
@@ -216,7 +219,7 @@ const setupIntentSuccess = createResource({
 	},
 	onSuccess: async ({ payment_method_name }) => {
 		addingCard.value = false;
-		toast.success('Card added successfully');
+		toast.success(t('Card added successfully'));
 		emit('success');
 	},
 	onError: (error) => {
@@ -295,12 +298,14 @@ async function submit() {
 		let declineCode = error.decline_code;
 		let _errorMessage = error.message;
 		if (declineCode === 'do_not_honor') {
-			errorMessage.value =
-				"Your card was declined. It might be due to insufficient funds or you might've exceeded your daily limit. Please try with another card or contact your bank.";
+			errorMessage.value = t(
+					"Your card was declined. It might be due to insufficient funds or you might've exceeded your daily limit. Please try with another card or contact your bank.",
+				);
 			showAddAnotherCardButton.value = true;
 		} else if (declineCode === 'transaction_not_allowed') {
-			errorMessage.value =
-				'Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.';
+			errorMessage.value = t(
+					'Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.',
+				);
 			showAddAnotherCardButton.value = true;
 		} else if (_errorMessage != 'Your card number is incomplete.') {
 			errorMessage.value = _errorMessage;

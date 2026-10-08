@@ -202,6 +202,24 @@ const billing: Dictionary = {
 		en: 'No usage data available for this month',
 		ar: 'لا توجد بيانات استخدام لهذا الشهر',
 	},
+	// CardForm
+	'Credit or Debit Card': { en: 'Credit or Debit Card', ar: 'بطاقة ائتمان أو خصم' },
+	'We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.': {
+		en: 'We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.',
+		ar: 'نحاول خصم <strong>{amount}</strong> من بطاقتك للتأكد من أن البطاقة تعمل. سيتم <strong>استرداد</strong> هذا المبلغ إلى حسابك.',
+	},
+	'Verify & Save Card': { en: 'Verify & Save Card', ar: 'تحقق واحفظ البطاقة' },
+	'Verifying Card': { en: 'Verifying Card', ar: 'جاري التحقق من البطاقة' },
+	'Card Verified': { en: 'Card Verified', ar: 'تم التحقق من البطاقة' },
+	'Card added successfully': { en: 'Card added successfully', ar: 'تمت إضافة البطاقة بنجاح' },
+	'Your card was declined. It might be due to insufficient funds or you might\'ve exceeded your daily limit. Please try with another card or contact your bank.': {
+		en: "Your card was declined. It might be due to insufficient funds or you might've exceeded your daily limit. Please try with another card or contact your bank.",
+		ar: 'تم رفض بطاقتك. قد يكون السبب عدم كفاية الأموال أو تجاوز الحد اليومي. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.',
+	},
+	'Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.': {
+		en: 'Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.',
+		ar: 'تم رفض بطاقتك. قد يكون السبب قيوداً على بطاقتك، مثل المعاملات الدولية أو المدفوعات عبر الإنترنت. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.',
+	},
 };
 
 export default billing;
