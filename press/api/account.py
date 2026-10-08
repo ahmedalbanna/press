@@ -358,7 +358,7 @@ def send_login_link(email):
 		print()
 
 	frappe.sendmail(
-		subject="Login to Frappe Cloud",
+		subject="Login to AlbannaTech",
 		recipients=email,
 		template="one_time_login_link",
 		args={"link": link, "minutes": minutes},
