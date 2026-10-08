@@ -23,7 +23,7 @@ APP_ROOT = Path(frappe.get_app_path("press"))
 
 # Floor for the share of sendmail templates carrying Arabic copy. Raise it as
 # coverage improves; never lower it, that is how the number quietly regresses.
-MIN_TRANSLATED_SHARE = 0.24
+MIN_TRANSLATED_SHARE = 0.40
 
 
 def _string_literals(node) -> list[str]:

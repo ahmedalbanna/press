@@ -101,24 +101,14 @@ class TestBrandedTemplates(FrappeTestCase):
 
 	def test_login_box_renders_the_albannatech_logo_not_the_frappe_cloud_mark(self):
 		component = (
-			APP_ROOT.parent
-			/ "dashboard"
-			/ "src"
-			/ "components"
-			/ "auth"
-			/ "LoginBox.vue"
+			APP_ROOT.parent / "dashboard" / "src" / "components" / "auth" / "LoginBox.vue"
 		).read_text()
 		self.assertIn("/albannatech-logo.svg", component)
 		self.assertNotIn("FCLogo", component)
 
 	def test_saas_login_box_renders_the_albannatech_logo(self):
 		component = (
-			APP_ROOT.parent
-			/ "dashboard"
-			/ "src"
-			/ "components"
-			/ "auth"
-			/ "SaaSLoginBox.vue"
+			APP_ROOT.parent / "dashboard" / "src" / "components" / "auth" / "SaaSLoginBox.vue"
 		).read_text()
 		self.assertIn("/albannatech-logo.svg", component)
 		self.assertNotIn("FCLogo", component)
@@ -126,9 +116,7 @@ class TestBrandedTemplates(FrappeTestCase):
 	def test_no_dashboard_component_still_renders_the_frappe_cloud_logo(self):
 		src = APP_ROOT.parent / "dashboard" / "src"
 		offenders = [
-			path.relative_to(src).as_posix()
-			for path in src.rglob("*.vue")
-			if "FCLogo" in path.read_text()
+			path.relative_to(src).as_posix() for path in src.rglob("*.vue") if "FCLogo" in path.read_text()
 		]
 		self.assertEqual(offenders, [], f"still rendering Frappe Cloud mark: {offenders}")
 

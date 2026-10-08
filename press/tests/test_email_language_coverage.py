@@ -165,9 +165,7 @@ class TestSendUserEmailHelper(FrappeTestCase):
 		# Many call sites pass None because the recipient arrives through
 		# Communication records rather than a variable.
 		frappe.sendmail = lambda **kw: self.sent.update(kw, _lang=frappe.local.lang)
-		send_user_email(
-			None, recipients=self.user.name, subject=self.ARABIC_SUBJECT
-		)
+		send_user_email(None, recipients=self.user.name, subject=self.ARABIC_SUBJECT)
 		self.assertEqual(self.sent["_lang"], "ar")
 		self.assertEqual(self.sent["subject"], "سداد الفواتير")
 

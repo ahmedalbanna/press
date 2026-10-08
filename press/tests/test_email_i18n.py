@@ -46,6 +46,10 @@ TRANSLATED_TEMPLATES = (
 	"payment_method_invalid",
 	"mandate_amount_capped",
 	"payment_failed_upi_autopay",
+	"site_exceeded_disk_usage_warning",
+	"site_suspend_due_to_exceeding_disk_usage",
+	"notify_before_site_archival",
+	"press_webhook_disabled",
 )
 
 RENDER_CASES = {
@@ -101,6 +105,21 @@ RENDER_CASES = {
 		"upi_autopay_link": "https://u",
 		"billing_link": "https://b",
 	},
+	"site_exceeded_disk_usage_warning": {
+		"site": "acme.com",
+		"current_disk_usage": 120,
+		"current_database_usage": 110,
+		"no_of_days_left_to_suspend": 7,
+	},
+	"site_suspend_due_to_exceeding_disk_usage": {"subject": "x"},
+	"notify_before_site_archival": {
+		"site_name": "acme.com",
+		"site_archive_notification_days": 2,
+	},
+	"press_webhook_disabled": {
+		"endpoint": "https://x/y",
+		"dashboard_url": "https://press.localhost/dashboard/settings/developer",
+	},
 }
 
 # English that must never survive into an Arabic render of these templates.
@@ -133,6 +152,10 @@ ENGLISH_SENTINELS = (
 	"Please make sure your UPI account",
 	"Manage UPI Autopay",
 	"Pay Now",
+	"exceeded plan limit",
+	"been temporarily",
+	"will be archived",
+	"Because we saw a high number of failed webhook",
 	# signature() is shared by every template, so an English "Thanks," leaked
 	# into all of them and no per-template sentinel caught it
 	"Thanks,",
