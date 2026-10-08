@@ -1,4 +1,7 @@
 @import "frappe-ui/style.css";
+/* Must come after frappe-ui so the mirrored utilities win. Specificity does
+ * the rest: [dir="rtl"] .ml-2 outranks .ml-2 regardless of order. */
+@import "./rtl.css";
 
 body {
 	background-color: var(--brand-bg-light);

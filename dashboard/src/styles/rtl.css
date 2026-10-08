@@ -1,0 +1,107 @@
+/*
+ * Right-to-left layout.
+ *
+ * Tailwind v3 has no logical-property flipping, so the physical utilities the
+ * dashboard uses -- ml-2, pr-4, left-0, text-left -- keep pointing at the
+ * physical left when the document is dir="rtl", which mirrors spacing but
+ * leaves every absolute offset and edge rule pointing the wrong way.
+ *
+ * Rather than rewrite those utilities as ms-/me- across the Vue sources, this
+ * layer re-declares the ones actually in use with their mirrored counterpart.
+ * test_rtl_covers_every_direction_sensitive_utility walks src/ and fails if a
+ * new one appears without a rule here, so the list cannot quietly fall behind.
+ *
+ * `space-x-*` is deliberately absent. Its sibling margin is physical, but with
+ * dir="rtl" the flex row already lays items out from the right, so the same
+ * margin produces the same visual gap. Overriding it would double the space.
+ */
+
+/* Physical left in LTR becomes physical right in RTL, and vice versa. */
+[dir="rtl"] .ml-0 { margin-right: 0; margin-left: 0; }
+[dir="rtl"] .ml-0\.5 { margin-right: 0.125rem; margin-left: 0; }
+[dir="rtl"] .ml-1 { margin-right: 0.25rem; margin-left: 0; }
+[dir="rtl"] .ml-1\.5 { margin-right: 0.375rem; margin-left: 0; }
+[dir="rtl"] .ml-2 { margin-right: 0.5rem; margin-left: 0; }
+[dir="rtl"] .ml-2\.5 { margin-right: 0.625rem; margin-left: 0; }
+[dir="rtl"] .ml-3 { margin-right: 0.75rem; margin-left: 0; }
+[dir="rtl"] .ml-4 { margin-right: 1rem; margin-left: 0; }
+[dir="rtl"] .ml-5 { margin-right: 1.25rem; margin-left: 0; }
+[dir="rtl"] .ml-6 { margin-right: 1.5rem; margin-left: 0; }
+[dir="rtl"] .ml-7 { margin-right: 1.75rem; margin-left: 0; }
+/* margin-left:auto pushes toward the inline end in LTR; in RTL the inline end
+ * is the physical left, so the auto margin has to sit on the right instead. */
+[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+
+[dir="rtl"] .mr-0 { margin-left: 0; margin-right: 0; }
+[dir="rtl"] .mr-0\.5 { margin-left: 0.125rem; margin-right: 0; }
+[dir="rtl"] .mr-1 { margin-left: 0.25rem; margin-right: 0; }
+[dir="rtl"] .mr-1\.5 { margin-left: 0.375rem; margin-right: 0; }
+[dir="rtl"] .mr-2 { margin-left: 0.5rem; margin-right: 0; }
+[dir="rtl"] .mr-3 { margin-left: 0.75rem; margin-right: 0; }
+[dir="rtl"] .mr-4 { margin-left: 1rem; margin-right: 0; }
+[dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+[dir="rtl"] .pl-0 { padding-right: 0; padding-left: 0; }
+[dir="rtl"] .pl-1 { padding-right: 0.25rem; padding-left: 0; }
+[dir="rtl"] .pl-2 { padding-right: 0.5rem; padding-left: 0; }
+[dir="rtl"] .pl-3 { padding-right: 0.75rem; padding-left: 0; }
+[dir="rtl"] .pl-4 { padding-right: 1rem; padding-left: 0; }
+[dir="rtl"] .pl-5 { padding-right: 1.25rem; padding-left: 0; }
+[dir="rtl"] .pl-6 { padding-right: 1.5rem; padding-left: 0; }
+[dir="rtl"] .pl-7 { padding-right: 1.75rem; padding-left: 0; }
+[dir="rtl"] .pl-12 { padding-right: 3rem; padding-left: 0; }
+
+[dir="rtl"] .pr-0 { padding-left: 0; padding-right: 0; }
+[dir="rtl"] .pr-1 { padding-left: 0.25rem; padding-right: 0; }
+[dir="rtl"] .pr-2 { padding-left: 0.5rem; padding-right: 0; }
+[dir="rtl"] .pr-3 { padding-left: 0.75rem; padding-right: 0; }
+[dir="rtl"] .pr-4 { padding-left: 1rem; padding-right: 0; }
+[dir="rtl"] .pr-5 { padding-left: 1.25rem; padding-right: 0; }
+[dir="rtl"] .pr-6 { padding-left: 1.5rem; padding-right: 0; }
+[dir="rtl"] .pr-7 { padding-left: 1.75rem; padding-right: 0; }
+[dir="rtl"] .pr-8 { padding-left: 2rem; padding-right: 0; }
+[dir="rtl"] .pr-15 { padding-left: 3.75rem; padding-right: 0; }
+
+[dir="rtl"] .left-0 { right: 0; left: auto; }
+[dir="rtl"] .left-1\/2 { right: 50%; left: auto; }
+[dir="rtl"] .left-3 { right: 0.75rem; left: auto; }
+[dir="rtl"] .left-right { right: 0; left: 0; }
+[dir="rtl"] .right-0 { left: 0; right: auto; }
+[dir="rtl"] .right-2 { left: 0.5rem; right: auto; }
+[dir="rtl"] .right-start { left: auto; inset-inline-end: 0; }
+
+[dir="rtl"] .text-left { text-align: right; }
+[dir="rtl"] .text-right { text-align: left; }
+
+[dir="rtl"] .border-l-4 { border-left-width: 0; border-right-width: 4px; }
+[dir="rtl"] .border-r-2 { border-right-width: 0; border-left-width: 2px; }
+[dir="rtl"] .border-l-outline { border-left-width: 0; border-right-width: 1px; }
+
+/* A rounded corner on the leading edge becomes the trailing edge. */
+[dir="rtl"] .rounded-l-md { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0.375rem; border-bottom-right-radius: 0.375rem; }
+[dir="rtl"] .rounded-l-xl { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0.75rem; border-bottom-right-radius: 0.75rem; }
+[dir="rtl"] .rounded-r-md { border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0.375rem; border-bottom-left-radius: 0.375rem; }
+[dir="rtl"] .rounded-r-none { border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0.75rem; border-bottom-left-radius: 0.75rem; }
+
+/*
+ * Icons that imply a direction -- chevrons, next/previous arrows, the sidebar
+ * expand handle -- have to point the other way. Keyed on the Lucide class the
+ * unplugin-vue-components build emits, so this does not depend on attribute
+ * order in the template.
+ */
+[dir="rtl"] .lucide-chevron-right,
+[dir="rtl"] .lucide-chevron-left,
+[dir="rtl"] .lucide-arrow-right,
+[dir="rtl"] .lucide-arrow-left,
+[dir="rtl"] .lucide-chevrons-right,
+[dir="rtl"] .lucide-chevrons-left {
+	transform: scaleX(-1);
+}
+
+/* Text in a code or log pane stays left-to-right even in an RTL document. */
+[dir="rtl"] .font-mono,
+[dir="rtl"] code,
+[dir="rtl"] pre {
+	direction: ltr;
+	text-align: left;
+}
