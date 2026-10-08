@@ -2123,7 +2123,7 @@ def send_budget_alert_email(team_info, invoice):
 		alert_threshold = f"{currency}{team_info['monthly_alert_threshold']}"
 		excess_amount = f"{currency}{round(invoice['total'] - team_info['monthly_alert_threshold'], 2)}"
 
-		subject = f"Frappe Cloud Budget Alert for {team_user}"
+		subject = _("Budget Alert for {0}").format(team_user)
 
 		send_user_email(
 			team_user,

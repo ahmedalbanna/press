@@ -58,3 +58,66 @@ Administrator login to your site,تسجيل دخول مسؤول إلى موقع�
 Site Monitoring Disabled,تم تعطيل مراقبة الموقع
 Your 2FA Recovery Codes Were Viewed,تم الاطلاع على رموز استرداد المصادقة الثنائية
 Review Your 2FA Recovery Codes,راجع رموز استرداد المصادقة الثنائية
+Budget Alert Details:,تفاصيل تنبيه الميزانية:
+Monthly Alert Threshold:,حد التنبيه الشهري:
+Month-To-Date Invoice Amount:,قيمة الفواتير منذ بداية الشهر:
+Amount Over Budget:,المبلغ الزائد عن الميزانية:
+Invoice Period:,فترة الفاتورة:
+"To manage your budget alerts, visit your billing settings in the AlbannaTech dashboard.",لإدارة تنبيهات الميزانية، يرجى مراجعة إعدادات الفوترة في لوحة تحكم AlbannaTech.
+Your AlbannaTech cost for team <strong>{0}</strong> has exceeded the monthly budget alert threshold.,تجاوزت تكاليف AlbannaTech لفريق <strong>{0}</strong> حد التنبيه الشهري للميزانية.
+"We tried to charge your default card for your AlbannaTech invoice of <strong>{0}</strong>, but the card was not recognised. To fix this, remove the card from your account and add it again from your",حاولنا الخصم من بطاقتك الافتراضية لفاتورة AlbannaTech بقيمة <strong>{0}</strong>، ولكن لم يتم التعرف على البطاقة. لحل المشكلة، يرجى إزالة البطاقة من حسابك وإضافتها مرة أخرى من
+In the meantime we switched your payment method to,في هذه الأثناء، قمنا بتغيير طريقة الدفع إلى
+Prepaid Credits,الرصيد المسبق
+so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.,حتى لا تتأثر مواقعك. أضف رصيداً أو أعد إضافة بطاقتك لاستمرار اشتراكك دون انقطاع.
+"Your UPI Autopay mandate was set up, but your bank approved a monthly limit of",تم إعداد تفويض الدفع التلقائي عبر UPI، لكن البنك وافق على حد شهري قدره
+instead of the,بدلاً من
+you requested.,الذي طلبته.
+This limit is set by your bank. If a future invoice is more than,هذا الحد محدد من البنك. إذا تجاوزت أي فاتورة مستقبلية مبلغ
+the automatic debit will fail. Please contact your bank to raise your UPI Autopay limit.,فشل الخصم التلقائي. يرجى التواصل مع البنك لرفع حد الدفع التلقائي عبر UPI.
+Manage UPI Autopay,إدارة الدفع التلقائي عبر UPI
+We tried to auto-debit,حاولنا الخصم التلقائي لمبلغ
+from your UPI account,من حساب UPI الخاص بك
+but the payment failed because there were,لكن فشلت عملية الدفع بسبب عدم كفاية
+insufficient funds,الرصيد
+"Please make sure your UPI account has enough balance. We retry automatically, but if it keeps failing your sites may be suspended. If you need help,",يرجى التأكد من أن حساب UPI لديك يحتوي على رصيد كافٍ. سنعيد المحاولة تلقائياً، لكن إذا استمر الفشل قد يتم تعليق مواقعك. إذا احتجت مساعدة،
+contact support,تواصل مع الدعم
+Pay Now,ادفع الآن
+We could not auto-debit,تعذر الخصم التلقائي لمبلغ
+because the invoice is higher than your,لأن الفاتورة تتجاوز
+current mandate limit,حد التفويض الحالي
+"Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help,",يرجى إلغاء التفويض الحالي وإنشاء تفويض جديد بحد أعلى، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+Your UPI Autopay mandate has,انتهت صلاحية تفويض الدفع التلقائي عبر UPI الخاص بك
+expired,منتهية الصلاحية
+We could not process the payment of,تعذر تنفيذ عملية الدفع بقيمة
+"Please set up a new UPI Autopay mandate to keep paying automatically, or pay this invoice now. If you need help,",يرجى إعداد تفويض دفع تلقائي جديد عبر UPI للاستمرار في الدفع التلقائي، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+Set Up UPI Autopay,إعداد الدفع التلقائي عبر UPI
+Add Credits,إضافة رصيد
+cancelled,ملغى
+Your account currently has no active payment method.,لا يوجد حالياً أي طريقة دفع فعّالة في حسابك.
+"To avoid interruption and site suspension, please set up a new UPI Autopay mandate or update your billing details with a valid payment method.",لتجنب الانقطاع وتعليق المواقع، يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو تحديث بيانات الفوترة بطريقة دفع صالحة.
+Update Billing Details,تحديث بيانات الفوترة
+"for your AlbannaTech subscription, but the payment failed.",لاشتراك AlbannaTech الخاص بك، ولكن فشلت عملية الدفع.
+"Please check your UPI Autopay mandate or pay this invoice now. Your sites may be suspended while the invoice is unpaid. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. قد يتم تعليق مواقعك ما دامت الفاتورة غير مسددة. إذا احتجت مساعدة،
+Invoice Payment Failed for AlbannaTech Subscription,فشل دفع فاتورة اشتراك AlbannaTech
+Your UPI Autopay limit was adjusted by your bank,تم تعديل حد الدفع التلقائي عبر UPI من البنك
+Budget Alert for {0},تنبيه ميزانية {0}
+UPI Autopay Payment Failed for AlbannaTech Subscription,فشل الدفع التلقائي عبر UPI لاشتراك AlbannaTech
+Card on AlbannaTech could not be charged,تعذر الخصم من البطاقة على AlbannaTech
+{0} - OTP for AlbannaTech Site Login,{0} - رمز الدخول لمرة واحدة إلى موقع AlbannaTech
+Set Up New Mandate,إشاء تفويض جديد
+revoked or deactivated,ملغى أو معطّل
+but the payment failed because of a,لكن فشلت عملية الدفع بسبب
+temporary bank or gateway issue,مشكلة مؤقتة في البنك أو بوابة الدفع
+"No action is needed, we will retry the payment automatically. If it keeps failing, please contact your bank or pay now. You can also",لا حاجة لاتخاذ أي إجراء، سنعيد محاولة الدفع تلقائياً. إذا استمر الفشل، يرجى التواصل مع البنك أو الدفع الآن. يمكنك أيضاً
+set by your bank.,الذي حدده بنكك.
+"We will retry automatically once the limit resets, and you can also pay now if you prefer. If you need help,",سنعيد المحاولة تلقائياً بمجرد انتهاء الحد، ويمكنك أيضاً الدفع الآن إن أردت. إذا احتجت مساعدة،
+We could not start the UPI Autopay payment of,تعذر بدء عملية الدفع التلقائي عبر UPI بقيمة
+because of a technical error. Our team has been notified.,بسبب خطأ تقني. تم إبلاغ فريقنا.
+"Your UPI Autopay token was never confirmed for recurring payments, so we could not auto-debit",لم يتم تأكيد رمز الدفع التلقائي عبر UPI الخاص بك للمدفوعات المتكررة، لذلك تعذر الخصم التلقائي لمبلغ
+We cancelled this mandate and switched your payment method to,ألغينا هذا التفويض وقمنا بتغيير طريقة الدفع إلى
+so your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.,حتى لا تتأثر مواقعك. يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو إضافة رصيد إلى حسابك.
+"Please check your UPI Autopay mandate or pay this invoice now. If you need help,",يرجى مراجعة تفويض الدفع التلقائي عبر UPI أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
+Your UPI Autopay mandate has been,تم إلغاء تفويض الدفع التلقائي عبر UPI أو تعطيله
+transaction frequency limit,حد تكرار المعاملات
+"Thanks,",شكراً،
+Team AlbannaTech,فريق AlbannaTech

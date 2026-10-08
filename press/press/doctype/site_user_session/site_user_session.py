@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 
 from press.utils.user import send_user_email
@@ -44,7 +45,7 @@ class SiteUserSession(Document):
 			print()
 			return
 
-		subject = f"{self.otp} - OTP for Frappe Cloud Site Login"
+		subject = _("{0} - OTP for AlbannaTech Site Login").format(self.otp)
 		args = {}
 
 		args.update(

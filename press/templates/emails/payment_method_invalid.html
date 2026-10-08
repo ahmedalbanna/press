@@ -7,15 +7,15 @@
 	<div class="p-8 bg-white">
 		<p class="mb-4 font-bold">{{ subject }}</p>
 		<p class="mb-6">
-			We attempted to charge your default card for your AlbannaTech invoice of <strong>{{ amount }}</strong>,
-			but Stripe did not recognise the card. To fix this, please remove the card on your account and add it
-			again in your {{ utils.link('Billing Settings', billing_link) }}.
+			{{ _("We tried to charge your default card for your AlbannaTech invoice of <strong>{0}</strong>, but the card was not recognised. To fix this, remove the card from your account and add it again from your").format(amount) }}
+			{{ utils.link(_('Billing Settings'), billing_link) }}.
 		</p>
 		<p class="mb-6">
-			In the meantime, we have switched your payment mode to <strong>Prepaid Credits</strong> so that your
-			sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.
+			{{ _("In the meantime we switched your payment method to") }}
+			<strong>{{ _("Prepaid Credits") }}</strong>
+			{{ _("so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.") }}
 		</p>
-		{{ utils.button('Update Billing Settings', billing_link) }}
+		{{ utils.button(_('Update Billing Settings'), billing_link) }}
 
 		{{ utils.separator() }}
 		{{ utils.signature() }}

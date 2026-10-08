@@ -8,62 +8,62 @@
 		<p class="mb-4 font-bold">{{ subject }}</p>
 
 		{% if error_reason == "INSUFFICIENT_FUNDS" %}
-			<p>We attempted to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %} but the payment failed due to <strong>insufficient funds</strong>.</p>
-			<p>Please ensure your UPI account has sufficient balance. We will retry automatically. If the payment continues to fail, your sites may be suspended. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Manage UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We tried to auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %} {{ _("but the payment failed because there were") }} <strong>{{ _("insufficient funds") }}</strong>.</p>
+			<p>{{ _("Please make sure your UPI account has enough balance. We retry automatically, but if it keeps failing your sites may be suspended. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Manage UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "MAX_PAYMENT_AMOUNT_EXCEEDED" %}
-			<p>We were unable to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %} because the invoice amount exceeds your <strong>current mandate limit</strong>.</p>
-			<p>Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Manage UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We could not auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %} {{ _("because the invoice is higher than your") }} <strong>{{ _("current mandate limit") }}</strong>.</p>
+			<p>{{ _("Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Manage UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "TOKEN_EXPIRED" %}
-			<p>Your UPI Autopay mandate has <strong>expired</strong>. We were unable to process the payment of <strong>{{ amount }}</strong>.</p>
-			<p>Please set up a new UPI Autopay mandate to continue automatic payments, or pay this invoice now. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Set Up New Mandate</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("Your UPI Autopay mandate has") }} <strong>{{ _("expired") }}</strong>. {{ _("We could not process the payment of") }} <strong>{{ amount }}</strong>.</p>
+			<p>{{ _("Please set up a new UPI Autopay mandate to keep paying automatically, or pay this invoice now. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Set Up New Mandate") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "TOKEN_NOT_ACTIVE" %}
-			<p>Your UPI Autopay mandate has <strong>been revoked or deactivated</strong>. We were unable to process the payment of <strong>{{ amount }}</strong>.</p>
-			<p>Please set up a new UPI Autopay mandate to continue automatic payments, or pay this invoice now. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Set Up New Mandate</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("Your UPI Autopay mandate has been") }} <strong>{{ _("revoked or deactivated") }}</strong>. {{ _("We could not process the payment of") }} <strong>{{ amount }}</strong>.</p>
+			<p>{{ _("Please set up a new UPI Autopay mandate to keep paying automatically, or pay this invoice now. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Set Up New Mandate") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "GATEWAY_ERROR" %}
-			<p>We attempted to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %} but the payment failed due to a <strong>temporary bank or gateway issue</strong>.</p>
-			<p>No action is needed — we will retry the payment automatically. If the issue persists, please contact your bank or pay now. You can also <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We tried to auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %} {{ _("but the payment failed because of a") }} <strong>{{ _("temporary bank or gateway issue") }}</strong>.</p>
+			<p>{{ _("No action is needed, we will retry the payment automatically. If it keeps failing, please contact your bank or pay now. You can also") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "FREQUENCY_LIMIT_EXCEEDED" %}
-			<p>We attempted to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %} but the payment failed due to a <strong>transaction frequency limit</strong> set by your bank.</p>
-			<p>We will retry the payment automatically once the limit resets. You can also pay now if needed. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We tried to auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %} {{ _("but the payment failed because of a") }} <strong>{{ _("transaction frequency limit") }}</strong> {{ _("set by your bank.") }}</p>
+			<p>{{ _("We will retry automatically once the limit resets, and you can also pay now if you prefer. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "PAYMENT_CREATION_FAILED" %}
-			<p>We were unable to initiate the UPI Autopay payment of <strong>{{ amount }}</strong> due to a technical error. Our team has been notified.</p>
-			<p>Please check your UPI Autopay mandate or pay this invoice now. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Manage UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We could not start the UPI Autopay payment of") }} <strong>{{ amount }}</strong> {{ _("because of a technical error. Our team has been notified.") }}</p>
+			<p>{{ _("Please check your UPI Autopay mandate or pay this invoice now. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Manage UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 
 		{% elif error_reason == "TOKEN_NOT_CONFIRMED" %}
-			<p>Your UPI Autopay token was never confirmed for recurring payments, so we were unable to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %}.</p>
-			<p>We have cancelled this mandate and switched your payment mode to <strong>Prepaid Credits</strong> so that your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.</p>
-			<p><a href="{{ upi_autopay_link }}">Set Up UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Add Credits</a></p>
+			<p>{{ _("Your UPI Autopay token was never confirmed for recurring payments, so we could not auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %}.</p>
+			<p>{{ _("We cancelled this mandate and switched your payment method to") }} <strong>{{ _("Prepaid Credits") }}</strong> {{ _("so your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.") }}</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Set Up UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Add Credits") }}</a></p>
 
 		{% elif error_reason == "MANDATE_CANCELLED" %}
-			<p>Your UPI Autopay mandate has been <strong>cancelled</strong>. Your account currently has no active payment method.</p>
-			<p>To ensure uninterrupted service and avoid site suspension, please set up a new UPI Autopay mandate or update your billing details with a valid payment method.</p>
-			<p><a href="{{ upi_autopay_link }}">Set Up UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Update Billing Details</a></p>
+			<p>{{ _("Your UPI Autopay mandate has been") }} <strong>{{ _("cancelled") }}</strong>. {{ _("Your account currently has no active payment method.") }}</p>
+			<p>{{ _("To avoid interruption and site suspension, please set up a new UPI Autopay mandate or update your billing details with a valid payment method.") }}</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Set Up UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Update Billing Details") }}</a></p>
 
 		{% else %}
-			<p>We attempted to auto-debit <strong>{{ amount }}</strong>{% if upi_vpa %} from your UPI account (<strong>{{ upi_vpa }}</strong>){% endif %} for your AlbannaTech subscription, but the payment failed.</p>
-			<p>Please check your UPI Autopay mandate or pay this invoice now. Your sites may be suspended if the invoice remains unpaid. If you need help, <a href="mailto:support@albannatech.com">contact support</a>.</p>
-			<p><a href="{{ upi_autopay_link }}">Manage UPI Autopay</a></p>
-			<p><a href="{{ billing_link }}">Pay Now</a></p>
+			<p>{{ _("We tried to auto-debit") }} <strong>{{ amount }}</strong>{% if upi_vpa %} {{ _("from your UPI account") }} (<strong>{{ upi_vpa }}</strong>){% endif %} {{ _("for your AlbannaTech subscription, but the payment failed.") }}</p>
+			<p>{{ _("Please check your UPI Autopay mandate or pay this invoice now. Your sites may be suspended while the invoice is unpaid. If you need help,") }} <a href="mailto:support@albannatech.com">{{ _("contact support") }}</a>.</p>
+			<p><a href="{{ upi_autopay_link }}">{{ _("Manage UPI Autopay") }}</a></p>
+			<p><a href="{{ billing_link }}">{{ _("Pay Now") }}</a></p>
 		{% endif %}
 
 		{{ utils.separator() }}
