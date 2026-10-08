@@ -1,18 +1,18 @@
 <template>
 	<div class="space-y-5">
 		<div class="ml-auto mr-0 w-max space-x-2">
-			<Button
-				icon-left="refresh-cw"
-				label="Reload"
-				variant="subtle"
-				@click="() => roles.reload()"
-			/>
-			<Button
-				icon-left="plus"
-				variant="solid"
-				label="Create Role"
-				@click="showCreateDialog = !showCreateDialog"
-			/>
+		<Button
+			icon-left="refresh-cw"
+			:label="t('Reload')"
+			variant="subtle"
+			@click="() => roles.reload()"
+		/>
+		<Button
+			icon-left="plus"
+			variant="solid"
+			:label="t('Create Role')"
+			@click="showCreateDialog = !showCreateDialog"
+		/>
 		</div>
 		<div class="grid grid-cols-3 gap-4 text-base">
 			<RouterLink
@@ -70,7 +70,7 @@
 		<Button
 			v-if="roles.hasNextPage"
 			icon-left="plus"
-			label="Load More"
+			:label="t('Load More')"
 			@click="() => roles.next()"
 		/>
 		<RoleCreateDialog
@@ -100,6 +100,7 @@
 import { createListResource, createResource } from 'frappe-ui'
 import { onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { t } from '../../utils/language'
 import RoleCreateDialog from './RoleCreateDialog.vue'
 
 const showCreateDialog = ref(false)
@@ -144,27 +145,27 @@ const permissions = (role) => {
 	return [
 		{
 			key: 'admin_access',
-			label: 'Admin',
+			label: t('Admin'),
 			color: 'red',
 		},
 		{
 			key: 'allow_site_creation',
-			label: 'Site',
+			label: t('Site'),
 			color: 'green',
 		},
 		{
 			key: 'allow_bench_creation',
-			label: 'Bench',
+			label: t('Bench'),
 			color: 'green',
 		},
 		{
 			key: 'allow_server_creation',
-			label: 'Server',
+			label: t('Server'),
 			color: 'green',
 		},
 		{
 			key: 'allow_webhook_configuration',
-			label: 'Webhook',
+			label: t('Webhook'),
 			color: 'green',
 		},
 	].filter((permission) => role[permission.key])

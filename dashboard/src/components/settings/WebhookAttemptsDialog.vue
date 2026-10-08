@@ -2,14 +2,15 @@
 	<Dialog
 		:options="{
 			title: selectedWebhookAttemptId
-				? `Webhook Attempt - ${selectedWebhookAttemptId}`
-				: 'Webhook Attempts',
+				? `${t('Webhook Attempt')} - ${selectedWebhookAttemptId}`
+				: t('Webhook Attempts'),
 			size: '4xl',
 		}"
 	>
 		<template #body-content>
 			<p class="text-sm mb-2 text-ink-gray-7" v-if="!selectedWebhookAttemptId">
-				<strong>Note:</strong> You can only view logs of last 24 hours
+				<strong>{{ t('Note') }}:</strong>
+				{{ t('You can only view logs of last 24 hours') }}
 			</p>
 			<ObjectList :options="listOptions" v-if="!selectedWebhookAttemptId" />
 			<Button
@@ -18,7 +19,7 @@
 				v-if="selectedWebhookAttemptId"
 				@click="selectedWebhookAttemptId = null"
 			>
-				Back
+				{{ t('Back') }}
 			</Button>
 			<WebhookAttemptDetails
 				:id="selectedWebhookAttemptId"
@@ -32,6 +33,7 @@ import { Breadcrumbs, Badge } from 'frappe-ui';
 import Header from '../Header.vue';
 import ObjectList from '../ObjectList.vue';
 import { h } from 'vue';
+import { t } from '../../utils/language';
 import WebhookAttemptDetails from './WebhookAttemptDetails.vue';
 
 export default {
@@ -64,54 +66,54 @@ export default {
 		listOptions() {
 			return {
 				data: () => this.$resources?.attempts?.data || [],
-				columns: [
-					{
-						label: 'Event',
-						fieldname: 'event',
-						width: 0.25,
+			columns: [
+				{
+					label: t('Event'),
+					fieldname: 'event',
+					width: 0.25,
+				},
+				{
+					label: t('Endpoint'),
+					fieldname: 'endpoint',
+					width: 0.5,
+					format: (value) => value.substring(0, 50),
+				},
+				{
+					label: t('Status'),
+					fieldname: 'status',
+					width: 0.1,
+					type: 'Component',
+					component({ row }) {
+						return row.status === 'Sent'
+							? h(Badge, {
+									label: row.status,
+									theme: 'green',
+								})
+							: h(Badge, {
+									label: row.status,
+									theme: 'red',
+								});
 					},
-					{
-						label: 'Endpoint',
-						fieldname: 'endpoint',
-						width: 0.5,
-						format: (value) => value.substring(0, 50),
+				},
+				{
+					label: t('Code'),
+					fieldname: 'response_status_code',
+					width: 0.1,
+					format: (val) => {
+						if (!val || parseInt(val) === 0) return '-';
+						return val;
 					},
-					{
-						label: 'Status',
-						fieldname: 'status',
-						width: 0.1,
-						type: 'Component',
-						component({ row }) {
-							return row.status === 'Sent'
-								? h(Badge, {
-										label: row.status,
-										theme: 'green',
-									})
-								: h(Badge, {
-										label: row.status,
-										theme: 'red',
-									});
-						},
+					align: 'center',
+				},
+				{
+					label: t('Timestamp'),
+					fieldname: 'timestamp',
+					width: 0.3,
+					format(value) {
+						return new Date(value).toLocaleString();
 					},
-					{
-						label: 'Code',
-						fieldname: 'response_status_code',
-						width: 0.1,
-						format: (val) => {
-							if (!val || parseInt(val) === 0) return '-';
-							return val;
-						},
-						align: 'center',
-					},
-					{
-						label: 'Timestamp',
-						fieldname: 'timestamp',
-						width: 0.3,
-						format(value) {
-							return new Date(value).toLocaleString();
-						},
-					},
-				],
+				},
+			],
 				onRowClick: (row) => {
 					this.selectedWebhookAttemptId = row.name;
 				},

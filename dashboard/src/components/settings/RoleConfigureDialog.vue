@@ -5,19 +5,19 @@
 		v-model="show"
 	>
 		<template v-slot:body-content>
-			<FTabs
-				:tabs="[
-					{
-						label: 'Members',
-						value: 'members',
-					},
-					{
-						label: 'Settings',
-						value: 'settings',
-					},
-				]"
-				v-model="tabIndex"
-			>
+		<FTabs
+			:tabs="[
+				{
+					label: t('Members'),
+					value: 'members',
+				},
+				{
+					label: t('Settings'),
+					value: 'settings',
+				},
+			]"
+			v-model="tabIndex"
+		>
 				<template #tab-item="{ tab }">
 					<div
 						class="flex cursor-pointer items-center gap-1.5 py-3 text-base text-ink-gray-6 duration-300 ease-in-out hover:border-outline-gray-3 hover:text-ink-gray-9 focus:outline-none focus:transition-none [&>div]:pl-0"
@@ -38,24 +38,24 @@
 											(option) => option.value === $event,
 										)
 									"
-									placeholder="Select a member to add"
+									:placeholder="t('Select a member to add')"
 								/>
 							</div>
 							<Button
 								variant="solid"
-								label="Add Member"
+								:label="t('Add Member')"
 								:disabled="!member?.value"
 								:loading="$resources.role.addUser?.loading"
 								@click="() => addUser(member.value)"
 							/>
 						</div>
 						<div class="rounded border px-3">
-							<div class="mt-2 text-ink-gray-6">Members</div>
+							<div class="mt-2 text-ink-gray-6">{{ t('Members') }}</div>
 							<div
 								v-if="roleUsers.length === 0"
 								class="p-6 text-center text-ink-gray-5"
 							>
-								<span>No members added to this role.</span>
+								<span>{{ t('No members added to this role.') }}</span>
 							</div>
 							<div v-else class="flex flex-col divide-y">
 								<div
@@ -83,69 +83,69 @@
 								<Switch
 									class="ml-2"
 									v-model="adminAccess"
-									label="Admin Access"
-									description="Grants team owner like access to the members. Includes access to all pages and settings."
+									:label="t('Admin Access')"
+									:description="t('Grants team owner like access to the members. Includes access to all pages and settings.')"
 								/>
 							</div>
 							<div class="space-y-1 rounded border p-4">
-								<h2 class="mb-2 ml-2 font-semibold">Page Access</h2>
+								<h2 class="mb-2 ml-2 font-semibold">{{ t('Page Access') }}</h2>
 								<Switch
 									v-model="allowBilling"
-									label="Allow Billing Access"
+									:label="t('Allow Billing Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowApps"
-									label="Allow Apps Access"
+									:label="t('Allow Apps Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-if="$team.doc.erpnext_partner"
 									v-model="allowPartner"
-									label="Allow Partner Access"
+									:label="t('Allow Partner Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowSiteCreation"
-									label="Allow Site Creation"
+									:label="t('Allow Site Creation')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowBenchCreation"
-									label="Allow Bench Creation"
+									:label="t('Allow Bench Creation')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowServerCreation"
-									label="Allow Server Creation"
+									:label="t('Allow Server Creation')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowWebhookConfiguration"
-									label="Allow Webhook Configuration"
+									:label="t('Allow Webhook Configuration')"
 									:disabled="adminAccess"
 								/>
 							</div>
 							<div v-if="allowPartner" class="space-y-1 rounded border p-4">
-								<h2 class="mb-2 ml-2 font-semibold">Partner Permissions</h2>
+								<h2 class="mb-2 ml-2 font-semibold">{{ t('Partner Permissions') }}</h2>
 								<Switch
 									v-model="allowDashboard"
-									label="Allow Dashboard Access"
+									:label="t('Allow Dashboard Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowLeads"
-									label="Allow Leads Access"
+									:label="t('Allow Leads Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowCustomer"
-									label="Allow Customer Access"
+									:label="t('Allow Customer Access')"
 									:disabled="adminAccess"
 								/>
 								<Switch
 									v-model="allowContribution"
-									label="Allow Contribution Access"
+									:label="t('Allow Contribution Access')"
 									:disabled="adminAccess"
 								/>
 							</div>
@@ -162,6 +162,7 @@ import { Switch, Tabs } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import UserWithAvatarCell from '../UserWithAvatarCell.vue';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t, tr } from '../../utils/language';
 
 export default {
 	props: {
@@ -367,18 +368,18 @@ export default {
 	methods: {
 		addUser(user) {
 			return toast.promise(this.$resources.role.addUser.submit({ user }), {
-				loading: `Adding ${user} to ${this.role.title}`,
+				loading: tr('Adding {user} to {role}', { user, role: this.role.title }),
 				success: () => {
 					this.member = {};
-					return `${user} added to ${this.role.title}`;
+					return tr('{user} added to {role}', { user, role: this.role.title });
 				},
 				error: (e) => getToastErrorMessage(e),
 			});
 		},
 		removeUser(user) {
 			return toast.promise(this.$resources.role.removeUser.submit({ user }), {
-				loading: `Removing ${user} from ${this.role.title}`,
-				success: () => `${user} removed from ${this.role.title}`,
+				loading: tr('Removing {user} from {role}', { user, role: this.role.title }),
+				success: () => tr('{user} removed from {role}', { user, role: this.role.title }),
 				error: (e) => getToastErrorMessage(e),
 			});
 		},

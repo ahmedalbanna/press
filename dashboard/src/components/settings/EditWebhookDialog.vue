@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Edit Webhook',
+			title: t('Edit Webhook'),
 			actions: [
 				{
-					label: 'Save Changes',
+					label: t('Save Changes'),
 					variant: 'solid',
 					onClick: updateWebhook,
 					loading: this.$resources.updateWebhook.loading,
@@ -15,22 +15,26 @@
 		<template #body-content>
 			<div class="space-y-4">
 				<div>
-					<FormControl label="Endpoint" v-model="endpoint" />
+					<FormControl :label="t('Endpoint')" v-model="endpoint" />
 					<p class="mt-1.5 text-sm text-ink-gray-7">
-						If you change the endpoint, make sure to activate the webhook again.
+						{{
+							t(
+								'If you change the endpoint, make sure to activate the webhook again.',
+							)
+						}}
 					</p>
 				</div>
 				<div v-if="!updateSecret">
-					<p class="block text-xs text-ink-gray-6">Secret</p>
+					<p class="block text-xs text-ink-gray-6">{{ t('Secret') }}</p>
 					<div
 						class="mt-1 flex items-center justify-between text-base text-ink-gray-7"
 					>
-						<p>Want to change the secret?</p>
-						<Button @click="updateSecret = true">Edit Secret</Button>
+						<p>{{ t('Want to change the secret?') }}</p>
+						<Button @click="updateSecret = true">{{ t('Edit Secret') }}</Button>
 					</div>
 				</div>
 				<div v-else>
-					<FormControl label="Secret" v-model="secret">
+					<FormControl :label="t('Secret')" v-model="secret">
 						<template #suffix>
 							<FeatherIcon
 								class="w-4 cursor-pointer"
@@ -40,24 +44,22 @@
 						</template>
 					</FormControl>
 					<p class="mt-1.5 text-sm text-ink-gray-7">
-						<secret>Note:</secret> Secret is optional. Check
-						<a
-							href="https://docs.frappe.io/cloud/webhook-introduction"
-							class="underline"
-							target="_blank"
-							>the documentation</a
-						>
-						to learn more
+						<strong>{{ t('Note') }}:</strong>
+						{{
+							t(
+								'Secret is optional. Check the documentation to learn more',
+							)
+						}}
 					</p>
 				</div>
 				<p class="text-base font-medium text-ink-gray-9">
-					Select the webhook events
+					{{ t('Select the webhook events') }}
 				</p>
 				<div
 					class="text-center text-sm leading-10 text-ink-gray-5"
 					v-if="$resources.events.loading"
 				>
-					Loading...
+					{{ t('Loading...') }}
 				</div>
 				<div class="mt-6 flex flex-col gap-3" v-else>
 					<Switch
@@ -82,6 +84,7 @@
 import { Switch } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t } from '../../utils/language';
 
 export default {
 	emits: ['success'],
@@ -126,11 +129,11 @@ export default {
 		updateWebhook() {
 			return {
 				url: 'press.api.webhook.update',
-				validate: () => {
-					if (!this.selectedEvents) {
-						return 'Please enable at least one event';
-					}
-				},
+			validate: () => {
+				if (!this.selectedEvents) {
+					return t('Please enable at least one event');
+				}
+			},
 				makeParams: () => {
 					return {
 						name: this.webhook.name,
@@ -139,19 +142,19 @@ export default {
 						events: this.selectedEvents,
 					};
 				},
-				onSuccess: () => {
-					toast.success('Webhook updated successfully');
-					const activationRequired = this.webhook.endpoint !== this.endpoint;
-					this.$emit('success', activationRequired);
-				},
-				onError: (e) => {
-					toast.error(
-						getToastErrorMessage(
-							e,
-							'Failed to update webhook. Please try again',
-						),
-					);
-				},
+			onSuccess: () => {
+				toast.success(t('Webhook updated successfully'));
+				const activationRequired = this.webhook.endpoint !== this.endpoint;
+				this.$emit('success', activationRequired);
+			},
+			onError: (e) => {
+				toast.error(
+					getToastErrorMessage(
+						e,
+						t('Failed to update webhook. Please try again'),
+					),
+				);
+			},
 			};
 		},
 	},
@@ -180,7 +183,7 @@ export default {
 		},
 		updateWebhook() {
 			if (this.selectedEvents.length === 0) {
-				this.errorMessage = 'Please select at least one event to add';
+				this.errorMessage = t('Please select at least one event to add');
 				return;
 			}
 			this.errorMessage = '';

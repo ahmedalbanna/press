@@ -51,39 +51,39 @@
 			v-else
 			class="text-ink-gray-4 text-sm p-20 rounded flex bg-surface-gray-1 justify-center"
 		>
-			No resources to show
-		</div>
-		<div>
-			<Button label="Include" icon-left="globe" @click="open = !open" />
-		</div>
-		<Dialog
-			v-model="open"
-			:options="{
-				title: 'Include',
-				size: 'lg',
-				actions: [
-					{
-						label: 'Submit',
-						variant: 'solid',
-						onClick: () => includeResources(),
-					},
-				],
-			}"
-		>
-			<template #body-content>
-				<div class="mb-2 text-base">Include a resource in this role.</div>
-				<MultiSelect
-					:options="resourcesToIncludeOptions"
-					:model-value="
-						resourcesToIncludeModel.map((item) => item.document_name)
-					"
-					@update:model-value="
-						resourcesToIncludeModel = resourcesToIncludeOptions.filter(
-							(option) => $event.includes(option.value),
-						)
-					"
-					placeholder="Select resources"
-				>
+		{{ t('No resources to show') }}
+	</div>
+	<div>
+		<Button :label="t('Include')" icon-left="globe" @click="open = !open" />
+	</div>
+	<Dialog
+		v-model="open"
+		:options="{
+			title: t('Include'),
+			size: 'lg',
+			actions: [
+				{
+					label: t('Submit'),
+					variant: 'solid',
+					onClick: () => includeResources(),
+				},
+			],
+		}"
+	>
+		<template #body-content>
+			<div class="mb-2 text-base">{{ t('Include a resource in this role.') }}</div>
+			<MultiSelect
+				:options="resourcesToIncludeOptions"
+				:model-value="
+					resourcesToIncludeModel.map((item) => item.document_name)
+				"
+				@update:model-value="
+					resourcesToIncludeModel = resourcesToIncludeOptions.filter(
+						(option) => $event.includes(option.value),
+					)
+				"
+				:placeholder="t('Select resources')"
+			>
 					<template #option="{ item }">
 						<FeatherIcon
 							class="size-4 mr-2"
@@ -102,6 +102,7 @@ import { Button, FeatherIcon, MultiSelect } from 'frappe-ui'
 import { computed, ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { getToastErrorMessage } from '../../utils/toast'
+import { t } from '../../utils/language'
 import { teamResources } from './data'
 
 type Resource = { document_type: string; document_name: string }

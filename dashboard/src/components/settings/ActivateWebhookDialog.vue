@@ -1,14 +1,14 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Activate Webhook',
+			title: t('Activate Webhook'),
 		}"
 	>
 		<template #body-content>
 			<div class="space-y-4">
-				<FormControl label="Endpoint" v-model="webhook.endpoint" disabled />
+				<FormControl :label="t('Endpoint')" v-model="webhook.endpoint" disabled />
 				<div v-if="request">
-					<p class="text-xs text-ink-gray-6">Request</p>
+					<p class="text-xs text-ink-gray-6">{{ t('Request') }}</p>
 					<pre
 						class="mt-2 whitespace-pre-wrap rounded bg-surface-gray-1 px-2 py-1.5 text-sm text-ink-gray-6"
 						>{{ request }}</pre
@@ -17,12 +17,12 @@
 
 				<FormControl
 					v-if="response_status_code"
-					label="Response Status Code"
+					:label="t('Response Status Code')"
 					v-model="response_status_code"
 					disabled
 				/>
 				<div v-if="response">
-					<p class="text-xs text-ink-gray-6">Response</p>
+					<p class="text-xs text-ink-gray-6">{{ t('Response') }}</p>
 					<pre
 						class="mt-2 max-h-52 overflow-y-auto whitespace-pre-wrap rounded bg-surface-gray-1 px-2 py-1.5 text-sm text-ink-gray-6"
 						>{{ response }}</pre
@@ -31,7 +31,7 @@
 				<div class="flex items-center" v-if="validated">
 					<ILucideCheck class="h-4 text-green-600" />
 					<div class="ml-2 text-sm font-medium text-ink-gray-7">
-						Endpoint has been validated
+						{{ t('Endpoint has been validated') }}
 					</div>
 				</div>
 
@@ -45,9 +45,9 @@
 				variant="solid"
 				@click="$resources.validateEndpoint.submit()"
 				:loading="$resources.validateEndpoint.loading"
-				loadingText="Validating Webhook"
+				:loadingText="t('Validating Webhook')"
 				v-if="!validated"
-				>Validate Webhook</Button
+				>{{ t('Validate Webhook') }}</Button
 			>
 			<Button
 				class="w-full"
@@ -55,9 +55,9 @@
 				variant="solid"
 				@click="$resources.activateWebhook.submit()"
 				:loading="$resources.activateWebhook.loading"
-				loadingText="Activating Webhook"
+				:loadingText="t('Activating Webhook')"
 				v-if="validated"
-				>Activate Webhook</Button
+				>{{ t('Activate Webhook') }}</Button
 			>
 		</template>
 	</Dialog>
@@ -65,6 +65,7 @@
 
 <script>
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language';
 
 export default {
 	emits: ['success'],
@@ -100,8 +101,10 @@ export default {
 					} else {
 						this.validated = false;
 
-						this.errorMessage =
-							'Endpoint should return a status between 200 and 300\nPlease check the endpoint and try again';
+					this.errorMessage =
+						t(
+							'Endpoint should return a status between 200 and 300\nPlease check the endpoint and try again',
+						);
 					}
 				},
 				onError: (e) => {
@@ -121,7 +124,7 @@ export default {
 					};
 				},
 				onSuccess(e) {
-					toast.success('Webhook activated successfully');
+					toast.success(t('Webhook activated successfully'));
 					this.$emit('success');
 				},
 				onError(e) {

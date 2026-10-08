@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add New Webhook',
+			title: t('Add New Webhook'),
 			actions: [
 				{
-					label: 'Add Webhook',
+					label: t('Add Webhook'),
 					variant: 'solid',
 					onClick: addWebhook,
 					loading: $resources?.addWebhook?.loading,
@@ -14,9 +14,9 @@
 	>
 		<template #body-content>
 			<div class="space-y-4">
-				<FormControl label="Endpoint" v-model="endpoint" />
+				<FormControl :label="t('Endpoint')" v-model="endpoint" />
 				<div>
-					<FormControl label="Secret" v-model="secret">
+					<FormControl :label="t('Secret')" v-model="secret">
 						<template #suffix>
 							<FeatherIcon
 								class="w-4 cursor-pointer"
@@ -26,24 +26,22 @@
 						</template>
 					</FormControl>
 					<p class="mt-2 text-sm text-ink-gray-7">
-						<strong>Note:</strong> Secret is optional. Check
-						<a
-							href="https://docs.frappe.io/cloud/webhook-introduction"
-							class="underline"
-							target="_blank"
-							>the documentation</a
-						>
-						to learn more
+						<strong>{{ t('Note') }}:</strong>
+						{{
+							t(
+								'Secret is optional. Check the documentation to learn more',
+							)
+						}}
 					</p>
 				</div>
 				<p class="text-base font-medium text-ink-gray-9">
-					Select the webhook events
+					{{ t('Select the webhook events') }}
 				</p>
 				<div
 					class="text-center text-sm leading-10 text-ink-gray-5"
 					v-if="$resources.events.loading"
 				>
-					Loading...
+					{{ t('Loading...') }}
 				</div>
 				<div class="mt-6 flex flex-col gap-4" v-else>
 					<Switch
@@ -65,6 +63,7 @@
 <script>
 import { Switch } from 'frappe-ui';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language';
 
 export default {
 	emits: ['success'],
@@ -98,10 +97,10 @@ export default {
 					secret: this.secret,
 					events: this.selectedEvents,
 				},
-				onSuccess() {
-					toast.success('Webhook added successfully');
-					this.$emit('success');
-				},
+			onSuccess() {
+				toast.success(t('Webhook added successfully'));
+				this.$emit('success');
+			},
 			};
 		},
 	},
@@ -130,11 +129,11 @@ export default {
 		},
 		addWebhook() {
 			if (!this.endpoint) {
-				this.errorMessage = 'Provide a valid webhook endpoint';
+				this.errorMessage = t('Provide a valid webhook endpoint');
 				return;
 			}
 			if (!this.selectedEvents.length) {
-				this.errorMessage = 'Please enable at least one event';
+				this.errorMessage = t('Please enable at least one event');
 				return;
 			}
 			this.errorMessage = '';

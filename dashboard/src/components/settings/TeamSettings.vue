@@ -4,15 +4,17 @@
 			v-if="showRelaxedPermissions"
 			class="rounded bg-surface-amber-2 px-5 py-4"
 		>
-			<Checkbox
-				v-model="relaxedPermissions"
-				label="Enable Relaxed Permissions for Members"
-			/>
-			<p class="ml-[1.375rem] mt-1 text-p-sm text-ink-gray-7">
-				When enabled, users with the Member role receive full access by default.
-				We recommend disabling this setting so members are granted access only
-				through their assigned custom roles.
-			</p>
+		<Checkbox
+			:label="t('Enable Relaxed Permissions for Members')"
+			v-model="relaxedPermissions"
+		/>
+		<p class="ml-[1.375rem] mt-1 text-p-sm text-ink-gray-7">
+			{{
+				t(
+					'When enabled, users with the Member role receive full access by default. We recommend disabling this setting so members are granted access only through their assigned custom roles.',
+				)
+			}}
+		</p>
 		</div>
 		<ObjectList :options="teamMembersListOptions"></ObjectList>
 	</div>

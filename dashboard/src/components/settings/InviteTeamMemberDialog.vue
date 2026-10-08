@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Invite User',
+			title: t('Invite User'),
 			actions: [
 				{
-					label: 'Invite Member',
+					label: t('Invite Member'),
 					variant: 'solid',
 					onClick: inviteMember,
 				},
@@ -14,13 +14,13 @@
 	>
 		<template #body-content>
 			<div class="space-y-4">
-				<FormControl label="Email" v-model="email" />
+				<FormControl :label="t('Email')" v-model="email" />
 				<Combobox
 					v-model="selectedRole"
-					label="Role *"
+					:label="t('Role') + ' *'"
 					required
 					:options="roleOptions"
-					placeholder="Select a role"
+					:placeholder="t('Select a role')"
 					open-on-focus
 				/>
 			</div>
@@ -34,6 +34,7 @@ import { toast } from 'vue-sonner'
 import router from '../../router'
 import { DashboardError } from '../../utils/error'
 import { getToastErrorMessage } from '../../utils/toast'
+import { t } from '../../utils/language'
 
 export default {
 	components: { Combobox },
@@ -66,18 +67,18 @@ export default {
 			}
 			return [
 				{
-					group: 'Roles',
+					group: t('Roles'),
 					hideLabel: true,
 					options: roleItems,
 				},
 				{
-					group: 'Actions',
+					group: t('Actions'),
 					hideLabel: true,
 					options: [
 						{
 							type: 'custom',
 							key: 'create_role',
-							label: 'Create Role',
+							label: t('Create Role'),
 							condition: () => true,
 							onClick: () => {
 								router.push({
@@ -104,17 +105,17 @@ export default {
 					{
 						validate: () => {
 							if (!this.email) {
-								throw new DashboardError('Email is required')
+								throw new DashboardError(t('Email is required'))
 							}
 						},
 					},
 				),
 				{
-					loading: 'Sending Invite...',
+					loading: t('Sending Invite...'),
 					success: () => {
 						this.show = false
 						this.$emit('success')
-						return 'Invite Sent!'
+						return t('Invite Sent!')
 					},
 					error: (e) => getToastErrorMessage(e),
 				},

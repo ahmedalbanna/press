@@ -1,6 +1,6 @@
 <template>
 	<div class="mb-5 flex items-center gap-2">
-		<Tooltip text="All Roles">
+		<Tooltip :text="t('All Roles')">
 			<Button :route="{ name: 'SettingsPermissionRoles' }">
 				<template #icon>
 					<lucide-arrow-left class="h-4 w-4 text-ink-gray-7" />
@@ -10,13 +10,13 @@
 		<h3 class="text-lg font-medium text-ink-gray-9 mr-auto">
 			{{ role.doc?.title }}
 		</h3>
-		<Tooltip text="Admin Role" v-if="role.doc?.admin_access">
+		<Tooltip :text="t('Admin Role')" v-if="role.doc?.admin_access">
 			<FeatherIcon name="shield" class="h-5 w-5 text-ink-gray-7" />
 		</Tooltip>
 
 		<Button
 			v-if="session.userPermissions.data.owner || session.isTeamAdmin"
-			label="Rename"
+			:label="t('Rename')"
 			icon-left="edit"
 			variant="subtle"
 			@click="renameRole"
@@ -24,16 +24,16 @@
 
 		<Button
 			v-if="session.userPermissions.data.owner || session.isTeamAdmin"
-			label="Delete"
+			:label="t('Delete')"
 			icon-left="trash-2"
 			theme="red"
 			variant="subtle"
 			@click="
 				confirmDialog({
-					title: 'Delete',
-					message: 'Are you sure you want to delete this role?',
+					title: t('Delete'),
+					message: t('Are you sure you want to delete this role?'),
 					primaryAction: {
-						label: 'Delete',
+						label: t('Delete'),
 						theme: 'red',
 						onClick: ({ hide }) => {
 							role.delete
@@ -59,15 +59,15 @@
 			v-model="tab"
 			:buttons="[
 				{
-					label: 'Members',
+					label: t('Members'),
 					value: 'members',
 				},
 				{
-					label: 'Resources',
+					label: t('Resources'),
 					value: 'resources',
 				},
 				{
-					label: 'Permissions',
+					label: t('Permissions'),
 					value: 'permissions',
 				},
 			]"
@@ -140,6 +140,7 @@ import { getSessionUser, session } from '../../data/session'
 import { getTeam } from '../../data/team'
 import { confirmDialog } from '../../utils/components'
 import { getToastErrorMessage } from '../../utils/toast'
+import { t } from '../../utils/language'
 import RoleMembers from './RoleMembers.vue'
 import RolePermissions from './RolePermissions.vue'
 import RoleResources from './RoleResources.vue'
@@ -166,15 +167,15 @@ const role = createDocumentResource({
 
 function renameRole() {
 	confirmDialog({
-		title: 'Rename Role',
+		title: t('Rename Role'),
 		fields: [
 			{
-				label: 'Enter new title for the role',
+				label: t('Enter new title for the role'),
 				fieldname: 'title',
 				default: role.doc?.title,
 			},
 		],
-		primaryAction: { label: 'Rename' },
+		primaryAction: { label: t('Rename') },
 		onSuccess: ({ hide, values }) =>
 			role.setValue.submit({ title: values.title }).then(hide),
 	})
