@@ -1,5 +1,47 @@
 # AlbannaTech Press Platform — Roadmap
 
+## Phase 1.5: MCP & AI Agents (Functional Customization)
+
+**Goal**: Implement MCP integrations and AI Agents to provide advanced functionality for customers.
+
+**Status**: Not started
+
+### MCP Implementation Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Priority | press-mcp first (all functions) |
+| Local Models | Ollama (lightweight, easy setup) |
+| Cloud Providers | Gemini or OpenAI (flexible API) |
+| AI Agent Language | Bilingual (Arabic + English) |
+| AI Agent Platform | Web only (ERPNext chat sidebar) |
+| Pricing Model | Basic: free with hosting, Advanced: paid annual |
+
+### AI Agent Functions
+- Data entry (invoices, purchase orders, customers)
+- Reports (financial and administrative)
+- Conversation (inventory, sales, accounting questions)
+- Automation (repetitive processes, anomaly detection)
+
+### Pricing Tiers
+- **Basic Agent**: Free with hosting — daily operations, simple data entry, FAQs, ready reports
+- **Advanced Pro Agent**: Paid annual — complex financial analysis, advanced automation, operational predictions
+
+### Implementation Order
+1. **press-mcp** — Infrastructure management, site management, version management, support
+2. **frappe-mcp** — Data seeding for new customers
+3. **erpnext-mcp** — AI Agents with hybrid architecture (Ollama + Cloud)
+
+### Key Deliverables
+- press-mcp integrated for infrastructure management
+- frappe-mcp for automated data seeding
+- erpnext-mcp AI Agent with chat sidebar in ERPNext
+- Hybrid AI architecture (local Ollama + cloud Gemini/OpenAI)
+- Bilingual AI Agent (Arabic + English)
+- Two-tier pricing model (Basic free, Advanced paid)
+
+---
+
 ## Phase 1: White-Label Rebranding (Current)
 
 **Goal**: Rebrand the Press platform across all customer-facing surfaces to AlbannaTech's visual identity.
