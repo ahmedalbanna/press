@@ -34,6 +34,14 @@ TRANSLATED_TEMPLATES = (
 	"payment_failed",
 	"insufficient_balance",
 	"site_backup_failed",
+	"reset_password",
+	"one_time_login_link",
+	"verification_code_for_login",
+	"login_otp",
+	"admin_login",
+	"disabled_site_monitoring",
+	"2fa_recovery_codes_viewed",
+	"2fa_recovery_codes_yearly_reminder",
 )
 
 RENDER_CASES = {
@@ -54,9 +62,19 @@ RENDER_CASES = {
 	},
 	"insufficient_balance": {},
 	"site_backup_failed": {"site_name": "acme.example.com"},
+	"reset_password": {"link": "https://reset", "read_pixel_path": None},
+	"one_time_login_link": {"link": "https://login", "minutes": 10},
+	"verification_code_for_login": {"full_name": "Sara", "otp": "123456"},
+	"login_otp": {"otp": "123456", "read_pixel_path": None},
+	"admin_login": {"user": "Ali", "site": "acme.com", "reason": "support ticket"},
+	"disabled_site_monitoring": {"site": "acme.com", "reason": "over quota"},
+	"2fa_recovery_codes_viewed": {"viewed_at": "2026-10-08", "link": "https://s"},
+	"2fa_recovery_codes_yearly_reminder": {"link": "https://s"},
 }
 
 # English that must never survive into an Arabic render of these templates.
+# Includes the label copy passed to utils.button / utils.link, which is where a
+# partial translation tends to leave the call to action in English.
 ENGLISH_SENTINELS = (
 	"Payment of",
 	"Update Billing Settings",
@@ -65,6 +83,17 @@ ENGLISH_SENTINELS = (
 	"Insufficient balance",
 	"Greetings from",
 	"All attempts to back up",
+	"Please click on the button",
+	"Click the following button",
+	"You have requested a verification code",
+	"Use below verification code",
+	"just logged in to your site",
+	"Monitoring & alerting mechanism",
+	"Security Alert",
+	"Hey there!",
+	"Change your password",
+	"It's been a year",
+	"View Your Recovery Codes",
 )
 
 
