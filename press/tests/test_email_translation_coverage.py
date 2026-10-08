@@ -12,6 +12,7 @@ be at 100%, or the toggle should stay hidden.
 """
 
 import ast
+import re
 from pathlib import Path
 
 import frappe
@@ -23,7 +24,7 @@ APP_ROOT = Path(frappe.get_app_path("press"))
 
 # Floor for the share of sendmail templates carrying Arabic copy. Raise it as
 # coverage improves; never lower it, that is how the number quietly regresses.
-MIN_TRANSLATED_SHARE = 0.40
+MIN_TRANSLATED_SHARE = 1.0
 
 
 def _string_literals(node) -> list[str]:
@@ -92,10 +93,13 @@ class TestEmailTranslationCoverage(FrappeTestCase):
 		self.assertEqual(orphans, set(), f"no such template: {orphans}")
 
 	def test_every_listed_template_actually_marks_strings_translatable(self):
+		# Counts any _() call, including _(some_variable). A template can be
+		# genuinely translatable by translating a string passed in as an arg,
+		# which a literal-only match would miss.
 		empty = []
 		for name in sorted(self.translated):
 			source = (APP_ROOT / "templates" / "emails" / f"{name}.html").read_text()
-			if "_(" not in source:
+			if not re.search(r"\b_\(", source):
 				empty.append(name)
 		self.assertEqual(
 			empty,

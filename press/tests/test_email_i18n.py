@@ -50,7 +50,31 @@ TRANSLATED_TEMPLATES = (
 	"site_suspend_due_to_exceeding_disk_usage",
 	"notify_before_site_archival",
 	"press_webhook_disabled",
+	"enabled_auto_disk_expansion",
+	"disabled_auto_disk_expansion",
+	"plan_upgrade_recommendation",
+	"snapshot_recovery_completion",
+	"incident",
+	"auto_scale_notification",
+	"bench_deploy_failure",
+	"partner_link_certificate",
+	"partner_approval",
+	"access_request",
+	"access_request_update",
+	"remote_login",
+	"transfer_team_confirmation",
+	"marketplace_auto_review",
+	"verify_account_for_site_login",
+	"product_trial_verify_account",
+	"app_approval_request_update",
+	"marketplace_audit_report",
+	"payment_failed_partner",
+	"product_trial_email",
 )
+
+# Templates whose only translatable surface is a string passed in as an
+# argument, so they carry no _("literal") to check against the catalog.
+ARG_ONLY_TEMPLATES = frozenset({"product_trial_email"})
 
 RENDER_CASES = {
 	"suspended_sites": {
@@ -120,6 +144,110 @@ RENDER_CASES = {
 		"endpoint": "https://x/y",
 		"dashboard_url": "https://press.localhost/dashboard/settings/developer",
 	},
+	"enabled_auto_disk_expansion": {
+		"server": "s1",
+		"current_disk_usage": "90 GiB",
+		"available_disk_space": "100 GiB",
+		"increase_by": "20 GiB",
+	},
+	"disabled_auto_disk_expansion": {
+		"server": "s1",
+		"current_disk_usage": "80 GiB",
+		"available_disk_space": "100 GiB",
+		"increase_by": "20 GiB",
+		"used_storage_percentage": "80%",
+	},
+	"plan_upgrade_recommendation": {
+		"upgrade_target": "Server",
+		"instance_type": "c4",
+		"vcpu": 4,
+		"memory": 8,
+		"server_name": "s1",
+		"server_url": "https://press.localhost",
+	},
+	"snapshot_recovery_completion": {"snapshot": "snap-1"},
+	"incident": {
+		"message": "Automatic {0} triggered for server {1}",
+		"message_args": ["scale", "s1"],
+		"link": "https://l",
+	},
+	"auto_scale_notification": {
+		"message": "Automatic {0} triggered for server {1}",
+		"message_args": ["scale", "s1"],
+		"link": "https://l",
+	},
+	"bench_deploy_failure": {
+		"message": "Error occurred during auto scale",
+		"message_args": [],
+		"link": "https://l",
+	},
+	"partner_link_certificate": {"partner": "P1", "link": "https://l"},
+	"partner_approval": {"user": "Ali", "partner": "P1", "link": "https://l"},
+	"access_request": {
+		"reason": "db issue",
+		"resources": [{"document_type": "Site", "document_name": "s1"}],
+		"access_requests_url": "https://press.localhost/dashboard/access-requests",
+	},
+	"access_request_update": {
+		"status": "Approved",
+		"resources": [],
+		"access_requests_url": "https://press.localhost/dashboard/access-requests",
+	},
+	"remote_login": {"site": "acme.com", "login_url": "https://l"},
+	"transfer_team_confirmation": {
+		"type": "site",
+		"name": "acme.com",
+		"old_team": "T1",
+		"new_team": "T2",
+		"transfer_url": "https://t",
+	},
+	"marketplace_auto_review": {
+		"review_page_link": "https://r",
+		"logo": None,
+		"desc": None,
+		"links": None,
+		"release": None,
+	},
+	"verify_account_for_site_login": {"otp": "123456"},
+	"product_trial_verify_account": {
+		"otp": "123456",
+		"header_content": None,
+		"read_pixel_path": None,
+	},
+	"app_approval_request_update": {
+		"subject": "x",
+		"status": "Rejected",
+		"releases_link": "https://r",
+		"commit_message": "abc",
+		"rejection_reason": "bad",
+	},
+	"payment_failed_partner": {
+		"subject": "x",
+		"payment_link": "https://pay",
+		"account_update_link": "https://billing",
+		"last_4": "4242",
+		"card_not_added": False,
+		"team": frappe._dict({"default_payment_method": "Card"}),
+		"sites": ["acme.com"],
+	},
+	"product_trial_email": {
+		"message": "<p>pre-rendered</p>",
+		"message_args": [],
+		"preview_text": "Your site has expired",
+		"title": "T",
+		"logo": None,
+	},
+	"marketplace_audit_report": {
+		"audit_result": "Fail",
+		"app_title": "app",
+		"issue_count": 2,
+		"audit_summary": "",
+		"failing_checks": [],
+		"result_heading": {"Fail": "Audit Failed"},
+		"header_tone": {"fg": "#111"},
+		"font_stack": "sans",
+		"mono_stack": "mono",
+	},
 }
 
 # English that must never survive into an Arabic render of these templates.
@@ -156,6 +284,21 @@ ENGLISH_SENTINELS = (
 	"been temporarily",
 	"will be archived",
 	"Because we saw a high number of failed webhook",
+	"has used more than",
+	"Your server has currently used",
+	"frequent incidents with your current plan",
+	"recovery has been completed",
+	"View Server Analytics",
+	"View Autoscale Job",
+	"View Deploy Job",
+	"Need Help ?",
+	"has raised a request to link",
+	"has requested access to your resources",
+	"Review request",
+	"Verify Account",
+	"This email was sent by AlbannaTech",
+	"Attempted login",
+	"Fix all the issues",
 	# signature() is shared by every template, so an English "Thanks," leaked
 	# into all of them and no per-template sentinel caught it
 	"Thanks,",
@@ -211,6 +354,12 @@ class TestArabicEmailCatalog(FrappeTestCase):
 		for name in TRANSLATED_TEMPLATES:
 			source = (app / "templates" / "emails" / f"{name}.html").read_text()
 			marked = set(re.findall(r"_\(\s*[\"'](.+?)[\"']\s*\)", source))
+			if name in ARG_ONLY_TEMPLATES:
+				# These translate a string handed in as an argument rather than
+				# carrying literals, so there is nothing to check against the
+				# catalog here. The render tests still cover them.
+				self.assertIn("_(", source, f"{name}.html marks nothing translatable")
+				continue
 			self.assertTrue(marked, f"{name}.html marks nothing translatable")
 			missing = marked - set(catalog)
 			self.assertEqual(missing, set(), f"{name}.html untranslated: {missing}")
