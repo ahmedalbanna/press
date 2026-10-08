@@ -40,9 +40,16 @@ Apply one security layer across every boundary: authentication (who is calling),
 - **MCP servers**: reject unauthenticated calls; every call carries a JWT.
 - **Billing webhooks**: authenticated (signature verification) before any state change.
 
-### Authorization
-- **Model**: hybrid — Frappe Roles plus a custom RBAC layer for MCP tools.
-- **Mapping**: Frappe Roles decide what a user may do in ERPNext; the custom RBAC decides what MCP tools they may call (e.g. run Press server commands vs. only view financial reports).
+### Authorization / Access Control
+- **Model**: mix — RBAC for general function permissions plus ABAC for dynamic constraints (e.g. active subscription, company/customer scope) checked at AI tool call time.
+- **Mapping**: Frappe Roles decide what a user may do in ERPNext; a custom layer decides what MCP tools they may call (e.g. run Press server commands vs. only view financial reports).
+- **Role hierarchy**: hierarchical (system admin → supervisor → user), so ordinary users cannot reach infrastructure tools or sensitive Press settings.
+- **Team isolation**: mix — Frappe Teams/Press teams partition environments, with an MCP-layer check that prevents cross-customer data access.
+- **Tool permission storage**: in Frappe, as doctypes, so permissions are managed from the normal admin UI and tied to system documents.
+- **Permission propagation**: cached in Redis with a TTL for fast checks during a conversation, refreshed periodically.
+- **Row-level permissions**: Frappe Permissions (User Permissions & Share) — reuse the built-in engine rather than reimplementing row filters.
+- **Field-level permissions**: mix — Frappe Field Permissions hide sensitive fields from disallowed roles; critical data (payment data, integration keys) is encrypted in the database.
+- **Agent permissions**: mix — the agent runs with the requesting user's permissions, under hard upper bounds ("red lines") that block dangerous operations (e.g. dropping databases, changing sensitive financial account settings) without explicit confirmation.
 - **Enforcement**: Frappe Hooks (`doc_events` and custom permission checks) so permission logic lives in one place and cannot be bypassed by a direct MCP call.
 - **Granularity**: per-MCP, per-tool, per-resource.
 - **Fail closed**: a broken or missing check denies the action.
@@ -89,6 +96,10 @@ The seam is **permission enforcement**: attempt an action as a given identity an
 - A test sends a webhook with an invalid signature and asserts rejection with no state change.
 - A test attempts an Advanced AI action on a Basic subscription and asserts denial.
 - A test asserts that the AI agent's action is checked with the requesting user's rights, not the agent's own.
+- A test attempts a cross-team resource access and asserts denial (team isolation).
+- A test attempts an action above the agent's "red line" without confirmation and asserts it is blocked.
+- A test asserts a row the identity may not see is absent from results, and a field they may not read is hidden.
+- A test asserts a cached permission decision is refreshed after the TTL or on change.
 - Tests do not assert on the hash algorithm internals or the storage format of keys.
 
 ### Which modules will be tested

@@ -59,6 +59,14 @@
 | Permissions Integration | Frappe Hooks (doc_events, custom permissions) |
 | Authentication | Mix (Frappe Auth for desk + short-lived JWT for MCP services) |
 | Authorization | Mix (Frappe Roles + custom RBAC for MCP tools) |
+| Access Control Model | Mix (RBAC for functions + ABAC for dynamic constraints like subscription/scope) |
+| Role Hierarchy | Hierarchical (system admin → supervisor → user) |
+| Team Isolation | Mix (Frappe Teams + MCP-layer cross-tenant check) |
+| Tool Permission Storage | Frappe doctypes (single source, managed from admin UI) |
+| Permission Propagation | Redis cache with TTL |
+| Row-Level Permissions | Frappe Permissions (User Permissions & Share) |
+| Field-Level Permissions | Mix (Frappe Field Permissions + encryption of critical fields) |
+| Agent Permissions | Mix (requesting user's rights + hard upper bounds / red lines) |
 | Encryption | TLS in transit + AES at rest (sensitive fields encrypted) |
 | Session Management | Mix (Redis for active sessions/cache + JWT stateless) |
 | Key Management | Environment variables (.env) backed by Docker Secrets |
