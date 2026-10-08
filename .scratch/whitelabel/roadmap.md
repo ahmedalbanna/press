@@ -66,10 +66,14 @@
 
 | Decision | Choice |
 |----------|--------|
-| Billing Service | Hybrid (Press system + custom billing service) |
-| Billing Integration | REST API |
-| Subscription | Hybrid (Press system + custom subscriptions) |
-| Subscription Integration | REST API |
+| Billing Service | Hybrid (Press for hosting + custom layer for AI subscriptions/tokens) |
+| Invoices | Frappe Invoice doctype |
+| Subscription | Frappe Subscription doctype (built-in periodic renewal) |
+| Usage Metering | Redis (real-time) synced to MariaDB (durable) |
+| Taxes | Frappe Tax Templates |
+| Currencies | Multiple (USD + SAR, matching gateways) |
+| Financial Reports | Frappe Reports |
+| Press Integration | Mix (REST for requests + webhook for async events) |
 | Payment Gateway | Mix (HyperPay + PayTabs) |
 | Payment Gateway Integration | Webhook |
 

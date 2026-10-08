@@ -34,16 +34,31 @@ Build a hybrid billing and subscription service. Billing combines the Press syst
 ## Implementation Decisions
 
 ### Billing service
-- **Model**: hybrid — the Press system handles hosting lines; a custom billing service handles AI subscription lines and usage.
-- **Integration with Press**: REST API for invoice creation and synchronization.
-- **Line items**: hosting, Advanced Pro subscription, and metered usage where applicable.
+- **Model**: hybrid — Press handles hosting lines; a custom layer handles AI subscription lines and token usage.
+- **Integration with Press**: mix — REST for requests and synchronous checks, webhooks for asynchronous events (payment success, auto-renewal).
+- **Line items**: hosting, Advanced Pro subscription, and metered AI token usage.
+
+### Invoices
+- **Document**: Frappe Invoice doctype — reuse the standard accounting document so figures reconcile with the rest of Frappe.
 
 ### Subscription
-- **Model**: hybrid — Press tracks its own subscriptions; a custom subscription manager tracks AI subscription state and renewal.
-- **Integration with Press**: REST API to validate account standing and annual renewal state.
+- **Document**: Frappe Subscription doctype — reuse its built-in periodic renewal and scheduling rather than reinventing date cycles.
 - **State**: exposed to layer 03 so it can gate Advanced AI features.
 - **Lifecycle**: active, grace (payment failed, features still on), suspended (features off), cancelled.
 - **Renewal**: annual for Advanced Pro; automatic with advance notification.
+
+### Usage metering
+- **Tracking**: Redis for real-time counting of AI queries and token consumption.
+- **Sync**: periodic aggregation from Redis into MariaDB for durable records.
+
+### Taxes
+- **Templates**: Frappe Tax Templates — apply local/regional taxes without extra code.
+
+### Currencies
+- **Support**: multiple currencies (e.g. USD and SAR) to match regional gateway requirements (HyperPay, PayTabs).
+
+### Financial reports
+- **Reports**: Frappe Reports (Report Builder / Query Reports) for revenue and financial analysis.
 
 ### Payment gateway
 - **Gateways**: HyperPay and PayTabs.
@@ -86,8 +101,8 @@ The seam is the **subscription lifecycle**: drive a subscription through its sta
 - The AI agent — layer 02.
 - Authentication and permission internals — layer 03 (this layer only provides subscription state for gating).
 - Additional gateways beyond HyperPay and PayTabs (e.g. Stripe) in this phase.
-- Tax computation and jurisdiction-specific compliance.
-- Multi-currency beyond what the gateways natively support.
+- Jurisdiction-specific tax *compliance* (filing, remittance) — tax *templates* are in scope, filing is not.
+- Currencies beyond those the gateways natively support.
 
 ## Further Notes
 
