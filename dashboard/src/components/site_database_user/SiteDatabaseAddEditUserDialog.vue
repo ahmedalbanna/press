@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: isEditMode ? 'Edit Database User' : 'Add Database User',
+			title: isEditMode ? t('Edit Database User') : t('Add Database User'),
 			size: '2xl',
 		}"
 		v-model="showDialog"
@@ -22,28 +22,28 @@
 					class="mt-2"
 					type="text"
 					variant="subtle"
-					label="Label (to identify the user)"
+					:label="t('Label (to identify the user)')"
 					v-model="label"
 				/>
 				<FormControl
 					type="select"
 					:options="[
 						{
-							label: 'Read only access to all the tables',
+							label: t('Read only access to all the tables'),
 							value: 'read_only',
 						},
 						{
-							label: 'Read/Write access to all the tables',
+							label: t('Read/Write access to all the tables'),
 							value: 'read_write',
 						},
 						{
-							label: 'Granular access',
+							label: t('Granular access'),
 							value: 'granular',
 						},
 					]"
 					variant="subtle"
 					:disabled="false"
-					label="Access Mode"
+					:label="t('Access Mode')"
 					v-model="mode"
 				/>
 				<FormControl
@@ -51,13 +51,13 @@
 					class="mt-2"
 					type="number"
 					variant="subtle"
-					label="Database Connections"
+					:label="t('Database Connections')"
 					v-model="database_connections"
 				/>
 				<Checkbox
 					v-if="!isEditMode && isReplicaServerAvailable"
 					class="mt-2"
-					label="Use Replica Server"
+					:label="t('Use Replica Server')"
 					size="sm"
 					v-model="use_replica_server"
 				/>
@@ -68,13 +68,13 @@
 						class="flex w-full flex-col items-center justify-center gap-2 text-base text-ink-gray-7"
 					>
 						<span class="flex flex-row gap-2 py-20">
-							<Spinner class="w-4" /> Fetching table schemas
+							<Spinner class="w-4" /> {{ t('Fetching table schemas') }}
 						</span>
-						<p class="text-sm">This can take upto 5 minutes</p>
+						<p class="text-sm">{{ t('This can take upto 5 minutes') }}</p>
 					</div>
 					<div v-else class="mt-2">
 						<p class="text-sm font-medium text-ink-gray-6">
-							Configure Permissions
+							{{ t('Configure Permissions') }}
 						</p>
 						<ObjectList :options="listOptions" />
 						<div class="mt-4 flex w-full gap-2">
@@ -82,14 +82,14 @@
 								variant="outline"
 								iconLeft="plus"
 								@click="addNewTablePermissionEntry"
-								>Add Table</Button
+								>{{ t('Add Table') }}</Button
 							>
 							<Button
 								variant="outline"
 								iconLeft="refresh-ccw"
 								:loading="isLoadingTableSchemas"
 								@click="() => fetchTableSchemas(true)"
-								>Refresh Schema</Button
+								>{{ t('Refresh Schema') }}</Button
 							>
 						</div>
 					</div>
@@ -114,7 +114,7 @@
 				:loading="this.$resources.createDatabaseUser.loading"
 				@click="this.$resources.createDatabaseUser.submit()"
 			>
-				Create User
+				{{ t('Create User') }}
 			</Button>
 			<Button
 				v-else
@@ -124,7 +124,7 @@
 				:disabled="mode == 'granular' && isLoadingTableSchemas"
 				:loading="this.$resources.updateDatabaseUser.loading"
 				@click="this.$resources.updateDatabaseUser.submit()"
-				>Save Changes</Button
+				>{{ t('Save Changes') }}</Button
 			>
 		</template>
 	</Dialog>
@@ -138,6 +138,7 @@ import { toast } from 'vue-sonner';
 import AlertBanner from '../AlertBanner.vue';
 import SiteDatabaseColumnsSelector from './SiteDatabaseColumnsSelector.vue';
 import { DashboardError } from '../../utils/error';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'SiteDatabaseAddEditUserDialog',
@@ -230,14 +231,14 @@ export default {
 						},
 					};
 				},
-				validate() {
-					if (!this.label)
-						throw new DashboardError('Please provide a label for the user');
-				},
-				onSuccess() {
-					toast.success('User created successfully');
-					this.$emit('success');
-				},
+			validate() {
+				if (!this.label)
+					throw new DashboardError(this.t('Please provide a label for the user'));
+			},
+			onSuccess() {
+				toast.success(this.t('User created successfully'));
+				this.$emit('success');
+			},
 			};
 		},
 		updateDatabaseUser() {
@@ -266,14 +267,14 @@ export default {
 						},
 					};
 				},
-				validate() {
-					if (!this.label)
-						throw new DashboardError('Please provide a label for the user');
-				},
-				onSuccess() {
-					toast.success('User updated successfully');
-					this.$emit('success');
-				},
+			validate() {
+				if (!this.label)
+					throw new DashboardError(this.t('Please provide a label for the user'));
+			},
+			onSuccess() {
+				toast.success(this.t('User updated successfully'));
+				this.$emit('success');
+			},
 			};
 		},
 		replicaServerAvailability() {
@@ -294,57 +295,57 @@ export default {
 		listOptions() {
 			return {
 				data: () => this.permissions,
-				columns: [
-					{
-						label: 'Table',
-						fieldname: 'table',
-						width: '200px',
-						type: 'Component',
-						component: ({ row }) => {
-							return h(FormControl, {
-								class: 'w-full -mx-1.5',
-								type: 'autocomplete',
-								modelValue: row.table,
-								'onUpdate:modelValue': (newValue) => {
-									row.table = newValue?.value || '';
-								},
-								options: this.autocompleteTableOptions,
-							});
-						},
+			columns: [
+				{
+					label: this.t('Table'),
+					fieldname: 'table',
+					width: '200px',
+					type: 'Component',
+					component: ({ row }) => {
+						return h(FormControl, {
+							class: 'w-full -mx-1.5',
+							type: 'autocomplete',
+							modelValue: row.table,
+							'onUpdate:modelValue': (newValue) => {
+								row.table = newValue?.value || '';
+							},
+							options: this.autocompleteTableOptions,
+						});
 					},
-					{
-						label: 'Mode',
-						fieldname: 'mode',
-						width: 1,
-						align: 'center',
-						type: 'Component',
-						component: ({ row }) => {
-							return h(FormControl, {
-								type: 'select',
-								class: 'w-full',
-								options: [
-									{
-										label: 'Read Only',
-										value: 'read_only',
-									},
-									{
-										label: 'Read Write',
-										value: 'read_write',
-									},
-								],
-								modelValue: row.mode,
-								'onUpdate:modelValue': (newValue) => {
-									row.mode = newValue;
+				},
+				{
+					label: this.t('Mode'),
+					fieldname: 'mode',
+					width: 1,
+					align: 'center',
+					type: 'Component',
+					component: ({ row }) => {
+						return h(FormControl, {
+							type: 'select',
+							class: 'w-full',
+							options: [
+								{
+									label: this.t('Read Only'),
+									value: 'read_only',
 								},
-							});
-						},
+								{
+									label: this.t('Read Write'),
+									value: 'read_write',
+								},
+							],
+							modelValue: row.mode,
+							'onUpdate:modelValue': (newValue) => {
+								row.mode = newValue;
+							},
+						});
 					},
-					{
-						label: 'Columns',
-						width: '200px',
-						fieldname: 'columns',
-						align: 'center',
-						type: 'Component',
+				},
+				{
+					label: this.t('Columns'),
+					width: '200px',
+					fieldname: 'columns',
+					align: 'center',
+					type: 'Component',
 						component: ({ row }) => {
 							return h(SiteDatabaseColumnsSelector, {
 								modelValue: row.columns,
@@ -413,6 +414,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		fetchTableSchemas(reload = false) {
 			if (!this.site) return;
 			this.$resources.tableSchemas.submit({

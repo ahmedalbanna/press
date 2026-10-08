@@ -376,6 +376,88 @@ const common: Dictionary = {
 	'per month': { en: 'per month', ar: 'شهرياً' },
 	'per day': { en: 'per day', ar: 'يومياً' },
 	'Subdomain': { en: 'Subdomain', ar: 'النطاق الفرعي' },
+	// Database user dialogs
+	'Manage Database Users': { en: 'Manage Database Users', ar: 'إدارة مستخدمي قاعدة البيانات' },
+	'Database access is not available on your current plan.': {
+		en: 'Database access is not available on your current plan.',
+		ar: 'الوصول إلى قاعدة البيانات غير متاح في خطتك الحالية.',
+	},
+	'Please upgrade to a higher plan to use this feature.': {
+		en: 'Please upgrade to a higher plan to use this feature.',
+		ar: 'يُرجى الترقية إلى خطة أعلى لاستخدام هذه الميزة.',
+	},
+	'Upgrade Site Plan': { en: 'Upgrade Site Plan', ar: 'ترقية خطة الموقع' },
+	'Database User will be deleted shortly': {
+		en: 'Database User will be deleted shortly',
+		ar: 'سيتم حذف مستخدم قاعدة البيانات قريباً',
+	},
+	'Failed to initiate database user deletion': {
+		en: 'Failed to initiate database user deletion',
+		ar: 'فشل بدء حذف مستخدم قاعدة البيانات',
+	},
+	'Replica': { en: 'Replica', ar: 'نسخة مكررة' },
+	'Master': { en: 'Master', ar: 'رئيسي' },
+	'DB Connections': { en: 'DB Connections', ar: 'اتصالات قاعدة البيانات' },
+	'{value} Connection': { en: '{value} Connection', ar: '{value} اتصال' },
+	'{value} Connections': { en: '{value} Connections', ar: '{value} اتصالات' },
+	'Mode': { en: 'Mode', ar: 'الوضع' },
+	'Read Only': { en: 'Read Only', ar: 'للقراءة فقط' },
+	'Read/Write': { en: 'Read/Write', ar: 'قراءة/كتابة' },
+	'Read Write': { en: 'Read Write', ar: 'قراءة وكتابة' },
+	'Granular': { en: 'Granular', ar: 'مفصّل' },
+	'Created On': { en: 'Created On', ar: 'تاريخ الإنشاء' },
+	'View Logs': { en: 'View Logs', ar: 'عرض السجلات' },
+	'View Credential': { en: 'View Credential', ar: 'عرض بيانات الاعتماد' },
+	'Configure User': { en: 'Configure User', ar: 'تكوين المستخدم' },
+	'Delete User': { en: 'Delete User', ar: 'حذف المستخدم' },
+	'Delete Database User': { en: 'Delete Database User', ar: 'حذف مستخدم قاعدة البيانات' },
+	'Are you sure you want to delete the database user ?<br>': {
+		en: 'Are you sure you want to delete the database user ?<br>',
+		ar: 'هل تريد حذف مستخدم قاعدة البيانات؟<br>',
+	},
+	'Add User': { en: 'Add User', ar: 'إضافة مستخدم' },
+	'Edit Database User': { en: 'Edit Database User', ar: 'تعديل مستخدم قاعدة البيانات' },
+	'Add Database User': { en: 'Add Database User', ar: 'إضافة مستخدم قاعدة البيانات' },
+	'Label (to identify the user)': {
+		en: 'Label (to identify the user)',
+		ar: 'التسمية (لتحديد المستخدم)',
+	},
+	'Read only access to all the tables': {
+		en: 'Read only access to all the tables',
+		ar: 'وصول للقراءة فقط إلى جميع الجداول',
+	},
+	'Read/Write access to all the tables': {
+		en: 'Read/Write access to all the tables',
+		ar: 'وصول للقراءة/الكتابة إلى جميع الجداول',
+	},
+	'Granular access': { en: 'Granular access', ar: 'وصول مفصّل' },
+	'Access Mode': { en: 'Access Mode', ar: 'وضع الوصول' },
+	'Database Connections': { en: 'Database Connections', ar: 'اتصالات قاعدة البيانات' },
+	'Use Replica Server': { en: 'Use Replica Server', ar: 'استخدام خادم النسخة المكررة' },
+	'Fetching table schemas': { en: 'Fetching table schemas', ar: 'جاري جلب مخططات الجداول' },
+	'This can take upto 5 minutes': {
+		en: 'This can take upto 5 minutes',
+		ar: 'قد يستغرق ذلك حتى 5 دقائق',
+	},
+	'Configure Permissions': { en: 'Configure Permissions', ar: 'تكوين الأذونات' },
+	'Add Table': { en: 'Add Table', ar: 'إضافة جدول' },
+	'Refresh Schema': { en: 'Refresh Schema', ar: 'تحديث المخطط' },
+	'Create User': { en: 'Create User', ar: 'إنشاء المستخدم' },
+	'Save Changes': { en: 'Save Changes', ar: 'حفظ التغييرات' },
+	'Please provide a label for the user': {
+		en: 'Please provide a label for the user',
+		ar: 'يُرجى تقديم تسمية للمستخدم',
+	},
+	'User created successfully': {
+		en: 'User created successfully',
+		ar: 'تم إنشاء المستخدم بنجاح',
+	},
+	'User updated successfully': {
+		en: 'User updated successfully',
+		ar: 'تم تحديث المستخدم بنجاح',
+	},
+	'Table': { en: 'Table', ar: 'الجدول' },
+	'Columns': { en: 'Columns', ar: 'الأعمدة' },
 };
 
 export default common;

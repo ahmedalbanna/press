@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Manage Database Users',
+			title: t('Manage Database Users'),
 			size: planSupportsDatabaseAccess ? '4xl' : 'xl',
 		}"
 		v-model="show"
@@ -11,8 +11,7 @@
 			<div v-if="!planSupportsDatabaseAccess">
 				<div>
 					<p class="text-base">
-						Database access is not available on your current plan. <br />Please
-						upgrade to a higher plan to use this feature.
+						{{ t('Database access is not available on your current plan.') }} <br />{{ t('Please upgrade to a higher plan to use this feature.') }}
 					</p>
 
 					<Button
@@ -20,7 +19,7 @@
 						variant="solid"
 						@click="showChangePlanDialog = true"
 					>
-						Upgrade Site Plan
+						{{ t('Upgrade Site Plan') }}
 					</Button>
 					<ManageSitePlansDialog
 						:site="site"
@@ -71,6 +70,7 @@ import SiteDatabaseUserCredentialDialog from './site_database_user/SiteDatabaseU
 import SiteDatabaseAddEditUserDialog from './site_database_user/SiteDatabaseAddEditUserDialog.vue';
 import SiteDatabaseUserLogs from './site_database_user/SiteDatabaseUserLogs.vue';
 import { toast } from 'vue-sonner';
+import { t, tr } from '../utils/language';
 
 export default {
 	name: 'SiteDatabaseAccessDialog',
@@ -113,16 +113,16 @@ export default {
 		deleteSiteDatabaseUser() {
 			return {
 				url: 'press.api.client.run_doc_method',
-				onSuccess() {
-					toast.success('Database User will be deleted shortly');
-				},
-				onError(err) {
-					toast.error(
-						err.messages.length
-							? err.messages.join('\n')
-							: 'Failed to initiate database user deletion',
-					);
-				},
+			onSuccess() {
+				toast.success(t('Database User will be deleted shortly'));
+			},
+			onError(err) {
+				toast.error(
+					err.messages.length
+						? err.messages.join('\n')
+						: t('Failed to initiate database user deletion'),
+				);
+			},
 			};
 		},
 	},
@@ -135,105 +135,108 @@ export default {
 					status: ['!=', 'Archived'],
 				},
 				searchField: 'label',
-				filterControls() {
-					return [
-						{
-							type: 'select',
-							label: 'Status',
-							fieldname: 'status',
-							options: ['', 'Pending', 'Active', 'Failed'],
-						},
-					];
-				},
-				columns: [
+			filterControls() {
+				return [
 					{
-						label: 'Label',
-						fieldname: 'label',
-						width: '150px',
-					},
-					{
-						label: 'Status',
+						type: 'select',
+						label: t('Status'),
 						fieldname: 'status',
-						width: 0.5,
-						align: 'center',
-						type: 'Badge',
+						options: ['', t('Pending'), t('Active'), t('Failed')],
 					},
-					{
-						label: 'Server',
-						fieldname: 'use_replica_server',
-						width: 0.5,
-						align: 'center',
-						format: (value) => (value ? 'Replica' : 'Master'),
+				];
+			},
+			columns: [
+				{
+					label: t('Label'),
+					fieldname: 'label',
+					width: '150px',
+				},
+				{
+					label: t('Status'),
+					fieldname: 'status',
+					width: 0.5,
+					align: 'center',
+					type: 'Badge',
+				},
+				{
+					label: t('Server'),
+					fieldname: 'use_replica_server',
+					width: 0.5,
+					align: 'center',
+					format: (value) => (value ? t('Replica') : t('Master')),
+				},
+				{
+					label: t('DB Connections'),
+					fieldname: 'max_connections',
+					width: 0.7,
+					align: 'center',
+					format: (value) =>
+						value > 1
+							? tr('{value} Connections', { value })
+							: tr('{value} Connection', { value }),
+				},
+				{
+					label: t('Mode'),
+					fieldname: 'mode',
+					width: 0.7,
+					align: 'center',
+					format: (value, row) => {
+						return {
+							read_only: t('Read Only'),
+							read_write: t('Read/Write'),
+							granular: t('Granular'),
+						}[value];
 					},
-					{
-						label: 'DB Connections',
-						fieldname: 'max_connections',
-						width: 0.7,
-						align: 'center',
-						format: (value) => `${value} Connection` + (value > 1 ? 's' : ''),
-					},
-					{
-						label: 'Mode',
-						fieldname: 'mode',
-						width: 0.7,
-						align: 'center',
-						format: (value, row) => {
-							return {
-								read_only: 'Read Only',
-								read_write: 'Read/Write',
-								granular: 'Granular',
-							}[value];
-						},
-					},
+				},
 
-					{
-						label: 'Created On',
-						fieldname: 'creation',
-						align: 'center',
-						format: (value) => date(value, 'll'),
-					},
-				],
+				{
+					label: t('Created On'),
+					fieldname: 'creation',
+					align: 'center',
+					format: (value) => date(value, 'll'),
+				},
+			],
 				rowActions: ({ row, listResource, documentResource }) => {
 					if (row.status === 'Archived' || row.status === 'Pending') {
 						return [];
 					}
-					return [
-						{
-							label: 'View Logs',
-							onClick: () => {
-								this.show = false;
-								this.selectedUser = row.name;
-								this.selectedUserLabel = row.label;
-								this.showDatabaseUserLogsDialog = true;
-							},
+				return [
+					{
+						label: t('View Logs'),
+						onClick: () => {
+							this.show = false;
+							this.selectedUser = row.name;
+							this.selectedUserLabel = row.label;
+							this.showDatabaseUserLogsDialog = true;
 						},
-						{
-							label: 'View Credential',
-							onClick: () => {
-								this.show = false;
-								this.selectedUser = row.name;
-								this.showDatabaseUserCredentialDialog = true;
-							},
+					},
+					{
+						label: t('View Credential'),
+						onClick: () => {
+							this.show = false;
+							this.selectedUser = row.name;
+							this.showDatabaseUserCredentialDialog = true;
 						},
-						{
-							label: 'Configure User',
-							onClick: () => {
-								this.selectedUser = row.name;
-								this.show = false;
-								this.showDatabaseAddEditUserDialog = true;
-							},
+					},
+					{
+						label: t('Configure User'),
+						onClick: () => {
+							this.selectedUser = row.name;
+							this.show = false;
+							this.showDatabaseAddEditUserDialog = true;
 						},
-						{
-							label: 'Delete User',
-							onClick: () => {
-								this.show = false;
-								confirmDialog({
-									title: 'Delete Database User',
-									message: `Are you sure you want to delete the database user ?<br>`,
-									primaryAction: {
-										label: 'Delete',
-										variant: 'solid',
-										theme: 'red',
+					},
+					{
+						label: t('Delete User'),
+						onClick: () => {
+							this.show = false;
+							confirmDialog({
+								title: t('Delete Database User'),
+								message: t('Are you sure you want to delete the database user ?<br>'),
+								primaryAction: {
+									label: t('Delete'),
+									variant: 'solid',
+									theme: 'red',
 										onClick: ({ hide }) => {
 											this.$resources.deleteSiteDatabaseUser.submit({
 												dt: 'Site Database User',
@@ -257,10 +260,10 @@ export default {
 						},
 					];
 				},
-				primaryAction: () => {
-					return {
-						label: 'Add User',
-						variant: 'solid',
+			primaryAction: () => {
+				return {
+					label: t('Add User'),
+					variant: 'solid',
 						slots: {
 							prefix: icon('plus'),
 						},
@@ -284,6 +287,8 @@ export default {
 		},
 	},
 	methods: {
+		t,
+		tr,
 		hideSiteDatabaseAddEditUserDialog() {
 			this.showDatabaseAddEditUserDialog = false;
 		},
