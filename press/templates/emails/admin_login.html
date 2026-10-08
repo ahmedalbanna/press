@@ -2,15 +2,13 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white">
 		<div class="from-markdown">
-			Hey there,
+			{{ _("Hey there,") }}
 			<p>
-				<strong>{{user}}</strong> just
-				logged in to your site <strong>{{site}}</strong> as administrator.
-				They've stated the reason as follows:
+				{{ _("<strong>{0}</strong> just logged in to your site <strong>{1}</strong> as an administrator. They gave this reason:").format(user, site) }}
 			</p>
 				<blockquote>{{reason}}</blockquote>
 			<p>
-				It might be one of our developers investigating an issue on your behalf. Please raise a ticket on
+				{{ _("This may be one of our developers investigating an issue for you. If you do not recognise this activity, please raise a ticket with") }}
 				<a href="mailto:support@albannatech.com" target="_blank">support@albannatech.com</a> if this activity is
 				not to your knowledge.
 			</p>

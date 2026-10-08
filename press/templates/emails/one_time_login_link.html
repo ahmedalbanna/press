@@ -5,11 +5,11 @@
 
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white from-markdown">
-        <p>Hello,</p>
+        <p>{{ _('Hello,') }}</p>
         <p>
-            Click on the following button to login to your AlbannaTech dashboard. This link will expire in {{ minutes }} minutes.
+            {{ _("Click the button below to log in to your AlbannaTech dashboard. This link expires in {0} minutes.").format(minutes) }}
         </p>
-        {{ utils.button('Login', link, true) }}
+        {{ utils.button(_('Login'), link, true) }}
         {{ utils.separator() }}
         {{ utils.signature() }}
     </div>

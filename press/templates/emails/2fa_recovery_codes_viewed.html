@@ -3,22 +3,22 @@
 {% block content %}
 <div class="p-8 bg-white text-base leading-6 text-gray-900">
 	<div class="from-markdown">
-		<h2>Security Alert</h2>
-		<p>Hey there!</p>
+		<h2>{{ _("Security Alert") }}</h2>
+		<p>{{ _("Hey there!") }}</p>
 		<p>
-			Your two-factor authentication recovery codes were viewed at {{ viewed_at }}.
+			{{ _("Your two-factor authentication recovery codes were viewed at {0}.").format(viewed_at) }}
 		</p>
 		<p>
-			If you did not view your recovery codes, please secure your account immediately:
+			{{ _("If you did not view your recovery codes, secure your account immediately:") }}
 		</p>
 		<ul>
-			<li>Change your password</li>
-			<li>Generate new recovery codes</li>
-			<li>Review any recent account activity</li>
+			<li>{{ _("Change your password") }}</li>
+			<li>{{ _("Generate new recovery codes") }}</li>
+			<li>{{ _("Review any recent account activity") }}</li>
 		</ul>
-		<p>You can access your security settings here:</p>
-		<p><a href="{{ link }}">Security Settings</a></p>
-		<p>If you recognize this activity, you can ignore this email.</p>
+		<p>{{ _("You can reach your security settings here:") }}</p>
+		<p><a href="{{ link }}">{{ _("Security Settings") }}</a></p>
+		<p>{{ _("If you recognise this activity, you can ignore this email.") }}</p>
 	</div>
 </div>
 {% endblock %}

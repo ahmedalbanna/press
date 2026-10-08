@@ -2,21 +2,18 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white">
 		<div class="from-markdown">
-			Hey there,
+			{{ _("Hey there,") }}
 			<p>
-				Monitoring & alerting mechanism has been disabled for your site
-				<strong>{{site}}</strong>.
-                Reason for disabling monitoring:
+				{{ _("Monitoring and alerting has been disabled for your site <strong>{0}</strong>. Reason:").format(site) }}
 			</p>
 			<blockquote>{{reason}}</blockquote>
 			<p>
-				Please re-enable monitoring from dashboard to receive alerts.<br>
-                Check the documentation
+				{{ _("Please re-enable monitoring from the dashboard to receive alerts. See the documentation") }}<br>
 				<a
 					href="https://docs.frappe.io/cloud/sites/monitoring#monitoring-disabled"
 					target="_blank"
-					>here</a
-				> for the guide. If you need any assistance, please raise a ticket on
+					>{{ _("here") }}</a
+				> {{ _("for the guide. If you need help, please raise a ticket with") }}
 				<a href="mailto:support@albannatech.com" target="_blank"
 					>support@albannatech.com</a
 				>.

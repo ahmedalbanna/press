@@ -4,11 +4,11 @@
 {% block content %}
 <div class="p-8 bg-white text-base leading-6 text-gray-900">
 	<div class="from-markdown">
-		<h2>Security Alert</h2>
-		<p>Hey there!</p>
-		<p>It's been a year since you last reviewed your two-factor authentication recovery codes.</p>
-		<p>Please verify that you still have access to these codes. They are essential for account recovery if you lose access to your authentication device.</p>
-        {{ utils.button('View Your Recovery Codes ', link, true) }}
+		<h2>{{ _("Security Alert") }}</h2>
+		<p>{{ _("Hey there!") }}</p>
+		<p>{{ _("It has been a year since you last reviewed your two-factor authentication recovery codes.") }}</p>
+		<p>{{ _("Please check that you still have these codes. You need them to recover your account if you lose your authentication device.") }}</p>
+        {{ utils.button(_("View Your Recovery Codes"), link, true) }}
 	</div>
 </div>
 {% endblock %}
