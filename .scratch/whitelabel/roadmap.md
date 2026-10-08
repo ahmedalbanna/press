@@ -14,9 +14,20 @@
 | Code Location | press-mcp in Press + erpnext-mcp in ERPNext |
 | Deployment | On Press server (central management) |
 | MCP Server Type | Independent server (each MCP as separate service) |
+| Language | Python (same as Frappe) |
+| Framework | FastAPI (modern, async, auto-docs) |
+| MCP Library | Official MCP SDK |
+| Database | MariaDB (same as Frappe) + Redis (sessions) |
+| Containerization | Docker for each MCP server |
+| Reverse Proxy | Nginx |
+| Project Structure | Monorepo (main project + sub-projects) |
+| AI Agent Integration | Via MCP SDK |
+| AI Agent Framework | LangChain (or lightweight LLM tool calling) |
+| NLP Library | Transformers |
+| Data Processing | Pandas |
 | Local Models | Ollama via Docker (isolated, easy deployment) |
 | Cloud Providers | Unified API (OpenAI, Gemini, Anthropic) |
-| Hybrid AI Routing | Text analysis (simple → local, complex → cloud) |
+| Hybrid AI Routing | Smart (automatic based on task complexity) |
 | AI Agent Architecture | Hybrid (central agent + specialized agents) |
 | AI Agent Communication | Via MCP protocol |
 | MCP Communication | Mix (REST API for sync + Redis for async) |
