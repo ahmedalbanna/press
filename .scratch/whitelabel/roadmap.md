@@ -6,7 +6,7 @@
 
 **Status**: In progress
 
-### Tickets
+### Original Tickets
 
 | # | Title | Status | Blocked by |
 |---|-------|--------|------------|
@@ -17,11 +17,30 @@
 | 05 | Marketplace Rebranding | Ready | 01 |
 | 06 | Bilingual Support (Arabic/English) | Ready | 02, 03, 04, 05 |
 
+### New Tickets (Added)
+
+| # | Title | Status | Blocked by |
+|---|-------|--------|------------|
+| 07 | Landing Page | Ready | 01 |
+| 08 | Documentation Site | Ready | 01 |
+| 09 | FAQ Page | Ready | 01 |
+| 10 | Pricing Page | Ready | 01 |
+| 11 | Blog | Ready | 01 |
+| 12 | Visual Identity Comprehensive Review | Ready | 02, 03, 04, 05 |
+| 13 | Visual Regression Tests | Ready | 02, 03 |
+| 14 | Performance Measurement | Ready | 02 |
+| 15 | Cross-Browser Compatibility Tests | Ready | 02, 03 |
+
 ### Key Deliverables
 - AlbannaTech logo and favicon deployed to all surfaces
 - Brand colors (#0F172A, #0EA5E9, #10B981) applied throughout
 - Bilingual support (Arabic/English) with RTL/LTR
 - All Frappe Cloud references replaced with AlbannaTech equivalents
+- Landing page, documentation, FAQ, pricing, and blog pages
+- Visual identity review complete with checklist
+- Visual regression tests passing
+- Performance baseline measured
+- Cross-browser compatibility verified
 
 ---
 
@@ -203,9 +222,12 @@
 ## Success Metrics
 
 ### Phase 1
-- All 6 tickets completed
+- All 6 original tickets completed
+- All 9 new tickets completed
 - Zero Frappe Cloud references in customer-facing surfaces
 - Bilingual support working correctly
+- Visual regression tests passing
+- Cross-browser compatibility verified
 
 ### Phase 2
 - Page load time < 2 seconds
