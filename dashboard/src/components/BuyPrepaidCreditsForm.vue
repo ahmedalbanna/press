@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<FormControl
-			:label="`Amount (Minimum Amount: ${minimumAmount})`"
+			:label="tr('Amount (Minimum Amount: {amount})', { amount: minimumAmount })"
 			class="mb-3"
 			v-model.number="creditsToBuy"
 			name="amount"
@@ -17,9 +17,11 @@
 		</FormControl>
 		<FormControl
 			v-if="$team.doc.currency === 'INR'"
-			:label="`Total Amount + GST (${
-				$team.doc?.billing_info.gst_percentage * 100
-			}%)`"
+			:label="
+				tr('Total Amount + GST ({gst}%)', {
+					gst: $team.doc?.billing_info.gst_percentage * 100,
+				})
+			"
 			disabled
 			:modelValue="totalAmount"
 			name="total"
@@ -35,7 +37,7 @@
 	</div>
 
 	<div class="mt-4">
-		<div class="text-xs text-ink-gray-6">Select Payment Gateway</div>
+		<div class="text-xs text-ink-gray-6">{{ t('Select Payment Gateway') }}</div>
 		<div class="mt-1.5 grid grid-cols-1 gap-2 sm:grid-cols-2">
 			<button
 				@click="paymentGateway = 'Stripe'"
@@ -102,6 +104,7 @@ import BuyPrepaidCreditsStripe from './BuyPrepaidCreditsStripe.vue';
 import BuyPrepaidCreditsRazorpay from './BuyPrepaidCreditsRazorpay.vue';
 import RazorpayLogo from '../../src/logo/RazorpayLogo.vue';
 import PayPalLogo from '../../src/logo/PayPalLogo.vue';
+import { t, tr } from '../utils/language';
 
 export default {
 	name: 'BuyPrepaidCreditsForm',
@@ -149,6 +152,8 @@ export default {
 		onSuccess() {
 			this.$emit('success');
 		},
+		t,
+		tr,
 	},
 	computed: {
 		totalAmount() {

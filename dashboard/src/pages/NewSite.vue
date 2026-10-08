@@ -8,7 +8,7 @@
 		class="mx-auto mt-60 w-fit rounded border border-dashed px-12 py-8 text-center text-ink-gray-6"
 	>
 		<lucide-alert-triangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
-		<ErrorMessage message="You aren't permitted to create new sites" />
+		<ErrorMessage :message="t(`You aren't permitted to create new sites`)" />
 	</div>
 
 	<div
@@ -17,9 +17,7 @@
 	>
 		<LucideAlertTriangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
 		<p>
-			Your spending limit has been exceeded. Please
-			<a href="https://support.frappe.io" target="_blank">contact support</a>
-			to increase your limit.
+			{{ t('Your spending limit has been exceeded. Please') }} <a href="https://support.frappe.io" target="_blank">{{ t('contact support') }}</a> {{ t('to increase your limit.') }}
 		</p>
 	</div>
 
@@ -28,7 +26,7 @@
 		class="mx-auto mt-60 w-fit rounded-md border border-dashed px-12 py-8 text-center text-ink-gray-6"
 	>
 		<lucide-alert-triangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
-		<p>Please settle your outstanding invoices to create new sites.</p>
+		<p>{{ t('Please settle your outstanding invoices to create new sites.') }}</p>
 	</div>
 
 	<div v-else class="mx-auto max-w-2xl px-5">
@@ -39,7 +37,7 @@
 			Loading...
 		</div>
 		<div v-if="$route.name === 'NewBenchSite' && !bench">
-			<div class="py-4 text-base text-ink-gray-6">Something went wrong</div>
+			<div class="py-4 text-base text-ink-gray-6">{{ t('Something went wrong') }}</div>
 		</div>
 		<div v-else-if="options" class="space-y-12 pb-[50vh] pt-12">
 			<NewSiteAppSelector
@@ -49,9 +47,9 @@
 			/>
 			<div v-if="!bench">
 				<div class="flex items-center justify-between">
-					<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-						Select Frappe Framework Version
-					</h2>
+				<h2 class="text-base font-medium leading-6 text-ink-gray-9">
+					{{ t('Select Frappe Framework Version') }}
+				</h2>
 				</div>
 				<div class="mt-2">
 					<div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -90,7 +88,7 @@
 									class="flex items-center gap-2"
 								>
 									<Tooltip
-										text="This version is under development and may have bugs. Do not use for production sites."
+										:text="t('This version is under development and may have bugs. Do not use for production sites.')"
 									>
 										<lucide-info class="h-4 w-4 text-ink-gray-5" />
 									</Tooltip>
@@ -104,12 +102,12 @@
 			<div v-if="showLocalisationSelector" class="space-y-4">
 				<div class="flex space-x-2">
 					<FormControl
-						label="Install Local Compliance App?"
+						:label="t('Install Local Compliance App?')"
 						v-model="showLocalisationOption"
 						type="checkbox"
 					/>
 					<Tooltip
-						text="A local compliance app allows creating transactions as per statutory compliance. They're maintained by community partners."
+						:text="t(`A local compliance app allows creating transactions as per statutory compliance. They're maintained by community partners.`)"
 					>
 						<lucide-info class="h-4 w-4 text-ink-gray-5" />
 					</Tooltip>
@@ -118,7 +116,7 @@
 					class="w-1/2"
 					variant="outline"
 					:class="{ 'pointer-events-none opacity-50': !showLocalisationOption }"
-					label="Select Country"
+					:label="t('Select Country')"
 					:modelValue="selectedLocalisationCountry?.value"
 					@update:modelValue="
 						selectedLocalisationCountry = localisationAppCountries.find(
@@ -140,7 +138,7 @@
 					v-if="dedicatedServerConfig?.case != 'dedicated_only_multiple'"
 					type="checkbox"
 					v-model="useDedicatedServer"
-					label="Host this site on your dedicated server"
+					:label="t('Host this site on your dedicated server')"
 				/>
 				<div v-if="shouldShowDedicatedServerDropdown">
 					<h2 class="text-base font-medium leading-6 text-ink-gray-9 mb-2">
@@ -302,7 +300,7 @@
 					</h2>
 					<Tooltip
 						v-if="this.domain !== this.options.domain"
-						text="The root domain can change depending on the region you choose"
+						:text="t('The root domain can change depending on the region you choose')"
 					>
 						<lucide-help-circle class="h-4 w-4 text-ink-gray-5" />
 					</Tooltip>
@@ -365,7 +363,7 @@
 				<FormControl
 					class="checkbox"
 					type="checkbox"
-					label="I am okay if my details are shared with local partner"
+					:label="t('I am okay if my details are shared with local partner')"
 					@change="(val) => (shareDetailsConsent = val.target.checked)"
 				/>
 				<ErrorMessage class="my-2" :message="$resources.newSite.error" />
@@ -379,8 +377,8 @@
 					:loading="$resources.newSite.loading"
 					:loadingText="
 						isPrivateBenchPlan
-							? 'Provisioning private bench and creating site...'
-							: 'Creating site... This may take a while...'
+						? this.t(this.t('Provisioning private bench and creating site...'))
+						: this.t(this.t('Creating site... This may take a while...'))
 					"
 				>
 					Create site
@@ -411,6 +409,7 @@ import router from '../router'
 import { getCountry } from '../utils/country'
 import { DashboardError } from '../utils/error'
 import { validateSubdomain } from '../utils/site'
+import { t } from '../utils/language'
 
 export default {
 	name: 'NewSite',
@@ -621,16 +620,16 @@ export default {
 					validate() {
 						if (this.useDedicatedServer && !this.selectedDedicatedServer) {
 							throw new DashboardError(
-								'Please select a dedicated server to deploy your site.',
+								this.t('Please select a dedicated server to deploy your site.'),
 							)
 						}
 						if (!this.subdomain) {
-							throw new DashboardError('Please enter a subdomain')
+							throw new DashboardError(this.t('Please enter a subdomain'))
 						}
 
 						if (!this.agreedToRegionConsent) {
 							throw new DashboardError(
-								'Please agree to the above consent to create site',
+								this.t('Please agree to the above consent to create site'),
 							)
 						}
 					},
@@ -675,12 +674,12 @@ export default {
 					},
 					validate() {
 						if (!this.subdomain) {
-							throw new DashboardError('Please enter a subdomain')
+							throw new DashboardError(this.t('Please enter a subdomain'))
 						}
 
 						if (!this.agreedToRegionConsent) {
 							throw new DashboardError(
-								'Please agree to the above consent to create site',
+								this.t('Please agree to the above consent to create site'),
 							)
 						}
 					},
@@ -951,7 +950,7 @@ export default {
 			if (this.bench) {
 				let group = getCachedDocumentResource('Release Group', this.bench)
 				return [
-					{ label: 'Benches', route: '/groups' },
+					{ label: this.t('Benches'), route: '/groups' },
 					{
 						label: group ? group.doc.title : this.bench,
 						route: {
@@ -959,19 +958,19 @@ export default {
 							params: { name: this.bench },
 						},
 					},
-					{
-						label: 'New Site',
-						route: {
-							name: 'Release Group New Site',
-							params: { bench: this.bench },
-						},
+				{
+					label: this.t('New Site'),
+					route: {
+						name: 'Release Group New Site',
+						params: { bench: this.bench },
 					},
+				},
 				]
 			}
-			return [
-				{ label: 'Sites', route: '/sites' },
-				{ label: 'New Site', route: '/sites/new' },
-			]
+		return [
+			{ label: this.t('Sites'), route: '/sites' },
+			{ label: this.t('New Site'), route: '/sites/new' },
+		]
 		},
 		_totalPerMonth() {
 			let total =
@@ -1008,7 +1007,7 @@ export default {
 									this.$team.doc.currency == 'INR'
 										? app.plan.price_inr
 										: app.plan.price_usd,
-								)} per month</span>`
+								)} ${this.t('per month')}</span>`
 							: ''
 					}`,
 				)
@@ -1016,44 +1015,47 @@ export default {
 
 			return [
 				{
-					label: 'Frappe Framework Version',
+					label: this.t('Frappe Framework Version'),
 					value: this.selectedVersion?.name,
 				},
 				{
-					label: 'Region',
+					label: this.t('Region'),
 					value: this.selectedClusterTitle,
 				},
 				{
-					label: 'Site URL',
+					label: this.t('Site URL'),
 					value: `${this.subdomain}.${this.domain}`,
 				},
 				{
-					label: 'Site Plan',
+					label: this.t('Site Plan'),
 					value: `${this.$format.userCurrency(
 						this.$team.doc.currency == 'INR'
 							? this.selectedPlan.price_inr
 							: this.selectedPlan.price_usd,
-					)} per month`,
+					)} ${this.t('per month')}`,
 				},
 				{
-					label: 'Product Warranty',
+					label: this.t('Product Warranty'),
 					value: this.selectedPlan.support_included
-						? 'Included'
-						: 'Not Included',
+						? this.t('Included')
+						: this.t('Not Included'),
 				},
 				{
-					label: 'Apps',
-					value: this.apps.length ? appPlans.join('<br>') : 'No apps selected',
+					label: this.t('Apps'),
+					value: this.apps.length
+						? appPlans.join('<br>')
+						: this.t('No apps selected'),
 				},
 				{
-					label: 'Total',
-					value: `${this.totalPerMonth} per month <div class="text-ink-gray-6">${this.totalPerDay} per day</div>`,
+					label: this.t('Total'),
+					value: `${this.totalPerMonth} ${this.t('per month')} <div class="text-ink-gray-6">${this.totalPerDay} ${this.t('per day')}</div>`,
 					condition: () => this._totalPerMonth,
 				},
 			]
 		},
 	},
 	methods: {
+		t,
 		autoSelectVersion() {
 			if (!this.availableVersions) return null
 

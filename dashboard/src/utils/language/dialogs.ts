@@ -150,6 +150,98 @@ const dialogs: Dictionary = {
 		ar: 'هل تريد حذف هذه اللقطة؟ سيؤدي ذلك إلى حذف اللقطة وكل البيانات المستعادة المرتبطة بها.',
 	},
 
+	// Site action dialogs
+	'Deactivate Site': { en: 'Deactivate Site', ar: 'تعطيل الموقع' },
+	'Activate Site': { en: 'Activate Site', ar: 'تنشيط الموقع' },
+	'Migrate Site': { en: 'Migrate Site', ar: 'ترحيل الموقع' },
+	'Reset Site': { en: 'Reset Site', ar: 'إعادة تعيين الموقع' },
+	'Transfer Site Ownership': { en: 'Transfer Site Ownership', ar: 'نقل ملكية الموقع' },
+	'Clear Cache': { en: 'Clear Cache', ar: 'مسح الذاكرة المؤقتة' },
+	'Are you sure you want to deactivate this site?': {
+		en: 'Are you sure you want to deactivate this site?',
+		ar: 'هل تريد تعطيل هذا الموقع؟',
+	},
+	'Are you sure you want to activate this site?': {
+		en: 'Are you sure you want to activate this site?',
+		ar: 'هل تريد تنشيط هذا الموقع؟',
+	},
+	'You will still be charged for it.': {
+		en: 'You will still be charged for it.',
+		ar: 'سيستمر تحصيل الرسوم عليك.',
+	},
+	'Note: Use this as last resort if site is broken and inaccessible': {
+		en: 'Note: Use this as last resort if site is broken and inaccessible',
+		ar: 'ملاحظة: استخدم هذا كحل أخير إذا كان الموقع معطلاً ولا يمكن الوصول إليه',
+	},
+	'All the data from your site will be lost. Are you sure you want to reset your database?': {
+		en: 'All the data from your site will be lost. Are you sure you want to reset your database?',
+		ar: 'ستفقد كل بيانات موقعك. هل تريد بالتأكيد إعادة تعيين قاعدة بياناتك؟',
+	},
+	'Skip patches if they fail during migration (Not recommended)': {
+		en: 'Skip patches if they fail during migration (Not recommended)',
+		ar: 'تخطي التصحيحات إذا فشلت أثناء الترحيل (غير مستحسن)',
+	},
+	'Please type the site name to confirm.': {
+		en: 'Please type the site name to confirm.',
+		ar: 'يُرجى كتابة اسم الموقع للتأكيد.',
+	},
+	'Enter email address of the team for transfer of site ownership': {
+		en: 'Enter email address of the team for transfer of site ownership',
+		ar: 'أدخل عنوان البريد الإلكتروني للفريق لنقل ملكية الموقع',
+	},
+	'Reason for transfer': { en: 'Reason for transfer', ar: 'سبب النقل' },
+	'Transfer request sent to {email} successfully.': {
+		en: 'Transfer request sent to {email} successfully.',
+		ar: 'تم إرسال طلب النقل إلى {email} بنجاح.',
+	},
+	'bench migrate command will be executed on your site. Are you sure you want to run this command? We recommend that you take a database backup before continuing.': {
+		en: 'bench migrate command will be executed on your site. Are you sure you want to run this command? We recommend that you take a database backup before continuing.',
+		ar: 'سيتم تنفيذ أمر bench migrate على موقعك. هل تريد تشغيل هذا الأمر بالتأكيد؟ نوصي بأخذ نسخة احتياطية من قاعدة البيانات قبل المتابعة.',
+	},
+	'bench clear-cache and bench clear-website-cache commands will be executed on your site. Are you sure you want to run these commands?': {
+		en: 'bench clear-cache and bench clear-website-cache commands will be executed on your site. Are you sure you want to run these commands?',
+		ar: 'سيتم تنفيذ أمرا bench clear-cache و bench clear-website-cache على موقعك. هل تريد تشغيل هذين الأمرين بالتأكيد؟',
+	},
+	'General Actions': { en: 'General Actions', ar: 'إجراءات عامة' },
+	'Dangerous Actions': { en: 'Dangerous Actions', ar: 'إجراءات خطيرة' },
+	'Change Bench / Server / Region options moved to Migrations Tab': {
+		en: 'Change Bench / Server / Region options moved to Migrations Tab',
+		ar: 'تم نقل خيارات تغيير البنش / الخادم / المنطقة إلى تبويب الترحيلات',
+	},
+	'In-Place Migrate Site': {
+		en: 'In-Place Migrate Site',
+		ar: 'ترحيل الموقع في مكانه',
+	},
+	'Run bench migrate on the current bench to apply pending patches and schema changes.': {
+		en: 'Run bench migrate on the current bench to apply pending patches and schema changes.',
+		ar: 'تشغيل bench migrate على البنش الحالي لتطبيق التصحيحات وتغييرات المخطط المعلقة.',
+	},
+	'Move to a Different Server / Bench': {
+		en: 'Move to a Different Server / Bench',
+		ar: 'النقل إلى خادم / بنش مختلف',
+	},
+	'Move this site to another private bench or server.': {
+		en: 'Move this site to another private bench or server.',
+		ar: 'انقل هذا الموقع إلى بنش أو خادم خاص آخر.',
+	},
+	'Move to a Different Region': { en: 'Move to a Different Region', ar: 'النقل إلى منطقة مختلفة' },
+	'Move this site to a bench in another region.': {
+		en: 'Move this site to a bench in another region.',
+		ar: 'انقل هذا الموقع إلى بنش في منطقة أخرى.',
+	},
+	'Move Site': { en: 'Move Site', ar: 'نقل الموقع' },
+	'Site name does not match': { en: 'Site name does not match', ar: 'اسم الموقع غير مطابق' },
+	'Site name does not match.': { en: 'Site name does not match.', ar: 'اسم الموقع غير مطابق.' },
+	'Notification Settings': { en: 'Notification Settings', ar: 'إعدادات الإشعارات' },
+	'Activate site': { en: 'Activate site', ar: 'تنشيط الموقع' },
+	'Deactivate site': { en: 'Deactivate site', ar: 'تعطيل الموقع' },
+	'Drop site': { en: 'Drop site', ar: 'حذف الموقع' },
+	'Migrate site': { en: 'Migrate site', ar: 'ترحيل الموقع' },
+	'Transfer site': { en: 'Transfer site', ar: 'نقل الموقع' },
+	'Reset site': { en: 'Reset site', ar: 'إعادة تعيين الموقع' },
+	'Clear cache': { en: 'Clear cache', ar: 'مسح الذاكرة المؤقتة' },
+	'Schedule backup': { en: 'Schedule backup', ar: 'جدولة نسخة احتياطية' },
+
 	// Toasts: success
 	'All notifications marked as read': { en: 'All notifications marked as read', ar: 'تم تعيين كل الإشعارات كمقروءة' },
 	'App Removed': { en: 'App Removed', ar: 'تم إزالة التطبيق' },

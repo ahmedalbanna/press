@@ -5,11 +5,13 @@
 			:key="group.group"
 			class="divide-y rounded border border-outline-gray-1 p-5"
 		>
-			<div class="pb-3 text-lg font-semibold">{{ group.group }}</div>
+			<div class="pb-3 text-lg font-semibold">{{ t(group.group) }}</div>
 			<AlertBanner
 				v-if="group.group == 'General Actions'"
 				type="warning"
-				title="Change Bench / Server / Region options moved to Migrations Tab"
+				:title="
+					t('Change Bench / Server / Region options moved to Migrations Tab')
+				"
 				class="mb-3"
 			>
 				<Button
@@ -17,7 +19,7 @@
 					variant="outline"
 					@click="openSiteMigrationsDoc"
 				>
-					View Documentation
+					{{ t('View documentation') }}
 				</Button>
 			</AlertBanner>
 			<!-- Migration shortcuts: deep-link to the Migrations tab with the dialog
@@ -30,24 +32,24 @@
 				>
 					<div class="flex items-center justify-between gap-1">
 						<div>
-							<h3 class="text-base font-medium">{{ shortcut.label }}</h3>
-							<p class="mt-1 text-p-base text-ink-gray-6">
-								{{ shortcut.description }}
-							</p>
-						</div>
-						<Button
-							class="whitespace-nowrap"
-							@click="openMigration(shortcut.action)"
+						<h3 class="text-base font-medium">{{ t(shortcut.label) }}</h3>
+						<p class="mt-1 text-p-base text-ink-gray-6">
+							{{ t(shortcut.description) }}
+						</p>
+					</div>
+					<Button
+						class="whitespace-nowrap"
+						@click="openMigration(shortcut.action)"
+					>
+						<p
+							:class="
+								group.group === 'Dangerous Actions'
+									? 'text-red-600'
+									: 'text-ink-gray-8'
+							"
 						>
-							<p
-								:class="
-									group.group === 'Dangerous Actions'
-										? 'text-red-600'
-										: 'text-ink-gray-8'
-								"
-							>
-								{{ shortcut.buttonLabel }}
-							</p>
+							{{ t(shortcut.buttonLabel) }}
+						</p>
 						</Button>
 					</div>
 				</div>
@@ -73,6 +75,7 @@
 import { getCachedDocumentResource } from 'frappe-ui'
 import { defineAsyncComponent, h } from 'vue'
 import { renderDialog } from '../utils/components'
+import { t } from '../utils/language'
 import AlertBanner from './AlertBanner.vue'
 import SiteActionCell from './SiteActionCell.vue'
 
@@ -80,6 +83,7 @@ export default {
 	name: 'SiteActions',
 	props: ['site'],
 	components: { SiteActionCell, AlertBanner },
+	methods: { t },
 	data() {
 		return {
 			// `action` matches the keys returned by Site.get_migration_options, which

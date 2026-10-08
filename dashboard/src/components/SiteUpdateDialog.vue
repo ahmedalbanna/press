@@ -12,16 +12,16 @@
 				<div class="mt-4 flex flex-col space-y-4">
 					<DateTimeControl
 						v-model="scheduledTime"
-						label="Schedule Time in IST"
+						:label="t('Schedule Time in IST')"
 					/>
 					<div class="flex flex-col space-y-2">
 						<FormControl
-							label="Skip failing patches if any"
+							:label="t('Skip failing patches if any')"
 							type="checkbox"
 							v-model="skipFailingPatches"
 						/>
 						<FormControl
-							label="Skip taking backup for this update"
+							:label="t('Skip taking backup for this update')"
 							type="checkbox"
 							v-model="skipBackups"
 							v-if="!$site.doc.group_public"
@@ -32,21 +32,14 @@
 						>
 							<lucide-alert-triangle class="mr-4 inline-block h-6 w-6" />
 							<div>
-								If the update fails, rollback will not occur as there is no
-								backup. You will have to manually fix the issues over
-								<a
-									href="https://docs.frappe.io/cloud/benches/ssh"
-									target="_blank"
-									class="underline"
-									>ssh</a
-								>.
+								{{ t('If the update fails, rollback will not occur as there is no backup. You will have to manually fix the issues over ssh.') }}
 							</div>
 						</div>
 					</div>
 				</div>
 			</template>
 			<div v-else class="text-center text-base text-ink-gray-6">
-				No apps to update
+				{{ t('No apps to update') }}
 			</div>
 			<ErrorMessage class="mt-4" :message="$site.scheduleUpdate.error" />
 		</template>
@@ -55,7 +48,7 @@
 				v-if="existingUpdate"
 				class="w-full"
 				variant="solid"
-				label="Edit Update"
+				:label="t('Edit Update')"
 				@click="editUpdate"
 			/>
 			<Button
@@ -64,9 +57,7 @@
 				variant="solid"
 				:theme="skipBackups ? 'red' : 'gray'"
 				:loading="$site.scheduleUpdate.loading"
-				:label="`Update ${
-					scheduledTime ? `at ${scheduledTimeInLocal}` : 'Now'
-				}`"
+				:label="tr('Update {when}', { when: scheduledTime ? t('at {time}', { time: scheduledTimeInLocal }) : t('Now') })"
 				@click="scheduleUpdate"
 			/>
 		</template>
@@ -78,6 +69,7 @@ import DateTimeControl from './DateTimeControl.vue';
 import GenericList from './GenericList.vue';
 import dayjs, { dayjsIST } from '../utils/dayjs';
 import { toast } from 'vue-sonner';
+import { t } from '../utils/language';
 
 export default {
 	name: 'SiteUpdateDialog',
@@ -132,14 +124,14 @@ export default {
 				),
 				columns: [
 					{
-						label: 'App',
+						label: t('App'),
 						fieldname: 'app',
 						format(value, row) {
 							return row.title || value;
 						},
 					},
 					{
-						label: 'Current Version',
+						label: t('Current Version'),
 						type: 'Badge',
 						format(value, row) {
 							return row.will_branch_change
@@ -159,7 +151,7 @@ export default {
 						},
 					},
 					{
-						label: 'Next Version',
+						label: t('Next Version'),
 						type: 'Badge',
 						format(value, row) {
 							return row.will_branch_change
@@ -179,7 +171,7 @@ export default {
 						},
 					},
 					{
-						label: 'Changes',
+						label: t('Changes'),
 						type: 'Button',
 						width: 0.5,
 						align: 'right',
@@ -196,7 +188,7 @@ export default {
 							if (!url) return null;
 
 							return {
-								label: 'View',
+								label: t('View'),
 								variant: 'ghost',
 								onClick() {
 									window.open(url, '_blank', 'noopener,noreferrer');
@@ -223,11 +215,12 @@ export default {
 			return this.$resources.siteUpdate;
 		},
 		dialogTitle() {
-			if (this.existingUpdate) return 'Edit Scheduled Update';
-			else return 'Updates Available';
+			if (this.existingUpdate) return this.t('Edit Scheduled Update');
+			else return this.t('Updates Available');
 		},
 	},
 	methods: {
+		t,
 		scheduleUpdate() {
 			this.$site.scheduleUpdate.submit(
 				{
@@ -253,17 +246,17 @@ export default {
 					scheduled_time: this.scheduledTimeInIST,
 				}),
 				{
-					loading: 'Editing scheduled update...',
+					loading: this.t('Editing scheduled update...'),
 					success: () => {
 						this.show = false;
 						this.$site.reload();
 						this.siteUpdate.reload();
-						return 'Scheduled update edited successfully';
+						return this.t('Scheduled update edited successfully');
 					},
 					error: (err) => {
 						return err.messages.length
 							? err.messages[0]
-							: err.message || 'Failed to edit scheduled update';
+							: err.message || this.t('Failed to edit scheduled update');
 					},
 				},
 			);

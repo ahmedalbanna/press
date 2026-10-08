@@ -160,6 +160,67 @@ const objects: Dictionary = {
 	'Bench Analytics': { en: 'Bench Analytics', ar: 'تحليلات البنش' },
 	'Backup Record': { en: 'Backup Record', ar: 'سجل النسخ الاحتياطي' },
 	'Backup Schedule': { en: 'Backup Schedule', ar: 'جدول النسخ الاحتياطي' },
+	'Add Tag': { en: 'Add Tag', ar: 'إضافة علامة' },
+	// SiteOverview banners and tooltips
+	"This site's server is out of disk space. The site may stop responding until space is freed up.": {
+		en: "This site's server is out of disk space. The site may stop responding until space is freed up.",
+		ar: 'خادم هذا الموقع نفدت مساحة القرص. قد يتوقف الموقع عن الاستجابة حتى يتم تحرير المساحة.',
+	},
+	"Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.": {
+		en: "Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.",
+		ar: 'فشل إنشاء الموقع. يمكنك استعادة الموقع من نسخة احتياطية (من موقع آخر) أو حذف هذا الموقع لإنشاء موقع جديد. سيتم حذف الموقع تلقائياً بعد {days} أيام إذا لم يتم استعادته.',
+	},
+	"Suspension Reason : {reason}": {
+		en: 'Suspension Reason : {reason}',
+		ar: 'سبب التعليق : {reason}',
+	},
+	'Database or Disk usage limits exceeded. Upgrade plan or reduce usage to avoid suspension.': {
+		en: 'Database or Disk usage limits exceeded. Upgrade plan or reduce usage to avoid suspension.',
+		ar: 'تم تجاوز حدود استخدام قاعدة البيانات أو القرص. قم بترقية الخطة أو تقليل الاستخدام لتجنب التعليق.',
+	},
+	"Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.": {
+		en: "Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.",
+		ar: 'مراقبة الموقع معطلة، مما يعني أننا لن نتمكن من إخطارك بأي انقطاع. يرجى إعادة تفعيل المراقبة في أقرب فرصة.',
+	},
+	'Your site is on an End of Life version. Upgrade to the latest version to get support, latest features and security updates.': {
+		en: 'Your site is on an End of Life version. Upgrade to the latest version to get support, latest features and security updates.',
+		ar: 'موقعك على إصدار منتهي الصلاحية. قم بالترقية إلى أحدث إصدار للحصول على الدعم والميزات الأحدث وتحديثات الأمان.',
+	},
+	'Your site is currently on a shared bench. Upgrade plan to enjoy more benefits.': {
+		en: 'Your site is currently on a shared bench. Upgrade plan to enjoy more benefits.',
+		ar: 'موقعك حاليًا على بنش مشترك. قم بترقية الخطة للاستفادة من مزايا إضافية.',
+	},
+	'Your site is eligible to move to a private bench with server scripts and custom apps support enabled.': {
+		en: 'Your site is eligible to move to a private bench with server scripts and custom apps support enabled.',
+		ar: 'موقعك مؤهل للنقل إلى بنش خاص مع دعم سكريبتات الخادم والتطبيقات المخصصة.',
+	},
+	'Product support included': { en: 'Product support included', ar: 'يتضمن دعم المنتج' },
+	'No individual plans needed for sites on dedicated servers': {
+		en: 'No individual plans needed for sites on dedicated servers',
+		ar: 'لا حاجة لخطط فردية للمواقع على الخوادم المخصصة',
+	},
+	'Includes private and public file uploads and backups': {
+		en: 'Includes private and public file uploads and backups',
+		ar: 'يتضمن رفع الملفات الخاصة والعامة والنسخ الاحتياطية',
+	},
+	'Use this for adding A records for your site': {
+		en: 'Use this for adding A records for your site',
+		ar: 'استخدم هذا لإضافة سجلات A لموقعك',
+	},
+	'Use this for whitelisting our server on a 3rd party service': {
+		en: 'Use this for whitelisting our server on a 3rd party service',
+		ar: 'استخدم هذا لإدراج خادمنا في القائمة البيضاء لخدمة طرف ثالث',
+	},
+	// ConfigEditorDialog
+	'Edit Config': { en: 'Edit Config', ar: 'تعديل التكوين' },
+	'Add Config': { en: 'Add Config', ar: 'إضافة تكوين' },
+	'Edit Key': { en: 'Edit Key', ar: 'تعديل المفتاح' },
+	'Add Key': { en: 'Add Key', ar: 'إضافة مفتاح' },
+	'String': { en: 'String', ar: 'نص' },
+	'Number': { en: 'Number', ar: 'رقم' },
+	'JSON': { en: 'JSON', ar: 'JSON' },
+	'Boolean': { en: 'Boolean', ar: 'منطقي' },
+	'Password': { en: 'Password', ar: 'كلمة المرور' },
 };
 
 export default objects;

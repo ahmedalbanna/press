@@ -13,7 +13,7 @@
 			v-if="$site?.doc?.is_server_disk_full"
 			class="col-span-1 lg:col-span-2"
 			type="error"
-			title="This site's server is out of disk space. The site may stop responding until space is freed up."
+			:title="t(`This site's server is out of disk space. The site may stop responding until space is freed up.`)"
 		>
 			<Button
 				class="ml-auto min-w-[7rem]"
@@ -28,14 +28,14 @@
 			v-if="$site?.doc?.creation_failed"
 			class="col-span-1 lg:col-span-2"
 			type="error"
-			:title="`Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after ${$site?.doc?.creation_failure_retention_days} days if not restored.`"
+			:title="tr('Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.', { days: $site?.doc?.creation_failure_retention_days })"
 		> </AlertBanner>
 
 		<AlertBanner
 			v-if="$site?.doc?.status === 'Suspended' && $site?.doc?.suspension_reason"
 			class="col-span-1 lg:col-span-2"
 			type="error"
-			:title="`Suspension Reason : ${$site?.doc?.suspension_reason || 'Not Specified'}`"
+			:title="tr('Suspension Reason : {reason}', { reason: $site?.doc?.suspension_reason || t('Not Specified') })"
 		>
 			<Button
 				class="ml-auto min-w-[7rem]"
@@ -50,7 +50,7 @@
 			v-if="$site?.doc?.status === 'Active' && $site?.doc?.site_usage_exceeded"
 			class="col-span-1 lg:col-span-2"
 			type="warning"
-			title="Database or Disk usage limits exceeded. Upgrade plan or reduce usage to avoid suspension."
+			:title="t('Database or Disk usage limits exceeded. Upgrade plan or reduce usage to avoid suspension.')"
 		>
 			<Button
 				class="ml-auto min-w-[7rem]"
@@ -64,14 +64,14 @@
 		<AlertBanner
 			v-if="$site.doc.is_monitoring_disabled && $site.doc.status !== 'Archived'"
 			class="col-span-1 lg:col-span-2"
-			title="Site monitoring is disabled, which means we won’t be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience."
+			:title="t(`Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.`)"
 			:id="$site.name"
 			type="warning"
 		> </AlertBanner>
 		<DismissableBanner
 			v-else-if="$site.doc.eol_versions.includes($site.doc.version)"
 			class="col-span-1 lg:col-span-2"
-			title="Your site is on an End of Life version. Upgrade to the latest version to get support, latest features and security updates."
+			:title="t('Your site is on an End of Life version. Upgrade to the latest version to get support, latest features and security updates.')"
 			:id="`${$site.name}-eol`"
 		>
 			<Button
@@ -91,7 +91,7 @@
 				$site.doc.status !== 'Archived'
 			"
 			class="col-span-1 lg:col-span-2"
-			title="Your site is currently on a shared bench. Upgrade plan to enjoy <a href='https://frappecloud.com/shared-hosting#benches' class='underline' target='_blank'>more benefits</a>."
+			:title="t('Your site is currently on a shared bench. Upgrade plan to enjoy more benefits.')"
 			:id="$site.name"
 			type="gray"
 		>
@@ -108,7 +108,7 @@
 				$site.doc.status !== 'Archived'
 			"
 			class="col-span-1 lg:col-span-2"
-			title="Your site is eligible to move to a private bench with server scripts and custom apps support enabled."
+			:title="t('Your site is eligible to move to a private bench with server scripts and custom apps support enabled.')"
 			:id="$site.name"
 		>
 			<Button class="ml-auto" variant="outline" @click="moveToPrivateBench">
@@ -121,7 +121,7 @@
 				<div class="border-b border-r p-5 lg:border-b-0">
 					<div class="flex h-full items-center justify-between">
 						<div>
-							<div class="text-base text-ink-gray-7">Current Plan</div>
+							<div class="text-base text-ink-gray-7">{{ t('Current Plan') }}</div>
 
 							<div class="mt-2 flex justify-between">
 								<div>
@@ -147,7 +147,7 @@
 												</span>
 											</template>
 
-											<template v-else> No plan set </template>
+											<template v-else> {{ t('No plan set') }} </template>
 
 											<div
 												class="ml-2 text-sm leading-3 text-ink-gray-6"
@@ -157,7 +157,7 @@
 											!currentPlan.is_trial_plan
 											"
 											>
-												<Tooltip text="Product support included">
+												<Tooltip :text="t('Product support included')">
 													<lucide-badge-check class="h-4 w-4" />
 												</Tooltip>
 											</div>
@@ -168,12 +168,12 @@
 						</div>
 						<template v-if="!$site.doc.is_dedicated_server">
 							<Button @click="showPlanChangeDialog">
-								{{ currentPlan?.is_trial_plan ? 'Upgrade' : 'Change' }}
+								{{ currentPlan?.is_trial_plan ? t('Upgrade') : t('Change') }}
 							</Button>
 						</template>
 						<template v-else>
 							<Tooltip
-								text="No individual plans needed for sites on dedicated servers"
+								:text="t('No individual plans needed for sites on dedicated servers')"
 							>
 								<LucideHelpCircle class="size-4" />
 							</Tooltip>
@@ -187,7 +187,7 @@
 					<div
 						class="flex items-center justify-between text-base text-ink-gray-7"
 					>
-						<span>Compute</span>
+						<span>{{ t('Compute') }}</span>
 						<div class="h-7"></div>
 					</div>
 					<div class="mt-2">
@@ -207,7 +207,7 @@
 									<template
 										v-if="currentPlan"
 									>
-										of {{ currentPlan?.cpu_time_per_day }} hours
+										of {{ currentPlan?.cpu_time_per_day }} {{ t('hours') }}
 									</template>
 								</div>
 							</div>
@@ -219,10 +219,10 @@
 						class="flex items-center justify-between text-base text-ink-gray-7"
 					>
 						<div class="flex w-full">
-							<div class="flex-grow">Object Storage</div>
+							<div class="flex-grow">{{ t('Object Storage') }}</div>
 
 							<Tooltip
-								text="Includes private and public file uploads and backups"
+								:text="t('Includes private and public file uploads and backups')"
 							>
 								<LucideHelpCircle class="inline size-4 ml-2" />
 							</Tooltip>
@@ -259,7 +259,7 @@
 					<div
 						class="min-h-[1.75rem] flex items-center justify-between space-x-2"
 					>
-						<span class="text-base text-ink-gray-7 mb-auto">Database</span>
+						<span class="text-base text-ink-gray-7 mb-auto">{{ t('Database') }}</span>
 						<div class="flex items-center space-x-2">
 							<Button
 								v-if="
@@ -311,7 +311,7 @@
 		</div>
 		<div class="rounded-md border">
 			<div class="h-12 border-b px-5 py-4">
-				<h2 class="text-lg font-medium text-ink-gray-9">Site Information</h2>
+				<h2 class="text-lg font-medium text-ink-gray-9">{{ t('Site Information') }}</h2>
 			</div>
 			<div>
 				<div
@@ -383,6 +383,7 @@ import BenchActionsDropdown from './BenchActionsDropdown.vue'
 import CustomAlerts from './CustomAlerts.vue'
 import DismissableBanner from './DismissableBanner.vue'
 import SiteDailyUsage from './SiteDailyUsage.vue'
+import { t, tr } from '../utils/language'
 
 export default {
 	name: 'SiteOverview',
@@ -408,6 +409,8 @@ export default {
 		}
 	},
 	methods: {
+		t,
+		tr,
 		showPlanChangeDialog() {
 			let SitePlansDialog = defineAsyncComponent(
 				() => import('../components/ManageSitePlansDialog.vue'),
@@ -458,8 +461,8 @@ export default {
 					tag: tag.tag_name,
 				}),
 				{
-					loading: 'Removing tag...',
-					success: `Tag ${tag.tag_name} removed`,
+					loading: this.t('Removing tag...'),
+					success: this.tr('Tag {tag} removed', { tag: tag.tag_name }),
 					error: (e) => getToastErrorMessage(e),
 				},
 			)
@@ -507,8 +510,8 @@ export default {
 					if (isSynced) {
 						this.refreshingDatabaseUsage = false
 						let message = refreshAfterSeconds
-							? `Database usage refreshed. You can refresh again after ${refreshAfterMinutes} minute(s).`
-							: 'Database usage refreshed.'
+							? this.tr('Database usage refreshed. You can refresh again after {minutes} minute(s).', { minutes: refreshAfterMinutes })
+							: this.t('Database usage refreshed.')
 						toast.success(message)
 						this.$resources.currentUsage.reload()
 					} else {
@@ -525,21 +528,21 @@ export default {
 		siteInformation() {
 			return [
 				{
-					label: 'Owned by',
+					label: this.t('Owned by'),
 					value: this.$site.doc?.owner_email,
 				},
 				{
-					label: 'Created by',
+					label: this.t('Created by'),
 					value: this.$site.doc?.signup_by || this.$site.doc?.owner,
 				},
 				{
-					label: 'Created on',
+					label: this.t('Created on'),
 					value: this.$format.date(
 						this.$site.doc?.signup_time || this.$site.doc?.creation,
 					),
 				},
 				{
-					label: 'Region',
+					label: this.t('Region'),
 					value: this.$site.doc?.cluster.title,
 					prefix: h('img', {
 						src: this.$site.doc?.cluster.image,
@@ -548,7 +551,7 @@ export default {
 					}),
 				},
 				{
-					label: 'Bench',
+					label: this.t('Bench'),
 					value: this.$site.doc?.bench,
 					action: this.$team?.doc?.is_desk_user
 						? h(BenchActionsDropdown, {
@@ -559,7 +562,7 @@ export default {
 						: null,
 				},
 				{
-					label: 'Inbound IP',
+					label: this.t('Inbound IP'),
 					value: this.$site.doc?.inbound_ip,
 					suffix: h(
 						Tooltip,
@@ -570,7 +573,7 @@ export default {
 					),
 				},
 				{
-					label: 'Outbound IP',
+					label: this.t('Outbound IP'),
 					value: this.$site.doc?.outbound_ip,
 					suffix: h(
 						Tooltip,

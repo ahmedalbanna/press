@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: config ? 'Edit Config' : 'Add Config',
+			title: config ? t('Edit Config') : t('Add Config'),
 			actions: [
 				{
-					label: config ? 'Edit Key' : 'Add Key',
+					label: config ? t('Edit Key') : t('Add Key'),
 					variant: 'solid',
 					loading: docResource?.updateConfig?.loading,
 					onClick: addConfig,
@@ -18,7 +18,7 @@
 				<div :class="{ 'pointer-events-none': config }">
 					<FormControl
 						type="combobox"
-						label="Config Name"
+						:label="t('Config Name')"
 						:options="keyOptions"
 						:modelValue="selectedConfig?.value"
 						@update:modelValue="
@@ -40,7 +40,7 @@
 				</div>
 				<FormControl
 					type="text"
-					label="Key"
+					:label="t('Key')"
 					:modelValue="
 						selectedConfig?.value === '__custom_key'
 							? key
@@ -54,22 +54,22 @@
 				/>
 				<FormControl
 					type="select"
-					label="Type"
+					:label="t('Type')"
 					:modelValue="selectedConfig?.type || type"
 					@update:modelValue="type = $event"
 					:options="[
-						'String',
-						'Number',
-						'JSON',
-						'Boolean',
-						selectedConfig?.value !== '__custom_key' ? 'Password' : null,
+						t('String'),
+						t('Number'),
+						t('JSON'),
+						t('Boolean'),
+						selectedConfig?.value !== '__custom_key' ? t('Password') : null,
 					]"
 					:disabled="selectedConfig?.value !== '__custom_key'"
 					autocomplete="off"
 				/>
-				<FormControl
-					v-bind="valueInputProps"
-					label="Value"
+			<FormControl
+				v-bind="valueInputProps"
+				:label="t('Value')"
 					v-model="value"
 					autocomplete="off"
 				/>
@@ -85,6 +85,7 @@ import {
 	FormControl,
 	getCachedDocumentResource,
 } from 'frappe-ui'
+import { t } from '../utils/language'
 
 export default {
 	name: 'ConfigEditorDialog',
@@ -135,6 +136,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		addConfig() {
 			if (this.site) {
 				this.docResource = getCachedDocumentResource('Site', this.site)
@@ -155,12 +157,12 @@ export default {
 				try {
 					value = JSON.parse(value)
 				} catch (e) {
-					this.error = 'Invalid JSON'
+					this.error = t('Invalid JSON')
 					return
 				}
 				// A scalar is stored as plain text and can't be read back as JSON
 				if (value === null || typeof value !== 'object') {
-					this.error = 'Value must be a JSON object or array'
+					this.error = t('Value must be a JSON object or array')
 					return
 				}
 			} else if (type === 'Boolean') {
@@ -187,15 +189,15 @@ export default {
 	},
 	computed: {
 		keyOptions() {
-			let customKeyOption = {
-				label: 'Custom Key',
+		let customKeyOption = {
+			label: t('Custom Key'),
 				value: '__custom_key',
 			}
-			let standardKeyOptions = this.$resources.standardKeys.data.map((key) => ({
-				label: key.title,
-				value: key.key,
-				type: key.type,
-				detail: key.description, // anti-pattern to avoid showing description in dropdown
+		let standardKeyOptions = this.$resources.standardKeys.data.map((key) => ({
+			label: key.title,
+			value: key.key,
+			type: this.t(key.type),
+			detail: key.description,
 			}))
 			return [customKeyOption, ...standardKeyOptions]
 		},
