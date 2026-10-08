@@ -109,7 +109,12 @@ class DripEmail(Document):
 			if not app:
 				frappe.throw(_("Product Trial {0} not found").format(self.product_trial))
 			kwargs["template"] = "product_trial_email"
-			kwargs["args"] = {"message": message, "title": app.title, "logo": app.logo}
+			kwargs["args"] = {
+				"message": message,
+				"message_args": [],
+				"title": app.title,
+				"logo": app.logo,
+			}
 			kwargs["unsubscribe_message"] = "Unsubscribe"
 			kwargs["unsubscribe_method"] = "api/method/press.press.doctype.drip_email.drip_email.unsubscribe"
 			kwargs["unsubscribe_params"] = {"account_request": account_request.name}

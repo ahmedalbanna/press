@@ -6,26 +6,25 @@
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white">
         <p class="mb-4 font-bold">
-            {{ type | capitalize }} Transfer Confirmation
+            {{ _('Transfer Confirmation') }}
         </p>
         <p class="mb-6">
-            The team, {{ old_team }} have requested to transfer the {{ type }} <b>{{ name }}</b> to your team
-            {{new_team}}. Click on the button below to give consent for this transfer. Please note that on giving
-            consent, the following changes will happen:
+            {{ _('The team {0} has asked to transfer the {1}').format(old_team, type) }} <b>{{ name }}</b>
+            {{ _('to your team {0}. Click the button below to consent. Please note that consenting makes these changes:').format(new_team) }}
             <br>
             <br>
-            1. The {{ type }} <b>{{ name }}</b> under {{ old_team }}, will be transferred to your team
+            1. {{ _('The') }} {{ type }} <b>{{ name }}</b> {{ _('under {0} will be transferred to your team').format(old_team) }}
             <br>
             {% if type == 'site' %}
-            2. You will be billed for this site under the team {{ new_team }}
+            2. {{ _('You will be billed for this site under the team {0}').format(new_team) }}
             <br>
             {% endif %}
             <br>
-            If you are not aware of this request, ignore the confirmation email.
+            {{ _('If you were not expecting this request, ignore this email.') }}
             <br>
             <!-- Note: The temporary link will expire in {{ minutes }} minutes. -->
         </p>
-        {{ utils.button('Accept Transfer', transfer_url, true) }}
+        {{ utils.button(_('Accept Transfer'), transfer_url, true) }}
         {{ utils.separator() }}
         {{ utils.signature() }}
     </div>

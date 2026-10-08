@@ -184,3 +184,70 @@ Server <strong>{0}</strong> has used more than {1} of its available storage.,ا�
 To keep the server from being overloaded we are automatically adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نقوم تلقائياً بإضافة {0} من مساحة التخزين.
 To keep the server from being overloaded we recommend adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نوصي بإضافة {0} من مساحة التخزين.
 Recovery from snapshot {0} has completed.,تم الاسترجاع من لقطة {0}.
+Partner {0} has asked to link your certificate to their AlbannaTech team account.,طلب الشريك {0} ربط شهادتك بحساب فريق AlbannaTech الخاص به.
+Review the request and confirm by clicking the button below.,راجع الطلب وأكّد موافقتك بالنقر على الزر أدناه.
+Review request,مراجعة الطلب
+"Hello Partner Manager,",مرحباً مدير الشريك،
+User {0} has asked to link their team to Partner {1}.,طلب المستخدم {0} ربط فريقه بالشريك {1}.
+Confirm by clicking the button below.,أكّد موافقتك بالنقر على الزر أدناه.
+Accept,قبول
+AlbannaTech has requested access to your resources.,طلب AlbannaTech الوصول إلى مواردك.
+Reason:,السبب:
+Resources:,الموارد:
+View Access Requests,عرض طلبات الوصول
+Transfer Confirmation,تأكيد النقل
+The team {0} has asked to transfer the {1},طلب الفريق {0} نقل {1}
+to your team {0}. Click the button below to consent. Please note that consenting makes these changes:,إلى فريقك {0}. انقر الزر أدناه للموافقة. يرجى ملاحظة أن الموافقة ستؤدي إلى التغييرات التالية:
+The,ويتم نقل
+under {0} will be transferred to your team,الموجود لدى {0} إلى فريقك
+You will be billed for this site under the team {0},سيتم احتساب فواتير هذا الموقع على فريق {0}
+"If you were not expecting this request, ignore this email.",إذا لم تكن تتوقع هذا الطلب، تجاهل هذه الرسالة.
+Accept Transfer,قبول النقل
+Please confirm your email address by clicking the button below:,يرجى تأكيد بريدك الإلكتروني بالنقر على الزر أدناه:
+Verify Account,تأكيد الحساب
+"Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
+Your request for support access has been {0}.,تمت معالجة طلبك للوصول إلى الدعم كـ {0}.
+Please complete the following,يرجى إكمال
+review steps,خطوات المراجعة
+"for your app,",الخاصة بتطبيقك،
+Add a logo,أضف شعاراً
+Update the description for your app,حدّث وصف تطبيقك
+Add relevant links for your app,أضف روابط ذات صلة بتطبيقك
+Publish a release from the releases tab,انشر إصداراً من تبويب الإصدارات
+You requested a verification code to log in to your site on AlbannaTech.,طلبت رمز تحقق لتسجيل الدخول إلى موقعك على AlbannaTech.
+"Unfortunately, your approval request for the app release",للأسف، تم رفض طلب الموافقة على إصدار التطبيق
+has been rejected. The reason is:,سبب الرفض:
+"Good news, your approval request for the app release",خبر جيد، تم قبول طلب الموافقة على إصدار التطبيق
+"has been accepted, and the release will be published in the Marketplace.",وسيتم نشر هذا الإصدار في المتجر.
+"Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
+{0} issues found in,تم العثور على {0} مشكلة في
+1 issue found in,تم العثور على مشكلة واحدة في
+Summary,الملخص
+Review the failing checks below.,راجع الفحوصات الفاشلة أدناه.
+"Fix all the issues, then publish a new release (push to your source branch).",قم بإصلاح جميع المشكلات، ثم انشر إصداراً جديداً (ادفع إلى فرع المصدر).
+How to fix,كيفية الإصلاح
+This is an automated report from the AlbannaTech Marketplace Auditor (beta).,هذا تقرير آلي من مدقق متجر AlbannaTech (تجريبي).
+"If you believe this report is incorrect, or need help reading it, please contact",إذا اعتقدت أن هذا التقرير غير صحيح، أو احتجت مساعدة في قراءته، يرجى التواصل مع
+Audit Passed,اجتاز التدقيق
+Needs Improvement,يحتاج إلى تحسين
+Audit Passed with Warnings,اجتاز التدقيق مع تحذيرات
+Audit Failed,لم يجتز التدقيق
+Audit Inconclusive,نتيجة التدقيق غير حاسمة
+Certificate Link Request,طلب ربط شهادة
+Partner Approval Request,طلب موافقة شريك
+Access Request,طلب وصول
+Access Request Approved,تمت الموافقة على طلب الوصول
+Marketplace App Review: {0},مراجعة تطبيق في المتجر: {0}
+Marketplace Audit Report: {0},تقرير تدقيق المتجر: {0}
+Login Verification Email,رسالة تأكيد تسجيل الدخول
+Someone tried to log in to your AlbannaTech account from the site:,حاول شخص ما تسجيل الدخول إلى حساب AlbannaTech الخاص بك من الموقع:
+This email was sent by AlbannaTech,تم إرسال هذه الرسالة بواسطة AlbannaTech
+approved,مقبول
+rejected,مرفوض
+pending,قيد المراجعة
+You do not have enough credits for your AlbannaTech site usage. Transfer credits or add a card for automatic billing. You can also pay this invoice manually using the link below.,لا يوجد لديك رصيد كافٍ لاستخدام مواقعك على AlbannaTech. قم بتحويل الرصيد أو إضافة بطاقة للفوترة التلقائية. يمكنك أيضاً سداد هذه الفاتورة يدوياً عبر الرابط أدناه.
+We tried to charge the card ending,حاولنا الخصم من البطاقة المنتهية
+"for your AlbannaTech subscription, but it was declined. Please update your card details from your",لاشتراك AlbannaTech الخاص بك، لكن تم رفض العملية. يرجى تحديث بيانات بطاقتك من
+or pay manually using the link below.,أو السداد يدوياً عبر الرابط أدناه.
+Your site has expired,انتهت صلاحية موقعك
+Your {0} site has expired. Please update your billing to activate your site.,انتهت صلاحية موقع {0}. يرجى تحديث بيانات الفوترة لتفعيل موقعك.

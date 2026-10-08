@@ -15,10 +15,10 @@
                 {{ header_content }}
             {% endautoescape %}
         {% endif %}
-        <p class="font-medium">Verification Code</p>
+        <p class="font-medium">{{ _("Verification Code") }}</p>
         <div class="text-xl font-bold">{{ otp }}</div>
         {{ utils.separator() }}
-        <p class="my-0">Team AlbannaTech</p>
+        <p class="my-0">{{ _("Team AlbannaTech") }}</p>
     </div>
     {% if read_pixel_path %}
     <img src="{{ read_pixel_path }}">

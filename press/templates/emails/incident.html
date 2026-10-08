@@ -4,7 +4,7 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white from-markdown">
 		<p>{{ _('Hi,') }}</p>
-		<p class="mb-4">{{ _(message).format(*message_args) if message_args else _(message) }}</p>
+		<p class="mb-4">{% set _message_args = message_args | default([]) %}{{ _(message).format(*_message_args) if _message_args else _(message) }}</p>
 		<p>
 			{{ _('For any concerns or questions, please contact our support team at') }} {{
 			utils.link('support@albannatech.com', 'mailto:support@albannatech.com')}}

@@ -5,21 +5,21 @@
 
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white from-markdown">
-        <p>Hello,</p>
+        <p>{{ _('Hello,') }}</p>
         <strong>
-            Attempted login to your AlbannaTech account from site: {{ site }}
+            {{ _('Someone tried to log in to your AlbannaTech account from the site:') }} {{ site }}
         </strong>
         <p>
-            Please confirm your email address by clicking the button below:
+            {{ _('Please confirm your email address by clicking the button below:') }}
         </p>
-        {{ utils.button('Verify Account', login_url, true) }}
+        {{ utils.button(_('Verify Account'), login_url, true) }}
         <p class="text-xs italic">
-            Note: This link can be used only once before expiry. If it's expired please generate a new link
+            {{ _('Note: this link works only once and expires. If it has expired, please generate a new one.') }}
         </p>
         {{ utils.separator() }}
         <p class="m-0">
-            Thanks,<br>
-            Team AlbannaTech
+            {{ _('Thanks,') }}<br>
+            {{ _('Team AlbannaTech') }}
         </p>
     </div>
 </td>

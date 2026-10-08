@@ -1,5 +1,5 @@
 <div style="display: none; max-height: 0px; overflow: hidden; mso-hide: all;" aria-hidden="true">
-  {% if preview_text %}{{ preview_text }}  {% endif %}&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+  {% if preview_text %}{{ _(preview_text) }}  {% endif %}&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
 </div>
 <table class="sm:bg-white" cellpadding="0" cellspacing="0" role="presentation" width="100%">
   <tr>
@@ -23,7 +23,7 @@
             <td class="text-base leading-6" style="color: #383838;">
               <div class="p-8 bg-white">
                 <div class="from-markdown">
-                  {{ message }}
+                  {% set _message_args = message_args | default([]) %}{{ _(message).format(*_message_args) if _message_args else _(message) }}
                 </div>
               </div>
             </td>

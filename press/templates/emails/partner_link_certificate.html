@@ -5,12 +5,12 @@
 
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white from-markdown">
-        <p>Hello,</p>
-        <p>Partner {{ partner }} has raised a request to link your certificate with their AlbannaTech team account.</p>
+        <p>{{ _('Hello,') }}</p>
+        <p>{{ _('Partner {0} has asked to link your certificate to their AlbannaTech team account.').format(partner) }}</p>
         <p>
-           Review the request and confirm your consent by clicking on the following button.
+           {{ _('Review the request and confirm by clicking the button below.') }}
         </p>
-        {{ utils.button('Review request', link, true) }}
+        {{ utils.button(_('Review request'), link, true) }}
         {{ utils.separator() }}
         {{ utils.signature() }}
     </div>

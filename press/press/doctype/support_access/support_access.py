@@ -268,6 +268,7 @@ class SupportAccess(Document):
 			args={
 				"status": self.status,
 				"resources": self.resources,
+				"access_requests_url": frappe.utils.get_url("/dashboard/access-requests"),
 			},
 		)
 
@@ -305,6 +306,7 @@ class SupportAccess(Document):
 			args={
 				"reason": self.reason,
 				"resources": self.resources,
+				"access_requests_url": frappe.utils.get_url("/dashboard/access-requests"),
 			},
 		)
 

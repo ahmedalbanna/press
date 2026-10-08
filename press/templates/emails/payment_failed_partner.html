@@ -10,26 +10,23 @@
 		</p>
 		{%- if card_not_added -%}
 		<p class="mb-6">
-			You don't have enough credits for the usage of your sites on AlbannaTech. Either transfer credits or add a
-			card for automatic billing. You can also make the payment of this invoice manually by clicking the following
-			link.
+			{{ _("You do not have enough credits for your AlbannaTech site usage. Transfer credits or add a card for automatic billing. You can also pay this invoice manually using the link below.") }}
 		</p>
-		{{ utils.button('Pay Invoice Now', payment_link) }}
+		{{ utils.button(_('Pay Invoice Now'), payment_link) }}
 		{%- endif -%}
 
 		{%- if team.default_payment_method -%}
 		<p class="mb-6">
-			We attempted to charge your card ending in <strong>{{ last_4 }}</strong> for your AlbannaTech subscription,
-			but were unsuccessful. Please update your card details in your
-			{{ utils.link('Billing Settings', account_update_link) }}
-			or pay manually by clicking the following link.
+			{{ _("We tried to charge the card ending") }} <strong>{{ last_4 }}</strong> {{ _("for your AlbannaTech subscription, but it was declined. Please update your card details from your") }}
+			{{ utils.link(_('Billing Settings'), account_update_link) }}
+			{{ _("or pay manually using the link below.") }}
 		</p>
-		{{ utils.button('Pay Invoice Now', payment_link) }}
+		{{ utils.button(_('Pay Invoice Now'), payment_link) }}
 		{%- endif -%}
 
 		{%- if sites -%}
 		{{ utils.separator() }}
-		<p class="mt-0 mb-2">Following sites were suspended:</p>
+		<p class="mt-0 mb-2">{{ _("The following sites were suspended:") }}</p>
 		<ul class="list-disc">
 			{%- for site in sites -%}
 			<li class="text-sm font-medium">{{ site }}</li>
