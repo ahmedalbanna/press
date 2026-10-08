@@ -86,6 +86,60 @@ const billing: Dictionary = {
 		en: 'Your payment with the card ending <strong>{card}</strong> failed for this invoice due to the following reason:<div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">Please change your payment method to pay this invoice.</p>',
 		ar: 'فشل الدفع ببطاقة تنتهي بـ <strong>{card}</strong> لهذه الفاتورة بسبب: <div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">يُرجى تغيير طريقة الدفع لدفع هذه الفاتورة.</p>',
 	},
+	// PaymentDetails
+	'Payment details': { en: 'Payment details', ar: 'تفاصيل الدفع' },
+	'Active Card': { en: 'Active Card', ar: 'البطاقة النشطة' },
+	'No card added': { en: 'No card added', ar: 'لم تتم إضافة بطاقة' },
+	'Change card': { en: 'Change card', ar: 'تغيير البطاقة' },
+	'Add card': { en: 'Add card', ar: 'إضافة بطاقة' },
+	'Billing address': { en: 'Billing address', ar: 'عنوان الفوترة' },
+	'No address': { en: 'No address', ar: 'لا يوجد عنوان' },
+	'Add billing address': { en: 'Add billing address', ar: 'إضافة عنوان فوترة' },
+	'Mode of payment': { en: 'Mode of payment', ar: 'طريقة الدفع' },
+	'Not set': { en: 'Not set', ar: 'غير معين' },
+	'Set mode': { en: 'Set mode', ar: 'تعيين الوضع' },
+	'Credit balance': { en: 'Credit balance', ar: 'الرصيد المتبقي' },
+	'Add credit': { en: 'Add credit', ar: 'إضافة رصيد' },
+	'Budget Alerts': { en: 'Budget Alerts', ar: 'تنبيهات الميزانية' },
+	'Set Budget Alert': { en: 'Set Budget Alert', ar: 'تعيين تنبيه الميزانية' },
+	'Prepaid credits': { en: 'Prepaid credits', ar: 'رصيد مسبق الدفع' },
+	'Paid by Partner': { en: 'Paid by Partner', ar: 'مدفوع من الشريك' },
+	'Your card will be charged for monthly subscription': {
+		en: 'Your card will be charged for monthly subscription',
+		ar: 'سيتم خصم الاشتراك الشهري من بطاقتك',
+	},
+	'You will be charged from your credit balance for monthly subscription': {
+		en: 'You will be charged from your credit balance for monthly subscription',
+		ar: 'سيتم الخصم من رصيدك المتبقي للاشتراك الشهري',
+	},
+	'Your partner will be charged for monthly subscription': {
+		en: 'Your partner will be charged for monthly subscription',
+		ar: 'سيتم تحصيل الاشتراك الشهري من شريكك',
+	},
+	'Your UPI will be auto-debited for monthly subscription': {
+		en: 'Your UPI will be auto-debited for monthly subscription',
+		ar: 'سيتم الخصم التلقائي من UPI للاشتراك الشهري',
+	},
+	'Confirm Payment Mode': { en: 'Confirm Payment Mode', ar: 'تأكيد طريقة الدفع' },
+	'By changing the payment mode to <strong>Paid by Partner</strong>, following details will be shared with your partner: <br><br><li>Site/Server name</li> <li>Plan name</li><li>Number of days site/server is active</li><br>Are you sure you want to proceed?': {
+		en: 'By changing the payment mode to <strong>Paid by Partner</strong>, following details will be shared with your partner: <br><br><li>Site/Server name</li> <li>Plan name</li><li>Number of days site/server is active</li><br>Are you sure you want to proceed?',
+		ar: 'بتغيير طريقة الدفع إلى <strong>مدفوع من الشريك</strong>، ستتم مشاركة التفاصيل التالية مع شريكك: <br><br><li>اسم الموقع/الخادم</li> <li>اسم الخطة</li><li>عدد أيام نشاط الموقع/الخادم</li><br>هل تريد بالتأكيد المتابعة؟',
+	},
+	'Change Payment Mode': { en: 'Change Payment Mode', ar: 'تغيير طريقة الدفع' },
+	'Alternate Payment Methods': {
+		en: 'Alternate Payment Methods',
+		ar: 'طرق دفع بديلة',
+	},
+	'Multiple unpaid invoices': { en: 'Multiple unpaid invoices', ar: 'فواتير متعددة غير مدفوعة' },
+	'You have multiple unpaid invoices. Please pay them from the invoices page': {
+		en: 'You have multiple unpaid invoices. Please pay them from the invoices page',
+		ar: 'لديك فواتير متعددة غير مدفوعة. يُرجى دفعها من صفحة الفواتير',
+	},
+	'Go to invoices': { en: 'Go to invoices', ar: 'الانتقال إلى الفواتير' },
+	'Receive an email alert if monthly total exceeds limit set': {
+		en: 'Receive an email alert if monthly total exceeds limit set',
+		ar: 'تصلك رسالة تنبيه إذا تجاوز الإجمالي الشهري الحد المحدد',
+	},
 };
 
 export default billing;

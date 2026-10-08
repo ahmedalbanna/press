@@ -1,13 +1,13 @@
 <template>
 	<div class="flex flex-col gap-4">
-		<div class="text-lg font-semibold text-ink-gray-9">Payment details</div>
+		<div class="text-lg font-semibold text-ink-gray-9">{{ t('Payment details') }}</div>
 		<div class="flex flex-col">
 			<div
 				v-if="team.doc.payment_mode == 'Card'"
 				class="flex items-center justify-between text-base text-ink-gray-9"
 			>
 				<div class="flex flex-col gap-1.5">
-					<div class="font-medium">Active Card</div>
+					<div class="font-medium">{{ t('Active Card') }}</div>
 					<div class="overflow-hidden text-ellipsis text-ink-gray-7">
 						<div
 							v-if="team.doc.payment_method"
@@ -20,12 +20,12 @@
 								<span>{{ team.doc.payment_method.last_4 }}</span>
 							</div>
 						</div>
-						<span v-else class="text-ink-gray-7">No card added</span>
+						<span v-else class="text-ink-gray-7">{{ t('No card added') }}</span>
 					</div>
 				</div>
 				<div class="shrink-0">
 					<Button
-						:label="team.doc.payment_method ? 'Change card' : 'Add card'"
+						:label="team.doc.payment_method ? t('Change card') : t('Add card')"
 						@click="changeMethod"
 					>
 						<template v-if="!team.doc.payment_method" #prefix>
@@ -40,15 +40,15 @@
 			/>
 			<div class="flex items-center justify-between text-base text-ink-gray-9">
 				<div class="flex flex-col gap-1.5">
-					<div class="font-medium">Billing address</div>
+					<div class="font-medium">{{ t('Billing address') }}</div>
 					<div v-if="billingDetailsSummary" class="leading-5 text-ink-gray-7">
 						{{ billingDetailsSummary }}
 					</div>
-					<div v-else class="text-ink-gray-7">No address</div>
+					<div v-else class="text-ink-gray-7">{{ t('No address') }}</div>
 				</div>
 				<div class="shrink-0">
 					<Button
-						:label="billingDetailsSummary ? 'Edit ' : 'Add billing address'"
+						:label="billingDetailsSummary ? t('Edit ') : t('Add billing address')"
 						@click="
 							() => {
 								showMessage = false;
@@ -65,7 +65,7 @@
 			<div class="my-3 h-px bg-surface-gray-2" />
 			<div class="flex items-center justify-between text-base text-ink-gray-9">
 				<div class="flex flex-col gap-1.5">
-					<div class="font-medium">Mode of payment</div>
+					<div class="font-medium">{{ t('Mode of payment') }}</div>
 					<div
 						v-if="team.doc.payment_mode"
 						class="inline-flex items-center gap-2 text-ink-gray-7"
@@ -73,13 +73,13 @@
 						<FeatherIcon class="h-4" name="info" />
 						{{ paymentMode.description }}
 					</div>
-					<span v-else class="text-ink-gray-7">Not set</span>
+					<span v-else class="text-ink-gray-7">{{ t('Not set') }}</span>
 				</div>
 				<div class="shrink-0">
 					<Dropdown :options="paymentModeOptions">
 						<template #default="{ open }">
 							<Button
-								:label="team.doc.payment_mode ? paymentMode.label : 'Set mode'"
+								:label="team.doc.payment_mode ? paymentMode.label : t('Set mode')"
 							>
 								<template #suffix>
 									<FeatherIcon
@@ -95,14 +95,14 @@
 			<div class="my-3 h-px bg-surface-gray-2" />
 			<div class="flex items-center justify-between text-base text-ink-gray-9">
 				<div class="flex flex-col gap-1.5">
-					<div class="font-medium">Credit balance</div>
+					<div class="font-medium">{{ t('Credit balance') }}</div>
 					<div class="text-ink-gray-7">
 						{{ availableCredits || currency + ' 0.00' }}
 					</div>
 				</div>
 				<div class="shrink-0">
 					<Button
-						:label="'Add credit'"
+						:label="t('Add credit')"
 						@click="
 							() => {
 								showMessage = false;
@@ -124,22 +124,22 @@
 			<div class="my-3 h-px bg-surface-gray-2" />
 			<div class="flex items-center justify-between text-base text-ink-gray-9">
 				<div class="flex flex-col gap-1.5">
-					<div class="font-medium">Budget Alerts</div>
+					<div class="font-medium">{{ t('Budget Alerts') }}</div>
 					<div
 						v-if="team.doc.receive_budget_alerts"
 						class="leading-5 text-ink-gray-7"
 					>
 						Alert threshold is set at {{ currency
-						}}{{ team.doc.monthly_alert_threshold }} per month
+						}}{{ team.doc.monthly_alert_threshold }} {{ t('per month') }}
 					</div>
 					<div v-else class="text-ink-gray-7">
-						Receive an email alert if monthly total exceeds limit set
+						{{ t('Receive an email alert if monthly total exceeds limit set') }}
 					</div>
 				</div>
 				<div class="shrink-0">
 					<Button
 						:label="
-							team.doc.receive_budget_alerts ? 'Edit' : 'Set Budget Alert'
+							team.doc.receive_budget_alerts ? t('Edit') : t('Set Budget Alert')
 						"
 						@click="showBudgetAlertDialog = true"
 					>
@@ -204,6 +204,7 @@ import {
 } from '../../utils/components';
 import { computed, ref, inject, h, defineAsyncComponent } from 'vue';
 import router from '../../router';
+import { t } from '../../utils/language';
 
 const team = inject('team');
 const {
@@ -253,43 +254,42 @@ const billingDetailsSummary = computed(() => {
 
 const paymentModeOptions = [
 	{
-		label: 'Card',
+		label: t('Card'),
 		value: 'Card',
-		description: 'Your card will be charged for monthly subscription',
+		description: t('Your card will be charged for monthly subscription'),
 		component: () =>
 			h(DropdownItem, {
-				label: 'Card',
+				label: t('Card'),
 				active: team.doc.payment_mode === 'Card',
 				onClick: () => updatePaymentMode('Card'),
 			}),
 	},
 	{
-		label: 'Prepaid credits',
+		label: t('Prepaid credits'),
 		value: 'Prepaid Credits',
-		description:
-			'You will be charged from your credit balance for monthly subscription',
+		description: t('You will be charged from your credit balance for monthly subscription'),
 		component: () =>
 			h(DropdownItem, {
-				label: 'Prepaid credits',
+				label: t('Prepaid credits'),
 				active: team.doc.payment_mode === 'Prepaid Credits',
 				onClick: () => updatePaymentMode('Prepaid Credits'),
 			}),
 	},
 	{
-		label: 'Paid by Partner',
+		label: t('Paid by Partner'),
 		value: 'Paid By Partner',
 		condition: () => team.doc.partner_email,
-		description: 'Your partner will be charged for monthly subscription',
+		description: t('Your partner will be charged for monthly subscription'),
 		component: () =>
 			h(DropdownItem, {
-				label: 'Paid by Partner',
+				label: t('Paid by Partner'),
 				active: team.doc.payment_mode === 'Paid by Partner',
 				onClick: () =>
 					confirmDialog({
-						title: 'Confirm Payment Mode',
-						message: `By changing the payment mode to <strong>Paid by Partner</strong>, following details will be shared with your partner: <br><br><li>Site/Server name</li> <li>Plan name</li><li>Number of days site/server is active</li><br>Are you sure you want to proceed?`,
+						title: t('Confirm Payment Mode'),
+						message: t('By changing the payment mode to <strong>Paid by Partner</strong>, following details will be shared with your partner: <br><br><li>Site/Server name</li> <li>Plan name</li><li>Number of days site/server is active</li><br>Are you sure you want to proceed?'),
 						primaryAction: {
-							label: 'Change Payment Mode',
+							label: t('Change Payment Mode'),
 							variant: 'solid',
 							onClick: ({ hide }) => {
 								updatePaymentMode('Paid By Partner');
@@ -300,13 +300,13 @@ const paymentModeOptions = [
 			}),
 	},
 	{
-		label: 'UPI Autopay',
+		label: t('UPI Autopay'),
 		value: 'UPI Autopay',
 		condition: () => team.doc.currency === 'INR',
-		description: 'Your UPI will be auto-debited for monthly subscription',
+		description: t('Your UPI will be auto-debited for monthly subscription'),
 		component: () =>
 			h(DropdownItem, {
-				label: 'UPI Autopay',
+				label: t('UPI Autopay'),
 				active: team.doc.payment_mode === 'UPI Autopay',
 				onClick: () => updatePaymentMode('UPI Autopay'),
 			}),
@@ -324,7 +324,7 @@ const paymentModeOptions = [
 									href: 'https://frappecloud.com/payment-options',
 									target: '_blank',
 								},
-								'Alternate Payment Methods',
+								t('Alternate Payment Methods'),
 							),
 							h(FeatherIcon, { name: 'external-link', class: 'h-4' }),
 						]),
@@ -344,11 +344,12 @@ function payUnpaidInvoices() {
 			showAddPrepaidCreditsDialog.value = true;
 		} else {
 			confirmDialog({
-				title: 'Multiple unpaid invoices',
-				message:
+				title: t('Multiple unpaid invoices'),
+				message: t(
 					'You have multiple unpaid invoices. Please pay them from the invoices page',
+				),
 				primaryAction: {
-					label: 'Go to invoices',
+					label: t('Go to invoices'),
 					variant: 'solid',
 					onClick: ({ hide }) => {
 						router.push({ name: 'BillingInvoices' });
