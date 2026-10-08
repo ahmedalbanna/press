@@ -16,7 +16,7 @@
 				<div class="border rounded-md p-2 h-[8rem] w-[16rem]">
 					<NumberChart
 						:config="{
-							title: 'Month-To-Date Cost',
+							title: t('Month-To-Date Cost'),
 							value: forecastData?.current_month_to_date_cost,
 							prefix: currencySymbol,
 							delta: forecastData?.mtd_change,
@@ -27,7 +27,7 @@
 				<div class="border rounded-md p-2 h-[8rem] w-[16rem]">
 					<NumberChart
 						:config="{
-							title: 'Forecasted Month End Cost',
+							title: t('Forecasted Month End Cost'),
 							value: forecastData?.forecasted_month_end,
 							prefix: currencySymbol,
 							delta: forecastData?.month_over_month_change,
@@ -52,7 +52,7 @@
 					</div>
 				</div>
 				<div v-else class="flex h-64 items-center justify-center text-ink-gray-5">
-					No usage data available for this month
+					{{ t('No usage data available for this month') }}
 				</div>
 			</div>
 		</div>
@@ -69,6 +69,7 @@ import {
 	NumberChart,
 } from 'frappe-ui';
 import { inject, computed } from 'vue';
+import { t, tr } from '../utils/language';
 
 export default {
 	name: 'BillingForecast',
@@ -125,15 +126,15 @@ export default {
 
 			const data = [
 				{
-					period: `Last Month\n(${lastMonthName})`,
+					period: tr('Last Month\n({month})', { month: lastMonthName }),
 					...last_month_usage_breakdown,
 				},
 				{
-					period: `Month To Date\n(${currentMonthName})`,
+					period: tr('Month To Date\n({month})', { month: currentMonthName }),
 					...month_to_date_usage_breakdown,
 				},
 				{
-					period: `Forecast\n(${currentMonthName})`,
+					period: tr('Forecast\n({month})', { month: currentMonthName }),
 					...forecasted_usage_breakdown,
 				},
 			];
@@ -151,16 +152,16 @@ export default {
 			}));
 
 			return {
-				title: 'Billing Comparison',
+				title: t('Billing Comparison'),
 				data,
 				stacked: true,
 				xAxis: {
 					key: 'period',
-					title: 'Time Period',
+					title: t('Time Period'),
 					type: 'category',
 				},
 				yAxis: {
-					title: `Amount (${currencySymbol.value})`,
+					title: tr('Amount ({symbol})', { symbol: currencySymbol.value }),
 				},
 				series,
 			};
@@ -176,7 +177,7 @@ export default {
 			}
 			return {
 				data,
-				title: 'Month-To-Date Cost Breakdown',
+				title: t('Month-To-Date Cost Breakdown'),
 				categoryColumn: 'service',
 				valueColumn: 'amount',
 			};

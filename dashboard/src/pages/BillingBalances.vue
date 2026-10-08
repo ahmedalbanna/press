@@ -5,6 +5,7 @@
 </template>
 <script>
 import ObjectList from '../components/ObjectList.vue';
+import { t, tr } from '../utils/language';
 export default {
 	name: 'BillingBalances',
 	props: ['tab'],
@@ -18,7 +19,7 @@ export default {
 				fields: ['type', 'source', 'invoice'],
 				columns: [
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'creation',
 						format(value) {
 							return Intl.DateTimeFormat('en-US', {
@@ -29,23 +30,23 @@ export default {
 						},
 					},
 					{
-						label: 'Description',
+						label: t('Description'),
 						format(value, row) {
 							if (row.type === 'Applied To Invoice' && row.invoice) {
-								return `Applied to Invoice ${row.invoice}`;
+								return tr('Applied to Invoice {invoice}', { invoice: row.invoice });
 							}
 
 							return row.amount < 0 ? row.type : row.source;
 						},
 					},
 					{
-						label: 'Amount',
+						label: t('Amount'),
 						fieldname: 'amount',
 						align: 'right',
 						format: this.formatCurrency,
 					},
 					{
-						label: 'Balance',
+						label: t('Balance'),
 						fieldname: 'ending_balance',
 						align: 'right',
 						format: this.formatCurrency,

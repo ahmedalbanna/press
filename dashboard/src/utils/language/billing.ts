@@ -174,6 +174,34 @@ const billing: Dictionary = {
 	'Card removed': { en: 'Card removed', ar: 'تمت إزالة البطاقة' },
 	'Could not remove card': { en: 'Could not remove card', ar: 'تعذرت إزالة البطاقة' },
 	'Add Card': { en: 'Add Card', ar: 'إضافة بطاقة' },
+	// BillingBalances + BillingForecast
+	'Balance': { en: 'Balance', ar: 'الرصيد' },
+	'Applied To Invoice {invoice}': {
+		en: 'Applied to Invoice {invoice}',
+		ar: 'تم تطبيقه على الفاتورة {invoice}',
+	},
+	'Month-To-Date Cost': {
+		en: 'Month-To-Date Cost',
+		ar: 'التكلفة حتى تاريخه من الشهر',
+	},
+	'Forecasted Month End Cost': {
+		en: 'Forecasted Month End Cost',
+		ar: 'تكلفة نهاية الشهر المتوقعة',
+	},
+	'Billing Comparison': { en: 'Billing Comparison', ar: 'مقارنة الفوترة' },
+	'Time Period': { en: 'Time Period', ar: 'الفترة الزمنية' },
+	'Month-To-Date Cost Breakdown': {
+		en: 'Month-To-Date Cost Breakdown',
+		ar: 'تفصيل التكلفة حتى تاريخه من الشهر',
+	},
+	'Amount ({symbol})': { en: 'Amount ({symbol})', ar: 'المبلغ ({symbol})' },
+	'Last Month\n({month})': { en: 'Last Month\n({month})', ar: 'الشهر الماضي\n({month})' },
+	'Month To Date\n({month})': { en: 'Month To Date\n({month})', ar: 'من بداية الشهر حتى تاريخه\n({month})' },
+	'Forecast\n({month})': { en: 'Forecast\n({month})', ar: 'توقعات\n({month})' },
+	'No usage data available for this month': {
+		en: 'No usage data available for this month',
+		ar: 'لا توجد بيانات استخدام لهذا الشهر',
+	},
 };
 
 export default billing;
