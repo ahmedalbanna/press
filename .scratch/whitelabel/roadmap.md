@@ -44,6 +44,23 @@
 |----------|--------|
 | Access Control | Hybrid (Frappe system + custom MCP permissions) |
 | Permissions Integration | Frappe Hooks (doc_events, custom permissions) |
+| Authentication | Mix (Frappe Auth for desk + short-lived JWT for MCP services) |
+| Authorization | Mix (Frappe Roles + custom RBAC for MCP tools) |
+| Encryption | TLS in transit + AES at rest (sensitive fields encrypted) |
+| Session Management | Mix (Redis for active sessions/cache + JWT stateless) |
+| Key Management | Environment variables (.env) backed by Docker Secrets |
+| Audit Logging | Custom audit log integrating Frappe logs |
+| API Protection | Rate limiting (per user) + API keys |
+| MCP Security | MCP SDK + custom middleware (verify identity/permissions before tool execution) |
+
+### Phase 1.5 Per-Layer Specs
+
+| Layer | Spec | Testing Seam |
+|-------|------|--------------|
+| MCP Servers | `.scratch/whitelabel/spec-phase-1.5/01-mcp-servers.md` | MCP tool contract |
+| AI Agent | `.scratch/whitelabel/spec-phase-1.5/02-ai-agent.md` | Agent request/response contract |
+| Security | `.scratch/whitelabel/spec-phase-1.5/03-security.md` | Permission enforcement |
+| Billing & Subscription | `.scratch/whitelabel/spec-phase-1.5/04-billing.md` | Subscription lifecycle |
 
 ### Billing & Subscription
 

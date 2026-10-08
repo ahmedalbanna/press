@@ -34,27 +34,48 @@ Apply one security layer across every boundary: authentication (who is calling),
 ## Implementation Decisions
 
 ### Authentication
-- **Identity source**: Frappe authentication system.
+- **Identity source**: Frappe authentication system for ERPNext/desk sessions.
+- **Service-to-service**: short-lived JWT tokens secure the connection between the UI/agent and the independent MCP servers.
 - **Agent calls**: the agent authenticates as the requesting user, so its actions inherit that user's rights.
-- **MCP servers**: reject unauthenticated calls; every call carries a token.
+- **MCP servers**: reject unauthenticated calls; every call carries a JWT.
 - **Billing webhooks**: authenticated (signature verification) before any state change.
 
 ### Authorization
-- **Model**: hybrid — Frappe permissions plus custom MCP permissions.
+- **Model**: hybrid — Frappe Roles plus a custom RBAC layer for MCP tools.
+- **Mapping**: Frappe Roles decide what a user may do in ERPNext; the custom RBAC decides what MCP tools they may call (e.g. run Press server commands vs. only view financial reports).
 - **Enforcement**: Frappe Hooks (`doc_events` and custom permission checks) so permission logic lives in one place and cannot be bypassed by a direct MCP call.
 - **Granularity**: per-MCP, per-tool, per-resource.
 - **Fail closed**: a broken or missing check denies the action.
 
 ### Encryption
-- **In transit**: TLS everywhere (Nginx terminates at the edge).
-- **At rest**: AES for stored data.
+- **In transit**: TLS everywhere (Nginx terminates at the edge with SSL certificates).
+- **At rest**: AES for stored data, including sensitive database fields.
 - **Local-first for sensitive data**: the routing decision in layer 02 keeps sensitive requests on local models; this layer defines which data classes are sensitive.
+
+### Session Management
+- **Active sessions and caching**: Redis.
+- **Stateless service auth**: JWT between services and agents.
+- **Rate tracking**: Redis also tracks request rates per user.
+
+### Key Management
+- **API keys** (AI providers, payment gateways) and **encryption keys**: environment variables (`.env`) backed by Docker Secrets.
+- No keys committed to the repository.
+
+### API Protection
+- **Rate limiting**: per user, to protect MCP servers and API endpoints from abuse and DDoS, and to cap AI token consumption.
+- **API keys**: verification keys for service and gateway access.
+
+### MCP Security
+- **Base**: the security features of the MCP SDK.
+- **Custom middleware**: a layer that verifies user identity and permissions before any tool command is executed.
 
 ### Tiering gate
 - Subscription state from layer 04 is read here to gate Advanced AI features. Basic features stay available regardless.
 
 ### Auditing
+- **Custom audit log** integrating Frappe logs.
 - Every privileged action is attributable to a user or agent identity and logged. Denied attempts are logged distinctly.
+- Tracks: every MCP tool call, every agent request, and every sensitive infrastructure or data change.
 
 ## Testing Decisions
 
