@@ -136,7 +136,7 @@ const helpDropdownOptions = [
 		<div
 			class="flex gap-2 items-center border-y md:border-0 p-2 md:p-0 -m-2 md:m-0 h-[44px] md:h-auto"
 		>
-			<img src="/assets/press/images/favicon.svg" alt="AlbannaTech" class="size-6 md:hidden mr-auto" />
+			<img src="/favicon.svg" alt="AlbannaTech" class="size-6 md:hidden mr-auto" />
 
 			<Dropdown :options="userDropdownOptions">
 				<template v-slot="{ open }">
@@ -145,7 +145,7 @@ const helpDropdownOptions = [
 						:class="[open ? 'md:bg-surface-white dark:bg-surface-gray-2 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
-						<img src="/assets/press/images/favicon.svg" alt="AlbannaTech" class="size-8 hidden md:flex shrink-0 rounded" />
+						<img src="/favicon.svg" alt="AlbannaTech" class="size-8 hidden md:flex shrink-0 rounded" />
 						<LucideUser class="size-3.5 -mr-1.5 md:hidden" />
 
 						<div

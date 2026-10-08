@@ -3,7 +3,6 @@ import { reactive, watch } from 'vue';
 export type Language = 'en' | 'ar';
 
 const translations: Record<string, Record<Language, string>> = {
-	// Navigation
 	'Dashboard': { en: 'Dashboard', ar: 'لوحة التحكم' },
 	'Sites': { en: 'Sites', ar: 'المواقع' },
 	'Billing': { en: 'Billing', ar: 'الفوترة' },
@@ -21,9 +20,7 @@ const translations: Record<string, Record<Language, string>> = {
 	'Share Feedback': { en: 'Share Feedback', ar: 'مشاركة الملاحظات' },
 	'Find a Partner': { en: 'Find a Partner', ar: 'البحث عن شريك' },
 	'Release Notes': { en: 'Release Notes', ar: 'ملاحظات الإصدار' },
-
-	// Common
-	'Loading...': { en: 'Loading...', ar: 'جاري التحميل... },
+	'Loading...': { en: 'Loading...', ar: 'جاري التحميل...' },
 	'Save': { en: 'Save', ar: 'حفظ' },
 	'Cancel': { en: 'Cancel', ar: 'إلغاء' },
 	'Delete': { en: 'Delete', ar: 'حذف' },
@@ -35,8 +32,6 @@ const translations: Record<string, Record<Language, string>> = {
 	'Next': { en: 'Next', ar: 'التالي' },
 	'Submit': { en: 'Submit', ar: 'إرسال' },
 	'Confirm': { en: 'Confirm', ar: 'تأكيد' },
-
-	// Auth
 	'Log in to your AlbannaTech account': { en: 'Log in to your AlbannaTech account', ar: 'تسجيل الدخول إلى حساب AlbannaTech الخاص بك' },
 	'Signup to your AlbannaTech account': { en: 'Signup to your AlbannaTech account', ar: 'إنشاء حساب AlbannaTech جديد' },
 	'Email': { en: 'Email', ar: 'البريد الإلكتروني' },
@@ -45,8 +40,6 @@ const translations: Record<string, Record<Language, string>> = {
 	'Login': { en: 'Login', ar: 'تسجيل الدخول' },
 	'Signup': { en: 'Signup', ar: 'إنشاء حساب' },
 	'Create Account': { en: 'Create Account', ar: 'إنشاء حساب' },
-
-	// Onboarding
 	'Welcome to AlbannaTech': { en: 'Welcome to AlbannaTech', ar: 'مرحباً بك في AlbannaTech' },
 	'AlbannaTech makes it easy to manage sites and apps like ERPNext in an': { en: 'AlbannaTech makes it easy to manage sites and apps like ERPNext in an', ar: 'AlbannaTech تجعل من السهل إدارة المواقع والتطبيقات مثل ERPNext في' },
 	'Please contact AlbannaTech support by clicking on the button below.': { en: 'Please contact AlbannaTech support by clicking on the button below.', ar: 'يرجى التواصل مع دعم AlbannaTech بالنقر على الزر أدناه.' },
