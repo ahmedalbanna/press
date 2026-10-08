@@ -23,7 +23,32 @@
 | AI Agent Platform | Web only (ERPNext chat sidebar) |
 | Pricing Model | Basic: free with hosting, Advanced: paid annual |
 
-### AI Agent Functions
+### AI Agent Architecture
+
+| Decision | Choice |
+|----------|--------|
+| Architecture | Hybrid — central agent + specialized agents |
+| Coordination | Central agent routes to appropriate MCP |
+| Activation | Mix — automatic + manual |
+| UI | Mix — unified interface + specialized interfaces |
+| Language | Bilingual (Arabic + English) |
+| Platform | Web only |
+
+### AI Agent Functions by MCP
+
+#### press-mcp AI Agent
+- Problem diagnosis (log analysis, solutions)
+- Resource management (automatic allocation)
+- Smart alerts (proactive notifications)
+- CLI assistance (command writing help)
+
+#### frappe-mcp AI Agent
+- Data analysis (client data analysis)
+- Automatic data entry (from files)
+- Data validation (accuracy checks)
+- Structuring suggestions (recommendations)
+
+#### erpnext-mcp AI Agent
 - Data entry (invoices, purchase orders, customers)
 - Reports (financial and administrative)
 - Conversation (inventory, sales, accounting questions)
