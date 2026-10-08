@@ -6,6 +6,7 @@ import { Tooltip, frappeRequest } from 'frappe-ui';
 import { icon } from '../utils/components';
 import { getTeam } from '../data/team';
 import { toast } from 'vue-sonner';
+import { t } from '../utils/language';
 
 const getNotification = (name) => {
 	return getDocResource({
@@ -41,7 +42,7 @@ export default {
 			return [
 				{
 					type: 'tab',
-					label: 'Read',
+					label: t('Read'),
 					fieldname: 'read',
 					options: ['All', 'Unread'],
 					default: 'Unread',
@@ -59,7 +60,7 @@ export default {
 		actions({ listResource: notifications }) {
 			return [
 				{
-					label: 'Mark all as read',
+					label: t('Mark all as read'),
 					slots: {
 						prefix: icon('check-circle'),
 					},
@@ -73,7 +74,7 @@ export default {
 									notifications.reload();
 									return 'All notifications marked as read';
 								},
-								loading: 'Marking all notifications as read...',
+								loading: t('Marking all notifications as read...'),
 								error: (error) =>
 									error.messages?.length
 										? error.messages.join('\n')
@@ -86,7 +87,7 @@ export default {
 		},
 		columns: [
 			{
-				label: 'Title',
+				label: t('Title'),
 				fieldname: 'title',
 				width: '20rem',
 				format(value, row) {
@@ -115,7 +116,7 @@ export default {
 				},
 			},
 			{
-				label: 'Message',
+				label: t('Message'),
 				fieldname: 'message',
 				type: 'Component',
 				width: '40rem',

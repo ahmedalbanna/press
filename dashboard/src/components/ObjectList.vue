@@ -167,7 +167,7 @@ import {
 } from 'frappe-ui'
 import { reactive, ref } from 'vue'
 import { throttle } from '../utils/throttle'
-import { t } from '../utils/language'
+import { t, getLanguage } from '../utils/language'
 import ActionButton from './ActionButton.vue'
 import AlertBanner from './AlertBanner.vue'
 import DismissableBanner from './DismissableBanner.vue'
@@ -441,6 +441,8 @@ export default {
 				})
 		},
 		actions() {
+			// re-run on language change so action labels re-translate
+			getLanguage();
 			if (!this.options.actions) return []
 			let actions = this.options.actions(this.context)
 			return actions.filter((action) => {
@@ -451,6 +453,7 @@ export default {
 			})
 		},
 		moreActions() {
+			getLanguage();
 			if (!this.options.moreActions) return []
 			const actions = this.options.moreActions(this.context)
 			return actions.filter((action) => {
@@ -461,12 +464,14 @@ export default {
 			})
 		},
 		primaryAction() {
+			getLanguage();
 			if (!this.options.primaryAction) return null
 			let props = this.options.primaryAction(this.context)
 			if (!props) return null
 			return props
 		},
 		secondaryAction() {
+			getLanguage();
 			if (!this.options.secondaryAction) return null
 			let props = this.options.secondaryAction(this.context)
 			if (!props) return null

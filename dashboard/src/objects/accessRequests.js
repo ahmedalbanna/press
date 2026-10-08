@@ -51,7 +51,7 @@ export default {
 		},
 		columns: [
 			{
-				label: 'Resource',
+				label: t('Resource'),
 				fieldname: 'resource_name',
 				width: '250px',
 				format: (_, row) => {
@@ -63,7 +63,7 @@ export default {
 				},
 			},
 			{
-				label: 'Status',
+				label: t('Status'),
 				fieldname: 'status',
 				width: '150px',
 				type: 'Badge',
@@ -76,18 +76,18 @@ export default {
 				},
 			},
 			{
-				label: 'Reason',
+				label: t('Reason'),
 				fieldname: 'reason',
 				class: 'max-w-md',
 			},
 			{
-				label: 'Expiry',
+				label: t('Expiry'),
 				fieldname: 'access_allowed_till',
 				type: 'Timestamp',
 				width: '150px',
 			},
 			{
-				label: 'Requested',
+				label: t('Requested'),
 				fieldname: 'creation',
 				type: 'Timestamp',
 				align: 'right',

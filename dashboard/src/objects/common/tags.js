@@ -2,10 +2,11 @@ import { h, defineAsyncComponent } from 'vue';
 import { confirmDialog, icon, renderDialog } from '../../utils/components';
 import { toast } from 'vue-sonner';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t, tr } from '../../utils/language';
 
 export function tagTab(doctype) {
 	return {
-		label: 'Tags',
+		label: t('Tags'),
 		icon: icon('tag'),
 		condition: (record) => {
 			return (
@@ -26,13 +27,13 @@ export function tagTab(doctype) {
 			orderBy: 'creation desc',
 			columns: [
 				{
-					label: 'Tag',
+					label: t('Tag'),
 					fieldname: 'tag_name',
 				},
 			],
 			primaryAction({ listResource: tags, documentResource }) {
 				return {
-					label: 'Add Tag',
+					label: t('Add Tag'),
 					slots: {
 						prefix: icon('plus'),
 					},
@@ -55,12 +56,14 @@ export function tagTab(doctype) {
 			rowActions({ row, listResource: tags, documentResource }) {
 				return [
 					{
-						label: 'Remove',
+						label: t('Remove'),
 						onClick() {
 							if (documentResource.removeTag.loading) return;
 							confirmDialog({
-								title: 'Remove Tag',
-								message: `Are you sure you want to remove the tag <b>${row.tag_name}</b>?`,
+								title: t('Remove Tag'),
+								message: tr('Are you sure you want to remove the tag <b>{tag}</b>?', {
+									tag: row.tag_name,
+								}),
 								onSuccess({ hide }) {
 									documentResource.removeTag.submit(
 										{

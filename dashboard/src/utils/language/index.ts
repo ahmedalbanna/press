@@ -3,6 +3,7 @@ import { frappeRequest } from 'frappe-ui';
 import auth from './auth';
 import billing from './billing';
 import common from './common';
+import dialogs from './dialogs';
 import misc from './misc';
 import nav from './nav';
 import objects from './objects';
@@ -25,6 +26,7 @@ const translations: Dictionary = {
 	...team,
 	...misc,
 	...objects,
+	...dialogs,
 };
 
 interface BootGlobals {
@@ -43,6 +45,18 @@ function bootLanguage(): Language | null {
 
 export function t(key: string): string {
 	return translations[key]?.[state.lang] || key;
+}
+
+// Same as t(), but fills {name} placeholders so interpolated sentences stay
+// translatable as a whole instead of being glued from fragments
+export function tr(key: string, values?: Record<string, string | number>): string {
+	let message = t(key);
+	if (values) {
+		for (const [name, value] of Object.entries(values)) {
+			message = message.replaceAll(`{${name}}`, String(value));
+		}
+	}
+	return message;
 }
 
 export function setLanguage(lang: Language) {
@@ -106,6 +120,7 @@ export function initLanguage() {
 
 export default {
 	t,
+	tr,
 	setLanguage,
 	getLanguage,
 	isRTL,

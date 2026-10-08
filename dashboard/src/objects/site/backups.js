@@ -7,11 +7,12 @@ import dayjs from '../../utils/dayjs'
 import { bytes, date } from '../../utils/format'
 import { getQueryParam, setQueryParam } from '../../utils/index'
 import { getToastErrorMessage } from '../../utils/toast'
+import { t, tr } from '../../utils/language'
 import { getUpsellBanner } from '../common'
 
 export function getBackupsTab() {
 	return {
-		label: 'Backups',
+		label: t('Backups'),
 		icon: icon('archive'),
 		route: 'backups',
 		type: 'list',
@@ -54,22 +55,22 @@ export function backupRecordsOptions() {
 		],
 		columns: [
 			{
-				label: 'Timestamp',
+				label: t('Timestamp'),
 				fieldname: 'creation',
 				width: 1,
 				format(value) {
-					return `Backup on ${date(value, 'llll')}`
+					return tr('Backup on {date}', { date: date(value, 'llll') })
 				},
 			},
 			{
-				label: 'Status',
+				label: t('Status'),
 				fieldname: 'status',
 				width: '150px',
 				align: 'center',
 				type: 'Badge',
 			},
 			{
-				label: 'Database',
+				label: t('Database'),
 				fieldname: 'database_size',
 				width: 0.5,
 				format(value) {
@@ -77,7 +78,7 @@ export function backupRecordsOptions() {
 				},
 			},
 			{
-				label: 'Public Files',
+				label: t('Public Files'),
 				fieldname: 'public_size',
 				width: 0.5,
 				format(value) {
@@ -85,7 +86,7 @@ export function backupRecordsOptions() {
 				},
 			},
 			{
-				label: 'Private Files',
+				label: t('Private Files'),
 				fieldname: 'private_size',
 				width: 0.5,
 				format(value) {
@@ -93,7 +94,7 @@ export function backupRecordsOptions() {
 				},
 			},
 			{
-				label: 'Files',
+				label: t('Files'),
 				fieldname: 'with_files',
 				type: 'Icon',
 				width: 0.25,
@@ -102,7 +103,7 @@ export function backupRecordsOptions() {
 				},
 			},
 			{
-				label: 'Offsite',
+				label: t('Offsite'),
 				fieldname: 'offsite',
 				width: 0.25,
 				type: 'Icon',
@@ -111,7 +112,7 @@ export function backupRecordsOptions() {
 				},
 			},
 			{
-				label: 'Physical',
+				label: t('Physical'),
 				fieldname: 'physical',
 				width: 0.25,
 				type: 'Icon',
@@ -131,7 +132,7 @@ export function backupRecordsOptions() {
 				? [
 						{
 							type: 'text',
-							label: 'Backup Record',
+							label: t('Backup Record'),
 							fieldname: 'name',
 						},
 					]
@@ -139,12 +140,12 @@ export function backupRecordsOptions() {
 			filters = filters.concat([
 				{
 					type: 'checkbox',
-					label: 'Physical Backups',
+					label: t('Physical Backups'),
 					fieldname: 'physical',
 				},
 				{
 					type: 'checkbox',
-					label: 'Offsite Backups',
+					label: t('Offsite Backups'),
 					fieldname: 'offsite',
 				},
 			])
@@ -162,14 +163,19 @@ export function backupRecordsOptions() {
 
 			function confirmDownload(backup, file) {
 				confirmDialog({
-					title: 'Download Backup',
-					message: `You will be downloading the ${getFileName(
-						file,
-					)} backup of the site <b>${
-						site.doc?.host_name || site.doc?.name
-					}</b> that was created on ${date(backup.creation, 'llll')}.${
+					title: t('Download Backup'),
+					message: `${tr(
+						'You will be downloading the {file} backup of the site <b>{site}</b> that was created on {date}.',
+						{
+							file: getFileName(file),
+							site: site.doc?.host_name || site.doc?.name,
+							date: date(backup.creation, 'llll'),
+						},
+					)}${
 						!backup.offsite
-							? '<br><br><div class="p-2 bg-surface-gray-2 rounded border-outline-gray-1">You have to be logged in as a <b>System Manager</b> <em>in your site</em> to download the backup.<div>'
+							? t(
+									'<br><br><div class="p-2 bg-surface-gray-2 rounded border-outline-gray-1">You have to be logged in as a <b>System Manager</b> <em>in your site</em> to download the backup.<div>',
+								)
 							: ''
 					}`,
 					onSuccess({ hide }) {
@@ -209,7 +215,7 @@ export function backupRecordsOptions() {
 					group: 'Details',
 					items: [
 						{
-							label: 'View Job',
+							label: t('View Job'),
 							onClick() {
 								router.push({
 									name: 'Site Job',
@@ -224,27 +230,27 @@ export function backupRecordsOptions() {
 					condition: () => !row.physical,
 					items: [
 						{
-							label: 'Download Database',
+							label: t('Download Database'),
 							onClick() {
 								return confirmDownload(row, 'database')
 							},
 						},
 						{
-							label: 'Download Public',
+							label: t('Download Public'),
 							onClick() {
 								return confirmDownload(row, 'public')
 							},
 							condition: () => row.public_url,
 						},
 						{
-							label: 'Download Private',
+							label: t('Download Private'),
 							onClick() {
 								return confirmDownload(row, 'private')
 							},
 							condition: () => row.private_url,
 						},
 						{
-							label: 'Download Config',
+							label: t('Download Config'),
 							onClick() {
 								return confirmDownload(row, 'config')
 							},
@@ -257,7 +263,7 @@ export function backupRecordsOptions() {
 					condition: () => row.offsite || row.physical,
 					items: [
 						{
-							label: 'Restore Backup',
+							label: t('Restore Backup'),
 							condition: () => site.doc.status !== 'Archived',
 							onClick() {
 								if (row.physical && row.ready_to_restore) {
@@ -269,17 +275,18 @@ export function backupRecordsOptions() {
 
 								if (row.physical) {
 									confirmDialog({
-										title: 'Restore Physical Backup',
-										message: `Are you sure you want to restore your site's database from physical backup taken on <b>${dayjs(
-											row.creation,
-										).format('lll')}</b> ?`,
+										title: t('Restore Physical Backup'),
+										message: tr(
+											"Are you sure you want to restore your site's database from physical backup taken on <b>{date}</b> ?",
+											{ date: dayjs(row.creation).format('lll') },
+										),
 										onSuccess({ hide }) {
 											toast.promise(
 												site.restoreSiteFromPhysicalBackup.submit({
 													backup: row.name,
 												}),
 												{
-													loading: 'Scheduling physical backup restore...',
+													loading: t('Scheduling physical backup restore...'),
 													success: () => {
 														hide()
 														router.push({
@@ -288,7 +295,7 @@ export function backupRecordsOptions() {
 																name: site.name,
 															},
 														})
-														return 'Backup restore scheduled successfully.'
+														return t('Backup restore scheduled successfully.')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -297,10 +304,11 @@ export function backupRecordsOptions() {
 									})
 								} else {
 									confirmDialog({
-										title: 'Restore Backup',
-										message: `Are you sure you want to restore your site to this offsite backup from <b>${dayjs(
-											row.creation,
-										).format('lll')}</b> ?`,
+										title: t('Restore Backup'),
+										message: tr(
+											'Are you sure you want to restore your site to this offsite backup from <b>{date}</b> ?',
+											{ date: dayjs(row.creation).format('lll') },
+										),
 										onSuccess({ hide }) {
 											toast.promise(
 												site.restoreSiteFromFiles.submit({
@@ -312,7 +320,7 @@ export function backupRecordsOptions() {
 													},
 												}),
 												{
-													loading: 'Scheduling backup restore...',
+													loading: t('Scheduling backup restore...'),
 													success: (jobId) => {
 														hide()
 														router.push({
@@ -322,7 +330,7 @@ export function backupRecordsOptions() {
 																id: jobId,
 															},
 														})
-														return 'Backup restore scheduled successfully.'
+														return t('Backup restore scheduled successfully.')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -333,7 +341,7 @@ export function backupRecordsOptions() {
 							},
 						},
 						{
-							label: 'Restore Backup on another Site',
+							label: t('Restore Backup on another Site'),
 							condition: () => !row.physical,
 							onClick() {
 								let SelectSiteForRestore = defineAsyncComponent(
@@ -384,13 +392,13 @@ export function backupRecordsOptions() {
 											}
 
 											return toast.promise(restoreSite.submit(payload), {
-												loading: 'Scheduling backup restore...',
+												loading: t('Scheduling backup restore...'),
 												success: (jobId) => {
 													router.push({
 														name: 'Site Job',
 														params: { name: selectedSite, id: jobId },
 													})
-													return 'Backup restore scheduled successfully.'
+													return t('Backup restore scheduled successfully.')
 												},
 												error: (e) => getToastErrorMessage(e),
 											})
@@ -406,7 +414,7 @@ export function backupRecordsOptions() {
 		actions({ documentResource: site }) {
 			return [
 				{
-					label: 'Audit Trail',
+					label: t('Audit Trail'),
 					route: {
 						name: 'Site Backup Audit Trail',
 						params: { name: site.doc?.name },
@@ -416,7 +424,7 @@ export function backupRecordsOptions() {
 		},
 		primaryAction({ listResource: backups, documentResource: site }) {
 			return {
-				label: 'Take Backup',
+				label: t('Take Backup'),
 				slots: {
 					prefix: icon('upload-cloud'),
 				},
@@ -440,7 +448,7 @@ export function backupRecordsOptions() {
 			if (site.doc?.status !== 'Active') return null
 			if (!site.doc?.can_schedule_backups) return null
 			return {
-				label: 'Backup Schedule',
+				label: t('Backup Schedule'),
 				slots: {
 					icon: () => h(Tooltip, { text: 'Backup Schedule' }, icon('settings')),
 				},

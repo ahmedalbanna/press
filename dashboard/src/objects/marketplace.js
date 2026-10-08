@@ -11,6 +11,7 @@ import { confirmDialog, icon, renderDialog } from "../utils/components";
 import { isMobile } from "../utils/device";
 import { currency, userCurrency } from "../utils/format";
 import { getToastErrorMessage } from "../utils/toast";
+import { t, tr } from "../utils/language";
 
 export default {
 	doctype: "Marketplace App",
@@ -174,7 +175,7 @@ export default {
 										GenericDialog,
 										{
 											options: {
-												title: `Add version support for ${app.doc.title}`,
+												title: tr('Add version support for {app}', { app: app.doc.title }),
 												size: "4xl",
 											},
 										},
@@ -529,8 +530,8 @@ export default {
 							condition: () => app.doc.status === "Draft",
 							onClick() {
 								confirmDialog({
-									title: `Delete App ${app.doc.title}`,
-									message: "Are you sure you want to delete this app?",
+									title: tr('Delete App {app}', { app: app.doc.title }),
+									message: t('Are you sure you want to delete this app?'),
 									onSuccess({ hide }) {
 										toast.promise(app.delete.submit(), {
 											loading: "Deleting app...",
@@ -558,7 +559,10 @@ function showReleases(row, app) {
 			GenericDialog,
 			{
 				options: {
-					title: `Releases for ${app.doc.title} on ${row.branch} branch`,
+					title: tr('Releases for {app} on {branch} branch', {
+						app: app.doc.title,
+						branch: row.branch,
+					}),
 					size: "6xl",
 				},
 			},

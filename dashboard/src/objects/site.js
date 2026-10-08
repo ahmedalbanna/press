@@ -14,12 +14,13 @@ import { isMobile } from '../utils/device'
 import { date, escapeHtml } from '../utils/format'
 import { getDocResource } from '../utils/resource'
 import { getToastErrorMessage } from '../utils/toast'
+import { t, tr } from '../utils/language'
 import { getFrappeUpdateBanner, getUpsellBanner } from './common'
 import { getAppsTab } from './common/apps'
 import { getBackupsTab } from './site/backups'
 
 // prefilled so only the ticket id has to be typed; on its own it is not a reason
-const LOGIN_REASON_PREFIX = 'Investigating '
+const LOGIN_REASON_PREFIX = t('Investigating ')
 
 // A scheduled action runs as Administrator, which means nothing to a customer.
 // Site.get_archival_details does the same for the banner.
@@ -30,12 +31,12 @@ function getActorName(owner) {
 // The banner names who and when; the Activity tab carries the reason and the rest.
 function getArchivalMessage(site) {
 	const details = site.archival_details
-	if (!details) return 'This site is archived. It cannot be used again.'
+	if (!details) return t('This site is archived. It cannot be used again.')
 
-	return `Archived by ${escapeHtml(details.archived_by)} on ${date(
-		details.archived_on,
-		'LLL',
-	)}`
+	return tr('Archived by {by} on {date}', {
+		by: escapeHtml(details.archived_by),
+		date: date(details.archived_on, 'LLL'),
+	})
 }
 
 function jobLink(site, job, text) {
@@ -55,19 +56,36 @@ function canRestoreTables(site) {
 
 function confirmRestoreTables(site) {
 	confirmDialog({
-		title: 'Restore Tables',
-		message: `The ${jobLink(site, site.doc?.fatal_update?.update_job, 'last update')} failed and the ${jobLink(site, site.doc?.fatal_update?.recover_job, 'automatic recovery')} could not restore the tables.<br><br>Re-attempt the recovery manually?<br><br>The site database goes back to <b>${date(site.doc?.fatal_update?.update_start, 'lll')}</b>, when the last update started. <b>Any data written to the site after that time is lost.</b> You cannot undo this.`,
+		title: t('Restore Tables'),
+		message: `${tr(
+			'The {update} failed and the {recovery} could not restore the tables.',
+			{
+				update: jobLink(
+					site,
+					site.doc?.fatal_update?.update_job,
+					t('last update'),
+				),
+				recovery: jobLink(
+					site,
+					site.doc?.fatal_update?.recover_job,
+					t('automatic recovery'),
+				),
+			},
+		)}<br><br>${t('Re-attempt the recovery manually?')}<br><br>${tr(
+			'The site database goes back to <b>{date}</b>, when the last update started. <b>Any data written to the site after that time is lost.</b> You cannot undo this.',
+			{ date: date(site.doc?.fatal_update?.update_start, 'lll') },
+		)}`,
 		primaryAction: {
-			label: 'Restore Tables',
+			label: t('Restore Tables'),
 			theme: 'red',
 		},
 		onSuccess({ hide }) {
 			if (site.restoreTables.loading) return
 			toast.promise(site.restoreTables.submit(), {
-				loading: 'Starting table restore...',
+				loading: t('Starting table restore...'),
 				success: () => {
 					hide()
-					return 'Table restore started'
+					return t('Table restore started')
 				},
 				error: (e) => getToastErrorMessage(e),
 			})
@@ -149,7 +167,7 @@ export default {
 			if (site.doc.status === 'Archived') {
 				return { title: getArchivalMessage(site.doc), type: 'info' }
 			}
-			return getFrappeUpdateBanner(site.doc, 'This site')
+			return getFrappeUpdateBanner(site.doc, t('This site'))
 		},
 		breadcrumbs({ items, documentResource: site }) {
 			let breadcrumbs = []
@@ -189,7 +207,7 @@ export default {
 		},
 		tabs: [
 			{
-				label: 'Overview',
+				label: t('Overview'),
 				icon: icon('home'),
 				route: 'overview',
 				type: 'Component',
@@ -202,7 +220,7 @@ export default {
 				},
 			},
 			{
-				label: 'Insights',
+				label: t('Insights'),
 				icon: icon('bar-chart-2'),
 				route: 'insights',
 				type: 'Component',
@@ -287,7 +305,7 @@ export default {
 			},
 			getAppsTab(true),
 			{
-				label: 'Domains',
+				label: t('Domains'),
 				icon: icon('external-link'),
 				route: 'domains',
 				type: 'list',
@@ -302,16 +320,16 @@ export default {
 					},
 					columns: [
 						{
-							label: 'Domain',
+							label: t('Domain'),
 							fieldname: 'domain',
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							type: 'Badge',
 						},
 						{
-							label: 'Primary',
+							label: t('Primary'),
 							fieldname: 'primary',
 							type: 'Icon',
 							Icon(value) {
@@ -319,7 +337,7 @@ export default {
 							},
 						},
 						{
-							label: 'DNS Type',
+							label: t('DNS Type'),
 							fieldname: 'dns_type',
 							type: 'Badge',
 						},
@@ -331,7 +349,7 @@ export default {
 									'There was an error fetching an https certificate for your domain.',
 								type: 'error',
 								button: {
-									label: 'View Error',
+									label: t('View Error'),
 									variant: 'outline',
 									onClick() {
 										renderDialog(
@@ -339,7 +357,7 @@ export default {
 												GenericDialog,
 												{
 													options: {
-														title: 'Error fetching certificate',
+														title: t('Error fetching certificate'),
 														size: 'xl',
 													},
 												},
@@ -363,7 +381,7 @@ export default {
 					},
 					primaryAction({ listResource: domains, documentResource: site }) {
 						return {
-							label: 'Add Domain',
+							label: t('Add Domain'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -382,12 +400,15 @@ export default {
 					rowActions({ row, listResource: domains, documentResource: site }) {
 						return [
 							{
-								label: 'Remove',
+								label: t('Remove'),
 								condition: () => row.domain !== site.doc?.name,
 								onClick() {
 									confirmDialog({
-										title: `Remove Domain`,
-										message: `Are you sure you want to remove the domain <b>${row.domain}</b> from the site <b>${site.doc?.name}</b>?`,
+										title: t('Remove Domain'),
+										message: tr(
+											'Are you sure you want to remove the domain <b>{domain}</b> from the site <b>{name}</b>?',
+											{ domain: row.domain, name: site.doc?.name },
+										),
 										onSuccess({ hide }) {
 											if (site.removeDomain.loading) return
 											toast.promise(
@@ -395,10 +416,10 @@ export default {
 													domain: row.domain,
 												}),
 												{
-													loading: 'Removing domain...',
+													loading: t('Removing domain...'),
 													success: () => {
 														hide()
-														return 'Domain removed'
+														return t('Domain removed')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -408,12 +429,15 @@ export default {
 								},
 							},
 							{
-								label: 'Set Primary',
+								label: t('Set Primary'),
 								condition: () => !row.primary && row.status === 'Active',
 								onClick() {
 									confirmDialog({
-										title: `Set Primary Domain`,
-										message: `Are you sure you want to set the domain <b>${row.domain}</b> as the primary domain for the site <b>${site.doc?.name}</b>?`,
+										title: t('Set Primary Domain'),
+										message: tr(
+											'Are you sure you want to set the domain <b>{domain}</b> as the primary domain for the site <b>{name}</b>?',
+											{ domain: row.domain, name: site.doc?.name },
+										),
 										onSuccess({ hide }) {
 											if (site.setPrimaryDomain.loading) return
 											toast.promise(
@@ -421,10 +445,10 @@ export default {
 													domain: row.domain,
 												}),
 												{
-													loading: 'Setting primary domain...',
+													loading: t('Setting primary domain...'),
 													success: () => {
 														hide()
-														return 'Primary domain set'
+														return t('Primary domain set')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -434,15 +458,18 @@ export default {
 								},
 							},
 							{
-								label: 'Redirect to Primary',
+								label: t('Redirect to Primary'),
 								condition: () =>
 									!row.primary &&
 									!row.redirect_to_primary &&
 									row.status === 'Active',
 								onClick() {
 									confirmDialog({
-										title: `Redirect Domain`,
-										message: `Are you sure you want to redirect the domain <b>${row.domain}</b> to the primary domain of the site <b>${site.doc?.host_name}</b>?`,
+										title: t('Redirect Domain'),
+										message: tr(
+											'Are you sure you want to redirect the domain <b>{domain}</b> to the primary domain of the site <b>{host}</b>?',
+											{ domain: row.domain, host: site.doc?.host_name },
+										),
 										onSuccess({ hide }) {
 											if (site.redirectToPrimary.loading) return
 											toast.promise(
@@ -450,10 +477,10 @@ export default {
 													domain: row.domain,
 												}),
 												{
-													loading: 'Redirecting domain...',
+													loading: t('Redirecting domain...'),
 													success: () => {
 														hide()
-														return 'Domain redirected'
+														return t('Domain redirected')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -463,15 +490,18 @@ export default {
 								},
 							},
 							{
-								label: 'Remove Redirect',
+								label: t('Remove Redirect'),
 								condition: () =>
 									!row.primary &&
 									row.redirect_to_primary &&
 									row.status === 'Active',
 								onClick() {
 									confirmDialog({
-										title: `Remove Redirect`,
-										message: `Are you sure you want to remove the redirect from the domain <b>${row.domain}</b> to the primary domain of the site <b>${site.doc?.host_name}</b>?`,
+										title: t('Remove Redirect'),
+										message: tr(
+											'Are you sure you want to remove the redirect from the domain <b>{domain}</b> to the primary domain of the site <b>{host}</b>?',
+											{ domain: row.domain, host: site.doc?.host_name },
+										),
 										onSuccess({ hide }) {
 											if (site.removeRedirect.loading) return
 											toast.promise(
@@ -479,10 +509,10 @@ export default {
 													domain: row.domain,
 												}),
 												{
-													loading: 'Removing redirect...',
+													loading: t('Removing redirect...'),
 													success: () => {
 														hide()
-														return 'Redirect removed'
+														return t('Redirect removed')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -492,16 +522,20 @@ export default {
 								},
 							},
 							{
-								label: 'Fetch Certificate',
+								label: t('Fetch Certificate'),
 								condition: () =>
 									row.status === 'Broken' &&
 									site.doc.broken_domain_error &&
 									site.doc.tls_cert_retry_count < 8,
 								onClick() {
 									confirmDialog({
-										title: `Fetch Certificate`,
-										message: `Are you sure you want to retry fetching the certificate for the domain <b>${row.domain}</b>?<br><br>
-													<b>Note:</b> This action is rate limited. Please allow some time for dns changes (if any) to propagate before retrying.`,
+										title: t('Fetch Certificate'),
+									message: `${tr(
+										'Are you sure you want to retry fetching the certificate for the domain <b>{domain}</b>?',
+										{ domain: row.domain },
+									)}<br><br>${t(
+										'<b>Note:</b> This action is rate limited. Please allow some time for dns changes (if any) to propagate before retrying.',
+									)}`,
 										onSuccess({ hide }) {
 											if (site.fetchCertificate.loading) return
 											toast.promise(
@@ -509,11 +543,13 @@ export default {
 													domain: row.domain,
 												}),
 												{
-													loading: 'Fetching certificate...',
-													success: () => {
-														hide()
-														return 'Certificate fetch scheduled. Please wait a few minutes.'
-													},
+									loading: t('Fetching certificate...'),
+									success: () => {
+										hide()
+										return t(
+											'Certificate fetch scheduled. Please wait a few minutes.',
+										)
+									},
 													error: (e) => getToastErrorMessage(e),
 												},
 											)
@@ -527,7 +563,7 @@ export default {
 			},
 			getBackupsTab(),
 			{
-				label: 'Site Config',
+				label: t('Site Config'),
 				icon: icon('settings'),
 				route: 'site-config',
 				type: 'list',
@@ -544,7 +580,7 @@ export default {
 					orderBy: 'creation desc',
 					columns: [
 						{
-							label: 'Config Name',
+							label: t('Config Name'),
 							fieldname: 'key',
 							width: 1,
 							format(value, row) {
@@ -555,13 +591,13 @@ export default {
 							},
 						},
 						{
-							label: 'Config Value',
+							label: t('Config Value'),
 							fieldname: 'value',
 							class: 'font-mono',
 							width: 2,
 						},
 						{
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'type',
 							type: 'Badge',
 							width: '100px',
@@ -569,7 +605,7 @@ export default {
 					],
 					primaryAction({ listResource: configs, documentResource: site }) {
 						return {
-							label: 'Add Config',
+							label: t('Add Config'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -609,7 +645,7 @@ export default {
 					rowActions({ row, listResource: configs, documentResource: site }) {
 						return [
 							{
-								label: 'Edit',
+								label: t('Edit'),
 								onClick() {
 									let ConfigEditorDialog = defineAsyncComponent(
 										() => import('../components/ConfigEditorDialog.vue'),
@@ -626,11 +662,13 @@ export default {
 								},
 							},
 							{
-								label: 'Delete',
+								label: t('Delete'),
 								onClick() {
 									confirmDialog({
-										title: 'Delete Config',
-										message: `Are you sure you want to delete the config <b>${row.key}</b>?`,
+										title: t('Delete Config'),
+										message: tr('Are you sure you want to delete the config <b>{key}</b>?', {
+											key: row.key,
+										}),
 										onSuccess({ hide }) {
 											if (site.deleteConfig.loading) return
 											toast.promise(
@@ -644,7 +682,7 @@ export default {
 													},
 												),
 												{
-													loading: 'Deleting config...',
+													loading: t('Deleting config...'),
 													success: () => `Config ${row.key} removed`,
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -658,7 +696,7 @@ export default {
 				},
 			},
 			{
-				label: 'Migrations',
+				label: t('Migrations'),
 				icon: icon(ArrowLeftRightIcon),
 				route: 'migrations',
 				type: 'list',
@@ -677,29 +715,29 @@ export default {
 					fields: ['action_type', 'status', 'scheduled_time', 'owner'],
 					columns: [
 						{
-							label: 'Migration',
+							label: t('Migration'),
 							fieldname: 'action_type',
 							width: 1,
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							type: 'Badge',
 							width: 0.6,
 						},
 						{
-							label: 'Created By',
+							label: t('Created By'),
 							fieldname: 'owner',
 						},
 						{
-							label: 'Scheduled At',
+							label: t('Scheduled At'),
 							fieldname: 'scheduled_time',
 							format(value) {
 								return date(value, 'lll')
 							},
 						},
 						// {
-						// 	label: 'Updated On',
+						// 	label: t('Updated On'),
 						// 	fieldname: 'updated_on',
 						// 	format(value) {
 						// 		return date(value, 'lll');
@@ -714,7 +752,7 @@ export default {
 					},
 					primaryAction({ listResource: backups, documentResource: site }) {
 						return {
-							label: 'Trigger Migration',
+							label: t('Trigger Migration'),
 							slots: {
 								prefix: icon('upload-cloud'),
 							},
@@ -736,7 +774,7 @@ export default {
 				},
 			},
 			{
-				label: 'Updates',
+				label: t('Updates'),
 				icon: icon('arrow-up-circle'),
 				route: 'updates',
 				type: 'list',
@@ -759,18 +797,18 @@ export default {
 					],
 					columns: [
 						{
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'deploy_type',
 							width: 0.3,
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							type: 'Badge',
 							width: 0.5,
 						},
 						// {
-						// 	label: 'Backup',
+						// 	label: t('Backup'),
 						// 	width: 0.4,
 						// 	type: 'Component',
 						// 	component({ row }) {
@@ -786,18 +824,18 @@ export default {
 						// 	},
 						// },
 						{
-							label: 'Created By',
+							label: t('Created By'),
 							fieldname: 'owner',
 						},
 						{
-							label: 'Scheduled At',
+							label: t('Scheduled At'),
 							fieldname: 'scheduled_time',
 							format(value) {
 								return date(value, 'lll')
 							},
 						},
 						{
-							label: 'Updated On',
+							label: t('Updated On'),
 							fieldname: 'updated_on',
 							format(value) {
 								return date(value, 'lll')
@@ -807,7 +845,7 @@ export default {
 					rowActions({ row, documentResource: site }) {
 						return [
 							{
-								label: 'Edit',
+								label: t('Edit'),
 								condition: () => row.status === 'Scheduled',
 								onClick() {
 									let SiteUpdateDialog = defineAsyncComponent(
@@ -822,22 +860,22 @@ export default {
 								},
 							},
 							{
-								label: 'Cancel',
+								label: t('Cancel'),
 								condition: () => row.status === 'Scheduled',
 								onClick() {
 									confirmDialog({
-										title: 'Cancel Update',
-										message: `Are you sure you want to cancel the scheduled update?`,
+										title: t('Cancel Update'),
+										message: t('Are you sure you want to cancel the scheduled update?'),
 										onSuccess({ hide }) {
 											if (site.cancelUpdate.loading) return
 											toast.promise(
 												site.cancelUpdate.submit({ site_update: row.name }),
 												{
-													loading: 'Cancelling update...',
+													loading: t('Cancelling update...'),
 													success: () => {
 														hide()
 														site.reload()
-														return 'Update cancelled'
+														return t('Update cancelled')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -847,7 +885,7 @@ export default {
 								},
 							},
 							{
-								label: 'View Job',
+								label: t('View Job'),
 								condition: () =>
 									!['Scheduled', 'Cancelled'].includes(row.status),
 								onClick() {
@@ -858,7 +896,7 @@ export default {
 								},
 							},
 							{
-								label: 'Update Now',
+								label: t('Update Now'),
 								condition: () => row.status === 'Scheduled',
 								onClick() {
 									let siteUpdate = getDocResource({
@@ -870,21 +908,21 @@ export default {
 									})
 
 									toast.promise(siteUpdate.updateNow.submit(), {
-										loading: 'Updating site...',
+										loading: t('Updating site...'),
 										success: () => {
 											router.push({
 												name: 'Site Update',
 												params: { id: row.name },
 											})
 
-											return 'Site update started'
+											return t('Site update started')
 										},
 										error: 'Failed to update site',
 									})
 								},
 							},
 							{
-								label: 'View App Changes',
+								label: t('View App Changes'),
 								onClick() {
 									createListResource({
 										doctype: 'Deploy Candidate Difference App',
@@ -907,7 +945,7 @@ export default {
 														GenericDialog,
 														{
 															options: {
-																title: 'App Changes',
+																title: t('App Changes'),
 																size: '2xl',
 															},
 														},
@@ -918,11 +956,11 @@ export default {
 																		data: () => data,
 																		columns: [
 																			{
-																				label: 'App',
+																				label: t('App'),
 																				fieldname: 'app',
 																			},
 																			{
-																				label: 'From',
+																				label: t('From'),
 																				fieldname: 'source_hash',
 																				type: 'Button',
 																				Button({ row }) {
@@ -939,7 +977,7 @@ export default {
 																				},
 																			},
 																			{
-																				label: 'To',
+																				label: t('To'),
 																				fieldname: 'destination_hash',
 																				type: 'Button',
 																				Button({ row }) {
@@ -956,13 +994,13 @@ export default {
 																				},
 																			},
 																			{
-																				label: 'App Changes',
+																				label: t('App Changes'),
 																				fieldname: 'diff_url',
 																				align: 'right',
 																				type: 'Button',
 																				Button({ row }) {
 																					return {
-																						label: 'View',
+																						label: t('View'),
 																						variant: 'ghost',
 																						slots: {
 																							prefix: icon('external-link'),
@@ -979,7 +1017,9 @@ export default {
 												)
 											} else
 												toast.error(
-													'No app changes found. The current and target benches run the same app versions, so there is nothing to update.',
+													t(
+														'No app changes found. The current and target benches run the same app versions, so there is nothing to update.',
+													),
 												)
 										},
 									})
@@ -992,7 +1032,7 @@ export default {
 
 						return [
 							{
-								label: 'Configure',
+								label: t('Configure'),
 								slots: {
 									prefix: icon('settings'),
 								},
@@ -1042,7 +1082,7 @@ export default {
 				},
 			},
 			{
-				label: 'Actions',
+				label: t('Actions'),
 				icon: icon('sliders'),
 				route: 'actions',
 				type: 'Component',
@@ -1056,7 +1096,7 @@ export default {
 			},
 
 			{
-				label: 'Activity',
+				label: t('Activity'),
 				icon: icon('activity'),
 				route: 'activity',
 				type: 'list',
@@ -1077,7 +1117,7 @@ export default {
 					},
 					columns: [
 						{
-							label: 'Action',
+							label: t('Action'),
 							fieldname: 'action',
 							format(value, row) {
 								let action = row.action
@@ -1088,7 +1128,7 @@ export default {
 							},
 						},
 						{
-							label: 'Description',
+							label: t('Description'),
 							fieldname: 'reason',
 							class: 'text-ink-gray-6',
 						},
@@ -1103,7 +1143,7 @@ export default {
 						return [
 							{
 								type: 'select',
-								label: 'Action',
+								label: t('Action'),
 								fieldname: 'action',
 								class: !isMobile() ? 'w-52' : '',
 								options: [
@@ -1136,7 +1176,7 @@ export default {
 			},
 
 			{
-				label: 'Plan History',
+				label: t('Plan History'),
 				icon: icon('credit-card'),
 				route: 'plan-history',
 				type: 'list',
@@ -1149,7 +1189,7 @@ export default {
 					orderBy: 'timestamp desc',
 					columns: [
 						{
-							label: 'Changed From',
+							label: t('Changed From'),
 							fieldname: 'from_plan',
 							class: 'text-ink-gray-6',
 							format(value) {
@@ -1157,11 +1197,11 @@ export default {
 							},
 						},
 						{
-							label: 'Changed To',
+							label: t('Changed To'),
 							fieldname: 'to_plan',
 						},
 						{
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'type',
 							type: 'Badge',
 							theme(value) {
@@ -1171,12 +1211,12 @@ export default {
 							},
 						},
 						{
-							label: 'Changed By',
+							label: t('Changed By'),
 							fieldname: 'owner',
 							class: 'text-ink-gray-6',
 						},
 						{
-							label: 'Date',
+							label: t('Date'),
 							fieldname: 'timestamp',
 							type: 'Timestamp',
 							align: 'right',
@@ -1192,7 +1232,7 @@ export default {
 
 			return [
 				{
-					label: 'Jobs in progress',
+					label: t('Jobs in progress'),
 					slots: {
 						prefix: () => h(LoadingIndicator, { class: 'w-4 h-4' }),
 					},
@@ -1211,7 +1251,7 @@ export default {
 					},
 				},
 				{
-					label: 'Update Available',
+					label: t('Update Available'),
 					variant: site.doc?.setup_wizard_complete ? 'solid' : 'subtle',
 					slots: {
 						prefix: icon('alert-circle'),
@@ -1235,7 +1275,7 @@ export default {
 					},
 				},
 				{
-					label: 'Update Scheduled',
+					label: t('Update Scheduled'),
 					slots: {
 						prefix: icon('calendar'),
 					},
@@ -1248,7 +1288,7 @@ export default {
 					},
 				},
 				{
-					label: 'Restore Tables',
+					label: t('Restore Tables'),
 					variant: 'solid',
 					slots: {
 						prefix: icon('database'),
@@ -1257,7 +1297,7 @@ export default {
 					onClick: () => confirmRestoreTables(site),
 				},
 				{
-					label: 'Enable Monitoring',
+					label: t('Enable Monitoring'),
 					slots: {
 						prefix: icon('activity'),
 					},
@@ -1272,8 +1312,8 @@ export default {
 					},
 				},
 				{
-					label: 'Impersonate Site Owner',
-					title: 'Impersonate Site Owner', // for label to pop-up on hover
+					label: t('Impersonate Site Owner'),
+					title: t('Impersonate Site Owner'), // for label to pop-up on hover
 					slots: {
 						icon: defineAsyncComponent(async () => {
 							const mod = await import('~icons/lucide/venetian-mask')
@@ -1291,7 +1331,7 @@ export default {
 					},
 				},
 				{
-					label: 'Visit Site',
+					label: t('Visit Site'),
 					slots: {
 						prefix: icon('external-link'),
 					},
@@ -1308,7 +1348,7 @@ export default {
 					},
 				},
 				{
-					label: 'Setup Site',
+					label: t('Setup Site'),
 					slots: {
 						prefix: icon('external-link'),
 					},
@@ -1329,11 +1369,11 @@ export default {
 					},
 				},
 				{
-					label: 'Options',
+					label: t('Options'),
 					context,
 					options: [
 						{
-							label: 'View in Desk',
+							label: t('View in Desk'),
 							icon: 'external-link',
 							condition: () => $team.doc?.is_desk_user,
 							onClick: () => {
@@ -1344,18 +1384,21 @@ export default {
 							},
 						},
 						{
-							label: 'Login As Administrator',
+							label: t('Login As Administrator'),
 							icon: 'external-link',
 							condition: () => ['Active', 'Broken'].includes(site.doc.status),
 							onClick: () => {
 								confirmDialog({
-									title: 'Login as Administrator',
-									message: `Are you sure you want to login as administrator on the site <b>${site.doc?.name}</b>?`,
+									title: t('Login as Administrator'),
+									message: tr(
+										'Are you sure you want to login as administrator on the site <b>{name}</b>?',
+										{ name: site.doc?.name },
+									),
 									fields:
 										$team.name !== site.doc.team || $team.doc.is_desk_user
 											? [
 													{
-														label: 'Reason',
+														label: t('Reason'),
 														type: 'textarea',
 														fieldname: 'reason',
 														default: LOGIN_REASON_PREFIX,

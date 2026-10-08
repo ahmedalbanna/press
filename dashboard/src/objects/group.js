@@ -12,6 +12,7 @@ import { getTeam, switchToTeam } from '../data/team'
 import router from '../router'
 import { confirmDialog, icon, renderDialog } from '../utils/components'
 import { getToastErrorMessage } from '../utils/toast'
+import { t, tr } from '../utils/language'
 import { getFrappeUpdateBanner } from './common'
 import { getJobsTab } from './common/jobs'
 import { getPatchesTab } from './common/patches'
@@ -93,7 +94,7 @@ export default {
 		route: '/groups/:name',
 		tabs: [
 			{
-				label: 'Sites',
+				label: t('Sites'),
 				icon: icon(LucideAppWindow),
 				route: 'sites',
 				type: 'Component',
@@ -108,7 +109,7 @@ export default {
 				},
 			},
 			{
-				label: 'Apps',
+				label: t('Apps'),
 				icon: icon('grid'),
 				route: 'apps',
 				type: 'list',
@@ -124,12 +125,12 @@ export default {
 					pageLength: 99999,
 					columns: [
 						{
-							label: 'App',
+							label: t('App'),
 							fieldname: 'title',
 							width: 1,
 						},
 						{
-							label: 'Repository',
+							label: t('Repository'),
 							width: 1,
 							format(value, row) {
 								return `${row.repository_owner}/${row.repository}`
@@ -139,7 +140,7 @@ export default {
 							},
 						},
 						{
-							label: 'Branch',
+							label: t('Branch'),
 							fieldname: 'branch',
 							type: 'Badge',
 							width: 0.5,
@@ -148,7 +149,7 @@ export default {
 							},
 						},
 						{
-							label: 'Version',
+							label: t('Version'),
 							type: 'Badge',
 							fieldname: 'tag',
 							width: 0.5,
@@ -157,7 +158,7 @@ export default {
 							},
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							type: 'Badge',
 							suffix(row) {
 								if (!row.last_github_poll_failed) return
@@ -200,7 +201,7 @@ export default {
 									branch_deleted,
 								} = row
 
-								if (branch_deleted) return 'Branch Deleted'
+								if (branch_deleted) return t('Branch Deleted')
 
 								return last_github_poll_failed
 									? 'Action Required'
@@ -225,7 +226,7 @@ export default {
 						let team = getTeam()
 						return [
 							{
-								label: 'View in Desk',
+								label: t('View in Desk'),
 								condition: () => team.doc?.is_desk_user,
 								onClick() {
 									window.open(
@@ -235,17 +236,21 @@ export default {
 								},
 							},
 							{
-								label: 'Fetch Latest Updates',
+								label: t('Fetch Latest Updates'),
 								onClick() {
 									toast.promise(
 										releaseGroup.fetchLatestAppUpdates.submit({
 											app: row.name,
 										}),
 										{
-											loading: `Fetching Latest Updates for ${row.title}...`,
+											loading: tr('Fetching Latest Updates for {title}...', {
+												title: row.title,
+											}),
 											success: () => {
 												apps.reload()
-												return `Latest Updates Fetched for ${row.title}`
+												return tr('Latest Updates Fetched for {title}', {
+													title: row.title,
+												})
 											},
 											error: (e) => getToastErrorMessage(e),
 										},
@@ -253,7 +258,7 @@ export default {
 								},
 							},
 							{
-								label: 'Change Branch',
+								label: t('Change Branch'),
 								onClick() {
 									renderDialog(
 										h(ChangeAppBranchDialog, {
@@ -267,24 +272,26 @@ export default {
 								},
 							},
 							{
-								label: 'Remove App',
+								label: t('Remove App'),
 								condition: () => row.name !== 'frappe',
 								onClick() {
 									if (releaseGroup.removeApp.loading) return
 									confirmDialog({
-										title: 'Remove App',
-										message: `Are you sure you want to remove the app <b>${row.title}</b>?`,
+										title: t('Remove App'),
+										message: tr('Are you sure you want to remove the app <b>{title}</b>?', {
+											title: row.title,
+										}),
 										onSuccess: ({ hide }) => {
 											toast.promise(
 												releaseGroup.removeApp.submit({
 													app: row.name,
 												}),
 												{
-													loading: 'Removing App...',
+													loading: t('Removing App...'),
 													success: () => {
 														hide()
 														apps.reload()
-														return 'App Removed'
+														return t('App Removed')
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -294,7 +301,7 @@ export default {
 								},
 							},
 							{
-								label: 'Visit Repo',
+								label: t('Visit Repo'),
 								onClick() {
 									window.open(
 										`${row.repository_url}/tree/${row.branch}`,
@@ -303,7 +310,7 @@ export default {
 								},
 							},
 							{
-								label: 'Apply Patch',
+								label: t('Apply Patch'),
 								onClick: () => {
 									renderDialog(
 										h(PatchAppDialog, {
@@ -319,7 +326,7 @@ export default {
 						if (selectionMode) return []
 						return [
 							{
-								label: 'Uninstall Multiple',
+								label: t('Uninstall Multiple'),
 								icon: 'trash-2',
 								onClick: () => enterSelectionMode(),
 							},
@@ -328,7 +335,7 @@ export default {
 					secondaryAction({ selectionMode, exitSelectionMode }) {
 						if (!selectionMode) return null
 						return {
-							label: 'Cancel',
+							label: t('Cancel'),
 							onClick: () => exitSelectionMode(),
 						}
 					},
@@ -348,16 +355,23 @@ export default {
 								disabled: selectedRows.length === 0,
 								onClick() {
 									confirmDialog({
-										title: 'Remove Apps',
-										message: `Are you sure you want to remove <b>${selectedRows.length}</b> app${selectedRows.length === 1 ? '' : 's'}: ${selectedRows.map((row) => row.title).join(', ')}?`,
+										title: t('Remove Apps'),
+										message: tr(
+											'Are you sure you want to remove <b>{count}</b> app{plural}: {apps}?',
+											{
+												count: selectedRows.length,
+												plural: selectedRows.length === 1 ? '' : 's',
+												apps: selectedRows.map((row) => row.title).join(', '),
+											},
+										),
 										onSuccess: ({ hide }) => {
 											toast.promise(removeApps(releaseGroup, selectedRows), {
-												loading: 'Removing Apps...',
+												loading: t('Removing Apps...'),
 												success: () => {
 													hide()
 													exitSelectionMode()
 													apps.reload()
-													return 'Apps Removed'
+													return t('Apps Removed')
 												},
 												error: (e) => {
 													hide()
@@ -372,7 +386,7 @@ export default {
 							}
 						}
 						return {
-							label: 'Add App',
+							label: t('Add App'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -401,10 +415,14 @@ export default {
 														releaseGroup.reload()
 
 														if (isUpdate) {
-															return `App ${app.title} updated`
+															return tr('App {title} updated', {
+																title: app.title,
+															})
 														}
 
-														return `App ${app.title} added`
+														return tr('App {title} added', {
+															title: app.title,
+														})
 													},
 													error: (e) => getToastErrorMessage(e),
 												},
@@ -419,7 +437,7 @@ export default {
 			},
 
 			{
-				label: 'Deploys',
+				label: t('Deploys'),
 				route: 'deploys',
 				icon: icon('package'),
 				type: 'Component',
@@ -434,7 +452,7 @@ export default {
 
 			getJobsTab('Release Group'),
 			{
-				label: 'Config',
+				label: t('Config'),
 				icon: icon('settings'),
 				route: 'bench-config',
 				type: 'list',
@@ -451,7 +469,7 @@ export default {
 					pageLength: 999,
 					columns: [
 						{
-							label: 'Config Name',
+							label: t('Config Name'),
 							fieldname: 'key',
 							format(value, row) {
 								if (row.title) {
@@ -461,12 +479,12 @@ export default {
 							},
 						},
 						{
-							label: 'Config Value',
+							label: t('Config Value'),
 							fieldname: 'value',
 							class: 'font-mono',
 						},
 						{
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'type',
 							type: 'Badge',
 							width: '100px',
@@ -477,7 +495,7 @@ export default {
 						documentResource: releaseGroup,
 					}) {
 						return {
-							label: 'Add Config',
+							label: t('Add Config'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -521,7 +539,7 @@ export default {
 					}) {
 						return [
 							{
-								label: 'Edit',
+								label: t('Edit'),
 								onClick() {
 									let ConfigEditorDialog = defineAsyncComponent(
 										() => import('../components/ConfigEditorDialog.vue'),
@@ -538,11 +556,13 @@ export default {
 								},
 							},
 							{
-								label: 'Delete',
+								label: t('Delete'),
 								onClick() {
 									confirmDialog({
-										title: 'Delete Config',
-										message: `Are you sure you want to delete the config <b>${row.key}</b>?`,
+										title: t('Delete Config'),
+										message: tr('Are you sure you want to delete the config <b>{key}</b>?', {
+											key: row.key,
+										}),
 										onSuccess({ hide }) {
 											if (releaseGroup.deleteConfig.loading) return
 											toast.promise(
@@ -570,7 +590,7 @@ export default {
 				},
 			},
 			{
-				label: 'Actions',
+				label: t('Actions'),
 				icon: icon('sliders'),
 				route: 'actions',
 				type: 'Component',
@@ -582,7 +602,7 @@ export default {
 				},
 			},
 			{
-				label: 'Regions',
+				label: t('Regions'),
 				icon: icon('globe'),
 				route: 'regions',
 				type: 'list',
@@ -593,11 +613,11 @@ export default {
 					},
 					columns: [
 						{
-							label: 'Region',
+							label: t('Region'),
 							fieldname: 'title',
 						},
 						{
-							label: 'Country',
+							label: t('Country'),
 							fieldname: 'image',
 							format(value, row) {
 								return ''
@@ -616,7 +636,7 @@ export default {
 						documentResource: releaseGroup,
 					}) {
 						return {
-							label: 'Add Region',
+							label: t('Add Region'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -639,7 +659,7 @@ export default {
 			},
 			getPatchesTab(false),
 			{
-				label: 'Dependencies',
+				label: t('Dependencies'),
 				icon: icon('box'),
 				route: 'bench-dependencies',
 				type: 'Component',
@@ -654,7 +674,7 @@ export default {
 				},
 			},
 			{
-				label: 'Env',
+				label: t('Env'),
 				icon: icon('tool'),
 				route: 'bench-environment-variable',
 				type: 'list',
@@ -670,11 +690,11 @@ export default {
 					fields: ['name'],
 					columns: [
 						{
-							label: 'Environment Variable Name',
+							label: t('Environment Variable Name'),
 							fieldname: 'key',
 						},
 						{
-							label: 'Environment Variable Value',
+							label: t('Environment Variable Value'),
 							fieldname: 'value',
 						},
 					],
@@ -683,7 +703,7 @@ export default {
 						documentResource: releaseGroup,
 					}) {
 						return {
-							label: 'Add Environment Variable',
+							label: t('Add Environment Variable'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -710,7 +730,7 @@ export default {
 					}) {
 						return [
 							{
-								label: 'Edit',
+								label: t('Edit'),
 								onClick() {
 									let ConfigEditorDialog = defineAsyncComponent(
 										() =>
@@ -730,11 +750,14 @@ export default {
 								},
 							},
 							{
-								label: 'Delete',
+								label: t('Delete'),
 								onClick() {
 									confirmDialog({
-										title: 'Delete Environment Variable',
-										message: `Are you sure you want to delete the environment variable <b>${row.key}</b>?`,
+										title: t('Delete Environment Variable'),
+										message: tr(
+											'Are you sure you want to delete the environment variable <b>{key}</b>?',
+											{ key: row.key },
+										),
 										onSuccess({ hide }) {
 											if (releaseGroup.deleteEnvironmentVariable.loading) return
 											toast.promise(
@@ -748,7 +771,7 @@ export default {
 													},
 												),
 												{
-													loading: 'Deleting  environment variable...',
+													loading: t('Deleting environment variable...'),
 													success: () =>
 														`Environment variable ${row.key} removed`,
 													error: (e) => getToastErrorMessage(e),
@@ -774,8 +797,8 @@ export default {
 
 			return [
 				{
-					label: 'Impersonate Group Owner',
-					title: 'Impersonate Group Owner', // for label to pop-up on hover
+					label: t('Impersonate Group Owner'),
+					title: t('Impersonate Group Owner'), // for label to pop-up on hover
 					slots: {
 						icon: defineAsyncComponent(
 							() => import('~icons/lucide/venetian-mask'),
@@ -825,11 +848,11 @@ export default {
 					},
 				},
 				{
-					label: 'Options',
+					label: t('Options'),
 					condition: () => team.doc?.is_desk_user,
 					options: [
 						{
-							label: 'View in Desk',
+							label: t('View in Desk'),
 							icon: icon('external-link'),
 							condition: () => team.doc?.is_desk_user,
 							onClick() {

@@ -9,6 +9,7 @@ import { isMobile } from '../utils/device';
 import { date, duration, planTitle, userCurrency } from '../utils/format';
 import { getQueryParam, setQueryParam } from '../utils/index';
 import { trialDays } from '../utils/site';
+import { t } from '../utils/language';
 import { getJobsTab } from './common/jobs';
 import { tagTab } from './common/tags';
 
@@ -52,7 +53,7 @@ export default {
 		breadcrumbs({ documentResource: server }) {
 			return [
 				{
-					label: 'Servers',
+					label: t('Servers'),
 					route: '/servers',
 				},
 				{
@@ -70,8 +71,8 @@ export default {
 
 			return [
 				{
-					label: 'Impersonate Server Owner',
-					title: 'Impersonate Server Owner', // for label to pop-up on hover
+					label: t('Impersonate Server Owner'),
+					title: t('Impersonate Server Owner'), // for label to pop-up on hover
 					slots: {
 						icon: defineAsyncComponent(
 							() => import('~icons/lucide/venetian-mask'),
@@ -84,16 +85,16 @@ export default {
 					},
 				},
 				{
-					label: 'Options',
+					label: t('Options'),
 					button: {
-						label: 'Options',
+						label: t('Options'),
 						slots: {
 							icon: icon('more-horizontal'),
 						},
 					},
 					options: [
 						{
-							label: 'View in Desk',
+							label: t('View in Desk'),
 							icon: icon('external-link'),
 							condition: () => $team.doc?.is_desk_user,
 							onClick() {
@@ -108,7 +109,7 @@ export default {
 							},
 						},
 						{
-							label: 'View DB in Desk',
+							label: t('View DB in Desk'),
 							icon: icon('external-link'),
 							condition: () => $team.doc?.is_desk_user,
 							onClick() {
@@ -121,7 +122,7 @@ export default {
 							},
 						},
 						{
-							label: 'View Replication DB in Desk',
+							label: t('View Replication DB in Desk'),
 							icon: icon('external-link'),
 							condition: () =>
 								$team.doc?.is_desk_user && server.doc.replication_server,
@@ -135,7 +136,7 @@ export default {
 							},
 						},
 						{
-							label: 'Copy SSH Command',
+							label: t('Copy SSH Command'),
 							icon: icon('clipboard'),
 							condition: () => $team.doc?.is_desk_user,
 							async onClick() {
@@ -145,7 +146,7 @@ export default {
 							},
 						},
 						{
-							label: 'Visit Server',
+							label: t('Visit Server'),
 							icon: icon('external-link'),
 							condition: () =>
 								server.doc.status === 'Active' && $team.doc?.is_desk_user,
@@ -159,7 +160,7 @@ export default {
 		},
 		tabs: [
 			{
-				label: 'Overview',
+				label: t('Overview'),
 				icon: icon('home'),
 				condition: (server) => {
 					return server.doc?.status !== 'Archived';
@@ -174,7 +175,7 @@ export default {
 				},
 			},
 			{
-				label: 'Analytics',
+				label: t('Analytics'),
 				icon: icon('bar-chart-2'),
 				condition: (server) => server.doc?.status !== 'Archived',
 				route: 'analytics',
@@ -189,7 +190,7 @@ export default {
 				},
 			},
 			{
-				label: 'Bench Analytics',
+				label: t('Bench Analytics'),
 				icon: icon('bar-chart-2'),
 				condition: (server) => server.doc?.status !== 'Archived',
 				route: 'bench-group-analytics',
@@ -202,7 +203,7 @@ export default {
 				},
 			},
 			{
-				label: 'Sites',
+				label: t('Sites'),
 				icon: icon(LucideAppWindow),
 				condition: (server) => {
 					return server.doc?.status !== 'Archived';
@@ -233,7 +234,7 @@ export default {
 						return [
 							{
 								type: 'select',
-								label: 'Status',
+								label: t('Status'),
 								fieldname: 'status',
 								options: [
 									'',
@@ -246,17 +247,17 @@ export default {
 							},
 							{
 								type: 'select',
-								label: 'Plan',
+								label: t('Plan'),
 								fieldname: 'plan.support_included',
 								options: [
-									{ label: 'All', value: null },
-									{ label: 'Supported', value: '1' },
-									{ label: 'Not Supported', value: '0' },
+									{ label: t('All'), value: null },
+									{ label: t('Supported'), value: '1' },
+									{ label: t('Not Supported'), value: '0' },
 								],
 							},
 							{
 								type: 'link',
-								label: 'Version',
+								label: t('Version'),
 								fieldname: 'group.version',
 								options: {
 									doctype: 'Frappe Version',
@@ -264,7 +265,7 @@ export default {
 							},
 							{
 								type: 'link',
-								label: 'Benches',
+								label: t('Benches'),
 								fieldname: 'group',
 								options: {
 									doctype: 'Release Group',
@@ -272,7 +273,7 @@ export default {
 							},
 							{
 								type: 'link',
-								label: 'Tag',
+								label: t('Tag'),
 								fieldname: 'tags.tag',
 								options: {
 									doctype: 'Press Tag',
@@ -285,7 +286,7 @@ export default {
 					},
 					columns: [
 						{
-							label: 'Site',
+							label: t('Site'),
 							fieldname: 'host_name',
 							width: 1.5,
 							class: 'font-medium',
@@ -293,9 +294,9 @@ export default {
 								return value || row.name;
 							},
 						},
-						{ label: 'Status', fieldname: 'status', type: 'Badge', width: 0.6 },
+						{ label: t('Status'), fieldname: 'status', type: 'Badge', width: 0.6 },
 						{
-							label: 'Plan',
+							label: t('Plan'),
 							fieldname: 'plan',
 							width: 0.85,
 							format(value, row) {
@@ -315,12 +316,12 @@ export default {
 							},
 						},
 						{
-							label: 'Bench',
+							label: t('Bench'),
 							fieldname: 'group_title',
 							width: '15rem',
 						},
 						{
-							label: 'Version',
+							label: t('Version'),
 							fieldname: 'version',
 							width: 0.5,
 						},
@@ -328,7 +329,7 @@ export default {
 					primaryAction({ documentResource: server }) {
 						if (server?.doc?.status !== 'Active') return {};
 						return {
-							label: 'New Site',
+							label: t('New Site'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -343,7 +344,7 @@ export default {
 				},
 			},
 			{
-				label: 'Benches',
+				label: t('Benches'),
 				icon: icon('package'),
 				condition: (server) => {
 					return server.doc?.status !== 'Archived';
@@ -357,24 +358,24 @@ export default {
 					},
 					fields: [{ apps: ['app'] }, { servers: ['server'] }],
 					columns: [
-						{ label: 'Title', fieldname: 'title' },
+						{ label: t('Title'), fieldname: 'title' },
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'active_benches',
 							type: 'Badge',
 							width: 0.5,
 							format: (value, row) => {
-								if (!value) return 'Awaiting Deploy';
-								else return 'Active';
+								if (!value) return t('Awaiting Deploy');
+								else return t('Active');
 							},
 						},
 						{
-							label: 'Version',
+							label: t('Version'),
 							fieldname: 'version',
 							width: 0.5,
 						},
 						{
-							label: 'Apps',
+							label: t('Apps'),
 							fieldname: 'app',
 							format: (value, row) => {
 								return (row.apps || []).map((d) => d.app).join(', ');
@@ -382,7 +383,7 @@ export default {
 							width: '25rem',
 						},
 						{
-							label: 'Sites',
+							label: t('Sites'),
 							fieldname: 'site_count',
 							width: 0.25,
 						},
@@ -391,7 +392,7 @@ export default {
 						return [
 							{
 								type: 'link',
-								label: 'Version',
+								label: t('Version'),
 								fieldname: 'version',
 								options: {
 									doctype: 'Frappe Version',
@@ -399,7 +400,7 @@ export default {
 							},
 							{
 								type: 'link',
-								label: 'Tag',
+								label: t('Tag'),
 								fieldname: 'tags.tag',
 								options: {
 									doctype: 'Press Tag',
@@ -419,7 +420,7 @@ export default {
 					primaryAction({ listResource: benches, documentResource: server }) {
 						if (server?.doc?.status !== 'Active') return {};
 						return {
-							label: 'New Bench',
+							label: t('New Bench'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -434,7 +435,7 @@ export default {
 				},
 			},
 			{
-				label: 'Snapshots',
+				label: t('Snapshots'),
 				icon: icon('camera'),
 				condition: (server) => {
 					if (!server?.doc) return true;
@@ -460,14 +461,14 @@ export default {
 							? [
 									{
 										type: 'text',
-										label: 'Snapshot Name',
+										label: t('Snapshot Name'),
 										fieldname: 'name',
 									},
 								]
 							: [
 									{
 										type: 'select',
-										label: 'Status',
+										label: t('Status'),
 										fieldname: 'status',
 										options: [
 											'',
@@ -482,7 +483,7 @@ export default {
 						filters = filters.concat([
 							{
 								type: 'checkbox',
-								label: 'Consistent',
+								label: t('Consistent'),
 								fieldname: 'consistent',
 							},
 						]);
@@ -505,20 +506,20 @@ export default {
 					],
 					columns: [
 						{
-							label: 'Snapshot',
+							label: t('Snapshot'),
 							fieldname: 'name',
 							width: 0.5,
 							class: 'font-medium',
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							type: 'Badge',
 							width: 0.5,
 							align: 'center',
 						},
 						{
-							label: 'Size',
+							label: t('Size'),
 							fieldname: 'total_size_gb',
 							width: 0.5,
 							align: 'center',
@@ -528,7 +529,7 @@ export default {
 							},
 						},
 						{
-							label: 'Consistent',
+							label: t('Consistent'),
 							fieldname: 'consistent',
 							width: 0.3,
 							type: 'Icon',
@@ -538,7 +539,7 @@ export default {
 							},
 						},
 						{
-							label: 'Free',
+							label: t('Free'),
 							fieldname: 'free',
 							width: 0.3,
 							type: 'Icon',
@@ -547,7 +548,7 @@ export default {
 							},
 						},
 						{
-							label: 'Locked',
+							label: t('Locked'),
 							fieldname: 'locked',
 							width: 0.3,
 							type: 'Icon',
@@ -557,17 +558,17 @@ export default {
 							},
 						},
 						{
-							label: 'Expire At',
+							label: t('Expire At'),
 							fieldname: 'expire_at',
 							width: 1,
 							align: 'center',
 							format(value) {
-								if (!value) return 'No Expiry';
+								if (!value) return t('No Expiry');
 								return date(value, 'llll');
 							},
 						},
 						{
-							label: 'Created At',
+							label: t('Created At'),
 							fieldname: 'creation',
 							width: 1,
 							align: 'right',
@@ -579,7 +580,7 @@ export default {
 					primaryAction({ documentResource: server, listResource: snapshots }) {
 						if (server?.doc?.status === 'Archived') return;
 						return {
-							label: 'New Snapshot',
+							label: t('New Snapshot'),
 							slots: {
 								prefix: icon('camera'),
 							},
@@ -604,7 +605,7 @@ export default {
 					rowActions({ row, documentResource: server }) {
 						return [
 							{
-								label: 'View Details',
+								label: t('View Details'),
 								onClick() {
 									let ServerSnapshotDetailsDialog = defineAsyncComponent(
 										() =>
@@ -618,7 +619,7 @@ export default {
 								},
 							},
 							{
-								label: 'Recover Sites',
+								label: t('Recover Sites'),
 								condition: () => row.status === 'Completed',
 								onClick() {
 									let ServerSnapshotRecoverSitesDialog = defineAsyncComponent(
@@ -633,15 +634,16 @@ export default {
 								},
 							},
 							{
-								label: 'Lock',
+								label: t('Lock'),
 								condition: () => row.status === 'Completed' && !row.locked,
 								onClick() {
 									confirmDialog({
-										title: 'Lock Snapshot',
-										message:
+										title: t('Lock Snapshot'),
+										message: t(
 											'Are you sure you want to lock this snapshot? This will prevent the snapshot from being deleted accidentally.',
+										),
 										primaryAction: {
-											label: 'Lock',
+											label: t('Lock'),
 											onClick: ({ hide }) => {
 												toast.promise(
 													server.lockSnapshot.submit(
@@ -655,7 +657,7 @@ export default {
 														},
 													),
 													{
-														loading: 'Locking snapshot...',
+														loading: t('Locking snapshot...'),
 														success: 'Snapshot will be locked shortly',
 														error: (err) => {
 															return err.messages?.length
@@ -670,15 +672,16 @@ export default {
 								},
 							},
 							{
-								label: 'Unlock',
+								label: t('Unlock'),
 								condition: () => row.status === 'Completed' && row.locked,
 								onClick() {
 									confirmDialog({
-										title: 'Unlock Snapshot',
-										message:
+										title: t('Unlock Snapshot'),
+										message: t(
 											'Are you sure you want to unlock this snapshot ? After unlocking, the snapshot can be deleted by end-user.',
+										),
 										primaryAction: {
-											label: 'Unlock',
+											label: t('Unlock'),
 											onClick: ({ hide }) => {
 												toast.promise(
 													server.unlockSnapshot.submit(
@@ -692,7 +695,7 @@ export default {
 														},
 													),
 													{
-														loading: 'Unlocking snapshot...',
+														loading: t('Unlocking snapshot...'),
 														success: 'Snapshot will be unlocked shortly',
 														error: (err) => {
 															return err.messages?.length
@@ -707,15 +710,16 @@ export default {
 								},
 							},
 							{
-								label: 'Delete',
+								label: t('Delete'),
 								condition: () => row.status === 'Completed',
 								onClick() {
 									confirmDialog({
-										title: 'Delete Snapshot',
-										message:
+										title: t('Delete Snapshot'),
+										message: t(
 											'Are you sure you want to delete this snapshot? This will delete the snapshot and all associated recovered data.',
+										),
 										primaryAction: {
-											label: 'Delete',
+											label: t('Delete'),
 											theme: 'red',
 											onClick: ({ hide }) => {
 												toast.promise(
@@ -730,7 +734,7 @@ export default {
 														},
 													),
 													{
-														loading: 'Deleting snapshot...',
+														loading: t('Deleting snapshot...'),
 														success: 'Snapshot deleted successfully',
 														error: (err) => {
 															return err.messages?.length
@@ -750,7 +754,7 @@ export default {
 			},
 			getJobsTab('Server'),
 			{
-				label: 'Plays',
+				label: t('Plays'),
 				icon: icon('play'),
 				condition: (server) => {
 					return server.doc?.status !== 'Archived';
@@ -765,7 +769,7 @@ export default {
 						return [
 							{
 								type: 'select',
-								label: 'Server',
+								label: t('Server'),
 								fieldname: 'server',
 								options: [
 									server.doc.name,
@@ -797,23 +801,23 @@ export default {
 					fields: ['server', 'end'],
 					columns: [
 						{
-							label: 'Play',
+							label: t('Play'),
 							fieldname: 'play',
 							width: 2,
 						},
 						{
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							type: 'Badge',
 							width: 0.5,
 						},
 						{
-							label: 'Server',
+							label: t('Server'),
 							fieldname: 'server',
 							width: 2,
 						},
 						{
-							label: 'Duration',
+							label: t('Duration'),
 							fieldname: 'duration',
 							width: 0.5,
 							format(value, row) {
@@ -831,7 +835,7 @@ export default {
 				},
 			},
 			{
-				label: 'Actions',
+				label: t('Actions'),
 				icon: icon('sliders'),
 				condition: (server) => {
 					return server.doc?.status !== 'Archived';
@@ -844,7 +848,7 @@ export default {
 				},
 			},
 			{
-				label: 'Auto Scale',
+				label: t('Auto Scale'),
 				icon: icon('maximize-2'),
 				route: 'auto-scale',
 				type: 'Component',
@@ -878,7 +882,7 @@ export default {
 				},
 			},
 			{
-				label: 'Firewall',
+				label: t('Firewall'),
 				icon: icon('shield'),
 				condition: (server) => {
 					return (
@@ -898,7 +902,7 @@ export default {
 			},
 			tagTab('Server'),
 			{
-				label: 'Activity',
+				label: t('Activity'),
 				icon: icon('activity'),
 				route: 'activity',
 				type: 'list',
@@ -919,18 +923,18 @@ export default {
 					fields: ['owner'],
 					columns: [
 						{
-							label: 'Action',
+							label: t('Action'),
 							fieldname: 'action',
 							format(value, row) {
 								return `${row.action} by ${row.owner}`;
 							},
 						},
 						{
-							label: 'Server',
+							label: t('Server'),
 							fieldname: 'document_name',
 						},
 						{
-							label: 'Description',
+							label: t('Description'),
 							fieldname: 'reason',
 							class: 'text-ink-gray-6',
 						},
@@ -945,7 +949,7 @@ export default {
 						return [
 							{
 								type: 'select',
-								label: 'Action',
+								label: t('Action'),
 								fieldname: 'action',
 								class: !isMobile() ? 'w-52' : '',
 								options: [
@@ -964,7 +968,7 @@ export default {
 			},
 
 			{
-				label: 'Plan History',
+				label: t('Plan History'),
 				icon: icon('credit-card'),
 				route: 'plan-history',
 				type: 'list',
@@ -982,16 +986,16 @@ export default {
 					orderBy: 'timestamp desc',
 					columns: [
 						{
-							label: 'Server Type',
+							label: t('Server Type'),
 							fieldname: 'document_type',
 							format(value) {
-								if (value === 'Server') return 'Application Server';
-								if (value === 'Database Server') return 'Database Server';
+								if (value === 'Server') return t('Application Server');
+								if (value === 'Database Server') return t('Database Server');
 								return value || '—';
 							},
 						},
 						{
-							label: 'Changed From',
+							label: t('Changed From'),
 							fieldname: 'from_plan',
 							class: 'text-gray-600',
 							format(value) {
@@ -999,11 +1003,11 @@ export default {
 							},
 						},
 						{
-							label: 'Changed To',
+							label: t('Changed To'),
 							fieldname: 'to_plan',
 						},
 						{
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'type',
 							type: 'Badge',
 							theme(value) {
@@ -1013,12 +1017,12 @@ export default {
 							},
 						},
 						{
-							label: 'Changed By',
+							label: t('Changed By'),
 							fieldname: 'owner',
 							class: 'text-gray-600',
 						},
 						{
-							label: 'Date',
+							label: t('Date'),
 							fieldname: 'timestamp',
 							type: 'Timestamp',
 							align: 'right',
@@ -1028,12 +1032,12 @@ export default {
 						return [
 							{
 								type: 'select',
-								label: 'Server Type',
+								label: t('Server Type'),
 								fieldname: 'document_type',
 								options: [
-									{ label: 'All', value: null },
-									{ label: 'Application Server', value: 'Server' },
-									{ label: 'Database Server', value: 'Database Server' },
+									{ label: t('All'), value: null },
+									{ label: t('Application Server'), value: 'Server' },
+									{ label: t('Database Server'), value: 'Database Server' },
 								],
 							},
 						];
