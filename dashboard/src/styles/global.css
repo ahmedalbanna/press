@@ -1,7 +1,7 @@
 @import "frappe-ui/style.css";
 
 body {
-	background-color: var(--surface-white);
+	background-color: var(--brand-bg-light);
 	color: var(--ink-gray-9);
   @apply text-base;
 }
@@ -24,6 +24,7 @@ body {
 	--scrollbar-thumb: var(--surface-gray-2);
 	--scrollbar-thumb-hover: var(--surface-gray-3);
 	--surface-modal: var(--surface-cards);
+	--surface-blue-3: #0284c7;
 }
 
 /* needed as theme switcher dynamically adds this class 
@@ -57,4 +58,28 @@ body {
 
 *::-webkit-scrollbar-thumb:hover {
 	background-color: var(--scrollbar-thumb-hover);
+}
+
+/* AlbannaTech brand tokens */
+:root {
+	--brand-primary: #0F172A;
+	--brand-secondary: #0EA5E9;
+	--brand-accent: #10B981;
+	--brand-bg-light: #F8FAFC;
+	--brand-bg-dark: #020617;
+	--surface-blue-3: #0284c7;
+}
+
+/* Brand dark surface */
+[data-theme="dark"] body {
+	background-color: var(--brand-bg-dark);
+}
+
+/* Arabic RTL layout */
+[dir="rtl"] body {
+	text-align: right;
+}
+
+[dir="rtl"] {
+	font-family: "Cairo", "Tajawal", system-ui, sans-serif;
 }

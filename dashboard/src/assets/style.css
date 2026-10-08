@@ -1,7 +1,7 @@
 @import "frappe-ui/style.css";
 
 body {
-	background-color: var(--brand-bg-light);
+	background-color: var(--surface-white);
 	color: var(--ink-gray-9);
   @apply text-base;
 }
@@ -94,17 +94,4 @@ body {
 
 [dir="rtl"] {
 	font-family: "Cairo", "Tajawal", system-ui, sans-serif;
-}
-
-/* AlbannaTech primary action color */
-.bg-blue-500 {
-	background-color: var(--brand-secondary);
-}
-
-.hover\:bg-surface-blue-3:hover {
-	background-color: #0284c7;
-}
-
-.active\:bg-blue-700:active {
-	background-color: #0369a1;
 }

@@ -14,15 +14,21 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: {
-				brand: {
-					primary: '#0F172A',
-					secondary: '#0EA5E9',
-					accent: '#10B981',
-					light: '#F8FAFC',
-					dark: '#020617',
-				},
+		colors: {
+			brand: {
+				primary: '#0F172A',
+				secondary: '#0EA5E9',
+				accent: '#10B981',
+				light: '#F8FAFC',
+				dark: '#020617',
 			},
+			// AlbannaTech: map frappe-ui's blue action colors to the
+			// brand cyan so solid/active buttons use the palette
+			blue: {
+				500: '#0EA5E9',
+				700: '#0369A1',
+			},
+		},
 			width: {
 				112: '28rem',
 				wizard: '650px',
