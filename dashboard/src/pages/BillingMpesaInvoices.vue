@@ -8,6 +8,7 @@
 import { frappeRequest } from 'frappe-ui';
 import ObjectList from '../components/ObjectList.vue';
 import { icon } from '../utils/components';
+import { t } from '../utils/language';
 
 export default {
 	name: 'BillingMpesaInvoices',
@@ -96,7 +97,7 @@ export default {
 						Button: ({ row }) => {
 							if (row.local_invoice) {
 								return {
-									label: 'Download Invoice',
+									label: t('Download Invoice'),
 									slots: {
 										prefix: icon('download'),
 									},

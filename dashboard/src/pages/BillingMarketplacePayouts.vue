@@ -11,7 +11,7 @@
 						v-if="showPayout.status === 'Empty'"
 						class="text-base text-ink-gray-6"
 					>
-						Nothing to show
+						{{ t('Nothing to show') }}
 					</div>
 					<PayoutTable v-else :payoutId="showPayout.name" />
 				</template>

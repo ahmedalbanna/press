@@ -13,7 +13,7 @@
 					class="flex items-center gap-2 border-b border-outline-gray-2 bg-surface-gray-1 px-4 py-3"
 				>
 					<lucide-panel-top class="h-4 w-4 text-ink-gray-6" />
-					<h3 class="text-base font-medium text-ink-gray-9">Sites</h3>
+					<h3 class="text-base font-medium text-ink-gray-9">{{ t('Sites') }}</h3>
 					<span class="text-p-sm text-ink-gray-5">{{ data.sites.length }}</span>
 				</div>
 				<div class="divide-y divide-outline-gray-1">
@@ -21,7 +21,7 @@
 						v-if="!data.sites.length"
 						class="px-4 py-6 text-center text-p-base text-ink-gray-5"
 					>
-						No active site subscriptions.
+						{{ t('No active site subscriptions.') }}
 					</p>
 					<div
 						v-for="site in data.sites"
@@ -45,7 +45,7 @@
 					class="flex items-center gap-2 border-b border-outline-gray-2 bg-surface-gray-1 px-4 py-3"
 				>
 					<lucide-server class="h-4 w-4 text-ink-gray-6" />
-					<h3 class="text-base font-medium text-ink-gray-9">Servers</h3>
+					<h3 class="text-base font-medium text-ink-gray-9">{{ t('Servers') }}</h3>
 					<span class="text-p-sm text-ink-gray-5"
 						>{{ data.servers.length }}</span
 					>
@@ -55,7 +55,7 @@
 						v-if="!data.servers.length"
 						class="px-4 py-6 text-center text-p-base text-ink-gray-5"
 					>
-						No active server subscriptions.
+						{{ t('No active server subscriptions.') }}
 					</p>
 					<div
 						v-for="server in data.servers"
@@ -80,7 +80,7 @@
 				>
 					<lucide-blocks class="h-4 w-4 text-ink-gray-6" />
 					<h3 class="text-base font-medium text-ink-gray-9">
-						Marketplace Apps
+						{{ t('Marketplace Apps') }}
 					</h3>
 					<span class="text-p-sm text-ink-gray-5"
 						>{{ data.marketplace_apps.length }}</span
@@ -91,7 +91,7 @@
 						v-if="!data.marketplace_apps.length"
 						class="px-4 py-6 text-center text-p-base text-ink-gray-5"
 					>
-						No active marketplace app subscriptions.
+						{{ t('No active marketplace app subscriptions.') }}
 					</p>
 					<div
 						v-for="app in data.marketplace_apps"
@@ -111,7 +111,7 @@
 							v-if="app.sites.length"
 							class="mt-2 flex flex-wrap items-center gap-1.5 pl-[26px]"
 						>
-							<span class="text-p-sm text-ink-gray-5">Installed on</span>
+							<span class="text-p-sm text-ink-gray-5">{{ t('Installed on') }}</span>
 							<Badge
 								v-for="site in app.sites"
 								:key="site"

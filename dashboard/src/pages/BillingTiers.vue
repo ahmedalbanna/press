@@ -3,11 +3,13 @@
 		class="flex flex-1 flex-col gap-6 overflow-y-auto px-20 pb-12 pt-6 lg:px-60 xl:px-96"
 	>
 		<div class="flex flex-col gap-1">
-			<h2 class="text-xl font-semibold text-ink-gray-9">Spending Limits</h2>
+			<h2 class="text-xl font-semibold text-ink-gray-9">{{ t('Spending Limits') }}</h2>
 			<p class="text-p-base text-ink-gray-5">
-				These determine your monthly spending limit on AlbannaTech. You are
-				automatically moved to a higher tier once your usage and payment history
-				meet the qualifying conditions.
+				{{
+					t(
+						'These determine your monthly spending limit on AlbannaTech. You are automatically moved to a higher tier once your usage and payment history meet the qualifying conditions.',
+					)
+				}}
 			</p>
 		</div>
 
@@ -29,7 +31,9 @@
 			>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-col gap-1">
-						<div class="text-sm text-ink-gray-6">Current subscribed amount</div>
+						<div class="text-sm text-ink-gray-6">
+							{{ t('Current subscribed amount') }}
+						</div>
 						<div class="flex items-center gap-2">
 							<span class="text-xl font-semibold text-ink-gray-9">
 								{{ formatAmount($team.doc.total_subscribed_amount) }}
@@ -38,13 +42,13 @@
 					</div>
 					<div class="flex flex-col gap-1 text-right">
 						<div class="text-sm text-ink-gray-6">
-							Paying since
+							{{ t('Paying since') }}
 							<span class="font-medium text-ink-gray-9"
 								>{{ payingSinceLabel }}</span
 							>
 						</div>
 						<div class="text-sm text-ink-gray-6">
-							Last paid invoice
+							{{ t('Last paid invoice') }}
 							<span class="font-medium text-ink-gray-9">
 								{{ formatAmount(metrics.last_invoice_amount, 1) }}
 							</span>
@@ -63,17 +67,17 @@
 							<th
 								class="px-4 py-3 text-normal font-medium tracking-wide text-ink-gray-5"
 							>
-								Tier
+								{{ t('Tier') }}
 							</th>
 							<th
 								class="px-4 py-3 text-normal font-medium tracking-wide text-ink-gray-5"
 							>
-								Requirements
+								{{ t('Requirements') }}
 							</th>
 							<th
 								class="px-4 py-3 text-right text-normal font-medium tracking-wide text-ink-gray-5"
 							>
-								Spending Limit
+								{{ t('Spending Limit') }}
 							</th>
 						</tr>
 					</thead>
@@ -91,7 +95,7 @@
 									<Badge
 										v-if="isCurrentTier(tier)"
 										theme="blue"
-										label="Current"
+										:label="t('Current')"
 									/>
 								</div>
 							</td>
@@ -136,7 +140,7 @@
 						<div class="flex items-center gap-2">
 							<lucide-info class="h-5 w-5 shrink-0 text-ink-gray-5" />
 							<div class="text-base font-medium text-ink-gray-9">
-								How tier upgrades work
+								{{ t('How tier upgrades work') }}
 							</div>
 						</div>
 						<div class="flex flex-col gap-2">
@@ -144,30 +148,37 @@
 								class="flex list-disc flex-col gap-1.5 pl-5 text-sm text-ink-gray-7"
 							>
 								<li>
-									Tiers control the maximum amount your team can spend in a
-									billing cycle.
+									{{
+										t(
+											'Tiers control the maximum amount your team can spend in a billing cycle.',
+										)
+									}}
 								</li>
 								<li>
-									You are automatically upgraded to a higher tier when your last
-									paid subscription invoice meets that tier's threshold and you
-									have at least three consecutive paid invoices.
+									{{
+										t(
+											"You are automatically upgraded to a higher tier when your last paid subscription invoice meets that tier's threshold and you have at least three consecutive paid invoices.",
+										)
+									}}
 								</li>
 								<li>
-									New teams start at the base tier with a default spending
-									limit. Adding a payment method or buying prepaid credits is
-									required to remain at or above the base tier.
+									{{
+										t(
+											'New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.',
+										)
+									}}
 								</li>
 								<li>
-									Need a higher limit immediately? Reach out to
+									{{ t('Need a higher limit immediately? Reach out to') }}
 									<a
 										href="https://support.frappe.io"
 										target="_blank"
 										rel="noopener noreferrer"
 										class="text-ink-blue-3 underline underline-offset-2 hover:text-ink-blue-4"
 									>
-										support
+										{{ t('support') }}
 									</a>
-									and we will review your account.
+									{{ t('and we will review your account.') }}
 								</li>
 							</ul>
 						</div>
@@ -181,6 +192,7 @@
 <script setup>
 import { Badge, createResource, ErrorMessage, Spinner } from 'frappe-ui'
 import { computed, inject } from 'vue'
+import { t, tr } from '../utils/language'
 
 const team = inject('team')
 
@@ -209,8 +221,8 @@ function formatAmount(value, skip_format = false) {
 const payingSinceLabel = computed(() => {
 	const months = metrics.value.paying_since_months ?? 0
 	if (!months) return '—'
-	if (months === 1) return '1 month'
-	return `${months} months`
+	if (months === 1) return t('1 month')
+	return tr('{months} months', { months })
 })
 
 function isCurrentTier(tier) {
@@ -229,18 +241,22 @@ function requirementsFor(tier, idx) {
 	if (!tier.paying_user_since && !tier.last_invoice_amount) {
 		return [
 			{
-				text: 'Payment method not added or prepaid credits available',
+				text: t('Payment method not added or prepaid credits available'),
 				met: !!m.has_payment_method,
 			},
 		]
 	}
 	return [
 		{
-			text: `Paying user for at least ${tier.paying_user_since} months`,
+			text: tr('Paying user for at least {months} months', {
+				months: tier.paying_user_since,
+			}),
 			met: (m.paying_since_months ?? 0) >= (tier.paying_user_since ?? 0),
 		},
 		{
-			text: `Last paid invoice ≥ ${formatAmount(tier.last_invoice_amount)}`,
+			text: tr('Last paid invoice ≥ {amount}', {
+				amount: formatAmount(tier.last_invoice_amount),
+			}),
 			met:
 				(m.last_invoice_amount ?? 0) >=
 				tierInvoiceThresholdInTeamCurrency(tier),

@@ -18,19 +18,19 @@
 							class="mb-1 w-min rounded bg-gray-900 px-2 py-1 text-center text-xs text-white shadow-xl"
 						>
 							<div class="py-px">
-								{{ control.label }}
+								{{ ft(control.label) }}
 							</div>
 						</div>
 					</template>
 					<FilterControl
 						:label="
-							$isMobile || control.type == 'checkbox' ? control.label : null
+							$isMobile || control.type == 'checkbox' ? ft(control.label) : null
 						"
 						:class="control.class"
 						:type="control.type"
 						:options="control.options"
 						:placeholder="
-							!$isMobile ? control.placeholder || control.label : null
+							!$isMobile ? ft(control.placeholder || control.label) : null
 						"
 						:modelValue="control.value"
 						@update:modelValue="
@@ -46,6 +46,7 @@
 import { Tooltip, Dialog } from 'frappe-ui';
 import DialogWrapper from './DialogWrapper.vue';
 import FilterControl from './FilterControl.vue';
+import { t } from '../utils/language';
 
 export default {
 	name: 'ObjectListFilters',
@@ -63,6 +64,9 @@ export default {
 		};
 	},
 	methods: {
+		ft(key) {
+			return key ? t(key) : null;
+		},
 		onFilterControlChange(control, value) {
 			if (value == '' || value == null) {
 				control.value = undefined;

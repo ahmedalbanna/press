@@ -468,6 +468,77 @@ const billing: Dictionary = {
 		en: 'State / Province / Region',
 		ar: 'الولاية / المقاطعة / المنطقة',
 	},
+	// BillingSubscriptions
+	'Marketplace Apps': { en: 'Marketplace Apps', ar: 'تطبيقات السوق' },
+	'No active site subscriptions.': {
+		en: 'No active site subscriptions.',
+		ar: 'لا توجد اشتراكات مواقع نشطة.',
+	},
+	'No active server subscriptions.': {
+		en: 'No active server subscriptions.',
+		ar: 'لا توجد اشتراكات خوادم نشطة.',
+	},
+	'No active marketplace app subscriptions.': {
+		en: 'No active marketplace app subscriptions.',
+		ar: 'لا توجد اشتراكات تطبيقات سوق نشطة.',
+	},
+	'Installed on': { en: 'Installed on', ar: 'مثبّت على' },
+	// BillingMarketplacePayouts / BillingMpesaInvoices
+	'Payment Mode': { en: 'Payment Mode', ar: 'طريقة الدفع' },
+	'Invoice Name': { en: 'Invoice Name', ar: 'اسم الفاتورة' },
+	'Amount (USD)': { en: 'Amount (USD)', ar: 'المبلغ (دولار أمريكي)' },
+	'Exchange Rate': { en: 'Exchange Rate', ar: 'سعر الصرف' },
+	// BillingTiers
+	'Spending Limits': { en: 'Spending Limits', ar: 'حدود الإنفاق' },
+	'These determine your monthly spending limit on AlbannaTech. You are automatically moved to a higher tier once your usage and payment history meet the qualifying conditions.': {
+		en: 'These determine your monthly spending limit on AlbannaTech. You are automatically moved to a higher tier once your usage and payment history meet the qualifying conditions.',
+		ar: 'تحدد هذه الحدود سقف إنفاقك الشهري على AlbannaTech. يتم نقلك تلقائيًا إلى فئة أعلى عندما يستوفي استخدامك وسجل دفعك الشروط المؤهلة.',
+	},
+	'Current subscribed amount': {
+		en: 'Current subscribed amount',
+		ar: 'مبلغ الاشتراك الحالي',
+	},
+	'Paying since': { en: 'Paying since', ar: 'مدة الدفع منذ' },
+	'Last paid invoice': { en: 'Last paid invoice', ar: 'آخر فاتورة مدفوعة' },
+	'Tier': { en: 'Tier', ar: 'الفئة' },
+	'Requirements': { en: 'Requirements', ar: 'المتطلبات' },
+	'Spending Limit': { en: 'Spending Limit', ar: 'حد الإنفاق' },
+	'How tier upgrades work': { en: 'How tier upgrades work', ar: 'كيف تعمل ترقية الفئات' },
+	'Tiers control the maximum amount your team can spend in a billing cycle.': {
+		en: 'Tiers control the maximum amount your team can spend in a billing cycle.',
+		ar: 'تتحكم الفئات في الحد الأقصى الذي يمكن لفريقك إنفاقه في دورة الفوترة.',
+	},
+	"You are automatically upgraded to a higher tier when your last paid subscription invoice meets that tier's threshold and you have at least three consecutive paid invoices.": {
+		en: "You are automatically upgraded to a higher tier when your last paid subscription invoice meets that tier's threshold and you have at least three consecutive paid invoices.",
+		ar: 'يتم ترقية فريقك تلقائيًا إلى فئة أعلى عندما تستوفي آخر فاتورة اشتراك مدفوعة حدّ تلك الفئة وأن يكون لديك ثلاث فواتير مدفوعة متتالية على الأقل.',
+	},
+	'New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.': {
+		en: 'New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.',
+		ar: 'تبدأ الفرق الجديدة في الفئة الأساسية مع حد إنفاق افتراضي. يلزم إضافة طريقة دفع أو شراء رصيد مُسبق للبقاء في الفئة الأساسية أو أعلى منها.',
+	},
+	'Need a higher limit immediately? Reach out to': {
+		en: 'Need a higher limit immediately? Reach out to',
+		ar: 'تحتاج إلى حد أعلى فورًا؟ تواصل مع',
+	},
+	support: { en: 'support', ar: 'الدعم' },
+	'and we will review your account.': {
+		en: 'and we will review your account.',
+		ar: 'وسنقوم بمراجعة حسابك.',
+	},
+	'1 month': { en: '1 month', ar: 'شهر واحد' },
+	'{months} months': { en: '{months} months', ar: '{months} أشهر' },
+	'Payment method not added or prepaid credits available': {
+		en: 'Payment method not added or prepaid credits available',
+		ar: 'لم تتم إضافة طريقة دفع أو يتوفر رصيد مُسبق',
+	},
+	'Paying user for at least {months} months': {
+		en: 'Paying user for at least {months} months',
+		ar: 'مستخدم مدفوع لمدة {months} أشهر على الأقل',
+	},
+	'Last paid invoice ≥ {amount}': {
+		en: 'Last paid invoice ≥ {amount}',
+		ar: 'آخر فاتورة مدفوعة ≥ {amount}',
+	},
 };
 
 export default billing;
