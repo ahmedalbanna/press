@@ -13,15 +13,37 @@
 | Priority | press-mcp first (all functions) |
 | Code Location | press-mcp in Press + erpnext-mcp in ERPNext |
 | Deployment | On Press server (central management) |
+| MCP Server Type | Independent server (each MCP as separate service) |
 | Local Models | Ollama via Docker (isolated, easy deployment) |
 | Cloud Providers | Unified API (OpenAI, Gemini, Anthropic) |
 | Hybrid AI Routing | Text analysis (simple → local, complex → cloud) |
+| AI Agent Architecture | Hybrid (central agent + specialized agents) |
+| AI Agent Communication | Via MCP protocol |
+| MCP Communication | Mix (REST API for sync + Redis for async) |
 | AI Agent UI | Frappe UI chat sidebar in ERPNext Desk |
 | press-mcp UI | CLI + simple dashboard |
 | erpnext-mcp UI | Chat sidebar in ERPNext |
 | AI Agent Language | Bilingual (Arabic + English) |
 | AI Agent Platform | Web only (ERPNext chat sidebar) |
 | Pricing Model | Basic: free with hosting, Advanced: paid annual |
+
+### Access Control & Permissions
+
+| Decision | Choice |
+|----------|--------|
+| Access Control | Hybrid (Frappe system + custom MCP permissions) |
+| Permissions Integration | Frappe Hooks (doc_events, custom permissions) |
+
+### Billing & Subscription
+
+| Decision | Choice |
+|----------|--------|
+| Billing Service | Hybrid (Press system + custom billing service) |
+| Billing Integration | REST API |
+| Subscription | Hybrid (Press system + custom subscriptions) |
+| Subscription Integration | REST API |
+| Payment Gateway | Mix (HyperPay + PayTabs) |
+| Payment Gateway Integration | Webhook |
 
 ### AI Agent Architecture
 
