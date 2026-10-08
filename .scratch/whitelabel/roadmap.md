@@ -89,7 +89,14 @@
 |----------|--------|
 | Billing Service | Hybrid (Press for hosting + custom layer for AI subscriptions/tokens) |
 | Invoices | Frappe Invoice doctype |
-| Subscription | Frappe Subscription doctype (built-in periodic renewal) |
+| Subscription | Frappe Subscription + Subscription Plan doctypes (built-in periodic renewal) |
+| Proration | Full proration (upgrade/downgrade mid-cycle) |
+| Trial | Per plan (e.g. 14 days standard; none for advanced) |
+| Grace Period | 7 days after failed payment |
+| Dunning | 3 retries (day 1, 3, 5) |
+| Token Limits | Monthly renewing allowance per plan + approaching-limit alerts |
+| Cancellation | End of cycle (service continues until paid period ends) |
+| State Propagation | Mix (Redis cache + event/webhook on change) |
 | Usage Metering | Redis (real-time) synced to MariaDB (durable) |
 | Taxes | Frappe Tax Templates |
 | Currencies | Multiple (USD + SAR, matching gateways) |

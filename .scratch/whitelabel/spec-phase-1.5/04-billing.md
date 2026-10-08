@@ -42,14 +42,21 @@ Build a hybrid billing and subscription service. Billing combines the Press syst
 - **Document**: Frappe Invoice doctype — reuse the standard accounting document so figures reconcile with the rest of Frappe.
 
 ### Subscription
-- **Document**: Frappe Subscription doctype — reuse its built-in periodic renewal and scheduling rather than reinventing date cycles.
+- **Document**: Frappe Subscription doctype and Subscription Plan doctype — reuse built-in periodic renewal, scheduling, and plan definitions rather than reinventing date cycles.
 - **State**: exposed to layer 03 so it can gate Advanced AI features.
 - **Lifecycle**: active, grace (payment failed, features still on), suspended (features off), cancelled.
 - **Renewal**: annual for Advanced Pro; automatic with advance notification.
+- **Proration**: full proration — upgrades and downgrades mid-cycle are charged/credited proportionally for the remaining time.
+- **Trial**: per plan — standard plans may offer a trial (e.g. 14 days); advanced/special plans may start immediately with no trial.
+- **Grace period**: 7 days after a failed payment before features are suspended.
+- **Dunning**: 3 retries on days 1, 3, and 5 within the grace window.
+- **Cancellation**: end of cycle — service continues until the paid period ends, then stops; no immediate cut-off.
+- **State propagation**: mix — Redis cache for fast checks plus an event/webhook that updates consumers immediately on a state change.
 
 ### Usage metering
 - **Tracking**: Redis for real-time counting of AI queries and token consumption.
 - **Sync**: periodic aggregation from Redis into MariaDB for durable records.
+- **Token limits**: monthly renewing allowance per plan (resets each month), with alerts as the customer approaches the cap.
 
 ### Taxes
 - **Templates**: Frappe Tax Templates — apply local/regional taxes without extra code.
