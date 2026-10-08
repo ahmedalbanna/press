@@ -16,9 +16,11 @@ The `execute` method is the main method which is run by the scheduler on every d
 """
 
 import frappe
+from frappe import _
 from frappe.utils import add_days, get_first_day, get_last_day, getdate
 
 from press.utils import log_error
+from press.utils.user import user_language
 
 SUSPENSION_DAYS = 14
 
@@ -53,15 +55,19 @@ def suspend_sites_and_send_email(team):
 	# send email
 	if sites:
 		email = team.user
-		frappe.sendmail(
-			recipients=email,
-			subject="Your sites have been suspended on Frappe Cloud",
-			template="suspended_sites",
-			args={
-				"subject": "Your sites have been suspended on Frappe Cloud",
-				"sites": sites,
-			},
-		)
+		with user_language(email):
+			subject = _("Your sites have been suspended on AlbannaTech")
+			frappe.sendmail(
+				recipients=email,
+				subject=subject,
+				template="suspended_sites",
+				args={
+					"subject": subject,
+					"sites": sites,
+					"billing_link": frappe.utils.get_url("/dashboard/billing"),
+					"site_url": frappe.utils.get_url().rstrip("/"),
+				},
+			)
 
 
 def get_teams_with_unpaid_invoices():

@@ -9,23 +9,25 @@
             {{ subject }}
         </p>
         <p class="mb-6">
-            Unfortunately, we must bring to your attention that your site hosted on AlbannaTech has been temporarily <strong>suspended</strong> due to an unpaid invoice.<br>
+            {{ _("Unfortunately, we must inform you that your site hosted on AlbannaTech has been temporarily suspended due to an unpaid invoice.") }}<br>
             <br>
-            To continue using your AlbannaTech site, please settle your invoices by going to your <a href="https://albannatech.com/dashboard/billing" style="color: #2563eb; text-decoration: underline;">AlbannaTech Dashboard.</a><br>
+            {{ _("To continue using your AlbannaTech site, please settle your invoices:") }}
+            <a href="{{ billing_link }}" style="color: #2563eb; text-decoration: underline;">{{ _("Settle invoices") }}</a><br>
             <br>
-            <strong>Once your invoices are settled, your site will be activated immediately.</strong><br>
+            <strong>{{ _("Once your invoices are settled, your site will be activated immediately.") }}</strong><br>
             <br>
-            Please complete the above steps before <strong>20th of this month</strong>, failing which your site will be dropped and if you have subscribed to $10 plan you might lose your data permanently.<br>
+            {{ _("Please complete the above steps before the 20th of this month, failing which your site will be dropped and any data on a subscribed plan may be lost permanently.") }}<br>
             <br>
-            If you have any concerns or questions, contact our support team at <a href="mailto:support@albannatech.com" style="color: #2563eb; text-decoration: underline;">support@albannatech.com</a>.
+            {{ _("If you have any concerns or questions, contact our support team at") }}
+            <a href="mailto:support@albannatech.com" style="color: #2563eb; text-decoration: underline;">support@albannatech.com</a>.
         </p>
 
         {%- if sites -%}
 		{{ utils.separator() }}
-		<p class="mt-0 mb-2">Following sites were suspended:</p>
+		<p class="mt-0 mb-2">{{ _("The following sites were suspended:") }}</p>
 		<ul class="list-disc">
 			{%- for site in sites -%}
-			<li class="text-sm font-medium"><a href="https://cloud.frappe.io/dashboard/sites/{{ site }}/overview" style="color: #2563eb; text-decoration: underline;">{{ site }}</a></li>
+			<li class="text-sm font-medium"><a href="{{ site_url }}/dashboard/sites/{{ site }}/overview" style="color: #2563eb; text-decoration: underline;">{{ site }}</a></li>
 			{%- endfor -%}
 		</ul>
 		{%- endif -%}

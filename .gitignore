@@ -186,5 +186,8 @@ dashboard/auto-imports.d.ts
 *.csv
 *.bak-*
 
+# ...but translation catalogs are source, not scratch
+!press/translations/*.csv
+
 # Kilo Code local tooling config
 .kilo/
