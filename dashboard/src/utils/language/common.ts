@@ -493,6 +493,62 @@ const common: Dictionary = {
 		en: 'Do you want to accept or reject this access request?',
 		ar: 'هل تريد قبول أو رفض طلب الوصول هذا؟',
 	},
+	// SiteMigration
+	'Proceed': { en: 'Proceed', ar: 'متابعة' },
+	'Select Migration Type': { en: 'Select Migration Type', ar: 'اختر نوع الترحيل' },
+	'Select Migration Option': { en: 'Select Migration Option', ar: 'اختر خيار الترحيل' },
+	'Existing Bench': { en: 'Existing Bench', ar: 'بنش موجود' },
+	'Select Bench': { en: 'Select Bench', ar: 'اختر البنش' },
+	'Choose Release Group': { en: 'Choose Release Group', ar: 'اختر مجموعة الإصدار' },
+	'Select Server': { en: 'Select Server', ar: 'اختر الخادم' },
+	'Choose Server': { en: 'Choose Server', ar: 'اختر الخادم' },
+	'Provide New Bench Name': { en: 'Provide New Bench Name', ar: 'أدخل اسم البنش الجديد' },
+	'Select Server Type': { en: 'Select Server Type', ar: 'اختر نوع الخادم' },
+	'Shared Server': { en: 'Shared Server', ar: 'خادم مشترك' },
+	'Dedicated Server': { en: 'Dedicated Server', ar: 'خادم مخصص' },
+	'Select Region': { en: 'Select Region', ar: 'اختر المنطقة' },
+	"If the region you're looking for isn't available, please follow": {
+		en: "If the region you're looking for isn't available, please follow",
+		ar: "إذا كانت المنطقة التي تبحث عنها غير متاحة، يُرجى اتباع",
+	},
+	'this documentation': { en: 'this documentation', ar: 'هذا التوثيق' },
+	'to add it.': { en: 'to add it.', ar: 'لإضافتها.' },
+	'Skip Failing Patches': { en: 'Skip Failing Patches', ar: 'تخطي التصحيحات الفاشلة' },
+	'Choose Scheduled Time': { en: 'Choose Scheduled Time', ar: 'اختر الوقت المجدول' },
+	'The previous migration used up some storage.': {
+		en: 'The previous migration used up some storage.',
+		ar: 'استهلك الترحيل السابق بعض التخزين.',
+	},
+	'Add more storage': { en: 'Add more storage', ar: 'أضف المزيد من التخزين' },
+	'or use the actions below, then try again.': {
+		en: 'or use the actions below, then try again.',
+		ar: 'أو استخدم الإجراءات أدناه، ثم حاول مرة أخرى.',
+	},
+	'Cleanup Server': { en: 'Cleanup Server', ar: 'تنظيف الخادم' },
+	'Learn about Cleanup Server': {
+		en: 'Learn about Cleanup Server',
+		ar: 'تعرف على تنظيف الخادم',
+	},
+	'Forcefully Purge Binlogs': {
+		en: 'Forcefully Purge Binlogs',
+		ar: 'حذف سجلات Binlog بالقوة',
+	},
+	'Learn about Forcefully Purge Binlogs': {
+		en: 'Learn about Forcefully Purge Binlogs',
+		ar: 'تعرف على حذف سجلات Binlog بالقوة',
+	},
+	'This site has custom domains pointing to an A record. After the migration, update them to <strong>{inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>{site}</strong>. Until then those domains will not resolve. <a href="https://docs.frappe.io/cloud/sites/custom-domains" target="_blank" class="underline">Read more</a>': {
+		en: 'This site has custom domains pointing to an A record. After the migration, update them to <strong>{inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>{site}</strong>. Until then those domains will not resolve. <a href="https://docs.frappe.io/cloud/sites/custom-domains" target="_blank" class="underline">Read more</a>',
+		ar: 'لهذا الموقع نطاقات مخصصة تشير إلى سجل A. بعد الترحيل، قم بتحديثها إلى <strong>{inbound_ip}</strong>، أو بدّلها إلى سجل CNAME يشير إلى <strong>{site}</strong>. حتى ذلك الحين لن يتم حل تلك النطاقات. <a href="https://docs.frappe.io/cloud/sites/custom-domains" target="_blank" class="underline">اقرأ المزيد</a>',
+	},
+	'Runs `bench migrate` without a backup. Proceed with caution.': {
+		en: 'Runs `bench migrate` without a backup. Proceed with caution.',
+		ar: 'يُشغّل `bench migrate` بدون نسخة احتياطية. تابع بحذر.',
+	},
+	'Site will be unavailable during this process.': {
+		en: 'Site will be unavailable during this process.',
+		ar: 'سيكون الموقع غير متاح خلال هذه العملية.',
+	},
 };
 
 export default common;

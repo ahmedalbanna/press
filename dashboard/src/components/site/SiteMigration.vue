@@ -2,11 +2,11 @@
 	<!-- This page is named as SiteMigration but the doctype is `Site Action` -->
 	<Dialog
 		:options="{
-			title: 'Migrate Site',
+			title: t('Migrate Site'),
 			actions: selectedMigrationMode
 				? [
 						{
-							label: selectedMigrationChoiceDetails?.button_label || 'Proceed',
+							label: selectedMigrationChoiceDetails?.button_label || t('Proceed'),
 							disabled: migrationRequestLoading,
 							variant: 'solid',
 							onClick: triggerMigration,
@@ -28,13 +28,13 @@
 			<div v-else class="flex flex-col gap-3">
 				<!-- Chose Migration Mode -->
 				<div class="flex flex-col gap-2">
-					<p class="text-base text-ink-gray-8">Select Migration Type</p>
+					<p class="text-base text-ink-gray-8">{{ t('Select Migration Type') }}</p>
 					<FormControl
 						type="select"
 						:options="migrationChoices"
 						size="md"
 						variant="outline"
-						placeholder="Select Migration Option"
+						:placeholder="t('Select Migration Option')"
 						v-model="selectedMigrationMode"
 						required
 					/>
@@ -66,7 +66,7 @@
 							}"
 							@click="benchMovementType = 'Create A New Bench'"
 						>
-							New Bench
+							{{ t('New Bench') }}
 						</div>
 						<div
 							class="w-1/2 text-base cursor-pointer rounded-sm py-2 text-center transition-all"
@@ -75,7 +75,7 @@
 							}"
 							@click="benchMovementType = 'Move To Existing Bench'"
 						>
-							Existing Bench
+							{{ t('Existing Bench') }}
 						</div>
 					</div>
 
@@ -84,21 +84,21 @@
 						class="flex flex-col gap-2"
 						v-if="benchMovementType == 'Move To Existing Bench'"
 					>
-						<p class="text-sm text-ink-gray-7">Select Bench</p>
-						<FormControl
-							type="combobox"
-							:options="
-								availableReleaseGroups.map((e) => ({
-									label: e.title,
-									value: e.name,
-								}))
-							"
-							size="md"
-							variant="outline"
-							placeholder="Choose Release Group"
-							v-model="selectedReleaseGroupToMoveTo"
-							required
-						/>
+					<p class="text-sm text-ink-gray-7">{{ t('Select Bench') }}</p>
+					<FormControl
+						type="combobox"
+						:options="
+							availableReleaseGroups.map((e) => ({
+								label: e.title,
+								value: e.name,
+							}))
+						"
+						size="md"
+						variant="outline"
+						:placeholder="t('Choose Release Group')"
+						v-model="selectedReleaseGroupToMoveTo"
+						required
+					/>
 					</div>
 					<!-- Choose Server (For Existing) -->
 					<!-- Because, Release group can have multiple server -->
@@ -109,21 +109,21 @@
 							selectedReleaseGroupToMoveTo
 						"
 					>
-						<p class="text-sm text-ink-gray-7">Select Server</p>
-						<FormControl
-							type="combobox"
-							:options="
-								availableServersForSelectedReleaseGroup.map((e) => ({
-									label: e.title ? `${e.title} (${e.name})` : e.name,
-									value: e.name,
-								}))
-							"
-							size="md"
-							variant="outline"
-							placeholder="Choose Server"
-							v-model="selectedServerToMoveTo"
-							required
-						/>
+					<p class="text-sm text-ink-gray-7">{{ t('Select Server') }}</p>
+					<FormControl
+						type="combobox"
+						:options="
+							availableServersForSelectedReleaseGroup.map((e) => ({
+								label: e.title ? `${e.title} (${e.name})` : e.name,
+								value: e.name,
+							}))
+						"
+						size="md"
+						variant="outline"
+						:placeholder="t('Choose Server')"
+						v-model="selectedServerToMoveTo"
+						required
+					/>
 					</div>
 
 					<!-- New Bench Group Name (For New) -->
@@ -131,15 +131,15 @@
 						class="flex flex-col gap-2"
 						v-if="benchMovementType == 'Create A New Bench'"
 					>
-						<p class="text-sm text-ink-gray-7">Provide New Bench Name</p>
-						<FormControl
-							type="text"
-							size="md"
-							variant="outline"
-							placeholder="Provide New Bench Name"
-							v-model="newBenchGroupName"
-							required
-						/>
+					<p class="text-sm text-ink-gray-7">{{ t('Provide New Bench Name') }}</p>
+					<FormControl
+						type="text"
+						size="md"
+						variant="outline"
+						:placeholder="t('Provide New Bench Name')"
+						v-model="newBenchGroupName"
+						required
+					/>
 					</div>
 
 					<!-- Choose Server Type (For New) -->
@@ -147,25 +147,25 @@
 						class="flex flex-col gap-2"
 						v-if="benchMovementType == 'Create A New Bench'"
 					>
-						<p class="text-sm text-ink-gray-7">Select Server Type</p>
-						<FormControl
-							type="select"
-							:options="[
-								{
-									label: 'Shared Server',
-									value: 'Shared Server',
-								},
-								{
-									label: 'Dedicated Server',
-									value: 'Dedicated Server',
-								},
-							]"
-							size="md"
-							variant="outline"
-							placeholder="Select Server Type"
-							v-model="selectedServerType"
-							required
-						/>
+					<p class="text-sm text-ink-gray-7">{{ t('Select Server Type') }}</p>
+					<FormControl
+						type="select"
+						:options="[
+							{
+								label: t('Shared Server'),
+								value: 'Shared Server',
+							},
+							{
+								label: t('Dedicated Server'),
+								value: 'Dedicated Server',
+							},
+						]"
+						size="md"
+						variant="outline"
+						:placeholder="t('Select Server Type')"
+						v-model="selectedServerType"
+						required
+					/>
 					</div>
 
 					<!-- Choose The Server (For New + Dedicated) -->
@@ -176,21 +176,21 @@
 							selectedServerType == 'Dedicated Server'
 						"
 					>
-						<p class="text-sm text-ink-gray-7">Select Server</p>
-						<FormControl
-							type="combobox"
-							:options="
-								dedicatedServersForNewReleaseGroup.map((e) => ({
-									label: e.title ? `${e.title} (${e.name})` : e.name,
-									value: e.name,
-								}))
-							"
-							size="md"
-							variant="outline"
-							placeholder="Select Server"
-							v-model="selectedServerToMoveTo"
-							required
-						/>
+					<p class="text-sm text-ink-gray-7">{{ t('Select Server') }}</p>
+					<FormControl
+						type="combobox"
+						:options="
+							dedicatedServersForNewReleaseGroup.map((e) => ({
+								label: e.title ? `${e.title} (${e.name})` : e.name,
+								value: e.name,
+							}))
+						"
+						size="md"
+						variant="outline"
+						:placeholder="t('Select Server')"
+						v-model="selectedServerToMoveTo"
+						required
+					/>
 					</div>
 				</div>
 
@@ -201,7 +201,7 @@
 				>
 					<!-- Chose The Region -->
 					<div class="flex flex-col gap-2">
-						<p class="text-sm text-ink-gray-7">Select Region</p>
+						<p class="text-sm text-ink-gray-7">{{ t('Select Region') }}</p>
 						<FormControl
 							type="combobox"
 							:options="
@@ -212,7 +212,7 @@
 							"
 							size="md"
 							variant="outline"
-							placeholder="Select Region"
+							:placeholder="t('Select Region')"
 							v-model="selectedRegion"
 							required
 						/>
@@ -229,14 +229,14 @@
 							class="mt-1 text-sm text-ink-gray-6"
 							:showIcon="false"
 						>
-							If the region you're looking for isn't available, please follow
+							{{ t("If the region you're looking for isn't available, please follow") }}
 							<a
 								href="https://docs.frappe.io/cloud/site/site-migrations/move-site-to-different-region"
 								target="_blank"
 								class="underline"
-								>this documentation</a
+								>{{ t('this documentation') }}</a
 							>
-							to add it.
+							{{ t('to add it.') }}
 						</p>
 					</div>
 				</div>
@@ -245,13 +245,13 @@
 				<Checkbox
 					v-if="selectedMigrationMode"
 					v-model="skipFailingPatches"
-					label="Skip Failing Patches"
+					:label="t('Skip Failing Patches')"
 					size="sm"
 				/>
 
 				<!-- Scheduling Option -->
 				<div v-if="showSchedulingOption" class="flex flex-col gap-2">
-					<p class="text-sm text-ink-gray-7">Choose Scheduled Time</p>
+					<p class="text-sm text-ink-gray-7">{{ t('Choose Scheduled Time') }}</p>
 					<DateTimeControl v-model="scheduledTime" :hideLabel="true" />
 				</div>
 
@@ -268,45 +268,45 @@
 							class="mt-0.5 size-4 shrink-0 text-ink-amber-3"
 						/>
 						<p class="text-p-base text-ink-gray-8">
-							The previous migration used up some storage.
+							{{ t('The previous migration used up some storage.') }}
 							<a
 								:href="storageAddonsDocUrl"
 								target="_blank"
 								rel="noopener"
 								class="underline"
-								>Add more storage</a
+								>{{ t('Add more storage') }}</a
 							>
-							or use the actions below, then try again.
+							{{ t('or use the actions below, then try again.') }}
 						</p>
 					</div>
 					<div class="flex flex-wrap items-center gap-x-4 gap-y-2 pl-6">
 						<div class="flex items-center gap-1.5">
-							<Button @click="openServerActions('Cleanup Server')">
-								Cleanup Server
-							</Button>
-							<a
-								:href="cleanupServerDocUrl"
-								target="_blank"
-								rel="noopener"
-								title="Learn about Cleanup Server"
-								aria-label="Learn about Cleanup Server"
-								class="text-ink-gray-5 hover:text-ink-gray-8"
-							>
+						<Button @click="openServerActions('Cleanup Server')">
+							{{ t('Cleanup Server') }}
+						</Button>
+						<a
+							:href="cleanupServerDocUrl"
+							target="_blank"
+							rel="noopener"
+							:title="t('Learn about Cleanup Server')"
+							:aria-label="t('Learn about Cleanup Server')"
+							class="text-ink-gray-5 hover:text-ink-gray-8"
+						>
 								<lucide-info class="size-4" />
 							</a>
 						</div>
 						<div class="flex items-center gap-1.5">
-							<Button @click="openServerActions('Forcefully Purge Binlogs')">
-								Forcefully Purge Binlogs
-							</Button>
-							<a
-								:href="purgeBinlogsDocUrl"
-								target="_blank"
-								rel="noopener"
-								title="Learn about Forcefully Purge Binlogs"
-								aria-label="Learn about Forcefully Purge Binlogs"
-								class="text-ink-gray-5 hover:text-ink-gray-8"
-							>
+						<Button @click="openServerActions('Forcefully Purge Binlogs')">
+							{{ t('Forcefully Purge Binlogs') }}
+						</Button>
+						<a
+							:href="purgeBinlogsDocUrl"
+							target="_blank"
+							rel="noopener"
+							:title="t('Learn about Forcefully Purge Binlogs')"
+							:aria-label="t('Learn about Forcefully Purge Binlogs')"
+							class="text-ink-gray-5 hover:text-ink-gray-8"
+						>
 								<lucide-info class="size-4" />
 							</a>
 						</div>
@@ -326,6 +326,7 @@ import {
 import { dayjsIST } from '../../utils/dayjs'
 import AlertBanner from '../AlertBanner.vue'
 import GenericList from '../GenericList.vue'
+import { t, tr } from '../../utils/language'
 
 export default {
 	props: ['site', 'defaultAction', 'defaultNewBenchName'],
@@ -494,7 +495,7 @@ export default {
 			return Object.keys(this.migrationOptions)
 				.filter((e) => typeof this.migrationOptions[e] === 'object' && this.migrationOptions[e]  != null)
 				.map((e) => ({
-					label: e,
+					label: this.t(e),
 					value: e,
 				}))
 				.filter((e) => !this.migrationOptions[e.value].hidden)
@@ -555,16 +556,16 @@ export default {
 				(e) => e.name === this.selectedRegion,
 			);
 			if (!region?.inbound_ip) return '';
-			return `This site has custom domains pointing to an A record. After the migration, update them to <strong>${region.inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>${this.site}</strong>. Until then those domains will not resolve. <a href="https://docs.frappe.io/cloud/sites/custom-domains" target="_blank" class="underline">Read more</a>`;
+			return this.tr('This site has custom domains pointing to an A record. After the migration, update them to <strong>{inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>{site}</strong>. Until then those domains will not resolve. <a href="https://docs.frappe.io/cloud/sites/custom-domains" target="_blank" class="underline">Read more</a>', { inbound_ip: region.inbound_ip, site: this.site });
 		},
 		warningMessage() {
 			return {
 				'In-Place Migrate Site':
-					'Runs `bench migrate` without a backup. Proceed with caution.',
+					this.t('Runs `bench migrate` without a backup. Proceed with caution.'),
 				'Move Site To Different Server / Bench':
-					'Site will be unavailable during this process.',
+					this.t('Site will be unavailable during this process.'),
 				'Move Site To Different Region':
-					'Site will be unavailable during this process.',
+					this.t('Site will be unavailable during this process.'),
 			}[this.selectedMigrationMode]
 		},
 		scheduledTimeInIST() {
@@ -573,6 +574,8 @@ export default {
 		},
 	},
 	methods: {
+		t,
+		tr,
 		autoSelectMigrationOption() {
 			// Check if 'action' is passed via prop or URL params
 			const actionFromProp = this.defaultAction
