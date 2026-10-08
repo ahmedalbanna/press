@@ -26,6 +26,47 @@ from press.utils.user import user_language
 
 CATALOG_LANG = "ar"
 
+# Templates whose copy is marked translatable and seeded in the catalog. Every
+# string they mark must resolve, or the Arabic render silently falls back to
+# English for that line only.
+TRANSLATED_TEMPLATES = (
+	"suspended_sites",
+	"payment_failed",
+	"insufficient_balance",
+	"site_backup_failed",
+)
+
+RENDER_CASES = {
+	"suspended_sites": {
+		"subject": "تم تعليق مواقعك على AlbannaTech",
+		"sites": ["acme.example.com"],
+		"billing_link": "https://press.localhost/dashboard/billing",
+		"site_url": "https://press.localhost",
+	},
+	"payment_failed": {
+		"subject": "x",
+		"payment_link": "https://pay",
+		"amount": "$25.00",
+		"account_update_link": "https://billing",
+		"card_not_added": False,
+		"last_4": "4242",
+		"sites": ["acme.example.com"],
+	},
+	"insufficient_balance": {},
+	"site_backup_failed": {"site_name": "acme.example.com"},
+}
+
+# English that must never survive into an Arabic render of these templates.
+ENGLISH_SENTINELS = (
+	"Payment of",
+	"Update Billing Settings",
+	"Pay Invoice Now",
+	"Following sites were suspended",
+	"Insufficient balance",
+	"Greetings from",
+	"All attempts to back up",
+)
+
 
 def visible_text(html: str) -> str:
 	return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
@@ -67,6 +108,29 @@ class TestArabicEmailCatalog(FrappeTestCase):
 
 	def test_suspension_subject_is_translated(self):
 		self.assertIn("Your sites have been suspended on AlbannaTech", self._catalog())
+
+	def test_every_translated_template_has_its_strings_in_the_catalog(self):
+		# Guards the gap where a template is marked translatable but its copy
+		# was never added, which renders English with no error.
+		catalog = self._catalog()
+		app = Path(frappe.get_app_path("press"))
+		for name in TRANSLATED_TEMPLATES:
+			source = (app / "templates" / "emails" / f"{name}.html").read_text()
+			marked = set(re.findall(r"_\(\s*[\"'](.+?)[\"']\s*\)", source))
+			self.assertTrue(marked, f"{name}.html marks nothing translatable")
+			missing = marked - set(catalog)
+			self.assertEqual(missing, set(), f"{name}.html untranslated: {missing}")
+
+	def test_catalog_contains_no_foreign_script(self):
+		# Guards a stray character from another script, which renders as a box
+		# in the customer's mail client and is easy to miss in a diff review.
+		# Latin is allowed: the brand name stays Latin inside Arabic copy.
+		foreign = re.compile(r"[Ͱ-ϿЀ-ӿ฀-鿿가-힯]")
+		for source, translated in self._catalog().items():
+			self.assertIsNone(
+				foreign.search(translated),
+				f"non-Arabic script in the translation of {source!r}",
+			)
 
 
 class TestArabicEmailRendering(FrappeTestCase):
@@ -126,6 +190,30 @@ class TestArabicEmailRendering(FrappeTestCase):
 			{"subject": "x", "sites": ["acme.example.com"], "billing_link": "b", "site_url": "s"},
 		)
 		self.assertNotIn("cloud.frappe.io", html)
+
+	def test_every_translated_template_renders_arabic(self):
+		from frappe.translate import clear_cache
+
+		for name, args in RENDER_CASES.items():
+			frappe.local.lang = CATALOG_LANG
+			clear_cache()
+			html, _ = get_email_from_template(name, args)
+			text = visible_text(html)
+			with self.subTest(template=name):
+				self.assertRegex(text, r"[؀-ۿ]", f"{name} rendered with no Arabic at all")
+				for leaked in ENGLISH_SENTINELS:
+					self.assertNotIn(leaked, text, f"{name} leaked {leaked!r}")
+
+	def test_payment_failed_card_not_added_branch_also_renders_arabic(self):
+		from frappe.translate import clear_cache
+
+		frappe.local.lang = CATALOG_LANG
+		clear_cache()
+		args = dict(RENDER_CASES["payment_failed"], card_not_added=True, sites=[])
+		html, _ = get_email_from_template("payment_failed", args)
+		text = visible_text(html)
+		self.assertIn("لم تُضِف بطاقة", text)
+		self.assertNotIn("Update Billing Settings", text)
 
 
 class TestUserLanguageContext(FrappeTestCase):
