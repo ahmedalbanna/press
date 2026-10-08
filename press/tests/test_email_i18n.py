@@ -42,6 +42,10 @@ TRANSLATED_TEMPLATES = (
 	"disabled_site_monitoring",
 	"2fa_recovery_codes_viewed",
 	"2fa_recovery_codes_yearly_reminder",
+	"budget_alert",
+	"payment_method_invalid",
+	"mandate_amount_capped",
+	"payment_failed_upi_autopay",
 )
 
 RENDER_CASES = {
@@ -70,6 +74,33 @@ RENDER_CASES = {
 	"disabled_site_monitoring": {"site": "acme.com", "reason": "over quota"},
 	"2fa_recovery_codes_viewed": {"viewed_at": "2026-10-08", "link": "https://s"},
 	"2fa_recovery_codes_yearly_reminder": {"link": "https://s"},
+	"budget_alert": {
+		"team_user": "Ali",
+		"alert_threshold": "100",
+		"invoice_amount": "150",
+		"excess_amount": "50",
+		"period_start": "2026-10-01",
+		"period_end": "2026-10-31",
+	},
+	"payment_method_invalid": {
+		"subject": "x",
+		"amount": "20",
+		"billing_link": "https://b",
+	},
+	"mandate_amount_capped": {
+		"subject": "x",
+		"confirmed_amount": "500",
+		"requested_amount": "1000",
+		"upi_autopay_link": "https://u",
+	},
+	"payment_failed_upi_autopay": {
+		"subject": "x",
+		"amount": "20",
+		"upi_vpa": "a@upi",
+		"error_reason": "INSUFFICIENT_FUNDS",
+		"upi_autopay_link": "https://u",
+		"billing_link": "https://b",
+	},
 }
 
 # English that must never survive into an Arabic render of these templates.
@@ -94,6 +125,17 @@ ENGLISH_SENTINELS = (
 	"Change your password",
 	"It's been a year",
 	"View Your Recovery Codes",
+	"Budget Alert Details",
+	"Monthly Alert Threshold",
+	"We attempted to auto-debit",
+	"We tried to charge your default card",
+	"Your UPI Autopay mandate was successfully",
+	"Please make sure your UPI account",
+	"Manage UPI Autopay",
+	"Pay Now",
+	# signature() is shared by every template, so an English "Thanks," leaked
+	# into all of them and no per-template sentinel caught it
+	"Thanks,",
 )
 
 
@@ -269,3 +311,63 @@ class TestSuspensionEmailBranding(FrappeTestCase):
 		source = inspect.getsource(suspend_sites_and_send_email)
 		self.assertNotIn("Frappe Cloud", source)
 		self.assertIn("user_language", source, "suspension email must honour the user's language")
+
+
+class TestUPIAutopayBranches(FrappeTestCase):
+	"""The UPI failure email branches on error_reason; each needs its own check.
+
+	A single render only proves one branch translated. These were the four
+	branches at the time of writing -- add a case when a reason is added.
+	"""
+
+	def _render(self, reason, upi_vpa="a@upi"):
+		from frappe.translate import clear_cache
+
+		original = frappe.local.lang
+		try:
+			frappe.local.lang = CATALOG_LANG
+			clear_cache()
+			html, _ = get_email_from_template(
+				"payment_failed_upi_autopay",
+				{
+					"subject": "x",
+					"amount": "20",
+					"upi_vpa": upi_vpa,
+					"error_reason": reason,
+					"upi_autopay_link": "https://u",
+					"billing_link": "https://b",
+				},
+			)
+			return visible_text(html)
+		finally:
+			frappe.local.lang = original
+			from frappe.translate import clear_cache
+
+			clear_cache()
+
+	def test_every_error_branch_renders_arabic(self):
+		for reason in (
+			"INSUFFICIENT_FUNDS",
+			"MAX_PAYMENT_AMOUNT_EXCEEDED",
+			"TOKEN_EXPIRED",
+			"TOKEN_NOT_ACTIVE",
+			"TOKEN_NOT_CONFIRMED",
+			"GATEWAY_ERROR",
+			"FREQUENCY_LIMIT_EXCEEDED",
+			"PAYMENT_CREATION_FAILED",
+			"MAX_PAYMENT_AMOUNT_EXCEEDED",
+			"MANDATE_CANCELLED",
+			"SOMETHING_NEW",
+		):
+			with self.subTest(reason=reason):
+				text = self._render(reason)
+				self.assertRegex(text, r"[؀-ۿ]")
+				self.assertNotIn("We attempted to auto-debit", text)
+				self.assertNotIn("Please check your UPI", text)
+
+	def test_branch_renders_without_a_upi_vpa(self):
+		# The template guards the vpa span, so the interpolation must not
+		# leave an empty label behind.
+		text = self._render("INSUFFICIENT_FUNDS", upi_vpa=None)
+		self.assertIn("رصيد", text)
+		self.assertNotIn("None", text)
