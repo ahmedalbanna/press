@@ -48,7 +48,7 @@
 							<!-- 2FA Section -->
 							<template v-if="is2FA && !is2FARecovery">
 								<FormControl
-									label="2FA Code from your Authenticator App"
+									:label="t('2FA Code from your Authenticator App')"
 									placeholder="123456"
 									v-model="twoFactorCode"
 									variant="outline"
@@ -60,7 +60,7 @@
 								/>
 								<Button
 									class="mt-4"
-									label="Verify"
+									:label="t('Verify')"
 									variant="solid"
 									:loading="
 										$resources.verify2FA.loading ||
@@ -78,7 +78,7 @@
 								<Button
 									class="mt-2"
 									variant="ghost"
-									label="Reset 2FA"
+									:label="t('Reset 2FA')"
 									@click="on2FARecovery = true"
 								/>
 							</template>
@@ -86,7 +86,7 @@
 							<!-- 2FA Recovery Section -->
 							<template v-else-if="is2FARecovery">
 								<FormControl
-									label="Recovery Code"
+									:label="t('Recovery Code')"
 									placeholder="C6BD7F3DC3C5777D"
 									v-model="twoFactorRecoveryCode"
 									variant="outline"
@@ -98,7 +98,7 @@
 								/>
 								<Button
 									class="mt-4"
-									label="Reset"
+									:label="t('Reset')"
 									variant="solid"
 									:loading="
 										$resources.verify2FA.loading ||
@@ -116,7 +116,7 @@
 								<Button
 									class="mt-2"
 									variant="ghost"
-									label="Back to 2FA Verification"
+									:label="t('Back to 2FA Verification')"
 									@click="on2FARecovery = false"
 								/>
 							</template>
@@ -124,7 +124,7 @@
 							<!-- Forgot Password Section -->
 							<template v-else-if="hasForgotPassword">
 								<FormControl
-									label="Email"
+									:label="t('Email')"
 									type="email"
 									placeholder="johndoe@mail.com"
 									autocomplete="email"
@@ -155,7 +155,7 @@
 							<!-- Login Section -->
 							<template v-else-if="isLogin">
 								<FormControl
-									label="Email"
+									:label="t('Email')"
 									placeholder="johndoe@mail.com"
 									autocomplete="email"
 									v-model="email"
@@ -174,7 +174,7 @@
 								<template v-if="!isOauthLogin && usePassword">
 									<FormControl
 										class="mt-4"
-										label="Password"
+										:label="t('Password')"
 										type="password"
 										placeholder="•••••"
 										v-model="password"
@@ -210,7 +210,7 @@
 									<template v-if="otpSent">
 										<FormControl
 											class="mt-4"
-											label="Verification code"
+											:label="t('Verification code')"
 											placeholder="123456"
 											variant="outline"
 											ref="otpInput"
@@ -271,7 +271,7 @@
 							<!-- Signup Section -->
 							<template v-else>
 								<FormControl
-									label="Email"
+									:label="t('Email')"
 									type="email"
 									placeholder="johndoe@mail.com"
 									autocomplete="email"
@@ -297,21 +297,21 @@
 						>
 							<div class="text-p-base" v-if="$route.name === 'Signup'">
 								<span class="text-ink-gray-6">
-									{{ 'By signing up, you agree to our ' }}
+									{{ t('By signing up, you agree to our ') }}
 								</span>
 								<a
 									class="text-ink-gray-9 underline hover:text-ink-gray-7"
-									href="https://frappecloud.com/policies"
+									href="https://albannatech.com/policies"
 								>
-									Terms & Policies
+									{{ t('Terms & Policies') }}
 								</a>
 							</div>
 							<div class="mt-2" v-if="!(otpRequested || resetPasswordEmailSent)">
 								<span class="text-p-base text-ink-gray-6">
 									{{
 										$route.name == 'Login'
-											? 'New member? '
-											: 'Already have an account? '
+											? t('New member? ')
+											: t('Already have an account? ')
 									}}
 								</span>
 								<router-link
@@ -322,7 +322,7 @@
 									}"
 								>
 									{{
-										$route.name == 'Login' ? 'Create a new account.' : 'Log in.'
+										$route.name == 'Login' ? t('Create a new account.') : t('Log in.')
 									}}
 								</router-link>
 							</div>
@@ -331,7 +331,7 @@
 					<div v-else-if="otpRequested">
 						<form class="flex flex-col">
 							<FormControl
-								label="Email"
+								:label="t('Email')"
 								type="email"
 								placeholder="johndoe@mail.com"
 								autocomplete="email"
@@ -340,7 +340,7 @@
 								required
 							/>
 							<FormControl
-								label="Verification code"
+								:label="t('Verification code')"
 								type="text"
 								class="mt-4"
 								placeholder="123456"
@@ -470,6 +470,7 @@ import { getToastErrorMessage } from '../utils/toast';
 import { h } from 'vue';
 import { call } from 'frappe-ui';
 import CustomToast from '../components/CustomToast.vue';
+import { t } from '../utils/language';
 
 export default {
 	name: 'Signup',
@@ -737,6 +738,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		resetSignupState() {
 			if (!this.isLogin && !this.hasForgotPassword && this.otpRequested) {
 				this.otpRequested = false;

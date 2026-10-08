@@ -45,9 +45,9 @@
 					:to="{ name: tab.routeName }"
 					class="flex whitespace-nowrap items-center py-2.5 gap-1.5 text-base text-ink-gray-5 duration-300 ease-in-out hover:text-ink-gray-9 data-[state=active]:text-ink-gray-9"
 				>
-					<component v-if="tab.icon" :is="tab.icon" class="size-4"> </component>
+				<component v-if="tab.icon" :is="tab.icon" class="size-4"> </component>
 
-					{{ tab.label }}
+				{{ t(tab.label) }}
 				</router-link>
 			</template>
 			<template #tab-content="{ tab }">
@@ -73,6 +73,7 @@ import ActionButton from '../components/ActionButton.vue';
 import DetailPageError from '../components/DetailPageError.vue';
 import { Breadcrumbs } from 'frappe-ui';
 import { getObject } from '../objects';
+import { t } from '../utils/language';
 import TabsWithRouter from '../components/TabsWithRouter.vue';
 import AccessRequestButton from '../components/AccessRequestButton.vue';
 import PageBanner from '../components/PageBanner.vue';
@@ -135,6 +136,9 @@ export default {
 			subscribed[`${doctype}:${this.name}`] = false;
 		}
 	},
+	methods: {
+		t,
+	},
 	computed: {
 		object() {
 			return getObject(this.objectType);
@@ -187,7 +191,7 @@ export default {
 		},
 		breadcrumbs() {
 			let items = [
-				{ label: this.object.list.title, route: this.object.list.route },
+				{ label: t(this.object.list.title), route: this.object.list.route },
 				{
 					label: this.title,
 					route: {

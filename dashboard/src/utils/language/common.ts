@@ -206,6 +206,13 @@ const common: Dictionary = {
 	'Starter': { en: 'Starter', ar: 'مبتدئ' },
 	'Growth': { en: 'Growth', ar: 'نمو' },
 	'Scale': { en: 'Scale', ar: 'توسع' },
+	'of': { en: 'of', ar: 'من' },
+	'items': { en: 'items', ar: 'عنصر' },
+	'Load more': { en: 'Load more', ar: 'تحميل المزيد' },
+	'No results': { en: 'No results', ar: 'لا توجد نتائج' },
+	'No results found': { en: 'No results found', ar: 'لم يتم العثور على نتائج' },
+	'This is an experimental feature': { en: 'This is an experimental feature', ar: 'هذه ميزة تجريبية' },
+	'View documentation': { en: 'View documentation', ar: 'عرض التوثيق' },
 };
 
 export default common;

@@ -5,6 +5,7 @@ import billing from './billing';
 import common from './common';
 import misc from './misc';
 import nav from './nav';
+import objects from './objects';
 import onboarding from './onboarding';
 import servers from './servers';
 import sites from './sites';
@@ -23,6 +24,7 @@ const translations: Dictionary = {
 	...billing,
 	...team,
 	...misc,
+	...objects,
 };
 
 interface BootGlobals {

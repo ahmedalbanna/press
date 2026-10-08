@@ -1,16 +1,16 @@
 <template>
 	<div class="sticky top-0 z-10 shrink-0">
 		<Header>
-			<Breadcrumbs :items="[{ label: 'Home', route: { name: 'Home' } }]" />
+			<Breadcrumbs :items="[{ label: t('Home'), route: { name: 'Home' } }]" />
 			<Dropdown
 				:options="[
-					{ label: 'Site', route: { name: 'New Site' } },
-					{ label: 'Benches', route: { name: 'New Release Group' } },
+					{ label: t('Site'), route: { name: 'New Site' } },
+					{ label: t('Benches'), route: { name: 'New Release Group' } },
 				]"
 			>
 				<Button
 					variant="solid"
-					label="Create new"
+					:label="t('Create new')"
 					:disabled="!$team.doc?.payment_mode"
 				>
 					<template #suffix>
@@ -30,9 +30,11 @@
 import { defineAsyncComponent } from 'vue';
 import Header from '../components/Header.vue';
 import HomeSummary from '../components/HomeSummary.vue';
+import { t } from '../utils/language';
 
 export default {
 	name: 'Home',
+	methods: { t },
 	components: {
 		Header,
 		HomeSummary,

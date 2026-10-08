@@ -24,7 +24,6 @@ body {
 	--scrollbar-thumb: var(--surface-gray-2);
 	--scrollbar-thumb-hover: var(--surface-gray-3);
 	--surface-modal: var(--surface-cards);
-	--surface-blue-3: #0284c7;
 }
 
 /* needed as theme switcher dynamically adds this class 
@@ -70,9 +69,75 @@ body {
 	--surface-blue-3: #0284c7;
 }
 
+/* AlbannaTech light theme: slate-tinted neutrals */
+:root {
+	--surface-gray-1: #f8fafc;
+	--surface-gray-2: #f1f5f9;
+	--surface-gray-3: #e2e8f0;
+	--surface-gray-4: #cbd5e1;
+	--surface-gray-5: #94a3b8;
+	--surface-blue-1: #f0f9ff;
+	--surface-blue-2: #e0f2fe;
+	--surface-blue-3: #0284c7;
+	--surface-green-2: #ecfdf5;
+	--surface-green-3: #10b981;
+	--surface-red-5: #dc2626;
+	--surface-modal: #ffffff;
+	--outline-gray-1: #e2e8f0;
+	--outline-gray-2: #cbd5e1;
+	--outline-gray-3: #94a3b8;
+	--outline-gray-4: #64748b;
+	--outline-gray-modals: #e2e8f0;
+	--outline-blue-1: #0ea5e9;
+	--ink-gray-9: #0f172a;
+	--ink-gray-8: #1e293b;
+	--ink-gray-7: #475569;
+	--ink-gray-6: #64748b;
+	--ink-gray-5: #94a3b8;
+	--ink-gray-4: #94a3b8;
+	--ink-gray-3: #cbd5e1;
+	--ink-gray-1: #0f172a;
+	--ink-white: #ffffff;
+}
+
 /* Brand dark surface */
 [data-theme="dark"] body {
 	background-color: var(--brand-bg-dark);
+}
+
+/* AlbannaTech dark theme: navy-tinted slate surfaces.
+   Must come after every :root block: :root and [data-theme] have equal
+   specificity, so only source order lets the dark values win. */
+[data-theme="dark"] {
+	--surface-white: #0f172a;
+	--surface-cards: #1e293b;
+	--surface-modal: #1e293b;
+	--surface-menu-bar: #020617;
+	--surface-selected: #334155;
+	--surface-gray-1: #1e293b;
+	--surface-gray-2: #334155;
+	--surface-gray-3: #475569;
+	--surface-gray-4: #64748b;
+	--surface-gray-5: #94a3b8;
+	--surface-blue-1: #1e3a5f;
+	--surface-blue-2: #1d4ed8;
+	--surface-green-2: #065f46;
+	--surface-red-2: #451a1a;
+	--outline-white: #1e293b;
+	--outline-gray-1: #334155;
+	--outline-gray-2: #475569;
+	--outline-gray-3: #64748b;
+	--outline-gray-modals: #334155;
+	--outline-blue-1: #1e3a5f;
+	--ink-gray-9: #f8fafc;
+	--ink-gray-8: #e2e8f0;
+	--ink-gray-7: #cbd5e1;
+	--ink-gray-6: #94a3b8;
+	--ink-gray-5: #94a3b8;
+	--ink-gray-4: #64748b;
+	--ink-gray-3: #475569;
+	--ink-gray-1: #cbd5e1;
+	--ink-white: #020617;
 }
 
 /* Arabic RTL layout */

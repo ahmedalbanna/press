@@ -32,6 +32,8 @@ const nav: Dictionary = {
 	'Language': { en: 'Language', ar: 'اللغة' },
 	'English': { en: 'English', ar: 'الإنجليزية' },
 	'Help': { en: 'Help', ar: 'المساعدة' },
+	'Home': { en: 'Home', ar: 'الرئيسية' },
+	'Create new': { en: 'Create new', ar: 'إنشاء جديد' },
 };
 
 export default nav;

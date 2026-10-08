@@ -15,7 +15,7 @@
 				<div v-if="showControls" class="flex items-center space-x-2">
 					<TextInput
 						v-if="this.options.searchField"
-						placeholder="Search"
+						:placeholder="t('Search')"
 						class="max-w-[20rem]"
 						:debounce="500"
 						v-model="searchQuery"
@@ -41,13 +41,13 @@
 				<slot name="header-right" v-bind="context" />
 				<Tooltip
 					v-if="options.experimental"
-					text="This is an experimental feature"
+					:text="t('This is an experimental feature')"
 				>
 					<div class="rounded-md  bg-surface-pink-1 p-1.5">
 						<lucide-flask-conical class="h-4 w-4 text-purple-500" />
 					</div>
 				</Tooltip>
-				<Tooltip v-if="options.documentation" text="View documentation">
+				<Tooltip v-if="options.documentation" :text="t('View documentation')">
 					<div class="rounded-md bg-surface-gray-2 p-1.5">
 						<a :href="options.documentation" target="_blank">
 							<lucide-help-circle class="h-4 w-4" />
@@ -55,13 +55,13 @@
 					</div>
 				</Tooltip>
 				<Button
-					label="Refresh"
+					:label="t('Refresh')"
 					v-if="$list"
 					@click="$list.reload()"
 					:loading="isLoading"
 				>
 					<template #icon>
-						<Tooltip text="Refresh">
+						<Tooltip :text="t('Refresh')">
 							<lucide-refresh-ccw class="h-4 w-4" />
 						</Tooltip>
 					</template>
@@ -77,7 +77,7 @@
 				<ActionButton v-bind="primaryAction" :context="context" />
 
 				<Dropdown v-if="moreActions.length" :options="moreActions">
-					<Button label="Actions">
+					<Button :label="t('Actions')">
 						<template #suffix>
 							<LucideChevronsUpDown class="size-3.5" />
 						</template>
@@ -123,7 +123,7 @@
 					class="text-center text-sm leading-10 text-ink-gray-5 pb-[1.75rem]"
 					v-if="isLoading"
 				>
-					Loading...
+					{{ t('Loading...') }}
 				</div>
 				<div v-else-if="$list?.list?.error" class="py-4 text-center">
 					<ErrorMessage :message="$list.list.error" />
@@ -150,7 +150,7 @@
 					@click="$list.next()"
 					:loading="isLoading"
 				>
-					Load more
+					{{ t('Load more') }}
 				</Button>
 			</div>
 		</div>
@@ -167,6 +167,7 @@ import {
 } from 'frappe-ui'
 import { reactive, ref } from 'vue'
 import { throttle } from '../utils/throttle'
+import { t } from '../utils/language'
 import ActionButton from './ActionButton.vue'
 import AlertBanner from './AlertBanner.vue'
 import DismissableBanner from './DismissableBanner.vue'
@@ -353,7 +354,7 @@ export default {
 				if (column.condition && !column.condition(this.context)) continue
 				columns.push({
 					...column,
-					label: column.label,
+					label: column.label ? t(column.label) : '',
 					key: column.fieldname,
 					align: column.align || 'left',
 				})
@@ -417,16 +418,16 @@ export default {
 
 			let summary
 			if (this.filteredRows.length === 0) {
-				summary = 'No results'
+				summary = t('No results')
 			} else if (this.filteredRows[0].rows) {
 				let total = this.rows.reduce((acc, group) => acc + group.rows.length, 0)
 				let filtered = this.filteredRows.reduce(
 					(acc, group) => acc + group.rows.length,
 					0,
 				)
-				summary = `${filtered} of ${total}`
+				summary = `${filtered} ${t('of')} ${total}`
 			} else {
-				summary = `${this.filteredRows.length} of ${this.rows.length}`
+				summary = `${this.filteredRows.length} ${t('of')} ${this.rows.length}`
 			}
 			return summary
 		},
@@ -491,7 +492,7 @@ export default {
 			return this.$resources.count?.data
 		},
 		countLabel() {
-			return (this.options.title || 'items').toLowerCase()
+			return (this.options.title || t('items')).toLowerCase()
 		},
 		showControls() {
 			return (
@@ -502,7 +503,7 @@ export default {
 			)
 		},
 		emptyStateMessage() {
-			return this.options.emptyStateMessage || 'No results found'
+			return this.options.emptyStateMessage || t('No results found')
 		},
 		banner() {
 			if (this.options.banner) {
@@ -511,6 +512,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		reloadListView() {
 			this.$resources.list.reload()
 		},

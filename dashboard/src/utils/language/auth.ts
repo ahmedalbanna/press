@@ -26,6 +26,17 @@ const auth: Dictionary = {
 	'State': { en: 'State', ar: 'الولاية' },
 	'Zip Code': { en: 'Zip Code', ar: 'الرمز البريدي' },
 	'Postal Code': { en: 'Postal Code', ar: 'الرمز البريدي' },
+	'2FA Code from your Authenticator App': { en: '2FA Code from your Authenticator App', ar: 'رمز 2FA من تطبيق المصادقة الخاص بك' },
+	'Reset 2FA': { en: 'Reset 2FA', ar: 'إعادة تعيين 2FA' },
+	'Recovery Code': { en: 'Recovery Code', ar: 'رمز الاسترداد' },
+	'Back to 2FA Verification': { en: 'Back to 2FA Verification', ar: 'العودة إلى التحقق من 2FA' },
+	'Verification code': { en: 'Verification code', ar: 'رمز التحقق' },
+	'By signing up, you agree to our ': { en: 'By signing up, you agree to our ', ar: 'بالتسجيل، أنت توافق على ' },
+	'Terms & Policies': { en: 'Terms & Policies', ar: 'الشروط والسياسات' },
+	'New member? ': { en: 'New member? ', ar: 'عضو جديد؟ ' },
+	'Already have an account? ': { en: 'Already have an account? ', ar: 'هل لديك حساب بالفعل؟ ' },
+	'Create a new account.': { en: 'Create a new account.', ar: 'إنشاء حساب جديد.' },
+	'Log in.': { en: 'Log in.', ar: 'تسجيل الدخول.' },
 };
 
 export default auth;

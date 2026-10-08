@@ -1,9 +1,11 @@
 <template>
 	<div class="flex h-full flex-col">
 		<Header :sticky="true">
-			<Breadcrumbs
-				:items="[{ label: object.list.title, route: object.list.route }]"
-			/>
+		<Breadcrumbs
+			:items="[
+				{ label: t(object.list.title), route: object.list.route },
+			]"
+		/>
 		</Header>
 		<div class="p-5 pb-0">
 			<BillingAlerts ctx-type="List Page" />
@@ -18,6 +20,7 @@ import BillingAlerts from '../components/BillingAlerts.vue'
 import Header from '../components/Header.vue'
 import ObjectList from '../components/ObjectList.vue'
 import { getObject } from '../objects'
+import { t } from '../utils/language'
 
 export default {
 	components: {
@@ -36,6 +39,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		getRoute(row) {
 			return {
 				name: `${this.object.doctype} Detail`,
