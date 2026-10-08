@@ -6,3 +6,16 @@ Settle invoices,سداد الفواتير
 "If you have any concerns or questions, contact our support team at",إذا كان لديك أي استفسار أو مخاوف، تواصل مع فريق الدعم على
 The following sites were suspended:,تم تعليق المواقع التالية:
 Your sites have been suspended on AlbannaTech,تم تعليق مواقعك على AlbannaTech
+Payment of {0} for AlbannaTech was unsuccessful.,لم تتم عملية دفع {0} الخاصة بـ AlbannaTech بنجاح.
+You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you update your card details in your account.,لم تُضِف بطاقة لاشتراك AlbannaTech الخاص بك. سيتم تعليق مواقعك حتى تُحدِّث بيانات بطاقتك في حسابك.
+Update Billing Settings,تحديث إعدادات الفوترة
+"We attempted to charge the card ending {0} for your AlbannaTech subscription, but were unsuccessful. Please update your card details or pay manually.",حاولنا الخصم من البطاقة المنتهية بالرقم {0} الخاصة باشتراك AlbannaTech،و لم ينجح. يرجى تحديث بيانات بطاقتك أو الدفع يدوياً.
+Billing Settings,إعدادات الفوترة
+Pay Invoice Now,ادفع الفاتورة الآن
+Insufficient balance for the upcoming AlbannaTech payment,الرصيد غير كافٍ لدفعة AlbannaTech القادمة
+Greetings from AlbannaTech! We noticed that your account does not have enough credits to pay for the upcoming invoice.,تحياتنا من AlbannaTech! لاحظنا أن حسابك لا يحتوي على رصيد كافٍ لسداد الفاتورة القادمة.
+"Please add credits to your account, or update your payment method and add a card with sufficient balance from your AlbannaTech dashboard:",يرجى إضافة رصيد إلى حسابك، أو تحديث طريقة الدفع وإضافة بطاقة برصيد كافٍ من لوحة تحكم AlbannaTech:
+"Hi,",مرحباً،
+All attempts to back up your site {0} have failed.,فشلت جميع محاولات النسخ الاحتياطي لموقعك {0}.
+"Please start a backup, and contact our support team if the problem persists:",يرجى بدء عملية نسخ احتياطي، وتواصل مع فريق الدعم إذا استمرت المشكلة:
+Invoice Payment Failed for AlbannaTech Subscription,فشل دفع فاتورة اشتراك AlbannaTech

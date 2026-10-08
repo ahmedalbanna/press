@@ -1732,9 +1732,9 @@ class Team(Document):
 		payment_method = self.default_payment_method
 		last_4 = frappe.db.get_value("Stripe Payment Method", payment_method, "last_4")
 		account_update_link = frappe.utils.get_url("/dashboard")
-		subject = "Invoice Payment Failed for AlbannaTech Subscription"
 
 		with user_language(self.user):
+			subject = _("Invoice Payment Failed for AlbannaTech Subscription")
 			frappe.sendmail(
 				recipients=email,
 				subject=subject,

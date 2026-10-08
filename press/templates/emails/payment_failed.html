@@ -9,28 +9,25 @@
 			{%- if subject -%}
 			{{ subject }}
 			{%- else -%}
-			Payment of {{ amount }} for AlbannaTech was unsuccessful.
+			{{ _("Payment of {0} for AlbannaTech was unsuccessful.").format(amount) }}
 			{%- endif -%}
 		</p>
 		{%- if card_not_added -%}
 		<p class="mb-6">
-			You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you
-			update your card details in your account.
+			{{ _("You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you update your card details in your account.") }}
 		</p>
-		{{ utils.button('Update Billing Settings', account_update_link) }}
+		{{ utils.button(_("Update Billing Settings"), account_update_link) }}
 		{%- else -%}
 		<p class="mb-6">
-			We attempted to charge your card ending in <strong>{{ last_4 }}</strong> for your AlbannaTech subscription,
-			but were unsuccessful. Please update your card details in your
-			{{ utils.link('Billing Settings', account_update_link) }}
-			or pay manually by clicking the following link.
+			{{ _("We attempted to charge the card ending {0} for your AlbannaTech subscription, but were unsuccessful. Please update your card details or pay manually.").format(last_4) }}
+			{{ utils.link(_("Billing Settings"), account_update_link) }}
 		</p>
-		{{ utils.button('Pay Invoice Now', payment_link) }}
+		{{ utils.button(_("Pay Invoice Now"), payment_link) }}
 		{%- endif -%}
 
 		{%- if sites -%}
 		{{ utils.separator() }}
-		<p class="mt-0 mb-2">Following sites were suspended:</p>
+		<p class="mt-0 mb-2">{{ _("The following sites were suspended:") }}</p>
 		<ul class="list-disc">
 			{%- for site in sites -%}
 			<li class="text-sm font-medium">{{ site }}</li>

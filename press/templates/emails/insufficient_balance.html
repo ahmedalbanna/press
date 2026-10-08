@@ -6,11 +6,12 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white">
 		<p class="mb-4 font-bold">
-			Insufficient Balance for upcoming AlbannaTech payment
+			{{ _("Insufficient balance for the upcoming AlbannaTech payment") }}
 		</p>
 		<p class="mb-6">
-			Greetings from AlbannaTech! We noticed that your AlbannaTech account does not have sufficient credits to pay for the upcoming invoice.
-			Please consider adding credits to your account or update the payment mode to Card and add a card with sufficient balance from {{ utils.link('Billing Settings', '/dashboard/billing') }} in your AlbannaTech dashboard.
+			{{ _("Greetings from AlbannaTech! We noticed that your account does not have enough credits to pay for the upcoming invoice.") }}
+			{{ _("Please add credits to your account, or update your payment method and add a card with sufficient balance from your AlbannaTech dashboard:") }}
+			{{ utils.link(_("Billing Settings"), '/dashboard/billing') }}
 		</p>
 		{{ utils.separator() }}
 		{{ utils.signature() }}

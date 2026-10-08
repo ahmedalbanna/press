@@ -3,14 +3,13 @@
 
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white from-markdown">
-		<p>Hi,</p>
+		<p>{{ _("Hi,") }}</p>
 		<p class="mb-4">
-			All attempts to backup your site <strong>{{ site_name }}</strong> has
-			failed.
+			{{ _("All attempts to back up your site {0} have failed.").format(site_name) }}
 		</p>
 		<p class="mt-4">
-			Please initiate a backup and contact our support team at {{ utils.link('support@albannatech.com',
-			'mailto:support@albannatech.com') }} if the issue persists.
+			{{ _("Please start a backup, and contact our support team if the problem persists:") }}
+			{{ utils.link('support@albannatech.com', 'mailto:support@albannatech.com') }}
 		</p>
 		{{ utils.separator() }} {{ utils.signature() }}
 	</div>
