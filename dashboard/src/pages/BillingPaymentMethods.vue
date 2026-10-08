@@ -9,6 +9,7 @@ import ObjectList from '../components/ObjectList.vue';
 import { Badge, FeatherIcon, Tooltip } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import { confirmDialog, renderDialog, icon } from '../utils/components';
+import { t } from '../utils/language';
 export default {
 	name: 'BillingPaymentMethods',
 	props: ['tab'],
@@ -27,14 +28,14 @@ export default {
 					'brand',
 					'stripe_mandate_id',
 				],
-				emptyStateMessage: 'No cards added.',
+				emptyStateMessage: t('No cards added.'),
 				columns: [
 					{
-						label: 'Name on Card',
+						label: t('Name on Card'),
 						fieldname: 'name_on_card',
 					},
 					{
-						label: 'Card',
+						label: t('Card'), 
 						fieldname: 'last_4',
 						width: 1.5,
 						format(value) {
@@ -50,20 +51,20 @@ export default {
 									{
 										theme: 'green',
 									},
-									() => 'Default',
+									() => t('Default'),
 								);
 							}
 						},
 					},
 					{
-						label: 'Expiry',
+						label: t('Expiry'),
 						width: 0.5,
 						format(value, row) {
 							return `${row.expiry_month}/${row.expiry_year}`;
 						},
 					},
 					{
-						label: 'Mandated',
+						label: t('Mandated'),
 						type: 'Component',
 						width: 1,
 						align: 'center',
@@ -85,7 +86,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'The last payment failed on this card. Please use a different card.',
+										text: t('The last payment failed on this card. Please use a different card.'),
 									},
 									() =>
 										h(FeatherIcon, {
@@ -106,7 +107,7 @@ export default {
 				rowActions: ({ listResource, row }) => {
 					return [
 						{
-							label: 'Set as default',
+							label: t('Set as default'),
 							onClick: () => {
 								toast.promise(
 									listResource.runDocMethod.submit({
@@ -114,24 +115,24 @@ export default {
 										name: row.name,
 									}),
 									{
-										loading: 'Setting as default...',
-										success: 'Default card set',
-										error: 'Could not set default card',
+										loading: t('Setting as default...'),
+										success: t('Default card set'),
+										error: t('Could not set default card'),
 									},
 								);
 							},
 							condition: () => !row.is_default,
 						},
 						{
-							label: 'Remove',
+							label: t('Remove'),
 							onClick: () => {
 								if (row.is_default && this.$team.doc.payment_mode === 'Card') {
-									toast.error('Cannot remove default card');
+									toast.error(t('Cannot remove default card'));
 									return;
 								}
 								confirmDialog({
-									title: 'Remove Card',
-									message: 'Are you sure you want to remove this card?',
+									title: t('Remove Card'),
+									message: t('Are you sure you want to remove this card?'),
 									onSuccess: ({ hide }) => {
 										toast.promise(
 											listResource.delete.submit(row.name, {
@@ -140,12 +141,12 @@ export default {
 												},
 											}),
 											{
-												loading: 'Removing card...',
-												success: 'Card removed',
+												loading: t('Removing card...'),
+												success: t('Card removed'),
 												error: (error) =>
 													error.messages?.length
 														? error.messages.join('\n')
-														: error.message || 'Could not remove card',
+														: error.message || t('Could not remove card'),
 											},
 										);
 									},
@@ -157,7 +158,7 @@ export default {
 				orderBy: 'creation desc',
 				primaryAction() {
 					return {
-						label: 'Add Card',
+						label: t('Add Card'),
 						slots: {
 							prefix: icon('plus'),
 						},
@@ -173,6 +174,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		formatCurrency(value) {
 			if (value === 0) {
 				return '';

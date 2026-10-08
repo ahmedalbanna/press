@@ -140,6 +140,40 @@ const billing: Dictionary = {
 		en: 'Receive an email alert if monthly total exceeds limit set',
 		ar: 'تصلك رسالة تنبيه إذا تجاوز الإجمالي الشهري الحد المحدد',
 	},
+	// BillingPaymentMethods
+	'No cards added.': { en: 'No cards added.', ar: 'لم تتم إضافة بطاقات.' },
+	'Name on Card': { en: 'Name on Card', ar: 'الاسم على البطاقة' },
+	'Default': { en: 'Default', ar: 'افتراضي' },
+	'Expiry': { en: 'Expiry', ar: 'تاريخ الانتهاء' },
+	'Mandated': { en: 'Mandated', ar: 'مفوض' },
+	'The last payment failed on this card. Please use a different card.': {
+		en: 'The last payment failed on this card. Please use a different card.',
+		ar: 'فشل آخر دفع على هذه البطاقة. يُرجى استخدام بطاقة مختلفة.',
+	},
+	'Set as default': { en: 'Set as default', ar: 'تعيين كافتراضي' },
+	'Setting as default...': {
+		en: 'Setting as default...',
+		ar: 'جاري التعيين كافتراضي...',
+	},
+	'Default card set': { en: 'Default card set', ar: 'تم تعيين البطاقة الافتراضية' },
+	'Could not set default card': {
+		en: 'Could not set default card',
+		ar: 'تعذر تعيين البطاقة الافتراضية',
+	},
+	'Remove': { en: 'Remove', ar: 'إزالة' },
+	'Cannot remove default card': {
+		en: 'Cannot remove default card',
+		ar: 'لا يمكن إزالة البطاقة الافتراضية',
+	},
+	'Remove Card': { en: 'Remove Card', ar: 'إزالة البطاقة' },
+	'Are you sure you want to remove this card?': {
+		en: 'Are you sure you want to remove this card?',
+		ar: 'هل تريد بالتأكيد إزالة هذه البطاقة؟',
+	},
+	'Removing card...': { en: 'Removing card...', ar: 'جاري إزالة البطاقة...' },
+	'Card removed': { en: 'Card removed', ar: 'تمت إزالة البطاقة' },
+	'Could not remove card': { en: 'Could not remove card', ar: 'تعذرت إزالة البطاقة' },
+	'Add Card': { en: 'Add Card', ar: 'إضافة بطاقة' },
 };
 
 export default billing;
