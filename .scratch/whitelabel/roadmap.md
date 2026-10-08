@@ -102,8 +102,14 @@
 | Currencies | Multiple (USD + SAR, matching gateways) |
 | Financial Reports | Frappe Reports |
 | Press Integration | Mix (REST for requests + webhook for async events) |
-| Payment Gateway | Mix (HyperPay + PayTabs) |
-| Payment Gateway Integration | Webhook |
+| Payment Gateway | HyperPay (primary) + PayTabs (backup), auto-failover |
+| Gateway Integration Pattern | Hosted checkout (+ optional iframe) — minimal PCI scope |
+| Card Tokenization | Yes (stored token for recurring/annual charges) |
+| 3D Secure / SCA | Handled by gateway/bank |
+| Recurring Charge | Mix (Press schedules + gateway executes with token) |
+| Refunds | Initiated from Press (central, auditable) |
+| Idempotency | Mix (unique idempotency key + state check) |
+| Payment Notifications | Webhook (signature-verified) |
 
 ### AI Agent Architecture
 

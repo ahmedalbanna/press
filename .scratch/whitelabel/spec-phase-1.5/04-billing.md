@@ -62,14 +62,22 @@ Build a hybrid billing and subscription service. Billing combines the Press syst
 - **Templates**: Frappe Tax Templates — apply local/regional taxes without extra code.
 
 ### Currencies
-- **Support**: multiple currencies (e.g. USD and SAR) to match regional gateway requirements (HyperPay, PayTabs).
+- **Support**: multiple currencies (e.g. USD and SAR).
+- **Selection**: chosen at payment time (or defaulted from the customer's registered country), to match the card and region.
 
 ### Financial reports
 - **Reports**: Frappe Reports (Report Builder / Query Reports) for revenue and financial analysis.
 
 ### Payment gateway
-- **Gateways**: HyperPay and PayTabs.
-- **Integration**: webhook for payment notifications (success, failure, refund). Webhooks are signature-verified before any state change.
+- **Gateways**: HyperPay (primary, strong in the Gulf) and PayTabs (backup, strong in Egypt and wider MENA).
+- **Selection**: primary with automatic backup — a gateway outage fails over to the other, so continuity is preserved.
+- **Integration pattern**: hosted checkout (Hosted Page) to keep PCI-DSS scope minimal, with an embedded iframe option for a smoother in-page experience where suitable.
+- **Tokenization**: yes — store a card token so recurring/annual charges run without re-entering card details.
+- **3D Secure / SCA**: handled by the gateway/bank per their rules, ensuring regulatory compliance and fraud protection.
+- **Recurring**: mix — Press schedules the charge (Frappe Subscription) and sends the collection request with the stored token; the gateway executes the actual debit.
+- **Refunds**: initiated from Press so the financial record stays central and auditable, without logging into the gateway portal.
+- **Idempotency**: mix — a unique idempotency key per transaction prevents double charges on network interruption or resend, plus a state check before acting on a (possibly duplicate) webhook.
+- **Notifications**: webhook for payment notifications (success, failure, refund). Webhooks are signature-verified before any state change.
 - **Retries**: failed payments retried within the grace window.
 
 ### Tiering
