@@ -1,17 +1,23 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Budget Alerts' }">
+	<Dialog v-model="show" :options="{ title: t('Budget Alerts') }">
 		<template #body-content>
 			<div class="flex flex-col gap-4">
 				<Switch
 					v-model="receiveBudgetAlerts"
-					label="Enable Budget Alerts"
-					:description="`Receive an email alert when monthly spend exceeds limit`"
+					:label="t('Enable Budget Alerts')"
+					:description="t('Receive an email alert when monthly spend exceeds limit')"
 				/>
 				<div v-if="receiveBudgetAlerts">
 					<FormControl
 						v-model="monthlyAlertLimit"
-						:label="`Monthly Alert Limit (${team?.doc?.currency})`"
-						:placeholder="`Enter amount in ${team?.doc?.currency}`"
+						:label="
+							tr('Monthly Alert Limit ({currency})', {
+								currency: team?.doc?.currency,
+							})
+						"
+						:placeholder="
+							tr('Enter amount in {currency}', { currency: team?.doc?.currency })
+						"
 						type="number"
 						:min="0"
 						:step="1000"
@@ -21,7 +27,7 @@
 				<Button
 					class="w-full mt-4"
 					variant="solid"
-					label="Save"
+					:label="t('Save')"
 					:loading="team.setValue.loading"
 					@click="saveSettings"
 				/>
@@ -32,6 +38,7 @@
 <script setup>
 import { Dialog, Switch, Button, ErrorMessage, FormControl } from 'frappe-ui';
 import { ref, inject } from 'vue';
+import { t, tr } from '../../utils/language';
 
 const props = defineProps({
 	showMessage: {
@@ -72,7 +79,7 @@ const saveSettings = async () => {
 		if (receiveBudgetAlerts.value) {
 			const numValue = parseFloat(monthlyAlertLimit.value);
 			if (isNaN(numValue) || numValue <= 0) {
-				errorMessage.value = 'Please enter a valid positive amount';
+				errorMessage.value = t('Please enter a valid positive amount');
 				return;
 			}
 
@@ -93,8 +100,9 @@ const saveSettings = async () => {
 		show.value = false;
 	} catch (error) {
 		console.error('Error saving budget alert settings:', error);
-		errorMessage.value =
-			'An error occurred while saving settings. Please try again.';
+		errorMessage.value = t(
+			'An error occurred while saving settings. Please try again.',
+		);
 	}
 };
 </script>

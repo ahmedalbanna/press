@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Add Credit Balance' }">
+	<Dialog v-model="show" :options="{ title: t('Add Credit Balance') }">
 		<template #body-content>
 			<div
 				v-if="showMessage"
@@ -7,7 +7,7 @@
 			>
 				<FeatherIcon class="h-4" name="info" />
 				<span>
-					Add credits to your account before changing the payment mode.
+					{{ t('Add credits to your account before changing the payment mode.') }}
 				</span>
 			</div>
 			<PrepaidCreditsForm
@@ -27,6 +27,7 @@
 <script setup>
 import PrepaidCreditsForm from './PrepaidCreditsForm.vue';
 import { Dialog, FeatherIcon } from 'frappe-ui';
+import { t } from '../../utils/language';
 
 const props = defineProps({
 	showMessage: {

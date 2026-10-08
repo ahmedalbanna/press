@@ -385,6 +385,70 @@ const billing: Dictionary = {
 		en: 'Payment failed. Please try again.',
 		ar: 'فشل الدفع. يُرجى المحاولة مرة أخرى.',
 	},
+	// BillingSummary
+	'Recurring Charges': { en: 'Recurring Charges', ar: 'الرسوم المتكررة' },
+	'Next charge date — {date}': {
+		en: 'Next charge date — {date}',
+		ar: 'تاريخ الخصم القادم — {date}',
+	},
+	'Your UPI will be auto-debited at the end of the billing cycle. Payment may take up to 24 hours to reflect after debit is initiated.': {
+		en: 'Your UPI will be auto-debited at the end of the billing cycle. Payment may take up to 24 hours to reflect after debit is initiated.',
+		ar: 'سيتم خصم UPI تلقائيًا في نهاية دورة الفوترة. قد يستغرق ظهور الدفع حتى 24 ساعة بعد بدء الخصم.',
+	},
+	'Current billing amount so far': { en: 'Current billing amount so far', ar: 'إجمالي الفوترة حتى الآن' },
+	'Unpaid amount is': { en: 'Unpaid amount is', ar: 'المبلغ غير المدفوع هو' },
+	'View Invoice': { en: 'View Invoice', ar: 'عرض الفاتورة' },
+	'Pay now': { en: 'Pay now', ar: 'ادفع الآن' },
+	// UpcomingInvoiceDialog
+	'Total usage for this month': { en: 'Total usage for this month', ar: 'إجمالي الاستخدام لهذا الشهر' },
+	// FinalizeInvoicesDialog
+	'Finalize Unsettled Invoices': {
+		en: 'Finalize Unsettled Invoices',
+		ar: 'تسوية الفواتير غير المدفوعة',
+	},
+	'You have unpaid invoices on your account for the following periods:': {
+		en: 'You have unpaid invoices on your account for the following periods:',
+		ar: 'لديك فواتير غير مدفوعة على حسابك للفترات التالية:',
+	},
+	'Please finalize and settle them before removing all payment methods, switching to Paid by Partner method or disabling the account. You can check the details of invoices and make the payment from': {
+		en: 'Please finalize and settle them before removing all payment methods, switching to Paid by Partner method or disabling the account. You can check the details of invoices and make the payment from',
+		ar: 'يُرجى تسويتها وسدادها قبل إزالة جميع طرق الدفع، أو التبديل إلى طريقة الدفع بواسطة الشريك، أو تعطيل الحساب. يمكنك الاطلاع على تفاصيل الفواتير وإتمام الدفع من',
+	},
+	here: { en: 'here', ar: 'هنا' },
+	'It might take up to 2 hours for the payment to reflect against your invoices.': {
+		en: 'It might take up to 2 hours for the payment to reflect against your invoices.',
+		ar: 'قد يستغرق ظهور الدفع مقابل فواتيرك حتى ساعتين.',
+	},
+	'Finalize Invoices': { en: 'Finalize Invoices', ar: 'تسوية الفواتير' },
+	'Invoices finalized successfully': {
+		en: 'Invoices finalized successfully',
+		ar: 'تمت تسوية الفواتير بنجاح',
+	},
+	// AddPrepaidCreditsDialog
+	'Add Credit Balance': { en: 'Add Credit Balance', ar: 'إضافة رصيد' },
+	'Add credits to your account before changing the payment mode.': {
+		en: 'Add credits to your account before changing the payment mode.',
+		ar: 'أضف رصيدًا إلى حسابك قبل تغيير طريقة الدفع.',
+	},
+	// BudgetAlertDialog
+	'Enable Budget Alerts': { en: 'Enable Budget Alerts', ar: 'تفعيل تنبيهات الميزانية' },
+	'Receive an email alert when monthly spend exceeds limit': {
+		en: 'Receive an email alert when monthly spend exceeds limit',
+		ar: 'استلم تنبيهًا بالبريد الإلكتروني عند تجاوز الإنفاق الشهري للحد المحدد',
+	},
+	'Monthly Alert Limit ({currency})': {
+		en: 'Monthly Alert Limit ({currency})',
+		ar: 'حد التنبيه الشهري ({currency})',
+	},
+	'Enter amount in {currency}': { en: 'Enter amount in {currency}', ar: 'أدخل المبلغ بـ {currency}' },
+	'Please enter a valid positive amount': {
+		en: 'Please enter a valid amount',
+		ar: 'يُرجى إدخال مبلغ صحيح موجب',
+	},
+	'An error occurred while saving settings. Please try again.': {
+		en: 'An error occurred while saving settings. Please try again.',
+		ar: 'حدث خطأ أثناء حفظ الإعدادات. يُرجى المحاولة مرة أخرى.',
+	},
 };
 
 export default billing;

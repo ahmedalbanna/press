@@ -4,18 +4,19 @@
 			<div class="flex flex-col gap-2.5 px-4 py-3">
 				<div class="flex items-center justify-between">
 					<div class="flex flex-col gap-1.5">
-						<div class="text-lg font-semibold">Recurring Charges</div>
+						<div class="text-lg font-semibold">{{ t('Recurring Charges') }}</div>
 						<div class="text-ink-gray-7">
-							<span>Next charge date — </span>
-							<span>{{ currentMonthEnd() }}</span>
+							{{ tr('Next charge date — {date}', { date: currentMonthEnd() }) }}
 						</div>
 						<div
 							v-if="team.doc.payment_mode === 'UPI Autopay'"
 							class="mt-2 rounded-md bg-surface-gray-1 p-3 text-sm leading-5 text-ink-gray-6"
 						>
-							Your UPI will be auto-debited at the end of the billing cycle.
-							Payment may take up to 24 hours to reflect after debit is
-							initiated.
+							{{
+								t(
+									'Your UPI will be auto-debited at the end of the billing cycle. Payment may take up to 24 hours to reflect after debit is initiated.',
+								)
+							}}
 						</div>
 					</div>
 				</div>
@@ -23,14 +24,17 @@
 					<div class="flex gap-2 text-ink-gray-7">
 						<lucide-credit-card class="h-4 w-4" />
 						<div>
-							<span>Current billing amount so far is </span>
+							<span>{{ t('Current billing amount so far is') }} </span>
 							<span class="font-medium text-ink-gray-9">
 								{{ currency }} {{ currentBillingAmount?.toFixed(2) || '0.00' }}
 							</span>
 						</div>
 					</div>
 					<div>
-						<Button label="View Invoice" @click="showInvoiceDialog = true" />
+						<Button
+							:label="t('View Invoice')"
+							@click="showInvoiceDialog = true"
+						/>
 					</div>
 				</div>
 			</div>
@@ -41,12 +45,12 @@
 				<div class="flex h-7 items-center gap-2 text-ink-gray-8">
 					<lucide-receipt class="h-4 w-4" />
 					<div>
-						<span>Unpaid amount is </span>
+						<span>{{ t('Unpaid amount is') }} </span>
 						<span>{{ currency }} {{ unpaidAmount.data?.toFixed(2) }}</span>
 					</div>
 				</div>
 				<div>
-					<Button variant="solid" label="Pay now" @click="payNow" />
+					<Button variant="solid" :label="t('Pay now')" @click="payNow" />
 				</div>
 			</div>
 		</div>
@@ -69,6 +73,7 @@ import UpcomingInvoiceDialog from './UpcomingInvoiceDialog.vue';
 import { Button, createResource } from 'frappe-ui';
 import { ref, computed, inject } from 'vue';
 import { confirmDialog } from '../../utils/components';
+import { t, tr } from '../../utils/language';
 import router from '../../router';
 
 const team = inject('team');
@@ -109,11 +114,12 @@ function payUnpaidInvoices() {
 			showAddPrepaidCreditsDialog.value = true;
 		} else {
 			confirmDialog({
-				title: 'Multiple unpaid invoices',
-				message:
+				title: t('Multiple unpaid invoices'),
+				message: t(
 					'You have multiple unpaid invoices. Please pay them from the invoices page',
+				),
 				primaryAction: {
-					label: 'Go to invoices',
+					label: t('Go to invoices'),
 					variant: 'solid',
 					onClick: ({ hide }) => {
 						router.push({ name: 'BillingInvoices' });

@@ -20,7 +20,7 @@ import {
 import registerGlobalComponents from './components/global/register';
 import './vendor/posthog.js';
 import { pulse } from './telemetry/pulse.js';
-import { initLanguage } from './utils/language';
+import { initLanguage, t } from './utils/language';
 
 const request = (options) => {
 	const _options = options || {};
@@ -56,6 +56,7 @@ getInitialData().then(() => {
 
 	socket = initSocket();
 	app.config.globalProperties.$socket = socket;
+	app.config.globalProperties.t = t;
 	window.$socket = socket;
 	subscribeToJobUpdates(socket);
 

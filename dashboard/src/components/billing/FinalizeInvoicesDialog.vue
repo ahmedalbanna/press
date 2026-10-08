@@ -1,11 +1,15 @@
 <template>
 	<Dialog
-		:options="{ title: `Finalize Unsettled Invoices` }"
+		:options="{ title: t('Finalize Unsettled Invoices') }"
 		v-model="showDialog"
 	>
 		<template #body-content>
 			<div class="prose text-base">
-				You have unpaid invoices on your account for the following periods:
+				{{
+					t(
+						'You have unpaid invoices on your account for the following periods:',
+					)
+				}}
 				<ul class="pt-2">
 					<li
 						class="font-semibold"
@@ -23,11 +27,17 @@
 						}}
 					</li>
 				</ul>
-				Please finalize and settle them before removing all payment methods,
-				switching to Paid by Partner method or disabling the account. You can
-				check the details of invoices and make the payment from
-				<Link to="/billing/invoices/">here</Link>. It might take up to 2 hours
-				for the payment to reflect against your invoices.
+				{{
+					t(
+						'Please finalize and settle them before removing all payment methods, switching to Paid by Partner method or disabling the account. You can check the details of invoices and make the payment from',
+					)
+				}}
+				<Link to="/billing/invoices/">{{ t('here') }}</Link>.
+				{{
+					t(
+						'It might take up to 2 hours for the payment to reflect against your invoices.',
+					)
+				}}
 			</div>
 		</template>
 		<template #actions>
@@ -36,7 +46,7 @@
 				class="w-full"
 				@click="$resources.finalizeInvoices.submit()"
 			>
-				Finalize Invoices
+				{{ t('Finalize Invoices') }}
 			</Button>
 		</template>
 	</Dialog>
@@ -45,6 +55,7 @@
 <script>
 import { date } from '../../utils/format';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'FinalizeInvoicesDialog',
@@ -61,7 +72,7 @@ export default {
 			url: 'press.api.billing.finalize_invoices',
 			onSuccess() {
 				this.showDialog = false;
-				toast.success('Invoices finalized successfully');
+				toast.success(t('Invoices finalized successfully'));
 			},
 		},
 		unpaidInvoices: {

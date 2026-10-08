@@ -3,7 +3,7 @@
 		v-model="props.showInvoiceDialog"
 		:options="{
 			size: '3xl',
-			title: 'Total usage for this month',
+			title: t('Total usage for this month'),
 		}"
 	>
 		<template #body-content>
@@ -12,7 +12,7 @@
 					v-if="upcomingInvoice.data.upcoming_invoice.status === 'Empty'"
 					class="text-base text-ink-gray-6"
 				>
-					Nothing to show
+					{{ t('Nothing to show') }}
 				</div>
 				<InvoiceTable
 					v-else
@@ -20,7 +20,7 @@
 				/>
 			</template>
 			<template v-else>
-				<div class="text-base text-ink-gray-6">Nothing to show</div>
+				<div class="text-base text-ink-gray-6">{{ t('Nothing to show') }}</div>
 			</template>
 		</template>
 	</Dialog>
@@ -29,6 +29,7 @@
 <script setup>
 import { inject, ref } from 'vue';
 import InvoiceTable from '../InvoiceTable.vue';
+import { t } from '../../utils/language';
 
 const { upcomingInvoice } = inject('billing');
 const props = defineProps({
