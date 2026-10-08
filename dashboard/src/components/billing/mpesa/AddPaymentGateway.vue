@@ -1,16 +1,16 @@
 <template>
-	<Dialog :options="{ title: 'Add Payment Gateway', size: 'lg' }">
+	<Dialog :options="{ title: t('Add Payment Gateway'), size: 'lg' }">
 		<template #body-content>
 			<div class="flex flex-col gap-4">
 				<FormControl
-					label="Gateway Name"
+					:label="t('Gateway Name')"
 					v-model="paymentGatewayDetails.gateway_name"
 					name="gateway_name"
 					type="text"
-					placeholder="Enter Gateway Name"
+					:placeholder="t('Enter Gateway Name')"
 				/>
 				<FormControl
-					label="Endpoint URL"
+					:label="t('Endpoint URL')"
 					v-model="paymentGatewayDetails.url"
 					name="url"
 					type="text"
@@ -18,40 +18,40 @@
 				/>
 				<div class="flex gap-4">
 					<FormControl
-						label="API Key"
+						:label="t('API Key')"
 						v-model="paymentGatewayDetails.api_key"
 						name="api_key"
 						type="text"
-						placeholder="Enter API Key"
+						:placeholder="t('Enter API Key')"
 					/>
 
 					<FormControl
-						label="API Secret"
+						:label="t('API Secret')"
 						v-model="paymentGatewayDetails.api_secret"
 						name="api_secret"
 						type="text"
-						placeholder="Enter API Secret"
+						:placeholder="t('Enter API Secret')"
 					/>
 				</div>
 
 				<div class="flex gap-4">
 					<FormControl
-						label="Currency"
+						:label="t('Currency')"
 						v-model="paymentGatewayDetails.currency"
 						name="currency"
 						type="text"
 						placeholder="e.g KES"
 					/>
 					<FormControl
-						label="Taxes and Charges(%)"
+						:label="t('Taxes and Charges(%)')"
 						v-model="paymentGatewayDetails.taxes_and_charges"
 						name="taxes_and_charges"
 						type="text"
-						placeholder="Enter Taxes and Charges"
+						:placeholder="t('Enter Taxes and Charges')"
 					/>
 				</div>
 				<FormControl
-					label="Print Format"
+					:label="t('Print Format')"
 					v-model="paymentGatewayDetails.print_format"
 					name="print_format"
 					type="text"
@@ -64,7 +64,7 @@
 					@click="savePaymentGateway"
 					variant="solid"
 					class="justify-center w-full font-bold"
-					>Save</Button
+					>{{ t('Save') }}</Button
 				>
 			</div>
 		</template>
@@ -73,6 +73,7 @@
 
 <script>
 import { toast } from 'vue-sonner';
+import { t, tr } from '../../../utils/language';
 export default {
 	name: 'AddPaymentGateway',
 	data() {
@@ -127,9 +128,9 @@ export default {
 				},
 				async onSuccess(data) {
 					if (data) {
-						toast.success('Payment Gateway settings saved', data);
+						toast.success(t('Payment Gateway settings saved'), data);
 					} else {
-						toast.error('Error saving Payment Gateway settings');
+						toast.error(t('Error saving Payment Gateway settings'));
 					}
 				},
 			};
@@ -158,7 +159,9 @@ export default {
 				this.$emit('closeDialog');
 			} catch (error) {
 				this.$toast.error(
-					`Error saving Payment Gateway settings: ${error.message}`,
+					tr('Error saving Payment Gateway settings: {error}', {
+						error: error.message,
+					}),
 				);
 			}
 		},

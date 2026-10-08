@@ -1,9 +1,9 @@
 <template>
-	<Dialog :options="{ title: 'Add Currency Exchange', size: 'lg' }">
+	<Dialog :options="{ title: t('Add Currency Exchange'), size: 'lg' }">
 		<template #body-content>
 			<div class="grid grid-cols-2 gap-4">
 				<FormControl
-					label="From Currency"
+					:label="t('From Currency')"
 					v-model="fromCurrency"
 					variant="subtle"
 					:options="['USD']"
@@ -13,7 +13,7 @@
 				/>
 
 				<FormControl
-					label="To Currency"
+					:label="t('To Currency')"
 					v-model="toCurrency"
 					name="to_currency"
 					variant="subtle"
@@ -23,7 +23,7 @@
 				/>
 
 				<FormControl
-					label="Exchange Rate"
+					:label="t('Exchange Rate')"
 					v-model="exchangeRate"
 					name="exchange_rate"
 					class="mb-5"
@@ -38,7 +38,7 @@
 					class="justify-center w-full"
 					variant="solid"
 					type="primary"
-					>Add Currency Exchange</Button
+					>{{ t('Add Currency Exchange') }}</Button
 				>
 			</div>
 		</template>
@@ -49,6 +49,7 @@
 <script>
 import { toast } from 'vue-sonner';
 import { FormControl, ErrorMessage } from 'frappe-ui';
+import { t, tr } from '../../utils/language';
 
 export default {
 	name: 'AddExchangeRate',
@@ -71,16 +72,16 @@ export default {
 				},
 				validate() {
 					if (!this.fromCurrency || !this.toCurrency || !this.exchangeRate) {
-						toast.error('All fields are required');
+						toast.error(t('All fields are required'));
 						return false;
 					}
 				},
 				async onSuccess() {
 					if (data) {
-						toast.success('Currency Exchange Added Successfully');
+						toast.success(t('Currency Exchange Added Successfully'));
 						this.$emit('close');
 					} else {
-						toast.error('Failed to add currency exchange');
+						toast.error(t('Failed to add currency exchange'));
 					}
 				},
 			};
@@ -92,7 +93,7 @@ export default {
 			try {
 				const response = await this.$resources.addCurrencyExchange.submit();
 				if (response) {
-					this.$toast.success('Currency Exchange Added Successfully');
+					this.$toast.success(t('Currency Exchange Added Successfully'));
 					this.fromCurrency = '';
 					this.toCurrency = '';
 					this.exchangeRate = '';
@@ -100,7 +101,11 @@ export default {
 				this.$emit('closeDialog');
 			} catch (error) {
 				console.log(error);
-				this.$toast.error(`Error adding currency exchange: ${error.message}`);
+				this.$toast.error(
+					tr('Error adding currency exchange: {error}', {
+						error: error.message,
+					}),
+				);
 			}
 		},
 	},

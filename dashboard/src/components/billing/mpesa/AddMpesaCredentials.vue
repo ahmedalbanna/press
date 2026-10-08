@@ -1,5 +1,5 @@
 <template>
-	<Dialog :options="{ title: 'Add M-Pesa Credentials', size: 'xl' }">
+	<Dialog :options="{ title: t('Add M-Pesa Credentials'), size: 'xl' }">
 		<template #body-content>
 			<div class="grid grid-cols-2 gap-5">
 				<FormControl
@@ -17,7 +17,7 @@
 					name="consumer_key"
 					class="mb-3"
 					type="text"
-					placeholder="Enter Consumer Key"
+					:placeholder="t('Enter Consumer Key')"
 				/>
 
 				<FormControl
@@ -26,7 +26,7 @@
 					name="consumer_secret"
 					class="mb-3"
 					type="text"
-					placeholder="Enter Consumer Secret"
+					:placeholder="t('Enter Consumer Secret')"
 				/>
 
 				<FormControl
@@ -35,7 +35,7 @@
 					name="pass_key"
 					class="mb-3"
 					type="text"
-					placeholder="Enter Pass Key"
+					:placeholder="t('Enter Pass Key')"
 				/>
 
 				<FormControl
@@ -44,7 +44,7 @@
 					name="short_code"
 					class="mb-3"
 					type="text"
-					placeholder="Enter Short Code"
+					:placeholder="t('Enter Short Code')"
 				/>
 
 				<FormControl
@@ -62,7 +62,7 @@
 					name="security_credential"
 					class="mb-3"
 					type="text"
-					placeholder="Enter Security Credential"
+					:placeholder="t('Enter Security Credential')"
 				/>
 
 				<FormControl
@@ -87,7 +87,7 @@
 					variant="solid"
 					class="justify-center w-full"
 				>
-					Save
+					{{ t('Save') }}
 				</Button>
 			</div>
 		</template>
@@ -98,6 +98,7 @@
 import { toast } from 'vue-sonner';
 import { DashboardError } from '../../../utils/error';
 import { ErrorMessage } from 'frappe-ui';
+import { t } from '../../../utils/language';
 export default {
 	name: 'AddMpesaCredentials',
 	data() {
@@ -135,9 +136,9 @@ export default {
 				},
 				onSuccess(data) {
 					if (data) {
-						toast.success('M-Pesa credentials saved', data);
+						toast.success(t('M-Pesa credentials saved'), data);
 					} else {
-						toast.error('Error saving M-Pesa credentials');
+						toast.error(t('Error saving M-Pesa credentials'));
 					}
 					this.$emit('closeDialog');
 				},

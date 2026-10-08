@@ -1,10 +1,10 @@
 <template>
-	<Dialog :options="{ title: 'Partner Payments Payouts', size: 'lg' }">
+	<Dialog :options="{ title: t('Partner Payments Payouts'), size: 'lg' }">
 		<template #body-content>
 			<div class="grid grid-cols-2 gap-4">
 				<!-- Filters -->
 				<FormControl
-					label="Payment Gateway"
+					:label="t('Payment Gateway')"
 					v-model="paymentGateway"
 					name="payment_gateway"
 					type="combobox"
@@ -12,38 +12,38 @@
 					size="sm"
 					variant="subtle"
 					class="mb-5"
-					placeholder="Enter Payment Gateway"
+					:placeholder="t('Enter Payment Gateway')"
 				/>
 
 				<FormControl
-					label="Partner"
+					:label="t('Partner')"
 					v-model="partner"
 					:options="partnerList"
 					size="sm"
 					variant="subtle"
 					type="combobox"
 					class="mb-5"
-					placeholder="Enter Partner"
+					:placeholder="t('Enter Partner')"
 				/>
 
 				<FormControl
-					label="From Date"
+					:label="t('From Date')"
 					v-model="fromDate"
 					name="from_date"
 					autocomplete="off"
 					class="mb-5"
 					type="date"
-					placeholder="Select Start Date"
+					:placeholder="t('Select Start Date')"
 				/>
 
 				<FormControl
-					label="To Date"
+					:label="t('To Date')"
 					v-model="toDate"
 					name="to_date"
 					autocomplete="off"
 					class="mb-5"
 					type="date"
-					placeholder="Select End Date"
+					:placeholder="t('Select End Date')"
 				/>
 
 				<Button
@@ -51,7 +51,7 @@
 					variant="solid"
 					class="justify-center col-span-2"
 				>
-					Fetch Payments
+					{{ t('Fetch Payments') }}
 				</Button>
 			</div>
 
@@ -60,9 +60,13 @@
 				<table class="w-full border-collapse border border-outline-gray-2">
 					<thead>
 						<tr>
-							<th class="border border-outline-gray-2 p-2">Transaction ID</th>
-							<th class="border border-outline-gray-2 p-2">Amount</th>
-							<th class="border border-outline-gray-2 p-2">Posting Date</th>
+							<th class="border border-outline-gray-2 p-2">
+								{{ t('Transaction ID') }}
+							</th>
+							<th class="border border-outline-gray-2 p-2">{{ t('Amount') }}</th>
+							<th class="border border-outline-gray-2 p-2">
+								{{ t('Posting Date') }}
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,7 +85,7 @@
 				v-if="payments.length === 0 && fetchAttempted"
 				class="text-center mt-4 text-ink-gray-5"
 			>
-				No payments found.
+				{{ t('No payments found.') }}
 			</div>
 			<div v-if="payments.length != 0" class="mt-4 flex w-full justify-end">
 				<Button
@@ -89,7 +93,7 @@
 					@click="createAndSubmitPayout"
 					:loading="paymentInProgress"
 				>
-					Submit Payments
+					{{ t('Submit Payments') }}
 				</Button>
 			</div>
 		</template>
@@ -99,6 +103,7 @@
 <script>
 import { toast } from 'vue-sonner';
 import { frappeRequest } from 'frappe-ui';
+import { t, tr } from '../../../utils/language';
 
 export default {
 	name: 'PartnerPaymentPayout',
@@ -127,11 +132,11 @@ export default {
 					payments: this.payments,
 				},
 				onSuccess: () => {
-					toast.success('Payments submitted successfully');
+					toast.success(t('Payments submitted successfully'));
 					this.$emit('close');
 				},
 				onError: (error) => {
-					toast.error(`Error submitting payments: ${error.message}`);
+					toast.error(tr('Error submitting payments: {error}', { error: error.message }));
 				},
 			};
 		},
@@ -142,7 +147,7 @@ export default {
 				this.paymentInProgress = true;
 				await this.$resources.createPaymentPartnerPayout.submit();
 			} catch (error) {
-				toast.error(`Error submitting payments: ${error.message}`);
+				toast.error(tr('Error submitting payments: {error}', { error: error.message }));
 			} finally {
 				this.paymentInProgress = false;
 			}
@@ -166,7 +171,7 @@ export default {
 					console.log('No Data');
 				}
 			} catch (error) {
-				toast.error(`Error fetching payments: ${error.message}`);
+				toast.error(tr('Error fetching payments: {error}', { error: error.message }));
 			}
 		},
 		async fetchPartners() {
