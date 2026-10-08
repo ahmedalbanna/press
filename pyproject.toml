@@ -79,7 +79,7 @@ mcp = [
 ]
 # Semgrep is only ever invoked as a CLI subprocess by the marketplace app audit,
 # never imported, and semgrep requires urllib3>=2 which collides with the urllib3<2
-# pin that python-telegram-bot 13.15 needs. The audit prefers a dedicated bench via
+# pin that python-telegram-bot 21.x needs. The audit prefers a dedicated bench via
 # `Marketplace Settings -> audit_bench_path` and already reports a clear
 # `semgrep_unavailable` result when no binary is found, so this stays optional.
 audit = [

@@ -2,11 +2,6 @@ import frappe
 
 from press.api.account import get_frappe_io_auth_url
 
-try:
-	_frappe_io_auth_url = get_frappe_io_auth_url() or "/"
-except Exception:
-	_frappe_io_auth_url = "/"
-
 from . import __version__ as app_version
 
 

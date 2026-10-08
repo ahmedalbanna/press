@@ -185,3 +185,6 @@ dashboard/auto-imports.d.ts
 *.sql.gz
 *.csv
 *.bak-*
+
+# Kilo Code local tooling config
+.kilo/

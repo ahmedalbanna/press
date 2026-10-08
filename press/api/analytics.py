@@ -701,12 +701,8 @@ def get_metrics(
 		# containers here (containerd image store), so the query legitimately
 		# returns nothing. Report empty datasets rather than throwing a
 		# "refresh and contact support" message for a condition that never
-		# recovers. Genuine failures (bad data shapes) still throw below.
-		# Re-check on every Press update touching this function.
-		result = _get_cadvisor_data(promql_query, timezone, timespan, timegrain)
-		if result is None:
-			return {response_key: {"datasets": [], "labels": []}}
-		datasets, labels = result
+		# recovers. Re-check on every Press update touching this function.
+		datasets, labels = _get_cadvisor_data(promql_query, timezone, timespan, timegrain)
 		return {response_key: {"datasets": datasets, "labels": labels}}
 	except (ValueError, TypeError):
 		frappe.throw(

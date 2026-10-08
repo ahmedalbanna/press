@@ -33,7 +33,7 @@ class TestInitializeWebdriver(FrappeTestCase):
 			initialize_webdriver()
 		return raised.exception, download
 
-	def test_unchrecognised_selenium_message_reraises_the_original_error(self):
+	def test_unrecognised_selenium_message_reraises_the_original_error(self):
 		exception, download = self.drive_failure("session not created: no chrome binary")
 
 		self.assertIn("no chrome binary", str(exception))
