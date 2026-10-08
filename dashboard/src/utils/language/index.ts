@@ -34,8 +34,13 @@ interface BootGlobals {
 	user_language?: string;
 }
 
+// Precedence: the server-side per-user preference wins, because it is the one
+// that follows the user across devices and is what an admin can change for
+// them. localStorage is only a fallback for when there is no server value yet
+// (first visit, or a save that failed), so a language picked on this device
+// still survives a reload.
 const state = reactive({
-	lang: (localStorage.getItem('lang') as Language) || bootLanguage() || 'en',
+	lang: bootLanguage() || (localStorage.getItem('lang') as Language) || 'en',
 });
 
 function bootLanguage(): Language | null {
@@ -87,32 +92,12 @@ export function isRTL(): boolean {
 	return state.lang === 'ar';
 }
 
-const FONTS: Record<Language, string> = {
-	ar: 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap',
-	en: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
-};
-
-let fontLink: HTMLLinkElement | null = null;
-
-function loadFonts(lang: Language) {
-	if (!fontLink) {
-		fontLink = document.createElement('link');
-		fontLink.rel = 'stylesheet';
-		document.head.appendChild(fontLink);
-	}
-	if (fontLink.href !== FONTS[lang]) {
-		fontLink.href = FONTS[lang];
-	}
-}
-
 export function initLanguage() {
-	loadFonts(state.lang);
 	watch(
 		() => state.lang,
 		(lang) => {
 			document.documentElement.lang = lang;
 			document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-			loadFonts(lang);
 		},
 		{ immediate: true },
 	);

@@ -148,3 +148,10 @@ body {
 [dir="rtl"] {
 	font-family: "Cairo", "Tajawal", system-ui, sans-serif;
 }
+
+/* English/Latin typography (spec: Inter or Plus Jakarta Sans) */
+[dir="ltr"] body,
+body {
+	font-family: "Inter", "Plus Jakarta Sans", system-ui, -apple-system,
+		sans-serif;
+}
