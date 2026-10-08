@@ -458,6 +458,41 @@ const common: Dictionary = {
 	},
 	'Table': { en: 'Table', ar: 'الجدول' },
 	'Columns': { en: 'Columns', ar: 'الأعمدة' },
+	// SupportAccessDialog
+	'Valid For': { en: 'Valid For', ar: 'صالح لمدة' },
+	'Reason:': { en: 'Reason:', ar: 'السبب:' },
+	'Permissions:': { en: 'Permissions:', ar: 'الأذونات:' },
+	'3 Hours': { en: '3 Hours', ar: '3 ساعات' },
+	'6 Hours': { en: '6 Hours', ar: '6 ساعات' },
+	'12 Hours': { en: '12 Hours', ar: '12 ساعة' },
+	'1 Day': { en: '1 Day', ar: 'يوم واحد' },
+	'3 Days': { en: '3 Days', ar: '3 أيام' },
+	'7 Days': { en: '7 Days', ar: '7 أيام' },
+	'SSH': { en: 'SSH', ar: 'SSH' },
+	'Request {status}': { en: 'Request {status}', ar: 'تم {status} الطلب' },
+	'This request has been accepted.': {
+		en: 'This request has been accepted.',
+		ar: 'تم قبول هذا الطلب.',
+	},
+	'This request has been rejected.': {
+		en: 'This request has been rejected.',
+		ar: 'تم رفض هذا الطلب.',
+	},
+	'This request has been revoked.': {
+		en: 'This request has been revoked.',
+		ar: 'تم إلغاء هذا الطلب.',
+	},
+	'This request has been forfeited.': {
+		en: 'This request has been forfeited.',
+		ar: 'تم التخلي عن هذا الطلب.',
+	},
+	'Accept': { en: 'Accept', ar: 'قبول' },
+	'Revoke': { en: 'Revoke', ar: 'إلغاء' },
+	'Forfeit': { en: 'Forfeit', ar: 'تخلي' },
+	'Do you want to accept or reject this access request?': {
+		en: 'Do you want to accept or reject this access request?',
+		ar: 'هل تريد قبول أو رفض طلب الوصول هذا؟',
+	},
 };
 
 export default common;

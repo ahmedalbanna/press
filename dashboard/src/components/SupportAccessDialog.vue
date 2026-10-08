@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="open"
 		:options="{
-			title: 'Access Request',
+			title: t('Access Request'),
 			actions,
 		}"
 	>
@@ -22,7 +22,7 @@
 					{{ banner.message }}
 				</div>
 				<p v-if="isReceived && isPending" class="leading-normal">
-					Do you want to accept or reject this access request?
+					{{ t('Do you want to accept or reject this access request?') }}
 				</p>
 				<div class="rounded-sm border divide-y">
 					<div
@@ -50,8 +50,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="flex items-center gap-2">
-					<div>Valid For</div>
+			<div class="flex items-center gap-2">
+				<div>{{ t('Valid For') }}</div>
 					<div>
 						<Select
 							v-model="request.doc.allowed_for"
@@ -60,12 +60,12 @@
 						/>
 					</div>
 				</div>
-				<div v-if="request.doc?.reason" class="space-y-2">
-					<p class="font-medium">Reason:</p>
-					<p class="leading-relaxed">{{ request.doc?.reason }}</p>
-				</div>
-				<div v-if="permissions.length" class="space-y-2">
-					<p class="font-medium">Permissions:</p>
+			<div v-if="request.doc?.reason" class="space-y-2">
+				<p class="font-medium">{{ t('Reason:') }}</p>
+				<p class="leading-relaxed">{{ request.doc?.reason }}</p>
+			</div>
+			<div v-if="permissions.length" class="space-y-2">
+				<p class="font-medium">{{ t('Permissions:') }}</p>
 					<div class="flex flex-wrap gap-2">
 						<Badge
 							v-for="permission in permissions"
@@ -93,6 +93,7 @@ import {
 import { computed, ref, watch } from 'vue';
 import { getTeam } from '../data/team';
 import { toast } from 'vue-sonner';
+import { t, tr } from '../utils/language';
 
 const props = defineProps<{
 	name: string;
@@ -116,33 +117,33 @@ const isPending = computed(() => {
 });
 
 const validityOptions = [
-	{ label: '3 Hours', value: '3' },
-	{ label: '6 Hours', value: '6' },
-	{ label: '12 Hours', value: '12' },
-	{ label: '1 Day', value: '24' },
-	{ label: '3 Days', value: '72' },
-	{ label: '7 Days', value: '168' },
+	{ label: t('3 Hours'), value: '3' },
+	{ label: t('6 Hours'), value: '6' },
+	{ label: t('12 Hours'), value: '12' },
+	{ label: t('1 Day'), value: '24' },
+	{ label: t('3 Days'), value: '72' },
+	{ label: t('7 Days'), value: '168' },
 ];
 
 const permissions = computed(() =>
 	[
 		{
-			label: 'Release Group',
+			label: t('Release Group'),
 			requested: request.doc?.site_release_group,
 			color: 'red',
 		},
 		{
-			label: 'SSH',
+			label: t('SSH'),
 			requested: request.doc?.bench_ssh,
 			color: 'red',
 		},
 		{
-			label: 'Login as Administrator',
+			label: t('Login as Administrator'),
 			requested: request.doc?.login_as_administrator,
 			color: 'orange',
 		},
 		{
-			label: 'Domains',
+			label: t('Domains'),
 			requested: request.doc?.site_domains,
 			color: 'green',
 		},
@@ -160,7 +161,7 @@ const update = createResource({
 		},
 	}),
 	onSuccess: (data: any) => {
-		toast.success(`Request ${data.status}`);
+		toast.success(tr('Request {status}', { status: data.status }));
 		open.value = false;
 	},
 });
@@ -169,22 +170,22 @@ const banner = computed(() => {
 	if (request.doc?.status === 'Accepted') {
 		return {
 			type: 'success',
-			message: 'This request has been accepted.',
+			message: t('This request has been accepted.'),
 		};
 	} else if (request.doc?.status === 'Rejected') {
 		return {
 			type: 'error',
-			message: 'This request has been rejected.',
+			message: t('This request has been rejected.'),
 		};
 	} else if (request.doc?.status === 'Revoked') {
 		return {
 			type: 'neutral',
-			message: 'This request has been revoked.',
+			message: t('This request has been revoked.'),
 		};
 	} else if (request.doc?.status === 'Forfeited') {
 		return {
 			type: 'neutral',
-			message: 'This request has been forfeited.',
+			message: t('This request has been forfeited.'),
 		};
 	}
 });
@@ -196,7 +197,7 @@ const actions = computed(() => {
 	if (request.doc?.status === 'Pending' && isReceived.value) {
 		actions.push(
 			{
-				label: 'Reject',
+				label: t('Reject'),
 				variant: 'subtle',
 				theme: 'red',
 				onClick: () => {
@@ -207,7 +208,7 @@ const actions = computed(() => {
 				},
 			},
 			{
-				label: 'Accept',
+				label: t('Accept'),
 				variant: 'solid',
 				onClick: () => {
 					update.submit({
@@ -221,7 +222,7 @@ const actions = computed(() => {
 
 	if (request.doc?.status === 'Accepted' && isReceived.value && !isExpired) {
 		actions.push({
-			label: 'Revoke',
+			label: t('Revoke'),
 			variant: 'subtle',
 			theme: 'red',
 			onClick: () => {
@@ -235,7 +236,7 @@ const actions = computed(() => {
 
 	if (request.doc?.status === 'Accepted' && !isReceived.value && !isExpired) {
 		actions.push({
-			label: 'Forfeit',
+			label: t('Forfeit'),
 			variant: 'subtle',
 			theme: 'red',
 			onClick: () => {
