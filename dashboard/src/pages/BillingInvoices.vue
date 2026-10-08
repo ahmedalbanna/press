@@ -7,12 +7,12 @@
 		>
 			<template #body-content>
 				<template v-if="showInvoice">
-					<div
-						v-if="showInvoice.status === 'Empty'"
-						class="text-base text-ink-gray-6"
-					>
-						Nothing to show
-					</div>
+						<div
+							v-if="showInvoice.status === 'Empty'"
+							class="text-base text-ink-gray-6"
+						>
+							{{ t('Nothing to show') }}
+						</div>
 					<InvoiceTable v-else :invoiceId="showInvoice.name" />
 				</template>
 			</template>
@@ -42,6 +42,7 @@ import { confirmDialog, icon, renderInDialog } from '../utils/components';
 import AddPrepaidCreditsDialog from '../components/billing/AddPrepaidCreditsDialog.vue';
 import { dayjsLocal } from '../utils/dayjs';
 import router from '../router';
+import { t, tr } from '../utils/language';
 
 export default {
 	name: 'BillingInvoices',
@@ -79,14 +80,14 @@ export default {
 					return [
 						{
 							type: 'select',
-							label: 'Type',
+							label: t('Type'),
 							class: !this.$isMobile ? 'w-36' : '',
 							fieldname: 'type',
 							options: ['', 'Subscription', 'Prepaid Credits'],
 						},
 						{
 							type: 'select',
-							label: 'Status',
+							label: t('Status'),
 							class: !this.$isMobile ? 'w-36' : '',
 							fieldname: 'status',
 							options: [
@@ -105,7 +106,7 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Invoice',
+						label: t('Invoice'),
 						fieldname: 'name',
 						class: 'font-medium',
 						format(value, row) {
@@ -113,20 +114,20 @@ export default {
 								let end = dayjsLocal(row.period_end);
 								return end.format('MMMM YYYY');
 							} else if (row.type == 'Partnership Fees') {
-								return 'Partnership Fees';
+								return t('Partnership Fees');
 							}
-							return 'Prepaid Credits';
+							return t('Prepaid Credits');
 						},
 						width: 0.8,
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: '150px',
 					},
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'due_date',
 						format(value, row) {
 							if (row.type == 'Subscription') {
@@ -142,21 +143,21 @@ export default {
 						},
 					},
 					{
-						label: 'Total',
+						label: t('Total'),
 						fieldname: 'total',
 						format: this.formatCurrency,
 						align: 'right',
 						width: 0.6,
 					},
 					{
-						label: 'Amount Paid',
+						label: t('Amount Paid'),
 						fieldname: 'amount_paid',
 						format: this.formatCurrency,
 						align: 'right',
 						width: 0.6,
 					},
 					{
-						label: 'Amount Due',
+						label: t('Amount Due'),
 						fieldname: 'amount_due_with_tax',
 						format: this.formatCurrency,
 						align: 'right',
@@ -169,7 +170,7 @@ export default {
 						Button: ({ row }) => {
 							if (row.invoice_pdf || row.mpesa_invoice_pdf) {
 								return {
-									label: 'Download Invoice',
+									label: t('Download Invoice'),
 									slots: {
 										prefix: icon('download'),
 									},
@@ -184,7 +185,7 @@ export default {
 							}
 							if (row.status === 'Unpaid' && row.amount_due > 0) {
 								return {
-									label: 'Pay Now',
+									label: t('Pay Now'),
 									slots: {
 										prefix: icon('external-link'),
 									},
@@ -212,10 +213,10 @@ export default {
 									onClick(e) {
 										e.stopPropagation();
 										confirmDialog({
-											title: 'Payment Failed',
-											message: `<div class="space-y-4"><p class="text-base">Your payment with the card ending <strong>${row.stripe_payment_failed_card}</strong> failed for this invoice due to the following reason:</p><div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">${row.stripe_payment_error}</div><p class="text-base">Please change your payment method to pay this invoice.</p></div>`,
+											title: t('Payment Failed'),
+											message: tr('Your payment with the card ending <strong>{card}</strong> failed for this invoice due to the following reason:<div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">Please change your payment method to pay this invoice.</p>', { card: row.stripe_payment_failed_card, error: row.stripe_payment_error }),
 											primaryAction: {
-												label: 'Change Payment Method',
+												label: t('Change Payment Method'),
 												variant: 'solid',
 												onClick: ({ hide }) => {
 													hide();
@@ -240,6 +241,8 @@ export default {
 		},
 	},
 	methods: {
+		t,
+		tr,
 		formatCurrency(value) {
 			if (value === 0) {
 				return '';

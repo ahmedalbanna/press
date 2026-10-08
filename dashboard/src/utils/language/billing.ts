@@ -68,6 +68,24 @@ const billing: Dictionary = {
 		en: "You aren't permitted to view the billing page",
 		ar: 'غير مسموح لك بعرض صفحة الفوترة',
 	},
+	// BillingInvoices
+	'Nothing to show': { en: 'Nothing to show', ar: 'لا شيء لعرضه' },
+	'Draft': { en: 'Draft', ar: 'مسودة' },
+	'Invoice Created': { en: 'Invoice Created', ar: 'تم إنشاء الفاتورة' },
+	'Unpaid': { en: 'Unpaid', ar: 'غير مدفوعة' },
+	'Refunded': { en: 'Refunded', ar: 'مستردة' },
+	'Uncollectible': { en: 'Uncollectible', ar: 'غير قابلة للتحصيل' },
+	'Collected': { en: 'Collected', ar: 'تم التحصيل' },
+	'Empty': { en: 'Empty', ar: 'فارغة' },
+	'Partnership Fees': { en: 'Partnership Fees', ar: 'رسوم الشراكة' },
+	'Amount Paid': { en: 'Amount Paid', ar: 'المبلغ المدفوع' },
+	'Download Invoice': { en: 'Download Invoice', ar: 'تنزيل الفاتورة' },
+	'Pay Now': { en: 'Pay Now', ar: 'ادفع الآن' },
+	'Change Payment Method': { en: 'Change Payment Method', ar: 'تغيير طريقة الدفع' },
+	'Your payment with the card ending <strong>{card}</strong> failed for this invoice due to the following reason:<div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">Please change your payment method to pay this invoice.</p>': {
+		en: 'Your payment with the card ending <strong>{card}</strong> failed for this invoice due to the following reason:<div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">Please change your payment method to pay this invoice.</p>',
+		ar: 'فشل الدفع ببطاقة تنتهي بـ <strong>{card}</strong> لهذه الفاتورة بسبب: <div class="text-sm font-mono text-ink-gray-6 rounded p-2 bg-surface-gray-2">{error}</div><p class="text-base">يُرجى تغيير طريقة الدفع لدفع هذه الفاتورة.</p>',
+	},
 };
 
 export default billing;
