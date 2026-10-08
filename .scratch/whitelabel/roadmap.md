@@ -11,8 +11,14 @@
 | Decision | Choice |
 |----------|--------|
 | Priority | press-mcp first (all functions) |
-| Local Models | Ollama (lightweight, easy setup) |
-| Cloud Providers | Gemini or OpenAI (flexible API) |
+| Code Location | press-mcp in Press + erpnext-mcp in ERPNext |
+| Deployment | On Press server (central management) |
+| Local Models | Ollama via Docker (isolated, easy deployment) |
+| Cloud Providers | Unified API (OpenAI, Gemini, Anthropic) |
+| Hybrid AI Routing | Text analysis (simple → local, complex → cloud) |
+| AI Agent UI | Frappe UI chat sidebar in ERPNext Desk |
+| press-mcp UI | CLI + simple dashboard |
+| erpnext-mcp UI | Chat sidebar in ERPNext |
 | AI Agent Language | Bilingual (Arabic + English) |
 | AI Agent Platform | Web only (ERPNext chat sidebar) |
 | Pricing Model | Basic: free with hosting, Advanced: paid annual |
