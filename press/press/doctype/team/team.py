@@ -35,7 +35,7 @@ from press.utils.billing import (
 )
 from press.utils.jobs import has_job_timeout_exceeded
 from press.utils.telemetry import capture, capture_pulse
-from press.utils.user import is_system_manager
+from press.utils.user import is_system_manager, user_language
 
 from .team_members import get_invitations, get_roles
 
@@ -1673,54 +1673,57 @@ class Team(Document):
 			invoice = frappe.get_doc("Invoice", invoice)
 
 		email = get_communication_info("Email", "Billing", "Team", self.name) or [self.user]
-		subject = "UPI Autopay Payment Failed for Frappe Cloud Subscription"
+		subject = "UPI Autopay Payment Failed for AlbannaTech Subscription"
 
-		frappe.sendmail(
-			recipients=email,
-			subject=subject,
-			template="payment_failed_upi_autopay",
-			args={
-				"subject": subject,
-				"amount": invoice.get_formatted("amount_due_with_tax") if invoice else None,
-				"upi_vpa": upi_vpa,
-				"error_reason": error_reason,
-				"upi_autopay_link": frappe.utils.get_url("/dashboard/billing/upi-autopay"),
-				"billing_link": frappe.utils.get_url("/dashboard/billing"),
-			},
-		)
+		with user_language(self.user):
+			frappe.sendmail(
+				recipients=email,
+				subject=subject,
+				template="payment_failed_upi_autopay",
+				args={
+					"subject": subject,
+					"amount": invoice.get_formatted("amount_due_with_tax") if invoice else None,
+					"upi_vpa": upi_vpa,
+					"error_reason": error_reason,
+					"upi_autopay_link": frappe.utils.get_url("/dashboard/billing/upi-autopay"),
+					"billing_link": frappe.utils.get_url("/dashboard/billing"),
+				},
+			)
 
 	def send_email_for_mandate_amount_capped(self, requested_amount, confirmed_amount):
 		email = get_communication_info("Email", "Billing", "Team", self.name) or [self.user]
 		subject = "Your UPI Autopay limit was adjusted by your bank"
-		frappe.sendmail(
-			recipients=email,
-			subject=subject,
-			template="mandate_amount_capped",
-			args={
-				"subject": subject,
-				"requested_amount": f"{requested_amount:,.0f}",
-				"confirmed_amount": f"{confirmed_amount:,.0f}",
-				"upi_autopay_link": frappe.utils.get_url("/dashboard/billing/upi-autopay"),
-			},
-		)
+		with user_language(self.user):
+			frappe.sendmail(
+				recipients=email,
+				subject=subject,
+				template="mandate_amount_capped",
+				args={
+					"subject": subject,
+					"requested_amount": f"{requested_amount:,.0f}",
+					"confirmed_amount": f"{confirmed_amount:,.0f}",
+					"upi_autopay_link": frappe.utils.get_url("/dashboard/billing/upi-autopay"),
+				},
+			)
 
 	def send_email_for_invalid_payment_method(self, invoice):
 		if isinstance(invoice, str):
 			invoice = frappe.get_doc("Invoice", invoice)
 
 		email = get_communication_info("Email", "Billing", "Team", self.name) or [self.user]
-		subject = "Card on Frappe Cloud could not be charged"
+		subject = "Card on AlbannaTech could not be charged"
 
-		frappe.sendmail(
-			recipients=email,
-			subject=subject,
-			template="payment_method_invalid",
-			args={
-				"subject": subject,
-				"amount": invoice.get_formatted("amount_due_with_tax"),
-				"billing_link": frappe.utils.get_url("/dashboard/billing"),
-			},
-		)
+		with user_language(self.user):
+			frappe.sendmail(
+				recipients=email,
+				subject=subject,
+				template="payment_method_invalid",
+				args={
+					"subject": subject,
+					"amount": invoice.get_formatted("amount_due_with_tax"),
+					"billing_link": frappe.utils.get_url("/dashboard/billing"),
+				},
+			)
 
 	@frappe.whitelist()
 	def send_email_for_failed_payment(self, invoice, sites=None):
@@ -1729,23 +1732,23 @@ class Team(Document):
 		payment_method = self.default_payment_method
 		last_4 = frappe.db.get_value("Stripe Payment Method", payment_method, "last_4")
 		account_update_link = frappe.utils.get_url("/dashboard")
-		subject = "Invoice Payment Failed for Frappe Cloud Subscription"
+		subject = "Invoice Payment Failed for AlbannaTech Subscription"
 
-		frappe.sendmail(
-			recipients=email,
-			subject=subject,
-			template="payment_failed_partner" if self.erpnext_partner else "payment_failed",
-			args={
-				"subject": subject,
-				"payment_link": invoice.stripe_invoice_url,
-				"amount": invoice.get_formatted("amount_due"),
-				"account_update_link": account_update_link,
-				"last_4": last_4 or "",
-				"card_not_added": not payment_method,
-				"sites": sites,
-				"team": self,
-			},
-		)
+		with user_language(self.user):
+			frappe.sendmail(
+				recipients=email,
+				subject=subject,
+				template="payment_failed_partner" if self.erpnext_partner else "payment_failed",
+				args={
+					"subject": subject,
+					"payment_link": invoice.stripe_invoice_url,
+					"amount": invoice.get_formatted("amount_due"),
+					"account_update_link": account_update_link,
+					"card_not_added": not payment_method,
+					"sites": sites,
+					"team": self,
+				},
+			)
 
 
 def get_team_members(team):

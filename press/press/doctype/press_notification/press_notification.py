@@ -7,6 +7,7 @@ from frappe.model.document import Document
 
 from press.api.client import dashboard_whitelist
 from press.press.doctype.communication_info.communication_info import get_communication_info
+from press.utils.user import user_language
 
 
 class PressNotification(Document):
@@ -77,15 +78,16 @@ class PressNotification(Document):
 		group_name = frappe.db.get_value("Deploy Candidate Build", self.document_name, "group")
 		rg_title = frappe.db.get_value("Release Group", group_name, "title")
 
-		frappe.sendmail(
-			recipients=mails,
-			subject=f"Bench Deploy Failed - {rg_title}",
-			template="bench_deploy_failure",
-			args={
-				"message": self.title,
-				"link": f"dashboard/groups/{group_name}/deploys/{self.document_name}",
-			},
-		)
+		with user_language(user):
+			frappe.sendmail(
+				recipients=mails,
+				subject=f"Bench Deploy Failed - {rg_title}",
+				template="bench_deploy_failure",
+				args={
+					"message": self.title,
+					"link": f"dashboard/groups/{group_name}/deploys/{self.document_name}",
+				},
+			)
 
 	@dashboard_whitelist()
 	def mark_as_addressed(self):
