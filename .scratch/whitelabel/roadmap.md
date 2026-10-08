@@ -169,6 +169,21 @@
 
 **Status**: Not started
 
+### Business Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Target Audience | Small companies (1-50 employees) |
+| Marketing Strategy | Partner marketing with consulting companies |
+| Support Team | 1-2 people (partial) |
+| Pricing Model | Usage-based (per transaction) |
+| Communication Channel | Phone (direct number) |
+| Partner Count | Start with 1-2 partners |
+| Revenue Split | 60/40 (60% us, 40% partner) |
+| Support Request Method | Website form |
+| Response Time | Based on priority |
+| Knowledge Base | Yes, comprehensive with FAQs and guides |
+
 ### Workstreams
 
 #### 3.1 Pre-Launch
@@ -177,6 +192,9 @@
 - [ ] Performance optimization based on beta metrics
 - [ ] Documentation review
 - [ ] Support process definition
+- [ ] Create knowledge base with FAQs and guides
+- [ ] Set up website contact form
+- [ ] Define support priority levels and response times
 
 #### 3.2 Launch
 - [ ] Production deployment
@@ -185,6 +203,8 @@
 - [ ] SMTP verification
 - [ ] Payment gateway testing in production
 - [ ] Monitoring dashboard active
+- [ ] Set up phone number and call routing
+- [ ] Test support form end-to-end
 
 #### 3.3 Post-Launch
 - [ ] Customer onboarding process
@@ -192,19 +212,29 @@
 - [ ] Customer feedback collection
 - [ ] Performance monitoring
 - [ ] Regular security updates
+- [ ] Monitor partner relationships
+- [ ] Track transaction-based usage for billing
 
 #### 3.4 Marketing & Sales
 - [ ] Landing page creation
 - [ ] Documentation site
-- [ ] Pricing page
+- [ ] Pricing page (transaction-based)
 - [ ] Blog/content strategy
 - [ ] Social media presence
+- [ ] Partner program setup
+- [ ] Partner outreach to consulting companies
+- [ ] Partner agreement templates
+- [ ] Partner portal or dashboard
 
 ### Key Deliverables
 - Platform live and accessible to customers
 - First paying customers onboarded
 - Support process operational
 - Marketing materials ready
+- Knowledge base live
+- Partner program launched
+- Phone support operational
+- Transaction-based billing system working
 
 ---
 
