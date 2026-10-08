@@ -150,3 +150,37 @@ Alert: Your site {0} will be archived in {1} days,تنبيه: سيتم أرشف�
 Site {0} has been suspended,تم تعليق الموقع {0}
 Important: Your Configured Webhook on AlbannaTech is disabled,مهم: خطاف الويب الذي تم تهيئته على AlbannaTech معطّل
 AlbannaTech Dashboard,لوحة تحكم AlbannaTech
+Server <strong>{0}</strong> has used more than 90% of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من 90% من مساحة التخزين المتاحة له.
+Your server is currently using {0} of the available {1},يستخدم خادمك حالياً {0} من أصل {1} المتاحة
+"To disable automatic disk expansion, see the",لتعطيل التوسع التلقائي في مساحة القرص، راجع
+"To enable automatic disk expansion, see the",لتفعيل التوسع التلقائي في مساحة القرص، راجع
+"For any questions, email support@albannatech.com.",لأي استفسار، يرجى مراسلة support@albannatech.com.
+We have noticed frequent incidents on your current plan and recommend upgrading your,لاحظنا تكرار الأعطال في خطتك الحالية، ونوصي بترقية
+to a plan that better fits your needs.,إلى خطة تناسب احتياجاتك بشكل أفضل.
+Here are the details of the recommended plan:,إليك تفاصيل الخطة الموصى بها:
+Instance Type:,نوع الجهاز:
+vCPU:,معالج افتراضي:
+Memory:,الذاكرة:
+"Upgrading can reduce incidents and improve your experience. If you have questions, our support team is happy to help.",الترقية تقلل الأعطال وتحسن تجربتك. وإذا كان لديك أي استفسار، فريق الدعم لدينا جاهز للمساعدة.
+Upgrade your plan,ترقية خطتك
+You can open the AlbannaTech dashboard and download the site backups.,يمكنك فتح لوحة تحكم AlbannaTech وتحميل النسخ الاحتياطية للموقع.
+"For any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+"For any concerns or questions, please reach out to our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+View Server Analytics,عرض تحليلات الخادم
+View Autoscale Job,عرض مهمة التوسع التلقائي
+View Deploy Job,عرض مهمة النشر
+Error occurred during auto scale,حدث خطأ أثناء التوسع التلقائي
+Automatic {0} triggered for server {1},تم تشغيل {0} تلقائياً للخادم {1}
+Disk Full Incident on {0},حادث امتلاء القرص على {0}
+"Dear User,",عزيزي المستخدم،
+You are receiving this mail because the storage on your server {0} is full and automatic storage expansion is disabled.,تصلك هذه الرسالة لأن مساحة التخزين على خادمك {0} ممتلئة وتم تعطيل التوسع التلقائي في مساحة التخزين.
+automatic addition,التوسع التلقائي
+"Please enable automatic storage expansion, or",يرجى تفعيل التوسع التلقائي في مساحة التخزين، أو
+add storage manually,إضافة مساحة تخزين يدوياً
+to resolve this.,لحل هذه المشكلة.
+"Best regards,",مع أطيب التحيات،
+Server <strong>{0}</strong> has used more than {1} of its available storage.,استهلك الخادم <strong>{0}</strong> أكثر من {1} من مساحة التخزين المتاحة له.
+"If you have any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
+To keep the server from being overloaded we are automatically adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نقوم تلقائياً بإضافة {0} من مساحة التخزين.
+To keep the server from being overloaded we recommend adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نوصي بإضافة {0} من مساحة التخزين.
+Recovery from snapshot {0} has completed.,تم الاسترجاع من لقطة {0}.

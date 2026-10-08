@@ -3,13 +3,13 @@
 
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white from-markdown">
-		<p>Hi,</p>
-		<p class="mb-4">{{ message }}</p>
+		<p>{{ _('Hi,') }}</p>
+		<p class="mb-4">{{ _(message).format(*message_args) if message_args else _(message) }}</p>
 		<p>
-			For any concerns or questions, please reach out to our support team at {{
+			{{ _('For any concerns or questions, please contact our support team at') }} {{
 			utils.link('support@albannatech.com', 'mailto:support@albannatech.com')}}
 		</p>
-		{{ utils.button('View Server Analytics', link, true) }} {{ utils.separator()
+		{{ utils.button(_('View Server Analytics'), link, true) }} {{ utils.separator()
 		}} {{ utils.signature() }}
 	</div>
 </td>

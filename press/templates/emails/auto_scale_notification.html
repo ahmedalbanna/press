@@ -5,15 +5,15 @@
 
 <td class="text-base leading-6 text-gray-900">
     <div class="p-8 bg-white from-markdown">
-        <p>Hi,</p>
+        <p>{{ _('Hi,') }}</p>
         <p class="mb-4">
-            {{ message }}
+            {{ _(message).format(*message_args) if message_args else _(message) }}
         </p>
         <p>
-            If you have any concerns or questions, please do not hesitate to reach out to our support team at
+            {{ _('If you have any concerns or questions, please contact our support team at') }}
             {{ utils.link('support@albannatech.com', 'mailto:support@albannatech.com')}}
         </p>
-        {{ utils.button('View Autoscale Job', link, true) }}
+        {{ utils.button(_('View Autoscale Job'), link, true) }}
         {{ utils.separator() }}
         {{ utils.signature() }}
     </div>

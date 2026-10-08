@@ -4,13 +4,13 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white from-markdown">
 		<p class="mb-4 font-bold">
-			Snapshot <strong>({{ snapshot }})</strong> recovery has been completed
+			{{ _('Recovery from snapshot {0} has completed.').format(snapshot) }}
 		</p>
 		<p>
-			You can visit AlbannaTech dashboard and download the site backups.<br /><br />
+			{{ _('You can open the AlbannaTech dashboard and download the site backups.') }}<br /><br />
 
-			<strong>Need Help ?</strong><br />
-			Please email support@albannatech.com for queries.
+			<strong>{{ _('Need help?') }}</strong><br />
+			{{ _('For any questions, email support@albannatech.com.') }}
 		</p>
 
 		{{ utils.separator() }} {{ utils.signature() }}

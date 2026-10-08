@@ -681,12 +681,15 @@ Likely due to insufficient balance or incorrect credentials""",
 		title = str(frappe.db.get_value("Server", self.server, "title"))
 		if self.resource_type:
 			title = str(frappe.db.get_value(self.resource_type, self.resource, "title"))
-		subject = f"Disk Full Incident on {title}"
+		subject = _("Disk Full Incident on {0}").format(title)
 		message = f"""
-		<p>Dear User,</p>
-		<p>You are receiving this mail as the storage has been filled up on your server: <strong>{self.resource}</strong> and you have <a href="https://docs.frappe.io/cloud/storage-addons#steps-to-disable-auto-increase-storage">automatic addition</a> of storage disabled.</p>
-		<p>Please enable automatic addition of storage or <a href="https://docs.frappe.io/cloud/storage-addons#steps-to-add-storage-manually">add more storage manually</a> to resolve the issue.</p>
-		<p>Best regards,<br/>Frappe Cloud Team</p>
+		<p>{_('Dear User,')}</p>
+		<p>{_(
+			'You are receiving this mail because the storage on your server {0} is full and automatic storage expansion is disabled.',
+			context=[self.resource],
+		)} <a href="https://docs.frappe.io/cloud/storage-addons#steps-to-disable-auto-increase-storage">{_('automatic addition')}</a></p>
+		<p>{_('Please enable automatic storage expansion, or')} <a href="https://docs.frappe.io/cloud/storage-addons#steps-to-add-storage-manually">{_('add storage manually')}</a> {_('to resolve this.')}</p>
+		<p>{_('Best regards,')}<br/>{_('Team AlbannaTech')}</p>
 		"""
 		self.send_mail(subject, message)
 

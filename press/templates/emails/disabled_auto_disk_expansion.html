@@ -4,24 +4,21 @@
 <td class="text-base leading-6 text-gray-900">
 	<div class="p-8 bg-white from-markdown">
 		<p class="mb-4 font-bold">
-			Server <strong>{{ server }}</strong> has used more than {{ used_storage_percentage }} of storage
-			available.
+			{{ _('Server <strong>{0}</strong> has used more than {1} of its available storage.').format(server, used_storage_percentage) }}
 		</p>
 		<p class="mb-6">
-			Your server has currently used {{ current_disk_usage }} of the available
-			{{ available_disk_space }}
+			{{ _('Your server is currently using {0} of the available {1}').format(current_disk_usage, available_disk_space) }}
 			<br />
-			To ensure that the server is not overloaded we recommend increasing the
-			storage by <strong>{{ increase_by }}</strong><br />
+			{{ _('To keep the server from being overloaded we recommend adding {0} of storage.').format(increase_by) }}<br />
 			<br />
 
-			To enable auto disk expansion please refer the following
+			{{ _('To enable automatic disk expansion, see the') }}
 			<a href="https://docs.frappe.io/cloud/storage-addons" target="_blank"
-				><b>documentation</b></a
+				><b>{{ _('documentation') }}</b></a
 			><br />
 
-			<strong>Need Help ?</strong><br />
-			Please email support@albannatech.com for queries.
+			<strong>{{ _('Need help?') }}</strong><br />
+			{{ _('For any questions, email support@albannatech.com.') }}
 		</p>
 
 		{{ utils.separator() }} {{ utils.signature() }}

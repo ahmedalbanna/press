@@ -72,6 +72,7 @@ class IncidentPattern(Document):
 				"memory": recommended_plan.memory // 1024,
 				"server_name": server_doc.name,
 				"upgrade_target": self._get_upgrade_target_name(),
+				"server_url": frappe.utils.get_url().rstrip("/"),
 			},
 			now=True,
 		)

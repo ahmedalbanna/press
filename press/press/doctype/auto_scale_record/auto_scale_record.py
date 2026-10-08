@@ -9,6 +9,7 @@ import typing
 from typing import Literal
 
 import frappe
+from frappe import _
 from frappe.model.document import Document
 from requests.exceptions import ConnectionError, HTTPError, JSONDecodeError
 
@@ -37,7 +38,8 @@ class AutoScaleStepFailureHandler:
 				"document_name": self.name,
 				"class": "Error",
 				"traceback": frappe.get_traceback(with_context=False),
-				"message": "Error occurred during auto scale",
+				"message": _("Error occurred during auto scale"),
+				"message_args": [],
 			}
 		)
 		press_notification.insert()
@@ -648,7 +650,8 @@ def create_autoscale_failure_notification(team: str, name: str, exc: str):
 			"document_name": name,
 			"class": "Error",
 			"traceback": exc,
-			"message": "Error occurred during auto scale",
+			"message": _("Error occurred during auto scale"),
+				"message_args": [],
 		}
 	)
 	press_notification.insert()
@@ -982,7 +985,8 @@ def send_autoscale_notification(
 		subject=f"Autoscale - {server_title}",
 		template="auto_scale_notification",
 		args={
-			"message": f"Automatic {action} triggered for server {server_title}",
+			"message": _("Automatic {0} triggered for server {1}"),
+			"message_args": [action, server_title],
 			"link": f"dashboard/servers/{server_name}/auto-scale-steps/{auto_scale_name}",
 		},
 	)
