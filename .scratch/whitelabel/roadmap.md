@@ -31,55 +31,116 @@
 
 **Status**: Not started
 
+### Infrastructure Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Server Type | On-Premise (office server) |
+| OS | Ubuntu Server 22.04 LTS |
+| Server Specs | 2 vCPU, 4GB RAM, 80GB SSD (3-5 customers) |
+| Static IP | Request from ISP |
+| Containerization | Docker |
+| Setup Method | Manual (no Ansible playbooks) |
+| Budget | <$100/month |
+
+### Domain & DNS Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Domain Registrar | Cloudflare |
+| DNS | Cloudflare (free) |
+| CDN | Cloudflare (free) |
+| DDoS Protection | Cloudflare (basic, free) |
+| SSL | Let's Encrypt (auto-renewing) |
+
+### Payment Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Payment Gateway | Arabic gateway (HyperPay or PayTabs) |
+| Model | Paid cloud hosting |
+
+### Email Decisions
+
+| Decision | Choice |
+|----------|--------|
+| SMTP | SendGrid (100 emails/day free) |
+
+### Security Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Brute Force Protection | Fail2ban |
+| Firewall | UFW (Uncomplicated Firewall) |
+| 2FA | Built-in Press 2FA |
+
+### Monitoring Decisions
+
+| Decision | Choice |
+|----------|--------|
+| Monitoring Level | Basics (CPU, RAM) |
+| Tools | Built-in Linux tools (htop, vmstat, iostat) |
+
 ### Workstreams
 
-#### 2.1 Infrastructure & Stability
-- [ ] Database query optimization
-- [ ] Page load performance tuning
-- [ ] API response time optimization
-- [ ] Load testing under stress
-- [ ] Identify and fix bottlenecks
-- [ ] Docker image optimization
-- [ ] Automatic backup system
-- [ ] Disaster recovery plan
+#### 2.1 Server Setup
+- [ ] Request static IP from ISP
+- [ ] Purchase domain (albannatech.com or similar)
+- [ ] Install Ubuntu Server 22.04 LTS
+- [ ] Configure network and firewall (UFW)
+- [ ] Install Docker and Docker Compose
+- [ ] Install Fail2ban
+- [ ] Configure automatic security updates
 
-#### 2.2 Security
-- [ ] SSL certificate setup (Let's Encrypt or paid)
-- [ ] Firewall rules configuration
-- [ ] DDoS protection
-- [ ] Security vulnerability scan
-- [ ] Password policy enforcement
-- [ ] 2FA verification and testing
-- [ ] Access control audit
+#### 2.2 Platform Deployment
+- [ ] Deploy Press platform via Docker
+- [ ] Configure Nginx as reverse proxy
+- [ ] Set up Let's Encrypt SSL certificates
+- [ ] Configure Cloudflare DNS and CDN
+- [ ] Test platform accessibility from internet
 
 #### 2.3 Payment Integration
-- [ ] Stripe integration (credit/debit cards)
-- [ ] PayPal integration
-- [ ] Automatic invoice generation
-- [ ] Subscription management (monthly/annual)
-- [ ] Refund policy implementation
-- [ ] Payment failure handling
+- [ ] Set up HyperPay or PayTabs account
+- [ ] Configure payment gateway in Press
+- [ ] Test payment flow end-to-end
+- [ ] Set up automatic invoicing
+- [ ] Configure subscription management
 
-#### 2.4 Monitoring & Alerting
-- [ ] Server monitoring (CPU, RAM, Disk, Network)
-- [ ] Application monitoring (errors, response time)
-- [ ] Real-time alerting system
-- [ ] Centralized logging
-- [ ] Health check dashboard
+#### 2.4 Email Setup
+- [ ] Create SendGrid account
+- [ ] Verify domain with SendGrid
+- [ ] Configure SMTP in Press
+- [ ] Test email delivery
+- [ ] Set up email templates with AlbannaTech branding
 
-#### 2.5 Production Domain
-- [ ] Domain setup (albannatech.com or erp.albannatech.com)
-- [ ] DNS configuration
-- [ ] SMTP server setup
-- [ ] Production environment testing
-- [ ] CI/CD pipeline setup
+#### 2.5 Backup & Recovery
+- [ ] Set up daily database backups
+- [ ] Set up weekly file backups
+- [ ] Test backup restoration
+- [ ] Document recovery procedures
+
+#### 2.6 Monitoring & Alerting
+- [ ] Set up CPU and RAM monitoring
+- [ ] Configure disk space alerts
+- [ ] Set up uptime monitoring
+- [ ] Create basic health check dashboard
+
+#### 2.7 Security Hardening
+- [ ] Configure Fail2ban rules
+- [ ] Set up UFW firewall rules
+- [ ] Disable root SSH login
+- [ ] Set up SSH key authentication
+- [ ] Configure automatic security updates
+- [ ] Run security vulnerability scan
 
 ### Key Deliverables
-- Stable, performant platform under load
-- Secure infrastructure with SSL and firewall
-- Working payment gateway (Stripe)
-- Monitoring and alerting operational
-- Production domain live
+- Server running Ubuntu 22.04 with Docker
+- Platform accessible via domain with SSL
+- Payment gateway operational
+- Email delivery working
+- Backup system operational
+- Basic monitoring active
+- Security hardening complete
 
 ---
 
@@ -133,9 +194,9 @@
 | Phase | Duration | Dependencies |
 |-------|----------|--------------|
 | Phase 1 | 2-3 weeks | None |
-| Phase 2 | 4-6 weeks | Phase 1 complete |
+| Phase 2 | 6-8 weeks | Phase 1 complete |
 | Phase 3 | 2-3 weeks | Phase 2 complete |
-| **Total** | **8-12 weeks** | |
+| **Total** | **10-14 weeks** | |
 
 ---
 
@@ -151,6 +212,7 @@
 - API response time < 500ms
 - Zero critical security vulnerabilities
 - Payment processing success rate > 99%
+- Backup restoration tested and working
 
 ### Phase 3
 - First 10 customers onboarded
@@ -163,11 +225,12 @@
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Performance issues under load | High | Load testing in Phase 2 |
-| Security breach | High | Regular security audits |
-| Payment processing failures | High | Thorough testing + fallback methods |
+| Static IP delays from ISP | High | Request early, have backup plan (dynamic DNS) |
+| On-premise power/network outages | High | UPS for power, backup internet connection |
+| Payment gateway approval delays | High | Start application early, have alternative ready |
+| Security breach | High | Regular audits, Fail2ban, automatic updates |
 | Scope creep | Medium | Strict phase boundaries |
-| Resource constraints | Medium | Prioritize must-have over nice-to-have |
+| Single point of failure (one server) | Medium | Document recovery plan, consider backup server later |
 
 ---
 
@@ -177,3 +240,5 @@
 - Phase 2 should be reviewed with another agent before starting
 - Phase 3 timing depends on Phase 2 completion
 - All phases should be documented as they progress
+- On-premise server requires physical access for maintenance
+- Consider cloud backup for on-premise server data
