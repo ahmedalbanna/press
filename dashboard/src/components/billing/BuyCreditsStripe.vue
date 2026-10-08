@@ -8,7 +8,7 @@
 			}"
 		>
 			<span class="text-sm leading-4 text-ink-gray-7">
-				Credit or Debit Card
+				{{ t('Credit or Debit Card') }}
 			</span>
 			<div class="form-input mt-2 block w-full pl-3" ref="cardElementRef"></div>
 			<ErrorMessage class="mt-1" :message="cardErrorMessage" />
@@ -27,7 +27,7 @@
 				class="w-full"
 				size="md"
 				variant="solid"
-				label="Proceed to payment using Stripe"
+				:label="t('Proceed to payment using Stripe')"
 				:loading="createPaymentIntent.loading"
 				@click="createPaymentIntent.submit()"
 			/>
@@ -36,7 +36,7 @@
 				class="w-full"
 				size="md"
 				variant="solid"
-				label="Make payment via Stripe"
+				:label="t('Make payment via Stripe')"
 				:loading="paymentInProgress"
 				@click="onBuyClick"
 			/>
@@ -49,6 +49,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { ref, nextTick, inject } from 'vue';
 import { toast } from 'vue-sonner';
 import { DashboardError } from '../../utils/error';
+import { t, tr } from '../../utils/language';
 
 const props = defineProps({
 	amount: {
@@ -84,7 +85,9 @@ const createPaymentIntent = createResource({
 	validate() {
 		if (props.amount < props.minimumAmount && !team.doc.erpnext_partner) {
 			throw new DashboardError(
-				`Amount must be greater than or equal to ${props.minimumAmount}`,
+				tr('Amount must be greater than or equal to {amount}', {
+					amount: props.minimumAmount,
+				}),
 			);
 		}
 	},
@@ -158,7 +161,9 @@ async function onBuyClick() {
 		paymentInProgress.value = false;
 	} else {
 		toast.success(
-			'Payment processed successfully, we will update your account shortly on confirmation from Stripe',
+			t(
+				'Payment processed successfully, we will update your account shortly on confirmation from Stripe',
+			),
 		);
 		paymentInProgress.value = false;
 		emit('success');

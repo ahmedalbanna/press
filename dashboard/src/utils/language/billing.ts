@@ -220,6 +220,30 @@ const billing: Dictionary = {
 		en: 'Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.',
 		ar: 'تم رفض بطاقتك. قد يكون السبب قيوداً على بطاقتك، مثل المعاملات الدولية أو المدفوعات عبر الإنترنت. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.',
 	},
+	// PrepaidCreditsForm
+	'Amount (Minimum Amount: {amount})': {
+		en: 'Amount (Minimum Amount: {amount})',
+		ar: 'المبلغ (الحد الأدنى: {amount})',
+	},
+	'Total Amount + GST ({gst}%)': { en: 'Total Amount + GST ({gst}%)', ar: 'إجمالي المبلغ + ضريبة السلع والخدمات ({gst}%)' },
+	'Amount in KES (Exchange Rate: {rate} against 1 USD)': {
+		en: 'Amount in KES (Exchange Rate: {rate} against 1 USD)',
+		ar: 'المبلغ بشلن كيني (سعر الصرف: {rate} مقابل دولار واحد)',
+	},
+	// BuyCreditsStripe
+	'Proceed to payment using Stripe': {
+		en: 'Proceed to payment using Stripe',
+		ar: 'المتابعة للدفع باستخدام Stripe',
+	},
+	'Make payment via Stripe': { en: 'Make payment via Stripe', ar: 'ادفع عبر Stripe' },
+	'Amount must be greater than or equal to {amount}': {
+		en: 'Amount must be greater than or equal to {amount}',
+		ar: 'يجب أن يكون المبلغ أكبر من أو يساوي {amount}',
+	},
+	'Payment processed successfully, we will update your account shortly on confirmation from Stripe': {
+		en: 'Payment processed successfully, we will update your account shortly on confirmation from Stripe',
+		ar: 'تمت معالجة الدفع بنجاح، سنقوم بتحديث حسابك قريبًا بعد تأكيد Stripe',
+	},
 };
 
 export default billing;

@@ -3,7 +3,7 @@
 		<!-- Amount -->
 		<div>
 			<FormControl
-				:label="`Amount (Minimum Amount: ${minimumAmount})`"
+				:label="tr('Amount (Minimum Amount: {amount})', { amount: minimumAmount })"
 				class="mb-3"
 				v-model.number="creditsToBuy"
 				name="amount"
@@ -18,9 +18,9 @@
 			</FormControl>
 			<FormControl
 				v-if="team.doc.currency === 'INR'"
-				:label="`Total Amount + GST (${
-					team.doc?.billing_info.gst_percentage * 100
-				}%)`"
+				:label="tr('Total Amount + GST ({gst}%)', {
+					gst: team.doc?.billing_info.gst_percentage * 100,
+				})"
 				disabled
 				:modelValue="totalAmount"
 				name="total"
@@ -34,9 +34,9 @@
 			</FormControl>
 			<FormControl
 				v-if="team.doc.country === 'Kenya' && paymentGateway === 'M-Pesa'"
-				:label="`Amount in KES (Exchange Rate: ${Math.round(
-					exchangeRate,
-				)} against 1 USD)`"
+				:label="tr('Amount in KES (Exchange Rate: {rate} against 1 USD)', {
+					rate: Math.round(exchangeRate),
+				})"
 				disabled
 				:modelValue="amountInKES"
 				name="amount_in_kes"
@@ -52,7 +52,7 @@
 
 		<!-- Payment Gateway -->
 		<div class="mt-4">
-			<div class="text-xs text-ink-gray-6">Select Payment Gateway</div>
+			<div class="text-xs text-ink-gray-6">{{ t('Select Payment Gateway') }}</div>
 			<div class="mt-1.5 grid grid-cols-1 gap-2 sm:grid-cols-2">
 				<Button
 					size="lg"
@@ -135,6 +135,7 @@ import StripeLogo from '../../logo/StripeLogo.vue';
 import BuyPrepaidCreditsMpesa from './mpesa/BuyPrepaidCreditsMpesa.vue';
 import { FormControl, Button, createResource } from 'frappe-ui';
 import { ref, computed, inject, watch, onMounted } from 'vue';
+import { t, tr } from '../../utils/language';
 
 const emit = defineEmits(['success']);
 
