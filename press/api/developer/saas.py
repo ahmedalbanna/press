@@ -6,6 +6,7 @@ from frappe.rate_limiter import rate_limit
 
 from press.api.developer import raise_invalid_key_error
 from press.utils import mask_email
+from press.utils.user import send_user_email
 
 
 class SaasApiHandler:
@@ -242,7 +243,8 @@ def send_email_with_verification_code(email, otp):
 		print(otp)
 		print()
 	else:
-		frappe.sendmail(
+		send_user_email(
+			email,
 			recipients=email,
 			subject="Verification Code for AlbannaTech Login",
 			template="verification_code_for_login",

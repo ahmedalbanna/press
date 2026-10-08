@@ -26,6 +26,7 @@ from press.press.doctype.communication_info.communication_info import get_commun
 from press.runner import Ansible
 from press.utils import get_current_team, log_error
 from press.utils.dns import check_dns_cname_a
+from press.utils.user import send_user_email
 
 if TYPE_CHECKING:
 	from press.press.doctype.ansible_play.ansible_play import AnsiblePlay
@@ -450,7 +451,8 @@ def notify_custom_tls_renewal():
 
 	for certificate in pending:
 		if certificate.team:
-			frappe.sendmail(
+			send_user_email(
+				None,
 				recipients=get_communication_info("Email", "Site Activity", "Team", certificate.team),
 				subject=f"TLS Certificate Renewal Required: {certificate.name}",
 				message=f"TLS Certificate {certificate.name} is due for renewal on {certificate.expires_on}. Please renew the certificate to avoid service disruption.",

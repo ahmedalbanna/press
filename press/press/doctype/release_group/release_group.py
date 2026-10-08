@@ -49,6 +49,7 @@ from press.utils import (
 	get_last_doc,
 	log_error,
 )
+from press.utils.user import send_user_email
 
 if TYPE_CHECKING:
 	from datetime import datetime
@@ -1252,7 +1253,8 @@ class ReleaseGroup(Document, TagHelpers):
 		if frappe.conf.developer_mode:
 			print(f"Bench transfer link for {team_mail_id}\n{link}\n")
 
-		frappe.sendmail(
+		send_user_email(
+			team_mail_id,
 			recipients=team_mail_id,
 			subject="Transfer Bench Ownership Confirmation",
 			template="transfer_team_confirmation",

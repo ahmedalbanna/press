@@ -6,6 +6,8 @@ from __future__ import annotations
 import frappe
 from frappe.model.document import Document
 
+from press.utils.user import send_user_email
+
 
 class SiteUserSession(Document):
 	# begin: auto-generated types
@@ -52,7 +54,8 @@ class SiteUserSession(Document):
 			}
 		)
 
-		frappe.sendmail(
+		send_user_email(
+			self.user,
 			recipients=self.user,
 			subject=subject,
 			template="verify_account_for_site_login",

@@ -8,6 +8,8 @@ import frappe
 from frappe.model.document import Document
 from frappe.model.naming import make_autoname
 
+from press.utils.user import send_user_email
+
 
 @dataclass
 class CheckResult:
@@ -387,7 +389,8 @@ class MarketplaceAppAudit(Document):
 					}
 				)
 
-		frappe.sendmail(
+		send_user_email(
+			publisher_email,
 			recipients=[publisher_email],
 			cc=cc,
 			subject=f"Marketplace Audit Report: {marketplace_app_title}",

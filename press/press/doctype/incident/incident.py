@@ -30,6 +30,7 @@ from press.press.doctype.database_server.database_server import DatabaseServer
 from press.press.doctype.server.server import MARIADB_DATA_MNT_POINT
 from press.press.doctype.telegram_message.telegram_message import TelegramMessage
 from press.utils import log_error
+from press.utils.user import send_user_email
 
 if TYPE_CHECKING:
 	from frappe.types import DF
@@ -691,7 +692,8 @@ Likely due to insufficient balance or incorrect credentials""",
 
 	def send_mail(self, subject: str, message: str):
 		try:
-			frappe.sendmail(
+			send_user_email(
+				None,
 				recipients=get_communication_info("Email", "Server Activity", "Server", self.server),
 				subject=subject,
 				reference_doctype=self.doctype,

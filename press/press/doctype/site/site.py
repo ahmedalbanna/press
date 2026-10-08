@@ -107,6 +107,7 @@ from press.utils import (
 	validate_subdomain,
 )
 from press.utils.dns import _change_dns_record, check_dns_cname_a, create_dns_record
+from press.utils.user import send_user_email
 
 if TYPE_CHECKING:
 	from frappe.types import DF
@@ -138,6 +139,7 @@ PRIVATE_BENCH_DOC = "https://docs.frappe.io/cloud/sites/move-site-to-private-ben
 SERVER_SCRIPT_DISABLED_VERSION = (
 	15  # version from which server scripts were disabled on public benches. No longer set in site
 )
+
 TRANSITORY_STATES = ["Updating", "Recovering", "Pending", "Installing"]
 
 # Fallback when max_statement_time isn't explicitly set on the database server.
@@ -2257,7 +2259,8 @@ class Site(Document, TagHelpers):
 		if frappe.conf.developer_mode:
 			print(f"\nSite transfer link for {team_mail_id}\n{link}\n")
 
-		frappe.sendmail(
+		send_user_email(
+			team_mail_id,
 			recipients=team_mail_id,
 			subject="Transfer Site Ownership Confirmation",
 			template="transfer_team_confirmation",
@@ -3220,7 +3223,8 @@ class Site(Document, TagHelpers):
 			send_suspend_mail(self.name, self.standby_for_product)
 
 		if self.site_usage_exceeded:
-			frappe.sendmail(
+			send_user_email(
+				None,
 				recipients=get_communication_info("Email", "Site Activity", "Site", self.name),
 				subject=f"Action Required: Site {self.host_name} suspended",
 				template="site_suspend_due_to_exceeding_disk_usage",
@@ -5693,7 +5697,8 @@ def notify_site_scheduled_for_archival(site: frappe._dict):
 		):
 			return
 
-		frappe.sendmail(
+		send_user_email(
+			None,
 			recipients=get_communication_info("Email", "Site Activity", "Site", site.name),
 			subject=f"Alert: Your site {site.host_name or site.name} will be archived in {NOTIFY_BEFORE_ARCHIVAL_DAYS} days",
 			template="notify_before_site_archival",
@@ -5758,7 +5763,8 @@ def send_warning_mail_regarding_sites_exceeding_disk_usage():
 			if site_info.current_disk_usage < 120 and site_info.current_database_usage < 120:
 				# Final check if site is still exceeding limits
 				continue
-			frappe.sendmail(
+			send_user_email(
+				None,
 				recipients=get_communication_info("Email", "Site Activity", "Site", site),
 				subject=f"Action Required: Site {site} exceeded plan limits",
 				template="site_exceeded_disk_usage_warning",

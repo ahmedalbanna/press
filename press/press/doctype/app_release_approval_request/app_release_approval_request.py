@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from frappe.model.naming import make_autoname
 
 from press.marketplace.doctype.marketplace_app_audit.marketplace_app_audit import MarketplaceAppAudit
+from press.utils.user import send_user_email
 
 
 class AppReleaseApprovalRequest(Document):
@@ -137,7 +138,8 @@ class AppReleaseApprovalRequest(Document):
 		app_release: AppRelease = frappe.get_doc("App Release", self.app_release)
 		publisher_email = frappe.get_doc("Team", marketplace_app.team).user
 
-		frappe.sendmail(
+		send_user_email(
+			publisher_email,
 			[publisher_email],
 			subject=f"AlbannaTech Marketplace: {marketplace_app.title}",
 			args={

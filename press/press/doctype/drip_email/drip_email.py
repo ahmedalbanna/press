@@ -15,6 +15,7 @@ from frappe.rate_limiter import rate_limit
 from frappe.utils.make_random import get_random
 
 from press.utils import log_error
+from press.utils.user import send_user_email
 
 
 class DripEmail(Document):
@@ -113,7 +114,7 @@ class DripEmail(Document):
 			kwargs["unsubscribe_method"] = "api/method/press.press.doctype.drip_email.drip_email.unsubscribe"
 			kwargs["unsubscribe_params"] = {"account_request": account_request.name}
 
-		frappe.sendmail(**kwargs)
+		send_user_email(account_request.email, **kwargs)
 
 	@property
 	def message(self):

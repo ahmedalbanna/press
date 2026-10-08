@@ -10,6 +10,7 @@ from frappe.query_builder import Criterion, JoinType
 from frappe.query_builder.functions import Count
 
 from press.utils import get_current_team
+from press.utils.user import send_user_email
 
 
 class SupportAccess(Document):
@@ -258,7 +259,8 @@ class SupportAccess(Document):
 			message = "Support access has been forfieted."
 			recipient = self.target_team
 
-		frappe.sendmail(
+		send_user_email(
+			recipient,
 			subject=title,
 			message=message,
 			recipients=recipient,
@@ -294,7 +296,8 @@ class SupportAccess(Document):
 		message = f"{self.requested_by} has requested support access for one of your resources."
 		team_email = frappe.get_value("Team", self.target_team, "user")
 
-		frappe.sendmail(
+		send_user_email(
+			team_email,
 			subject=title,
 			message=message,
 			recipients=team_email,

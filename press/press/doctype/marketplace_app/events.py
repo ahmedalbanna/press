@@ -4,6 +4,7 @@
 import frappe
 
 from press.press.doctype.communication_info.communication_info import get_communication_info
+from press.utils.user import send_user_email
 
 
 def auto_review_for_missing_steps():
@@ -28,7 +29,8 @@ def auto_review_for_missing_steps():
 
 		recipients = get_communication_info("Email", "Marketplace", "Team", app_doc.team)
 		if recipients and not (logo and desc and links and release):
-			frappe.sendmail(
+			send_user_email(
+				recipients,
 				subject=f"Marketplace App Review: {app_doc.title}",
 				recipients=recipients,
 				template="marketplace_auto_review",

@@ -17,6 +17,7 @@ from press.api.client import dashboard_whitelist
 from press.press.doctype.communication_info.communication_info import get_communication_info
 from press.runner import Ansible, Status, StepHandler
 from press.utils import log_error
+from press.utils.user import send_user_email
 
 if typing.TYPE_CHECKING:
 	from press.press.doctype.prometheus_alert_rule.prometheus_alert_rule import PrometheusAlertRule
@@ -975,7 +976,8 @@ def send_autoscale_notification(
 	emails: list[str],
 	auto_scale_name: str,
 ):
-	frappe.sendmail(
+	send_user_email(
+		emails,
 		recipients=emails,
 		subject=f"Autoscale - {server_title}",
 		template="auto_scale_notification",

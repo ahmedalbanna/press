@@ -18,6 +18,7 @@ from press.api.client import dashboard_whitelist
 from press.guards import role_guard
 from press.overrides import get_permission_query_conditions_for_doctype
 from press.utils import docs, is_valid_hostname, ssrf
+from press.utils.user import send_user_email
 
 
 class PressWebhook(Document):
@@ -172,7 +173,8 @@ class PressWebhook(Document):
 			print(f"{self.name} webhook has been disabled")
 			return
 
-		frappe.sendmail(
+		send_user_email(
+			email,
 			recipients=email,
 			subject="Important: Your Configured Webhook on AlbannaTech is disabled",
 			template="press_webhook_disabled",

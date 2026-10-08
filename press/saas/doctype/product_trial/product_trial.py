@@ -14,6 +14,7 @@ from frappe.utils.data import get_url
 from press.utils import log_error
 from press.utils.jobs import has_job_timeout_exceeded
 from press.utils.unique_name_generator import generate as generate_random_name
+from press.utils.user import send_user_email
 
 
 class ProductTrial(Document):
@@ -692,7 +693,8 @@ def send_verification_mail_for_login(email: str, product: str, code: str):
 	if product_trial.email_account:
 		sender = frappe.get_value("Email Account", product_trial.email_account, "email_id")
 
-	frappe.sendmail(
+	send_user_email(
+		email,
 		sender=sender,
 		recipients=email,
 		subject=subject,
@@ -782,7 +784,8 @@ def send_suspend_mail(site_name: str, product_name: str) -> None:
 			"preview_text": f"Your {product.title} site has expired. Please update your billing to activate your site.",
 		}
 	)
-	frappe.sendmail(
+	send_user_email(
+		recipient,
 		sender=sender,
 		recipients=recipient,
 		subject=subject,

@@ -5,6 +5,8 @@ import frappe
 from frappe.model.document import Document
 from frappe.utils import get_url
 
+from press.utils.user import send_user_email
+
 
 def _resolve_partner_name(team: str) -> str | None:
 	"""Display name of the requesting team, shown to the certificate holder.
@@ -68,7 +70,8 @@ class CertificateLinkRequest(Document):
 	def send_validation_email(self):
 		link = get_url(f"/certificate-approval?key={self.key}")
 
-		frappe.sendmail(
+		send_user_email(
+			self.user_email,
 			recipients=[self.user_email],
 			subject="Certificate Link Request",
 			template="partner_link_certificate",

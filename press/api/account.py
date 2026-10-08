@@ -39,6 +39,7 @@ from press.utils import otp as otp_purpose
 from press.utils import user as user_utils
 from press.utils.otp import OneTimePassword
 from press.utils.telemetry import capture
+from press.utils.user import send_user_email
 
 if TYPE_CHECKING:
 	from press.press.doctype.account_request.account_request import AccountRequest
@@ -191,12 +192,13 @@ def send_otp_mail(email: str, otp: str, for_login: bool = True):
 
 	if for_login:
 		template = "login_otp"
-		subject = f"{otp} - OTP for Frappe Cloud Login"
+		subject = _("{0} - OTP for AlbannaTech Login").format(otp)
 	else:
 		template = "2fa_recovery_codes_otp"
-		subject = f"{otp} - OTP to view 2FA recovery codes for Frappe Cloud"
+		subject = _("{0} - OTP to view 2FA recovery codes for AlbannaTech").format(otp)
 
-	frappe.sendmail(
+	send_user_email(
+		email,
 		recipients=email,
 		subject=subject,
 		template=template,
@@ -357,7 +359,8 @@ def send_login_link(email):
 		print(link)
 		print()
 
-	frappe.sendmail(
+	send_user_email(
+		email,
 		subject="Login to AlbannaTech",
 		recipients=email,
 		template="one_time_login_link",
@@ -870,7 +873,8 @@ def send_reset_password_email(email: str):
 	frappe.db.set_value("User", email, "reset_password_key", sha256_hash(key))
 	frappe.db.set_value("User", email, "last_reset_password_key_generated_on", frappe.utils.now_datetime())
 
-	frappe.sendmail(
+	send_user_email(
+		email,
 		recipients=email,
 		subject="Reset Password",
 		template="reset_password",

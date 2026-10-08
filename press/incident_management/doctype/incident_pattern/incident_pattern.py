@@ -9,6 +9,7 @@ from press.press.doctype.communication_info.communication_info import get_commun
 from press.press.doctype.database_server.database_server import DatabaseServer
 from press.press.doctype.server.server import Server
 from press.press.doctype.server_plan.server_plan import ServerPlan
+from press.utils.user import send_user_email
 
 
 class IncidentPattern(Document):
@@ -58,7 +59,8 @@ class IncidentPattern(Document):
 
 	def _notify_plan_recommendation(self, server_doc: Server | DatabaseServer, recommended_plan: ServerPlan):
 		"""Send an email notification for the recommended plan upgrade."""
-		frappe.sendmail(
+		send_user_email(
+			None,
 			subject=f"Plan Upgrade Recommended for Server: {server_doc.title or server_doc.name}",
 			recipients=get_communication_info(
 				"Email", "Server Activity", server_doc.doctype, server_doc.name

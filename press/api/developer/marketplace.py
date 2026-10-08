@@ -4,6 +4,7 @@ from frappe.utils import get_url
 from press.api.developer import raise_invalid_key_error
 from press.api.site import get_plans as get_site_plans
 from press.utils.telemetry import capture
+from press.utils.user import send_user_email
 
 
 class DeveloperApiHandler:
@@ -107,7 +108,8 @@ class DeveloperApiHandler:
 		try:
 			login_url = self.get_login_url()
 			users = frappe.get_doc("Team", self.app_subscription_doc.team).user
-			frappe.sendmail(
+			send_user_email(
+				users,
 				subject="Login Verification Email",
 				recipients=[users],
 				template="remote_login",

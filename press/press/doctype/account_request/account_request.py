@@ -15,6 +15,7 @@ from press.utils import disposable_emails, get_country_info, is_valid_email_addr
 from press.utils import otp as otp_purpose
 from press.utils.otp import OneTimePassword
 from press.utils.telemetry import capture
+from press.utils.user import send_user_email
 
 
 class AccountRequest(Document):
@@ -292,7 +293,8 @@ class AccountRequest(Document):
 			capture("verification_email_sent", "fc_product_trial", self.name)
 
 		try:
-			frappe.sendmail(
+			send_user_email(
+				self.email,
 				sender=sender,
 				recipients=self.email,
 				subject=subject,

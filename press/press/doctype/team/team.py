@@ -35,7 +35,7 @@ from press.utils.billing import (
 )
 from press.utils.jobs import has_job_timeout_exceeded
 from press.utils.telemetry import capture, capture_pulse
-from press.utils.user import is_system_manager, user_language
+from press.utils.user import is_system_manager, send_user_email, user_language
 
 from .team_members import get_invitations, get_roles
 
@@ -2125,7 +2125,8 @@ def send_budget_alert_email(team_info, invoice):
 
 		subject = f"Frappe Cloud Budget Alert for {team_user}"
 
-		frappe.sendmail(
+		send_user_email(
+			team_user,
 			recipients=team_user,
 			subject=subject,
 			template="budget_alert",

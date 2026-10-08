@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 
 from press.press.doctype.communication_info.communication_info import get_communication_info
+from press.utils.user import send_user_email
 
 if typing.TYPE_CHECKING:
 	from press.press.doctype.server.server import BaseServer
@@ -39,7 +40,8 @@ class AddOnStorageLog(Document):
 			"Server" if self.server else "Database Server", self.server or self.database_server
 		)
 
-		frappe.sendmail(
+		send_user_email(
+			None,
 			recipients=get_communication_info("Email", "Server Activity", server.doctype, server.name),
 			subject=f"Important: Server {server.name} storage space at 90%",
 			template="enabled_auto_disk_expansion" if not self.is_warning else "disabled_auto_disk_expansion",

@@ -14,6 +14,8 @@ from frappe.query_builder.functions import Coalesce
 from frappe.rate_limiter import rate_limit
 from frappe.utils.verified_command import verify_request
 
+from press.utils.user import send_user_email
+
 # Where the unsubscribe link in the reminder mail points.
 UNSUBSCRIBE_METHOD = (
 	"/api/method/press.press.doctype.user_2fa.user_2fa.unsubscribe_from_recovery_code_reminders"
@@ -97,7 +99,8 @@ class User2FA(Document):
 				"link": frappe.utils.get_url("/dashboard/settings/profile"),
 			}
 
-			frappe.sendmail(
+			send_user_email(
+				self.user,
 				recipients=[self.user],
 				subject="Your 2FA Recovery Codes Were Viewed",
 				template="2fa_recovery_codes_viewed",
@@ -117,7 +120,8 @@ def send_2fa_recovery_code_reminders():
 def send_recovery_code_reminder(user: str):
 	"""Mail one reminder and note when it went out, so the next one is a month away."""
 
-	frappe.sendmail(
+	send_user_email(
+		user,
 		recipients=[user],
 		subject="Review Your 2FA Recovery Codes",
 		template="2fa_recovery_codes_yearly_reminder",

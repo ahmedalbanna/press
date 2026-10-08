@@ -1,5 +1,7 @@
-import frappe
 from contextlib import contextmanager
+
+import frappe
+from frappe import _
 
 if frappe.TYPE_CHECKING:
 	from frappe.core.doctype.user.user import User
@@ -47,3 +49,24 @@ def user_language(user: str | None = None):
 		yield
 	finally:
 		frappe.local.lang = original
+
+
+def send_user_email(user: str | None = None, **kwargs) -> None:
+	"""Send an email in the recipient's language.
+
+	Subjects are passed to sendmail verbatim and never rendered through Jinja,
+	so translate them with `_()` inside this call rather than before it.
+
+	Recipients may be a list or come from Communication records, in which case
+	pass the owning User and they are resolved here.
+	"""
+	recipients = kwargs.get("recipients")
+	if not isinstance(recipients, (list, tuple)):
+		recipients = [recipients]
+	user = user or (recipients[0] if recipients else None)
+
+	with user_language(user):
+		subject = kwargs.get("subject")
+		if subject:
+			kwargs["subject"] = _(subject)
+		frappe.sendmail(**kwargs)

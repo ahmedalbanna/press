@@ -84,6 +84,8 @@ from typing import Literal, TypedDict
 
 from frappe.query_builder.functions import Count
 
+from press.utils.user import send_user_email
+
 
 class BenchInfoType(TypedDict):
 	name: str
@@ -2554,7 +2556,8 @@ node_filesystem_avail_bytes{{instance="{self.name}", mountpoint="{mountpoint}"}}
 		current_disk_usage_flt = round(current_disk_usage / 1024 / 1024 / 1024, 2)
 		disk_capacity_flt = round(disk_capacity / 1024 / 1024 / 1024, 2)
 
-		frappe.sendmail(
+		send_user_email(
+			None,
 			recipients=get_communication_info("Email", "Incident", self.doctype, self.name),
 			subject=f"Important: Server {server.name} has used 80% of the available space",
 			template="disabled_auto_disk_expansion",

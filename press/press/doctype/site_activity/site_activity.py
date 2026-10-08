@@ -6,6 +6,7 @@ import frappe
 from frappe.model.document import Document
 
 from press.press.doctype.communication_info.communication_info import get_communication_info
+from press.utils.user import send_user_email
 
 
 class SiteActivity(Document):
@@ -62,7 +63,8 @@ class SiteActivity(Document):
 		if self.action == "Login as Administrator" and self.reason:
 			recipients = get_communication_info("Email", "Site Activity", "Site", self.site)
 			if recipients:
-				frappe.sendmail(
+				send_user_email(
+					self.owner,
 					recipients=recipients,
 					subject="Administrator login to your site",
 					template="admin_login",
@@ -74,7 +76,8 @@ class SiteActivity(Document):
 		if self.action == "Disable Monitoring And Alerts" and self.reason:
 			recipients = get_communication_info("Email", "Site Activity", "Site", self.site)
 			if recipients:
-				frappe.sendmail(
+				send_user_email(
+					self.owner,
 					recipients=recipients,
 					subject="Site Monitoring Disabled",
 					template="disabled_site_monitoring",

@@ -7,6 +7,7 @@ from frappe.model.document import Document
 from frappe.utils import get_url
 
 from press.api.client import dashboard_whitelist
+from press.utils.user import send_user_email
 
 
 class PartnerApprovalRequest(Document):
@@ -78,7 +79,8 @@ class PartnerApprovalRequest(Document):
 
 		link = get_url(f"/api/method/press.api.partner.approve_partner_request?key={self.key}")
 
-		frappe.sendmail(
+		send_user_email(
+			partner_manager["success_manager"],
 			subject="Partner Approval Request",
 			recipients=partner_manager["success_manager"],
 			template="partner_approval",
