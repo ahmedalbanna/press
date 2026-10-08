@@ -1,13 +1,15 @@
 <template>
 	<div class="upi-autopay-form">
-		<p class="mb-6 text-p-base text-ink-gray-7">
-			Simplify your billing by authorizing
-			<strong>recurring monthly payments</strong> for your AlbannaTech invoices
-			via Razorpay. Once set up, we’ll handle your future invoices
-			automatically—no manual intervention required.
-		</p>
+		<p
+			class="mb-6 text-p-base text-ink-gray-7"
+			v-html="
+				t(
+					'Simplify your billing by authorizing <strong>recurring monthly payments</strong> for your AlbannaTech invoices via Razorpay. Once set up, we’ll handle your future invoices automatically—no manual intervention required.',
+				)
+			"
+		></p>
 		<FormControl
-			label="Monthly Autopay Limit"
+			:label="t('Monthly Autopay Limit')"
 			type="number"
 			v-model="maxAmount"
 			:min="500"
@@ -15,13 +17,16 @@
 			placeholder="50000"
 		/>
 		<div class="mt-2 text-p-sm text-ink-gray-6">
-			<div class="font-medium">Range: ₹500 - ₹1,00,000</div>
+			<div class="font-medium">{{ t('Range: ₹500 - ₹1,00,000') }}</div>
 
-			<div class="mt-2 text-ink-gray-5 italic">
-				<strong>Important:</strong> If an invoice exceeds this limit, the
-				auto-debit will fail. Set this slightly higher than your typical bill to
-				ensure uninterrupted service.
-			</div>
+			<div
+				class="mt-2 text-ink-gray-5 italic"
+				v-html="
+					t(
+						'<strong>Important:</strong> If an invoice exceeds this limit, the auto-debit will fail. Set this slightly higher than your typical bill to ensure uninterrupted service.',
+					)
+				"
+			></div>
 		</div>
 		<ErrorMessage
 			class="mt-3"
@@ -36,7 +41,7 @@
 			"
 			@click="setupAutopay"
 		>
-			Enable Monthly Autopay
+			{{ t('Enable Monthly Autopay') }}
 		</Button>
 	</div>
 </template>
@@ -45,6 +50,7 @@
 import { FormControl, Button, ErrorMessage } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import { loadRazorpayScript } from '../../utils/razorpay';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'UPIAutopayForm',
@@ -83,7 +89,7 @@ export default {
 					this.openRazorpayCheckout(data);
 				},
 				onError(error) {
-					toast.error(error.messages?.[0] || 'Failed to create mandate');
+					toast.error(error.messages?.[0] || t('Failed to create mandate'));
 				},
 			};
 		},
@@ -91,11 +97,11 @@ export default {
 			return {
 				url: 'press.api.billing.handle_razorpay_mandate_success',
 				onSuccess() {
-					toast.success('UPI Autopay authorized successfully!');
+					toast.success(t('UPI Autopay authorized successfully!'));
 					this.$emit('success');
 				},
 				onError(error) {
-					toast.error(error.messages?.[0] || 'Failed to verify authorization');
+					toast.error(error.messages?.[0] || t('Failed to verify authorization'));
 				},
 			};
 		},
@@ -111,11 +117,11 @@ export default {
 	methods: {
 		setupAutopay() {
 			if (!this.maxAmount || this.maxAmount < 500) {
-				toast.error('Maximum amount must be at least ₹500');
+				toast.error(t('Maximum amount must be at least ₹500'));
 				return;
 			}
 			if (this.maxAmount > 100000) {
-				toast.error('Maximum amount cannot exceed ₹1,00,000');
+				toast.error(t('Maximum amount cannot exceed ₹1,00,000'));
 				return;
 			}
 			this.$emit('initiate', this.maxAmount);
@@ -130,7 +136,7 @@ export default {
 				customer_id: orderData.customer_id,
 				recurring: '1',
 				name: 'AlbannaTech',
-				description: 'UPI Autopay Authorization',
+				description: t('UPI Autopay Authorization'),
 				handler: (response) => {
 					// Keep razorpay-open until API call completes — removing it here
 					// would show the dialog overlay, which gets an accidental outside
@@ -140,7 +146,7 @@ export default {
 				},
 				modal: {
 					ondismiss: () => {
-						toast.info('Authorization cancelled');
+						toast.info(t('Authorization cancelled'));
 						this.$resources.cancelMandate.submit({
 							mandate_name: this.pendingMandateName,
 						});
@@ -160,7 +166,7 @@ export default {
 		},
 
 		handlePaymentSuccess(response) {
-			const loadingToast = toast.loading('Verifying authorization...');
+			const loadingToast = toast.loading(t('Verifying authorization...'));
 			this.$resources.handleMandateSuccess
 				.submit({
 					razorpay_payment_id: response.razorpay_payment_id,
@@ -175,7 +181,7 @@ export default {
 
 		handlePaymentFailure(response) {
 			const error = response.error;
-			toast.error(error.description || 'Authorization failed');
+			toast.error(error.description || t('Authorization failed'));
 		},
 	},
 };

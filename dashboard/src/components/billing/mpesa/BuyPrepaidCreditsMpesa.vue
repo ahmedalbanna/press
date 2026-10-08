@@ -12,9 +12,9 @@
 			:options="teams"
 			size="sm"
 			variant="subtle"
-			placeholder="Payment Partner"
+			:placeholder="t('Payment Partner')"
 			:disabled="false"
-			label="Select Payment Partner"
+			:label="t('Select Payment Partner')"
 			:modelValue="partnerInput"
 			@update:modelValue="partnerInput = $event"
 			class="mb-5"
@@ -22,7 +22,7 @@
 
 		<div class="flex gap-5 col-2">
 			<FormControl
-				label="M-Pesa Phone Number"
+				:label="t('M-Pesa Phone Number')"
 				v-model="phoneNumberInput"
 				name="phone_number"
 				autocomplete="off"
@@ -32,7 +32,7 @@
 			/>
 
 			<FormControl
-				label="Tax ID"
+				:label="t('Tax ID')"
 				v-model="taxIdInput"
 				name="tax_id"
 				autocomplete="off"
@@ -44,14 +44,14 @@
 		<!-- Show amount after tax -->
 		<div v-if="showTaxInfo" class="flex col-2 gap-5">
 			<FormControl
-				label="Tax(%)"
+				:label="t('Tax(%)')"
 				disabled
 				:modelValue="taxPercentage"
 				type="number"
 			/>
 
 			<FormControl
-				label="Total Amount With Tax"
+				:label="t('Total Amount With Tax')"
 				disabled
 				:modelValue="amountWithTax.toFixed(2)"
 				type="number"
@@ -60,7 +60,7 @@
 
 		<div class="mt-4 flex w-full justify-end">
 			<Button variant="solid" @click="onPayClick" :loading="paymentInProgress">
-				Make payment via M-Pesa
+				{{ t('Make payment via M-Pesa') }}
 			</Button>
 		</div>
 
@@ -71,6 +71,7 @@
 <script>
 import { toast } from 'vue-sonner';
 import { DashboardError } from '../../../utils/error';
+import { t, tr } from '../../../utils/language';
 import { frappeRequest, ErrorMessage } from 'frappe-ui';
 export default {
 	name: 'BuyPrepaidCreditsMpesa',
@@ -128,37 +129,41 @@ export default {
 					const pattern = /^[A-Z]\d{9}[A-Z]$/;
 					if (this.amount < this.minimumAmount) {
 						throw new DashboardError(
-							`Amount is less than the minimum allowed: ${this.minimumAmount}`,
+							tr('Amount is less than the minimum allowed: {amount}', {
+								amount: this.minimumAmount,
+							}),
 						);
 					}
 					if (this.amount > this.maximumAmount) {
 						throw new DashboardError(
-							`Amount is more than the maximum allowed: ${this.maximumAmount}`,
+							tr('Amount is more than the maximum allowed: {amount}', {
+								amount: this.maximumAmount,
+							}),
 						);
 					}
 					const partnerValue = this.getPartnerValue();
 					if (!partnerValue || !this.phoneNumberInput) {
 						throw new DashboardError(
-							'Both partner and phone number are required for payment.',
+							t('Both partner and phone number are required for payment.'),
 						);
 					}
 					if (!this.taxIdInput) {
-						throw new DashboardError('Tax ID is required for payment.');
+						throw new DashboardError(t('Tax ID is required for payment.'));
 					}
 					if (this.taxIdInput && !pattern.test(this.taxIdInput)) {
-						throw new DashboardError('Invalid Tax Id');
+						throw new DashboardError(t('Invalid Tax Id'));
 					}
 				},
 				async onSuccess(data) {
 					if (data?.ResponseCode === '0') {
 						toast.success(
 							data.ResponseDescription ||
-								'Please follow the instructions on your phone',
+								t('Please follow the instructions on your phone'),
 						);
 					} else {
 						toast.error(
 							data.ResponseDescription ||
-								'Something went wrong. Please try again.',
+								t('Something went wrong. Please try again.'),
 						);
 					}
 				},
@@ -180,15 +185,19 @@ export default {
 				if (response.ResponseCode === '0') {
 					toast.success(
 						response.Success ||
-							'Payment Initiated successfully, check your phone for instructions',
+							t(
+								'Payment Initiated successfully, check your phone for instructions',
+							),
 					);
 					this.$emit('success');
 				} else {
-					throw new Error(response.ResponseDescription || 'Payment failed');
+					throw new Error(
+						response.ResponseDescription || t('Payment failed'),
+					);
 				}
 			} catch (error) {
 				this.paymentErrorMessage =
-					error.message || 'Payment failed. Please try again.';
+					error.message || t('Payment failed. Please try again.');
 				toast.error(this.paymentErrorMessage);
 			} finally {
 				this.paymentInProgress = false;

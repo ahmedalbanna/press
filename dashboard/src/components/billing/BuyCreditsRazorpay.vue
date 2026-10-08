@@ -6,13 +6,18 @@
 		>
 			<FeatherIcon name="info" class="my-1 h-4" />
 			<span class="leading-5" v-if="team.doc.currency === 'INR'">
-				If you select Razorpay, you can pay using Credit Card, Debit Card, Net
-				Banking, UPI, Wallets, etc. If you are using Net Banking, it may take
-				upto 5 days for balance to reflect.
+				{{
+					t(
+						'If you select Razorpay, you can pay using Credit Card, Debit Card, Net Banking, UPI, Wallets, etc. If you are using Net Banking, it may take upto 5 days for balance to reflect.',
+					)
+				}}
 			</span>
 			<span class="leading-5" v-if="paypalEnabled">
-				You can pay using your PayPal account. Processing may take a few minutes
-				for the balance to reflect.
+				{{
+					t(
+						'You can pay using your PayPal account. Processing may take a few minutes for the balance to reflect.',
+					)
+				}}
 			</span>
 		</span>
 		<ErrorMessage class="mt-3" :message="createRazorpayOrder.error" />
@@ -24,8 +29,10 @@
 				variant="solid"
 				:label="
 					razorpayScriptLoading
-						? 'Loading payment gateway...'
-						: `Proceed to payment using ${paypalEnabled ? 'PayPal' : 'Razorpay'}`
+						? t('Loading payment gateway...')
+						: tr('Proceed to payment using {gateway}', {
+								gateway: paypalEnabled ? 'PayPal' : 'Razorpay',
+							})
 				"
 				:loading="createRazorpayOrder.loading || razorpayScriptLoading"
 				@click="createRazorpayOrder.submit()"
@@ -34,7 +41,7 @@
 				v-else
 				class="w-full"
 				size="md"
-				label="Confirming payment"
+				:label="t('Confirming payment')"
 				variant="solid"
 				:loading="isVerifyingPayment"
 			/>
@@ -47,6 +54,7 @@ import { inject, onMounted, ref } from "vue";
 import { toast } from "vue-sonner";
 import { DashboardError } from "../../utils/error";
 import { loadRazorpayScript } from "../../utils/razorpay";
+import { t, tr } from "../../utils/language";
 
 const props = defineProps({
 	amount: {
@@ -87,7 +95,7 @@ onMounted(() => {
 		})
 		.catch(() => {
 			toast.error(
-				"Failed to load payment gateway. Please refresh and try again.",
+				t("Failed to load payment gateway. Please refresh and try again."),
 			);
 		});
 });
@@ -106,7 +114,9 @@ const createRazorpayOrder = createResource({
 	validate: () => {
 		if (props.amount < props.minimumAmount) {
 			throw new DashboardError(
-				`Amount should be equal to or greater than ${props.minimumAmount}`,
+				tr('Amount should be equal to or greater than {amount}', {
+					amount: props.minimumAmount,
+				}),
 			);
 		}
 	},
@@ -134,7 +144,7 @@ function processOrder(data) {
 						display: {
 							blocks: {
 								wallets: {
-									name: "Pay using PayPal",
+									name: t("Pay using PayPal"),
 									instruments: [
 										{
 											method: "wallet",
@@ -165,12 +175,12 @@ function processOrder(data) {
 
 function handlePaymentFailure(response) {
 	handlePaymentFailed.submit({ response });
-	toast.error("Payment failed");
+	toast.error(t("Payment failed"));
 }
 
 function handlePaymentSuccess() {
 	isPaymentComplete.value = true;
 	emit("success");
-	toast.success("Payment successful");
+	toast.success(t("Payment successful"));
 }
 </script>

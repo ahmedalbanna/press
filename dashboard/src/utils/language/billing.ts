@@ -276,6 +276,115 @@ const billing: Dictionary = {
 		en: 'Opening payment window...',
 		ar: 'جاري فتح نافذة الدفع...',
 	},
+	// UPIAutopayForm
+	'Simplify your billing by authorizing <strong>recurring monthly payments</strong> for your AlbannaTech invoices via Razorpay. Once set up, we’ll handle your future invoices automatically—no manual intervention required.': {
+		en: 'Simplify your billing by authorizing <strong>recurring monthly payments</strong> for your AlbannaTech invoices via Razorpay. Once set up, we’ll handle your future invoices automatically—no manual intervention required.',
+		ar: 'بسّط فوتورتك من خلال تفويض <strong>مدفوعات شهرية متكررة</strong> لفواتير AlbannaTech عبر Razorpay. بمجرد الإعداد، سنتعامل مع فواتيرك المستقبلية تلقائيًا—دون حاجة إلى تدخل يدوي.',
+	},
+	'Monthly Autopay Limit': { en: 'Monthly Autopay Limit', ar: 'حد الدفع التلقائي الشهري' },
+	'Range: ₹500 - ₹1,00,000': { en: 'Range: ₹500 - ₹1,00,000', ar: 'النطاق: ₹500 - ₹1,00,000' },
+	'<strong>Important:</strong> If an invoice exceeds this limit, the auto-debit will fail. Set this slightly higher than your typical bill to ensure uninterrupted service.': {
+		en: '<strong>Important:</strong> If an invoice exceeds this limit, the auto-debit will fail. Set this slightly higher than your typical bill to ensure uninterrupted service.',
+		ar: '<strong>مهم:</strong> إذا تجاوزت الفاتورة هذا الحد، فسيفشل الخصم التلقائي. اضبطه أعلى قليلًا من فاتورتك المعتادة لضمان خدمة دون انقطاع.',
+	},
+	'Enable Monthly Autopay': { en: 'Enable Monthly Autopay', ar: 'تفعيل الدفع التلقائي الشهري' },
+	'Failed to create mandate': { en: 'Failed to create mandate', ar: 'تعذر إنشاء التفويض' },
+	'UPI Autopay authorized successfully!': {
+		en: 'UPI Autopay authorized successfully!',
+		ar: 'تم التفويض بالدفع التلقائي عبر UPI بنجاح!',
+	},
+	'Failed to verify authorization': {
+		en: 'Failed to verify authorization',
+		ar: 'تعذر التحقق من التفويض',
+	},
+	'Maximum amount must be at least ₹500': {
+		en: 'Maximum amount must be at least ₹500',
+		ar: 'يجب ألا يقل الحد الأقصى للمبلغ عن ₹500',
+	},
+	'Maximum amount cannot exceed ₹1,00,000': {
+		en: 'Maximum amount cannot exceed ₹1,00,000',
+		ar: 'لا يمكن أن يتجاوز الحد الأقصى للمبلغ ₹1,00,000',
+	},
+	'UPI Autopay Authorization': { en: 'UPI Autopay Authorization', ar: 'تفويض الدفع التلقائي عبر UPI' },
+	'Authorization cancelled': { en: 'Authorization cancelled', ar: 'تم إلغاء التفويض' },
+	'Verifying authorization...': { en: 'Verifying authorization...', ar: 'جاري التحقق من التفويض...' },
+	'Authorization failed': { en: 'Authorization failed', ar: 'فشل التفويض' },
+	// BuyCreditsRazorpay
+	'If you select Razorpay, you can pay using Credit Card, Debit Card, Net Banking, UPI, Wallets, etc. If you are using Net Banking, it may take upto 5 days for balance to reflect.': {
+		en: 'If you select Razorpay, you can pay using Credit Card, Debit Card, Net Banking, UPI, Wallets, etc. If you are using Net Banking, it may take upto 5 days for balance to reflect.',
+		ar: 'إذا اخترت Razorpay، يمكنك الدفع باستخدام بطاقة الائتمان أو بطاقة الخصم أو الصرافة الإلكترونية أو UPI أو المحافظ الإلكترونية، وغيرها. إذا كنت تستخدم الصرافة الإلكترونية، فقد يستغرق ظهور الرصيد حتى 5 أيام.',
+	},
+	'You can pay using your PayPal account. Processing may take a few minutes for the balance to reflect.': {
+		en: 'You can pay using your PayPal account. Processing may take a few minutes for the balance to reflect.',
+		ar: 'يمكنك الدفع باستخدام حساب PayPal. قد تستغرق المعالجة بضع دقائق لظهور الرصيد.',
+	},
+	'Loading payment gateway...': { en: 'Loading payment gateway...', ar: 'جاري تحميل بوابة الدفع...' },
+	'Proceed to payment using {gateway}': {
+		en: 'Proceed to payment using {gateway}',
+		ar: 'المتابعة للدفع باستخدام {gateway}',
+	},
+	'Confirming payment': { en: 'Confirming payment', ar: 'جاري تأكيد الدفع' },
+	'Failed to load payment gateway. Please refresh and try again.': {
+		en: 'Failed to load payment gateway. Please refresh and try again.',
+		ar: 'تعذر تحميل بوابة الدفع. يُرجى تحديث الصفحة والمحاولة مرة أخرى.',
+	},
+	'Amount should be equal to or greater than {amount}': {
+		en: 'Amount should be equal to or greater than {amount}',
+		ar: 'يجب أن يكون المبلغ مساويًا أو أكبر من {amount}',
+	},
+	'Payment failed': { en: 'Payment failed', ar: 'فشل الدفع' },
+	'Payment successful': { en: 'Payment successful', ar: 'تم الدفع بنجاح' },
+	'Pay using PayPal': { en: 'Pay using PayPal', ar: 'ادفع باستخدام PayPal' },
+	// AddCardDialog & BillingDetailsDialog
+	'Add at least one card before changing the payment mode.': {
+		en: 'Add at least one card before changing the payment mode.',
+		ar: 'أضف بطاقة واحدة على الأقل قبل تغيير طريقة الدفع.',
+	},
+	'Add billing details to your account before proceeding.': {
+		en: 'Add billing details to your account before proceeding.',
+		ar: 'أضف بيانات الفوترة إلى حسابك قبل المتابعة.',
+	},
+	// BuyPrepaidCreditsMpesa
+	'Payment Partner': { en: 'Payment Partner', ar: 'شريك الدفع' },
+	'Select Payment Partner': { en: 'Select Payment Partner', ar: 'اختر شريك الدفع' },
+	'M-Pesa Phone Number': { en: 'M-Pesa Phone Number', ar: 'رقم هاتف M-Pesa' },
+	'Tax ID': { en: 'Tax ID', ar: 'الرقم الضريبي' },
+	'Tax(%)': { en: 'Tax(%)', ar: 'الضريبة (%)' },
+	'Total Amount With Tax': { en: 'Total Amount With Tax', ar: 'إجمالي المبلغ مع الضريبة' },
+	'Make payment via M-Pesa': { en: 'Make payment via M-Pesa', ar: 'ادفع عبر M-Pesa' },
+	'Amount is less than the minimum allowed: {amount}': {
+		en: 'Amount is less than the minimum allowed: {amount}',
+		ar: 'المبلغ أقل من الحد الأدنى المسموح: {amount}',
+	},
+	'Amount is more than the maximum allowed: {amount}': {
+		en: 'Amount is more than the maximum allowed: {amount}',
+		ar: 'المبلغ أعلى من الحد الأقصى المسموح: {amount}',
+	},
+	'Both partner and phone number are required for payment.': {
+		en: 'Both partner and phone number are required for payment.',
+		ar: 'كلا من الشريك ورقم الهاتف مطلوبان لإتمام الدفع.',
+	},
+	'Tax ID is required for payment.': {
+		en: 'Tax ID is required for payment.',
+		ar: 'الرقم الضريبي مطلوب لإتمام الدفع.',
+	},
+	'Invalid Tax Id': { en: 'Invalid Tax Id', ar: 'رقم ضريبي غير صالح' },
+	'Please follow the instructions on your phone': {
+		en: 'Please follow the instructions on your phone',
+		ar: 'يُرجى اتباع التعليمات على هاتفك',
+	},
+	'Something went wrong. Please try again.': {
+		en: 'Something went wrong. Please try again.',
+		ar: 'حدث خطأ ما. يُرجى المحاولة مرة أخرى.',
+	},
+	'Payment Initiated successfully, check your phone for instructions': {
+		en: 'Payment Initiated successfully, check your phone for instructions',
+		ar: 'تم بدء الدفع بنجاح، تحقق من هاتفك للحصول على التعليمات',
+	},
+	'Payment failed. Please try again.': {
+		en: 'Payment failed. Please try again.',
+		ar: 'فشل الدفع. يُرجى المحاولة مرة أخرى.',
+	},
 };
 
 export default billing;

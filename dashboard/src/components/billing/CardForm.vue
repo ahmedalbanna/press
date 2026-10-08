@@ -35,14 +35,15 @@
 			</div>
 
 			<div class="mt-3 space-y-4" v-show="tryingMicroCharge">
-				<p class="text-base text-ink-gray-7">
-					{{
-					tr(
-						'We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.',
-						{ amount: formattedMicroChargeAmount },
-					)
-				}}
-				</p>
+				<p
+					class="text-base text-ink-gray-7"
+					v-html="
+						tr(
+							'We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.',
+							{ amount: formattedMicroChargeAmount },
+						)
+					"
+				></p>
 			</div>
 
 			<ErrorMessage class="mt-2" :message="errorMessage" />
