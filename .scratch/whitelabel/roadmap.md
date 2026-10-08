@@ -60,10 +60,14 @@
 
 | Decision | Choice |
 |----------|--------|
-| Architecture | Hybrid — central agent + specialized agents |
-| Coordination | Central agent routes to appropriate MCP |
-| Activation | Mix — automatic + manual |
-| UI | Mix — unified interface + specialized interfaces |
+| Central Agent | Central agent + router (receives requests, routes to specialized agents) |
+| Specialized Agents | Mix — agent per MCP + agents per function |
+| Memory | Mix — short-term (conversation context) + long-term (preferences, history) |
+| Smart Routing | Mix — text analysis + task type + data size |
+| Local Models | Multiple models (lightweight for chat/extraction, specialized for structural tasks) |
+| Cloud Models | Mix — primary provider + backup provider (Gemini ↔ OpenAI) |
+| UI | Mix — chat sidebar (daily ops) + independent page (settings, analytics) |
+| Security | Authentication + authorization + encryption (Frappe permissions + data encryption) |
 | Language | Bilingual (Arabic + English) |
 | Platform | Web only |
 
