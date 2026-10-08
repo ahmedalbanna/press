@@ -12,17 +12,17 @@
 		</div>
 
 		<div>
-			<FormControl v-model="reply.reply" type="textarea" label="Write Reply" />
+		<FormControl v-model="reply.reply" type="textarea" :label="t('Write Reply')" />
 
-			<ErrorMessage class="mt-2" :message="$resources.submitReply.error" />
-			<Button
-				class="mt-4 w-full"
-				:loading="$resources.submitReply.loading"
-				variant="solid"
-				@click="$resources.submitReply.submit({ ...reply })"
-			>
-				Submit
-			</Button>
+		<ErrorMessage class="mt-2" :message="$resources.submitReply.error" />
+		<Button
+			class="mt-4 w-full"
+			:loading="$resources.submitReply.loading"
+			variant="solid"
+			@click="$resources.submitReply.submit({ ...reply })"
+		>
+			{{ t('Submit') }}
+		</Button>
 		</div>
 	</div>
 </template>
@@ -31,6 +31,7 @@
 import { getTeam } from '../../data/team';
 import { getDocResource } from '../../utils/resource';
 import { DashboardError } from '../../utils/error';
+import { t } from '../../utils/language';
 
 export default {
 	props: {
@@ -58,17 +59,17 @@ export default {
 	resources: {
 		submitReply: {
 			url: 'press.api.marketplace.submit_developer_reply',
-			validate() {
-				if (!this.reply.reply) {
-					throw new DashboardError('Reply cannot be empty');
-				}
-				const team = getTeam();
-				if (!team.doc.is_developer) {
-					throw new DashboardError(
-						'You must be a developer to reply to reviews',
-					);
-				}
-			},
+		validate() {
+			if (!this.reply.reply) {
+				throw new DashboardError(t('Reply cannot be empty'));
+			}
+			const team = getTeam();
+			if (!team.doc.is_developer) {
+				throw new DashboardError(
+					t('You must be a developer to reply to reviews'),
+				);
+			}
+		},
 			onSuccess() {
 				window.location.href = `/marketplace/apps/${this.marketplaceApp}`;
 			},

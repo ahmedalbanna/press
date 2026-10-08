@@ -2,15 +2,18 @@
 	<Dialog
 		v-model="show"
 		:options="{
-			title: 'Steps to complete before the app can be published',
+			title: t('Steps to complete before the app can be published'),
 			size: '2xl',
 		}"
 	>
 		<template #body-content>
 			<div v-if="appDoc.doc.status === 'In Review'">
 				<p class="text-p-base text-ink-gray-7">
-					Your app is sent for review to our team. Please wait for the review to
-					be completed.
+					{{
+						t(
+							'Your app is sent for review to our team. Please wait for the review to be completed.',
+						)
+					}}
 				</p>
 			</div>
 			<ObjectList v-else :options="listOptions" />
@@ -19,7 +22,7 @@
 			<Button
 				class="w-full"
 				variant="solid"
-				label="Mark app ready for review"
+				:label="t('Mark app ready for review')"
 				:loading="appDoc.markAppReadyForReview.loading"
 				:disabled="$resources.reviewSteps.data.some((step) => !step.completed)"
 				@click="appDoc.markAppReadyForReview.submit"
@@ -31,6 +34,7 @@
 <script>
 import { getCachedDocumentResource } from 'frappe-ui';
 import ObjectList from '../ObjectList.vue';
+import { t } from '../../utils/language';
 
 export default {
 	props: ['app'],
@@ -63,38 +67,38 @@ export default {
 			return {
 				data: () => this.$resources.reviewSteps.data,
 				hideControls: true,
-				columns: [
-					{
-						label: 'Step',
-						fieldname: 'step',
+			columns: [
+				{
+					label: t('Step'),
+					fieldname: 'step',
+				},
+				{
+					label: t('Completed'),
+					fieldname: 'completed',
+					type: 'Icon',
+					width: 0.3,
+					align: 'center',
+					Icon(value) {
+						return value ? 'check' : '';
 					},
-					{
-						label: 'Completed',
-						fieldname: 'completed',
-						type: 'Icon',
-						width: 0.3,
-						align: 'center',
-						Icon(value) {
-							return value ? 'check' : '';
-						},
-					},
-					{
-						label: '',
-						type: 'Button',
-						width: 0.2,
-						align: 'right',
-						Button: ({ row }) => {
-							let route = `/apps/${this.app}/`;
-							route += row.step.includes('Publish') ? 'versions' : 'listing';
+				},
+				{
+					label: '',
+					type: 'Button',
+					width: 0.2,
+					align: 'right',
+					Button: ({ row }) => {
+						let route = `/apps/${this.app}/`;
+						route += row.step.includes('Publish') ? 'versions' : 'listing';
 
-							return {
-								label: 'View',
-								variant: 'ghost',
-								route,
-							};
-						},
+						return {
+							label: t('View'),
+							variant: 'ghost',
+							route,
+						};
 					},
-				],
+				},
+			],
 			};
 		},
 	},

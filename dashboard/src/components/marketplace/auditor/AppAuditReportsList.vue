@@ -8,6 +8,7 @@ import {
 } from 'frappe-ui'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { t } from '../../../utils/language'
 import AppAuditReport from '@/components/marketplace/auditor/AppAuditReport.vue'
 import {
 	formatDt,
@@ -40,11 +41,11 @@ const auditReportsResource = createResource({
 })
 
 const columns = [
-	{ label: 'Source', fieldname: 'source_label', width: 1.4 },
-	{ label: 'Audit Type', fieldname: 'audit_type', width: 0.9 },
-	{ label: 'Finished On', fieldname: 'run_at', width: 1 },
-	{ label: 'Status', fieldname: 'status', width: 0.7 },
-	{ label: 'Result', fieldname: 'audit_result', width: 0.7 },
+	{ label: t('Source'), fieldname: 'source_label', width: 1.4 },
+	{ label: t('Audit Type'), fieldname: 'audit_type', width: 0.9 },
+	{ label: t('Finished On'), fieldname: 'run_at', width: 1 },
+	{ label: t('Status'), fieldname: 'status', width: 0.7 },
+	{ label: t('Result'), fieldname: 'audit_result', width: 0.7 },
 ]
 
 const rows = computed(() =>
@@ -71,7 +72,7 @@ const closeAudit = () => {
 	<div class="space-y-4">
 		<template v-if="selectedAudit">
 			<div class="flex items-center justify-end">
-				<Button label="Back to audits" @click="closeAudit">
+				<Button :label="t('Back to audits')" @click="closeAudit">
 					<template #prefix>
 						<lucide-arrow-left class="h-4 w-4" />
 					</template>
@@ -86,11 +87,11 @@ const closeAudit = () => {
 
 		<template v-else>
 			<div class="flex items-center justify-end">
-				<Button
-					label="Refresh"
-					:loading="auditReportsResource.loading"
-					@click="auditReportsResource.reload()"
-				>
+			<Button
+				:label="t('Refresh')"
+				:loading="auditReportsResource.loading"
+				@click="auditReportsResource.reload()"
+			>
 					<template #prefix>
 						<lucide-refresh-ccw class="h-4 w-4" />
 					</template>
@@ -122,13 +123,13 @@ const closeAudit = () => {
 						</span>
 						<Badge
 							v-else-if="column.fieldname === 'audit_result'"
-							:label="row.audit_result || 'Pending'"
+							:label="row.audit_result || t('Pending')"
 							:theme="themeAuditResult(row.audit_result)"
 							size="sm"
 						/>
 						<Badge
 							v-else-if="column.fieldname === 'status'"
-							:label="row.status || 'Queued'"
+							:label="row.status || t('Queued')"
 							:theme="themeStatus(row.status)"
 							size="sm"
 						/>
@@ -143,9 +144,9 @@ const closeAudit = () => {
 					class="px-5 py-8 text-center text-sm text-ink-gray-5"
 				>
 					<template v-if="auditReportsResource.loading">
-						Loading audit reports...
+						{{ t('Loading audit reports...') }}
 					</template>
-					<template v-else>No audit reports found for this app.</template>
+					<template v-else>{{ t('No audit reports found for this app.') }}</template>
 				</div>
 			</div>
 		</template>

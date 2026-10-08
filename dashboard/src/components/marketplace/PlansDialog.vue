@@ -1,5 +1,5 @@
 <template>
-	<Dialog :options="{ title: 'Edit Plan' }" v-model="showEditPlanDialog">
+	<Dialog :options="{ title: t('Edit Plan') }" v-model="showEditPlanDialog">
 		<template v-slot:body-content>
 			<div>
 				<div class="mb-4">
@@ -10,31 +10,31 @@
 						v-model="currentEditingPlan.enabled"
 					/>
 					<label for="enabled-checkbox" class="ml-1 text-sm text-ink-gray-9">
-						Enabled
+						{{ t('Enabled') }}
 					</label>
 				</div>
 				<div class="mb-4">
 					<FormControl
-						placeholder="My Pro Plan"
-						label="Name"
+						:placeholder="t('My Pro Plan')"
+						:label="t('Name')"
 						v-model="currentEditingPlan.title"
 					></FormControl>
 				</div>
 				<div class="mb-8">
-					<h3 class="mb-4 text-lg font-semibold">Subscription Price</h3>
+					<h3 class="mb-4 text-lg font-semibold">{{ t('Subscription Price') }}</h3>
 					<div class="grid grid-cols-2 gap-2">
 						<FormControl
-							label="Price INR"
+							:label="t('Price INR')"
 							v-model="currentEditingPlan.price_inr"
 						></FormControl>
 						<FormControl
-							label="Price USD"
+							:label="t('Price USD')"
 							v-model="currentEditingPlan.price_usd"
 						></FormControl>
 					</div>
 				</div>
 				<div>
-					<h3 class="mb-4 text-lg font-semibold">Features</h3>
+					<h3 class="mb-4 text-lg font-semibold">{{ t('Features') }}</h3>
 					<div>
 						<div
 							v-for="(feature, idx) in currentEditingPlan.features"
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 					<div>
-						<Button icon-left="plus" @click="addFeatureInput">Add</Button>
+						<Button icon-left="plus" @click="addFeatureInput">{{ t('Add') }}</Button>
 					</div>
 
 					<div>
@@ -88,7 +88,7 @@
 				"
 				@click="savePlan"
 				@close="resetCurrentEditingPlan"
-				>Save</Button
+				>{{ t('Save') }}</Button
 			>
 		</template>
 	</Dialog>
@@ -98,6 +98,7 @@
 import { toast } from 'vue-sonner';
 import { DashboardError } from '../../utils/error';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'PlanDialog',
@@ -144,11 +145,11 @@ export default {
 		createAppPlan() {
 			return {
 				url: 'press.api.marketplace.create_app_plan',
-				validate() {
-					if (!this.currentEditingPlan.title) {
-						throw new DashboardError('Plan name is required');
-					}
-				},
+			validate() {
+				if (!this.currentEditingPlan.title) {
+					throw new DashboardError(t('Plan name is required'));
+				}
+			},
 				onSuccess() {
 					this.refreshState();
 				},
@@ -182,20 +183,20 @@ export default {
 							plan_data: this.currentEditingPlan,
 							marketplace_app: this.app,
 						}),
-				{
-					loading: 'Saving plan...',
-					success: () => {
-						this.showEditPlanDialog = false;
-						if (this.currentEditingPlan.name) {
-							this.$emit('plan-updated', this.currentEditingPlan);
-							return 'Plan updated successfully';
-						} else {
-							this.$emit('plan-created', this.currentEditingPlan);
-							return 'Plan created successfully';
-						}
-					},
-					error: (e) => getToastErrorMessage(e),
+			{
+				loading: t('Saving plan...'),
+				success: () => {
+					this.showEditPlanDialog = false;
+					if (this.currentEditingPlan.name) {
+						this.$emit('plan-updated', this.currentEditingPlan);
+						return t('Plan updated successfully');
+					} else {
+						this.$emit('plan-created', this.currentEditingPlan);
+						return t('Plan created successfully');
+					}
 				},
+				error: (e) => getToastErrorMessage(e),
+			},
 			);
 		},
 

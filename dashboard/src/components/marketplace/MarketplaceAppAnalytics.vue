@@ -3,7 +3,7 @@
 	<div v-if="$resources.analytics.loading" class="flex justify-center py-12">
 		<div class="flex items-center gap-2">
 			<LoadingIndicator class="h-4 w-4" />
-			Loading analytics...
+			{{ t('Loading analytics...') }}
 		</div>
 	</div>
 	<!-- error state -->
@@ -15,7 +15,7 @@
 		<div class="col-span-2 mb-5 rounded-md border">
 			<div class="grid grid-cols-2 lg:grid-cols-5">
 				<div class="border-b border-r p-5 lg:border-b-0">
-					<div class="text-base text-ink-gray-7">Total Installs</div>
+					<div class="text-base text-ink-gray-7">{{ t('Total Installs') }}</div>
 					<div class="mt-2 flex items-start justify-between">
 						<div>
 							<div class="leading-4">
@@ -28,7 +28,7 @@
 				</div>
 
 				<div class="border-b border-r p-5 lg:border-b-0">
-					<div class="text-base text-ink-gray-7">Weekly Installs</div>
+					<div class="text-base text-ink-gray-7">{{ t('Weekly Installs') }}</div>
 					<div class="mt-2 flex items-start justify-between">
 						<div>
 							<div class="leading-4">
@@ -41,7 +41,7 @@
 				</div>
 
 				<div class="border-b border-r p-5 lg:border-b-0">
-					<div class="text-base text-ink-gray-7">Active Sites</div>
+					<div class="text-base text-ink-gray-7">{{ t('Active Sites') }}</div>
 					<div class="mt-2 flex items-start justify-between">
 						<div>
 							<div class="leading-4">
@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="border-b border-r p-5 lg:border-b-0">
-					<div class="text-base text-ink-gray-7">Active Benches</div>
+					<div class="text-base text-ink-gray-7">{{ t('Active Benches') }}</div>
 					<div class="mt-2 flex items-start justify-between">
 						<div>
 							<div class="leading-4">
@@ -67,7 +67,7 @@
 				</div>
 
 				<div class="border-b border-r p-5 lg:border-b-0">
-					<div class="text-base text-ink-gray-7">Total Earnings</div>
+					<div class="text-base text-ink-gray-7">{{ t('Total Earnings') }}</div>
 					<div class="mt-2 flex items-start justify-between">
 						<div>
 							<div class="leading-4">
@@ -85,10 +85,10 @@
 			v-if="$resources.plausible_analytics.data"
 			class="grid grid-cols-1 gap-5 lg:grid-cols-2"
 		>
-			<LineChart
-				title="Pageviews"
-				type="time"
-				key="Page Views"
+		<LineChart
+			:title="t('Pageviews')"
+			type="time"
+			:key="t('Pageviews')"
 				:data="
 					mapChartAnalytics(
 						this.$resources.plausible_analytics.data?.pageviews || [],
@@ -99,10 +99,10 @@
 				:loading="$resources.plausible_analytics.loading"
 				:error="$resources.plausible_analytics.error"
 			/>
-			<LineChart
-				title="Unique Visitors"
-				type="time"
-				key="Unique Visitors"
+		<LineChart
+			:title="t('Unique Visitors')"
+			type="time"
+			:key="t('Unique Visitors')"
 				:data="
 					mapChartAnalytics(
 						this.$resources.plausible_analytics.data?.visitors || [],
@@ -117,9 +117,9 @@
 		<LineChart
 			v-if="$resources.plausible_analytics.data"
 			class="mt-5"
-			title="Weekly Installs"
+			:title="t('Weekly Installs')"
 			type="time"
-			key="Weekly Installs"
+			:key="t('Weekly Installs')"
 			:data="
 				mapChartAnalytics(
 					this.$resources.plausible_analytics.data?.weekly_installs || [],
@@ -137,6 +137,7 @@
 import { DateTime } from 'luxon';
 import LineChart from '@/components/charts/LineChart.vue';
 import { LoadingIndicator } from 'frappe-ui';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'MarketplaceAppAnalytics',
