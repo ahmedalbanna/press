@@ -14,7 +14,6 @@ import LucideGlobe from '~icons/lucide/globe'
 import LucideSupport from '~icons/lucide/life-buoy'
 import LucideMessageSquareCode from '~icons/lucide/message-square-code'
 import LucideMoon from '~icons/lucide/moon'
-import LucideAlert from '~icons/lucide/notebook-text'
 import AttentionWidget from './AttentionWidget.vue'
 import DarkModeLabel from './DarkModeLabel.vue'
 import Item from './Item.vue'
@@ -57,22 +56,14 @@ const SwitchTeamDialog2 = defineAsyncComponent(
 )
 
 const support = () => {
-	window.open('https://support.frappe.io/helpdesk/my-tickets/new', '_blank')
+	window.location.assign('mailto:support@albannatech.com')
 }
 const docs = () => {
-	window.open('https://docs.frappe.io/cloud', '_blank')
+	window.location.assign('mailto:support@albannatech.com')
 }
 
 const feedback = () => {
-	window.open('https://frappecloud.com/frappe-cloud-feedback/new', '_blank')
-}
-
-const releaseNotes = () => {
-	window.open('https://github.com/frappe/press/releases/', '_blank')
-}
-
-const findPartner = () => {
-	window.open('https://frappe.io/partners/regions', '_blank')
+	window.location.assign('mailto:support@albannatech.com')
 }
 
 watch(router.currentRoute, () => {
@@ -122,8 +113,6 @@ const helpDropdownOptions = [
 	{ label: 'Docs', icon: LucideBookText, onClick: docs },
 	{ label: 'Get Support', icon: LucideSupport, onClick: support },
 	{ label: 'Share Feedback', icon: LucideMessageSquareCode, onClick: feedback },
-	{ label: 'Find a Partner', icon: LucideGlobe, onClick: findPartner },
-	{ label: 'Release Notes', icon: LucideAlert, onClick: releaseNotes },
 ]
 </script>
 
@@ -136,7 +125,7 @@ const helpDropdownOptions = [
 		<div
 			class="flex gap-2 items-center border-y md:border-0 p-2 md:p-0 -m-2 md:m-0 h-[44px] md:h-auto"
 		>
-			<img src="/favicon.svg" alt="AlbannaTech" class="size-6 md:hidden mr-auto" />
+			<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-6 w-auto md:hidden mr-auto" />
 
 			<Dropdown :options="userDropdownOptions">
 				<template v-slot="{ open }">
@@ -145,7 +134,7 @@ const helpDropdownOptions = [
 						:class="[open ? 'md:bg-surface-white dark:bg-surface-gray-2 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
-						<img src="/favicon.svg" alt="AlbannaTech" class="size-8 hidden md:flex shrink-0 rounded" />
+						<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-8 w-auto hidden md:flex shrink-0" />
 						<LucideUser class="size-3.5 -mr-1.5 md:hidden" />
 
 						<div

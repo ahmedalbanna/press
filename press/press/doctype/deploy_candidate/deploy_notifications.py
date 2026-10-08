@@ -1076,7 +1076,7 @@ def update_with_yarn_install_failed(
 		output to debug and fix the error before retrying build.</p>
 
 		<p>This may be due to issues with the app being installed
-		and not Frappe Cloud.</p>
+		and not AlbannaTech.</p>
 		"""
 
 	else:
@@ -1087,7 +1087,7 @@ def update_with_yarn_install_failed(
 		before retrying build.</p>
 
 		<p>This may be due to issues with the app being installed
-		and not Frappe Cloud.</p>
+		and not AlbannaTech.</p>
 		"""
 
 	details["message"] = fmt(message)
@@ -1112,7 +1112,7 @@ def update_with_yarn_build_failed(
 		output to debug and fix the error before retrying build.</p>
 
 		<p>This may be due to issues with the app being installed
-		and not Frappe Cloud.</p>
+		and not AlbannaTech.</p>
 		"""
 
 	else:
@@ -1123,7 +1123,7 @@ def update_with_yarn_build_failed(
 		before retrying build.</p>
 
 		<p>This may be due to issues with the app being installed
-		and not Frappe Cloud.</p>
+		and not AlbannaTech.</p>
 		"""
 
 	details["message"] = fmt(message)
@@ -1146,7 +1146,7 @@ def update_with_installation_file_not_found(
 	message = f"""
                 <p><b>{failed_step.step}</b> is missing a valid installation configuration file.</p>
 				<p>Please add or correct a <code>pyproject.toml</code> (or <code>setup.cfg</code> / <code>setup.py</code>) with the required project metadata</p>
-				<p>This issue is caused by the app's configuration and is not related to Frappe Cloud.</p>
+				<p>This issue is caused by the app's configuration and is not related to AlbannaTech.</p>
             """
 
 	details["message"] = fmt(message)
@@ -1195,7 +1195,7 @@ def update_with_file_not_found(
 	output to find and add the missing file before retrying the build.</p>
 
 	<p>This may be due to issues with the app being installed
-	and not Frappe Cloud.</p>
+	and not AlbannaTech.</p>
 	"""
 
 	details["message"] = fmt(message)

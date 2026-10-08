@@ -14,6 +14,15 @@ export default {
 	],
 	theme: {
 		extend: {
+			colors: {
+				brand: {
+					primary: '#0F172A',
+					secondary: '#0EA5E9',
+					accent: '#10B981',
+					light: '#F8FAFC',
+					dark: '#020617',
+				},
+			},
 			width: {
 				112: '28rem',
 				wizard: '650px',

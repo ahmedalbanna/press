@@ -217,7 +217,7 @@ class AccountRequest(Document):
 			print()
 			return
 
-		subject = f"{otp} - OTP for Frappe Cloud Account Verification"
+		subject = f"{otp} - OTP for AlbannaTech Account Verification"
 		args = {}
 		sender = ""
 		inline_images = []
@@ -264,7 +264,7 @@ class AccountRequest(Document):
 		else:
 			template = "verify_account"
 			if self.invited_by:
-				subject = f"You are invited by {self.invited_by} to join Frappe Cloud"
+				subject = f"You are invited by {self.invited_by} to join AlbannaTech"
 				template = "invite_team_member"
 
 		args.update(
@@ -372,7 +372,7 @@ class AccountRequest(Document):
 			"country": self.country,
 			"signup_method": "oauth" if self.oauth_signup else "email",
 		}
-		# Only when the signup actually named one — a plain Frappe Cloud signup has no
+		# Only when the signup actually named one — a plain AlbannaTech signup has no
 		# product, and labelling it "fc" invents a cohort that isn't there.
 		product = self.product_trial or self.saas_app or ("erpnext" if self.erpnext else None)
 		if product:

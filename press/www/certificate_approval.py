@@ -29,7 +29,7 @@ def get_context(context):
 		context.state = "invalid"
 		return context
 
-	context.partner = request.partner or "A Frappe Cloud partner"
+	context.partner = request.partner or "An AlbannaTech partner"
 	context.course = _humanize_course(request.course)
 
 	if frappe.request.method == "POST":

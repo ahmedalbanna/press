@@ -72,3 +72,26 @@ body {
 		opacity: 1;
 	}
 }
+
+/* AlbannaTech brand tokens */
+:root {
+	--brand-primary: #0F172A;
+	--brand-secondary: #0EA5E9;
+	--brand-accent: #10B981;
+	--brand-bg-light: #F8FAFC;
+	--brand-bg-dark: #020617;
+}
+
+/* Brand dark surface */
+[data-theme="dark"] body {
+	background-color: var(--brand-bg-dark);
+}
+
+/* Arabic RTL layout */
+[dir="rtl"] body {
+	text-align: right;
+}
+
+[dir="rtl"] {
+	font-family: "Cairo", "Tajawal", system-ui, sans-serif;
+}
