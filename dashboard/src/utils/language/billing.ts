@@ -57,6 +57,17 @@ const billing: Dictionary = {
 	'Payment Cancelled': { en: 'Payment Cancelled', ar: 'دفع ملغي' },
 	'Payment Disputed': { en: 'Payment Disputed', ar: 'دفع متنازع عليه' },
 	'Payment Chargeback': { en: 'Payment Chargeback', ar: 'استرداد دفع' },
+	// Billing page tabs
+	'Subscriptions': { en: 'Subscriptions', ar: 'الاشتراكات' },
+	'Forecast': { en: 'Forecast', ar: 'التوقعات' },
+	'Balances': { en: 'Balances', ar: 'الأرصدة' },
+	'Marketplace Payouts': { en: 'Marketplace Payouts', ar: 'مدفوعات السوق' },
+	'Limits': { en: 'Limits', ar: 'الحدود' },
+	'UPI Autopay': { en: 'UPI Autopay', ar: 'الدفع التلقائي عبر UPI' },
+	"You aren't permitted to view the billing page": {
+		en: "You aren't permitted to view the billing page",
+		ar: 'غير مسموح لك بعرض صفحة الفوترة',
+	},
 };
 
 export default billing;

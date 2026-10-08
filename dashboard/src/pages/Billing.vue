@@ -2,7 +2,7 @@
 	<div class="sticky top-0 z-10 shrink-0">
 		<Header>
 			<FBreadcrumbs
-				:items="[{ label: 'Billing', route: { name: 'Billing' } }]"
+				:items="[{ label: t('Billing'), route: { name: 'Billing' } }]"
 			/>
 		</Header>
 		<TabsWithRouter
@@ -14,7 +14,7 @@
 			class="mx-auto mt-60 w-fit rounded border border-dashed px-12 py-8 text-center text-ink-gray-6"
 		>
 			<lucide-alert-triangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
-			<ErrorMessage message="You aren't permitted to view the billing page" />
+			<ErrorMessage :message="t(`You aren't permitted to view the billing page`)" />
 		</div>
 	</div>
 </template>
@@ -22,6 +22,7 @@
 import { Breadcrumbs, Tabs } from 'frappe-ui'
 import Header from '../components/Header.vue'
 import TabsWithRouter from '../components/TabsWithRouter.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'Billing',
@@ -36,29 +37,32 @@ export default {
 			currentTab: 0,
 		}
 	},
+	methods: {
+		t,
+	},
 	computed: {
 		tabs() {
 			const baseTabs = [
-				{ label: 'Overview', route: { name: 'BillingOverview' } },
-				{ label: 'Subscriptions', route: { name: 'BillingSubscriptions' } },
-				{ label: 'Forecast', route: { name: 'BillingForecast' } },
-				{ label: 'Invoices', route: { name: 'BillingInvoices' } },
-				{ label: 'Balances', route: { name: 'BillingBalances' } },
-				{ label: 'Payment Methods', route: { name: 'BillingPaymentMethods' } },
+				{ label: this.t('Overview'), route: { name: 'BillingOverview' } },
+				{ label: this.t('Subscriptions'), route: { name: 'BillingSubscriptions' } },
+				{ label: this.t('Forecast'), route: { name: 'BillingForecast' } },
+				{ label: this.t('Invoices'), route: { name: 'BillingInvoices' } },
+				{ label: this.t('Balances'), route: { name: 'BillingBalances' } },
+				{ label: this.t('Payment Methods'), route: { name: 'BillingPaymentMethods' } },
 				{
-					label: 'Marketplace Payouts',
+					label: this.t('Marketplace Payouts'),
 					route: { name: 'BillingMarketplacePayouts' },
 				},
 			]
 
 			if (this.$team?.doc?.apply_limits && this.$team?.doc?.tier) {
-				baseTabs.push({ label: 'Limits', route: { name: 'BillingTiers' } })
+				baseTabs.push({ label: this.t('Limits'), route: { name: 'BillingTiers' } })
 			}
 
 			// Add UPI Autopay tab for INR teams (before Marketplace Payouts)
 			if (this.$team?.doc?.currency === 'INR') {
 				baseTabs.splice(6, 0, {
-					label: 'UPI Autopay',
+					label: this.t('UPI Autopay'),
 					route: { name: 'BillingUPIAutopay' },
 				})
 			}
