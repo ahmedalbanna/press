@@ -49,8 +49,14 @@ Build a central AI agent with a router and a set of specialized agents. The cent
 - **Failover**: a primary cloud provider with a backup (Gemini ↔ OpenAI), switched automatically.
 
 ### Interface
-- **Chat sidebar**: Frappe UI floating sidebar in ERPNext Desk for daily operations.
-- **Standalone page**: agent settings and analytics.
+- **Chat sidebar**: Frappe UI floating sidebar in ERPNext Desk for daily operations. Built as a custom Vue component on Frappe UI so it matches the desk's design system and colors.
+- **Packaging**: shipped as a custom Frappe App, installed and updated through Bench.
+- **Standalone page**: a custom Frappe Page inside ERPNext for agent settings and advanced controls.
+- **Real-time streaming**: WebSocket / Server-Sent Events for streaming the model's response token by token.
+- **Chat rendering**: Markdown plus interactive elements (financial tables, code blocks, action buttons such as confirm/execute).
+- **Quick actions**: mix of ready buttons, slash commands (`/report`, `/invoice`), and auto-suggestions.
+- **RTL support**: mix of the `dir` attribute, CSS logical properties, and Tailwind RTL.
+- **i18n**: Frappe Translation system for unified Arabic/English UI strings.
 - **Language**: bilingual (Arabic + English), RTL/LTR.
 - **Platform**: web only.
 
@@ -83,6 +89,7 @@ The seam is the **agent request/response contract**: send a request (text, user 
 - Tool invocation: correct MCP tool called with correct arguments
 - Tiering: Basic vs Advanced gating
 - Bilingual handling: Arabic and English requests both route and respond
+- Interface: streaming renders incrementally; Markdown and interactive elements display; slash commands and quick actions trigger the right request; layout mirrors correctly under RTL; UI strings render in the selected language
 
 ### Prior art
 - Existing Playwright UI tests in `dashboard/tests-e2e/` show the pattern for testing the sidebar interaction end to end.

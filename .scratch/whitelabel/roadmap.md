@@ -38,6 +38,19 @@
 | AI Agent Platform | Web only (ERPNext chat sidebar) |
 | Pricing Model | Basic: free with hosting, Advanced: paid annual |
 
+### Interface Technology
+
+| Decision | Choice |
+|----------|--------|
+| Chat Sidebar | Custom Vue component on Frappe UI (matches desk design system) |
+| Packaging | Custom Frappe App (installed/updated via Bench) |
+| Standalone Page | Custom Frappe Page inside ERPNext |
+| Real-time Streaming | WebSocket / Server-Sent Events (token streaming) |
+| Chat Rendering | Markdown + interactive elements (tables, code, action buttons) |
+| Quick Actions | Mix (ready buttons + slash commands + auto-suggestions) |
+| RTL Support | Mix (`dir` attribute + CSS logical properties + Tailwind RTL) |
+| i18n | Frappe Translation system |
+
 ### Access Control & Permissions
 
 | Decision | Choice |
