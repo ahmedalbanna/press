@@ -1,8 +1,8 @@
 <template>
 	<Card
 		v-if="!$team.doc?.erpnext_partner"
-		title="Frappe Partner"
-		subtitle="Manage partner access to your account"
+		:title="t('Frappe Partner')"
+		:subtitle="t('Manage partner access to your account')"
 		class="mx-auto max-w-3xl"
 	>
 		<template #actions>
@@ -11,22 +11,26 @@
 				icon-left="edit"
 				@click="showAddPartnerCodeDialog = true"
 			>
-				Add Partner Code
+				{{ t('Add Partner Code') }}
 			</Button>
 			<Button
 				v-else
 				icon-left="trash-2"
 				@click="showRemovePartnerDialog = true"
 			>
-				Unlink Partner
+				{{ t('Unlink Partner') }}
 			</Button>
 		</template>
 		<span
 			class="text-base font-medium text-ink-gray-7"
 			v-if="!$team.doc?.partner_email"
 		>
-			Have a Frappe Partner Referral Code? Click on
-			<strong>Add Partner Code</strong> to link with your Partner team.
+			{{
+				tr(
+					'Have a Frappe Partner Referral Code? Click on {button} to link with your Partner team.',
+					{ button: t('Add Partner Code') },
+				)
+			}}
 		</span>
 		<div class="prose-sm flex flex-col" v-else>
 			<span v-if="partner_billing_name"> {{ partner_billing_name }}</span>
@@ -34,10 +38,10 @@
 		</div>
 		<Dialog
 			:options="{
-				title: 'Link Partner Account',
+				title: t('Link Partner Account'),
 				actions: [
 					{
-						label: 'Submit',
+						label: t('Submit'),
 						variant: 'solid',
 						onClick: () => $resources.addPartnerCode.submit(),
 					},
@@ -47,20 +51,24 @@
 		>
 			<template v-slot:body-content>
 				<p class="mb-4 text-p-base">
-					Enter the partner code provided by your Partner
+					{{ t('Enter the partner code provided by your Partner') }}
 				</p>
 
 				<div
 					class="rounded bg-surface-gray-2 p-4 mb-4 pb-2 prose prose-sm text-ink-gray-7"
 				>
 					<p>
-						<strong>Note</strong>: After linking with Partner, following details
-						shall be shared with your partner team:
+						<strong>{{ t('Note') }}:</strong>
+						{{
+							t(
+								'After linking with Partner, following details shall be shared with your partner team:',
+							)
+						}}
 					</p>
 
 					<ul class="list-disc pl-5">
-						<li>Billing name</li>
-						<li>Monthly billing amount</li>
+						<li>{{ t('Billing name') }}</li>
+						<li>{{ t('Monthly billing amount') }}</li>
 					</ul>
 				</div>
 				<FormControl
@@ -73,7 +81,12 @@
 					class="mt-3 text-sm text-green-600"
 					role="alert"
 				>
-					Referral Code {{ code }} belongs to {{ partner }}
+					{{
+						tr(
+							'Referral Code {code} belongs to {partner}',
+							{ code: this.code, partner: this.partner },
+						)
+					}}
 				</div>
 			</template>
 		</Dialog>
@@ -81,10 +94,10 @@
 		<Dialog
 			v-model="showRemovePartnerDialog"
 			:options="{
-				title: 'Remove Partner',
+				title: t('Remove Partner'),
 				actions: [
 					{
-						label: 'Remove',
+						label: t('Remove'),
 						variant: 'solid',
 						theme: 'red',
 						onClick: () => {
@@ -96,11 +109,18 @@
 		>
 			<template v-slot:body-content>
 				<div class="text-p-base pb-2">
-					This will remove the Partner associated with your account. Are you
-					sure you want to remove the Partner? <br /><br />
+					{{
+						t(
+							'This will remove the Partner associated with your account. Are you sure you want to remove the Partner?',
+						)
+					}}
+					<br /><br />
 					<div class="text-ink-gray-8 bg-surface-gray-3 p-3 rounded-md">
-						Your partner will no longer have access to your sites and servers
-						and will be removed as team member from your team.
+						{{
+							t(
+								'Your partner will no longer have access to your sites and servers and will be removed as team member from your team.',
+							)
+						}}
 					</div>
 				</div>
 				<div
@@ -118,6 +138,7 @@
 import { Card, FormControl, frappeRequest, debounce } from 'frappe-ui';
 import { DashboardError } from '../../../utils/error';
 import { toast } from 'vue-sonner';
+import { t, tr } from '../../../utils/language';
 export default {
 	name: 'AccountPartner',
 	components: {
@@ -145,15 +166,17 @@ export default {
 				onSuccess(data) {
 					this.showAddPartnerCodeDialog = false;
 					if (data === 'Request already sent') {
-						toast.error('Approval Request has already been sent to Partner');
+						toast.error(t('Approval Request has already been sent to Partner'));
 					} else {
 						toast.success(
-							'Approval Request has been sent to Partner. Please wait for Partner to accept the request',
+							t(
+								'Approval Request has been sent to Partner. Please wait for Partner to accept the request',
+							),
 						);
 					}
 				},
 				onError() {
-					throw new DashboardError('Failed to add Partner Code');
+					throw new DashboardError(t('Failed to add Partner Code'));
 				},
 			};
 		},
@@ -169,14 +192,15 @@ export default {
 		removePartner() {
 			return {
 				url: 'press.api.partner.remove_partner',
-				onSuccess() {
-					this.showRemovePartnerDialog = false;
-					toast.success('Partner removed successfully');
-				},
-				onError(e) {
-					this.removePartnerError =
-						e?.messages[0] || 'Failed to remove Partner. Please try again.';
-				},
+			onSuccess() {
+				this.showRemovePartnerDialog = false;
+				toast.success(t('Partner removed successfully'));
+			},
+			onError(e) {
+				this.removePartnerError =
+					e?.messages[0] ||
+					t('Failed to remove Partner. Please try again.');
+			},
 			};
 		},
 	},

@@ -1,19 +1,25 @@
 <template>
 	<Card
 		v-if="referralLink"
-		title="Refer & Earn"
-		subtitle="Your unique referral link"
+		:title="t('Refer & Earn')"
+		:subtitle="t('Your unique referral link')"
 		class="mx-auto max-w-3xl"
 	>
 		<div class="flex flex-col space-y-4 overflow-hidden">
 			<ClickToCopyField :textContent="referralLink" />
 			<span class="text-sm font-medium leading-4 text-ink-gray-7">
-				Invite someone to AlbannaTech and
-				<strong>
-					get
-					{{ creditAmountInTeamCurrency }} in AlbannaTech credits</strong
-				>
-				when they sign up and spend at least {{ minimumSpentAmount }}!
+				{{
+					tr(
+						'Invite someone to AlbannaTech and get {amount} in AlbannaTech credits',
+						{ amount: creditAmountInTeamCurrency },
+					)
+				}}
+				{{
+					tr(
+						'when they sign up and spend at least {amount}!',
+						{ amount: minimumSpentAmount },
+					)
+				}}
 			</span>
 		</div>
 	</Card>
