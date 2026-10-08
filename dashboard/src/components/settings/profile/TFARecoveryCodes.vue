@@ -1,27 +1,32 @@
 <template>
 	<div class="space-y-4">
 		<AlertBanner
-			title="Save these recovery codes in a safe place. You can use them to
-				reset two factor authentication if you lose access to your
-				authenticator app."
+			:title="
+				t(
+					'Save these recovery codes in a safe place. You can use them to reset two factor authentication if you lose access to your authenticator app.',
+				)
+			"
 			type="warning"
 		/>
 
 		<!-- Display recovery codes -->
-		<ClickToCopy label="Copy Recovery Codes" :textContent="recoveryCodesStr" />
+		<ClickToCopy
+			:label="t('Copy Recovery Codes')"
+			:textContent="recoveryCodesStr"
+		/>
 
 		<!-- Reset button only shown if withReset prop is true -->
 		<Button
 			v-if="withReset"
 			class="w-full"
 			variant="subtle"
-			label="Reset Recovery Codes"
+			:label="t('Reset Recovery Codes')"
 			@click="() => $emit('reset')"
 		/>
 		<Button
 			class="w-full"
 			variant="solid"
-			label="Download"
+			:label="t('Download')"
 			@click="downloadCodes"
 		/>
 	</div>

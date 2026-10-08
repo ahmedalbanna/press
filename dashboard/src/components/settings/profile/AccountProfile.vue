@@ -1,5 +1,5 @@
 <template>
-	<Card title="Profile" v-if="user" class="mx-auto max-w-3xl">
+	<Card :title="t('Profile')" v-if="user" class="mx-auto max-w-3xl">
 		<div class="flex items-center border-b pb-3">
 			<div class="relative">
 				<Avatar size="2xl" :label="user.first_name" :image="user.user_image" />
@@ -20,7 +20,7 @@
 								:class="{ 'opacity-50': uploading }"
 							>
 								<span v-if="uploading">{{ progress }}%</span>
-								<span v-else>Edit</span>
+								<span v-else>{{ t('Edit') }}</span>
 							</button>
 						</div>
 					</template>
@@ -34,59 +34,65 @@
 			</div>
 			<div class="ml-auto">
 				<Button icon-left="edit" @click="showProfileEditDialog = true">
-					Edit
+					{{ t('Edit') }}
 				</Button>
 			</div>
 		</div>
 		<ListItem
-			title="Notification Settings"
-			subtitle="Manage notification channels"
+			:title="t('Notification Settings')"
+			:subtitle="t('Manage notification channels')"
 			v-if="$team?.doc?.user === $session?.user"
 		>
 			<template #actions>
-				<Button @click="showCommunicationInfoDialog = true"> Manage </Button>
+				<Button @click="showCommunicationInfoDialog = true">
+					{{ t('Manage') }}
+				</Button>
 			</template>
 		</ListItem>
 		<div>
 			<ListItem
-				title="Become Marketplace Developer"
-				subtitle="Become a marketplace app publisher"
+				:title="t('Become Marketplace Developer')"
+				:subtitle="t('Become a marketplace app publisher')"
 				v-if="!$team.doc.is_developer"
 			>
 				<template #actions>
 					<Button @click="confirmPublisherAccount">
-						<span>Become a Publisher</span>
+						<span>{{ t('Become a Publisher') }}</span>
 					</Button>
 				</template>
 			</ListItem>
 			<ListItem
 				class="border-t"
-				:title="user.is_2fa_enabled ? 'Disable 2FA' : 'Enable 2FA'"
+				:title="user.is_2fa_enabled ? t('Disable 2FA') : t('Enable 2FA')"
 				:subtitle="
 					user.is_2fa_enabled
-						? 'Disable two-factor authentication for your account'
-						: 'Enable two-factor authentication for your account to add an extra layer of security'
+						? t('Disable two-factor authentication for your account')
+						: t(
+								'Enable two-factor authentication for your account to add an extra layer of security',
+							)
 				"
 			>
 				<template #actions>
 					<Button @click="show2FADialog = true">
-						{{ user.is_2fa_enabled ? 'Disable' : 'Enable' }}
+						{{ user.is_2fa_enabled ? t('Disable') : t('Enable') }}
 					</Button>
 				</template>
 			</ListItem>
 			<ListItem
 				v-if="user.is_2fa_enabled"
-				title="View Recovery Codes"
-				subtitle="View your two-factor authentication recovery codes"
+				:title="t('View Recovery Codes')"
+				:subtitle="t('View your two-factor authentication recovery codes')"
 			>
 				<template #actions>
-					<Button @click="show2FARecoveryCodesDialog = true"> Show </Button>
+					<Button @click="show2FARecoveryCodesDialog = true">
+						{{ t('Show') }}
+					</Button>
 				</template>
 			</ListItem>
 			<ListItem
 				v-if="user.is_2fa_enabled"
-				title="Recovery Code Reminders"
-				subtitle="Get an email every month until you review your recovery codes"
+				:title="t('Recovery Code Reminders')"
+				:subtitle="t('Get an email every month until you review your recovery codes')"
 			>
 				<template #actions>
 					<Switch v-model="recoveryCodeReminders" />
@@ -94,11 +100,11 @@
 			</ListItem>
 			<ListItem
 				class="border-t"
-				:title="teamEnabled ? 'Disable Account' : 'Enable Account'"
+				:title="teamEnabled ? t('Disable Account') : t('Enable Account')"
 				:subtitle="
 					teamEnabled
-						? 'Disable your account and stop billing'
-						: 'Enable your account and resume billing'
+						? t('Disable your account and stop billing')
+						: t('Enable your account and resume billing')
 				"
 			>
 				<template #actions>
@@ -114,7 +120,7 @@
 						"
 					>
 						<span :class="{ 'text-red-600': teamEnabled }"
-							>{{ teamEnabled ? 'Disable' : 'Enable' }}</span
+							>{{ teamEnabled ? t('Disable') : t('Enable') }}</span
 						>
 					</Button>
 				</template>
@@ -122,11 +128,11 @@
 		</div>
 		<Dialog
 			:options="{
-				title: 'Update Profile Information',
+				title: t('Update Profile Information'),
 				actions: [
 					{
 						variant: 'solid',
-						label: 'Save Changes',
+						label: t('Save Changes'),
 						onClick: () => $resources.updateProfile.submit(),
 					},
 				],
@@ -135,8 +141,8 @@
 		>
 			<template v-slot:body-content>
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-					<FormControl label="First Name" v-model="user.first_name" />
-					<FormControl label="Last Name" v-model="user.last_name" />
+					<FormControl :label="t('First Name')" v-model="user.first_name" />
+					<FormControl :label="t('Last Name')" v-model="user.last_name" />
 				</div>
 				<ErrorMessage class="mt-4" :message="$resources.updateProfile.error" />
 			</template>
@@ -144,10 +150,10 @@
 
 		<Dialog
 			:options="{
-				title: 'Disable Account',
+				title: t('Disable Account'),
 				actions: [
 					{
-						label: 'Disable Account',
+						label: t('Disable Account'),
 						variant: 'solid',
 						theme: 'red',
 						loading: $resources.disableAccount.loading,
@@ -159,21 +165,24 @@
 		>
 			<template v-slot:body-content>
 				<div class="prose text-base">
-					By confirming this action:
+					{{ t('By confirming this action:') }}
 					<ul>
-						<li>Your account will be disabled</li>
+						<li>{{ t('Your account will be disabled') }}</li>
 						<li>
-							Your active sites will be suspended immediately and will be
-							deleted after a week.
+							{{
+								t(
+									'Your active sites will be suspended immediately and will be deleted after a week.',
+								)
+							}}
 						</li>
-						<li>Your account billing will be stopped</li>
+						<li>{{ t('Your account billing will be stopped') }}</li>
 					</ul>
-					You can log in later to enable your account. Do you want to continue?
+					{{ t('You can log in later to enable your account. Do you want to continue?') }}
 				</div>
 				<FormControl
 					v-if="user.is_2fa_enabled"
 					class="mt-4"
-					label="Enter your 2FA code to confirm"
+					:label="t('Enter your 2FA code to confirm')"
 					v-model="disableAccount2FACode"
 				/>
 				<ErrorMessage class="mt-2" :message="$resources.disableAccount.error" />
@@ -182,10 +191,10 @@
 
 		<Dialog
 			:options="{
-				title: 'Enable Account',
+				title: t('Enable Account'),
 				actions: [
 					{
-						label: 'Enable Account',
+						label: t('Enable Account'),
 						variant: 'solid',
 						loading: $resources.enableAccount.loading,
 						onClick: () => $resources.enableAccount.submit(),
@@ -196,13 +205,13 @@
 		>
 			<template v-slot:body-content>
 				<div class="prose text-base">
-					By confirming this action:
+					{{ t('By confirming this action:') }}
 					<ul>
-						<li>Your account will be enabled</li>
-						<li>Your suspended sites will become active</li>
-						<li>Your account billing will be resumed</li>
+						<li>{{ t('Your account will be enabled') }}</li>
+						<li>{{ t('Your suspended sites will become active') }}</li>
+						<li>{{ t('Your account billing will be resumed') }}</li>
 					</ul>
-					Do you want to continue?
+					{{ t('Do you want to continue?') }}
 				</div>
 				<ErrorMessage class="mt-2" :message="$resources.enableAccount.error" />
 			</template>
@@ -234,6 +243,7 @@ import { toast } from 'vue-sonner'
 import FileUploader from '@/components/FileUploader.vue'
 import router from '../../../router'
 import { confirmDialog, renderDialog } from '../../../utils/components'
+import { t, tr } from '../../../utils/language'
 import AddPrepaidCreditsDialog from '../../billing/AddPrepaidCreditsDialog.vue'
 import CommunicationInfoDialog from '../../CommunicationInfoDialog.vue'
 import TFADialog from './TFADialog.vue'
@@ -309,18 +319,18 @@ export default {
 					h(ChurnFeedbackDialog, {
 						team: this.$team.doc.name,
 						onUpdated: () => {
-							toast.success('Your feedback was submitted successfully')
+							toast.success(t('Your feedback was submitted successfully'))
 						},
 					}),
 				)
-				toast.success('Your account was disabled successfully')
+				toast.success(t('Your account was disabled successfully'))
 				this.reloadAccount()
 			},
 		},
 		enableAccount: {
 			url: 'press.api.account.enable_account',
 			onSuccess() {
-				toast.success('Your account was enabled successfully')
+				toast.success(t('Your account was enabled successfully'))
 				this.reloadAccount()
 				this.showEnableAccountDialog = false
 			},
@@ -369,7 +379,7 @@ export default {
 			this.notifySuccess()
 		},
 		notifySuccess() {
-			toast.success('Your profile was updated successfully')
+			toast.success(t('Your profile was updated successfully'))
 		},
 		deactivateAccount(disableAccount2FACode) {
 			const currency = this.$team.doc.currency
@@ -386,11 +396,12 @@ export default {
 						this.showAddPrepaidCreditsDialog = true
 					} else {
 						confirmDialog({
-							title: 'Multiple unpaid invoices',
-							message:
+							title: t('Multiple unpaid invoices'),
+							message: t(
 								'You have multiple unpaid invoices. Please pay them from the invoices page',
+							),
 							primaryAction: {
-								label: 'Go to invoices',
+								label: t('Go to invoices'),
 								variant: 'solid',
 								onClick: ({ hide }) => {
 									router.push({ name: 'BillingInvoices' })
@@ -404,14 +415,16 @@ export default {
 					if (invoice.amount_due > minAmount) {
 						this.showDisableAccountDialog = false
 						confirmDialog({
-							title: 'Clear Unpaid Invoice',
-							message: `You have an unpaid invoice of ${
-								invoice.currency === 'INR' ? '₹' : '$'
-							} ${
-								invoice.amount_due
-							}. Please clear it before disabling the account.`,
+							title: t('Clear Unpaid Invoice'),
+							message: tr(
+								'You have an unpaid invoice of {symbol} {amount}. Please clear it before disabling the account.',
+								{
+									symbol: invoice.currency === 'INR' ? '₹' : '$',
+									amount: invoice.amount_due,
+								},
+							),
 							primaryAction: {
-								label: 'Settle it now',
+								label: t('Settle it now'),
 								variant: 'solid',
 								onClick: ({ hide }) => {
 									if (
@@ -446,9 +459,10 @@ export default {
 		},
 		confirmPublisherAccount() {
 			confirmDialog({
-				title: 'Become a marketplace app developer?',
-				message:
+				title: t('Become a marketplace app developer?'),
+				message: t(
 					'You will be able to publish apps to our Marketplace upon confirmation.',
+				),
 				onSuccess: ({ hide }) => {
 					toast.promise(
 						this.$team.setValue.submit(
@@ -468,9 +482,9 @@ export default {
 							},
 						),
 						{
-							success: 'You can now publish apps to our Marketplace',
-							error: 'Failed to mark you as a developer',
-							loading: 'Making you a developer...',
+							success: t('You can now publish apps to our Marketplace'),
+							error: t('Failed to mark you as a developer'),
+							loading: t('Making you a developer...'),
 						},
 					)
 				},

@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="show"
 		:options="{
-			title: 'Authenticate to view 2FA recovery codes',
+			title: t('Authenticate to view 2FA recovery codes'),
 		}"
 		@close="closeDialog"
 	>
@@ -16,7 +16,7 @@
 			/>
 			<div class="space-y-4" v-else>
 				<FormControl
-					label="Email"
+					:label="t('Email')"
 					type="email"
 					:modelValue="$team.doc.user"
 					name="email"
@@ -24,7 +24,7 @@
 				/>
 				<FormControl
 					v-if="isOTPSent"
-					label="Verification Code"
+					:label="t('Verification Code')"
 					type="text"
 					placeholder="123456"
 					v-model="verificationCode"
@@ -41,7 +41,7 @@
 		<template v-if="!recoveryCodes.length" #actions>
 			<Button
 				v-if="!isOTPSent"
-				label="Send verification code"
+				:label="t('Send verification code')"
 				class="w-full"
 				variant="solid"
 				@click="
@@ -54,7 +54,7 @@
 			/>
 			<div v-else>
 				<Button
-					label="Fetch Recovery Codes"
+					:label="t('Fetch Recovery Codes')"
 					class="w-full"
 					variant="solid"
 					:loading="$resources.getRecoveryCodes.loading"
@@ -73,6 +73,7 @@
 <script>
 import TFARecoveryCodes from './TFARecoveryCodes.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../../utils/language';
 
 export default {
 	props: {
@@ -97,10 +98,12 @@ export default {
 				url: 'press.api.account.send_otp',
 				onSuccess() {
 					this.isOTPSent = true;
-					toast.success('Verification code sent to your email.');
+					toast.success(t('Verification code sent to your email.'));
 				},
 				onError(error) {
-					toast.error(error.message || 'Failed to send verification code.');
+					toast.error(
+						error.message || t('Failed to send verification code.'),
+					);
 				},
 			};
 		},
@@ -117,7 +120,7 @@ export default {
 				url: 'press.api.account.reset_2fa_recovery_codes',
 				onSuccess(codes) {
 					this.recoveryCodes = codes;
-					toast.success('Recovery codes have been reset.');
+					toast.success(t('Recovery codes have been reset.'));
 				},
 			};
 		},

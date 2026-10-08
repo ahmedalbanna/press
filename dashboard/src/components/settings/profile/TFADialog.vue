@@ -24,6 +24,7 @@
 <script>
 import Configure2FA from '../../auth/Configure2FA.vue';
 import TFARecoveryCodes from './TFARecoveryCodes.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	props: {
@@ -61,11 +62,11 @@ export default {
 		},
 		title() {
 			if (this.is2FAEnabled && this.recoveryCodes.length) {
-				return 'Two-Factor Authentication Recovery Codes';
+				return t('Two-Factor Authentication Recovery Codes');
 			} else if (this.is2FAEnabled) {
-				return 'Disable Two-Factor Authentication';
+				return t('Disable Two-Factor Authentication');
 			} else {
-				return 'Enable Two-Factor Authentication';
+				return t('Enable Two-Factor Authentication');
 			}
 		},
 	},
