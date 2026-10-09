@@ -1,5 +1,7 @@
 import { reactive, watch } from 'vue';
 import { frappeRequest } from 'frappe-ui';
+import dayjs from 'dayjs/esm';
+import 'dayjs/esm/locale/ar';
 import auth from './auth';
 import billing from './billing';
 import common from './common';
@@ -66,6 +68,7 @@ export function tr(key: string, values?: Record<string, string | number>): strin
 
 export function setLanguage(lang: Language) {
 	state.lang = lang;
+	dayjs.locale(lang);
 	localStorage.setItem('lang', lang);
 	saveLanguage(lang);
 }
@@ -98,6 +101,9 @@ export function initLanguage() {
 		(lang) => {
 			document.documentElement.lang = lang;
 			document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+			// Relative times (".fromNow()") and localized formats follow the
+			// dashboard language instead of staying English.
+			dayjs.locale(lang);
 		},
 		{ immediate: true },
 	);

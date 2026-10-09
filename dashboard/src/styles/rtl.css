@@ -105,3 +105,16 @@
 	direction: ltr;
 	text-align: left;
 }
+
+/*
+ * frappe-ui dropdown menus (reka-ui MenuContent) pin dir="ltr" on their
+ * content node when no ConfigProvider exists, which the app has none of --
+ * the same default that pinned Scrollbar before it bound dir explicitly.
+ * Menu rows are plain flex, so restoring the page direction mirrors them:
+ * icon to the right of the label, submenu chevrons pointing left (via the
+ * icon rule above). Scoped to role="menu" so popover placement logic, which
+ * reads the dir attribute rather than the CSS, is untouched.
+ */
+[dir="rtl"] [role="menu"] {
+	direction: rtl;
+}
