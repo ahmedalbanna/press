@@ -78,9 +78,9 @@
 [dir="rtl"] .border-l-outline { border-left-width: 0; border-right-width: 1px; }
 
 /* A rounded corner on the leading edge becomes the trailing edge. */
-[dir="rtl"] .rounded-l-md { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0.375rem; border-bottom-right-radius: 0.375rem; }
+[dir="rtl"] .rounded-l, [dir="rtl"] .rounded-l-md { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0.375rem; border-bottom-right-radius: 0.375rem; }
 [dir="rtl"] .rounded-l-xl { border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0.75rem; border-bottom-right-radius: 0.75rem; }
-[dir="rtl"] .rounded-r-md { border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0.375rem; border-bottom-left-radius: 0.375rem; }
+[dir="rtl"] .rounded-r, [dir="rtl"] .rounded-r-md { border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0.375rem; border-bottom-left-radius: 0.375rem; }
 [dir="rtl"] .rounded-r-none { border-top-right-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 0.75rem; border-bottom-left-radius: 0.75rem; }
 
 /*

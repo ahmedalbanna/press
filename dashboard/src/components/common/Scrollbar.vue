@@ -5,12 +5,23 @@ import {
 	ScrollAreaThumb,
 	ScrollAreaScrollbar,
 } from 'reka-ui'
+import { computed } from 'vue'
 
 interface Props {
 	as?: string
 }
 
 defineProps<Props>()
+
+// reka-ui defaults an absent dir to 'ltr', which pinned every scrollable
+// subtree (including the Sites table) to LTR even when the document is
+// rtl. Resolve it the same way Tabs.vue does so scroll content inherits the
+// page direction.
+const dir = computed<'rtl' | 'ltr'>(() =>
+	typeof document !== 'undefined' && document.documentElement.dir === 'rtl'
+		? 'rtl'
+		: 'ltr',
+)
 </script>
 
 <template>
@@ -18,6 +29,7 @@ defineProps<Props>()
 		class="relative overflow-hidden"
 		style="--scrollbar-size: 10px"
 		:scroll-hide-delay="0"
+		:dir
 	>
 		<ScrollAreaViewport class="w-full h-full" :as>
 			<slot />
