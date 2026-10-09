@@ -7,6 +7,14 @@ const auth: Dictionary = {
 	'Email': { en: 'Email', ar: 'البريد الإلكتروني' },
 	'Password': { en: 'Password', ar: 'كلمة المرور' },
 	'Forgot Password?': { en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' },
+	'Continue with password': { en: 'Continue with password', ar: 'المتابعة باستخدام كلمة المرور' },
+	'Continue with verification code': { en: 'Continue with verification code', ar: 'المتابعة باستخدام رمز التحقق' },
+	'Log In': { en: 'Log In', ar: 'تسجيل الدخول' },
+	'Add a payment mode to start creating sites, benches, and more.': {
+		en: 'Add a payment mode to start creating sites, benches, and more.',
+		ar: 'أضف وسيلة دفع لبدء إنشاء المواقع والأرصفة والمزيد.',
+	},
+	'Add payment mode': { en: 'Add payment mode', ar: 'إضافة وسيلة دفع' },
 	'Login': { en: 'Login', ar: 'تسجيل الدخول' },
 	'Signup': { en: 'Signup', ar: 'إنشاء حساب' },
 	'Create Account': { en: 'Create Account', ar: 'إنشاء حساب' },
@@ -18,6 +26,43 @@ const auth: Dictionary = {
 	'First Name': { en: 'First Name', ar: 'الاسم الأول' },
 	'Last Name': { en: 'Last Name', ar: 'اسم العائلة' },
 	'Full Name': { en: 'Full Name', ar: 'الاسم الكامل' },
+
+	// Auth page headings. These reach LoginBox as props from eight different
+	// pages, so they are translated at the sink rather than per call site.
+	'Reset password': { en: 'Reset password', ar: 'إعادة تعيين كلمة المرور' },
+	'Verify your email address': { en: 'Verify your email address', ar: 'تحقق من بريدك الإلكتروني' },
+	'Enter your email address to reset your password': {
+		en: 'Enter your email address to reset your password',
+		ar: 'أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور',
+	},
+	'Get started and explore the easiest way to run ERPNext and Frappe apps on AlbannaTech': {
+		en: 'Get started and explore the easiest way to run ERPNext and Frappe apps on AlbannaTech',
+		ar: 'ابدأ واستكشف أسهل طريقة لتشغيل تطبيقات ERPNext و Frappe على AlbannaTech',
+	},
+	'Managed hosting for ERPNext and Frappe apps': {
+		en: 'Managed hosting for ERPNext and Frappe apps',
+		ar: 'استضافة مُدارة لتطبيقات ERPNext و Frappe',
+	},
+	'Log in to your site on AlbannaTech': { en: 'Log in to your site on AlbannaTech', ar: 'تسجيل الدخول إلى موقعك على AlbannaTech' },
+	'Invitation to join': { en: 'Invitation to join', ar: 'دعوة للانضمام' },
+	"Let's set up your account": { en: "Let's set up your account", ar: 'لنجهّز حسابك' },
+	'Invitation by {invitedBy}': { en: 'Invitation by {invitedBy}', ar: 'دعوة من {invitedBy}' },
+	'Token Invalid or Expired': { en: 'Token Invalid or Expired', ar: 'الرمز غير صالح أو منتهي الصلاحية' },
+
+	// Site signup flow
+	'Site creation failed': { en: 'Site creation failed', ar: 'فشل إنشاء الموقع' },
+	"Let's set up your site": { en: "Let's set up your site", ar: 'لنجهّز موقعك' },
+	'Enter site name to set up your site': { en: 'Enter site name to set up your site', ar: 'أدخل اسم الموقع لإعداده' },
+	'Select an app to get started': { en: 'Select an app to get started', ar: 'اختر تطبيقاً للبدء' },
+	'Select the app you want to install on your site.': {
+		en: 'Select the app you want to install on your site.',
+		ar: 'اختر التطبيق الذي تريد تثبيته على موقعك.',
+	},
+	'Set a new password for your account': { en: 'Set a new password for your account', ar: 'عيّن كلمة مرور جديدة لحسابك' },
+
+	// Site login
+	'Enter your email to access your site': { en: 'Enter your email to access your site', ar: 'أدخل بريدك الإلكتروني للوصول إلى موقعك' },
+	'Pick a site to log in to as {email}': { en: 'Pick a site to log in to as {email}', ar: 'اختر موقعاً لتسجيل الدخول باسم {email}' },
 	'Phone': { en: 'Phone', ar: 'الهاتف' },
 	'Phone Number': { en: 'Phone Number', ar: 'رقم الهاتف' },
 	'Country': { en: 'Country', ar: 'الدولة' },

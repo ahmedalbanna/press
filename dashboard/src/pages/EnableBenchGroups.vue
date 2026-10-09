@@ -51,6 +51,9 @@ import Link from '@/components/Link.vue'
 import { t } from '../utils/language'
 
 export default {
+	methods: {
+		t,
+	},
 	name: 'EnableBenchGroups',
 	components: { Link },
 	data() {

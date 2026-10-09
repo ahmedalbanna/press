@@ -21,7 +21,7 @@
 									}"
 									icon-left="key"
 								>
-									Continue with password
+									{{ t('Continue with password') }}
 								</Button>
 								<Button
 									v-else-if="isLogin && usePassword"
@@ -31,7 +31,7 @@
 									}"
 									icon-left="mail"
 								>
-									Continue with verification code
+									{{ t('Continue with verification code') }}
 								</Button>
 								<Button
 									:loading="$resources.googleLogin.loading"
@@ -191,7 +191,7 @@
 												query: { ...$route.query, forgot: 1 },
 											}"
 										>
-											Forgot Password?
+											{{ t('Forgot Password?') }}
 										</router-link>
 									</div>
 									<Button
@@ -251,7 +251,7 @@
 											variant="solid"
 											@click="$resources.sendOTP.submit()"
 										>
-											Send verification code
+											{{ t('Send verification code') }}
 										</Button>
 									</template>
 								</template>
@@ -969,10 +969,10 @@ export default {
 			if (this.hasForgotPassword) {
 				return 'Enter your email address to reset your password'
 			} else if (this.isLogin) {
-				return 'Get started and explore the easiest way to use all Frappe apps'
+				return 'Get started and explore the easiest way to run ERPNext and Frappe apps on AlbannaTech'
 			}
 
-			return 'Hosting platform for Frappe apps'
+			return 'Managed hosting for ERPNext and Frappe apps'
 		},
 	},
 }

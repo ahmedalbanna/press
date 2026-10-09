@@ -125,16 +125,16 @@ const helpDropdownOptions = computed(() => [
 		<div
 			class="flex gap-2 items-center border-y md:border-0 p-2 md:p-0 -m-2 md:m-0 h-[44px] md:h-auto"
 		>
-			<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-6 w-auto md:hidden mr-auto" />
+			<img src="/albannatech-logo-light.svg" alt="AlbannaTech" class="h-6 w-auto md:hidden mr-auto" />
 
 			<Dropdown :options="userDropdownOptions">
 				<template v-slot="{ open }">
 					<button
-						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 bg-white/10 md:bg-transparent   hover:bg-white/10"
+						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 text-white bg-white/10 md:bg-transparent   hover:bg-white/10"
 						:class="[open ? 'md:bg-white/10 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
-						<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-8 w-auto hidden md:flex shrink-0" />
+						<img src="/albannatech-logo-light.svg" alt="AlbannaTech" class="h-8 w-auto hidden md:flex shrink-0" />
 						<LucideUser class="size-3.5 -mr-1.5 md:hidden text-gray-300" />
 
 						<div

@@ -220,6 +220,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		fetchServer(snapshotName) {
 			return this.$resources.fetchServerName.submit(snapshotName)
 		},

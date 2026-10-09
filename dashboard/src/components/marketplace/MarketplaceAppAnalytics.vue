@@ -149,6 +149,7 @@ export default {
 		LoadingIndicator,
 	},
 	methods: {
+		t,
 		formatDate(data) {
 			return data.map((d) => d.date);
 		},

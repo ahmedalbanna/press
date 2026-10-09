@@ -136,6 +136,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		migrationShortcutsFor(group) {
 			return this.migrationShortcuts.filter(
 				(shortcut) => shortcut.group === group,

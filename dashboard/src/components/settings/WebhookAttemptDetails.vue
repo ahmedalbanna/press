@@ -76,6 +76,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		is_valid_status_code(status_code) {
 			if (!status_code) return false;
 			if (status_code == '0') return false;

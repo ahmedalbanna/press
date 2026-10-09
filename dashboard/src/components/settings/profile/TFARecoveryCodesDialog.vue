@@ -126,6 +126,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		closeDialog() {
 			this.show = false;
 			this.recoveryCodes = [];

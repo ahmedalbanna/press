@@ -366,6 +366,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		addUser(user) {
 			return toast.promise(this.$resources.role.addUser.submit({ user }), {
 				loading: tr('Adding {user} to {role}', { user, role: this.role.title }),

@@ -201,6 +201,8 @@ export default {
 			return result
 		},
 	},
-	methods: {},
-}
+	methods: {
+		t,
+	},
+};
 </script>

@@ -65,6 +65,7 @@ Add Tag,إضافة علامة
 Add User,إضافة مستخدم
 Add Webhook,إضافة Webhook
 Add a logo,أضف شعاراً
+"Add a payment mode to start creating sites, benches, and more.",أضف وسيلة دفع لبدء إنشاء المواقع والأرصفة والمزيد.
 Add at least one card before changing the payment mode.,أضف بطاقة واحدة على الأقل قبل تغيير طريقة الدفع.
 Add billing address,إضافة عنوان فوترة
 Add billing details to your account before proceeding.,أضف بيانات الفوترة إلى حسابك قبل المتابعة.
@@ -73,6 +74,7 @@ Add credit,إضافة رصيد
 Add credits to your account before changing the payment mode.,أضف رصيدًا إلى حسابك قبل تغيير طريقة الدفع.
 Add more storage,أضف المزيد من التخزين
 Add new card,إضافة بطاقة جديدة
+Add payment mode,إضافة وسيلة دفع
 Add relevant links for your app,أضف روابط ذات صلة بتطبيقك
 Add version support for {app},إضافة دعم الإصدار لـ {app}
 Add your billing details and payment method to activate your subscription. You won't be charged until your trial ends on {date}.,أضف تفاصيل الفوترة وطريقة الدفع لتفعيل اشتراكك. لن يتم تحصيل أي رسوم حتى ينتهي اشتراكك التجريبي في {date}.
@@ -359,6 +361,8 @@ Containerised deployments,نشرات مجزأة
 Continue,متابعة
 Continue Onboarding,متابعة الإعداد الأولي
 Continue with Google,المتابعة مع Google
+Continue with password,المتابعة باستخدام كلمة المرور
+Continue with verification code,المتابعة باستخدام رمز التحقق
 Copy,نسخ
 Copy Recovery Codes,نسخ رموز الاسترداد
 Copy SSH Command,نسخ أمر SSH
@@ -525,8 +529,11 @@ Enter Taxes and Charges,أدخل الضرائب والرسوم
 Enter amount in {currency},أدخل المبلغ بـ {currency}
 Enter email address of the team for transfer of site ownership,أدخل عنوان البريد الإلكتروني للفريق لنقل ملكية الموقع
 Enter new title for the role,أدخل عنواناً جديداً للدور
+Enter site name to set up your site,أدخل اسم الموقع لإعداده
 Enter the partner code provided by your Partner,أدخل رمز الشريك المقدم من شريكك
 Enter your 2FA code to confirm,أدخل رمز المصادقة الثنائية للتأكيد
+Enter your email address to reset your password,أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور
+Enter your email to access your site,أدخل بريدك الإلكتروني للوصول إلى موقعك
 Enterprise,مؤسسي
 Env,البيئة
 Environment Variable Name,اسم متغير البيئة
@@ -618,6 +625,7 @@ Generate new recovery codes,أنشئ رموز استرداد جديدة
 Get Started,ابدأ الآن
 Get Support,الحصول على الدعم
 Get an email every month until you review your recovery codes,احصل على بريد إلكتروني شهرياً حتى تراجع رموز الاسترداد الخاصة بك
+Get started and explore the easiest way to run ERPNext and Frappe apps on AlbannaTech,ابدأ واستكشف أسهل طريقة لتشغيل تطبيقات ERPNext و Frappe على AlbannaTech
 Global,عالمي
 Go Live,نشر مباشر
 Go to invoices,الانتقال إلى الفواتير
@@ -694,6 +702,8 @@ Invalid,غير صالح
 Invalid JSON,JSON غير صالح
 Invalid Tax Id,رقم ضريبي غير صالح
 Investigating ,جاري التحقيق في 
+Invitation by {invitedBy},دعوة من {invitedBy}
+Invitation to join,دعوة للانضمام
 Invite,دعوة
 Invite Member,دعوة عضو
 Invite Sent!,تم إرسال الدعوة!
@@ -744,6 +754,8 @@ Learn about Cleanup Server,تعرف على تنظيف الخادم
 Learn about Forcefully Purge Binlogs,تعرف على حذف سجلات Binlog بالقوة
 Leave,مغادرة
 Less,أقل
+Let's set up your account,لنجهّز حسابك
+Let's set up your site,لنجهّز موقعك
 Light Mode,الوضع الفاتح
 Limits,الحدود
 Link Partner Account,ربط حساب الشريك
@@ -761,7 +773,9 @@ Lock Snapshot,قفل اللقطة
 Locked,مقفل
 Locking snapshot...,جاري قفل اللقطة...
 Log Browser,متصفح السجلات
+Log In,تسجيل الدخول
 Log in to your AlbannaTech account,تسجيل الدخول إلى حساب AlbannaTech الخاص بك
+Log in to your site on AlbannaTech,تسجيل الدخول إلى موقعك على AlbannaTech
 Log in.,تسجيل الدخول.
 Login,تسجيل الدخول
 Login As Administrator,تسجيل الدخول كمسؤول
@@ -781,6 +795,7 @@ Manage Database Users,إدارة مستخدمي قاعدة البيانات
 Manage UPI Autopay,إدارة الدفع التلقائي عبر UPI
 Manage notification channels,إدارة قنوات الإشعارات
 Manage partner access to your account,إدارة وصول الشريك إلى حسابك
+Managed hosting for ERPNext and Frappe apps,استضافة مُدارة لتطبيقات ERPNext و Frappe
 Mandate cancelled,تم إلغاء التفويض
 Mandated,مفوض
 Mark all as read,تعيين الكل كمقروء
@@ -980,6 +995,7 @@ Phone,الهاتف
 Phone Number,رقم الهاتف
 Physical,فيزيائي
 Physical Backups,النسخ الاحتياطية الفيزيائية
+Pick a site to log in to as {email},اختر موقعاً لتسجيل الدخول باسم {email}
 Pin,تثبيت
 Plan,الخطة
 Plan History,سعر الخطة
@@ -1134,6 +1150,7 @@ Reset 2FA,إعادة تعيين 2FA
 Reset Password,إعادة تعيين كلمة المرور
 Reset Recovery Codes,إعادة تعيين رموز الاسترداد
 Reset Site,إعادة تعيين الموقع
+Reset password,إعادة تعيين كلمة المرور
 Reset site,إعادة تعيين الموقع
 Resource,المورد
 Resources,الموارد
@@ -1198,7 +1215,9 @@ Select Server Type,اختر نوع الخادم
 Select Start Date,اختر تاريخ البداية
 Select a member to add,اختر عضواً للإضافة
 Select a role,اختر دوراً
+Select an app to get started,اختر تطبيقاً للبدء
 Select resources,اختر الموارد
+Select the app you want to install on your site.,اختر التطبيق الذي تريد تثبيته على موقعك.
 Select the webhook events,اختر أحداث Webhook
 Send,إرسال
 Send verification code,إرسال رمز التحقق
@@ -1242,6 +1261,7 @@ Set Primary,تعيين كأساسي
 Set Primary Domain,تعيين النطاق الأساسي
 Set Up New Mandate,إشاء تفويض جديد
 Set Up UPI Autopay,إعداد الدفع التلقائي عبر UPI
+Set a new password for your account,عيّن كلمة مرور جديدة لحسابك
 Set as default,تعيين كافتراضي
 Set mode,تعيين الوضع
 Setting as default...,جاري التعيين كافتراضي...
@@ -1295,6 +1315,7 @@ Site Update,تحديث الموقع
 Site Uptime,وقت تشغيل الموقع
 Site Users,مستخدمي الموقع
 Site Version,إصدار الموقع
+Site creation failed,فشل إنشاء الموقع
 Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.,فشل إنشاء الموقع. يمكنك استعادة الموقع من نسخة احتياطية (من موقع آخر) أو حذف هذا الموقع لإنشاء موقع جديد. سيتم حذف الموقع تلقائياً بعد {days} أيام إذا لم يتم استعادته.
 "Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.",مراقبة الموقع معطلة، مما يعني أننا لن نتمكن من إخطارك بأي انقطاع. يرجى إعادة تفعيل المراقبة في أقرب فرصة.
 Site name does not match,اسم الموقع غير مطابق
@@ -1426,6 +1447,7 @@ To Date,إلى تاريخ
 To keep the server from being overloaded we are automatically adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نقوم تلقائياً بإضافة {0} من مساحة التخزين.
 To keep the server from being overloaded we recommend adding {0} of storage.,لمنع تحميل الخادم أكثر من طاقته، نوصي بإضافة {0} من مساحة التخزين.
 "To manage your budget alerts, visit your billing settings in the AlbannaTech dashboard.",لإدارة تنبيهات الميزانية، يرجى مراجعة إعدادات الفوترة في لوحة تحكم AlbannaTech.
+Token Invalid or Expired,الرمز غير صالح أو منتهي الصلاحية
 Total,الإجمالي
 Total (Without Tax),الإجمالي (بدون ضريبة)
 Total Amount + GST ({gst}%),إجمالي المبلغ + ضريبة السلع والخدمات ({gst}%)
@@ -1522,6 +1544,7 @@ Verification code sent to your email.,تم إرسال رمز التحقق إلى
 Verify,تحقق
 Verify & Save Card,تحقق واحفظ البطاقة
 Verify Account,تأكيد الحساب
+Verify your email address,تحقق من بريدك الإلكتروني
 Verifying Card,جاري التحقق من البطاقة
 Verifying authorization...,جاري التحقق من التفويض...
 Version,الإصدار

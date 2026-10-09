@@ -358,6 +358,8 @@ export default {
 		}
 	},
 	methods: {
+		t,
+		tr,
 		onBuyCreditsSuccess() {
 			this.$team.reload()
 			this.$emit('payment-mode-added')

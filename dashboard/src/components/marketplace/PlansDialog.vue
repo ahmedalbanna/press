@@ -157,6 +157,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		editPlan() {
 			if (this.plan) {
 				Object.assign(this.currentEditingPlan, this.plan);

@@ -199,6 +199,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		handleInitiate(amount) {
 			this.tempAmount = amount;
 			this.showSetupDialog = false;

@@ -220,6 +220,7 @@ import LoginBox from '../components/auth/LoginBox.vue';
 import { getToastErrorMessage } from '../utils/toast';
 import { trialDays } from '../utils/site';
 import { userCurrency } from '../utils/format';
+import { tr } from '../utils/language';
 import { useRoute } from 'vue-router';
 import { DashboardError } from '../utils/error';
 
@@ -397,7 +398,9 @@ function planTitle(site) {
 const subtitle = computed(() => {
 	if (pickedSite.value && sites.fetched && sites.data.length !== 0) return '';
 	else if (sites.fetched && sites.data.length !== 0)
-		return `Pick a site to log in to as ${email.value || session.user}`;
+		return tr('Pick a site to log in to as {email}', {
+			email: email.value || session.user,
+		});
 	else if (
 		!sites.fetched &&
 		!(sites.loading || isCookieValid.loading || session.loading)

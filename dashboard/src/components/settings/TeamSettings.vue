@@ -33,6 +33,7 @@ import { getToastErrorMessage } from '../../utils/toast'
 import ObjectList from '../ObjectList.vue'
 import UserWithAvatarCell from '../UserWithAvatarCell.vue'
 import TeamSettingsUserType from './TeamSettingsUserType.vue'
+import { t } from '../../utils/language'
 
 const team = getTeam()
 

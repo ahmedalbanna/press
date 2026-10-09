@@ -2,6 +2,7 @@ import { h } from 'vue';
 import { renderDialog } from '../utils/components';
 import SupportAccessDialog from '../components/SupportAccessDialog.vue';
 import { getTeam } from '../data/team';
+import { t } from '../utils/language'
 
 export default {
 	doctype: 'Support Access',

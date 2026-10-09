@@ -72,6 +72,9 @@ import { inject, computed } from 'vue';
 import { t, tr } from '../utils/language';
 
 export default {
+	methods: {
+		t,
+	},
 	name: 'BillingForecast',
 	components: {
 		LoadingIndicator,

@@ -26,6 +26,8 @@ export default {
 		AlertBanner,
 	},
 	methods: {
+		t,
+		tr,
 		handleEnabled() {
 			this.$team.reload()
 

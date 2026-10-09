@@ -371,6 +371,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		reloadAccount() {
 			this.$team.reload()
 		},

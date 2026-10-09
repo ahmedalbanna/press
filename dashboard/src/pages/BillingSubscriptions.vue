@@ -127,8 +127,12 @@
 </template>
 <script>
 import { Badge, Spinner } from 'frappe-ui'
+import { t } from '../utils/language'
 
 export default {
+	methods: {
+		t,
+	},
 	name: 'BillingSubscriptions',
 	components: { Badge, Spinner },
 	resources: {

@@ -26,6 +26,7 @@
 </template>
 <script>
 import ClickToCopyField from '../../ClickToCopyField.vue';
+import { t, tr } from '../../../utils/language'
 
 export default {
 	name: 'AccountReferral',
@@ -45,6 +46,9 @@ export default {
 		creditAmountInTeamCurrency() {
 			return this.$team.doc?.country == 'India' ? '₹750' : '$10';
 		},
+	},
+	methods: {
+		t,
 	},
 };
 </script>

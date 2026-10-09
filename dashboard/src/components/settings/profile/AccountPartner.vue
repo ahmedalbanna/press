@@ -205,6 +205,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		referralCodeChange: debounce(async function (e) {
 			let code = e.target.value;
 			this.partnerExists = false;

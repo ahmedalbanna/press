@@ -115,6 +115,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		setupAutopay() {
 			if (!this.maxAmount || this.maxAmount < 500) {
 				toast.error(t('Maximum amount must be at least ₹500'));

@@ -171,6 +171,7 @@ export default {
 		},
 	},
 	methods: {
+		t,
 		getPartnerValue() {
 			if (!this.partnerInput) return null;
 			if (typeof this.partnerInput === 'object' && this.partnerInput !== null) {

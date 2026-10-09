@@ -106,6 +106,7 @@ export default {
 	},
 	computed: {},
 	methods: {
+		t,
 		generateRandomSecret() {
 			this.secret = Array(30)
 				.fill(0)

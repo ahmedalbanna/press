@@ -34,6 +34,9 @@ import { DashboardError } from '../../utils/error';
 import { t } from '../../utils/language';
 
 export default {
+	methods: {
+		t,
+	},
 	props: {
 		marketplaceApp: { type: String, required: true },
 		reviewId: { type: String, required: true },

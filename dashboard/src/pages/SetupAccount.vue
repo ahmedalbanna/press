@@ -6,7 +6,7 @@
 		<div class="w-full overflow-auto">
 			<LoginBox
 				:title="invitedBy ? 'Invitation to join' : 'Let\'s set up your account'"
-				:subtitle="invitedBy ? `Invitation by ${invitedBy}` : ''"
+				:subtitle="invitedBy ? tr('Invitation by {invitedBy}', { invitedBy }) : ''"
 			>
 				<template v-slot:logo v-if="saasProduct">
 					<div class="flex space-x-2">
@@ -157,6 +157,7 @@ import LoginBox from '../components/auth/LoginBox.vue';
 import Link from '@/components/Link.vue';
 import Form from '@/components/Form.vue';
 import PhoneInput from '@/components/PhoneInput.vue';
+import { tr } from '@/utils/language';
 
 const detailsSharedProducts = [
 	'erpnext',
@@ -309,6 +310,7 @@ export default {
 		},
 	},
 	methods: {
+		tr,
 		submitForm() {
 			if (this.invitedBy) {
 				if (this.$session.isLoggedIn) {
