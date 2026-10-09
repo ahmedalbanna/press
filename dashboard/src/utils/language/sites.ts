@@ -30,6 +30,23 @@ const sites: Dictionary = {
 	'Site Downtime': { en: 'Site Downtime', ar: 'وقت توقف الموقع' },
 	'Site SSL': { en: 'Site SSL', ar: 'شهادة SSL للموقع' },
 	'Site Subdomain': { en: 'Site Subdomain', ar: 'النطاق الفرعي للموقع' },
+
+	// Sites list page (pages/sites/list/Page.vue). Status values double as
+	// filter values, so the English enum stays the option value and only the
+	// displayed label is translated.
+	'Installing': { en: 'Installing', ar: 'قيد التثبيت' },
+	'Export as CSV': { en: 'Export as CSV', ar: 'تصدير كملف CSV' },
+	'Search sites': { en: 'Search sites', ar: 'البحث في المواقع' },
+	'Site Actions': { en: 'Site Actions', ar: 'إجراءات الموقع' },
+	'Shared': { en: 'Shared', ar: 'مشترك' },
+	'Go to site dashboard': { en: 'Go to site dashboard', ar: 'الانتقال إلى لوحة تحكم الموقع' },
+	'No sites': { en: 'No sites', ar: 'لا توجد مواقع' },
+	'site': { en: 'site', ar: 'موقع' },
+	'sites': { en: 'sites', ar: 'مواقع' },
+	'Your team has no live sites. This page shows your archived sites.': {
+		en: 'Your team has no live sites. This page shows your archived sites.',
+		ar: 'لا يملك فريقك أي مواقع نشطة. تعرض هذه الصفحة مواقعك المؤرشفة.',
+	},
 };
 
 export default sites;

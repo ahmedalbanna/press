@@ -1,12 +1,12 @@
 <template>
 	<AlertBanner
 		:title="
-			title ?? 'Add a payment mode to start creating sites, benches, and more.'
+			title ?? t('Add a payment mode to start creating sites, benches, and more.')
 		"
 		:type="type ?? 'warning'"
 	>
 		<Button class="ml-auto" @click="addPaymentMode" variant="outline">
-			Add payment mode
+			{{ t('Add payment mode') }}
 		</Button>
 	</AlertBanner>
 </template>
@@ -21,6 +21,7 @@ export default {
 	},
 	components: { AlertBanner },
 	methods: {
+		// Options API templates see only the instance, never module imports.
 		addPaymentMode() {
 			this.$team.reload();
 

@@ -324,6 +324,7 @@ Clear Cache,مسح الذاكرة المؤقتة
 Clear Unpaid Invoice,تسوية الفاتورة غير المدفوعة
 Clear cache,مسح الذاكرة المؤقتة
 Click the button below to log in to your AlbannaTech dashboard. This link expires in {0} minutes.,يرجى النقر على الزر أدناه لتسجيل الدخول إلى لوحة تحكم AlbannaTech. ستنتهي صلاحية هذا الرابط خلال {0} دقيقة.
+Click to mark as read,انقر لوضع علامة مقروء
 Client IP,عنوان IP للعميل
 Client IP (Optional),عنوان IP للعميل (اختياري)
 Clone,استنساخ
@@ -557,6 +558,7 @@ Expires On,تنتهي في
 Expiring,على وشك الانتهاء
 Expiry,الانتهاء
 Export,تصدير
+Export as CSV,تصدير كملف CSV
 External,خارجي
 Failed,فشل
 Failed to add Partner Code,تعذرت إضافة رمز الشريك
@@ -629,6 +631,7 @@ Get started and explore the easiest way to run ERPNext and Frappe apps on Albann
 Global,عالمي
 Go Live,نشر مباشر
 Go to invoices,الانتقال إلى الفواتير
+Go to site dashboard,الانتقال إلى لوحة تحكم الموقع
 "Good news, your approval request for the app release",خبر جيد، تم قبول طلب الموافقة على إصدار التطبيق
 Grace Period,فترة السماح
 Grand Total,الإجمالي النهائي
@@ -694,6 +697,7 @@ Install App,تثبيت تطبيق
 Install Local Compliance App?,تثبيت تطبيق الامتثال المحلي؟
 Installation,تثبيت
 Installed on,مثبّت على
+Installing,قيد التثبيت
 Instance Type:,نوع الجهاز:
 Insufficient balance for the upcoming AlbannaTech payment,الرصيد غير كافٍ لدفعة AlbannaTech القادمة
 Internal,داخلي
@@ -858,6 +862,7 @@ Needs Improvement,يحتاج إلى تحسين
 New,جديد
 New Bench,بنش جديد
 New Password,كلمة المرور الجديدة
+New Server,خادم جديد
 New Site,موقع جديد
 New Snapshot,لقطة جديدة
 New member? ,عضو جديد؟ 
@@ -880,17 +885,20 @@ No apps selected,لم يتم اختيار تطبيقات
 No apps to update,لا توجد تطبيقات للتحديث
 No audit has been run for this app yet.,لم يتم إجراء أي تدقيق لهذا التطبيق بعد.
 No audit reports found for this app.,لم يتم العثور على تقارير تدقيق لهذا التطبيق.
+No benches,لا توجد بنشات
 No card added,لم تتم إضافة بطاقة
 No cards added.,لم تتم إضافة بطاقات.
 No check rows on this audit yet.,لا توجد صفوف فحوصات في هذا التدقيق بعد.
 No individual plans needed for sites on dedicated servers,لا حاجة لخطط فردية للمواقع على الخوادم المخصصة
 No members added to this role.,لم تتم إضافة أعضاء إلى هذا الدور.
 No members to show,لا يوجد أعضاء للعرض
+No notifications to show,لا توجد إشعارات لعرضها
 No payments found.,لم يتم العثور على مدفوعات.
 No plan set,لم يتم تعيين خطة
 No resources to show,لا توجد موارد للعرض
 No results,لا توجد نتائج
 No results found,لم يتم العثور على نتائج
+No sites,لا توجد مواقع
 No usage data available for this month,لا توجد بيانات استخدام لهذا الشهر
 None,لا شيء
 Normal,عادي
@@ -1143,6 +1151,7 @@ Report,إبلاغ
 Repository,المستودع
 Request {status},تم {status} الطلب
 Requested,مطلوب
+Requests,الطلبات
 Require all team members to enable 2FA,مطالبة جميع أعضاء الفريق بتفعيل المصادقة الثنائية
 Requirements,المتطلبات
 Reset,إعادة تعيين
@@ -1194,7 +1203,10 @@ Scheduling backup restore...,جاري جدولة استعادة النسخة ا�
 Scheduling physical backup restore...,جاري جدولة استعادة النسخة الاحتياطية الفيزيائية...
 Search,بحث
 Search Keywords (Optional),كلمات بحث (اختياري)
+Search bench,البحث في البنشات
 Search result will show max 500 logs.,سيظهر البحث حداً أقصى 500 سجل.
+Search server,البحث في الخوادم
+Search sites,البحث في المواقع
 Searching,جاري البحث
 Secret,السر
 Secret is optional. Check the documentation to learn more,السر اختياري. تحقق من الوثائق لمعرفة المزيد
@@ -1276,6 +1288,7 @@ Setup Site,إعداد الموقع
 Setup UPI Autopay,إعداد الدفع التلقائي عبر UPI
 Share,مشاركة
 Share Feedback,مشاركة الملاحظات
+Shared,مشترك
 Shared Server,خادم مشترك
 Show,إظهار
 Signup,إنشاء حساب
@@ -1284,6 +1297,7 @@ Simple,بسيط
 "Simplify your billing by authorizing <strong>recurring monthly payments</strong> for your AlbannaTech invoices via Razorpay. Once set up, we’ll handle your future invoices automatically—no manual intervention required.",بسّط فوتورتك من خلال تفويض <strong>مدفوعات شهرية متكررة</strong> لفواتير AlbannaTech عبر Razorpay. بمجرد الإعداد، سنتعامل مع فواتيرك المستقبلية تلقائيًا—دون حاجة إلى تدخل يدوي.
 Site,الموقع
 Site <strong>{0}</strong> exceeded the plan limit,تجاوز الموقع <strong>{0}</strong> حد الخطة
+Site Actions,إجراءات الموقع
 Site Activity,نشاط الموقع
 Site Analytics,تحليلات الموقع
 Site Backup,نسخ احتياطي للموقع
@@ -1418,6 +1432,7 @@ This is an automated report from the AlbannaTech Marketplace Auditor (beta).,ه�
 This is an experimental feature,هذه ميزة تجريبية
 This limit is set by your bank. If a future invoice is more than,هذا الحد محدد من البنك. إذا تجاوزت أي فاتورة مستقبلية مبلغ
 "This may be one of our developers investigating an issue for you. If you do not recognise this activity, please raise a ticket with",قد يكون هذا أحد مطوّريننا يبحث عن مشكلة نيابة عنك. إذا لم تكن على علم بهذا النشاط، يرجى فتح تذكرة لدى
+This notification requires your attention,يتطلب هذا الإشعار انتباهك
 This provider is in beta. Click Compare Features above to learn more.,"هذا المزود في وضع التجربة. انقر على ""مقارنة الميزات"" أعلاه لمعرفة المزيد."
 This request has been accepted.,تم قبول هذا الطلب.
 This request has been forfeited.,تم التخلي عن هذا الطلب.
@@ -1499,6 +1514,7 @@ Unpaid,غير مدفوعة
 Unpaid amount is,المبلغ غير المدفوع هو
 Unpin,إلغاء التثبيت
 Unpublish,إلغاء النشر
+Unread,غير المقروءة
 Unsubscribe,إلغاء الاشتراك
 Update,تحديث
 Update Available,تحديث متاح
@@ -1664,6 +1680,7 @@ Your sites have been suspended on AlbannaTech,تم تعليق مواقعك عل�
 Your spending limit has been exceeded. Please,تم تجاوز حد الإنفاق. يُرجى
 "Your suspended site <strong>{0}</strong> will be archived automatically within <strong>{1} days</strong>. Once archived, the site will no longer be accessible.",سيتم أرشفة موقعك المعلق <strong>{0}</strong> تلقائياً خلال <strong>{1} يوماً</strong>. بعد الأرشفة لن يكون الموقع متاحاً.
 Your suspended sites will become active,ستصبح مواقعك المعلقة نشطة
+Your team has no live sites. This page shows your archived sites.,لا يملك فريقك أي مواقع نشطة. تعرض هذه الصفحة مواقعك المؤرشفة.
 Your trial is set to expire on {date}. Set up billing now to ensure uninterrupted access to your site.,سينتهي اشتراكك التجريبي في {date}. قم بإعداد الفوترة الآن لضمان وصول مستمر إلى موقعك.
 Your trial site is ready,موقعك التجريبي جاهز
 Your two-factor authentication recovery codes were viewed at {0}.,تم الاطلاع على رموز استرداد المصادقة الثنائية الخاصة بك في {0}.
@@ -1713,6 +1730,8 @@ rejected,مرفوض
 review steps,خطوات المراجعة
 revoked or deactivated,ملغى أو معطّل
 set by your bank.,الذي حدده بنكك.
+site,موقع
+sites,مواقع
 so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.,حتى لا تتأثر مواقعك. أضف رصيداً أو أعد إضافة بطاقتك لاستمرار اشتراكك دون انقطاع.
 so your sites are not interrupted. Please set up a new UPI Autopay mandate or add credits to your account.,حتى لا تتأثر مواقعك. يرجى إعداد تفويض دفع تلقائي جديد عبر UPI أو إضافة رصيد إلى حسابك.
 support,الدعم

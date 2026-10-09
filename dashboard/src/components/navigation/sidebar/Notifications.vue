@@ -16,6 +16,7 @@ import { useRouter } from "vue-router";
 import { toast } from "vue-sonner";
 import { isMobile } from "@/utils/device";
 import { sanitizeHtml } from "@/utils/format";
+import { t } from "@/utils/language";
 
 import Scrollbar from "@/components/common/Scrollbar.vue";
 import SupportAccessDialog from "@/components/SupportAccessDialog.vue";
@@ -209,9 +210,9 @@ watch(activeTab, (x) => {
 });
 
 const tabs = [
-  { label: "All", icon: LucideRows2 },
-  { label: "Requests", icon: LucideKeySquare },
-  { label: "Unread", icon: LucideMessageSquareDot },
+  { label: t("All"), icon: LucideRows2 },
+  { label: t("Requests"), icon: LucideKeySquare },
+  { label: t("Unread"), icon: LucideMessageSquareDot },
 ];
   
 const stopIfLink = (event) => {
@@ -246,7 +247,7 @@ useRealtimeNotifs((data) => {
         class="text-ink-gray-9 bg-surface-white h-screen -ml-2.5 w-screen md:ml-2 shadow-xl md:w-[430px] flex flex-col dark:border-x">
         <!-- header -->
         <div class="text-base flex items-center py-2 pl-4 pr-2 border-b">
-          <span class="font-medium mr-auto"> Notifications</span>
+          <span class="font-medium mr-auto"> {{ t('Notifications') }}</span>
 
           <Button @click="markAllAsRead(togglePopover)" variant="ghost">
             <template #icon>
@@ -265,8 +266,8 @@ useRealtimeNotifs((data) => {
           <template #tab-item="{ tab }">
             <button class="w-full flex items-center gap-2 py-2 text-ink-gray-5 aria-selected:text-ink-gray-9">
               <span class="text-sm">{{ tab.label }}</span>
-              <Badge v-if="tab.label != 'All'">{{
-                tab.label == 'Unread'
+              <Badge v-if="tab.label != t('All')">{{
+                tab.label == t('Unread')
                   ? unreadNotificationsCount.data
                   : unreadSupportNotificationsCount.data
               }}</Badge>
@@ -279,7 +280,7 @@ useRealtimeNotifs((data) => {
           <!-- notif tiles = icon + info -->
           <div v-for="x in resource.data"
             class="[&_b]:font-semibold [&_a]:underline p-2 md:p-4 flex gap-4 items-center relative cursor-pointer border-b last:border-0 hover:bg-surface-gray-1"
-            @click="markAsRead(x, togglePopover)" title="Click to mark as read">
+            @click="markAsRead(x, togglePopover)" :title="t('Click to mark as read')">
             <!-- type icon -->
             <div class="size-8 flex-shrink-0 flex items-center p-2 rounded mb-auto mt-1 relative
               dark:bg-surface-gray-1" :class="tileCss(x).bg">
@@ -296,7 +297,7 @@ useRealtimeNotifs((data) => {
               <Badge class="text-xs mr-auto">
                 {{ x.title }}
 
-                <Tooltip text="This notification requires your attention" :hoverDelay="0"
+                <Tooltip :text="t('This notification requires your attention')" :hoverDelay="0"
                   v-if="x.is_actionable && !x.is_addressed">
                   <LucideCircleAlert class="size-3" />
                 </Tooltip>
@@ -312,10 +313,10 @@ useRealtimeNotifs((data) => {
         </Scrollbar>
 
         <div v-else class="text-center text-ink-gray-6 text-sm py-10">
-          No notifications to show
+          {{ t('No notifications to show') }}
         </div>
 
-        <Button @click="loadMore" v-if="resource.hasNextPage" label="Load More" size="sm" class="ml-auto my-3 mr-3" />
+        <Button @click="loadMore" v-if="resource.hasNextPage" :label="t('Load More')" size="sm" class="ml-auto my-3 mr-3" />
       </div>
       </template>
    </Popover>

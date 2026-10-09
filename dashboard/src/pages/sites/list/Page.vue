@@ -23,6 +23,7 @@ import { getTeam } from '@/data/team'
 import { clusterOptions } from '@/objects/common'
 import { renderDialog } from '@/utils/components'
 import { userCurrency } from '@/utils/format'
+import { t } from '@/utils/language'
 import { getSiteStatusBadge, trialDays } from '@/utils/site'
 
 const statusOptions = [
@@ -32,9 +33,9 @@ const statusOptions = [
 	'Suspended',
 	'Broken',
 	'Archived',
-].map((label) => ({
-	label,
-	value: label,
+].map((value) => ({
+	label: t(value),
+	value,
 }))
 const regionOptions = clusterOptions.filter(Boolean)
 
@@ -157,7 +158,7 @@ watch(
 )
 
 const moreActions = [
-	{ label: 'Export as CSV', icon: 'download', onClick: () => exportCSV() },
+	{ label: t('Export as CSV'), icon: 'download', onClick: () => exportCSV() },
 ]
 
 const applyFilter = (key: string, value: any) => {
@@ -213,12 +214,12 @@ const dropSite = (site: any) => {
 const siteOptions = (site: any) => {
 	return [
 		{
-			label: 'Site Actions',
+			label: t('Site Actions'),
 			route: { name: 'Site Detail Actions', params: { name: site.name } },
 			icon: LucideSlidersVertical,
 		},
 		{
-			label: 'Drop site',
+			label: t('Drop site'),
 			theme: 'red',
 			variant: 'subtle',
 			icon: 'trash-2',
@@ -261,7 +262,7 @@ const exportCSV = () => {
 <template>
 	<div class="flex flex-col h-dvh">
 		<Header class="bg-surface-white shrink-0">
-			<Breadcrumbs :items="[{ label: 'Sites', route: '/sites' }]" />
+			<Breadcrumbs :items="[{ label: t('Sites'), route: '/sites' }]" />
 			<Button
 				class="ml-auto mr-2"
 				:loading="sites.list?.loading"
@@ -271,11 +272,11 @@ const exportCSV = () => {
 			</Button>
 			<Button class="mr-2" :route="{ name: 'New Site' }" variant="solid">
 				<template #prefix><lucide-plus class="size-4" /></template>
-				New Site
+				{{ t('New Site') }}
 			</Button>
 			<Dropdown :options="moreActions">
 				<Button>
-					Actions
+					{{ t('Actions') }}
 					<template #suffix><LucideChevronsUpDown class="size-4" /></template>
 				</Button>
 			</Dropdown>
@@ -287,14 +288,14 @@ const exportCSV = () => {
 
 		<div v-if="showsArchivedFallback" class="px-5 pt-4">
 			<AlertBanner
-				title="Your team has no live sites. This page shows your archived sites."
+				:title="t('Your team has no live sites. This page shows your archived sites.')"
 				type="info"
 			/>
 		</div>
 
 		<div class="flex items-center gap-2 px-5 pb-3 overflow-auto">
 			<TextInput
-				placeholder="Search sites"
+				:placeholder="t('Search sites')"
 				class="w-56 shrink-0"
 				:debounce="500"
 				@update:modelValue="v => applyFilter('_search', v || undefined)"
@@ -305,7 +306,7 @@ const exportCSV = () => {
 			</TextInput>
 
 			<MultiSelect
-				placeholder="Status"
+				:placeholder="t('Status')"
 				class="!w-36 shrink-0 status-multiselect *:text-ink-gray-5"
 				:options="statusOptions"
 				:modelValue="selectedStatuses"
@@ -335,7 +336,7 @@ const exportCSV = () => {
 			</MultiSelect>
 
 			<LinkControl
-				placeholder="Version"
+				:placeholder="t('Version')"
 				class="!w-36 shrink-0"
 				:options="{ doctype: 'Frappe Version' }"
 				:modelValue="sites.filters?.['group.version']"
@@ -343,7 +344,7 @@ const exportCSV = () => {
 			/>
 
 			<LinkControl
-				placeholder="Benches"
+				:placeholder="t('Benches')"
 				class="!w-36 shrink-0"
 				:options="{ doctype: 'Release Group' }"
 				:modelValue="sites.filters?.group"
@@ -351,7 +352,7 @@ const exportCSV = () => {
 			/>
 
 			<Combobox
-				placeholder="Region"
+				:placeholder="t('Region')"
 				class="!w-36 shrink-0"
 				:openOnFocus="true"
 				:options="regionOptions"
@@ -363,7 +364,7 @@ const exportCSV = () => {
 			</Combobox>
 
 			<LinkControl
-				placeholder="Tag"
+				:placeholder="t('Tag')"
 				class="!w-32 shrink-0"
 				:options="{ doctype: 'Press Tag', filters: { doctype_name: 'Site' } }"
 				:modelValue="sites.filters?.['tags.tag']"
@@ -375,12 +376,12 @@ const exportCSV = () => {
 			<table class="sites-table w-full">
 				<thead class="text-ink-gray-5 text-sm">
 					<tr>
-						<th class="rounded-l">Site</th>
-						<th>Status</th>
-						<th>Plan</th>
-						<th>Region</th>
-						<th>Benches</th>
-						<th>Version</th>
+						<th class="rounded-l text-left">{{ t('Site') }}</th>
+						<th class="text-left">{{ t('Status') }}</th>
+						<th class="text-left">{{ t('Plan') }}</th>
+						<th class="text-left">{{ t('Region') }}</th>
+						<th class="text-left">{{ t('Benches') }}</th>
+						<th class="text-left">{{ t('Version') }}</th>
 						<th class="rounded-r"></th>
 					</tr>
 				</thead>
@@ -396,7 +397,7 @@ const exportCSV = () => {
 
 					<tr v-for="site in sites.data" :key="site.name" class="*:border-b">
 						<td class="font-medium">
-							<Tooltip text="Go to site dashboard">
+							<Tooltip :text="t('Go to site dashboard')">
 								<router-link
 									class="flex gap-2 w-fit items-center hover:underline"
 									:to="{ name: 'Site Detail', params: { name: site.name } }"
@@ -416,7 +417,7 @@ const exportCSV = () => {
 									class="size-1.5 rounded-full shrink-0 mr-0.5"
 									:class="getSiteStatusBadge(site.status).dot"
 								/>
-								{{ site.status }}
+								{{ t(site.status) }}
 							</Badge>
 						</td>
 
@@ -434,7 +435,7 @@ const exportCSV = () => {
 						</td>
 
 						<td>
-							{{ site.group_public ? 'Shared' : site.group_title }}
+							{{ site.group_public ? t('Shared') : site.group_title }}
 						</td>
 						<td> {{ site.version }}</td>
 
@@ -455,21 +456,21 @@ const exportCSV = () => {
 				v-if="!sites.list?.loading && !sites.data?.length"
 				class="py-10 text-center text-sm text-ink-gray-5"
 			>
-				No sites
+				{{ t('No sites') }}
 			</div>
 		</Scrollbar>
 
 		<div class="shrink-0 px-5 py-2 flex justify-end items-center gap-3">
 			<span class="text-sm text-ink-gray-5">
-				Total {{ sitesCount.data?.length ?? 0 }}
-				{{ sitesCount.data?.length === 1 ? 'site' : 'sites' }}
+				{{ t('Total') }} {{ sitesCount.data?.length ?? 0 }}
+				{{ t(sitesCount.data?.length === 1 ? 'site' : 'sites') }}
 			</span>
 			<Button
 				v-if="sites.hasNextPage"
 				:loading="sites.list?.loading"
 				@click="sites.next()"
 			>
-				Load more
+				{{ t('Load more') }}
 			</Button>
 		</div>
 	</div>
@@ -477,7 +478,7 @@ const exportCSV = () => {
 
 <style scoped>
 .sites-table th {
-	@apply p-2 sticky top-0 z-10 bg-surface-gray-1 text-left font-normal;
+	@apply p-2 sticky top-0 z-10 bg-surface-gray-1 font-normal;
 }
 
 .sites-table td {

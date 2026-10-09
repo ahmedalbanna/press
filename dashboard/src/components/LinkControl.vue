@@ -3,10 +3,10 @@
 		ref="formControl"
 		v-bind="$attrs"
 		type="combobox"
-		:label="label"
+		:label="label ? t(label) : label"
 		:options="autocompleteOptions"
 		:modelValue="modelValue"
-		:placeholder="placeholder"
+		:placeholder="placeholder ? t(placeholder) : placeholder"
 		@update:modelValue="
 			(optionValue) => {
 				if (optionValue) {
@@ -79,6 +79,9 @@ export default {
 		},
 	},
 	methods: {
+		// LinkControl is shared by every filter row, so labels translate here
+		// rather than at each call site. t() passes unknown keys through, so
+		// callers that already translated (or pass dynamic values) are unaffected.
 		onQuery: debounce(function (query) {
 			this.query = query.trim();
 		}, 500),

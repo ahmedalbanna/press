@@ -112,6 +112,8 @@ const objects: Dictionary = {
 	'Login as Administrator': { en: 'Login as Administrator', ar: 'تسجيل الدخول كمسؤول' },
 	'Mark all as read': { en: 'Mark all as read', ar: 'تعيين الكل كمقروء' },
 	'New Bench': { en: 'New Bench', ar: 'بنش جديد' },
+	'Search bench': { en: 'Search bench', ar: 'البحث في البنشات' },
+	'No benches': { en: 'No benches', ar: 'لا توجد بنشات' },
 	'New Site': { en: 'New Site', ar: 'موقع جديد' },
 	'New Snapshot': { en: 'New Snapshot', ar: 'لقطة جديدة' },
 	'Offsite Backups': { en: 'Offsite Backups', ar: 'النسخ الاحتياطية الخارجية' },

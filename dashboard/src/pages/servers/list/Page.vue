@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Button, createListResource, TextInput, Combobox } from 'frappe-ui'
 import Header from '@/components/Header.vue'
+import { t } from '@/utils/language'
 import { ref } from 'vue'
 
 import ServerCard from './ServerCard.vue'
@@ -48,10 +49,10 @@ const regionOptions = [
 ]
 
 const statusOptions = [
-	{ label: 'Active', value: 'Active' },
-	{ label: 'Pending', value: 'Pending' },
+	{ label: t('Active'), value: 'Active' },
+	{ label: t('Pending'), value: 'Pending' },
 	{
-		label: 'Archived',
+		label: t('Archived'),
 		value: 'Archived',
 	},
 ]
@@ -74,7 +75,7 @@ const toggleSort = () => {
 
 <template>
 	<Header class="sticky top-0 z-10 bg-surface-white mb-5">
-		<Breadcrumbs :items="[{ label: 'Servers', route: '/ser' }]" />
+		<Breadcrumbs :items="[{ label: t('Servers'), route: '/ser' }]" />
 		<Button class="ml-auto mr-2" @click="servers.reload()">
 			<template #icon>
 				<lucide-refresh-ccw class="size-4" />
@@ -82,14 +83,14 @@ const toggleSort = () => {
 		</Button>
 
 		<Button :route="{ name: 'New Server' }" variant="solid">
-			New Server
+			{{ t('New Server') }}
 		</Button>
 	</Header>
 
 	<!-- filters -->
 	<div class="flex gap-3 items-center px-5">
 		<TextInput
-			placeholder="Search server"
+			:placeholder="t('Search server')"
 			:debounce="500"
 			@update:modelValue="v => applyFilters('_search', v || undefined)"
 		>
@@ -99,7 +100,7 @@ const toggleSort = () => {
 		>
 
 		<Combobox
-			placeholder="Region"
+			:placeholder="t('Region')"
 			:openOnFocus="true"
 			class="!w-36"
 			:options="regionOptions"
@@ -111,7 +112,7 @@ const toggleSort = () => {
 		</Combobox>
 
 		<Combobox
-			placeholder="Status"
+			:placeholder="t('Status')"
 			class="!w-32"
 			:openOnFocus="true"
 			:options="statusOptions"
@@ -130,7 +131,7 @@ const toggleSort = () => {
 				/>
 				<LucideArrowDownUp v-else class="size-4 transition-transform" />
 			</template>
-			Sort
+			{{ t('Sort') }}
 		</Button>
 	</div>
 
@@ -150,7 +151,7 @@ const toggleSort = () => {
 			v-if="servers?.hasNextPage"
 			@click="servers?.next()"
 		>
-			Load more
+			{{ t('Load more') }}
 		</Button>
 	</div>
 </template>

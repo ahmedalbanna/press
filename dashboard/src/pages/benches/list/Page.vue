@@ -2,6 +2,7 @@
 import { Button, Spinner, TextInput, createListResource } from 'frappe-ui'
 import Header from '@/components/Header.vue'
 import LinkControl from '@/components/LinkControl.vue'
+
 import BenchRow from './BenchRow.vue'
 
 const groups = createListResource({
@@ -23,7 +24,6 @@ const groups = createListResource({
 	orderBy: 'creation desc',
 })
 
-
 const applyFilter = (key: string, val: any) => {
 	groups.update({
 		filters: { ...groups.filters, [key]: val || undefined },
@@ -36,18 +36,18 @@ const applyFilter = (key: string, val: any) => {
 <template>
 	<div class="flex flex-col h-full">
 		<Header class="bg-surface-white shrink-0">
-			<Breadcrumbs :items="[{ label: 'Benches', route: '/groups' }]" />
+			<Breadcrumbs :items="[{ label: t('Benches'), route: '/groups' }]" />
 			<Button class="ml-auto mr-2" @click="groups.reload()">
 				<template #icon><lucide-refresh-ccw class="size-4" /></template>
 			</Button>
 			<Button :route="{ name: 'New Release Group' }" variant="solid"
-				>New Bench</Button
+				>{{ t('New Bench') }}</Button
 			>
 		</Header>
 
 		<div class="flex gap-3 items-center px-5 py-3 shrink-0">
 			<TextInput
-				placeholder="Search bench"
+				:placeholder="t('Search bench')"
 				:debounce="500"
 				@update:modelValue="v => applyFilter('title', v ? ['like', `%${v}%`] : undefined)"
 			>
@@ -57,14 +57,14 @@ const applyFilter = (key: string, val: any) => {
 			</TextInput>
 
 			<LinkControl
-				placeholder="Version"
+				:placeholder="t('Version')"
 				class="!w-36"
 				:options="{ doctype: 'Frappe Version' }"
 				@update:modelValue="v => applyFilter('version', v)"
 			/>
 
 			<LinkControl
-				placeholder="Tag"
+				:placeholder="t('Tag')"
 				class="!w-32"
 				:options="{ doctype: 'Press Tag', filters: { doctype_name: 'Release Group' } }"
 				@update:modelValue="v => applyFilter('tags.tag', v)"
@@ -85,10 +85,10 @@ const applyFilter = (key: string, val: any) => {
 						class="bench-grid px-2 py-2 text-xs text-ink-gray-5 bg-surface-gray-1 rounded"
 					>
 						<span />
-						<span>Title</span>
-						<span>Status</span>
-						<span>Version</span>
-						<span>Apps</span>
+						<span>{{ t('Title') }}</span>
+						<span>{{ t('Status') }}</span>
+						<span>{{ t('Version') }}</span>
+						<span>{{ t('Apps') }}</span>
 						<span />
 					</div>
 
@@ -103,7 +103,7 @@ const applyFilter = (key: string, val: any) => {
 						v-if="!groups.data?.length"
 						class="py-10 text-center text-sm text-ink-gray-5"
 					>
-						No benches
+						{{ t('No benches') }}
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@ const applyFilter = (key: string, val: any) => {
 
 		<div v-if="groups.hasNextPage" class="shrink-0 px-5 py-2 flex justify-end">
 			<Button :loading="groups.list?.loading" @click="groups.next()"
-				>Load more</Button
+				>{{ t('Load more') }}</Button
 			>
 		</div>
 	</div>

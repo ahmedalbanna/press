@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<NavItemProps>(), {
 				/>
 			</slot>
 
-			<span class="text-sm flex-1" :class="collapsedCss">{{ name }}</span>
+			<span class="text-sm flex-1" :class="collapsedCss">{{ t(name) }}</span>
 			<slot name="suffix">
 				<span v-if="suffix" :class="collapsedCss" class="text-xs text-gray-500"
 					>{{ suffix }}

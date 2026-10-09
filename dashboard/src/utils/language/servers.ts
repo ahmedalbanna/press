@@ -31,6 +31,10 @@ const servers: Dictionary = {
 	'Server SSL': { en: 'Server SSL', ar: 'شهادة SSL للخادم' },
 	'Server Domain': { en: 'Server Domain', ar: 'نطاق الخادم' },
 	'Server Subdomain': { en: 'Server Subdomain', ar: 'النطاق الفرعي للخادم' },
+
+	// Servers list page (pages/servers/list/Page.vue)
+	'New Server': { en: 'New Server', ar: 'خادم جديد' },
+	'Search server': { en: 'Search server', ar: 'البحث في الخوادم' },
 };
 
 export default servers;

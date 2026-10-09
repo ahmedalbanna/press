@@ -8,6 +8,7 @@ import {
 	Spinner,
 	Tooltip,
 } from 'frappe-ui'
+
 import {
 	computed,
 	defineAsyncComponent,
@@ -252,7 +253,7 @@ const siteOptions = (site: any) => [
 							class="size-1.5 rounded-full shrink-0 mr-0.5"
 							:class="data.active_benches ? 'bg-surface-green-3' : 'bg-surface-amber-3'"
 						/>
-						{{ data.active_benches ? 'Active' : 'Awaiting Deploy' }}
+						{{ data.active_benches ? t('Active') : t('Awaiting Deploy') }}
 					</Badge>
 					<button
 						v-if="!data.active_benches"
@@ -334,7 +335,7 @@ const siteOptions = (site: any) => [
 					class="flex gap-2 items-center text-xs text-ink-gray-8"
 				>
 					<Spinner class="!size-3.5" />
-					{{ site.status }}
+					{{ t(site.status) }}
 					<LucideExternalLink class="size-3.5" />
 				</router-link>
 
@@ -348,7 +349,7 @@ const siteOptions = (site: any) => [
 						class="size-1.5 rounded-full shrink-0 mr-0.5"
 						:class="getSiteStatusBadge(site.status).dot"
 					/>
-					{{ site.status }}
+					{{ t(site.status) }}
 				</Badge>
 
 				<span class="text-ink-gray-6 text-sm flex gap-1.5 items-center min-w-0">
