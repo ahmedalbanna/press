@@ -1,7 +1,7 @@
 <template>
 	<div class="space-y-8 text-base">
 		<div class="space-y-2">
-			<div class="font-medium">Important</div>
+			<div class="font-medium">{{ t('Important') }}</div>
 			<div class="grid grid-cols-5 gap-2 text-base">
 				<div v-for="permission in permissionsImportant">
 					<div class="border rounded px-2">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="space-y-2">
-			<div class="font-medium">General</div>
+			<div class="font-medium">{{ t('General') }}</div>
 			<div class="grid grid-cols-5 gap-2 text-base">
 				<div v-for="permission in permissionsGeneral">
 					<div class="border rounded px-2">
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="space-y-2">
-			<div class="font-medium">Resources</div>
+			<div class="font-medium">{{ t('Resources') }}</div>
 			<div class="grid grid-cols-5 gap-2 text-base">
 				<div v-for="permission in permissionsResources">
 					<div class="border rounded px-2">
@@ -58,7 +58,7 @@
 			v-if="team?.doc?.erpnext_partner || team?.doc?.is_desk_user"
 			class="space-y-2"
 		>
-			<div class="font-medium">Partner</div>
+			<div class="font-medium">{{ t('Partner') }}</div>
 			<div class="grid grid-cols-5 gap-2 text-base">
 				<div v-for="permission in permissionsPartner">
 					<div class="border rounded px-2">
@@ -81,6 +81,7 @@
 <script setup lang="ts">
 import { Switch } from 'frappe-ui'
 import { inject } from 'vue'
+import { t } from '../../utils/language'
 
 const team = inject('team')
 
@@ -132,76 +133,76 @@ defineEmits<{
 const permissionsImportant = [
 	{
 		key: 'admin_access',
-		label: 'Administrator',
+		label: t('Administrator'),
 	},
 ]
 
 const permissionsGeneral = [
 	{
 		key: 'allow_server_creation',
-		label: 'Create Servers',
+		label: t('Create Servers'),
 	},
 	{
 		key: 'allow_site_creation',
-		label: 'Create Sites',
+		label: t('Create Sites'),
 	},
 	{
 		key: 'allow_bench_creation',
-		label: 'Create Release Groups',
+		label: t('Create Release Groups'),
 	},
 	{
 		key: 'allow_apps',
-		label: 'Marketplace',
+		label: t('Marketplace'),
 	},
 	{
 		key: 'allow_webhook_configuration',
-		label: 'Webhooks',
+		label: t('Webhooks'),
 	},
 	{
 		key: 'allow_billing',
-		label: 'Billing',
+		label: t('Billing'),
 	},
 	{
 		key: 'allow_partner',
-		label: 'Partner Management',
+		label: t('Partner Management'),
 	},
 ]
 
 const permissionsResources = [
 	{
 		key: 'all_servers',
-		label: 'All Servers',
+		label: t('All Servers'),
 	},
 	{
 		key: 'all_sites',
-		label: 'All Sites',
+		label: t('All Sites'),
 	},
 	{
 		key: 'all_release_groups',
-		label: 'All Release Groups',
+		label: t('All Release Groups'),
 	},
 ]
 
 const permissionsPartner = [
 	{
 		key: 'allow_dashboard',
-		label: 'Dashboard',
+		label: t('Dashboard'),
 	},
 	{
 		key: 'allow_customer',
-		label: 'Customer',
+		label: t('Customer'),
 	},
 	{
 		key: 'allow_leads',
-		label: 'Leads',
+		label: t('Leads'),
 	},
 	{
 		key: 'allow_contribution',
-		label: 'Contribution',
+		label: t('Contribution'),
 	},
 	{
 		key: 'allow_local_payment',
-		label: 'Local Payment',
+		label: t('Local Payment'),
 	},
 ]
 </script>

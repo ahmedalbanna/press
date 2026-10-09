@@ -5,11 +5,11 @@
 				class="mx-auto min-w-[48rem] max-w-3xl space-y-6 rounded-md border p-4"
 			>
 				<div class="flex items-center justify-between">
-					<div class="text-xl font-semibold">API Access</div>
+					<div class="text-xl font-semibold">{{ t('API Access') }}</div>
 					<Button @click="showCreateSecretDialog = true">{{
 						$team.doc?.user_info?.api_key
-							? 'Regenerate API Secret'
-							: 'Create New API Key'
+							? t('Regenerate API Secret')
+							: t('Create New API Key')
 					}}</Button>
 				</div>
 				<div v-if="$team.doc?.user_info?.api_key">
@@ -19,18 +19,18 @@
 					/>
 				</div>
 				<div v-else class="pb-2 text-base text-ink-gray-7">
-					You don't have an API key yet. Click the button above to create one.
+					{{ t('You don\'t have an API key yet. Click the button above to create one.') }}
 				</div>
 				<Dialog
 					v-model="showCreateSecretDialog"
 					:options="{
-						title: 'API Access',
+						title: t('API Access'),
 						size: 'xl',
 						actions: [
 							{
 								label: $team.doc.user_info.api_key
 									? 'Regenerate API Secret'
-									: 'Create New API Key',
+									: t('Create New API Key'),
 								variant: 'solid',
 								disabled: createSecret.data,
 								loading: createSecret.loading,
@@ -49,21 +49,21 @@
 							</p>
 							<label class="block pt-2">
 								<span class="mb-2 block text-sm leading-4 text-ink-gray-7"
-									>API Key</span
+									>{{ t('API Key') }}</span
 								>
 								<ClickToCopyField :textContent="createSecret.data.api_key" />
 							</label>
 							<label class="block pt-2">
 								<span class="mb-2 block text-sm leading-4 text-ink-gray-7"
-									>API Secret</span
+									>{{ t('API Secret') }}</span
 								>
 								<ClickToCopyField :textContent="createSecret.data.api_secret" />
 							</label>
 						</div>
 						<div v-else class="text-base text-ink-gray-7">
-							API key and API secret pairs can be used to access the
+							{{ t('API key and API secret pairs can be used to access the') }}
 							<a href="/docs/api" class="underline" target="_blank"
-								>AlbannaTech API</a
+								>{{ t('AlbannaTech API') }}</a
 							>.
 						</div>
 					</template>
@@ -73,7 +73,7 @@
 				class="mx-auto min-w-[48rem] max-w-3xl space-y-6 rounded-md border p-4"
 			>
 				<div class="flex items-center justify-between">
-					<div class="text-xl font-semibold">SSH Keys</div>
+					<div class="text-xl font-semibold">{{ t('SSH Keys') }}</div>
 				</div>
 				<ObjectList :options="sshKeyListOptions" />
 			</div>
@@ -82,7 +82,7 @@
 				class="mx-auto min-w-[48rem] max-w-3xl space-y-6 rounded-md border p-4"
 			>
 				<div class="flex items-center justify-between">
-					<div class="text-xl font-semibold">Webhooks</div>
+					<div class="text-xl font-semibold">{{ t('Webhooks') }}</div>
 				</div>
 				<ObjectList :options="webhookListOptions" />
 				<AddNewWebhookDialog
@@ -127,6 +127,7 @@ import EditWebhookDialog from './EditWebhookDialog.vue';
 import { useRouter } from 'vue-router';
 import WebhookAttemptsDialog from './WebhookAttemptsDialog.vue';
 import { session } from '../../data/session';
+import { t } from '../../utils/language'
 
 const $team = getTeam();
 const router = useRouter();
@@ -200,14 +201,14 @@ const sshKeyListOptions = computed(() => ({
 	},
 	columns: [
 		{
-			label: 'SSH Fingerprint',
+			label: t('SSH Fingerprint'),
 			fieldname: 'ssh_fingerprint',
 			class: 'font-mono',
 			format: (value) => `SHA256:${value}`,
 			suffix(row) {
 				return row.is_default
 					? h(Badge, {
-							label: 'Default',
+							label: t('Default'),
 							theme: 'green',
 							class: 'ml-2',
 						})
@@ -215,7 +216,7 @@ const sshKeyListOptions = computed(() => ({
 			},
 		},
 		{
-			label: 'Added On',
+			label: t('Added On'),
 			fieldname: 'creation',
 			width: 0.1,
 			format: (value) => date(value, 'll'),
@@ -223,7 +224,7 @@ const sshKeyListOptions = computed(() => ({
 	],
 	primaryAction({ listResource }) {
 		return {
-			label: 'Add SSH Key',
+			label: t('Add SSH Key'),
 			slots: { prefix: icon('plus') },
 			onClick: () => renderAddNewKeyDialog(listResource),
 		};
@@ -231,7 +232,7 @@ const sshKeyListOptions = computed(() => ({
 	rowActions({ row }) {
 		return [
 			{
-				label: 'Mark as Default',
+				label: t('Mark as Default'),
 				condition: () => !row.is_default,
 				onClick() {
 					makeKeyDefault.submit({
@@ -240,7 +241,7 @@ const sshKeyListOptions = computed(() => ({
 				},
 			},
 			{
-				label: 'Delete',
+				label: t('Delete'),
 				onClick() {
 					deleteSSHKey.submit({
 						doctype: 'User SSH Key',
@@ -254,11 +255,11 @@ const sshKeyListOptions = computed(() => ({
 
 function renderAddNewKeyDialog(listResource) {
 	confirmDialog({
-		title: 'Add New SSH Key',
-		message: 'Add a new SSH Key to your account',
+		title: t('Add New SSH Key'),
+		message: t('Add a new SSH Key to your account'),
 		fields: [
 			{
-				label: 'SSH Key',
+				label: t('SSH Key'),
 				fieldname: 'sshKey',
 				type: 'textarea',
 				placeholder:
@@ -267,7 +268,7 @@ function renderAddNewKeyDialog(listResource) {
 			},
 		],
 		primaryAction: {
-			label: 'Add SSH Key',
+			label: t('Add SSH Key'),
 			variant: 'solid',
 			onClick({ hide, values }) {
 				if (!values.sshKey) throw new Error('SSH Key is required');
@@ -304,14 +305,14 @@ const webhookListResource = createResource({
 const deleteWebhook = createResource({
 	url: 'press.api.client.delete',
 	onSuccess() {
-		toast.success('Webhook deleted successfully');
+		toast.success(t('Webhook deleted successfully'));
 		webhookListResource.reload();
 	},
 	onError(err) {
 		toast.error(
 			err.messages.length
 				? err.messages.join('\n')
-				: 'Webhook could not be deleted',
+				: t('Webhook could not be deleted'),
 		);
 	},
 });
@@ -320,13 +321,13 @@ const webhookListOptions = computed(() => ({
 	data: () => webhookListResource.data,
 	columns: [
 		{
-			label: 'Endpoint',
+			label: t('Endpoint'),
 			fieldname: 'endpoint',
 			width: 1,
 			format: (value) => value.substring(0, 50),
 		},
 		{
-			label: 'Status',
+			label: t('Status'),
 			fieldname: 'enabled',
 			width: 0.1,
 			type: 'Component',
@@ -334,11 +335,11 @@ const webhookListOptions = computed(() => ({
 			component({ row }) {
 				return row.enabled
 					? h(Badge, {
-							label: 'Enabled',
+							label: t('Enabled'),
 							theme: 'green',
 						})
 					: h(Badge, {
-							label: 'Disabled',
+							label: t('Disabled'),
 							theme: 'red',
 						});
 			},
@@ -347,7 +348,7 @@ const webhookListOptions = computed(() => ({
 	rowActions({ row }) {
 		return [
 			{
-				label: 'Activate',
+				label: t('Activate'),
 				condition: () => !Boolean(row.enabled),
 				onClick() {
 					selectedWebhook.value = row;
@@ -355,14 +356,14 @@ const webhookListOptions = computed(() => ({
 				},
 			},
 			{
-				label: 'Disable',
+				label: t('Disable'),
 				condition: () => Boolean(row.enabled),
 				onClick: () => {
 					confirmDialog({
-						title: 'Disable Webhook',
+						title: t('Disable Webhook'),
 						message: `Endpoint - ${row.endpoint}<br>Are you sure you want to disable the webhook ?<br>`,
 						primaryAction: {
-							label: 'Disable',
+							label: t('Disable'),
 							variant: 'solid',
 							theme: 'red',
 							onClick({ hide }) {
@@ -380,27 +381,27 @@ const webhookListOptions = computed(() => ({
 				},
 			},
 			{
-				label: 'Attempts',
+				label: t('Attempts'),
 				onClick: () => {
 					selectedWebhook.value = row;
 					showWebhookAttempts.value = true;
 				},
 			},
 			{
-				label: 'Edit',
+				label: t('Edit'),
 				onClick() {
 					selectedWebhook.value = row;
 					showEditWebhookDialog.value = true;
 				},
 			},
 			{
-				label: 'Delete',
+				label: t('Delete'),
 				onClick() {
 					confirmDialog({
-						title: 'Delete Webhook',
+						title: t('Delete Webhook'),
 						message: `Endpoint - ${row.endpoint}<br>Are you sure you want to delete the webhook ?<br>`,
 						primaryAction: {
-							label: 'Delete',
+							label: t('Delete'),
 							variant: 'solid',
 							theme: 'red',
 							onClick({ hide }) {
@@ -420,14 +421,14 @@ const webhookListOptions = computed(() => ({
 	},
 	primaryAction() {
 		return {
-			label: 'Add Webhook',
+			label: t('Add Webhook'),
 			slots: { prefix: icon('plus') },
 			onClick: () => (showAddWebhookDialog.value = true),
 		};
 	},
 	secondaryAction() {
 		return {
-			label: 'Refresh',
+			label: t('Refresh'),
 			icon: 'refresh-ccw',
 			onClick: () => webhookListResource.reload(),
 		};
@@ -437,14 +438,14 @@ const webhookListOptions = computed(() => ({
 const disableWebhook = createResource({
 	url: 'press.api.client.run_doc_method',
 	onSuccess() {
-		toast.success('Webhook disabled successfully');
+		toast.success(t('Webhook disabled successfully'));
 		webhookListResource.reload();
 	},
 	onError(err) {
 		toast.error(
 			err.messages.length
 				? err.messages.join('\n')
-				: 'Webhook could not be disabled',
+				: t('Webhook could not be disabled'),
 		);
 	},
 });

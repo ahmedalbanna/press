@@ -33,6 +33,7 @@ import { getToastErrorMessage } from '../../utils/toast'
 import ObjectList from '../ObjectList.vue'
 import UserWithAvatarCell from '../UserWithAvatarCell.vue'
 import TeamSettingsUserType from './TeamSettingsUserType.vue'
+import { t } from '../../utils/language'
 
 const team = getTeam()
 
@@ -62,7 +63,7 @@ const teamMembersListOptions = ref({
 	list: members,
 	columns: [
 		{
-			label: 'User',
+			label: t('User'),
 			type: 'Component',
 			width: '300px',
 			component: ({ row }) => {
@@ -75,7 +76,7 @@ const teamMembersListOptions = ref({
 			},
 		},
 		{
-			label: 'User type',
+			label: t('User type'),
 			type: 'Component',
 			width: '258px',
 			component: ({ row }) => {
@@ -87,7 +88,7 @@ const teamMembersListOptions = ref({
 			},
 		},
 		{
-			label: 'Role',
+			label: t('Role'),
 			type: 'Component',
 			component: ({ row }) => {
 				let roles = row.roles || []
@@ -141,11 +142,11 @@ const teamMembersListOptions = ref({
 		if (row.status === 'Pending') {
 			return [
 				{
-					label: 'Cancel Invitation',
+					label: t('Cancel Invitation'),
 					onClick() {
 						if (team.cancelInvitation.loading) return
 						confirmDialog({
-							title: 'Cancel Invitation',
+							title: t('Cancel Invitation'),
 							message: `Are you sure you want to cancel the invitation sent to <b>${row.email}</b>?`,
 							onSuccess({ hide }) {
 								if (team.cancelInvitation.loading) return
@@ -169,12 +170,12 @@ const teamMembersListOptions = ref({
 		}
 		return [
 			{
-				label: 'Remove Member',
+				label: t('Remove Member'),
 				condition: () => row.user !== team.doc.user,
 				onClick() {
 					if (team.removeTeamMember.loading) return
 					confirmDialog({
-						title: 'Remove Member',
+						title: t('Remove Member'),
 						message: `Are you sure you want to remove <b>${row.user_name}</b> from the team?`,
 						onSuccess({ hide }) {
 							if (team.removeTeamMember.loading) return
@@ -199,7 +200,7 @@ const teamMembersListOptions = ref({
 	actions() {
 		return [
 			{
-				label: 'Settings',
+				label: t('Settings'),
 				iconLeft: 'settings',
 				onClick() {
 					const TeamSettingsDialog = defineAsyncComponent(
@@ -209,7 +210,7 @@ const teamMembersListOptions = ref({
 				},
 			},
 			{
-				label: 'Invite User',
+				label: t('Invite User'),
 				variant: 'solid',
 				iconLeft: 'user-plus',
 				onClick() {

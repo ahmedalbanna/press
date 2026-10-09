@@ -48,6 +48,7 @@
 
 <script>
 import { notify } from '@/utils/toast';
+import { t } from '../../utils/language'
 
 export default {
 	name: 'SaaSLoginBox',
@@ -57,7 +58,7 @@ export default {
 
 		if (params.get('showRemoteLoginError')) {
 			notify({
-				title: 'Token Invalid or Expired',
+				title: t('Token Invalid or Expired'),
 				color: 'red',
 				icon: 'x',
 			});

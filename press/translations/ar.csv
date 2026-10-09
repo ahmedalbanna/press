@@ -21,8 +21,10 @@
 "<strong>Important:</strong> If an invoice exceeds this limit, the auto-debit will fail. Set this slightly higher than your typical bill to ensure uninterrupted service.",<strong>مهم:</strong> إذا تجاوزت الفاتورة هذا الحد، فسيفشل الخصم التلقائي. اضبطه أعلى قليلًا من فاتورتك المعتادة لضمان خدمة دون انقطاع.
 <strong>{0}</strong> just logged in to your site <strong>{1}</strong> as an administrator. They gave this reason:,قام <strong>{0}</strong> بتسجيل الدخول إلى موقعك <strong>{1}</strong> كمسؤول، وذكر أن السبب هو:
 A local compliance app allows creating transactions as per statutory compliance. They're maintained by community partners.,يسمح تطبيق الامتثال المحلي بإنشاء معاملات وفقاً للامتثال النظامي. يتم صيانتها من قبل شركاء المجتمع.
+API Access,الوصول إلى الواجهة البرمجية
 API Key,API Key
 API Secret,API Secret
+API key and API secret pairs can be used to access the,يمكن استخدام أزواج مفتاح وسر الواجهة البرمجية للوصول إلى
 Absolute,مطلق
 Accept,قبول
 Accept Transfer,قبول النقل
@@ -71,6 +73,7 @@ Add Environment Variable,إضافة متغير بيئة
 Add Key,إضافة مفتاح
 Add M-Pesa Credentials,إضافة بيانات اعتماد M-Pesa
 Add Member,إضافة عضو
+Add New SSH Key,إضافة مفتاح SSH جديد
 Add New Webhook,إضافة Webhook جديد
 Add Partner Code,إضافة رمز الشريك
 Add Payment Gateway,إضافة بوابة دفع
@@ -84,6 +87,7 @@ Add User,إضافة مستخدم
 Add Webhook,إضافة Webhook
 Add a GSTIN,أضف رقم GSTIN
 Add a logo,أضف شعاراً
+Add a new SSH Key to your account,أضف مفتاح SSH جديدًا إلى حسابك
 "Add a payment mode to start creating sites, benches, and more.",أضف وسيلة دفع لبدء إنشاء المواقع والأرصفة والمزيد.
 Add apps from your bench,أضف تطبيقات من الرصيف
 Add at least one card before changing the payment mode.,أضف بطاقة واحدة على الأقل قبل تغيير طريقة الدفع.
@@ -102,12 +106,14 @@ Add this SSH Key to,أضف مفتاح SSH هذا إلى
 Add version support for {app},إضافة دعم الإصدار لـ {app}
 Add your billing details and payment method to activate your subscription. You won't be charged until your trial ends on {date}.,أضف تفاصيل الفوترة وطريقة الدفع لتفعيل اشتراكك. لن يتم تحصيل أي رسوم حتى ينتهي اشتراكك التجريبي في {date}.
 Added,تمت الإضافة
+Added On,تاريخ الإضافة
 Adding {user} to {role},جاري إضافة {user} إلى {role}
 Address,العنوان
 Adjust compute power to be allotted to this site,ضبط قوة الحوسبة المخصصة لهذا الموقع
-Admin,المشرف
+Admin,مسؤول
 Admin Access,وصول المشرف
 Admin Role,دور المشرف
+Administrator,المدير
 Administrator login to your site,تسجيل دخول مسؤول إلى موقعك
 Advanced,متقدم
 Advanced Analytics,تحليلات متقدمة
@@ -123,7 +129,10 @@ All,الكل
 All Auto Scales,كل عمليات التوسع التلقائي
 All Frappe apps are open-source,جميع تطبيقات Frappe مفتوحة المصدر
 All Migrations,كل الترحيلات
+All Release Groups,كل مجموعات الإصدار
 All Roles,جميع الأدوار
+All Servers,كل الخوادم
+All Sites,كل المواقع
 All Updates,كل التحديثات
 All analytics →,كل التحليلات ←
 All attempts to back up your site {0} have failed.,فشلت جميع محاولات النسخ الاحتياطي لموقعك {0}.
@@ -217,6 +226,7 @@ Are you sure you want to restore your site's database from physical backup taken
 Are you sure you want to retry fetching the certificate for the domain <b>{domain}</b>?,هل تريد إعادة محاولة جلب الشهادة للنطاق <b>{domain}</b>؟
 Are you sure you want to set the domain <b>{domain}</b> as the primary domain for the site <b>{name}</b>?,هل تريد تعيين النطاق <b>{domain}</b> كنطاق أساسي للموقع <b>{name}</b>؟
 "Are you sure you want to unlock this snapshot ? After unlocking, the snapshot can be deleted by end-user.",هل تريد فتح قفل هذه اللقطة؟ بعد الفتح، يمكن للمستخدم النهائي حذف اللقطة.
+Attempts,المحاولات
 Attention Required,يتطلب انتباهًا
 Attention required!,يتطلب انتباهك!
 Audit Failed,فشل التدقيق
@@ -328,6 +338,7 @@ By confirming this action:,بتأكيد هذا الإجراء:
 CPU,المعالج
 CPU and Memory only resize,تغيير حجم المعالج والذاكرة فقط
 Cancel,إلغاء
+Cancel Invitation,إلغاء الدعوة
 Cancel Job,إلغاء المهمة
 Cancel UPI Autopay,إلغاء الدفع التلقائي عبر UPI
 Cancel Update,إلغاء التحديث
@@ -469,6 +480,7 @@ Continue Onboarding,متابعة الإعداد الأولي
 Continue with Google,المتابعة مع Google
 Continue with password,المتابعة باستخدام كلمة المرور
 Continue with verification code,المتابعة باستخدام رمز التحقق
+Contribution,المساهمة
 Contributions,المساهمات
 Cookie Policy,سياسة ملفات تعريف الارتباط
 Copy,نسخ
@@ -485,9 +497,13 @@ Create,إنشاء
 Create A New Bench,إنشاء بنش جديد
 Create Account,إنشاء حساب
 Create Bench,إنشاء رصيف
+Create New API Key,إنشاء مفتاح واجهة برمجية جديد
+Create Release Groups,إنشاء مجموعات إصدار
 Create Role,إنشاء دور
 Create Server,إنشاء خادم
+Create Servers,إنشاء خوادم
 Create Site,إنشاء موقع
+Create Sites,إنشاء مواقع
 Create User,إنشاء المستخدم
 Create a new account.,إنشاء حساب جديد.
 Create account,إنشاء حساب
@@ -525,6 +541,7 @@ Current subscribed amount,مبلغ الاشتراك الحالي
 Custom,مخصص
 Custom Key,مفتاح مخصص
 Custom app deployment,نشر تطبيقات مخصصة
+Customer,عميل
 Customers,العملاء
 DB Analyzer,محلل قاعدة البيانات
 DB Connections,اتصالات قاعدة البيانات
@@ -568,6 +585,7 @@ Delete Environment Variable,حذف متغير البيئة
 Delete Patch,حذف الترقيع
 Delete Snapshot,حذف اللقطة
 Delete User,حذف المستخدم
+Delete Webhook,حذف الـ Webhook
 Deleting config...,جاري حذف الإعداد...
 Deleting environment variable...,جاري حذف متغير البيئة...
 Deleting snapshot...,جاري حذف اللقطة...
@@ -593,6 +611,7 @@ Disable 2FA,تعطيل المصادقة الثنائية
 Disable Account,تعطيل الحساب
 Disable Autoscale,تعطيل التوسع التلقائي
 Disable Two-Factor Authentication,تعطيل المصادقة الثنائية
+Disable Webhook,تعطيل الـ Webhook
 Disable auto add on storage?,تعطيل الإضافة التلقائية للتخزين؟
 Disable two-factor authentication for your account,تعطيل المصادقة الثنائية لحسابك
 Disable your account and stop billing,تعطيل حسابك وإيقاف الفوترة
@@ -620,6 +639,7 @@ Download Database,تنزيل قاعدة البيانات
 Download Invoice,تنزيل الفاتورة
 Download Private,تنزيل الخاص
 Download Public,تنزيل العام
+"Download an authenticator app on your phone, such as {ga} or {aegis} or use a browser extension like {onepassword}",نزّل تطبيق مصادقة على هاتفك، مثل {ga} أو {aegis} أو استخدم إضافة متصفح مثل {onepassword}
 Download as CSV,تنزيل كملف CSV
 Draft,مسودة
 Drop,حذف
@@ -658,6 +678,7 @@ Enable Benches,تفعيل الأرصفة
 Enable Budget Alerts,تفعيل تنبيهات الميزانية
 Enable Monitoring,تفعيل المراقبة
 Enable Monthly Autopay,تفعيل الدفع التلقائي الشهري
+Enable Relaxed Permissions for Members,تفعيل صلاحيات مبسطة للأعضاء
 Enable Servers,تفعيل الخوادم
 Enable Two-Factor Authentication,تفعيل المصادقة الثنائية
 Enable auto add on storage?,تفعيل الإضافة التلقائية للتخزين؟
@@ -700,6 +721,8 @@ Enter email address of the team for transfer of site ownership,أدخل عنوا
 Enter new title for the role,أدخل عنواناً جديداً للدور
 Enter site name,أدخل اسم الموقع
 Enter site name to set up your site,أدخل اسم الموقع لإعداده
+Enter the code from the app below,أدخل الرمز من التطبيق أدناه
+Enter the code from the authenticator app below,أدخل الرمز من تطبيق المصادقة أدناه
 Enter the partner code provided by your Partner,أدخل رمز الشريك المقدم من شريكك
 Enter your 2FA code to confirm,أدخل رمز المصادقة الثنائية للتأكيد
 Enter your email address to reset your password,أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور
@@ -893,6 +916,7 @@ Impersonate Server Owner,انتحال مالك الخادم
 Impersonate Site Owner,انتحال مالك الموقع
 Impersonate Team,انتحال شخصية الفريق
 Import,استيراد
+Important,مهم
 Important: Your Configured Webhook on AlbannaTech is disabled,مهم: خطاف الويب الذي تم تهيئته على AlbannaTech معطّل
 In Process,قيد المعالجة
 In Progress,قيد التنفيذ
@@ -937,6 +961,7 @@ Invite Member,دعوة عضو
 Invite Sent!,تم إرسال الدعوة!
 Invite User,دعوة مستخدم
 Invite a team member to this role.,ادعُ عضواً إلى فريق لهذا الدور.
+Invite sent,تم إرسال الدعوة
 Invite someone to AlbannaTech and get {amount} in AlbannaTech credits,ادعُ شخصاً إلى AlbannaTech واحصل على {amount} من رصيد AlbannaTech
 Invoice,فاتورة
 Invoice Amount,مبلغ الفاتورة
@@ -1022,6 +1047,7 @@ Loading payment gateway...,جاري تحميل بوابة الدفع...
 Loading sites,جارٍ تحميل المواقع
 Loading...,جاري التحميل...
 Local,محلي
+Local Payment,الدفع المحلي
 Local Payment Setup,إعداد الدفع المحلي
 Lock,قفل
 Lock Snapshot,قفل اللقطة
@@ -1071,6 +1097,7 @@ Mandate cancelled,تم إلغاء التفويض
 Mandated,مفوض
 Mark all as read,تعيين الكل كمقروء
 Mark app ready for review,تحديد التطبيق جاهزاً للمراجعة
+Mark as Default,تعيين كافتراضي
 Marketplace,السوق
 Marketplace App,تطبيق السوق
 Marketplace App Review: {0},مراجعة تطبيق في المتجر: {0}
@@ -1197,6 +1224,7 @@ Not Specified,غير محدد
 Not Supported,غير مدعوم
 Not set,غير معين
 Note,ملاحظة
+Note:,ملاحظة:
 Note: Use this as last resort if site is broken and inaccessible,ملاحظة: استخدم هذا كحل أخير إذا كان الموقع معطلاً ولا يمكن الوصول إليه
 "Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
 "Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
@@ -1220,6 +1248,7 @@ One-click vertical scaling to higher plans,توسيع عمودي بضغطة وا
 Ongoing Incidents,الحوادث الجارية
 Online,متصل
 Open,فتح
+Open the authenticator app,افتح تطبيق المصادقة
 Opening payment window...,جاري فتح نافذة الدفع...
 Operational,التشغيلي
 Options,الخيارات
@@ -1240,6 +1269,7 @@ Partner Admin,إدارة الشركاء
 Partner Approval Request,طلب موافقة شريك
 Partner Email,بريد الشريك
 Partner List,قائمة الشركاء
+Partner Management,إدارة الشركاء
 Partner Payment Payout,دفعة الشريك
 Partner Payments Payouts,مدفوعات الشركاء
 Partner Payout,دفعة الشريك
@@ -1462,6 +1492,7 @@ Referral Code {code} belongs to {partner},رمز الإحالة {code} ينتم�
 Refresh,تحديث
 Refresh Schema,تحديث المخطط
 Refunded,مستردة
+Regenerate API Secret,إعادة إنشاء سر الواجهة البرمجية
 Region,المنطقة
 Regional,إقليمي
 Regions,المناطق
@@ -1477,6 +1508,7 @@ Remove App,إزالة التطبيق
 Remove Apps,إزالة التطبيقات
 Remove Card,إزالة البطاقة
 Remove Domain,إزالة النطاق
+Remove Member,إزالة العضو
 Remove Partner,إزالة الشريك
 Remove Redirect,إزالة إعادة التوجيه
 Remove Tag,إزالة الوسم
@@ -1561,6 +1593,9 @@ Running,قيد التشغيل
 Runs `bench migrate` without a backup. Proceed with caution.,يُشغّل `bench migrate` بدون نسخة احتياطية. تابع بحذر.
 SQL Playground,ملعب SQL
 SSH,SSH
+SSH Fingerprint,بصمة مفتاح SSH
+SSH Key,مفتاح SSH
+SSH Keys,مفاتيح SSH
 SSH access,وصول SSH
 Save,حفظ
 Save Card,حفظ البطاقة
@@ -1574,6 +1609,7 @@ Scale Down,تقليل السعة
 Scale Down Start Time,وقت بدء تقليل السعة
 Scale Up,زيادة السعة
 Scale Up Start Time,وقت بدء زيادة السعة
+Scan the QR code,امسح رمز QR
 Schedule Time in IST,جدولة الوقت (IST)
 Schedule backup,جدولة نسخة احتياطية
 Scheduled,مجدول
@@ -1691,6 +1727,7 @@ Settle it now,تسويتها الآن
 Setup,إعداد
 Setup Account,إعداد الحساب
 Setup Autopay,إعداد الدفع التلقائي
+Setup Key,مفتاح الإعداد
 Setup Site,إعداد الموقع
 Setup UPI Autopay,إعداد الدفع التلقائي عبر UPI
 Share,مشاركة
@@ -1796,6 +1833,8 @@ State/Province/Region,الولاية / المنطقة
 Status,الحالة
 Step,الخطوة
 Step 2: Setup billing,الخطوة 2: إعداد الفوترة
+Steps to Disable 2FA,خطوات تعطيل المصادقة الثنائية
+Steps to Enable 2FA,خطوات تفعيل المصادقة الثنائية
 Steps to complete before the app can be published,الخطوات المطلوبة قبل نشر التطبيق
 Stop,إيقاف
 Stop Replication,إيقاف النسخ المتماثل
@@ -1938,6 +1977,7 @@ UPI Autopay Authorization,تفويض الدفع التلقائي عبر UPI
 UPI Autopay Payment Failed for AlbannaTech Subscription,فشل الدفع التلقائي عبر UPI لاشتراك AlbannaTech
 UPI Autopay authorized successfully!,تم التفويض بالدفع التلقائي عبر UPI بنجاح!
 UPI ID,معرّف UPI
+Unable to scan? You can use the,لا تستطيع المسح؟ يمكنك استخدام
 Unarchive,إلغاء الأرشفة
 Unauthenticated,غير مصادق
 Unauthorized,غير مصرح
@@ -1999,8 +2039,10 @@ Use this for adding A records for your site,استخدم هذا لإضافة س�
 Use this for whitelisting our server on a 3rd party service,استخدم هذا لإدراج خادمنا في القائمة البيضاء لخدمة طرف ثالث
 User,المستخدم
 User created successfully,تم إنشاء المستخدم بنجاح
+User type,نوع المستخدم
 User updated successfully,تم تحديث المستخدم بنجاح
 User {0} has asked to link their team to Partner {1}.,طلب المستخدم {0} ربط فريقه بالشريك {1}.
+Users,المستخدمون
 Valid,صالح
 Valid For,صالح لمدة
 Validate,التحقق من صحة
@@ -2017,6 +2059,8 @@ Verification link or code is invalid or expired.,رابط التحقق أو ال
 Verify,تحقق
 Verify & Save Card,تحقق واحفظ البطاقة
 Verify Account,تأكيد الحساب
+Verify the code from the app to disable 2FA,تحقق من رمز التطبيق لتعطيل المصادقة الثنائية
+Verify the code from the app to enable 2FA,تحقق من رمز التطبيق لتفعيل المصادقة الثنائية
 Verify your email,تأكيد بريدك الإلكتروني
 Verify your email address,تحقق من بريدك الإلكتروني
 Verifying Card,جاري التحقق من البطاقة
@@ -2077,8 +2121,13 @@ Webhook Attempt,محاولة Webhook
 Webhook Attempts,محاولات Webhook
 Webhook activated successfully,تم تفعيل Webhook بنجاح
 Webhook added successfully,تمت إضافة Webhook بنجاح
+Webhook could not be deleted,تعذر حذف الـ Webhook
+Webhook could not be disabled,تعذر تعطيل الـ Webhook
+Webhook deleted successfully,تم حذف الـ Webhook بنجاح
+Webhook disabled successfully,تم تعطيل الـ Webhook بنجاح
 Webhook updated successfully,تم تحديث Webhook بنجاح
 Website Details,تفاصيل الموقع
+Website Manager,مدير الموقع
 Weekly Installs,تثبيتات أسبوعية
 Welcome,مرحباً
 Welcome back,مرحبًا بعودتك
@@ -2111,6 +2160,7 @@ You can pay using your PayPal account. Processing may take a few minutes for the
 You can reach your security settings here:,يمكنك الوصول إلى إعدادات الأمان هنا:
 You can try out the {app} app for free by clicking on the button below.,يمكنك تجربة تطبيق {app} مجاناً بالنقر على الزر أدناه.
 You do not have enough credits for your AlbannaTech site usage. Transfer credits or add a card for automatic billing. You can also pay this invoice manually using the link below.,لا يوجد لديك رصيد كافٍ لاستخدام مواقعك على AlbannaTech. قم بتحويل الرصيد أو إضافة بطاقة للفوترة التلقائية. يمكنك أيضاً سداد هذه الفاتورة يدوياً عبر الرابط أدناه.
+You don't have an API key yet. Click the button above to create one.,ليس لديك مفتاح واجهة برمجية بعد. اضغط الزر أعلاه لإنشاء واحد.
 You have an unpaid invoice of {symbol} {amount}. Please clear it before disabling the account.,لديك فاتورة غير مدفوعة بقيمة {symbol} {amount}. يرجى تسويتها قبل تعطيل الحساب.
 You have multiple unpaid invoices. Please pay them from the invoices page,لديك فواتير متعددة غير مدفوعة. يُرجى دفعها من صفحة الفواتير
 You have to be logged in as a <b>System Manager</b> <em>in your site</em> to download the backup.,يجب أن تكون مسجلاً الدخول كـ <b>مدير النظام</b> <em>في موقعك</em> لتنزيل النسخة الاحتياطية.
@@ -2142,6 +2192,7 @@ Your account was disabled successfully,تم تعطيل حسابك بنجاح
 Your account was enabled successfully,تم تفعيل حسابك بنجاح
 Your account will be disabled,سيتم تعطيل حسابك
 Your account will be enabled,سيتم تفعيل حسابك
+Your account will be less secure if you disable 2FA,سيكون حسابك أقل أمانًا إذا عطّلت المصادقة الثنائية
 Your active sites will be suspended immediately and will be deleted after a week.,سيتم تعليق مواقعك النشطة فوراً وسيتم حذفها بعد أسبوع.
 Your app is sent for review to our team. Please wait for the review to be completed.,تم إرسال تطبيقك للمراجعة من قبل فريقنا. يرجى الانتظار حتى تكتمل المراجعة.
 Your card has expired. Please update your payment details to avoid site suspension.,انتهت صلاحية بطاقتك. يرجى تحديث بيانات الدفع لتجنب تعليق الموقع.
@@ -2219,6 +2270,7 @@ rejected,مرفوض
 review steps,خطوات المراجعة
 revoked or deactivated,ملغى أو معطّل
 set by your bank.,الذي حدده بنكك.
+setup key,مفتاح الإعداد
 site,موقع
 sites,مواقع
 so your sites are not interrupted. Add credits or re-add your card to keep your subscription running smoothly.,حتى لا تتأثر مواقعك. أضف رصيداً أو أعد إضافة بطاقتك لاستمرار اشتراكك دون انقطاع.
@@ -2231,6 +2283,7 @@ to,إلى
 to a plan that better fits your needs.,إلى خطة تناسب احتياجاتك بشكل أفضل.
 to add it.,لإضافتها.
 to increase your limit.,لزيادة حدك.
+to manually configure your authenticator app,لإعداد تطبيق المصادقة يدويًا
 to resolve the issue,لحل المشكلة
 to resolve this.,لحل هذه المشكلة.
 to review the failed attempts and find the cause. Once you fix it you can reactivate the webhook from there.,لمراجعة المحاولات الفاشلة وتحديد السبب. بعد حل المشكلة يمكنك تفعيل الخطاف من هناك.

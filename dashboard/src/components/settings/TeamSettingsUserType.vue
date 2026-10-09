@@ -7,7 +7,7 @@
 			<template #prefix>
 				<ClockIcon class="h-3 w-3" />
 			</template>
-			Invite sent
+			{{ t('Invite sent') }}
 		</Badge>
 	</div>
 </template>

@@ -18,17 +18,17 @@
 		<template #body-content>
 			<div class="space-y-4">
 				<div class="space-y-2 leading-relaxed">
-					<div class="font-medium text-lg">Title</div>
+					<div class="font-medium text-lg">{{ t('Title') }}</div>
 					<FormControl
 						v-model="title"
 						type="text"
 						size="sm"
 						variant="subtle"
-						placeholder="Website Manager"
+						:placeholder="t('Website Manager')"
 					/>
 				</div>
 				<div class="space-y-2 leading-relaxed">
-					<div class="font-medium text-lg">Users</div>
+					<div class="font-medium text-lg">{{ t('Users') }}</div>
 					<FormControl
 						type="select"
 						size="sm"
@@ -52,7 +52,7 @@
 					</div>
 				</div>
 				<div class="space-y-2 leading-relaxed">
-					<div class="font-medium text-lg">Resources</div>
+					<div class="font-medium text-lg">{{ t('Resources') }}</div>
 					<FormControl
 						type="select"
 						size="sm"

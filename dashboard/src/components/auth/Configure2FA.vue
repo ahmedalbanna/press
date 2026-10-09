@@ -14,21 +14,21 @@
 			class="space-y-4"
 		>
 			<AlertBanner
-				title="Your account will be less secure if you disable 2FA"
+				:title="t('Your account will be less secure if you disable 2FA')"
 				type="error"
 			/>
 
 			<!-- Steps for user to follow -->
 			<div class="rounded border border-outline-gray-1 bg-surface-gray-1 p-4">
-				<h3 class="text-lg font-semibold">Steps to Disable 2FA</h3>
+				<h3 class="text-lg font-semibold">{{ t('Steps to Disable 2FA') }}</h3>
 				<ol class="mt-2 list-disc pl-2 text-sm">
-					<li>Open the authenticator app</li>
-					<li>Enter the code from the app below</li>
+					<li>{{ t('Open the authenticator app') }}</li>
+					<li>{{ t('Enter the code from the app below') }}</li>
 				</ol>
 			</div>
 
 			<FormControl
-				label="Verify the code from the app to disable 2FA"
+				:label="t('Verify the code from the app to disable 2FA')"
 				v-model="totpCode"
 			/>
 		</div>
@@ -47,46 +47,36 @@
 
 			<!-- Steps for user to follow -->
 			<div class="rounded border border-outline-gray-1 bg-surface-gray-1 p-4">
-				<h3 class="text-lg font-semibold">Steps to Enable 2FA</h3>
+				<h3 class="text-lg font-semibold">{{ t('Steps to Enable 2FA') }}</h3>
 				<ol class="ml-1 mt-2 list-disc pl-2 text-sm text-ink-gray-7">
+					<li
+						v-html="
+							tr(
+								'Download an authenticator app on your phone, such as {ga} or {aegis} or use a browser extension like {onepassword}',
+								{
+									ga: `<a class='underline' target='_blank' href='https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'>${t(
+										'Google Authenticator',
+									)}</a>`,
+									aegis: `<a class='underline' target='_blank' href='https://github.com/beemdevelopment/Aegis'>${t(
+										'Aegis',
+									)}</a>`,
+									onepassword: `<a class='underline' target='_blank' href='https://support.1password.com/one-time-passwords/'>1Password</a>`,
+								},
+							)
+						"
+					></li>
+					<li>{{ t('Scan the QR code') }}</li>
 					<li>
-						Download an authenticator app on your phone, such as
-						<a
-							class="underline"
-							target="_blank"
-							href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"
-						>
-							Google Authenticator</a
-						>
-						or
-						<a
-							target="_blank"
-							class="underline"
-							href="https://github.com/beemdevelopment/Aegis"
-						>
-							Aegis</a
-						>
-						or use a browser extension like
-						<a
-							class="underline"
-							target="_blank"
-							href="https://support.1password.com/one-time-passwords/"
-						>
-							1Password</a
-						>
-					</li>
-					<li>Scan the QR code</li>
-					<li>
-						Unable to scan? You can use the
+						{{ t('Unable to scan? You can use the') }}
 						<span class="cursor-pointer underline" @click="showSetupKey = true">
-							setup key</span
+							{{ t('setup key') }}</span
 						>
-						to manually configure your authenticator app
+						{{ t('to manually configure your authenticator app') }}
 					</li>
-					<li>Enter the code from the authenticator app below</li>
+					<li>{{ t('Enter the code from the authenticator app below') }}</li>
 				</ol>
 				<p class="mt-4 text-sm text-ink-gray-7">
-					<strong>Note:</strong> If you lose access to your authenticator app,
+					<strong>{{ t('Note:') }}</strong> If you lose access to your authenticator app,
 					your account will be locked out. Make sure to backup your vault/key.
 				</p>
 			</div>
@@ -95,14 +85,14 @@
 				v-if="showSetupKey"
 				class="rounded border border-outline-gray-1 bg-surface-gray-1 p-4"
 			>
-				<h3 class="text-lg font-semibold">Setup Key</h3>
+				<h3 class="text-lg font-semibold">{{ t('Setup Key') }}</h3>
 				<p class="mt-2 text-sm">
 					{{ setupKey }}
 				</p>
 			</div>
 
 			<FormControl
-				label="Verify the code from the app to enable 2FA"
+				:label="t('Verify the code from the app to enable 2FA')"
 				v-model="totpCode"
 			/>
 		</div>
@@ -113,7 +103,7 @@
 				v-if="!is2FAEnabled"
 				class="w-full"
 				variant="solid"
-				label="Enable 2FA"
+				:label="t('Enable 2FA')"
 				:disabled="!totpCode"
 				:loading="$resources.enable2FA.loading"
 				@click="enable2FA"
@@ -124,7 +114,7 @@
 				v-else
 				class="w-full"
 				variant="solid"
-				label="Disable 2FA"
+				:label="t('Disable 2FA')"
 				:disabled="!totpCode"
 				:loading="$resources.disable2FA.loading"
 				@click="disable2FA"
@@ -136,6 +126,7 @@
 <script>
 import VueQrcode from 'vue-qrcode';
 import { toast } from 'vue-sonner';
+import { t, tr } from '../../utils/language';
 import AlertBanner from '../AlertBanner.vue';
 
 export default {

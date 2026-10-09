@@ -44,7 +44,7 @@
 			v-else
 			class="text-ink-gray-4 text-sm p-20 rounded flex bg-surface-gray-1 justify-center"
 		>
-		No members to show
+		{{ t('No members to show') }}
 	</div>
 
 	<div>

@@ -59,7 +59,7 @@ export default {
 	},
 	computed: {
 		roleOptions() {
-			let roleItems = [{ label: 'Admin', value: 'Admin' }]
+			let roleItems = [{ label: t('Admin'), value: 'Admin' }]
 			if (this.$resources.roles.data) {
 				for (let role of this.$resources.roles.data) {
 					roleItems.push({ label: role.title, value: role.name })
