@@ -15,7 +15,7 @@
 			>
 				<div class="flex flex-row items-center gap-2 text-ink-gray-7">
 					<Spinner class="w-4" />
-					Loading configuration...
+					{{ t('Loading configuration...') }}
 				</div>
 			</div>
 			<div v-else>
@@ -37,7 +37,7 @@
 						@click="stopReplication"
 						:loading="this.$resources?.stopOnPremReplicationSetup?.loading"
 					>
-						Stop Replication
+						{{ t('Stop Replication') }}
 					</Button>
 				</div>
 				<div class="overflow-hidden rounded-md border border-outline-gray-2 mt-2">
@@ -50,12 +50,12 @@
 								<th
 									class="px-4 py-2 text-left text-sm font-medium text-ink-gray-7 border-b"
 								>
-									App Server
+									{{ t('App Server') }}
 								</th>
 								<th
 									class="px-4 py-2 text-left text-sm font-medium text-ink-gray-7 border-b"
 								>
-									Database Server
+									{{ t('Database Server') }}
 								</th>
 							</tr>
 						</thead>
@@ -242,7 +242,7 @@ command -v docker >/dev/null 2>&1 || curl -fsSL https://get.docker.com | bash
 					class="text-base font-medium text-ink-gray-8 mt-4"
 					v-if="jobs && jobs.length"
 				>
-					Recent Jobs
+					{{ t('Recent Jobs') }}
 				</div>
 				<div>
 					<div

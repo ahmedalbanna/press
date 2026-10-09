@@ -30,7 +30,7 @@
 				<div class="">
 					<FormControl
 						type="checkbox"
-						label="Create an offsite backup"
+						:label="t('Create an offsite backup')"
 						v-model="createOffsiteBackup"
 					/>
 					<span class="block text-xs text-ink-gray-5 ml-[1.4rem]"
@@ -41,20 +41,20 @@
 				<div v-if="app.collect_feedback" class="space-y-4">
 					<FormControl
 						type="checkbox"
-						label="Give feedback"
+						:label="t('Give feedback')"
 						v-model="giveFeedback"
 					/>
 					<FormControl
 						v-if="giveFeedback"
 						type="select"
-						label="Feedback"
+						:label="t('Feedback')"
 						v-model="feedback"
 						:options="feedbackOptions"
 					/>
 					<FormControl
 						v-if="giveFeedback && feedback === 'Other'"
 						type="textarea"
-						label="Specify feedback"
+						:label="t('Specify feedback')"
 						v-model="specifyFeedback"
 					/>
 				</div>

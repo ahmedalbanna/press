@@ -38,12 +38,21 @@ def _imported_helpers(source):
 
 
 def _script_of(source):
-	"""The <script> block of a .vue file, or the whole file for .ts/.js."""
+	"""The <script> block of a .vue file, or the whole file for .ts/.js.
+
+	Template-only .vue files have no <script> block at all; for them the
+	script scope is empty, since their `t()` calls live in the template and
+	resolve through the main.js globals.
+	"""
 	match = re.search(r"<script(?![^>]*setup)[^>]*>(.*?)</script>", source, re.S)
 	if match:
 		return match.group(1)
 	match = re.search(r"<script setup[^>]*>(.*?)</script>", source, re.S)
-	return match.group(1) if match else source
+	if match:
+		return match.group(1)
+	if "<template" in source:
+		return ""
+	return source
 
 
 def _vue_files():

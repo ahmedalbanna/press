@@ -20,7 +20,7 @@
 					:href="docs"
 					target="_blank"
 					rel="noopener"
-					title="Read the docs"
+					:title="t('Read the docs')"
 					aria-label="Read the docs"
 					class="flex items-center text-ink-gray-5 hover:text-ink-gray-8"
 				>

@@ -24,11 +24,11 @@
 				The snapshot will cost <b>{{ snapshotPlanRate }}</b
 				>.
 			</div>
-			<div class="mt-4 text-sm text-ink-gray-7" label="Consistent Snapshot">
+			<div class="mt-4 text-sm text-ink-gray-7" :label="t('Consistent Snapshot')">
 				<Checkbox
 					size="sm"
 					v-model="consistent_snapshot"
-					label="Consistent Snapshot"
+					:label="t('Consistent Snapshot')"
 				/>
 			</div>
 			<ErrorMessage

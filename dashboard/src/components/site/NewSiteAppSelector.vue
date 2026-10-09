@@ -23,7 +23,7 @@
 		</div>
 		<div v-if="!siteOnPublicBench && privateApps">
 			<h2 class="text-sm font-medium leading-6 text-ink-gray-9">
-				Select Private Apps
+				{{ t('Select Private Apps') }}
 			</h2>
 			<div class="mt-2 w-full space-y-2">
 				<ObjectList :options="privateApps" />

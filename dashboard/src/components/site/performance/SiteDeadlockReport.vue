@@ -1,6 +1,6 @@
 <template>
 	<PerformanceReport
-		title="Query Deadlocks"
+		:title="t('Query Deadlocks')"
 		:site="name"
 		:reportOptions="deadlockReportOptions"
 	/>

@@ -4,7 +4,7 @@
 			<template #prefix>
 				<lucide-arrow-left class="inline-block h-4 w-4" />
 			</template>
-			All Auto Scales
+			{{ t('All Auto Scales') }}
 		</Button>
 
 		<div class="mt-3">

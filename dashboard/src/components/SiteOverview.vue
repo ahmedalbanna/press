@@ -359,7 +359,7 @@
 			<Badge
 				variant="outline"
 				size="lg"
-				label="Add Tag"
+				:label="t('Add Tag')"
 				class="cursor-pointer"
 				@click="showAddTagDialog"
 			>

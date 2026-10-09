@@ -11,28 +11,28 @@
 		</div>
 		<div v-if="firewall.doc" class="flex items-center justify-between">
 			<Switch
-				label="Enabled"
+				:label="t('Enabled')"
 				class="border w-60"
 				v-model="firewall.doc.enabled"
 				:disabled="firewall.get.loading"
 			/>
 			<div class="flex justify-center gap-2">
 				<Button
-					label="Discard"
+					:label="t('Discard')"
 					icon-left="trash-2"
 					theme="gray"
 					:disabled="!firewall.isDirty"
 					@click.stop.prevent="() => firewall.reload()"
 				/>
 				<Button
-					label="Save"
+					:label="t('Save')"
 					icon-left="save"
 					theme="green"
 					:disabled="!firewall.isDirty"
 					@click.stop.prevent="() => firewall.save.submit()"
 				/>
 				<Button
-					label="Add Rule"
+					:label="t('Add Rule')"
 					icon-left="plus"
 					variant="solid"
 					@click="openAddDialog = !openAddDialog"

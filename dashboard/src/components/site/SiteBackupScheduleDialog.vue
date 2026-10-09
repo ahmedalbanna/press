@@ -33,7 +33,7 @@
 			<div v-else class="flex flex-col gap-5">
 				<Switch
 					v-model="custom"
-					label="Backup site at custom time"
+					:label="t('Backup site at custom time')"
 					:description="
 						custom
 							? 'Backups run once a day, at the hour below'
@@ -45,7 +45,7 @@
 				<div v-if="custom" class="flex items-center justify-between">
 					<div class="flex flex-col gap-1">
 						<span class="text-base font-medium leading-normal text-ink-gray-8">
-							Backup time
+							{{ t('Backup time') }}
 						</span>
 						<span class="text-p-sm text-ink-gray-7">
 							Starts within this hour ({{ timezone }})

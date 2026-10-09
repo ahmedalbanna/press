@@ -1,10 +1,10 @@
 <template>
 	<div class="flex items-center justify-between gap-1">
 		<div>
-			<h3 class="text-base font-medium">{{ props.actionLabel }}</h3>
+			<h3 class="text-base font-medium">{{ t(props.actionLabel) }}</h3>
 			<p
 				class="mt-1 text-p-base text-ink-gray-6"
-				v-html="props.description"
+				v-html="t(props.description)"
 			></p>
 		</div>
 		<Button
@@ -30,6 +30,7 @@ import { useRoute } from 'vue-router'
 import { toast } from 'vue-sonner'
 import router from '../../router'
 import { confirmDialog, renderDialog } from '../../utils/components'
+import { t, tr } from '../../utils/language'
 import { getToastErrorMessage } from '../../utils/toast'
 import CommunicationInfoDialog from '../CommunicationInfoDialog.vue'
 import CleanupDialog from './CleanupDialog.vue'

@@ -23,15 +23,15 @@
 				<div class="space-y-4 flex flex-col">
 					<FormControl
 						type="text"
-						label="Please type the site name to confirm"
-						placeholder="Site name"
+						:label="t('Please type the site name to confirm')"
+						:placeholder="t('Site name')"
 						v-model="confirmSiteName"
 						required
 					/>
 					<div>
 						<FormControl
 							type="checkbox"
-							label="Create offsite backup before site drop"
+							:label="t('Create offsite backup before site drop')"
 							v-model="createOffsiteBackup"
 						/>
 						<span class="block text-xs text-ink-gray-5 ml-[1.4rem]"
@@ -41,7 +41,7 @@
 					<div>
 						<FormControl
 							type="checkbox"
-							label="Force drop site"
+							:label="t('Force drop site')"
 							v-model="forceDrop"
 						/>
 						<span class="block text-xs text-ink-gray-5 ml-[1.4rem]"

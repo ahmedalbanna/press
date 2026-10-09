@@ -1,6 +1,6 @@
 <template>
 	<PerformanceReport
-		title="Binary Logs"
+		:title="t('Binary Logs')"
 		:site="name"
 		:reportOptions="binaryLogsOptions"
 	/>

@@ -31,7 +31,7 @@
 					<AlertBanner
 						type="error"
 						:showIcon="true"
-						title="Failed to enable monitoring"
+						:title="t('Failed to enable monitoring')"
 					/>
 					<p class="mt-1 text-ink-gray-8 text-base font-medium">Reason -</p>
 					<div

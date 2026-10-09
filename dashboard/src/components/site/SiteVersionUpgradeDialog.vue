@@ -40,12 +40,12 @@
 							<DateTimePicker v-model="targetDateTime" />
 						</div>
 						<FormControl
-							label="Skip failing patches if any"
+							:label="t('Skip failing patches if any')"
 							type="checkbox"
 							v-model="skipFailingPatches"
 						/>
 						<FormControl
-							label="Skip backups"
+							:label="t('Skip backups')"
 							type="checkbox"
 							v-model="skipBackups"
 							class="ml-4"
@@ -81,7 +81,7 @@
 						>
 							<div v-if="appCompatibility.site_custom_apps?.length > 0">
 								<div class="text-sm font-medium text-ink-gray-7 mb-2">
-									Select Branch for Custom Apps
+									{{ t('Select Branch for Custom Apps') }}
 								</div>
 								<div class="text-xs text-ink-gray-6 mb-3">
 									These apps are installed on your site, select a branch
@@ -130,7 +130,7 @@
 													@update:modelValue="
 														updateCustomAppSource(app, 'branch', $event)
 													"
-													placeholder="Select Branch"
+													:placeholder="t('Select Branch')"
 												/>
 											</td>
 										</tr>
@@ -185,7 +185,7 @@
 													@update:modelValue="
 														updateCustomAppSource(app, 'branch', $event)
 													"
-													placeholder="Select Branch"
+													:placeholder="t('Select Branch')"
 												/>
 											</td>
 										</tr>
@@ -195,7 +195,7 @@
 						</div>
 						<FormControl
 							v-if="!existingBenchGroup"
-							label="Bench Title"
+							:label="t('Bench Title')"
 							type="text"
 							v-model="newReleaseGroupTitle"
 							placeholder="e.g., My Team - Version 15"
@@ -209,12 +209,12 @@
 						</div>
 						<div class="mt-4">
 							<FormControl
-								label="Skip failing patches if any"
+								:label="t('Skip failing patches if any')"
 								type="checkbox"
 								v-model="skipFailingPatches"
 							/>
 							<FormControl
-								label="Skip backups"
+								:label="t('Skip backups')"
 								type="checkbox"
 								v-model="skipBackups"
 								class="ml-4"
@@ -248,7 +248,7 @@
 				v-if="$site.doc?.group_public && nextVersion"
 				class="w-full"
 				variant="solid"
-				label="Upgrade"
+				:label="t('Upgrade')"
 				:loading="$resources.versionUpgrade.loading"
 				@click="$resources.versionUpgrade.submit()"
 			/>

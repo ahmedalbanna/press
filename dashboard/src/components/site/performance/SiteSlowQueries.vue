@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<PerformanceReport
-			title="Slow Queries"
+			:title="t('Slow Queries')"
 			:site="name"
 			:reportOptions="slowQueriesOptions"
 		/>

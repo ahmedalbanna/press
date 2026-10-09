@@ -15,7 +15,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/storage-addons"
 			>
-				More Info
+				{{ t('More Info') }}
 			</Button>
 		</AlertBanner>
 		<div class="grid grid-cols-1 items-start gap-5 sm:grid-cols-2">
@@ -57,7 +57,7 @@
 											theme="gray"
 											size="sm"
 											variant="subtle"
-											label="Standby"
+											:label="t('Standby')"
 										/>
 									</div>
 
@@ -73,7 +73,7 @@
 													theme="orange"
 													size="sm"
 													variant="subtle"
-													label="Shared"
+													:label="t('Shared')"
 												/>
 											</Tooltip>
 											<Tooltip v-if="d.isPremium" text="Premium Server">
@@ -114,7 +114,7 @@
 											server != 'App Secondary Server'
 										"
 										@click="showPlanChangeDialog(server)"
-										label="Change"
+										:label="t('Change')"
 									/>
 
 									<Button
@@ -126,7 +126,7 @@
 										"
 										:disabled="startedScaleUp"
 										@click="scaleUp()"
-										label="Scale Up"
+										:label="t('Scale Up')"
 									/>
 
 									<Button
@@ -136,7 +136,7 @@
 										"
 										:disabled="startedScaleDown"
 										@click="scaleDown()"
-										label="Scale Down"
+										:label="t('Scale Down')"
 									/>
 								</div>
 							</div>
@@ -188,7 +188,7 @@
 			<div class="rounded-md border">
 				<div class="h-12 border-b px-5 py-4">
 					<h2 class="text-lg font-medium text-ink-gray-9">
-						Server Information
+						{{ t('Server Information') }}
 					</h2>
 				</div>
 				<div>
@@ -197,7 +197,7 @@
 						:key="d.label"
 						class="flex items-center px-5 py-3 last:pb-5 even:bg-surface-gray-1"
 					>
-						<div class="w-1/3 text-base text-ink-gray-7">{{ d.label }}</div>
+						<div class="w-1/3 text-base text-ink-gray-7">{{ t(d.label) }}</div>
 						<div class="w-2/3 text-base font-medium">{{ d.value }}</div>
 					</div>
 				</div>

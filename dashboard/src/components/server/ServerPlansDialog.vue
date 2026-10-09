@@ -80,7 +80,7 @@
 					class="cursor-pointer"
 					size="sm"
 					v-model="cpu_and_memory_only_resize"
-					label="CPU and Memory only resize"
+					:label="t('CPU and Memory only resize')"
 				/>
 
 				<p class="text-base leading-relaxed" v-if="!cpu_and_memory_only_resize">
@@ -100,7 +100,7 @@
 				v-if="$resources?.serverPlansdata?.loading"
 			>
 				<Spinner class="w-4" />
-				Loading Server Plans...
+				{{ t('Loading Server Plans...') }}
 			</div>
 			<div v-else>
 				<!-- Server Plan Type Selection -->

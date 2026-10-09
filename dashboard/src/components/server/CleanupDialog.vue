@@ -96,7 +96,7 @@
 							@click="onCleanup()"
 							class="w-full rounded"
 						>
-							Start Cleanup
+							{{ t('Start Cleanup') }}
 						</Button>
 					</div>
 				</div>

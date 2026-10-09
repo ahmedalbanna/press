@@ -1,7 +1,7 @@
 <template>
 	<div class="rounded-md border">
 		<div class="flex h-12 items-center justify-between border-b px-5">
-			<h2 class="text-lg font-medium text-ink-gray-9">Load Average</h2>
+			<h2 class="text-lg font-medium text-ink-gray-9">{{ t('Load Average') }}</h2>
 			<div class="flex items-center space-x-2">
 				<Button
 					icon="help-circle"
@@ -12,14 +12,14 @@
 					class="text-base text-ink-gray-6 hover:text-ink-gray-7"
 					:to="{ name: 'Server Detail Analytics', params: { name: server } }"
 				>
-					All analytics →
+					{{ t('All analytics →') }}
 				</router-link>
 			</div>
 		</div>
 		<LineChart
 			class="h-[15.5rem] p-2"
 			type="time"
-			title="Load Average"
+			:title="t('Load Average')"
 			:key="loadAverageData"
 			:chartTheme="[
 				$theme.colors.green[500],

@@ -34,9 +34,9 @@
 						class="w-full"
 						@click="$resources.killDatabaseProcess.submit()"
 						:loading="$resources.killDatabaseProcess.loading"
-						loadingText="Killing Database Process"
+						:loadingText="t('Killing Database Process')"
 					>
-						Kill Database Process
+						{{ t('Kill Database Process') }}
 					</Button>
 				</div>
 			</div>

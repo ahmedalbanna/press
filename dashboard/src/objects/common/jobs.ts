@@ -3,6 +3,7 @@ import { getTeam } from '../../data/team';
 import { icon } from '../../utils/components';
 import { isMobile } from '../../utils/device';
 import { duration } from '../../utils/format';
+import { t } from '../../utils/language';
 import { ColumnField, Tab } from './types';
 
 type JobDocTypes = 'Site' | 'Bench' | 'Server' | 'Release Group';
@@ -11,7 +12,7 @@ export function getJobsTab(doctype: JobDocTypes) {
 	const jobRoute = getJobRoute(doctype);
 
 	return {
-		label: 'Jobs',
+		label: t('Jobs'),
 		icon: icon('truck'),
 		condition: (record) => (doctype === 'Server' && record.doc?.status !== 'Archived') || doctype !== 'Server',
 		childrenRoutes: [jobRoute],
@@ -39,14 +40,14 @@ export function getJobsTab(doctype: JobDocTypes) {
 				return [
 					{
 						type: 'select',
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						class: !isMobile() ? 'w-24' : '',
 						options: ['', 'Pending', 'Running', 'Success', 'Failure']
 					},
 					{
 						type: 'link',
-						label: 'Type',
+						label: t('Type'),
 						fieldname: 'job_type',
 						options: {
 							doctype: 'Agent Job Type',
@@ -58,7 +59,7 @@ export function getJobsTab(doctype: JobDocTypes) {
 			},
 			rowActions: ({ row }) => [
 				{
-					label: 'View in Desk',
+					label: t('View in Desk'),
 					condition: () => getTeam()?.doc?.is_desk_user,
 					onClick() {
 						window.open(
@@ -84,23 +85,23 @@ function getJobRoute(doctype: JobDocTypes) {
 function getJobTabColumns(doctype: JobDocTypes) {
 	const columns: ColumnField[] = [
 		{
-			label: 'Job Type',
+			label: t('Job Type'),
 			fieldname: 'job_type',
 			class: 'font-medium'
 		},
 		{
-			label: 'Status',
+			label: t('Status'),
 			fieldname: 'status',
 			type: 'Badge',
 			width: 0.5
 		},
 		{
-			label: 'Site',
+			label: t('Site'),
 			fieldname: 'site',
 			width: 1.2
 		},
 		{
-			label: 'Duration',
+			label: t('Duration'),
 			fieldname: 'duration',
 			width: 0.35,
 			format: (value, row) => {
@@ -109,7 +110,7 @@ function getJobTabColumns(doctype: JobDocTypes) {
 			}
 		},
 		{
-			label: 'Created By',
+			label: t('Created By'),
 			fieldname: 'owner'
 		},
 		{

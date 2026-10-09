@@ -4,8 +4,8 @@
 			<div class="flex flex-col gap-4">
 				<Switch
 					v-model="enableAutoUpdate"
-					label="Enable Auto Update"
-					description="Automatically schedule site updates whenever available"
+					:label="t('Enable Auto Update')"
+					:description="t('Automatically schedule site updates whenever available')"
 				/>
 
 				<!-- A site that already has auto update on never sees the toast,
@@ -15,7 +15,7 @@
 					class="flex flex-col gap-1"
 				>
 					<span class="text-base font-medium leading-normal text-ink-gray-8">
-						Update window
+						{{ t('Update window') }}
 					</span>
 					<LoadingIndicator
 						v-if="$site.getAutoUpdateWindow.loading"

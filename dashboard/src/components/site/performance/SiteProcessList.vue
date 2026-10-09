@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<PerformanceReport
-			title="Process List"
+			:title="t('Process List')"
 			:site="name"
 			:reportOptions="processListOptions"
 		/>

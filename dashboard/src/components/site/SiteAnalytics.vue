@@ -6,12 +6,12 @@
 		<div class="flex gap-2 w-full overflow-auto">
 			<!-- Start date group -->
 			<label class="text-base text-ink-gray-6 self-center whitespace-nowrap">
-				Absolute <span class="pl-1 text-ink-gray-9">from</span>
+				{{ t('Absolute') }} <span class="pl-1 text-ink-gray-9">{{ t('from') }}</span>
 			</label>
 			<DateTimePicker
 				:modelValue="inputStartDate"
 				variant="subtle"
-				label="Start date"
+				:label="t('Start date')"
 				:disabled="false"
 				format="D MMM YYYY, hh:mm a"
 				class="min-w-fit"
@@ -19,11 +19,11 @@
 			/>
 
 			<!-- End date group -->
-			<label class="text-base self-center">to</label>
+			<label class="text-base self-center">{{ t('to') }}</label>
 			<DateTimePicker
 				:modelValue="inputEndDate"
 				variant="subtle"
-				label="End date"
+				:label="t('End date')"
 				:disabled="false"
 				format="D MMM YYYY, hh:mm a"
 				class="min-w-fit"
@@ -49,7 +49,7 @@
 				<!-- Share button -->
 				<ActionButton
 					variant="subtle"
-					label="Share"
+					:label="t('Share')"
 					class="text-ink-gray-3 hover:text-ink-gray-8 duration-200"
 					@click="(e) => shareDashboard(e, `global`)"
 					:slots="{
@@ -72,12 +72,12 @@
 		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/daily-usage-limit-reached"
-				title="Daily Usage"
+				:title="t('Daily Usage')"
 				@share-card="shareDashboard"
 			>
 				<LineChart
 					type="time"
-					title="Usage Counter"
+					:title="t('Usage Counter')"
 					:key="usageCounterData"
 					:data="usageCounterData"
 					unit="seconds"
@@ -89,7 +89,7 @@
 				/>
 			</AnalyticsCard>
 
-			<AnalyticsCard title="Uptime" @share-card="shareDashboard">
+			<AnalyticsCard :title="t('Uptime')" @share-card="shareDashboard">
 				<SiteUptime
 					:site="name"
 					:timegrain="$resources.analytics?.data?.timegrain"
@@ -102,12 +102,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#site-analytics"
-				title="Requests"
+				:title="t('Requests')"
 				@share-card="shareDashboard"
 			>
 				<LineChart
 					type="time"
-					title="Requests"
+					:title="t('Requests')"
 					:key="requestCountData"
 					:data="requestCountData"
 					unit="requests"
@@ -122,7 +122,7 @@
 						class="text-sm text-ink-gray-7 hover:text-ink-gray-7 flex items-center gap-1"
 						:to="{ name: 'Site Performance Request Logs' }"
 					>
-						Log Report
+						{{ t('Log Report') }}
 						<LucideChevronRight class="size-4" />
 					</router-link>
 				</template>
@@ -130,12 +130,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#site-analytics"
-				title="Requests CPU Usage"
+				:title="t('Requests CPU Usage')"
 				@share-card="shareDashboard"
 			>
 				<LineChart
 					type="time"
-					title="Requests CPU Usage"
+					:title="t('Requests CPU Usage')"
 					:key="requestTimeData"
 					:data="requestTimeData"
 					unit="seconds"
@@ -152,7 +152,7 @@
 			class="!mt-6 flex w-fit cursor-pointer space-x-2"
 			@click="toggleAdvancedAnalytics"
 		>
-			<h2 class="text-lg font-semibold">Advanced Analytics</h2>
+			<h2 class="text-lg font-semibold">{{ t('Advanced Analytics') }}</h2>
 			<FeatherIcon
 				class="h-5 w-5 text-ink-gray-5 hover:text-ink-gray-7"
 				:name="showAdvancedAnalytics ? 'chevron-down' : 'chevron-right'"
@@ -166,12 +166,12 @@
 		>
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#site-analytics"
-				title="Background Jobs"
+				:title="t('Background Jobs')"
 				@share-card="shareDashboard"
 			>
 				<LineChart
 					type="time"
-					title="Background Jobs"
+					:title="t('Background Jobs')"
 					:key="jobCountData"
 					:data="jobCountData"
 					unit="jobs"
@@ -185,12 +185,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#site-analytics"
-				title="Background Jobs CPU Usage"
+				:title="t('Background Jobs CPU Usage')"
 				@share-card="shareDashboard"
 			>
 				<LineChart
 					type="time"
-					title="Background Jobs CPU Usage"
+					:title="t('Background Jobs CPU Usage')"
 					:key="jobTimeData"
 					:data="jobTimeData"
 					unit="seconds"
@@ -205,11 +205,11 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				class="sm:col-span-2"
-				title="Frequent Requests"
+				:title="t('Frequent Requests')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
-					title="Request Count by Path"
+					:title="t('Request Count by Path')"
 					:key="requestCountByPathData"
 					:data="requestCountByPathData"
 					unit="requests"
@@ -224,7 +224,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout#what-does-other-mean-in-chart"
 				class="sm:col-span-2"
-				title="Slowest Requests"
+				:title="t('Slowest Requests')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -242,7 +242,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout#slow-reports"
 				class="sm:col-span-2"
-				title="Query Report Durations"
+				:title="t('Query Report Durations')"
 				v-if="queryReportRunReportsData"
 				@share-card="shareDashboard"
 			>
@@ -266,7 +266,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout"
 				class="sm:col-span-2"
-				title="Run Doc Method Durations"
+				:title="t('Run Doc Method Durations')"
 				v-if="runDocMethodMethodnamesData"
 				@share-card="shareDashboard"
 			>
@@ -290,7 +290,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout"
 				class="sm:col-span-2"
-				title="Save Docs Doctype Durations"
+				:title="t('Save Docs Doctype Durations')"
 				v-if="saveDocsDoctypesData"
 			>
 				<template #action>
@@ -312,7 +312,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout"
 				class="sm:col-span-2"
-				title="Save Docs Action Durations"
+				:title="t('Save Docs Action Durations')"
 				v-if="saveDocsActionData"
 			>
 				<template #action>
@@ -334,7 +334,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout"
 				class="sm:col-span-2"
-				title="Individual Request Time (Average)"
+				:title="t('Individual Request Time (Average)')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -351,7 +351,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				class="sm:col-span-2"
-				title="Requests by IP"
+				:title="t('Requests by IP')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -369,7 +369,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				class="sm:col-span-2"
-				title="Frequent Background Jobs"
+				:title="t('Frequent Background Jobs')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -387,7 +387,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				class="sm:col-span-2"
-				title="Slowest Background Jobs"
+				:title="t('Slowest Background Jobs')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -405,7 +405,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout#slow-reports"
 				class="sm:col-span-2"
-				title="Background Report Durations"
+				:title="t('Background Report Durations')"
 				v-if="generateReportReportsData"
 				@share-card="shareDashboard"
 			>
@@ -429,7 +429,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				class="sm:col-span-2"
-				title="Individual Background Job Time (Average)"
+				:title="t('Individual Background Job Time (Average)')"
 				@share-card="shareDashboard"
 			>
 				<BarChart
@@ -447,7 +447,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
 				class="sm:col-span-2 [&_[aria-label='Copy']]:m-0"
-				title="Frequent Slow Queries"
+				:title="t('Frequent Slow Queries')"
 				@share-card="shareDashboard"
 			>
 				<template #action>
@@ -480,7 +480,7 @@
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
 				class="sm:col-span-2 [&_[aria-label='Copy']]:m-0"
-				title="Top Slow Queries"
+				:title="t('Top Slow Queries')"
 				@share-card="shareDashboard"
 			>
 				<template #action>
@@ -520,6 +520,7 @@ import { toast } from 'vue-sonner'
 import BarChart from '@/components/charts/BarChart.vue'
 import LineChart from '@/components/charts/LineChart.vue'
 import dayjs, { dayjsFloorToMinutes } from '../../utils/dayjs'
+import { t } from '../../utils/language'
 import ActionButton from '../ActionButton.vue'
 import AlertBanner from '../AlertBanner.vue'
 import AnalyticsCard from './AnalyticsCard.vue'
@@ -556,14 +557,14 @@ export default {
 			slowLogsFrequencyType: 'Normalized',
 			allowDrillDown: false,
 			durationOptions: [
-				{ label: 'Duration', value: null, disabled: true },
+				{ label: t('Duration'), value: null, disabled: true },
 				/* Using allowed units for value: https://day.js.org/docs/en/manipulate/add#list-of-all-available-units */
-				{ label: 'Last 1 hour', value: '1h' },
-				{ label: 'Last 6 hours', value: '6h' },
-				{ label: 'Last day', value: '24h' },
-				{ label: 'Last 3 days', value: '3d' },
-				{ label: 'Last 7 days', value: '7d' },
-				{ label: 'Last 15 days', value: '15d' },
+				{ label: t('Last 1 hour'), value: '1h' },
+				{ label: t('Last 6 hours'), value: '6h' },
+				{ label: t('Last day'), value: '24h' },
+				{ label: t('Last 3 days'), value: '3d' },
+				{ label: t('Last 7 days'), value: '7d' },
+				{ label: t('Last 15 days'), value: '15d' },
 			],
 		}
 	},

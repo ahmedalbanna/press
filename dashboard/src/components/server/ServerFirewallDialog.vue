@@ -23,7 +23,7 @@
 			<div class="space-y-4">
 				<FormControl
 					v-model="values.source"
-					label="Source"
+					:label="t('Source')"
 					placeholder="1.2.3.4"
 					type="text"
 					size="sm"
@@ -31,14 +31,14 @@
 				/>
 				<FormControl
 					v-model="values.port"
-					label="Port"
+					:label="t('Port')"
 					type="text"
 					size="sm"
 					variant="subtle"
 				/>
 				<FormControl
 					v-model="values.protocol"
-					label="Protocol"
+					:label="t('Protocol')"
 					type="select"
 					:options="[
 						{
@@ -55,7 +55,7 @@
 				/>
 				<FormControl
 					v-model="values.action"
-					label="Action"
+					:label="t('Action')"
 					type="select"
 					:options="[
 						{

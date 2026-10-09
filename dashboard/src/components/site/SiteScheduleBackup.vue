@@ -34,7 +34,7 @@
 					<FormControl
 						variant="outline"
 						type="checkbox"
-						label="Physical Backup"
+						:label="t('Physical Backup')"
 						v-model="isPhysical"
 					>
 					</FormControl>

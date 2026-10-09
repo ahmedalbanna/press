@@ -3,14 +3,14 @@
 		<div class="flex space-x-2">
 			<FormControl
 				class="w-40"
-				label="Benches"
+				:label="t('Benches')"
 				type="select"
 				:options="releaseGroupOptions"
 				v-model="chosenGroup"
 			/>
 			<FormControl
 				class="w-32"
-				label="Duration"
+				:label="t('Duration')"
 				type="select"
 				:options="
 					durationOptions.map((option) => ({ label: option, value: option }))
@@ -21,11 +21,11 @@
 		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="Memory"
+				:title="t('Memory')"
 			>
 				<LineChart
 					type="time"
-					title="Memory"
+					:title="t('Memory')"
 					:key="memoryData"
 					:data="memoryData"
 					unit="GB"
@@ -57,11 +57,11 @@
 		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="Incoming Network"
+				:title="t('Incoming Network')"
 			>
 				<LineChart
 					type="time"
-					title="Memory"
+					:title="t('Memory')"
 					:key="incomingNetwork"
 					:data="incomingNetwork"
 					unit="bytes"
@@ -74,7 +74,7 @@
 			</AnalyticsCard>
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="Outgoing Network"
+				:title="t('Outgoing Network')"
 			>
 				<LineChart
 					type="time"
@@ -93,11 +93,11 @@
 		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="Read Bytes"
+				:title="t('Read Bytes')"
 			>
 				<LineChart
 					type="time"
-					title="Memory"
+					:title="t('Memory')"
 					:key="readBytesFs"
 					:data="readBytesFs"
 					unit="bytes"
@@ -110,7 +110,7 @@
 			</AnalyticsCard>
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="Write Bytes"
+				:title="t('Write Bytes')"
 			>
 				<LineChart
 					type="time"

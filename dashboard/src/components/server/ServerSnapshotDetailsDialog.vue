@@ -46,12 +46,12 @@
 								<th
 									class="px-4 py-2 text-left text-sm font-medium text-ink-gray-7 border-b"
 								>
-									App Server
+									{{ t('App Server') }}
 								</th>
 								<th
 									class="px-4 py-2 text-left text-sm font-medium text-ink-gray-7 border-b"
 								>
-									Database Server
+									{{ t('Database Server') }}
 								</th>
 							</tr>
 						</thead>

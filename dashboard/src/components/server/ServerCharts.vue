@@ -4,14 +4,14 @@
 			<FormControl
 				v-if="serverOptions.length > 1"
 				class="w-50"
-				label="Server"
+				:label="t('Server')"
 				type="select"
 				:options="serverOptions"
 				v-model="chosenServer"
 			/>
 			<FormControl
 				class="w-36"
-				label="Duration"
+				:label="t('Duration')"
 				type="select"
 				:options="durationOptions"
 				v-model="duration"
@@ -38,10 +38,10 @@
 			</div>
 		</div>
 		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
-			<AnalyticsCard title="Uptime" v-if="isServerType('Database Server')">
+			<AnalyticsCard :title="t('Uptime')" v-if="isServerType('Database Server')">
 				<LineChart
 					type="time"
-					title="Uptime"
+					:title="t('Uptime')"
 					:key="databaseUptimeData"
 					:data="databaseUptimeData"
 					unit="%"
@@ -84,11 +84,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#load-average"
-				title="Load Average"
+				:title="t('Load Average')"
 			>
 				<LineChart
 					type="time"
-					title="Load Average"
+					:title="t('Load Average')"
 					:key="loadAverageData"
 					:data="loadAverageData"
 					:chartTheme="[
@@ -106,11 +106,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#bench-memory-usage"
-				title="Memory"
+				:title="t('Memory')"
 			>
 				<LineChart
 					type="time"
-					title="Memory"
+					:title="t('Memory')"
 					:key="memoryData"
 					:data="memoryData"
 					unit="bytes"
@@ -125,11 +125,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#bench-memory-usage"
-				title="OOM Kills"
+				:title="t('OOM Kills')"
 			>
 				<LineChart
 					type="time"
-					title="OOM Kills"
+					:title="t('OOM Kills')"
 					unit="kills"
 					:key="oomKillsData"
 					:data="oomKillsData"
@@ -144,11 +144,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#server-analytics"
-				title="Disk Space"
+				:title="t('Disk Space')"
 			>
 				<LineChart
 					type="time"
-					title="Disk Space"
+					:title="t('Disk Space')"
 					:key="spaceData"
 					:data="spaceData"
 					unit="%"
@@ -163,11 +163,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#server-analytics"
-				title="Network"
+				:title="t('Network')"
 			>
 				<LineChart
 					type="time"
-					title="Network"
+					:title="t('Network')"
 					:key="networkData"
 					:data="networkData"
 					unit="bytes"
@@ -182,11 +182,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#server-analytics"
-				title="Disk I/O"
+				:title="t('Disk I/O')"
 			>
 				<LineChart
 					type="time"
-					title="Disk I/O"
+					:title="t('Disk I/O')"
 					:key="iopsData"
 					:data="iopsData"
 					unit="IOps"
@@ -203,7 +203,7 @@
 			class="!mt-6 flex w-fit cursor-pointer space-x-2"
 			@click="toggleAdvancedAnalytics"
 		>
-			<h2 class="text-lg font-semibold">Advanced Analytics</h2>
+			<h2 class="text-lg font-semibold">{{ t('Advanced Analytics') }}</h2>
 			<FeatherIcon
 				class="h-5 w-5 text-ink-gray-5 hover:text-ink-gray-7"
 				:name="showAdvancedAnalytics ? 'chevron-down' : 'chevron-right'"
@@ -220,10 +220,10 @@
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				v-if="isServerType('Application Server')"
 				class="sm:col-span-2"
-				title="Request frequency by site"
+				:title="t('Request frequency by site')"
 			>
 				<BarChart
-					title="Request frequency by site"
+					:title="t('Request frequency by site')"
 					:key="requestCountBySiteData"
 					:data="requestCountBySiteData"
 					unit="requests"
@@ -240,10 +240,10 @@
 				docs="https://docs.frappe.io/cloud/site/common-issues/site-slow-504-gateway-timeout"
 				v-if="isServerType('Application Server')"
 				class="sm:col-span-2"
-				title="Slowest request by site"
+				:title="t('Slowest request by site')"
 			>
 				<BarChart
-					title="Slowest request by site"
+					:title="t('Slowest request by site')"
 					:key="requestDurationBySiteData"
 					:data="requestDurationBySiteData"
 					unit="seconds"
@@ -260,10 +260,10 @@
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				v-if="isServerType('Application Server')"
 				class="sm:col-span-2"
-				title="Background job frequency by site"
+				:title="t('Background job frequency by site')"
 			>
 				<BarChart
-					title="Background job frequency by site"
+					:title="t('Background job frequency by site')"
 					:key="backgroundJobCountBySiteData"
 					:data="backgroundJobCountBySiteData"
 					unit="jobs"
@@ -280,10 +280,10 @@
 				docs="https://docs.frappe.io/cloud/sites/monitoring#investigating-high-usage"
 				v-if="isServerType('Application Server')"
 				class="sm:col-span-2"
-				title="Slowest background jobs by site"
+				:title="t('Slowest background jobs by site')"
 			>
 				<BarChart
-					title="Slowest background jobs by site"
+					:title="t('Slowest background jobs by site')"
 					:key="backgroundJobDurationBySiteData"
 					:data="backgroundJobDurationBySiteData"
 					unit="seconds"
@@ -298,12 +298,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
-				title="Queries"
+				:title="t('Queries')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="Queries"
+					:title="t('Queries')"
 					unit="queries"
 					:key="databaseCommandsCountData"
 					:data="databaseCommandsCountData"
@@ -327,12 +327,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
-				title="DB Connections"
+				:title="t('DB Connections')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="DB Connections"
+					:title="t('DB Connections')"
 					:key="databaseConnectionsData"
 					:data="databaseConnectionsData"
 					unit="connections"
@@ -350,12 +350,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
-				title="Average Row Lock Time"
+				:title="t('Average Row Lock Time')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="Average Row Lock Time"
+					:title="t('Average Row Lock Time')"
 					:key="innodbAvgRowLockTimeData"
 					:data="innodbAvgRowLockTimeData"
 					unit="seconds"
@@ -370,12 +370,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#very-high-database-server-memory-usage"
-				title="Buffer Pool Size"
+				:title="t('Buffer Pool Size')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="Buffer Pool Size"
+					:title="t('Buffer Pool Size')"
 					:key="innodbBufferPoolSizeData"
 					:data="innodbBufferPoolSizeData"
 					unit="bytes"
@@ -390,12 +390,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#very-high-database-server-memory-usage"
-				title="Buffer Pool Size of Total Ram"
+				:title="t('Buffer Pool Size of Total Ram')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="Buffer Pool Size of Total Ram"
+					:title="t('Buffer Pool Size of Total Ram')"
 					:key="innodbBufferPoolSizeOfTotalRamData"
 					:data="innodbBufferPoolSizeOfTotalRamData"
 					unit="%"
@@ -421,12 +421,12 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#very-high-database-server-memory-usage"
-				title="Buffer Pool Miss Percent"
+				:title="t('Buffer Pool Miss Percent')"
 				v-if="isServerType('Database Server')"
 			>
 				<LineChart
 					type="time"
-					title="Buffer Pool Miss Percent"
+					:title="t('Buffer Pool Miss Percent')"
 					:key="innodbBufferPoolMissPercentageData"
 					:data="innodbBufferPoolMissPercentageData"
 					unit="%"
@@ -454,10 +454,10 @@
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
 				v-if="isServerType('Database Server')"
 				class="sm:col-span-2"
-				title="Frequent Slow queries"
+				:title="t('Frequent Slow queries')"
 			>
 				<BarChart
-					title="Frequent Slow queries"
+					:title="t('Frequent Slow queries')"
 					:key="slowLogsCountData"
 					:data="slowLogsCountData"
 					unit="queries"
@@ -474,10 +474,10 @@
 				docs="https://docs.frappe.io/cloud/faq/mariadb-slow-queries-in-your-site"
 				v-if="isServerType('Database Server')"
 				class="sm:col-span-2"
-				title="Slowest queries"
+				:title="t('Slowest queries')"
 			>
 				<BarChart
-					title="Slowest queries"
+					:title="t('Slowest queries')"
 					:key="slowLogsDurationData"
 					:data="slowLogsDurationData"
 					unit="seconds"
@@ -499,6 +499,7 @@ import BarChart from '@/components/charts/BarChart.vue'
 import LineChart from '@/components/charts/LineChart.vue'
 import dayjs, { dayjsFloorToMinutes } from '../../utils/dayjs'
 import { duration } from '../../utils/format'
+import { t } from '../../utils/language'
 import AnalyticsCard from '../site/AnalyticsCard.vue'
 
 export default {
@@ -521,14 +522,14 @@ export default {
 			localTimezone: dayjs.tz.guess(),
 			chosenServer: this.$route.query.server ?? this.serverName,
 			durationOptions: [
-				{ label: 'Duration', value: null, disabled: true },
-				{ label: '1 hour', value: '1h' },
-				{ label: '6 hours', value: '6h' },
-				{ label: '24 hours', value: '24h' },
-				{ label: '3 days', value: '3d' },
-				{ label: '7 days', value: '7d' },
-				{ label: '15 days', value: '15d' },
-				{ label: 'Custom', value: 'custom' },
+				{ label: t('Duration'), value: null, disabled: true },
+				{ label: t('1 hour'), value: '1h' },
+				{ label: t('6 hours'), value: '6h' },
+				{ label: t('24 hours'), value: '24h' },
+				{ label: t('3 days'), value: '3d' },
+				{ label: t('7 days'), value: '7d' },
+				{ label: t('15 days'), value: '15d' },
+				{ label: t('Custom'), value: 'custom' },
 			],
 			chartColors: [
 				this.$theme.colors.green[500],

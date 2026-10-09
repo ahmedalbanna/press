@@ -16,9 +16,9 @@
 				</div>
 			</div>
 			<div class="space-y-4">
-				<FormControl label="Site URL" v-model="siteURL" />
-				<FormControl label="Email" v-model="email" />
-				<FormControl label="Password" type="password" v-model="password" />
+				<FormControl :label="t('Site URL')" v-model="siteURL" />
+				<FormControl :label="t('Email')" v-model="email" />
+				<FormControl :label="t('Password')" type="password" v-model="password" />
 				<div class="flex text-base" v-if="$resources.getBackupLinks.data">
 					<GreenCheckIcon class="mr-2 w-4" />
 					Found latest backups from {{ fetchedBackupFileTimestamp }}
@@ -28,7 +28,7 @@
 					@click="$resources.getBackupLinks.submit()"
 					:loading="$resources.getBackupLinks.loading"
 				>
-					Get Backups
+					{{ t('Get Backups') }}
 				</Button>
 			</div>
 			<div class="mt-3">
@@ -48,7 +48,7 @@
 		<template #actions>
 			<Button
 				class="w-full"
-				label="Restore"
+				:label="t('Restore')"
 				variant="solid"
 				theme="red"
 				:loading="$resources.restoreBackup.loading"

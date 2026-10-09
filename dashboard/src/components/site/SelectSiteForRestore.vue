@@ -21,7 +21,7 @@
 	>
 		<template #body-content>
 			<FormControl
-				label="Select the site where you want to restore the backup"
+				:label="t('Select the site where you want to restore the backup')"
 				class="mt-4"
 				type="combobox"
 				:modelValue="selectedSite?.value"
@@ -60,7 +60,7 @@
 						type="checkbox"
 						size="sm"
 						variant="subtle"
-						label="Database"
+						:label="t('Database')"
 						v-if="database_backup_exists"
 						v-model="restoreDatabase"
 					/>
@@ -68,7 +68,7 @@
 						type="checkbox"
 						size="sm"
 						variant="subtle"
-						label="Public Files"
+						:label="t('Public Files')"
 						v-if="public_backup_exists"
 						v-model="restorePublic"
 					/>
@@ -76,7 +76,7 @@
 						type="checkbox"
 						size="sm"
 						variant="subtle"
-						label="Private Files"
+						:label="t('Private Files')"
 						v-if="private_backup_exists"
 						v-model="restorePrivate"
 					/>

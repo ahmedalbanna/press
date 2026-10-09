@@ -24,8 +24,8 @@
 
 				<Switch
 					v-model="enabled"
-					label="Record an audit trail"
-					description="Log every connection and query of this database"
+					:label="t('Record an audit trail')"
+					:description="t('Log every connection and query of this database')"
 					:disabled="isPending"
 				/>
 
@@ -38,7 +38,7 @@
 				<template v-if="enabled">
 					<FormControl
 						v-model="captureMode"
-						label="Capture Mode"
+						:label="t('Capture Mode')"
 						type="select"
 						:options="[
 						{ label: 'Write queries', value: 'write' },
