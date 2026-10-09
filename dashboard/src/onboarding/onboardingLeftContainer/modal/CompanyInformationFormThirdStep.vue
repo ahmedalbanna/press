@@ -3,6 +3,7 @@ import { Button, Checkbox, FileUploader, FormControl, Tooltip } from 'frappe-ui'
 import { computed, ref } from 'vue'
 import type { PartnerOnboardingDoc } from '@/onboarding/usePartnerOnboarding'
 import LucideHelpCircle from '~icons/lucide/help-circle'
+import { t } from '../../../utils/language'
 
 const emit = defineEmits(['continue'])
 const props = defineProps<{
@@ -13,10 +14,10 @@ const submitted = ref(false)
 // ideally this should be multi select.
 // cspell:ignore Odoo
 const partnershipOptions = [
-	{ label: 'SAP', value: 'SAP' },
-	{ label: 'Odoo', value: 'Odoo' },
-	{ label: 'Oracle', value: 'Oracle' },
-	{ label: 'Microsoft', value: 'Microsoft' },
+	{ label: t('SAP'), value: 'SAP' },
+	{ label: t('Odoo'), value: 'Odoo' },
+	{ label: t('Oracle'), value: 'Oracle' },
+	{ label: t('Microsoft'), value: 'Microsoft' },
 ]
 
 const implementationOptions = [
@@ -88,15 +89,15 @@ defineExpose({ tryContinue })
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">Existing Partnerships</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('Existing Partnerships') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.existing_partnerships"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:options="partnershipOptions"
 				/>
 			</div>
@@ -104,16 +105,16 @@ defineExpose({ tryContinue })
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
 					<span class="text-xs text-ink-gray-6"
-						>No. of ERP implementations</span
+						>{{ t('No. of ERP implementations') }}</span
 					>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.erp_implementations_range"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:options="implementationOptions"
 				/>
 			</div>
@@ -123,7 +124,7 @@ defineExpose({ tryContinue })
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
 					<div class="flex items-center gap-1">
-						<span class="text-xs text-ink-gray-6">Company logo</span>
+						<span class="text-xs text-ink-gray-6">{{ t('Company logo') }}</span>
 						<Tooltip :text="companyLogoHelp">
 							<LucideHelpCircle class="size-3 text-ink-gray-5" />
 						</Tooltip>
@@ -160,7 +161,7 @@ defineExpose({ tryContinue })
 					</template>
 				</FileUploader>
 				<p v-if="errors.company_logo" class="text-sm text-ink-red-4">
-					Company logo is required.
+					{{ t('Company logo is required.') }}
 				</p>
 			</div>
 
@@ -168,7 +169,7 @@ defineExpose({ tryContinue })
 				<div class="flex items-center justify-between gap-2">
 					<div class="flex items-center gap-1">
 						<span class="text-xs text-ink-gray-6"
-							>Incorporation certificate</span
+							>{{ t('Incorporation certificate') }}</span
 						>
 						<Tooltip :text="incorporationCertificateHelp">
 							<LucideHelpCircle class="size-3 text-ink-gray-5" />
@@ -209,7 +210,7 @@ defineExpose({ tryContinue })
 					v-if="errors.incorporation_certificate"
 					class="text-sm text-ink-red-4"
 				>
-					Incorporation certificate is required.
+					{{ t('Incorporation certificate is required.') }}
 				</p>
 			</div>
 		</div>
@@ -217,10 +218,10 @@ defineExpose({ tryContinue })
 		<div class="mt-1 flex flex-col gap-3">
 			<Checkbox
 				v-model="props.form.agreed_to_due_diligence"
-				label="I shall abide by the due diligence"
+				:label="t('I shall abide by the due diligence')"
 			/>
 			<p v-if="errors.due_diligence" class="-mt-2 text-sm text-ink-red-4">
-				Due diligence confirmation is required.
+				{{ t('Due diligence confirmation is required.') }}
 			</p>
 
 			<div class="flex items-start gap-2">
@@ -239,7 +240,7 @@ defineExpose({ tryContinue })
 						rel="noopener noreferrer"
 						class="underline"
 					>
-						Partnership agreement
+						{{ t('Partnership agreement') }}
 					</a>
 				</label>
 			</div>
@@ -247,7 +248,7 @@ defineExpose({ tryContinue })
 				v-if="errors.partnership_agreement"
 				class="-mt-2 text-sm text-ink-red-4"
 			>
-				Partnership agreement acceptance is required.
+				{{ t('Partnership agreement acceptance is required.') }}
 			</p>
 		</div>
 	</form>

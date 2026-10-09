@@ -11,14 +11,14 @@
 			>
 				<LoadingIndicator class="w-5 h-5 mr-2" />
 				<span class="text-base text-ink-gray-6"
-					>Checking upgrade compatibility...</span
+					>{{ t('Checking upgrade compatibility...') }}</span
 				>
 			</div>
 
 			<div v-else class="space-y-4">
 				<!-- Upgrade site on public bench -->
 				<p v-if="$site.doc?.group_public && nextVersion" class="text-base">
-					The site <b>{{ $site.doc.host_name }}</b> will be upgraded to
+					{{ t('The site') }} <b>{{ $site.doc.host_name }}</b> will be upgraded to
 					<b>{{ nextVersion }}</b>
 				</p>
 
@@ -28,14 +28,14 @@
 					<div v-if="upgradeStep === 'ready_to_upgrade' && existingBenchGroup">
 						<div class="mb-4 text-base">
 							<p>
-								The site <b>{{ $site.doc.host_name }}</b> will be moved to
+								{{ t('The site') }} <b>{{ $site.doc.host_name }}</b> will be moved to
 								<b>{{ existingBenchGroupTitle }}</b> bench for upgrade to
 								{{ nextVersion }}.
 							</p>
 						</div>
 						<div class="mt-4">
 							<span class="text-xs text-ink-gray-5 mb-2"
-								>Schedule Time in IST</span
+								>{{ t('Schedule Time in IST') }}</span
 							>
 							<DateTimePicker v-model="targetDateTime" />
 						</div>
@@ -140,7 +140,7 @@
 
 							<div v-if="appCompatibility.other_custom_apps_on_rg?.length > 0">
 								<div class="text-sm font-medium text-ink-gray-7 mb-2">
-									Other Custom Apps on Bench Group (Optional)
+									{{ t('Other Custom Apps on Bench Group (Optional)') }}
 								</div>
 								<table class="w-full table-fixed">
 									<tbody>
@@ -203,7 +203,7 @@
 						/>
 						<div class="mt-4">
 							<span class="text-xs text-ink-gray-5 mb-2"
-								>Schedule Time in IST</span
+								>{{ t('Schedule Time in IST') }}</span
 							>
 							<DateTimePicker v-model="targetDateTime" />
 						</div>

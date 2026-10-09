@@ -11,8 +11,8 @@
 						v-if="!app"
 						class="w-full"
 						v-model="applyToApp"
-						label="Select app"
-						placeholder="Select app to patch"
+						:label="t('Select app')"
+						:placeholder="t('Select app to patch')"
 						type="select"
 						variant="outline"
 						:options="$resources.apps.data"
@@ -23,20 +23,20 @@
 						<FormControl
 							v-if="!patch"
 							class="w-full"
-							label="Patch URL"
+							:label="t('Patch URL')"
 							type="data"
 							v-model="patchURL"
 							variant="outline"
-							placeholder="Enter patch URL"
+							:placeholder="t('Enter patch URL')"
 						/>
 						<FormControl
 							v-else
 							class="w-full"
-							label="Patch File Name"
+							:label="t('Patch File Name')"
 							type="data"
 							variant="outline"
 							v-model="patchFileName"
-							placeholder="Set patch file name"
+							:placeholder="t('Set patch file name')"
 						/>
 
 						<!-- File Selector -->
@@ -49,41 +49,41 @@
 						/>
 						<Button
 							@click="$refs.fileSelector.click()"
-							title="Select patch file"
+							:title="t('Select patch file')"
 						>
 							<FeatherIcon name="file-text" class="h-5 w-5 text-ink-gray-6" />
 						</Button>
 
 						<!-- Clear Patch File -->
-						<Button @click="clear" v-if="patch" title="Clear patch file">
+						<Button @click="clear" v-if="patch" :title="t('Clear patch file')">
 							<FeatherIcon name="x" class="h-5 w-5 text-ink-gray-6" />
 						</Button>
 					</div>
 				</div>
 				<ErrorMessage class="-mt-2 w-full" :message="error" />
-				<h3 class="mt-4 text-base font-semibold">Patch Config</h3>
+				<h3 class="mt-4 text-base font-semibold">{{ t('Patch Config') }}</h3>
 				<FormControl
 					v-if="!applyToAllBenches && !applyToLatestDeploy"
 					v-model="applyToBench"
-					label="Select bench"
+					:label="t('Select bench')"
 					type="select"
 					variant="outline"
 					:options="$resources.benches.data"
 				/>
 				<FormControl
 					v-if="!applyToLatestDeploy"
-					label="Apply patch to all active benches"
+					:label="t('Apply patch to all active benches')"
 					type="checkbox"
 					v-model="applyToAllBenches"
 				/>
 				<FormControl
 					v-if="!applyToAllBenches"
-					label="Apply patch to all active benches from the latest deploy"
+					:label="t('Apply patch to all active benches from the latest deploy')"
 					type="checkbox"
 					v-model="applyToLatestDeploy"
 				/>
 				<FormControl
-					label="Build assets after applying patch"
+					:label="t('Build assets after applying patch')"
 					type="checkbox"
 					v-model="buildAssets"
 				/>
@@ -96,7 +96,7 @@
 				@click="applyPatch"
 				:loading="$resources.applyPatch.loading"
 			>
-				Apply Patch
+				{{ t('Apply Patch') }}
 			</Button>
 		</template>
 	</Dialog>

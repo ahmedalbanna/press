@@ -113,9 +113,9 @@ function onClickSave() {
 			<div class="flex flex-col gap-4 text-base">
 				<div class="flex w-full space-x-4">
 					<div class="flex flex-col flex-grow space-y-3">
-						<p class="font-semibold">Enable product warranty</p>
+						<p class="font-semibold">{{ t('Enable product warranty') }}</p>
 						<p class="text-ink-gray-6 leading-normal">
-							Get support for issues with Frappe apps, not functional queries
+							{{ t('Get support for issues with Frappe apps, not functional queries') }}
 						</p>
 					</div>
 					<Switch
@@ -131,13 +131,13 @@ function onClickSave() {
 				<div class="flex flex-col gap-2 w-full">
 					<div class="flex">
 						<p class="flex-grow text-ink-gray-6">
-							Warranty limit for this server
+							{{ t('Warranty limit for this server') }}
 						</p>
 						<p
 							v-if="!site.doc?.dedicated_server_warranty_limit?.total"
 							class="text-ink-gray-4 font-normal"
 						>
-							Not Applicable
+							{{ t('Not Applicable') }}
 						</p>
 						<p
 							v-else-if="site.doc?.dedicated_server_warranty_limit?.available <= 0"
@@ -157,7 +157,7 @@ function onClickSave() {
 						</p>
 					</div>
 					<div v-if="showNextChangeAvailableOn" class="flex">
-						<p class="flex-grow text-ink-gray-6">Next change available after</p>
+						<p class="flex-grow text-ink-gray-6">{{ t('Next change available after') }}</p>
 						<p>{{ nextChangeAvailableOn }}</p>
 					</div>
 				</div>
@@ -172,18 +172,18 @@ function onClickSave() {
 							<template #prefix>
 								<LucideHelpCircle class="size-4" />
 							</template>
-							Learn More
+							{{ t('Learn More') }}
 						</Button>
 					</a>
 
 					<div class="flex gap-3">
-						<Button @click="open = false">Cancel</Button>
+						<Button @click="open = false">{{ t('Cancel') }}</Button>
 						<Button
 							:loading="site.setPlan.loading"
 							:disabled="disablePrimaryAction"
 							variant="solid"
 							@click="onClickSave"
-							>Save changes</Button
+							>{{ t('Save changes') }}</Button
 						>
 					</div>
 				</div>

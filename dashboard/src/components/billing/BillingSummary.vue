@@ -24,7 +24,7 @@
 					<div class="flex gap-2 text-ink-gray-7">
 						<lucide-credit-card class="h-4 w-4" />
 						<div>
-							<span>{{ t('Current billing amount so far is') }} </span>
+							<span>{{ t('Current billing amount so far') }} </span>
 							<span class="font-medium text-ink-gray-9">
 								{{ currency }} {{ currentBillingAmount?.toFixed(2) || '0.00' }}
 							</span>

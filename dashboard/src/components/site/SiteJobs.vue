@@ -6,6 +6,7 @@
 import { isMobile } from '../../utils/device';
 import { duration } from '../../utils/format';
 import ObjectList from '../ObjectList.vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'SiteJobs',
@@ -34,14 +35,14 @@ export default {
 					return [
 						{
 							type: 'select',
-							label: 'Status',
+							label: t('Status'),
 							fieldname: 'status',
 							class: !isMobile() ? 'w-24' : '',
 							options: ['', 'Pending', 'Running', 'Success', 'Failure'],
 						},
 						{
 							type: 'link',
-							label: 'Type',
+							label: t('Type'),
 							fieldname: 'job_type',
 							options: {
 								doctype: 'Agent Job Type',
@@ -53,24 +54,24 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Job Type',
+						label: t('Job Type'),
 						fieldname: 'job_type',
 						class: 'font-medium',
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: 0.5,
 					},
 					{
-						label: 'Site',
+						label: t('Site'),
 						fieldname: 'site',
 						width: 1.2,
 						condition: () => doctype !== 'Site',
 					},
 					{
-						label: 'Duration',
+						label: t('Duration'),
 						fieldname: 'duration',
 						width: 0.35,
 						format(value, row) {
@@ -79,7 +80,7 @@ export default {
 						},
 					},
 					{
-						label: 'Created By',
+						label: t('Created By'),
 						fieldname: 'owner',
 					},
 					{

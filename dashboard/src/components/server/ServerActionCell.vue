@@ -104,14 +104,14 @@ function onCleanupServer() {
 	renderDialog(
 		h(CleanupDialog, {
 			server: server,
-			title: 'Server Cleanup',
+			title: t('Server Cleanup'),
 		}),
 	)
 }
 
 function onTeardownSecondaryServer() {
 	confirmDialog({
-		title: 'Remove Secondary Application Server',
+		title: t('Remove Secondary Application Server'),
 		message: `
 		<p>
 			You're about to <strong>remove your Secondary Application Server</strong> and 
@@ -144,7 +144,7 @@ function onTeardownSecondaryServer() {
 		</div>
 		`,
 		primaryAction: {
-			label: 'Teardown',
+			label: t('Teardown'),
 		},
 		onSuccess({ hide }) {
 			toast.promise(
@@ -172,7 +172,7 @@ function onTeardownSecondaryServer() {
 
 function onSetupSecondaryServer() {
 	confirmDialog({
-		title: 'Setup Secondary Application Server',
+		title: t('Setup Secondary Application Server'),
 		message: `
 		<p>
 			You're about to <strong>provision a Secondary Application Server</strong> for auto-scaling.
@@ -205,7 +205,7 @@ function onSetupSecondaryServer() {
 		</div>
   		`,
 		primaryAction: {
-			label: 'Choose Plan',
+			label: t('Choose Plan'),
 		},
 		onSuccess({ hide, values }) {
 			hide()
@@ -220,16 +220,16 @@ function onSetupSecondaryServer() {
 
 function onRebootServer() {
 	confirmDialog({
-		title: 'Reboot Server',
+		title: t('Reboot Server'),
 		message: `Are you sure you want to reboot the server <b>${server.doc.name}</b>?`,
 		fields: [
 			{
-				label: 'Please type the server name to confirm',
+				label: t('Please type the server name to confirm'),
 				fieldname: 'confirmServerName',
 			},
 		],
 		primaryAction: {
-			label: 'Reboot Server',
+			label: t('Reboot Server'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.reboot.loading) return
@@ -254,15 +254,15 @@ function onRebootServer() {
 
 function onRenameServer() {
 	confirmDialog({
-		title: 'Rename Server',
+		title: t('Rename Server'),
 		fields: [
 			{
-				label: 'Enter new title for the server',
+				label: t('Enter new title for the server'),
 				fieldname: 'title',
 			},
 		],
 		primaryAction: {
-			label: 'Rename',
+			label: t('Rename'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.rename.loading) return
@@ -289,10 +289,10 @@ function onRenameServer() {
 
 function onEnableAutoDiskExpansion() {
 	confirmDialog({
-		title: 'Enable automatic storage disk expansion',
+		title: t('Enable automatic storage disk expansion'),
 		message: `<div class="prose text-base">Enable auto add on storage?</div>`,
 		primaryAction: {
-			label: 'Enable',
+			label: t('Enable'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.toggleAutoIncreaseStorage.loading) return
@@ -317,10 +317,10 @@ function onEnableAutoDiskExpansion() {
 
 function onDisableAutoDiskExpansion() {
 	confirmDialog({
-		title: 'Disable automatic storage disk expansion',
+		title: t('Disable automatic storage disk expansion'),
 		message: `<div class="prose text-base">Disable auto add on storage?<br>This can effect server uptime <a href="https://docs.frappe.io/cloud/storage-addons">Know more</a></br></div>`,
 		primaryAction: {
-			label: 'Disable',
+			label: t('Disable'),
 			theme: 'red',
 		},
 		onSuccess({ hide, values }) {
@@ -351,7 +351,7 @@ function onDropServer() {
 	})
 
 	confirmDialog({
-		title: 'Drop Server',
+		title: t('Drop Server'),
 		message: server.doc.is_unified_server
 			? `<div class="prose text-base">Are you sure you want to drop your unified server?<br><br>The following server will be dropped<ul><li>${server.doc.title} (<b>${server.doc.name}</b>)</li></ul><br>This action cannot be undone.</div>`
 			: `<div class="prose text-base">Are you sure you want to drop your servers?<br><br>Following servers will be dropped<ul><li>${server.doc.title} (<b>${server.doc.name}</b>)</li><li>${databaseServer.doc.title} (<b>${server.doc.database_server}</b>)</li></ul><br>This action cannot be undone.</div>`,
@@ -362,7 +362,7 @@ function onDropServer() {
 			},
 		],
 		primaryAction: {
-			label: 'Drop Server',
+			label: t('Drop Server'),
 			theme: 'red',
 		},
 		onSuccess({ hide, values }) {
@@ -393,10 +393,10 @@ function onDropServer() {
 function onEnableBinlogIndexing() {
 	if (!server.enableBinlogIndexing) return
 	confirmDialog({
-		title: 'Enable Binlog Indexing',
+		title: t('Enable Binlog Indexing'),
 		message: `Are you sure you want to enable the Binlog Indexing on the database server <b>${server.doc.name}</b> ?<br><br><b>Note:</b> Binlog indexes will consume additional disk space (10% of total binlog size). It can take upto 1 day to index existing binlogs depending on the size of binlogs.`,
 		primaryAction: {
-			label: 'Enable Binlog Indexing',
+			label: t('Enable Binlog Indexing'),
 		},
 		onSuccess({ hide }) {
 			if (server.enableBinlogIndexing.loading) return
@@ -419,10 +419,10 @@ function onEnableBinlogIndexing() {
 function onDisableBinlogIndexing() {
 	if (!server.disableBinlogIndexing) return
 	confirmDialog({
-		title: 'Disable Binlog Indexing',
+		title: t('Disable Binlog Indexing'),
 		message: `Are you sure you want to disable the Binlog Indexing on the database server <b>${server.doc.name}</b> ?<br><br><b>Note:</b> Disabling binlog indexing will remove all existing binlog indexes from the server.`,
 		primaryAction: {
-			label: 'Disable Binlog Indexing',
+			label: t('Disable Binlog Indexing'),
 		},
 		onSuccess({ hide }) {
 			if (server.disableBinlogIndexing.loading) return
@@ -445,16 +445,16 @@ function onDisableBinlogIndexing() {
 function onEnablePerformanceSchema() {
 	if (!server.enablePerformanceSchema) return
 	confirmDialog({
-		title: 'Enable Performance Schema',
+		title: t('Enable Performance Schema'),
 		message: `Are you sure you want to enable the Performance Schema on the database server <b>${server.doc.name}</b> ?<br><br><b>Note:</b> Your database server will be restarted to apply the changes. Your sites will face few minutes of downtime.`,
 		fields: [
 			{
-				label: 'Please type the server name to confirm',
+				label: t('Please type the server name to confirm'),
 				fieldname: 'confirmServerName',
 			},
 		],
 		primaryAction: {
-			label: 'Enable Performance Schema',
+			label: t('Enable Performance Schema'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.enablePerformanceSchema.loading) return
@@ -480,16 +480,16 @@ function onEnablePerformanceSchema() {
 function onDisablePerformanceSchema() {
 	if (!server.disablePerformanceSchema) return
 	confirmDialog({
-		title: 'Disable Performance Schema',
+		title: t('Disable Performance Schema'),
 		message: `Are you sure you want to disable the Performance Schema on the database server <b>${server.doc.name}</b> ?<br><br><b>Note:</b> Your database server will be restarted to apply the changes. Your sites will face few minutes of downtime.`,
 		fields: [
 			{
-				label: 'Please type the server name to confirm',
+				label: t('Please type the server name to confirm'),
 				fieldname: 'confirmServerName',
 			},
 		],
 		primaryAction: {
-			label: 'Disable Performance Schema',
+			label: t('Disable Performance Schema'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.disablePerformanceSchema.loading) return
@@ -515,18 +515,18 @@ function onDisablePerformanceSchema() {
 function onUpdateInnodbBufferPoolSize() {
 	if (!server.updateInnodbBufferPoolSize) return
 	confirmDialog({
-		title: 'Update InnoDB Buffer Pool Size',
+		title: t('Update InnoDB Buffer Pool Size'),
 		message: `Are you sure you want to change the InnoDB Buffer Pool Size of the database server <b>${server.doc.name}</b> ? <br><br> Recommended Buffer Pool Size is <b>${server.doc.mariadb_variables_recommended_values.innodb_buffer_pool_size} MB</b>`,
 		fields: [
 			{
-				label: 'Enter the new InnoDB Buffer Pool Size (MB)',
+				label: t('Enter the new InnoDB Buffer Pool Size (MB)'),
 				fieldname: 'innodbBufferPoolSize',
 				type: 'number',
 				default: server.doc.mariadb_variables.innodb_buffer_pool_size,
 			},
 		],
 		primaryAction: {
-			label: 'Update InnoDB Buffer Pool Size',
+			label: t('Update InnoDB Buffer Pool Size'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.updateInnodbBufferPoolSize.loading) return
@@ -559,18 +559,18 @@ function onUpdateInnodbBufferPoolSize() {
 function onPurgeBinlogsForcefully() {
 	if (!server.purgeBinlogsForcefully) return
 	confirmDialog({
-		title: 'Forcefully Purge Binlogs',
+		title: t('Forcefully Purge Binlogs'),
 		message: `Are you sure you want to forcefully purge binlogs on the database server <b>${server.doc.name}</b>?<br><br>This action will reboot the database as well.`,
 		fields: [
 			{
-				label: 'Enter no of binlogs to delete',
+				label: t('Enter no of binlogs to delete'),
 				fieldname: 'binlogsToDelete',
 				type: 'number',
 				default: 5,
 			},
 		],
 		primaryAction: {
-			label: 'Purge Binlogs',
+			label: t('Purge Binlogs'),
 			theme: 'red',
 		},
 		onSuccess({ hide, values }) {
@@ -599,18 +599,18 @@ function onPurgeBinlogsForcefully() {
 function onUpdateBinlogRetention() {
 	if (!server.updateBinlogRetention) return
 	confirmDialog({
-		title: 'Update Binlog Retention',
+		title: t('Update Binlog Retention'),
 		message: `Are you sure you want to change the Binlog Retention of the database server <b>${server.doc.name}</b> ? <br><br> Recommended Binlog Retention is <b>${server.doc.mariadb_variables_recommended_values.expire_logs_days} days</b>`,
 		fields: [
 			{
-				label: 'Enter the new Binlog Retention (days)',
+				label: t('Enter the new Binlog Retention (days)'),
 				fieldname: 'days',
 				type: 'number',
 				default: server.doc.mariadb_variables.expire_logs_days,
 			},
 		],
 		primaryAction: {
-			label: 'Update Binlog Retention',
+			label: t('Update Binlog Retention'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.updateBinlogRetention.loading) return
@@ -643,17 +643,17 @@ function onUpdateBinlogRetention() {
 function onUpdateBinlogSizeLimit() {
 	if (!server.updateBinlogSizeLimit) return
 	confirmDialog({
-		title: 'Update Binlog Size Limit',
+		title: t('Update Binlog Size Limit'),
 		message: `You can limit the amount of space that binlog can use at max. If the size exceeds the limit, the oldest binlog files will be deleted automatically.`,
 		fields: [
 			{
-				label: 'Enable Binlog Auto Purging',
+				label: t('Enable Binlog Auto Purging'),
 				fieldname: 'enabled',
 				type: 'checkbox',
 				default: server.doc.auto_purge_binlog_based_on_size,
 			},
 			{
-				label: 'Percent of disk space can be used by binlog (10-90)',
+				label: t('Percent of disk space can be used by binlog (10-90)'),
 				fieldname: 'size',
 				type: 'number',
 				default: server.doc.binlog_max_disk_usage_percent,
@@ -661,7 +661,7 @@ function onUpdateBinlogSizeLimit() {
 			},
 		],
 		primaryAction: {
-			label: 'Update Binlog Size Limit',
+			label: t('Update Binlog Size Limit'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.updateBinlogSizeLimit.loading) return
@@ -730,18 +730,18 @@ function onManageOnPremFailover() {
 function onUpdateMaxDBConnections() {
 	if (!server.updateMaxDbConnections) return
 	confirmDialog({
-		title: 'Update Max DB Connections',
+		title: t('Update Max DB Connections'),
 		message: `Are you sure you want to change the Max DB Connections of the database server <b>${server.doc.name}</b> ?<br><br> Recommended Max DB Connections is <b>${server.doc.mariadb_variables_recommended_values.max_connections}</b>`,
 		fields: [
 			{
-				label: 'Enter the new Max DB Connections',
+				label: t('Enter the new Max DB Connections'),
 				fieldname: 'maxDBConnections',
 				type: 'number',
 				default: server.doc.mariadb_variables.max_connections,
 			},
 		],
 		primaryAction: {
-			label: 'Update Max DB Connections',
+			label: t('Update Max DB Connections'),
 		},
 		onSuccess({ hide, values }) {
 			if (server.updateMaxDbConnections.loading) return

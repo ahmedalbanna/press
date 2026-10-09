@@ -28,7 +28,7 @@
 							<template #prefix>
 								<lucide-sparkle class="h-4 w-4" />
 							</template>
-							View in Log Browser
+							{{ t('View in Log Browser') }}
 						</Button>
 					</div>
 				</div>
@@ -54,6 +54,7 @@ import LucideSparkleIcon from '~icons/lucide/sparkle'
 import router from '../../router'
 import { date } from '../../utils/format'
 import ObjectList from '../ObjectList.vue'
+import { t } from '../../utils/language'
 
 const props = defineProps({
 	bench: String,
@@ -124,11 +125,11 @@ const listOptions = ref({
 	},
 	columns: [
 		{
-			label: 'Name',
+			label: t('Name'),
 			fieldname: 'name',
 		},
 		{
-			label: 'Size',
+			label: t('Size'),
 			fieldname: 'size',
 			class: 'text-ink-gray-6',
 			format(value) {
@@ -136,7 +137,7 @@ const listOptions = ref({
 			},
 		},
 		{
-			label: 'Created On',
+			label: t('Created On'),
 			fieldname: 'created',
 			format(value) {
 				return value ? date(value, 'lll') : ''
@@ -148,7 +149,7 @@ const listOptions = ref({
 			slots: {
 				prefix: () => h(LucideSparkleIcon, { class: 'h-4 w-4' }),
 			},
-			label: 'View in Log Browser',
+			label: t('View in Log Browser'),
 			onClick: () => {
 				show.value = false
 				router.push({

@@ -21,13 +21,13 @@
 				<div
 					class="py-3 px-4 font-medium text-green-800 bg-green-50 rounded border border-green-200"
 				>
-					<p>You have access to this resource via access request.</p>
+					<p>{{ t('You have access to this resource via access request.') }}</p>
 				</div>
 				<div class="space-y-2">
-					<p><span class="font-medium">Type:</span> {{ props.doctype }}</p>
-					<p><span class="font-medium">Resource:</span> {{ props.docname }}</p>
+					<p><span class="font-medium">{{ t('Type:') }}</span> {{ props.doctype }}</p>
+					<p><span class="font-medium">{{ t('Resource:') }}</span> {{ props.docname }}</p>
 					<p>
-						<span class="font-medium">Expiry:</span>
+						<span class="font-medium">{{ t('Expiry:') }}</span>
 						<Tooltip :text="dayjsLocal(status.data?.until).format('LLLL')">
 							<span>{{ dayjsLocal(status.data?.until).fromNow() }}</span>
 						</Tooltip>
@@ -35,9 +35,9 @@
 				</div>
 				<div class="rounded-sm border divide-y">
 					<div class="grid grid-cols-5 font-medium bg-surface-gray-1 divide-x">
-						<div class="col-span-2 py-2 px-3">Permission</div>
-						<div class="col-span-1 py-2 px-3">Granted</div>
-						<div class="col-span-2 py-2 px-3">Expiry</div>
+						<div class="col-span-2 py-2 px-3">{{ t('Permission') }}</div>
+						<div class="col-span-1 py-2 px-3">{{ t('Granted') }}</div>
+						<div class="col-span-2 py-2 px-3">{{ t('Expiry') }}</div>
 					</div>
 					<div
 						v-for="permission in status.data?.permissions"

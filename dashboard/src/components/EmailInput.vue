@@ -2,6 +2,7 @@
 import { FormControl } from 'frappe-ui'
 import { computed } from 'vue'
 import LucideMail from '~icons/lucide/mail'
+import { t } from '../utils/language'
 
 defineOptions({ inheritAttrs: false })
 
@@ -17,7 +18,7 @@ const props = withDefaults(
 		showIcon?: boolean
 	}>(),
 	{
-		label: 'Email',
+		label: t('Email'),
 		placeholder: 'name@example.com',
 		showError: false,
 		requiredMessage: 'Email is required.',

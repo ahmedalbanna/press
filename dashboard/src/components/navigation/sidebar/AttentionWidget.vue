@@ -35,7 +35,7 @@ const openBlog = () => {
 			<LucidePackageOpen class="size-4 shrink-0" />
 
 			<div class="leading-relaxed -mt-1 mb-3">
-				<span class="text-ink-gray-9 font-medium">What's new</span>
+				<span class="text-ink-gray-9 font-medium">{{ t('What\'s new') }}</span>
 				<p class="text-ink-gray-6 text-p-sm">{{ latestBlog.data.title }}</p>
 			</div>
 
@@ -45,7 +45,7 @@ const openBlog = () => {
 		</div>
 
 		<Button @click="openBlog">
-			Check out
+			{{ t('Check out') }}
 			<template #suffix>
 				<LucideArrowRight class="size-4" />
 			</template>

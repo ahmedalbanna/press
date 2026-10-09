@@ -18,6 +18,7 @@
 import AlertBanner from '../../AlertBanner.vue';
 import PerformanceReport from './PerformanceReport.vue';
 import SiteSlowQueryDialog from './SiteSlowQueryDialog.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	props: ['name', 'siteVersion'],
@@ -47,13 +48,13 @@ export default {
 				emptyStateMessage: 'No slow queries found',
 				columns: [
 					{
-						label: 'Query',
+						label: t('Query'),
 						fieldname: 'query',
 						class: 'font-mono',
 						width: '600px',
 					},
 					{
-						label: 'Duration',
+						label: t('Duration'),
 						fieldname: 'duration',
 						class: 'text-ink-gray-6',
 						width: 0.3,
@@ -61,21 +62,21 @@ export default {
 						format: (value) => value.toFixed(2),
 					},
 					{
-						label: 'Rows Examined',
+						label: t('Rows Examined'),
 						fieldname: 'rows_examined',
 						class: 'text-ink-gray-6',
 						align: 'right',
 						width: 0.3,
 					},
 					{
-						label: 'Rows Sent',
+						label: t('Rows Sent'),
 						fieldname: 'rows_sent',
 						class: 'text-ink-gray-6',
 						align: 'right',
 						width: 0.3,
 					},
 					{
-						label: 'Count',
+						label: t('Count'),
 						fieldname: 'count',
 						class: 'text-ink-gray-6',
 						align: 'right',
@@ -84,7 +85,7 @@ export default {
 				],
 				actions: () => [
 					{
-						label: 'Refresh',
+						label: t('Refresh'),
 						icon: 'refresh-ccw',
 						loading: this.$resources.slowQueries.loading,
 						onClick: () => this.$resources.slowQueries.reload(),

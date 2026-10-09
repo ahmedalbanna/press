@@ -4,6 +4,7 @@ import { computed, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import { showOnboardingToast } from '@/onboarding/toast'
 import { usePartnerOnboarding } from '@/onboarding/usePartnerOnboarding'
+import { t } from '../../utils/language'
 
 type TeamResource = {
 	reload?: () => Promise<void>
@@ -23,10 +24,10 @@ const confirmMessage = computed(() => {
 })
 
 const dialogOptions = computed(() => ({
-	title: 'Unregister partnership?',
+	title: t('Unregister partnership?'),
 	actions: [
 		{
-			label: 'Unregister',
+			label: t('Unregister'),
 			theme: 'red',
 			variant: 'solid' as const,
 			loading: unregistering.value,

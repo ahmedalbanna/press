@@ -53,11 +53,11 @@
 		<div v-else-if="isTree && data.name">
 			<Tree nodeKey="name" :node="data" ref="tree" />
 			<div class="prose prose-sm my-4 p-2">
-				<b>Additional Disk Usage:</b> {{ data.additionalUsage }}
+				<b>{{ t('Additional Disk Usage:') }}</b> {{ data.additionalUsage }}
 			</div>
 
 			<div class="prose-sm my-4 rounded border bg-surface-gray-1 p-2">
-				The <b>Additional Disk Usage</b> value represents disk space consumed by
+				{{ t('The') }}<b>{{ t('Additional Disk Usage') }}</b> value represents disk space consumed by
 				files and folders that are not included in the main bench size
 				calculation. These typically include:
 				<ul>

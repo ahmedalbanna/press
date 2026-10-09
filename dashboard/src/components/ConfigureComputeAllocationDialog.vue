@@ -62,7 +62,7 @@ async function onClickSave() {
 			<div class="flex flex-col gap-7 text-base">
 				<div class="flex w-full space-x-4">
 					<div class="flex flex-col flex-grow space-y-3">
-						<p class="font-semibold">Enable higher compute allocation</p>
+						<p class="font-semibold">{{ t('Enable higher compute allocation') }}</p>
 						<p class="text-ink-gray-6 leading-normal">
 							Maximize computing power for this site, or share resources equally
 							with sites on this server.
@@ -81,18 +81,18 @@ async function onClickSave() {
 							<template #prefix>
 								<LucideHelpCircle class="size-4" />
 							</template>
-							Learn More
+							{{ t('Learn More') }}
 						</Button>
 					</a>
 
 					<div class="flex gap-3">
-						<Button @click="open = false">Cancel</Button>
+						<Button @click="open = false">{{ t('Cancel') }}</Button>
 						<Button
 							:loading="site.setPlan.loading"
 							:disabled="switchValue === isHighPerformanceEnabled"
 							variant="solid"
 							@click="onClickSave"
-							>Save changes</Button
+							>{{ t('Save changes') }}</Button
 						>
 					</div>
 				</div>

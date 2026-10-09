@@ -7,12 +7,12 @@
 				<thead class="bg-surface-gray-2">
 					<tr class="text-ink-gray-6">
 						<th class="rounded-l p-2 text-left font-normal">App</th>
-						<th class="rounded-l p-2 text-left font-normal">Site</th>
-						<th class="whitespace-nowrap p-2 text-right font-normal">Rate</th>
-						<th class="whitespace-nowrap p-2 text-right font-normal">Total</th>
+						<th class="rounded-l p-2 text-left font-normal">{{ t('Site') }}</th>
+						<th class="whitespace-nowrap p-2 text-right font-normal">{{ t('Rate') }}</th>
+						<th class="whitespace-nowrap p-2 text-right font-normal">{{ t('Total') }}</th>
 						<th class="rounded-r p-2 text-right font-normal">Fee</th>
-						<th class="rounded-r p-2 text-right font-normal">Commission</th>
-						<th class="rounded-r p-2 text-right font-normal">Net Amount</th>
+						<th class="rounded-r p-2 text-right font-normal">{{ t('Commission') }}</th>
+						<th class="rounded-r p-2 text-right font-normal">{{ t('Net Amount') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +50,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td class="pb-2 pr-2 pt-4 text-right font-medium">Total Payout</td>
+						<td class="pb-2 pr-2 pt-4 text-right font-medium">{{ t('Total Payout') }}</td>
 						<td class="whitespace-nowrap pb-2 pr-2 pt-4 text-right font-medium">
 							{{ formatCurrency(doc.net_total_usd, 'USD') }} +
 							{{ formatCurrency(doc.net_total_inr, 'INR') }}
@@ -60,7 +60,7 @@
 			</table>
 		</div>
 		<div class="py-20 text-center" v-if="$resources.invoice.loading">
-			<Button :loading="true">Loading</Button>
+			<Button :loading="true">{{ t('Loading') }}</Button>
 		</div>
 	</div>
 </template>

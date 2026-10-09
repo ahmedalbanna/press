@@ -51,7 +51,7 @@
 
 					<FormControl
 						v-model.number="retentionDays"
-						label="Retention (days)"
+						:label="t('Retention (days)')"
 						type="number"
 						min="1"
 						size="sm"
@@ -65,7 +65,7 @@
 					</p>
 
 					<p v-if="price" class="text-ink-gray-6 text-p-sm">
-						Stored logs are billed at
+						{{ t('Stored logs are billed at') }}
 						<span class="font-medium text-ink-gray-8">{{ price }}</span>
 						per GB per month, charged daily, and deleted once they pass the
 						retention period.

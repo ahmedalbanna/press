@@ -11,7 +11,7 @@
 				v-if="$resources.binlogs.loading"
 				class="flex w-full items-center justify-center gap-2 py-32 text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Loading
+				<Spinner class="w-4" /> {{ t('Loading') }}
 			</div>
 			<div v-else>
 				<ObjectList
@@ -35,7 +35,7 @@
 								100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</option>
 						</select>
-						<p class="text-sm text-ink-gray-6">Per Page</p>
+						<p class="text-sm text-ink-gray-6">{{ t('Per Page') }}</p>
 					</div>
 					<div class="flex flex-shrink-0 items-center gap-2">
 						<p class="tnum text-sm text-ink-gray-6">
@@ -48,7 +48,7 @@
 								:disabled="!hasPreviousPage"
 								iconLeft="arrow-left"
 							>
-								Prev
+								{{ t('Prev') }}
 							</Button>
 							<Button
 								variant="ghost"
@@ -56,7 +56,7 @@
 								:disabled="!hasNextPage"
 								iconRight="arrow-right"
 							>
-								Next
+								{{ t('Next') }}
 							</Button>
 						</div>
 					</div>
@@ -78,6 +78,7 @@ import { confirmDialog } from '../../utils/components';
 import { bytes, date } from '../../utils/format';
 import ObjectList from '../ObjectList.vue';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'DatabaseBinlogsDialog',
@@ -179,11 +180,11 @@ export default {
 				data: () => this.paginatedBinlogs,
 				columns: [
 					{
-						label: 'Name',
+						label: t('Name'),
 						fieldname: 'name',
 					},
 					{
-						label: 'Size',
+						label: t('Size'),
 						fieldname: 'size',
 						class: 'text-ink-gray-6',
 						format(value) {
@@ -191,7 +192,7 @@ export default {
 						},
 					},
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'modified_at',
 						align: 'right',
 						format(value) {
@@ -202,7 +203,7 @@ export default {
 				showTooltip: false,
 				selectable: true,
 				emptyState: {
-					title: 'No binlogs found',
+					title: t('No binlogs found'),
 					description: 'Your database server has no binlogs',
 				},
 				actions: () => [
@@ -210,15 +211,15 @@ export default {
 						iconLeft: 'trash-2',
 						theme: 'red',
 						variant: 'solid',
-						label: 'Remove Binlogs',
+						label: t('Remove Binlogs'),
 						disabled: !this.purgeFrom,
 						onClick: () => {
 							this.closeDialog();
 							confirmDialog({
-								title: 'Remove Binlogs',
+								title: t('Remove Binlogs'),
 								message: `Are you sure you want to remove binlogs from <b>${this.purgeFrom} (${this.purgeFromDate})</b> and all older ones?\nThis action cannot be undone.`,
 								primaryAction: {
-									label: 'Confirm & Remove',
+									label: t('Confirm & Remove'),
 									variant: 'solid',
 									theme: 'red',
 									onClick: ({ hide }) => {
@@ -244,7 +245,7 @@ export default {
 						},
 					},
 					{
-						label: 'Refresh',
+						label: t('Refresh'),
 						icon: 'refresh-ccw',
 						loading: this.$resources.binlogs.loading,
 						onClick: () => this.$resources.binlogs.reload(),

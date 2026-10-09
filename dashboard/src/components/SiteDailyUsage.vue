@@ -10,7 +10,7 @@
 			</router-link>
 		</div>
 		<LineChart
-			title="Daily Usage"
+			:title="t('Daily Usage')"
 			type="time"
 			:key="dailyUsageData"
 			:data="dailyUsageData"

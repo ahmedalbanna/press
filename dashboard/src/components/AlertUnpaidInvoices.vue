@@ -1,7 +1,7 @@
 <template>
 	<AlertBanner :title="outstandingBalanceMessage" type="warning">
 		<Button class="ml-auto" route="/billing" variant="outline">
-			Pay Now
+			{{ t('Pay Now') }}
 		</Button>
 	</AlertBanner>
 </template>

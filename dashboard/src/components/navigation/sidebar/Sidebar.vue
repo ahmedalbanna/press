@@ -155,7 +155,7 @@ const helpDropdownOptions = computed(() => [
 							:class="collapsedCss"
 						>
 						<div class="text-base font-medium hidden md:flex text-ink-gray-1">
-							AlbannaTech
+							{{ t('AlbannaTech') }}
 						</div>
 
 						<div class="text-sm text-left text-ink-gray-6 truncate">

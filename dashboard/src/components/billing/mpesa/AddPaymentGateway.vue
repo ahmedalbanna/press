@@ -55,7 +55,7 @@
 					v-model="paymentGatewayDetails.print_format"
 					name="print_format"
 					type="text"
-					placeholder="Default"
+					:placeholder="t('Default')"
 				/>
 			</div>
 

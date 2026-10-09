@@ -9,7 +9,7 @@
 				@click="showAddCardDialog = true"
 				variant="outline"
 			>
-				Update Card
+				{{ t('Update Card') }}
 			</Button>
 		</AlertBanner>
 		<StripeCardDialog

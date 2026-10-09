@@ -9,7 +9,7 @@
 				class="flex justify-center items-center gap-2 py-32 w-full text-ink-gray-7"
 			>
 				<Spinner class="w-4" />
-				Loading
+				{{ t('Loading') }}
 			</div>
 			<div v-else>
 				<div class="flex justify-end pb-2">
@@ -18,7 +18,7 @@
 						:loading="$resources.auditLogs.loading"
 						@click="$resources.auditLogs.reload()"
 					>
-						Refresh
+						{{ t('Refresh') }}
 					</Button>
 				</div>
 				<GenericList :options="auditLogsOptions" />
@@ -33,7 +33,7 @@
 						:disabled="page === 1"
 						iconLeft="arrow-left"
 					>
-						Prev
+						{{ t('Prev') }}
 					</Button>
 					<Button
 						variant="ghost"
@@ -41,7 +41,7 @@
 						:disabled="!hasNextPage"
 						iconRight="arrow-right"
 					>
-						Next
+						{{ t('Next') }}
 					</Button>
 				</div>
 			</div>
@@ -53,6 +53,7 @@ import { toast } from 'vue-sonner'
 import { bytes, date } from '../../utils/format'
 import { getToastErrorMessage } from '../../utils/toast'
 import GenericList from '../GenericList.vue'
+import { t } from '../../utils/language'
 
 export default {
 	name: 'DatabaseAuditLogsDialog',
@@ -132,18 +133,18 @@ export default {
 				data: this.logs,
 				columns: [
 					{
-						label: 'From',
+						label: t('From'),
 						fieldname: 'start_time',
 						format: (value) => (value ? date(value, 'lll') : '—'),
 					},
 					{
-						label: 'To',
+						label: t('To'),
 						fieldname: 'end_time',
 						format: (value) => (value ? date(value, 'lll') : '—'),
 					},
 					{
 						// The gzipped size held in S3, which is what the team is billed for
-						label: 'Size',
+						label: t('Size'),
 						fieldname: 'size_mb',
 						align: 'center',
 						width: 0.5,
@@ -157,7 +158,7 @@ export default {
 						width: 0.5,
 						// label is the accessible name of this icon-only button
 						Button: ({ row }) => ({
-							label: 'Download',
+							label: t('Download'),
 							icon: 'download',
 							tooltip: 'Download',
 							onClick: (e) => {

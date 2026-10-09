@@ -47,7 +47,7 @@
 					class="flex w-full items-center justify-center gap-2 py-20 text-ink-gray-7"
 				>
 					<Spinner class="w-4" />
-					Loading data...
+					{{ t('Loading data...') }}
 				</div>
 				<div v-else>
 					<GenericList class="w-100" :options="communicationInfosListOptions" />
@@ -60,7 +60,7 @@
 						class="w-full mt-5"
 						@click="$resources?.updateCommunicationInfos?.submit"
 						:loading="$resources?.updateCommunicationInfos?.loading"
-						>Update Settings</Button
+						>{{ t('Update Settings') }}</Button
 					>
 				</div>
 			</div>
@@ -73,6 +73,7 @@ import { Select, TextInput } from 'frappe-ui'
 import { h } from 'vue'
 import AlertBanner from './AlertBanner.vue'
 import GenericList from './GenericList.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'CommunicationInfoDialog',
@@ -148,7 +149,7 @@ export default {
 				columns: [
 					{
 						fieldname: 'type',
-						label: 'Type',
+						label: t('Type'),
 						width: '2fr',
 						type: 'Component',
 						component_width: '100%',
@@ -176,7 +177,7 @@ export default {
 					},
 					{
 						fieldname: 'channel',
-						label: 'Channel',
+						label: t('Channel'),
 						width: '2fr',
 						type: 'Component',
 						component: ({ row }) => {
@@ -191,17 +192,17 @@ export default {
 											row.type == 'Incident'
 												? [
 														{
-															label: 'Email',
+															label: t('Email'),
 															value: 'Email',
 														},
 														{
-															label: 'Phone Call',
+															label: t('Phone Call'),
 															value: 'Phone Call',
 														},
 													]
 												: [
 														{
-															label: 'Email',
+															label: t('Email'),
 															value: 'Email',
 														},
 													],
@@ -216,7 +217,7 @@ export default {
 					},
 					{
 						fieldname: 'value',
-						label: 'Email / Phone No',
+						label: t('Email / Phone No'),
 						width: '5fr',
 						type: 'Component',
 						component({ row }) {
@@ -236,7 +237,7 @@ export default {
 						width: '0.5fr',
 						Button: ({ row }) => {
 							return {
-								label: 'Remove',
+								label: t('Remove'),
 								variant: 'subtle',
 								icon: 'x',
 								// theme: 'red',

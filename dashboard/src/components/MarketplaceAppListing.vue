@@ -3,7 +3,7 @@
 		<div>
 			<div class="flex justify-between border-b pb-4">
 				<div>
-					<h2 class="text-lg font-medium text-ink-gray-9">App Profile</h2>
+					<h2 class="text-lg font-medium text-ink-gray-9">{{ t('App Profile') }}</h2>
 					<p class="mt-1 text-sm leading-6 text-ink-gray-6">
 						This information will be displayed publicly on the marketplace. Make
 						sure you enter correct information without any broken links and
@@ -11,12 +11,12 @@
 					</p>
 				</div>
 				<Button :variant="editing ? 'solid' : 'subtle'" @click="updateListing"
-					>Save</Button
+					>{{ t('Save') }}</Button
 				>
 			</div>
 			<div class="grid grid-cols-1 gap-x-5 border-b py-6 md:grid-cols-2">
 				<div class="border-r pr-6">
-					<span class="text-base font-medium">Profile</span>
+					<span class="text-base font-medium">{{ t('Profile') }}</span>
 					<div class="group relative my-4 flex">
 						<div class="flex flex-col">
 							<Avatar
@@ -46,7 +46,7 @@
 										:class="{ 'opacity-50': uploading }"
 									>
 										<span v-if="uploading">{{ progress }}%</span>
-										<span v-else>Edit</span>
+										<span v-else>{{ t('Edit') }}</span>
 									</button>
 								</div>
 							</template>
@@ -55,18 +55,18 @@
 					<div class="pb-8 sm:col-span-4">
 						<FormControl
 							class="mt-4"
-							label="Title"
+							:label="t('Title')"
 							type="text"
 							@input="editing = true"
 							v-model="marketplaceApp.title"
 						/>
 					</div>
 					<div class="sm:col-span-4">
-						<span class="text-base font-medium">Links</span>
+						<span class="text-base font-medium">{{ t('Links') }}</span>
 						<div>
 							<FormControl
 								class="mt-4"
-								label="Documentation"
+								:label="t('Documentation')"
 								type="text"
 								@blur="validateLink('documentation')"
 								@input="editing = true"
@@ -74,7 +74,7 @@
 							/>
 							<FormControl
 								class="mt-4"
-								label="Website"
+								:label="t('Website')"
 								type="text"
 								@blur="validateLink('website')"
 								@input="editing = true"
@@ -82,7 +82,7 @@
 							/>
 							<FormControl
 								class="mt-4"
-								label="Support"
+								:label="t('Support')"
 								type="text"
 								@blur="validateLink('support')"
 								@input="editing = true"
@@ -90,7 +90,7 @@
 							/>
 							<FormControl
 								class="mt-4"
-								label="Terms of Service"
+								:label="t('Terms of Service')"
 								type="text"
 								@blur="validateLink('terms_of_service')"
 								@input="editing = true"
@@ -98,7 +98,7 @@
 							/>
 							<FormControl
 								class="mt-4"
-								label="Privacy Policy"
+								:label="t('Privacy Policy')"
 								type="text"
 								@blur="validateLink('privacy_policy')"
 								@input="editing = true"
@@ -109,7 +109,7 @@
 				</div>
 				<div class="hidden md:block">
 					<div class="flex w-full">
-						<span class="text-base font-medium">Screenshots and Videos</span>
+						<span class="text-base font-medium">{{ t('Screenshots and Videos') }}</span>
 						<FileUploader
 							class="ml-auto"
 							@success="() => imageAddSuccess('Added screenshot')"
@@ -128,7 +128,7 @@
 									:loading="uploading"
 									@click="openFileSelector()"
 									icon-left="plus"
-									label="Add"
+									:label="t('Add')"
 								>
 								</Button>
 							</template>
@@ -154,16 +154,16 @@
 				</div>
 			</div>
 			<div class="mt-6">
-				<span class="text-base font-medium">Description</span>
+				<span class="text-base font-medium">{{ t('Description') }}</span>
 				<FormControl
 					class="mt-4"
-					label="Summary"
+					:label="t('Summary')"
 					type="textarea"
 					@input="editing = true"
 					v-model="marketplaceApp.description"
 				/>
 				<div class="mt-4">
-					<span class="text-xs text-ink-gray-6">Description</span>
+					<span class="text-xs text-ink-gray-6">{{ t('Description') }}</span>
 					<TextEditor
 						class="mt-1 block w-full rounded border border-outline-gray-1 bg-surface-gray-2 px-2 py-1.5 text-base text-ink-gray-8 placeholder-gray-500 transition-colors hover:border-outline-gray-1 hover:bg-surface-gray-3 focus:border-outline-gray-4 focus:bg-surface-white focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-gray-400"
 						ref="textEditor"
@@ -186,6 +186,7 @@ import FileUploader from '@/components/FileUploader.vue';
 import { toast } from 'vue-sonner';
 import { getToastErrorMessage } from '../utils/toast';
 import { confirmDialog } from '../utils/components';
+import { t } from '../utils/language';
 
 export default {
 	name: 'MarketplaceAppOverview',
@@ -273,16 +274,16 @@ export default {
 		},
 		dropdownOptions(image) {
 			return [
-				{ label: 'View', onClick: () => window.open(image) },
+				{ label: t('View'), onClick: () => window.open(image) },
 				{
-					label: 'Delete',
+					label: t('Delete'),
 					onClick: () => {
 						confirmDialog({
-							title: 'Delete Screenshot',
+							title: t('Delete Screenshot'),
 							message:
 								'Are you sure you want to delete this screenshot? This action cannot be undone.',
 							primaryAction: {
-								label: 'Delete',
+								label: t('Delete'),
 								variant: 'solid',
 								theme: 'red',
 								onClick: ({ hide }) => {

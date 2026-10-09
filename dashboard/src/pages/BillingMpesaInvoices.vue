@@ -59,35 +59,35 @@ export default {
 				],
 				columns: [
 					{
-						label: 'Invoice Name',
+						label: t('Invoice Name'),
 						fieldname: 'name',
 						width: 1,
 					},
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'posting_date',
 						width: 0.7,
 					},
 					{
-						label: 'Amount',
+						label: t('Amount'),
 						fieldname: 'amount',
 						align: 'center',
 						width: 0.6,
 					},
 					{
-						label: 'Amount (USD)',
+						label: t('Amount (USD)'),
 						fieldname: 'amount_usd',
 						align: 'center',
 						width: 0.6,
 					},
 					{
-						label: 'Exchange Rate',
+						label: t('Exchange Rate'),
 						fieldname: 'exchange_rate',
 						align: 'center',
 						width: 0.6,
 					},
 					{
-						label: 'Payment Partner',
+						label: t('Payment Partner'),
 						fieldname: 'payment_partner',
 					},
 					{

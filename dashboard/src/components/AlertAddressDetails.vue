@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<AlertBanner
-			title="Please add your billing address to complete your AlbannaTech profile."
+			:title="t('Please add your billing address to complete your AlbannaTech profile.')"
 			type="warning"
 		>
 			<Button
@@ -9,7 +9,7 @@
 				@click="showBillingDetailsDialog = true"
 				variant="outline"
 			>
-				Update Address
+				{{ t('Update Address') }}
 			</Button>
 		</AlertBanner>
 		<UpdateBillingDetails

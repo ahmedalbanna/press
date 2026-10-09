@@ -2,7 +2,7 @@
 	<Dialog :options="{ title: 'Drop Active Servers' }" v-model="showDialog">
 		<template #body-content>
 			<div class="prose text-base">
-				Please drop the following active servers before disabling the account:
+				{{ t('Please drop the following active servers before disabling the account:') }}
 				<ul class="pt-2">
 					<li
 						class="font-semibold"
@@ -15,7 +15,7 @@
 		</template>
 		<template #actions>
 			<Button variant="solid" class="w-full" @click="redirectToServer"
-				>Drop Servers</Button
+				>{{ t('Drop Servers') }}</Button
 			>
 		</template>
 	</Dialog>

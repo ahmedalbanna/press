@@ -30,6 +30,7 @@ import { getTeam } from '../data/team';
 import { renderDialog } from '../utils/components';
 import AccessRequestDialog from './AccessRequestDialog.vue';
 import AccessRequestStatusDialog from './AccessRequestStatusDialog.vue';
+import { t } from '../utils/language';
 
 const props = defineProps<{
 	doctype: string;
@@ -48,7 +49,7 @@ const buttonProps = computed(() => {
 		};
 	} else {
 		return {
-			label: 'Request Access',
+			label: t('Request Access'),
 			iconLeft: 'lock',
 		};
 	}

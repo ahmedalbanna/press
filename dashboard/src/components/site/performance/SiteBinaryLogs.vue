@@ -11,6 +11,7 @@ import dayjs from '../../../utils/dayjs';
 import { DashboardError } from '../../../utils/error';
 import PerformanceReport from './PerformanceReport.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'SiteBinaryLogs',
@@ -82,36 +83,36 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'timestamp',
 						width: '12rem',
 						format: (value) => {
 							return this.$format.date(value, 'YYYY-MM-DD HH:mm:ss');
 						},
 					},
-					{ label: 'Query', fieldname: 'query', class: 'font-mono' },
+					{ label: t('Query'), fieldname: 'query', class: 'font-mono' },
 				],
 				filterControls: () => {
 					return [
 						{
 							type: 'datetime',
-							label: 'Start Time',
+							label: t('Start Time'),
 							fieldname: 'start_time',
 							default: this.start_time,
 						},
 						{
 							type: 'datetime',
-							label: 'End Time',
+							label: t('End Time'),
 							fieldname: 'end_time',
 							default: this.end_time,
 						},
 						{
-							label: 'Pattern',
+							label: t('Pattern'),
 							fieldname: 'pattern',
 							default: this.pattern,
 						},
 						{
-							label: 'Max Lines',
+							label: t('Max Lines'),
 							fieldname: 'max_lines',
 							default: this.max_lines,
 						},
@@ -119,7 +120,7 @@ export default {
 				},
 				actions: () => [
 					{
-						label: 'View Logs',
+						label: t('View Logs'),
 						variant: 'solid',
 						loading: this.$resources.binaryLogs.loading,
 						loadingText: 'Loading',

@@ -9,6 +9,7 @@
 <script>
 import dayjs from '../../../utils/dayjs';
 import PerformanceReport from './PerformanceReport.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'SiteRequestLogs',
@@ -55,17 +56,17 @@ export default {
 					};
 				},
 				columns: [
-					{ label: 'Time', fieldname: 'time', width: 1 },
-					{ label: 'Method', fieldname: 'method', width: 0.5 },
-					{ label: 'Path', fieldname: 'path', width: 2, class: 'font-mono' },
+					{ label: t('Time'), fieldname: 'time', width: 1 },
+					{ label: t('Method'), fieldname: 'method', width: 0.5 },
+					{ label: t('Path'), fieldname: 'path', width: 2, class: 'font-mono' },
 					{
-						label: 'Status Code',
+						label: t('Status Code'),
 						fieldname: 'status',
 						width: 0.5,
 						align: 'right',
 					},
 					{
-						label: 'CPU Time (seconds)',
+						label: t('CPU Time (seconds)'),
 						fieldname: 'cpu_time',
 						width: 1,
 						class: 'text-ink-gray-6',
@@ -76,7 +77,7 @@ export default {
 				filterControls: () => [
 					{
 						type: 'select',
-						label: 'Sort',
+						label: t('Sort'),
 						fieldname: 'sort',
 						class: !this.$isMobile ? 'w-48' : '',
 						options: [
@@ -88,7 +89,7 @@ export default {
 					},
 					{
 						type: 'date',
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'date',
 						class: !this.$isMobile ? 'w-48' : '',
 						default: this.today,

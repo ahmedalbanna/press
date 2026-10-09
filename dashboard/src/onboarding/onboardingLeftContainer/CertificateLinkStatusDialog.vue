@@ -89,7 +89,7 @@ async function resend(requestName: string) {
 		<template #body-header>
 			<div class="flex items-start justify-between gap-4">
 				<h3 class="text-lg font-semibold leading-6 text-ink-gray-9">
-					Certification link status
+					{{ t('Certification link status') }}
 				</h3>
 				<button
 					type="button"
@@ -121,7 +121,7 @@ async function resend(requestName: string) {
 						<span
 							class="inline-flex shrink-0 items-center rounded bg-surface-green-2 px-2 py-0.5 text-p-sm font-medium text-ink-green-3"
 						>
-							Linked
+							{{ t('Linked') }}
 						</span>
 					</div>
 
@@ -149,7 +149,7 @@ async function resend(requestName: string) {
 								v-if="request.status === 'Pending'"
 								variant="subtle"
 								size="sm"
-								label="Resend email"
+								:label="t('Resend email')"
 								:icon-left="LucideMail"
 								:loading="resendingRequest === request.name"
 								@click="resend(request.name)"
@@ -159,7 +159,7 @@ async function resend(requestName: string) {
 				</div>
 
 				<p v-else class="py-6 text-p-base text-ink-gray-6">
-					No linked certificates or pending requests found.
+					{{ t('No linked certificates or pending requests found.') }}
 				</p>
 			</div>
 		</template>

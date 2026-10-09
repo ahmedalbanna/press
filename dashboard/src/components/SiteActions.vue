@@ -78,6 +78,7 @@ import { renderDialog } from '../utils/components'
 
 import AlertBanner from './AlertBanner.vue'
 import SiteActionCell from './SiteActionCell.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'SiteActions',
@@ -91,7 +92,7 @@ export default {
 			// places the shortcut under the matching site action section.
 			migrationShortcuts: [
 				{
-					label: 'In-Place Migrate Site',
+					label: t('In-Place Migrate Site'),
 					action: 'In-Place Migrate Site',
 					description:
 						'Run bench migrate on the current bench to apply pending patches and schema changes.',
@@ -99,14 +100,14 @@ export default {
 					group: 'Dangerous Actions',
 				},
 				{
-					label: 'Move to a Different Server / Bench',
+					label: t('Move to a Different Server / Bench'),
 					action: 'Move Site To Different Server / Bench',
 					description: 'Move this site to another private bench or server.',
 					buttonLabel: 'Move Site',
 					group: 'General Actions',
 				},
 				{
-					label: 'Move to a Different Region',
+					label: t('Move to a Different Region'),
 					action: 'Move Site To Different Region',
 					description: 'Move this site to a bench in another region.',
 					buttonLabel: 'Move Site',

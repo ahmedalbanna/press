@@ -193,7 +193,7 @@ const submitForm = () => {
 					v-if="formType == 'addApps'"
 				>
 					<LucideInfo class="size-4" />
-					Looking for Marketplace Apps?
+					{{ t('Looking for Marketplace Apps?') }}
 				</a>
 
 				<Button v-else variant="ghost" @click="formType = 'addApps'">

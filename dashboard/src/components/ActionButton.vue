@@ -15,6 +15,7 @@
 <script>
 import { Button, Dropdown } from 'frappe-ui';
 import { icon } from '../utils/components';
+import { t } from '../utils/language';
 
 export default {
 	name: 'ActionButton',
@@ -47,7 +48,7 @@ export default {
 			if (options?.length) {
 				return {
 					button: {
-						label: 'Options',
+						label: t('Options'),
 						variant: 'ghost',
 						slots: {
 							icon: icon('more-horizontal'),

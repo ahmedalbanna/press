@@ -29,7 +29,7 @@
 				<FormControl
 					v-if="gstApplicable"
 					class="mt-5"
-					label="GSTIN"
+					:label="t('GSTIN')"
 					type="text"
 					:disabled="props.disableForm"
 					v-model="billingInformation.gstin"
@@ -171,14 +171,14 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Select',
-					label: 'Country',
+					label: t('Country'),
 					fieldname: 'country',
 					options: countryList.value,
 					required: true,
 				},
 				{
 					fieldtype: 'Data',
-					label: 'City',
+					label: t('City'),
 					fieldname: 'city',
 					required: true,
 				},
@@ -190,7 +190,7 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Data',
-					label: 'Address',
+					label: t('Address'),
 					fieldname: 'address',
 					required: true,
 				},
@@ -203,7 +203,7 @@ const sections = computed(() => {
 				{
 					fieldtype:
 						billingInformation.value.country === 'India' ? 'Select' : 'Data',
-					label: 'State / Province / Region',
+					label: t('State / Province / Region'),
 					fieldname: 'state',
 					required: true,
 					options:
@@ -213,7 +213,7 @@ const sections = computed(() => {
 				},
 				{
 					fieldtype: 'Data',
-					label: 'Postal Code',
+					label: t('Postal Code'),
 					fieldname: 'postal_code',
 					required: true,
 				},

@@ -3,27 +3,28 @@ import Points1Icon from '@/components/icons/Points-1.vue';
 import People1Icon from '@/components/icons/People-1.vue';
 import MoneyIcon from '@/components/icons/Money.vue';
 import ChatGroupIcon from '@/components/icons/ChatGroup.vue';
+import { t } from '../../utils/language';
 
 const benefits = [
 	{
-		title: 'Official partner listing',
+		title: t('Official partner listing'),
 		description:
 			'Get your own dedicated listing on our website unlocking client opportunities and visibility.',
 		icon: Points1Icon,
 	},
 	{
-		title: 'Lead sharing',
+		title: t('Lead sharing'),
 		description: 'Get access to qualified leads and interested clients.',
 		icon: People1Icon,
 	},
 	{
-		title: 'Partner discounts',
+		title: t('Partner discounts'),
 		description:
 			'Get discounts on AlbannaTech payments as a Gold, Silver & Bronze tier partner.',
 		icon: MoneyIcon,
 	},
 	{
-		title: 'Enterprise deal assistance',
+		title: t('Enterprise deal assistance'),
 		description:
 			'Get a perfect closure to your deals with Frappe-backed advantages.',
 		icon: ChatGroupIcon,
@@ -34,7 +35,7 @@ const benefits = [
 <template>
 	<div>
 		<p class="text-p-base text-ink-gray-6 mb-4">
-			Some of the benefits of partnering with us are:
+			{{ t('Some of the benefits of partnering with us are:') }}
 		</p>
 
 		<ul

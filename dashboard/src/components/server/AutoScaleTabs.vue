@@ -33,14 +33,16 @@
 </template>
 
 <script>
+import { t } from '../../utils/language'
+
 export default {
 	name: 'AutoScaleTabs',
 	props: ['server'],
 	data() {
 		return {
 			tabs: [
-				{ label: 'Triggered', value: 'Triggered' },
-				{ label: 'Scheduled', value: 'Scheduled' },
+				{ label: t('Triggered'), value: 'Triggered' },
+				{ label: t('Scheduled'), value: 'Scheduled' },
 			],
 			ready: false,
 		};

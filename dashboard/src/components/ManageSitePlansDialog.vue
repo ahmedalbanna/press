@@ -47,7 +47,7 @@
 					>
 						<lucide-badge-check class="mr-2 h-5 w-12 text-ink-gray-6" />
 						<span>
-							<strong>Support</strong> covers only issues of Frappe apps and not
+							<strong>{{ t('Support') }}</strong> covers only issues of Frappe apps and not
 							functional queries. You can raise a support ticket for Frappe
 							Cloud issues for all plans.
 						</span>
@@ -67,7 +67,7 @@
 				/>
 				<div class="mb-5 inline-flex gap-1.5 text-base text-ink-gray-7">
 					<FeatherIcon class="h-4" name="info" />
-					<span> Add billing details to your account before proceeding.</span>
+					<span> {{ t('Add billing details to your account before proceeding.') }}</span>
 				</div>
 				<BillingDetails
 					ref="billingRef"
@@ -95,7 +95,7 @@
 						}"
 						@click="isAutomatedBilling = true"
 					>
-						Add Card
+						{{ t('Add Card') }}
 					</div>
 					<div
 						class="w-1/2 cursor-pointer rounded-sm py-1.5 text-center transition-all"
@@ -104,7 +104,7 @@
 						}"
 						@click="isAutomatedBilling = false"
 					>
-						Add Prepaid Credits
+						{{ t('Add Prepaid Credits') }}
 					</div>
 				</div>
 

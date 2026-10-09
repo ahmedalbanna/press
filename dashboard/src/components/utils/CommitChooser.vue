@@ -21,7 +21,7 @@
 						ref="searchInput"
 						class="mt-0.5 mb-1"
 						type="search"
-						placeholder="Search releases..."
+						:placeholder="t('Search releases...')"
 						:modelValue="searchQuery"
 						@update:model-value="
 							(val) => {
@@ -35,7 +35,7 @@
 						v-if="!searchQuery.length"
 						class="text-xs font-medium text-ink-gray-5 py-2 pl-2"
 					>
-						Recent
+						{{ t('Recent') }}
 					</div>
 
 					<!-- displayedOptions ideally contains query results when searchQuery is non-empty. It is populated with options prop otherwise. -->
@@ -79,21 +79,21 @@
 								v-if="option.is_mandatory"
 								class="text-xs text-blue-500 font-medium"
 							>
-								Mandatory
+								{{ t('Mandatory') }}
 							</span>
 							<span
 								v-if="option.is_yanked"
 								class="text-xs text-red-500 font-medium"
 							>
-								Yanked
+								{{ t('Yanked') }}
 							</span>
 						</div>
 					</div>
 					<div class="*:text-center *:mb-2 *:mt-3 *:text-xs *:text-ink-gray-4">
 						<div v-if="$resources.releases.loading && !!searchQuery.length">
-							Searching...
+							{{ t('Searching...') }}
 						</div>
-						<div v-else-if="!displayedOptions.length">No results found</div>
+						<div v-else-if="!displayedOptions.length">{{ t('No results found') }}</div>
 					</div>
 				</div>
 			</div>

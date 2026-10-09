@@ -34,6 +34,7 @@ import { confirmDialog, renderDialog } from '@/utils/components'
 import { getTeam } from '@/data/team'
 
 import { secsToDuration, date, duration, sanitizeHtml } from '@/utils/format'
+import { t } from '../../../utils/language'
 
 const team = getTeam()
 const socket = window.$socket
@@ -162,10 +163,10 @@ const wired = reactive(new Set<string>())
 const builds = ref<Record<string, any>>({})
 
 const dummyStages = ref([
-	{ label: 'Pre-release checks', status: 'Success' },
-	{ label: 'Preparing for deployment', status: 'Success' },
-	{ label: 'Building', status: 'Pending' },
-	{ label: 'Deploying', status: 'Pending' },
+	{ label: t('Pre-release checks'), status: 'Success' },
+	{ label: t('Preparing for deployment'), status: 'Success' },
+	{ label: t('Building'), status: 'Pending' },
+	{ label: t('Deploying'), status: 'Pending' },
 ])
 
 const handleDummyStage = (x) => {
@@ -326,8 +327,8 @@ onBeforeUnmount(() => {
 const tabState = ref('Tasks')
 
 const sidebarTabs = ref([
-	{ label: 'Tasks', icon: LucideWorkflow },
-	{ label: 'Issues', icon: LucideAlertCircle },
+	{ label: t('Tasks'), icon: LucideWorkflow },
+	{ label: t('Issues'), icon: LucideAlertCircle },
 ])
 
 const badgeThemes = {
@@ -342,7 +343,7 @@ const badgeThemes = {
 const dropdownOptions = computed(() => {
 	const list = [
 		{
-			label: 'View in Desk',
+			label: t('View in Desk'),
 			icon: 'external-link',
 			condition: () => team?.doc?.is_desk_user,
 			onClick: () => {
@@ -357,7 +358,7 @@ const dropdownOptions = computed(() => {
 			},
 		},
 		{
-			label: 'View App Versions',
+			label: t('View App Versions'),
 			icon: 'package',
 			onClick: appVersions,
 		},
@@ -382,11 +383,11 @@ const stopBuild = () => {
 	const deploy = builds.value[activeBuildId.value]?.doc
 
 	confirmDialog({
-		title: 'Fail Running Build',
+		title: t('Fail Running Build'),
 		message:
 			'Are you sure you want to stop this build?<br><br>All progress made so far will be <b>discarded</b>, and the next triggered build will start from scratch.<br><br>Use this if the build is stuck, taking unusually long, or is expected to fail.',
 		primaryAction: {
-			label: 'Stop Build',
+			label: t('Stop Build'),
 			variant: 'solid',
 			theme: 'red',
 			onClick({ hide }) {
@@ -409,11 +410,11 @@ const stopBuild = () => {
 
 const stopPipeline = () => {
 	confirmDialog({
-		title: 'Stop Deploy',
+		title: t('Stop Deploy'),
 		message:
 			'Are you sure you want to stop this deploy?<br><br>All progress made so far will be <b>discarded</b>, and you will need to trigger a fresh deploy.<br><br>Use this if the deploy is stuck, taking unusually long, or is expected to fail.',
 		primaryAction: {
-			label: 'Stop Deploy',
+			label: t('Stop Deploy'),
 			variant: 'solid',
 			theme: 'red',
 			onClick({ hide }) {
@@ -446,7 +447,7 @@ const redeployWithoutCache = () => {
 	const deploy = builds.value[activeBuildId.value]?.doc
 
 	confirmDialog({
-		title: 'Redeploy Without Cache',
+		title: t('Redeploy Without Cache'),
 		message: `
 				This deploy failed due to a build cache issue.<br><br>
 				<div class="text-bg-base bg-surface-gray-2 p-2 rounded-md">
@@ -455,7 +456,7 @@ const redeployWithoutCache = () => {
 				</div>
 				`,
 		primaryAction: {
-			label: 'Redeploy Without Cache',
+			label: t('Redeploy Without Cache'),
 			variant: 'solid',
 			theme: 'red',
 			onClick({ hide }) {
@@ -502,7 +503,7 @@ const redeployWithoutCache = () => {
 				<template v-if="deployview">
 					{{ builds[activeBuildId]?.doc?.deploy_candidate }}
 				</template>
-				<template v-else> Deploy </template>
+				<template v-else> {{ t('Deploy') }} </template>
 			</h2>
 
 			<Badge
@@ -529,7 +530,7 @@ const redeployWithoutCache = () => {
 				"
 				theme="red"
 			>
-				Stop Deploy
+				{{ t('Stop Deploy') }}
 			</Button>
 
 			<Button
@@ -537,7 +538,7 @@ const redeployWithoutCache = () => {
 				v-if="!deployview && pipeline?.doc?.status === 'Failure' && isCacheFailure"
 				theme="red"
 			>
-				Redeploy Without Cache
+				{{ t('Redeploy Without Cache') }}
 			</Button>
 
 			<Dropdown v-if="dropdownOptions?.length" :options="dropdownOptions">
@@ -555,28 +556,28 @@ const redeployWithoutCache = () => {
       *:p-2 *:md:p-4 *:border"
 		>
 			<div class="flex flex-col gap-2 rounded ">
-				<b> Created by </b>
+				<b> {{ t('Created by') }} </b>
 				<span class="text-ink-gray-9"
 					>{{ deployview ?  builds[activeBuildId]?.doc?.owner : pipeline?.doc?.owner }}
 				</span>
 			</div>
 
 			<div class="flex flex-col gap-2 rounded">
-				<b> Start </b>
+				<b> {{ t('Start') }} </b>
 				<span>
 					{{ date(deployview ?  builds[activeBuildId]?.doc?.build_start : pipeline?.doc?.steps?.start) || '-' }}
 				</span>
 			</div>
 
 			<div class="flex flex-col gap-2 rounded">
-				<b> End </b>
+				<b> {{ t('End') }}</b>
 				<span>
 					{{ date(deployview ?  builds[activeBuildId]?.doc?.build_end : pipeline?.doc?.steps?.end) || '-' }}
 				</span>
 			</div>
 
 			<div class="flex flex-col gap-2 rounded">
-				<b> Duration </b>
+				<b> {{ t('Duration') }} </b>
 				<span>
 					{{ deployview ? duration( builds[activeBuildId]?.doc?.build_duration) || '-' : secsToDuration(pipeline?.doc?.steps?.duration) || '-' }}
 				</span>
@@ -645,7 +646,7 @@ const redeployWithoutCache = () => {
 									target="_blank"
 									class="bg-surface-white shadow p-1.5 px-2.5 rounded hover:opacity-70 ml-auto"
 								>
-									Go to docs
+									{{ t('Go to docs') }}
 								</a>
 							</div>
 						</Collapsable>
@@ -661,7 +662,7 @@ const redeployWithoutCache = () => {
 				<div
 					class="flex items-center pb-2 border-outline-gray-2 mb-3 text-ink-gray-6 -mt-1 -mr-1 shrink-0"
 				>
-					<span>Output</span>
+					<span>{{ t('Output') }}</span>
 					<CopyBtn :text="output?.val || ''" class="ml-auto smallbtn" />
 					<button
 						class="smallbtn"

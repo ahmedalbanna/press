@@ -8,7 +8,7 @@
 			}"
 		>
 			<span class="text-sm leading-4 text-ink-gray-7">
-				Credit or Debit Card
+				{{ t('Credit or Debit Card') }}
 			</span>
 			<div class="form-input mt-2 block w-full pl-3" ref="card-element"></div>
 			<ErrorMessage class="mt-1" :message="cardErrorMessage" />
@@ -29,7 +29,7 @@
 					@click="$resources.createPaymentIntent.submit()"
 					:loading="$resources.createPaymentIntent.loading"
 				>
-					Proceed to payment using Stripe
+					{{ t('Proceed to payment using Stripe') }}
 				</Button>
 			</div>
 			<div v-if="step == 'Add Card Details'">
@@ -39,7 +39,7 @@
 					@click="onBuyClick"
 					:loading="paymentInProgress"
 				>
-					Make payment via Stripe
+					{{ t('Make payment via Stripe') }}
 				</Button>
 			</div>
 		</div>

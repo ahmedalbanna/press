@@ -12,7 +12,7 @@
 					<FormControl
 						v-if="!useOtherBranch"
 						class="w-full"
-						label="Select Branch"
+						:label="t('Select Branch')"
 						type="select"
 						:options="$resources.branches.data"
 						v-model="selectedBranch"
@@ -22,16 +22,16 @@
 					<FormControl
 						v-else
 						class="w-full"
-						label="Branch Name"
+						:label="t('Branch Name')"
 						type="text"
-						placeholder="Enter branch name"
+						:placeholder="t('Enter branch name')"
 						v-model="otherBranchName"
 					/>
 
 					<!-- Other branches toggle -->
 					<FormControl
 						type="checkbox"
-						label="Other branches"
+						:label="t('Other branches')"
 						v-model="useOtherBranch"
 						class="self-start"
 					/>
@@ -67,7 +67,7 @@
 				v-if="useOtherBranch && !otherBranchValidated"
 				class="w-full"
 				variant="solid"
-				label="Validate"
+				:label="t('Validate')"
 				:loading="validatingBranch"
 				@click="validateOtherBranch"
 			/>
@@ -77,7 +77,7 @@
 				v-else-if="canChangeBranch"
 				class="w-full"
 				variant="solid"
-				label="Change Branch"
+				:label="t('Change Branch')"
 				:loading="$resources.changeBranch.loading"
 				@click="changeBranch"
 			/>

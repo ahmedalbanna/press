@@ -8,7 +8,7 @@
 		/>
 		<div class="space-y-2">
 			<p class="text-p-base font-medium text-ink-gray-9">
-				Meet a global community of committed open source entrepreneurs
+				{{ t('Meet a global community of committed open source entrepreneurs') }}
 			</p>
 
 			<p class="text-p-base text-ink-gray-6">

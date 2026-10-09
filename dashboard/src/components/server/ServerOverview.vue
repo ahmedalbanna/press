@@ -47,7 +47,7 @@
 										<span v-if="!$appServer?.doc?.is_unified_server"
 											>{{ d.label }}</span
 										>
-										<span v-else>Unified Server Plan</span>
+										<span v-else>{{ t('Unified Server Plan') }}</span>
 										<Badge
 											v-if="
 												server === 'App Secondary Server' &&
@@ -76,7 +76,7 @@
 													:label="t('Shared')"
 												/>
 											</Tooltip>
-											<Tooltip v-if="d.isPremium" text="Premium Server">
+											<Tooltip v-if="d.isPremium" :text="t('Premium Server')">
 												<!-- this icon isn't available in unplugin package yet -->
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
@@ -222,6 +222,7 @@ import Badge from '../global/Badge.vue'
 import ServerLoadAverage from './ServerLoadAverage.vue'
 import ServerPlansDialog from './ServerPlansDialog.vue'
 import StorageBreakdownDialog from './StorageBreakdownDialog.vue'
+import { t } from '../../utils/language'
 
 export default {
 	props: ['server'],
@@ -286,17 +287,17 @@ export default {
 				this.$appServer.doc.is_unified_server
 			) {
 				confirmDialog({
-					title: 'Select Storage Breakdown Type',
+					title: t('Select Storage Breakdown Type'),
 					message:
 						'Would you like to view the breakdown for the Database component or the Application component of the server?',
 					fields: [
 						{
 							fieldname: 'breakdownType',
 							type: 'select',
-							label: 'Breakdown Type',
+							label: t('Breakdown Type'),
 							options: [
-								{ label: 'Database', value: 'database' },
-								{ label: 'Application', value: 'application' },
+								{ label: t('Database'), value: 'database' },
+								{ label: t('Application'), value: 'application' },
 							],
 							default: 'database',
 						},
@@ -435,24 +436,24 @@ export default {
 			) {
 				return [
 					{
-						label: 'Secondary Application Server Plan',
+						label: t('Secondary Application Server Plan'),
 						value: planDescription,
 						type: 'header',
 						isPremium: !!currentPlan?.premium,
 						isShared: this.isSharedPlan(currentPlan),
 					},
 					{
-						label: 'CPU',
+						label: t('CPU'),
 						type: 'info',
 						value: 'Monitoring disabled for standby secondary server',
 					},
 					{
-						label: 'Memory',
+						label: t('Memory'),
 						type: 'info',
 						value: 'Monitoring disabled for standby secondary server',
 					},
 					{
-						label: 'Storage',
+						label: t('Storage'),
 						type: 'info',
 						value: 'Uses primary server storage configuration',
 					},
@@ -490,7 +491,7 @@ export default {
 							: '',
 				},
 				{
-					label: 'CPU',
+					label: t('CPU'),
 					type: 'progress',
 					progress_value: currentUsage.vcpu
 						? Math.max(0, currentUsage.vcpu * 100)
@@ -504,7 +505,7 @@ export default {
 						: '0% vCPU',
 				},
 				{
-					label: 'Memory',
+					label: t('Memory'),
 					type: 'progress',
 					progress_value: currentPlan
 						? (currentUsage.memory / currentPlan.memory) * 100
@@ -518,14 +519,14 @@ export default {
 				...(serverType === 'App Secondary Server'
 					? [
 							{
-								label: 'Storage',
+								label: t('Storage'),
 								type: 'info',
 								value: 'Uses primary server storage configuration',
 							},
 						]
 					: [
 							{
-								label: 'Storage',
+								label: t('Storage'),
 								type: 'progress',
 								actionRequired: additionalStorageIncrementRecommendation
 									? 'Low Storage'
@@ -546,13 +547,13 @@ export default {
 										: '',
 								actions: [
 									{
-										label: 'Increase Storage',
+										label: t('Increase Storage'),
 										icon: 'plus',
 										variant: 'ghost',
 										condition: () => doc.provider != 'Hetzner',
 										onClick: () => {
 											confirmDialog({
-												title: 'Increase Storage',
+												title: t('Increase Storage'),
 												message: `Enter the disk size you want to increase to the server <b>${
 													doc.title || doc.name
 												}</b>
@@ -575,7 +576,7 @@ export default {
 														fieldname: 'storage',
 														type: 'select',
 														default: 50,
-														label: 'Storage (GB)',
+														label: t('Storage (GB)'),
 														variant: 'outline',
 														// options from 5 GB to 500 GB in steps of 5 GB
 														options: Array.from({ length: 100 }, (_, i) => ({
@@ -606,7 +607,7 @@ export default {
 														),
 														{
 															loading: 'Increasing disk size...',
-															success: 'Disk size is scheduled to increase',
+															success: t('Disk size is scheduled to increase'),
 															error: (e) =>
 																getToastErrorMessage(
 																	e,
@@ -619,13 +620,13 @@ export default {
 										},
 									},
 									{
-										label: 'Configure Auto Increase Storage',
+										label: t('Configure Auto Increase Storage'),
 										icon: 'tool',
 										variant: 'ghost',
 										condition: () => doc.provider != 'Hetzner',
 										onClick: () => {
 											confirmDialog({
-												title: 'Configure Auto Increase Storage',
+												title: t('Configure Auto Increase Storage'),
 												message: `<div class="rounded my-4 p-2 prose-sm prose bg-surface-gray-1 border">
 
 									This feature will automatically increases the storage as it reaches over <b>90%</b> of its capacity.
@@ -650,14 +651,14 @@ export default {
 														fieldname: 'auto_increase_storage',
 														type: 'checkbox',
 														default: doc.auto_increase_storage,
-														label: 'Enable Auto Increase Storage',
+														label: t('Enable Auto Increase Storage'),
 														variant: 'outline',
 													},
 													{
 														fieldname: 'min',
 														type: 'select',
 														default: String(doc.auto_add_storage_min),
-														label: 'Minimum Storage Increase (GB)',
+														label: t('Minimum Storage Increase (GB)'),
 														variant: 'outline',
 														// options from 5 GB to 250 GB in steps of 5 GB
 														options: Array.from({ length: 51 }, (_, i) => ({
@@ -672,7 +673,7 @@ export default {
 														fieldname: 'max',
 														type: 'select',
 														default: String(doc.auto_add_storage_max),
-														label: 'Maximum Storage Increase (GB)',
+														label: t('Maximum Storage Increase (GB)'),
 														variant: 'outline',
 														// options from 5 GB to 250 GB in steps of 5 GB
 														options: Array.from({ length: 51 }, (_, i) => ({
@@ -724,7 +725,7 @@ export default {
 										},
 									},
 									{
-										label: 'Storage Breakdown',
+										label: t('Storage Breakdown'),
 										icon: 'pie-chart',
 										variant: 'ghost',
 										onClick: () => {
@@ -761,7 +762,7 @@ export default {
 		serverInformation() {
 			return [
 				{
-					label: 'Hosted on',
+					label: t('Hosted on'),
 					value: `${this.$appServer.doc.provider} - ${this.$appServer.doc.cluster}`,
 				},
 				{
@@ -771,29 +772,29 @@ export default {
 					value: this.$appServer.doc.name,
 				},
 				{
-					label: 'Secondary App Server',
+					label: t('Secondary App Server'),
 					value: this.$appServer.doc.secondary_server,
 				},
 				{
-					label: 'Database server',
+					label: t('Database server'),
 					value: !this.$appServer.doc.is_unified_server
 						? this.$appServer.doc.database_server
 						: false,
 				},
 				{
-					label: 'Replication server',
+					label: t('Replication server'),
 					value: this.$appServer.doc.replication_server,
 				},
 				{
-					label: 'Owned by',
+					label: t('Owned by'),
 					value: this.$appServer.doc.owner_email || this.$appServer.doc.team,
 				},
 				{
-					label: 'Created by',
+					label: t('Created by'),
 					value: this.$appServer.doc.owner,
 				},
 				{
-					label: 'Created on',
+					label: t('Created on'),
 					value: this.$format.date(this.$appServer.doc.creation),
 				},
 			].filter((d) => d.value)

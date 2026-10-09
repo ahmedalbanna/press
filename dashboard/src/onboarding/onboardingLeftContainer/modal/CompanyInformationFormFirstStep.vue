@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { FormControl } from 'frappe-ui'
 import { computed, inject, ref, watch } from 'vue'
+import { t } from '../../../utils/language'
 import {
 	getPartnerMRRCurrency,
 	getPartnerMRRTargetLabel,
@@ -15,9 +16,9 @@ const props = defineProps<{
 const team = inject('team')
 
 const revenueCurrencyOptions = [
-	{ label: 'INR (Indian Rupees)', value: 'INR' },
-	{ label: 'USD (US Dollar)', value: 'USD' },
-	{ label: 'EUR (Euro)', value: 'EUR' },
+	{ label: t('INR (Indian Rupees)'), value: 'INR' },
+	{ label: t('USD (US Dollar)'), value: 'USD' },
+	{ label: t('EUR (Euro)'), value: 'EUR' },
 ]
 
 const employeeRangeOptions = [
@@ -159,7 +160,7 @@ defineExpose({ tryContinue })
 	>
 		<FormControl
 			v-model="props.form.company_name"
-			label="Registered company"
+			:label="t('Registered company')"
 			type="text"
 			size="sm"
 			variant="outline"
@@ -173,11 +174,11 @@ defineExpose({ tryContinue })
 
 		<FormControl
 			v-model="props.form.address"
-			label="Address"
+			:label="t('Address')"
 			type="text"
 			size="sm"
 			variant="outline"
-			placeholder="Company's registered address"
+			:placeholder="t('Company\'s registered address')"
 			:minlength="addressMinLength"
 			:maxlength="addressMaxLength"
 			:class="{ 'has-error': errors.address }"
@@ -188,11 +189,11 @@ defineExpose({ tryContinue })
 
 		<FormControl
 			v-model="props.form.headquarter_city"
-			label="Headquarter city"
+			:label="t('Headquarter city')"
 			type="text"
 			size="sm"
 			variant="outline"
-			placeholder="Headquarter city"
+			:placeholder="t('Headquarter city')"
 			:minlength="cityMinLength"
 			:maxlength="cityMaxLength"
 			:class="{ 'has-error': errors.headquarter_city }"
@@ -204,8 +205,8 @@ defineExpose({ tryContinue })
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">Annual revenue</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('Annual revenue') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<div class="relative">
 					<span
@@ -222,7 +223,7 @@ defineExpose({ tryContinue })
 							'[&_input]:pl-7',
 							{ 'has-error': errors.annual_revenue },
 						]"
-						placeholder="Amount"
+						:placeholder="t('Amount')"
 					/>
 				</div>
 				<p v-if="errors.annual_revenue" class="text-sm text-ink-red-4">
@@ -232,8 +233,8 @@ defineExpose({ tryContinue })
 
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">Revenue currency</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('Revenue currency') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.revenue_currency"
@@ -252,15 +253,15 @@ defineExpose({ tryContinue })
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">No. of employees</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('No. of employees') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.employee_range"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select a range"
+					:placeholder="t('Select a range')"
 					:options="employeeRangeOptions"
 				/>
 			</div>
@@ -268,16 +269,16 @@ defineExpose({ tryContinue })
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
 					<span class="text-xs text-ink-gray-6"
-						>No. of certified employees</span
+						>{{ t('No. of certified employees') }}</span
 					>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.certified_employees_range"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:options="certifiedEmployeesOptions"
 				/>
 			</div>

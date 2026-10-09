@@ -22,6 +22,7 @@
 <script>
 import ObjectList from '../components/ObjectList.vue';
 import PayoutTable from '../components/PayoutTable.vue';
+import { t } from '../utils/language';
 
 export default {
 
@@ -52,7 +53,7 @@ export default {
 					return [
 						{
 							type: 'select',
-							label: 'Status',
+							label: t('Status'),
 							class: !this.$isMobile ? 'w-36' : '',
 							fieldname: 'status',
 							options: ['', 'Draft', 'Paid', 'Commissioned'],
@@ -62,7 +63,7 @@ export default {
 				orderBy: 'creation desc',
 				columns: [
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'period_end',
 						format(value) {
 							return Intl.DateTimeFormat('en-US', {
@@ -72,10 +73,10 @@ export default {
 							}).format(new Date(value));
 						},
 					},
-					{ label: 'Payment Mode', fieldname: 'mode_of_payment' },
-					{ label: 'Status', fieldname: 'status', type: 'Badge' },
+					{ label: t('Payment Mode'), fieldname: 'mode_of_payment' },
+					{ label: t('Status'), fieldname: 'status', type: 'Badge' },
 					{
-						label: 'Total',
+						label: t('Total'),
 						fieldname: 'net_total_inr',
 						align: 'right',
 						format: (_, row) => {

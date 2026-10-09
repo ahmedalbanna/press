@@ -212,7 +212,7 @@
 				<div v-if="!isBillingDetailsSet">
 					<div class="flex items-center space-x-2">
 						<TextInsideCircle>3</TextInsideCircle>
-						<span class="text-base font-medium"> Update billing details </span>
+						<span class="text-base font-medium"> {{ t('Update billing details') }} </span>
 					</div>
 					<div class="pl-7" v-if="$team.doc.onboarding.site_created">
 						<UpdateBillingDetailsForm @updated="onBillingAddresUpdateSuccess" />
@@ -223,7 +223,7 @@
 						<div class="flex items-center space-x-2">
 							<TextInsideCircle>3</TextInsideCircle>
 							<span class="text-base font-medium">
-								Billing address updated
+								{{ t('Billing address updated') }}
 							</span>
 						</div>
 						<div
@@ -241,7 +241,7 @@
 				<div v-if="!$team.doc.payment_mode">
 					<div class="flex items-center space-x-2">
 						<TextInsideCircle>4</TextInsideCircle>
-						<span class="text-base font-medium"> Add a payment mode </span>
+						<span class="text-base font-medium"> {{ t('Add a payment mode') }} </span>
 					</div>
 
 					<div class="mt-4 pl-7" v-if="isBillingDetailsSet">
@@ -255,7 +255,7 @@
 								}"
 								@click="isAutomatedBilling = true"
 							>
-								Automated Billing
+								{{ t('Automated Billing') }}
 							</div>
 							<div
 								class="w-1/2 cursor-pointer rounded-sm py-1.5 text-center transition-all"
@@ -264,7 +264,7 @@
 								}"
 								@click="isAutomatedBilling = false"
 							>
-								Add Money
+								{{ t('Add Money') }}
 							</div>
 						</div>
 
@@ -293,13 +293,13 @@
 								class="text-base font-medium"
 								v-if="$team.doc.payment_mode === 'Card'"
 							>
-								Automatic billing setup completed
+								{{ t('Automatic billing setup completed') }}
 							</span>
 							<span
 								class="text-base font-medium"
 								v-if="$team.doc.payment_mode === 'Prepaid Credits'"
 							>
-								Wallet balance updated
+								{{ t('Wallet balance updated') }}
 							</span>
 						</div>
 						<div

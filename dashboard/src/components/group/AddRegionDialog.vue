@@ -29,7 +29,7 @@
 			<div class="space-y-4">
 				<FormControl
 					type="combobox"
-					label="Choose Region"
+					:label="t('Choose Region')"
 					:options="regionOptions"
 					:modelValue="selectedRegion?.value"
 					@update:modelValue="

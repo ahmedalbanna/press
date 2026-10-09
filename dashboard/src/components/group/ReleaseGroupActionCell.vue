@@ -25,6 +25,7 @@ import { getCachedDocumentResource } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import { confirmDialog } from '../../utils/components';
 import router from '../../router';
+import { t } from '../../utils/language';
 
 const props = defineProps({
 	benchName: { type: String, required: true },
@@ -54,10 +55,10 @@ function getBenchActionHandler(action) {
 
 function onRenameBench() {
 	confirmDialog({
-		title: 'Rename Bench',
+		title: t('Rename Bench'),
 		fields: [
 			{
-				label: 'Enter new bench name',
+				label: t('Enter new bench name'),
 				fieldname: 'newBenchName',
 			},
 		],
@@ -89,21 +90,20 @@ function onRenameBench() {
 
 function onTransferBench() {
 	confirmDialog({
-		title: 'Transfer Bench Ownership',
+		title: t('Transfer Bench Ownership'),
 		fields: [
 			{
-				label:
-					'Enter email address of the team for transfer of bench ownership',
+				label: t('Enter email address of the team for transfer of bench ownership'),
 				fieldname: 'email',
 			},
 			{
-				label: 'Reason for transfer',
+				label: t('Reason for transfer'),
 				fieldname: 'reason',
 				type: 'textarea',
 			},
 		],
 		primaryAction: {
-			label: 'Transfer',
+			label: t('Transfer'),
 			variant: 'solid',
 			onClick: ({ hide, values }) => {
 				if (!values.email) {
@@ -139,16 +139,16 @@ function onDropBench() {
 	}
 
 	confirmDialog({
-		title: 'Drop Bench',
+		title: t('Drop Bench'),
 		message: message,
 		fields: [
 			{
-				label: 'Please type the bench name to confirm',
+				label: t('Please type the bench name to confirm'),
 				fieldname: 'confirmBenchName',
 			},
 		],
 		primaryAction: {
-			label: 'Drop',
+			label: t('Drop'),
 			theme: 'red',
 			onClick: ({ hide, values }) => {
 				if (releaseGroup.delete.loading) return;

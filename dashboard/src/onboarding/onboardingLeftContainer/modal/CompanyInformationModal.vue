@@ -168,7 +168,7 @@ async function handleSubmit() {
 						v-if="currentStepIndex > 0"
 						variant="subtle"
 						size="sm"
-						label="Back"
+						:label="t('Back')"
 						@click="goBack"
 					/>
 					<Button

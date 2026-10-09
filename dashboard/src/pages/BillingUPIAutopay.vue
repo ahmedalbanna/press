@@ -114,14 +114,14 @@ export default {
 				emptyStateMessage: t('No UPI Autopay mandates set up.'),
 				columns: [
 					{
-						label: 'UPI ID',
+						label: t('UPI ID'),
 						fieldname: 'upi_vpa',
 						format(value) {
 							return value || '-';
 						},
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Component',
 						component({ row }) {
@@ -129,14 +129,14 @@ export default {
 						},
 					},
 					{
-						label: 'Max Amount',
+						label: t('Max Amount'),
 						fieldname: 'max_amount',
 						format(value) {
 							return `₹${value?.toLocaleString('en-IN') || 0}`;
 						},
 					},
 					{
-						label: 'Expires On',
+						label: t('Expires On'),
 						fieldname: 'expires_on',
 						type: 'Date',
 					},

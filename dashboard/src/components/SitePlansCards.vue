@@ -5,6 +5,7 @@
 <script>
 import PlansCards from './PlansCards.vue';
 import { getPlans } from '../data/plans';
+import { t } from '../utils/language';
 
 export default {
 	name: 'SitePlansCards',
@@ -124,12 +125,12 @@ export default {
 							value: plan.cpu_time_per_day,
 						},
 						{
-							label: 'Database',
+							label: t('Database'),
 							condition: !plan.name.includes('Unlimited'),
 							value: this.$format.bytes(plan.max_database_usage, 1, 2),
 						},
 						{
-							label: 'Disk',
+							label: t('Disk'),
 							condition: !plan.name.includes('Unlimited'),
 							value: this.$format.bytes(plan.max_storage_usage, 1, 2),
 						},

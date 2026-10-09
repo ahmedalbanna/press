@@ -24,6 +24,7 @@
 import { Spinner } from 'frappe-ui';
 import ObjectList from '../ObjectList.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'DatabaseConfigurationDialog',
@@ -64,12 +65,12 @@ export default {
 				data: () => this.$resources?.mariadbVariables?.data?.message || [],
 				columns: [
 					{
-						label: 'Variable Name',
+						label: t('Variable Name'),
 						fieldname: 'Variable_name',
 						width: '400px',
 					},
 					{
-						label: 'Value',
+						label: t('Value'),
 						fieldname: 'Value',
 						width: '300px',
 					},

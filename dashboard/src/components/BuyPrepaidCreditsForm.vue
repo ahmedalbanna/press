@@ -41,7 +41,7 @@
 		<div class="mt-1.5 grid grid-cols-1 gap-2 sm:grid-cols-2">
 			<button
 				@click="paymentGateway = 'Stripe'"
-				label="Stripe"
+				:label="t('Stripe')"
 				class="flex h-10 items-center justify-center rounded border"
 				:class="{
 					'border-outline-gray-2': paymentGateway !== 'Stripe',
@@ -57,7 +57,7 @@
 			<button
 				v-if="$team.doc.currency === 'INR' || $team.doc.razorpay_enabled"
 				@click="paymentGateway = 'Razorpay'"
-				label="Razorpay"
+				:label="t('Razorpay')"
 				class="flex h-10 items-center justify-center rounded border"
 				:class="{
 					'border-outline-gray-2': paymentGateway !== 'Razorpay',
@@ -69,7 +69,7 @@
 			<button
 				v-if="$team.doc.currency === 'USD' && $resources.paypalEnabled.data"
 				@click="paymentGateway = 'Razorpay'"
-				label="PayPal"
+				:label="t('PayPal')"
 				class="flex h-10 items-center justify-center rounded border"
 				:class="{
 					'border-outline-gray-2': paymentGateway !== 'Razorpay',

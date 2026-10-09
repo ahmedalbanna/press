@@ -2,16 +2,17 @@
 import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { isMobile } from '@/utils/device';
+import { t } from '../../utils/language';
 
 defineOptions({ name: 'SiteInsights' });
 
 const tabs = [
 	{
-		label: 'Analytics',
+		label: t('Analytics'),
 		value: 'Site Analytics',
 	},
 	{
-		label: 'Reports',
+		label: t('Reports'),
 		value: 'Site Performance Reports',
 		children: [
 			'Site Performance Slow Queries',
@@ -21,12 +22,12 @@ const tabs = [
 		],
 	},
 	{
-		label: 'Logs',
+		label: t('Logs'),
 		value: 'Site Logs',
 		children: ['Site Log'],
 	},
 	{
-		label: 'Jobs',
+		label: t('Jobs'),
 		value: 'Site Jobs',
 		children: ['Site Job'],
 	},

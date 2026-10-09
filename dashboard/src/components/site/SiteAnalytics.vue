@@ -33,7 +33,7 @@
 			<!-- Duration group -->
 			<label
 				class="text-base self-center text-ink-gray-6 border-l ml-1 pl-3 py-1"
-				>Relative</label
+				>{{ t('Relative') }}</label
 			>
 			<FormControl
 				type="select"
@@ -45,7 +45,7 @@
 			<!-- Grow -->
 			<div class="flex-grow" />
 
-			<Tooltip text="Copy a shareable link to this Dashboard">
+			<Tooltip :text="t('Copy a shareable link to this Dashboard')">
 				<!-- Share button -->
 				<ActionButton
 					variant="subtle"
@@ -247,7 +247,7 @@
 				@share-card="shareDashboard"
 			>
 				<template #action>
-					<Tooltip text="Shown only as reports seem to take time">
+					<Tooltip :text="t('Shown only as reports seem to take time')">
 						<lucide-info class="ml-2 mr-auto h-3.5 w-3.5 text-ink-gray-5" />
 					</Tooltip>
 				</template>
@@ -271,7 +271,7 @@
 				@share-card="shareDashboard"
 			>
 				<template #action>
-					<Tooltip text="Shown only as run_doc_method calls seem to take time">
+					<Tooltip :text="t('Shown only as run_doc_method calls seem to take time')">
 						<lucide-info class="ml-2 mr-auto h-3.5 w-3.5 text-ink-gray-5" />
 					</Tooltip>
 				</template>
@@ -294,7 +294,7 @@
 				v-if="saveDocsDoctypesData"
 			>
 				<template #action>
-					<Tooltip text="Shown only as savedocs calls seem to take time">
+					<Tooltip :text="t('Shown only as savedocs calls seem to take time')">
 						<lucide-info class="ml-2 mr-auto h-3.5 w-3.5 text-ink-gray-5" />
 					</Tooltip>
 				</template>
@@ -316,7 +316,7 @@
 				v-if="saveDocsActionData"
 			>
 				<template #action>
-					<Tooltip text="Shown only as savedocs calls seem to take time">
+					<Tooltip :text="t('Shown only as savedocs calls seem to take time')">
 						<lucide-info class="ml-2 mr-auto h-3.5 w-3.5 text-ink-gray-5" />
 					</Tooltip>
 				</template>
@@ -410,7 +410,7 @@
 				@share-card="shareDashboard"
 			>
 				<template #action>
-					<Tooltip text="Shown only as reports seem to take time">
+					<Tooltip :text="t('Shown only as reports seem to take time')">
 						<lucide-info class="ml-2 mr-auto h-3.5 w-3.5 text-ink-gray-5" />
 					</Tooltip>
 				</template>
@@ -451,7 +451,7 @@
 				@share-card="shareDashboard"
 			>
 				<template #action>
-					<Tooltip text="Show Detailed Reports">
+					<Tooltip :text="t('Show Detailed Reports')">
 						<router-link
 							class="text-base text-ink-gray-6 hover:text-ink-gray-7"
 							:to="{ name: 'Site Performance Slow Queries' }"
@@ -484,7 +484,7 @@
 				@share-card="shareDashboard"
 			>
 				<template #action>
-					<Tooltip text="Show Detailed Reports">
+					<Tooltip :text="t('Show Detailed Reports')">
 						<router-link
 							class="text-base text-ink-gray-6 hover:text-ink-gray-7"
 							:to="{ name: 'Site Performance Slow Queries' }"

@@ -8,7 +8,7 @@
 			variant="outline"
 			:options="dayOptions"
 			v-model="scheduledDate"
-			placeholder="Select date"
+			:placeholder="t('Select date')"
 		/>
 		<FormControl
 			class="flex-[3]"
@@ -18,7 +18,7 @@
 			variant="outline"
 			:options="hourOptions"
 			v-model="scheduledHour"
-			placeholder="Select hour"
+			:placeholder="t('Select hour')"
 		/>
 		<FormControl
 			class="flex-[3]"
@@ -28,7 +28,7 @@
 			variant="outline"
 			:options="minuteOptions"
 			v-model="scheduledMinute"
-			placeholder="Select min"
+			:placeholder="t('Select min')"
 		/>
 	</div>
 </template>

@@ -9,6 +9,7 @@
 <script>
 import dayjs from '../../../utils/dayjs';
 import PerformanceReport from './PerformanceReport.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'SiteDeadlockReport',
@@ -60,7 +61,7 @@ export default {
 				emptyStateMessage: 'No query deadlock records found',
 				columns: [
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'timestamp',
 						width: '12rem',
 						format: (value) => {
@@ -68,20 +69,20 @@ export default {
 						},
 					},
 					{
-						label: 'Txn ID',
+						label: t('Txn ID'),
 						fieldname: 'transaction_id',
 						align: 'left',
 						width: '100px',
 					},
 					{
-						label: 'Table',
+						label: t('Table'),
 						fieldname: 'table',
 						class: 'text-ink-gray-6',
 						align: 'left',
 						width: '200px',
 					},
 					{
-						label: 'Query',
+						label: t('Query'),
 						fieldname: 'query',
 						class: 'font-mono',
 					},
@@ -90,18 +91,18 @@ export default {
 					return [
 						{
 							type: 'datetime-local',
-							label: 'Start Time',
+							label: t('Start Time'),
 							fieldname: 'start_datetime',
 							default: this.start_datetime,
 						},
 						{
 							type: 'datetime-local',
-							label: 'End Time',
+							label: t('End Time'),
 							fieldname: 'stop_datetime',
 							default: this.stop_datetime,
 						},
 						{
-							label: 'Max Log Lines',
+							label: t('Max Log Lines'),
 							fieldname: 'max_log_size',
 							default: this.max_log_size,
 						},

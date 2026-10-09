@@ -6,13 +6,13 @@
 	>
 		<template v-slot:body-content>
 			<div class="space-y-4">
-				<p class="text-base">Restore your site using a previous backup.</p>
+				<p class="text-base">{{ t('Restore your site using a previous backup.') }}</p>
 				<div
 					class="flex items-center rounded border border-outline-gray-1 bg-surface-gray-2 p-4 text-sm text-ink-gray-6"
 				>
 					<lucide-alert-triangle class="mr-4 inline-block h-6 w-6" />
 					<div>
-						This will overwrite all <b>data</b> & <b>apps</b> in your site with
+						{{ t('This will overwrite all') }} <b>data</b> & <b>apps</b> in your site with
 						those from the backup
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 					v-model="skipFailingPatches"
 				/>
 				<label for="skip-failing" class="ml-2 text-sm text-ink-gray-9">
-					Skip failing patches (if any patch fails)
+					{{ t('Skip failing patches (if any patch fails)') }}
 				</label>
 			</div>
 			<ErrorMessage

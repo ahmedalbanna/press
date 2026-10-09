@@ -20,7 +20,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/storage-addons"
 			>
-				More Info
+				{{ t('More Info') }}
 			</Button>
 		</AlertBanner>
 
@@ -42,7 +42,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/faq/site#my-site-is-suspended-what-do-i-do"
 			>
-				More Info
+				{{ t('More Info') }}
 			</Button>
 		</AlertBanner>
 
@@ -57,7 +57,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/faq/site#my-site-is-suspended-what-do-i-do"
 			>
-				More Info
+				{{ t('More Info') }}
 			</Button>
 		</AlertBanner>
 
@@ -79,7 +79,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/sites/version-upgrade"
 			>
-				Upgrade Now
+				{{ t('Upgrade Now') }}
 			</Button>
 		</DismissableBanner>
 		<DismissableBanner
@@ -96,7 +96,7 @@
 			type="gray"
 		>
 			<Button class="ml-auto" variant="outline" @click="showPlanChangeDialog">
-				Upgrade Plan
+				{{ t('Upgrade Plan') }}
 			</Button>
 		</DismissableBanner>
 
@@ -112,7 +112,7 @@
 			:id="$site.name"
 		>
 			<Button class="ml-auto" variant="outline" @click="moveToPrivateBench">
-				Move to Private Bench
+				{{ t('Move to Private Bench') }}
 			</Button>
 		</DismissableBanner>
 
@@ -128,7 +128,7 @@
 									<div class="leading-4">
 										<span class="flex items-center text-base text-ink-gray-9">
 											<template v-if="$site.doc.is_dedicated_server">
-												Dedicated Server Site
+												{{ t('Dedicated Server Site') }}
 											</template>
 
 											<template v-else-if="$site.doc.trial_end_date">
@@ -383,6 +383,7 @@ import BenchActionsDropdown from './BenchActionsDropdown.vue'
 import CustomAlerts from './CustomAlerts.vue'
 import DismissableBanner from './DismissableBanner.vue'
 import SiteDailyUsage from './SiteDailyUsage.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'SiteOverview',
@@ -564,7 +565,7 @@ export default {
 					suffix: h(
 						Tooltip,
 						{
-							text: 'Use this for adding A records for your site',
+							text: t('Use this for adding A records for your site'),
 						},
 						() => h(InfoIcon, { class: 'h-4 w-4 text-ink-gray-5' }),
 					),
@@ -575,7 +576,7 @@ export default {
 					suffix: h(
 						Tooltip,
 						{
-							text: 'Use this for whitelisting our server on a 3rd party service',
+							text: t('Use this for whitelisting our server on a 3rd party service'),
 						},
 						() => h(InfoIcon, { class: 'h-4 w-4 text-ink-gray-5' }),
 					),

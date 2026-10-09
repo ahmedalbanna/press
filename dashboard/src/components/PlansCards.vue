@@ -48,7 +48,7 @@
 										<span v-if="plan.price_inr" class="text-ink-gray-7">/mo</span>
 									</template>
 								</span>
-								<Tooltip text="Product support included">
+								<Tooltip :text="t('Product support included')">
 									<lucide-badge-check
 										class="ml-1 h-4 w-6 text-ink-gray-6"
 										v-if="plan.support_included"
@@ -94,7 +94,7 @@
 		</div>
 	</div>
 	<div v-else class="flex h-6 items-center">
-		<div class="text-base text-ink-gray-6">No plans available</div>
+		<div class="text-base text-ink-gray-6">{{ t('No plans available') }}</div>
 	</div>
 </template>
 

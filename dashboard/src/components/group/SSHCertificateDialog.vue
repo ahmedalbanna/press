@@ -9,7 +9,7 @@
 		<template #body-content v-if="$bench.doc">
 			<div v-if="certificate" class="space-y-3 [&_pre]:text-ink-gray-6 -mt-3">
 				<p class="text-p-base text-ink-gray-7">
-					Copy the command to SSH into your bench
+					{{ t('Copy the command to SSH into your bench') }}
 				</p>
 
 				<ClickToCopyField :textContent="fullCommand" />
@@ -18,7 +18,7 @@
 					<lucide-alert-triangle class="size-4 shrink-0 mb-auto mt-0.5" />
 					<div class="text-sm leading-relaxed">
 						<p>
-							Use wisely and only for
+							{{ t('Use wisely and only for') }}
 							<a
 								href="/docs/benches/debugging"
 								class="underline"
@@ -38,13 +38,13 @@
 			<div class="space-y-2 text-base text-ink-gray-7 leading-relaxed" v-else>
 				<p>
 					<template v-if="!$bench.doc.user_ssh_key">
-						It looks like you haven't added your SSH public key. Go to
+						{{ t('It looks like you haven\'t added your SSH public key. Go to') }}
 						<router-link
 							:to="{ name: 'SettingsDeveloper' }"
 							class="underline"
 							@click="show = false"
 						>
-							Developer Settings</router-link
+							{{ t('Developer Settings') }}</router-link
 						>
 						to add your SSH public key.
 					</template>
@@ -62,9 +62,9 @@
 				</p>
 
 				<p>
-					Please refer to the
+					{{ t('Please refer to the') }}
 					<a href="/docs/benches/ssh" class="underline" target="_blank"
-						>SSH Access documentation</a
+						>{{ t('SSH Access documentation') }}</a
 					>
 					for more details.
 				</p>
@@ -94,7 +94,7 @@
 				"
 				variant="solid"
 				class="w-full"
-				>Generate SSH Certificate</Button
+				>{{ t('Generate SSH Certificate') }}</Button
 			>
 		</template>
 	</Dialog>

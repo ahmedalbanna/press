@@ -42,13 +42,13 @@
 							<div class="mt-4 flex items-end space-x-2">
 								<FormControl
 									class="grow"
-									label="GitHub URL"
+									:label="t('GitHub URL')"
 									v-model="githubAppLink"
 									autocomplete="off"
 								/>
 								<Button
 									v-if="!selectedBranch"
-									label="Fetch Branches"
+									:label="t('Fetch Branches')"
 									:loading="$resources.branches.loading"
 									@click="
 										$resources.branches.submit({
@@ -66,9 +66,9 @@
 								/>
 							</div>
 							<p v-if="repositoryNotFound" class="text-base text-ink-gray-7">
-								Repository not found. If it is private, add it from the
+								{{ t('Repository not found. If it is private, add it from the') }}
 								<span class="cursor-pointer underline" @click="tabIndex = 1"
-									>Private Repository</span
+									>{{ t('Private Repository') }}</span
 								>
 								tab.
 							</p>
@@ -85,7 +85,7 @@
 								class="flex text-base text-ink-gray-7"
 							>
 								<LoadingIndicator class="mr-2 w-4" />
-								Validating app...
+								{{ t('Validating app...') }}
 							</div>
 							<div
 								v-else-if="appValidated && app"
@@ -122,6 +122,7 @@ import { Combobox, debounce, FormControl, Tabs } from 'frappe-ui'
 import { DashboardError } from '../utils/error'
 import AlertBanner from './AlertBanner.vue'
 import GitHubAppSelector from './GitHubAppSelector.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'NewAppDialog',
@@ -156,11 +157,11 @@ export default {
 			selectedGithubRepository: null,
 			tabs: [
 				{
-					label: 'Public Repository',
+					label: t('Public Repository'),
 					value: 'public-github-app',
 				},
 				{
-					label: 'Private Repository',
+					label: t('Private Repository'),
 					value: 'your-github-app',
 				},
 			],

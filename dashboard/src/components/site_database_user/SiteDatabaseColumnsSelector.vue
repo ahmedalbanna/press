@@ -16,7 +16,7 @@
 			>
 				<FormControl
 					theme="outline"
-					placeholder="Search"
+					:placeholder="t('Search')"
 					v-model="searchQuery"
 				/>
 

@@ -4,7 +4,7 @@
 		type="warning"
 	>
 		<Button class="ml-auto" route="/billing" variant="outline">
-			Update Card
+			{{ t('Update Card') }}
 		</Button>
 	</AlertBanner>
 </template>

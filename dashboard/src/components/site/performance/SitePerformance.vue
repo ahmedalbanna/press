@@ -3,6 +3,7 @@
 </template>
 <script>
 import ObjectList from '../../ObjectList.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	props: ['name'],
@@ -20,37 +21,37 @@ export default {
 				},
 				data: () => [
 					{
-						title: 'Request Log Report',
+						title: t('Request Log Report'),
 						description:
 							'View detailed logs of all HTTP requests made to the website.',
 						route: 'Site Performance Request Logs',
 					},
 					{
-						title: 'Process List Report',
+						title: t('Process List Report'),
 						description:
 							'Monitor active database processes, their status, and resource usage.',
 						route: 'Site Performance Process List',
 					},
 					{
-						title: 'Slow Queries Report',
+						title: t('Slow Queries Report'),
 						description:
 							'Identify and optimize slow-running database queries to improve performance.',
 						route: 'Site Performance Slow Queries',
 					},
 					{
-						title: 'Deadlock Report',
+						title: t('Deadlock Report'),
 						description: 'Shows database conflicts that block transactions.',
 						route: 'Site Performance Deadlock Report',
 					},
 				],
 				columns: [
 					{
-						label: 'Title',
+						label: t('Title'),
 						fieldname: 'title',
 						width: 0.3,
 					},
 					{
-						label: 'Description',
+						label: t('Description'),
 						fieldname: 'description',
 						class: 'text-ink-gray-7',
 					},

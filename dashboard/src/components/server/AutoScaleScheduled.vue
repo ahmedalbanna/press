@@ -10,6 +10,7 @@ import { icon } from '../../utils/components';
 import ObjectList from '../ObjectList.vue';
 
 import Badge from '../global/Badge.vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'AutoScale',
@@ -28,29 +29,29 @@ export default {
 				filterControls: () => [
 					{
 						type: 'select',
-						label: 'Action',
+						label: t('Action'),
 						fieldname: 'action',
 						options: ['', 'Scale Down', 'Scale Up'],
 					},
 					{
 						type: 'text',
-						label: 'Triggered By',
+						label: t('Triggered By'),
 						fieldname: 'owner',
 					},
 				],
 				orderBy: 'creation desc',
 				fields: ['owner'],
 				columns: [
-					{ label: 'Secondary Server', fieldname: 'secondary_server' },
+					{ label: t('Secondary Server'), fieldname: 'secondary_server' },
 
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						align: 'center',
 					},
 					{
-						label: 'Action',
+						label: t('Action'),
 						fieldname: 'action',
 						type: 'Component',
 						align: 'center',
@@ -61,7 +62,7 @@ export default {
 							}),
 					},
 					{
-						label: 'Scheduled Time',
+						label: t('Scheduled Time'),
 						fieldname: 'scheduled_time',
 						width: 1,
 						format(row, value) {
@@ -72,12 +73,12 @@ export default {
 						},
 					},
 					{
-						label: 'Created By',
+						label: t('Created By'),
 						fieldname: 'owner',
 						align: 'center',
 					},
 					{
-						label: 'Created At',
+						label: t('Created At'),
 						fieldname: 'creation',
 						type: 'Timestamp',
 						align: 'right',
@@ -85,7 +86,7 @@ export default {
 				],
 
 				primaryAction: () => ({
-					label: 'Schedule Auto Scale',
+					label: t('Schedule Auto Scale'),
 					slots: { prefix: icon('clock') },
 					onClick: () =>
 						renderDialog(

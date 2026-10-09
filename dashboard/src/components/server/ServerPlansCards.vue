@@ -8,6 +8,7 @@
 
 <script>
 import PlansCards from '../PlansCards.vue';
+import { t } from '../../utils/language';
 
 export default {
 	props: {
@@ -40,15 +41,15 @@ export default {
 							value: plan.vcpu,
 						},
 						{
-							label: 'Memory',
+							label: t('Memory'),
 							value: this.$format.bytes(plan.memory, 0, 2),
 						},
 						{
-							label: 'Disk',
+							label: t('Disk'),
 							value: `${plan.disk} GB`,
 						},
 						{
-							label: 'Instance Type',
+							label: t('Instance Type'),
 							value: plan.instance_type,
 						},
 					],

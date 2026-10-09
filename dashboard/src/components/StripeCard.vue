@@ -10,7 +10,7 @@
 			<div v-show="!tryingMicroCharge">
 				<label class="block">
 					<span class="block text-xs text-ink-gray-6">
-						Credit or Debit Card
+						{{ t('Credit or Debit Card') }}
 					</span>
 					<div
 						class="form-input mt-2 block h-[unset] w-full py-2 pl-3"
@@ -20,7 +20,7 @@
 				</label>
 				<FormControl
 					class="mt-4"
-					label="Name on Card"
+					:label="t('Name on Card')"
 					type="text"
 					v-model="billingInformation.cardHolderName"
 				/>
@@ -34,13 +34,13 @@
 
 			<div class="mt-3" v-show="tryingMicroCharge">
 				<p class="text-lg text-ink-gray-8">
-					We are attempting to charge your card with
+					{{ t('We are attempting to charge your card with') }}
 					<strong>{{ formattedMicroChargeAmount }}</strong> to make sure the
 					card works. This amount will be <strong>refunded</strong> back to your
 					account.
 				</p>
 
-				<Button class="mt-2" :loading="true">Attempting Test Charge</Button>
+				<Button class="mt-2" :loading="true">{{ t('Attempting Test Charge') }}</Button>
 			</div>
 
 			<ErrorMessage class="mt-2" :message="errorMessage" />
@@ -48,7 +48,7 @@
 			<div class="mt-6 flex items-center justify-between">
 				<StripeLogo />
 				<Button variant="solid" @click="submit" :loading="addingCard">
-					Save Card
+					{{ t('Save Card') }}
 				</Button>
 			</div>
 		</div>

@@ -11,7 +11,7 @@
 				{{ email }}
 			</div>
 		</div>
-		<Badge v-if="isCurrentUser" class="ml-2"> You </Badge>
+		<Badge v-if="isCurrentUser" class="ml-2"> {{ t('You') }}</Badge>
 	</div>
 </template>
 

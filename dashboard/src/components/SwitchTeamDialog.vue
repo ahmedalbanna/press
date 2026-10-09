@@ -3,11 +3,11 @@
 		<template #body-content v-if="$team?.doc">
 			<div class="rounded bg-surface-gray-2 px-3 py-2.5">
 				<div class="text-base text-ink-gray-9">
-					Signed in as
+					{{ t('Signed in as') }}
 					<span class="font-medium">{{ $session.user }}</span>
 				</div>
 				<div class="mt-1.5 text-base text-ink-gray-9">
-					Viewing dashboard for the team
+					{{ t('Viewing dashboard for the team') }}
 					<component
 						:is="$team.doc.is_desk_user ? 'a' : 'span'"
 						class="font-medium"
@@ -23,7 +23,7 @@
 				<TextInput
 					ref="searchRef"
 					size="sm"
-					placeholder="Search"
+					:placeholder="t('Search')"
 					:debounce="500"
 					v-model="searchQuery"
 				>
@@ -52,7 +52,7 @@
 						<Badge
 							class="whitespace-nowrap"
 							v-if="team.user === $session.user"
-							label="Your team"
+							:label="t('Your team')"
 							theme="blue"
 							size="md"
 						/>
@@ -61,18 +61,18 @@
 						class="whitespace-nowrap"
 						v-if="$team.name === team.name"
 						size="md"
-						label="Active"
+						:label="t('Active')"
 						theme="green"
 					/>
 					<Button v-else @click="switchToTeam(team.name)" size="sm"
-						>Switch</Button
+						>{{ t('Switch') }}</Button
 					>
 				</div>
 			</div>
 			<div class="mt-6 flex items-center gap-2" v-if="$session.isSystemUser">
 				<LinkControl
 					class="w-full"
-					label="Select team"
+					:label="t('Select team')"
 					:options="{ doctype: 'Team', filters: { enabled: 1 } }"
 					v-model="selectedTeam"
 					description="This feature is only available to system users"
@@ -83,7 +83,7 @@
 						@click="switchToTeam(selectedTeam)"
 						size="sm"
 					>
-						Switch
+						{{ t('Switch') }}
 					</Button>
 				</div>
 			</div>

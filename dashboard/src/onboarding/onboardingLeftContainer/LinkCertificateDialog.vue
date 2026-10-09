@@ -5,6 +5,7 @@ import EmailInput from '@/components/EmailInput.vue'
 import { showOnboardingToast } from '@/onboarding/toast'
 import { usePartnerOnboarding } from '@/onboarding/usePartnerOnboarding'
 import LucideX from '~icons/lucide/x'
+import { t } from '../../utils/language'
 
 const open = defineModel({ default: false })
 
@@ -29,12 +30,12 @@ const ERPNextLogo = new URL(
 
 const certificateTypes = [
 	{
-		label: 'Frappe Framework',
+		label: t('Frappe Framework'),
 		value: 'frappe',
 		logo: FrappeFrameworkLogo,
 	},
 	{
-		label: 'ERPNext',
+		label: t('ERPNext'),
 		value: 'erpnext',
 		logo: ERPNextLogo,
 	},
@@ -122,10 +123,10 @@ async function handleSubmit() {
 				<div class="flex items-start justify-between gap-4">
 					<div>
 						<h3 class="text-lg font-semibold leading-6 text-ink-gray-9">
-							Link certificate
+							{{ t('Link certificate') }}
 						</h3>
 						<p class="mt-1.5 text-p-sm leading-5 text-ink-gray-6">
-							Choose a certificate and email the holder for verification.
+							{{ t('Choose a certificate and email the holder for verification.') }}
 						</p>
 					</div>
 					<button
@@ -139,7 +140,7 @@ async function handleSubmit() {
 				</div>
 
 				<div class="mt-5">
-					<label class="text-p-sm text-ink-gray-6">Certificate type</label>
+					<label class="text-p-sm text-ink-gray-6">{{ t('Certificate type') }}</label>
 					<div class="mt-2 grid grid-cols-2 gap-2">
 						<button
 							v-for="type in certificateTypes"
@@ -170,7 +171,7 @@ async function handleSubmit() {
 					@update:model-value="setUserEmail"
 					ref="emailInputRef"
 					class="mt-4"
-					label="User Email"
+					:label="t('User Email')"
 					:show-error="submitted"
 					required-message="User email is required."
 				/>
@@ -180,7 +181,7 @@ async function handleSubmit() {
 				<Button
 					variant="solid"
 					class="mt-6 w-full"
-					label="Send verification email"
+					:label="t('Send verification email')"
 					:loading="submitting"
 					@click="handleSubmit"
 				/>

@@ -21,7 +21,7 @@
 			<FormControl
 				class="mt-4"
 				v-model="billingInformation.billing_name"
-				label="Billing Name"
+				:label="t('Billing Name')"
 			/>
 			<AddressForm
 				ref="address-form"

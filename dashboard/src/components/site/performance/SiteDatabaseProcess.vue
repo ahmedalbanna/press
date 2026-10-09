@@ -17,7 +17,7 @@
 				</p>
 
 				<div v-if="query">
-					<p class="ml-1 font-mono text-sm">Query:</p>
+					<p class="ml-1 font-mono text-sm">{{ t('Query:') }}</p>
 					<pre
 						class="mt-1 whitespace-pre-wrap rounded-lg border-2 border-outline-gray-1 bg-surface-gray-2 p-3 text-sm text-ink-gray-7"
 						>{{ query }}</pre

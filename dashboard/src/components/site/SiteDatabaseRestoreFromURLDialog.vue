@@ -11,7 +11,7 @@
 			>
 				<lucide-alert-triangle class="mr-4 inline-block h-6 w-6" />
 				<div>
-					This will overwrite the current <b>data</b> & <b>apps</b> in your site
+					{{ t('This will overwrite the current') }} <b>data</b> & <b>apps</b> in your site
 					with those from the backup
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 			</div>
 			<div class="mt-3">
 				<FormControl
-					label="Skip failing patches (if any patch fails)"
+					:label="t('Skip failing patches (if any patch fails)')"
 					type="checkbox"
 					v-model="skipFailingPatches"
 				/>

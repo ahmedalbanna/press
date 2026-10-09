@@ -214,11 +214,11 @@ function stripHtmlTags(value: string) {
 		<FormControl
 			v-model="onboarding.form.company_name"
 			ref="companyNameRef"
-			label="Company name"
+			:label="t('Company name')"
 			type="text"
 			size="sm"
 			variant="outline"
-			placeholder="Registered company name"
+			:placeholder="t('Registered company name')"
 			:minlength="companyNameMinLength"
 			:maxlength="companyNameMaxLength"
 			:class="{ 'has-error': errors.company_name }"
@@ -229,7 +229,7 @@ function stripHtmlTags(value: string) {
 
 		<div class="flex flex-col gap-1.5">
 			<div class="flex items-end gap-1">
-				<label class="block text-xs text-ink-gray-5">Registered country</label>
+				<label class="block text-xs text-ink-gray-5">{{ t('Registered country') }}</label>
 				<Tooltip
 					text="You'll be listed as a partner in this country, subject to approval and verification."
 				>
@@ -238,7 +238,7 @@ function stripHtmlTags(value: string) {
 			</div>
 			<div :class="{ 'has-error': errors.country }">
 				<Autocomplete
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:model-value="onboarding.form.registered_country"
 					:options="countryOptions"
 					:max-options="countryOptions.length || 300"
@@ -272,10 +272,10 @@ function stripHtmlTags(value: string) {
 		</p>
 
 		<div v-if="isIndia" class="flex flex-col gap-1.5">
-			<label class="block text-xs text-ink-gray-5">Registered state</label>
+			<label class="block text-xs text-ink-gray-5">{{ t('Registered state') }}</label>
 			<div :class="{ 'has-error': errors.registered_state }">
 				<Autocomplete
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:model-value="onboarding.form.registered_state"
 					:options="indianStateOptions"
 					:max-options="indianStateOptions.length"
@@ -311,8 +311,8 @@ function stripHtmlTags(value: string) {
 		<EmailInput
 			v-model="onboarding.form.company_email"
 			ref="emailInputRef"
-			label="Company email"
-			placeholder="Email"
+			:label="t('Company email')"
+			:placeholder="t('Email')"
 			:show-error="submitted"
 			show-icon
 			required-message="Company email is required."
@@ -321,10 +321,10 @@ function stripHtmlTags(value: string) {
 
 		<PhoneInput
 			v-model="onboarding.form.contact"
-			label="Contact"
+			:label="t('Contact')"
 			:countries="countryListResource.data || []"
 			:country="onboarding.form.registered_country"
-			placeholder="Mobile number"
+			:placeholder="t('Mobile number')"
 			:class="{ 'has-error': errors.contact }"
 		/>
 		<p v-if="errors.contact" class="-mt-2 text-sm text-ink-red-4">

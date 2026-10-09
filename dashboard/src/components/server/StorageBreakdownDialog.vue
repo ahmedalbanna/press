@@ -14,7 +14,7 @@
 				"
 				class="flex h-80 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Analyzing ...
+				<Spinner class="w-4" /> {{ t('Analyzing ...') }}
 			</div>
 			<div
 				v-else-if="
@@ -91,7 +91,7 @@
 							variant="outline"
 							link="https://docs.frappe.io/cloud/database-server-actions#view--purge-binlogs"
 						>
-							Docs
+							{{ t('Docs') }}
 						</Button>
 					</AlertBanner>
 				</div>
@@ -103,6 +103,7 @@
 import { Spinner } from 'frappe-ui';
 import StorageBreakupChart from '../StorageBreakupChart.vue';
 import { h } from 'vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'StorageBreakdown',
@@ -237,7 +238,7 @@ export default {
 			if (message.docker) {
 				const dockerNode = {
 					name: 'docker',
-					label: 'Docker',
+					label: t('Docker'),
 					children: [
 						{
 							name: 'docker-images',

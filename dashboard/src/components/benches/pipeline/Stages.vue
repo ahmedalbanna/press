@@ -46,7 +46,7 @@ const isStageDisabled = (x) => {
 	>
 		<div class="flex  items-center gap-2 text-sm pb-3 w-full border-b">
 			<Spinner class="size-4" />
-			<span>Deploy is queued and will start shortly...</span>
+			<span>{{ t('Deploy is queued and will start shortly...') }}</span>
 		</div>
 
 		<div

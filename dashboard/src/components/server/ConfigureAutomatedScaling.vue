@@ -11,7 +11,7 @@
 				v-if="$resources.configuredAutoscales.loading"
 				class="flex w-full items-center justify-center gap-2 py-32 text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Loading
+				<Spinner class="w-4" /> {{ t('Loading') }}
 			</div>
 			<div v-else>
 				<AlertBanner
@@ -19,7 +19,7 @@
 					:showIcon="false"
 					class="mb-3"
 					title="When both CPU and Memory thresholds are set, scaling will trigger if either condition is met.
-					<br>Please refer to the <a href='https://docs.frappe.io/cloud/application-server-horizontal-scaling#application-server-horizontal-scaling'
+					<br>{{ t('Please refer to the') }} <a href='https://docs.frappe.io/cloud/application-server-horizontal-scaling#application-server-horizontal-scaling'
 					target='_blank' class='underline'>documentation</a> for more information."
 				/>
 				<div class="flex justify-end gap-2">
@@ -31,7 +31,7 @@
 						iconLeft="trash-2"
 						@click="onRemoveTrigger"
 					>
-						Remove
+						{{ t('Remove') }}
 					</Button>
 					<Button
 						variant="solid"
@@ -48,7 +48,7 @@
 						:loading="$resources.configuredAutoscales.loading"
 						@click="$resources.configuredAutoscales.submit()"
 					>
-						Refresh
+						{{ t('Refresh') }}
 					</Button>
 				</div>
 				<GenericList
@@ -69,6 +69,7 @@ import { confirmDialog } from '../../utils/components';
 import AlertBanner from '../AlertBanner.vue';
 import GenericList from '../GenericList.vue';
 import Badge from '../global/Badge.vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'AutoScale',
@@ -110,15 +111,15 @@ export default {
 				data: this.triggers,
 				selectable: true,
 				columns: [
-					{ label: 'Metric', fieldname: 'metric', type: 'text' },
+					{ label: t('Metric'), fieldname: 'metric', type: 'text' },
 					{
-						label: 'Threshold',
+						label: t('Threshold'),
 						fieldname: 'threshold',
 						type: 'text',
 						format: (v) => `${v}%`,
 					},
 					{
-						label: 'Action',
+						label: t('Action'),
 						fieldname: 'action',
 						type: 'Component',
 						align: 'center',
@@ -131,7 +132,7 @@ export default {
 					},
 				],
 				emptyState: {
-					title: 'No Autoscale Triggers found',
+					title: t('No Autoscale Triggers found'),
 					description: 'You have not configured any autoscale triggers yet',
 				},
 			};
@@ -165,40 +166,40 @@ export default {
 			const server = this.server;
 
 			confirmDialog({
-				title: 'Add Autoscaling Trigger',
+				title: t('Add Autoscaling Trigger'),
 				message: 'Create a new autoscaling rule for this server.',
 				fields: [
 					{
-						label: 'Metric',
+						label: t('Metric'),
 						fieldname: 'metric',
 						type: 'select',
 						options: [
-							{ label: 'CPU Usage', value: 'CPU' },
-							{ label: 'Memory', value: 'Memory' },
+							{ label: t('CPU Usage'), value: 'CPU' },
+							{ label: t('Memory'), value: 'Memory' },
 						],
 						default: 'CPU',
 						required: true,
 					},
 
 					{
-						label: 'Threshold (%)',
+						label: t('Threshold (%)'),
 						fieldname: 'threshold',
 						type: 'float',
 						required: true,
 					},
 					{
-						label: 'Action',
+						label: t('Action'),
 						fieldname: 'action',
 						type: 'select',
 						options: [
-							{ label: 'Scale Up', value: 'Scale Up' },
-							{ label: 'Scale Down', value: 'Scale Down' },
+							{ label: t('Scale Up'), value: 'Scale Up' },
+							{ label: t('Scale Down'), value: 'Scale Down' },
 						],
 						required: true,
 					},
 				],
 				primaryAction: {
-					label: 'Add Trigger',
+					label: t('Add Trigger'),
 				},
 				onSuccess: ({ hide, values }) => {
 					const threshold = parseFloat(values.threshold);

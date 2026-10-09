@@ -4,24 +4,24 @@
 			<div
 				class="prose prose-sm rounded mt-4 p-2 text-sm text-ink-gray-7 bg-surface-gray-2 border"
 			>
-				This feature creates a snapshot of both the <b>App Server</b> and
-				<b>Database Server</b>.<br /><br />
+				{{ t('This feature creates a snapshot of both the') }} <b>{{ t('App Server') }}</b> and
+				<b>{{ t('Database Server') }}</b>.<br /><br />
 
-				<b>Snapshot Modes:</b>
+				<b>{{ t('Snapshot Modes:') }}</b>
 				<ul>
 					<li>
-						<b>Consistent:</b> Stops services (like the database and containers)
+						<b>{{ t('Consistent:') }}</b> Stops services (like the database and containers)
 						while taking the snapshot. Your websites will be temporarily down,
 						but this ensures a reliable backup that can be restored safely.
 					</li>
 					<li>
-						<b>Non-Consistent:</b> Takes the snapshot without stopping services.
+						<b>{{ t('Non-Consistent:') }}</b> Takes the snapshot without stopping services.
 						It's faster and your sites stay online, but the backup might not
 						restore perfectly.
 					</li>
 				</ul>
 				<br />
-				The snapshot will cost <b>{{ snapshotPlanRate }}</b
+				{{ t('The snapshot will cost') }} <b>{{ snapshotPlanRate }}</b
 				>.
 			</div>
 			<div class="mt-4 text-sm text-ink-gray-7" :label="t('Consistent Snapshot')">
@@ -43,7 +43,7 @@
 				:loading="$resources.create_snapshot.loading"
 				@click="$resources.create_snapshot.submit()"
 			>
-				Create Snapshot
+				{{ t('Create Snapshot') }}
 			</Button>
 		</template>
 	</Dialog>

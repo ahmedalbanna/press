@@ -9,14 +9,14 @@
 				class="flex flex-col space-y-6"
 			>
 				<div class="leading-relaxed">
-					<p class="font-medium mb-1">Autoscale Scheduling Rules</p>
+					<p class="font-medium mb-1">{{ t('Autoscale Scheduling Rules') }}</p>
 
 					<ul class="list-disc list-inside space-y-1">
 						<li>
-							Scale up and scale down times must be at least
+							{{ t('Scale up and scale down times must be at least') }}
 							<strong>60 minutes apart</strong>.
 						</li>
-						<li>The selected times must be in the future.</li>
+						<li>{{ t('The selected times must be in the future.') }}</li>
 						<li>
 							A new scale up can only occur after the server has been scaled
 							down for at least <strong>5 minutes</strong>.
@@ -25,20 +25,20 @@
 				</div>
 				<div class="border border-outline-gray-1 rounded-lg p-4 mt-4 space-y-6">
 					<div class="flex flex-col space-y-2">
-						<label class="font-medium">Scale Up Start Time</label>
+						<label class="font-medium">{{ t('Scale Up Start Time') }}</label>
 						<DateTimePicker
 							v-model="scaleUpdateTime"
 							variant="subtle"
-							placeholder="Select date & time"
+							:placeholder="t('Select date & time')"
 						/>
 					</div>
 
 					<div class="flex flex-col space-y-2">
-						<label class="font-medium">Scale Down Start Time</label>
+						<label class="font-medium">{{ t('Scale Down Start Time') }}</label>
 						<DateTimePicker
 							v-model="scaleDowndateTime"
 							variant="subtle"
-							placeholder="Select date & time"
+							:placeholder="t('Select date & time')"
 						/>
 					</div>
 				</div>
@@ -48,14 +48,14 @@
 					@click="scheduleAutoscale"
 					class="w-full rounded-lg mt-4 py-3"
 				>
-					Schedule Autoscale
+					{{ t('Schedule Autoscale') }}
 				</Button>
 			</div>
 			<div
 				v-else
 				class="flex flex-col items-center justify-center rounded-lg border border-outline-gray-1 bg-surface-gray-1 p-6 text-center space-y-3"
 			>
-				<p class="text-ink-gray-9">Autoscale scheduling is unavailable</p>
+				<p class="text-ink-gray-9">{{ t('Autoscale scheduling is unavailable') }}</p>
 
 				<p class="text-ink-gray-6 max-w-md">
 					You can only schedule autoscale records when automatic scaling is not
@@ -63,7 +63,7 @@
 				</p>
 
 				<p class="text-ink-gray-6">
-					Please read the
+					{{ t('Please read the') }}
 					<a
 						href="https://docs.frappe.io/cloud/application-server-horizontal-scaling"
 						target="_blank"

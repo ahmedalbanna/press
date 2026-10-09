@@ -6,6 +6,7 @@ import SSHCertificateDialog from '../components/group/SSHCertificateDialog.vue'
 import { getTeam } from '../data/team'
 import { confirmDialog, renderDialog } from './components'
 import { getToastErrorMessage } from './toast'
+import { t } from '../utils/language'
 
 export type BenchRow = {
 	name: string
@@ -97,7 +98,7 @@ export const getBenchOptions = ({
 
 	return [
 		{
-			label: 'View in Desk',
+			label: t('View in Desk'),
 			condition: () => getTeam()?.doc?.is_desk_user,
 			onClick: () =>
 				window.open(
@@ -106,30 +107,30 @@ export const getBenchOptions = ({
 				),
 		},
 		{
-			label: 'Show Apps',
+			label: t('Show Apps'),
 			condition: () => isActive,
 			onClick: () =>
 				renderDialog(h(BenchAppVersionsDialog, { bench, releaseGroup })),
 		},
 		{
-			label: 'SSH Access',
+			label: t('SSH Access'),
 			condition: () => isActive,
 			onClick: () => renderDialog(h(SSHCertificateDialog, { bench, releaseGroup })),
 		},
 		{
-			label: 'View Logs',
+			label: t('View Logs'),
 			condition: () => isActive,
 			onClick: () => showBenchLogs(bench),
 		},
 		{
-			label: 'Update All Sites',
+			label: t('Update All Sites'),
 			condition: () => isActive && (row.rows?.length ?? row.site_count) > 0,
 			onClick: () =>
 				confirmBenchMethod({
 					bench,
-					title: 'Update All Sites',
+					title: t('Update All Sites'),
 					message: `Are you sure you want to update all sites in the bench <b>${bench}</b> to the latest bench?`,
-					label: 'Update',
+					label: t('Update'),
 					theme: 'gray',
 					method: 'update_all_sites',
 					loading: 'Scheduling updates for the sites...',
@@ -138,14 +139,14 @@ export const getBenchOptions = ({
 				}),
 		},
 		{
-			label: 'Restart Bench',
+			label: t('Restart Bench'),
 			condition: () => isActive,
 			onClick: () =>
 				confirmBenchMethod({
 					bench,
-					title: 'Restart Bench',
+					title: t('Restart Bench'),
 					message: `Are you sure you want to restart the bench <b>${bench}</b>?`,
-					label: 'Restart',
+					label: t('Restart'),
 					theme: 'red',
 					method: 'restart',
 					loading: 'Restarting bench...',
@@ -154,15 +155,15 @@ export const getBenchOptions = ({
 				}),
 		},
 		{
-			label: 'Rebuild Assets',
+			label: t('Rebuild Assets'),
 			condition: () =>
 				isActive && !row.on_public_server && supportsRebuild(version),
 			onClick: () =>
 				confirmBenchMethod({
 					bench,
-					title: 'Rebuild Assets',
+					title: t('Rebuild Assets'),
 					message: `Are you sure you want to rebuild assets for the bench <b>${bench}</b>?`,
-					label: 'Rebuild',
+					label: t('Rebuild'),
 					theme: 'red',
 					method: 'rebuild',
 					loading: 'Rebuilding assets...',
@@ -172,14 +173,14 @@ export const getBenchOptions = ({
 				}),
 		},
 		{
-			label: 'Drop Bench',
+			label: t('Drop Bench'),
 			condition: () => true,
 			onClick: () =>
 				confirmBenchMethod({
 					bench,
-					title: 'Drop Bench',
+					title: t('Drop Bench'),
 					message: `Are you sure you want to drop the bench <b>${bench}</b>?`,
-					label: 'Drop',
+					label: t('Drop'),
 					theme: 'red',
 					method: 'archive',
 					loading: 'Scheduling bench to be dropped...',
@@ -188,7 +189,7 @@ export const getBenchOptions = ({
 				}),
 		},
 		{
-			label: 'View Processes',
+			label: t('View Processes'),
 			condition: () => isActive,
 			onClick: () => showProcesses(bench),
 		},

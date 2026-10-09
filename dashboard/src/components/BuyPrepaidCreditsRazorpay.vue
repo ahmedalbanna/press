@@ -24,7 +24,7 @@
 				Proceed to payment using {{ paypalEnabled ? 'PayPal' : 'Razorpay' }}
 			</Button>
 			<Button v-else variant="solid" :loading="isVerifyingPayment"
-				>Confirming payment</Button
+				>{{ t('Confirming payment') }}</Button
 			>
 		</div>
 	</div>

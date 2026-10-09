@@ -21,7 +21,7 @@
 			<div v-else>
 				<!-- Status -->
 				<div class="flex flex-row justify-between items-center">
-					<div class="text-base font-medium text-ink-gray-8">Current Status</div>
+					<div class="text-base font-medium text-ink-gray-8">{{ t('Current Status') }}</div>
 					<Button
 						variant="subtle"
 						theme="red"
@@ -66,7 +66,7 @@
 								<td>{{ databaseServerStatusFlags?.id }}</td>
 							</tr>
 							<tr>
-								<td>Wireguard Setup</td>
+								<td>{{ t('Wireguard Setup') }}</td>
 								<td>
 									{{
 										appServerStatusFlags?.wireguard_setup_completed
@@ -83,7 +83,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>On-Prem Reachable</td>
+								<td>{{ t('On-Prem Reachable') }}</td>
 								<td>
 									{{
 										appServerStatusFlags?.on_prem_server_reachable
@@ -100,7 +100,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>On-Prem SSHable</td>
+								<td>{{ t('On-Prem SSHable') }}</td>
 								<td>
 									{{
 										appServerStatusFlags?.on_prem_server_sshable ? 'Yes' : 'No'
@@ -115,7 +115,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Replication Setup</td>
+								<td>{{ t('Replication Setup') }}</td>
 								<td>
 									{{ appServerStatusFlags?.setup_completed ? 'Yes' : 'No' }}
 								</td>
@@ -141,7 +141,7 @@
 							class="cursor-pointer text-ink-gray-7 font-medium"
 							@click="toggleSetupGuide"
 						>
-							On-Prem Server Setup Guide
+							{{ t('On-Prem Server Setup Guide') }}
 						</p>
 					</div>
 					<div
@@ -282,7 +282,7 @@ command -v docker >/dev/null 2>&1 || curl -fsSL https://get.docker.com | bash
 						>
 							<div class="mt-1 mb-1 flex flex-row justify-between w-full px-2">
 								<div>
-									<div class="text-sm font-medium text-ink-gray-5">Start</div>
+									<div class="text-sm font-medium text-ink-gray-5">{{ t('Start') }}</div>
 									<div class="mt-2 text-sm text-ink-gray-9">
 										{{ job.start ? $format.date(job.start, 'lll') : '-' }}
 									</div>
@@ -294,7 +294,7 @@ command -v docker >/dev/null 2>&1 || curl -fsSL https://get.docker.com | bash
 									</div>
 								</div>
 								<div>
-									<div class="text-sm font-medium text-ink-gray-5">Duration</div>
+									<div class="text-sm font-medium text-ink-gray-5">{{ t('Duration') }}</div>
 									<div class="mt-2 text-sm text-ink-gray-9">
 										{{ job.duration ? humanizeDuration(job.duration) : '-' }}
 									</div>
@@ -338,6 +338,7 @@ import { confirmDialog } from '../../utils/components';
 import { toast } from 'vue-sonner';
 import Badge from '../global/Badge.vue';
 import JobStep from '../JobStep.vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'OnPremFailoverDialog',
@@ -493,11 +494,11 @@ export default {
 		},
 		stopReplication() {
 			confirmDialog({
-				title: 'Stop Replication Setup',
+				title: t('Stop Replication Setup'),
 				message:
 					'Are you sure you want to stop the replication setup? The DR Server will stop syncing any new data from the Primary Server.',
 				primaryAction: {
-					label: 'Stop',
+					label: t('Stop'),
 					variant: 'solid',
 					theme: 'red',
 					onClick: ({ hide }) => {

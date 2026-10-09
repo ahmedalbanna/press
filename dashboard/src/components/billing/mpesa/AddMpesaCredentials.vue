@@ -3,16 +3,16 @@
 		<template #body-content>
 			<div class="grid grid-cols-2 gap-5">
 				<FormControl
-					label="Mpesa Setup ID"
+					:label="t('Mpesa Setup ID')"
 					v-model="mpesaSetupDetails.mpesa_setup_id"
 					name="mpesa_setup_id"
 					class="mb-3"
 					type="text"
-					placeholder="Test Mpesa"
+					:placeholder="t('Test Mpesa')"
 				/>
 
 				<FormControl
-					label="Consumer Key"
+					:label="t('Consumer Key')"
 					v-model="mpesaSetupDetails.consumer_key"
 					name="consumer_key"
 					class="mb-3"
@@ -21,7 +21,7 @@
 				/>
 
 				<FormControl
-					label="Consumer Secret"
+					:label="t('Consumer Secret')"
 					v-model="mpesaSetupDetails.consumer_secret"
 					name="consumer_secret"
 					class="mb-3"
@@ -30,7 +30,7 @@
 				/>
 
 				<FormControl
-					label="Pass Key"
+					:label="t('Pass Key')"
 					v-model="mpesaSetupDetails.pass_key"
 					name="pass_key"
 					class="mb-3"
@@ -39,7 +39,7 @@
 				/>
 
 				<FormControl
-					label="Business Short Code"
+					:label="t('Business Short Code')"
 					v-model="mpesaSetupDetails.short_code"
 					name="short_code"
 					class="mb-3"
@@ -48,7 +48,7 @@
 				/>
 
 				<FormControl
-					label="Initiator Name"
+					:label="t('Initiator Name')"
 					v-model="mpesaSetupDetails.initiator_name"
 					name="initiator_name"
 					class="mb-3"
@@ -57,7 +57,7 @@
 				/>
 
 				<FormControl
-					label="Security Credential"
+					:label="t('Security Credential')"
 					v-model="mpesaSetupDetails.security_credential"
 					name="security_credential"
 					class="mb-3"
@@ -66,7 +66,7 @@
 				/>
 
 				<FormControl
-					label="Till Number"
+					:label="t('Till Number')"
 					v-model="mpesaSetupDetails.till_number"
 					name="till_number"
 					class="mb-3"
@@ -76,7 +76,7 @@
 
 				<!-- <div class="flex items-center">
 					<input v-model="sandBox" type="checkbox" class="mr-2" />
-					<label class="text-sm font-medium text-ink-gray-7">Sandbox Mode</label>
+					<label class="text-sm font-medium text-ink-gray-7">{{ t('Sandbox Mode') }}</label>
 				</div> -->
 				<ErrorMessage class="mt-2" :message="errorMessage" />
 			</div>

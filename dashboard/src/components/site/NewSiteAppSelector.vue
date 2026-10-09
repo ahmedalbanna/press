@@ -40,6 +40,7 @@ import DownloadIcon from '~icons/lucide/download'
 import { icon } from '../../utils/components'
 import ObjectList from '../ObjectList.vue'
 import SiteAppPlanSelectorDialog from './SiteAppPlanSelectorDialog.vue'
+import { t } from '../../utils/language'
 
 export default {
 	props: ['availableApps', 'siteOnPublicBench', 'modelValue'],
@@ -77,7 +78,7 @@ export default {
 				data: () => publicApps,
 				columns: [
 					{
-						label: 'App',
+						label: t('App'),
 						fieldname: 'app_title',
 						type: 'Component',
 						component: ({ row }) => {
@@ -98,7 +99,7 @@ export default {
 										? h(Badge, {
 												class: 'ml-2',
 												theme: 'green',
-												label: 'Pre-Installed',
+												label: t('Pre-Installed'),
 											})
 										: '',
 									row.subscription_type === 'Paid' ||
@@ -114,7 +115,7 @@ export default {
 						},
 					},
 					{
-						label: 'Installs',
+						label: t('Installs'),
 						width: 0.2,
 						type: 'Component',
 						component: ({ row }) => {
@@ -171,7 +172,7 @@ export default {
 				data: () => privateApps,
 				columns: [
 					{
-						label: 'App',
+						label: t('App'),
 						fieldname: 'app_title',
 					},
 					{
@@ -183,7 +184,7 @@ export default {
 								.map((a) => a.app)
 								.includes(app.app || app.app_title)
 							return {
-								label: 'Add',
+								label: t('Add'),
 								slots: {
 									icon: isAppAdded ? icon('check') : icon('plus'),
 								},

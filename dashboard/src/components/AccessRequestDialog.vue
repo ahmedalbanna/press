@@ -19,14 +19,14 @@
 	>
 		<template #body-content>
 			<div class="space-y-4 text-base">
-				<p>Are you sure you want to request access to this resource?</p>
+				<p>{{ t('Are you sure you want to request access to this resource?') }}</p>
 				<div class="space-y-2">
-					<p><span class="font-medium">Type:</span> {{ props.doctype }}</p>
-					<p><span class="font-medium">Resource:</span> {{ props.docname }}</p>
+					<p><span class="font-medium">{{ t('Type:') }}</span> {{ props.doctype }}</p>
+					<p><span class="font-medium">{{ t('Resource:') }}</span> {{ props.docname }}</p>
 				</div>
 				<Textarea
 					size="sm"
-					placeholder="Why do you need access?"
+					:placeholder="t('Why do you need access?')"
 					v-model="reason"
 				/>
 				<div
@@ -37,7 +37,7 @@
 					"
 					class="space-y-2"
 				>
-					<p class="font-medium">Permissions:</p>
+					<p class="font-medium">{{ t('Permissions:') }}</p>
 					<div class="grid grid-cols-2 gap-2">
 						<template v-for="(permission, key) in permissionsMeta" :key="key">
 							<Checkbox
@@ -63,6 +63,7 @@ import { createResource } from 'frappe-ui';
 import { computed, reactive, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { Checkbox, Textarea } from 'frappe-ui';
+import { t } from '../utils/language';
 
 const props = defineProps<{
 	doctype: string;
@@ -81,19 +82,19 @@ const permissionsState = reactive({
 
 const permissionsMeta = computed(() => ({
 	login_as_administrator: {
-		label: 'Login as Administrator',
+		label: t('Login as Administrator'),
 		enabled: props.doctype === 'Site',
 	},
 	site_domains: {
-		label: 'Domains',
+		label: t('Domains'),
 		enabled: props.doctype === 'Site',
 	},
 	site_release_group: {
-		label: 'Release Group',
+		label: t('Release Group'),
 		enabled: props.doctype === 'Site',
 	},
 	bench_ssh: {
-		label: 'SSH Access',
+		label: t('SSH Access'),
 		enabled:
 			props.doctype === 'Release Group' || permissionsState.site_release_group,
 	},

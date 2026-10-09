@@ -11,11 +11,11 @@
 				v-if="$resources.siteResource.loading"
 				class="flex w-full items-center justify-center gap-2 py-20 text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Loading data...
+				<Spinner class="w-4" /> {{ t('Loading data...') }}
 			</div>
 			<div v-else-if="siteDoc?.is_monitoring_disabled" class="w-full">
 				<p class="mb-2 text-ink-gray-8 text-base font-medium">
-					Cause of disabling monitoring :
+					{{ t('Cause of disabling monitoring :') }}
 				</p>
 				<div
 					class="rounded border bg-surface-gray-1 p-2 text-base font-normalprose prose-sm space-y-2 whitespace-break-spaces w-ful"
@@ -33,7 +33,7 @@
 						:showIcon="true"
 						:title="t('Failed to enable monitoring')"
 					/>
-					<p class="mt-1 text-ink-gray-8 text-base font-medium">Reason -</p>
+					<p class="mt-1 text-ink-gray-8 text-base font-medium">{{ t('Reason -') }}</p>
 					<div
 						class="rounded border bg-surface-gray-1 p-2 text-base font-normalprose prose-sm space-y-2 whitespace-break-spaces w-full"
 						style="line-height: inherit"
@@ -41,7 +41,7 @@
 						{{ reasonForFailureInEnablingMonitoring }}
 					</div>
 					<p class="mt-1 text-ink-gray-8 text-base font-medium">
-						Possible Solution -
+						{{ t('Possible Solution -') }}
 					</p>
 					<div
 						class="rounded border bg-surface-gray-1 p-2 text-base font-normalprose prose-sm space-y-2 whitespace-break-spaces w-full"
@@ -57,11 +57,11 @@
 					:loading="$resources.enableMonitoring?.loading"
 					@click="$resources.enableMonitoring?.submit"
 				>
-					Check & Enable Monitoring
+					{{ t('Check & Enable Monitoring') }}
 				</Button>
 			</div>
 			<div v-else>
-				Monitoring is enabled already. No action is required from your end.
+				{{ t('Monitoring is enabled already. No action is required from your end.') }}
 			</div>
 		</template>
 	</Dialog>

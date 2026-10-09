@@ -8,12 +8,12 @@
 				v-if="$resources.databaseCredential.loading"
 				class="flex w-full items-center justify-center gap-2 py-20 text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Loading
+				<Spinner class="w-4" /> {{ t('Loading') }}
 			</div>
 			<div v-else>
 				<div v-if="databaseCredential">
 					<p class="mb-2 text-base font-semibold text-ink-gray-7">
-						Using an Analytics or Business Intelligence Tool
+						{{ t('Using an Analytics or Business Intelligence Tool') }}
 					</p>
 					<p class="mb-2 text-base">
 						Use following credentials with your analytics or business
@@ -34,7 +34,7 @@
 					<p class="ml-1 font-mono text-sm">
 						Password: {{ databaseCredential?.password }}
 					</p>
-					<p class="ml-1 font-mono text-sm">Use SSL: Yes</p>
+					<p class="ml-1 font-mono text-sm">{{ t('Use SSL: Yes') }}</p>
 					<p class="ml-1 font-mono text-sm">
 						Max Database Connection{{
 							databaseCredential?.max_connections > 1 ? 's' : ''
@@ -43,29 +43,29 @@
 				</div>
 				<div class="pb-2 pt-5">
 					<p class="mb-2 text-base font-semibold text-ink-gray-7">
-						Using MariaDB CLI
+						{{ t('Using MariaDB CLI') }}
 					</p>
 					<p class="mb-2 text-base">
-						Run this command in your terminal to access MariaDB console
+						{{ t('Run this command in your terminal to access MariaDB console') }}
 					</p>
 					<ClickToCopyField class="ml-1" :textContent="dbAccessCommand" />
 					<p class="mt-3 text-sm">
-						Note: You should have a
+						{{ t('Note: You should have a') }}
 						<span class="font-mono">mariadb</span> client installed on your
 						computer.
 					</p>
 				</div>
 				<div class="pb-2 pt-5">
-					<p class="mb-2 text-base font-semibold text-ink-gray-7">SSL Info</p>
+					<p class="mb-2 text-base font-semibold text-ink-gray-7">{{ t('SSL Info') }}</p>
 					<p class="text-sm">
-						You need to <b>use SSL</b> to connect to the database.
+						{{ t('You need to') }} <b>use SSL</b> to connect to the database.
 					</p>
 					<Button
 						class="mt-3"
 						:loading="this.$resources.downloadSSLCert.loading"
 						loading-text="Downloading Full Chain SSL Certificate (.pem)"
 						@click="this.$resources.downloadSSLCert.submit()"
-						>Download Full Chain SSL Certificate (.pem)</Button
+						>{{ t('Download Full Chain SSL Certificate (.pem)') }}</Button
 					>
 					<ErrorMessage
 						class="mt-2"
@@ -73,9 +73,9 @@
 					/>
 				</div>
 				<div class="pb-2 pt-5">
-					<p class="mb-2 text-base font-semibold text-ink-gray-7">Need Help?</p>
+					<p class="mb-2 text-base font-semibold text-ink-gray-7">{{ t('Need Help?') }}</p>
 					<p class="text-sm">
-						Please check out the
+						{{ t('Please check out the') }}
 						<a
 							href="https://docs.frappe.io/cloud/database-users-and-permission-manager#faq"
 							target="_blank"

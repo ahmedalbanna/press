@@ -2,6 +2,7 @@
 import { computed, inject } from 'vue'
 import CashIcon from '@/components/icons/CashIcon.vue'
 import CertifiedIcon from '@/components/icons/Certified.vue'
+import { t } from '../../utils/language'
 import {
 	getPartnerMRRTargetLabel,
 	usePartnerOnboarding,
@@ -15,10 +16,10 @@ const mrrTargetLabel = computed(() =>
 
 const eligibilityCriteria = computed(() => [
 	{
-		title: 'At least two certified team members',
+		title: t('At least two certified team members'),
 		description:
 			'Partners must have at least two full-time team members who are certified in ERPNext or the Frappe Framework through',
-		link: { text: 'Frappe School.', url: 'https://school.frappe.io/home' },
+		link: { text: t('Frappe School.'), url: 'https://school.frappe.io/home' },
 		icon: CertifiedIcon,
 	},
 	{
@@ -31,7 +32,7 @@ const eligibilityCriteria = computed(() => [
 </script>
 <template>
 	<p class="text-p-base text-ink-gray-6 mb-4">
-		Fulfill the following eligibility criteria to become a partner
+		{{ t('Fulfill the following eligibility criteria to become a partner') }}
 	</p>
 
 	<ul

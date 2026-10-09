@@ -21,10 +21,10 @@
 					v-if="newDomain && !dnsVerified"
 					class="prose prose-sm space-y-2 prose-strong:text-ink-gray-8"
 				>
-					<p>Create one of the following DNS records:</p>
+					<p>{{ t('Create one of the following DNS records:') }}</p>
 					<ul>
 						<li>
-							<strong>CNAME</strong> record from
+							<strong>{{ t('CNAME') }}</strong> record from
 							<strong>{{ newDomain }}</strong>
 							to
 							<strong>{{ site.name }}</strong>
@@ -39,7 +39,7 @@
 				</div>
 				<div v-if="dnsResult && !dnsResult.matched" class="space-y-2">
 					<p class="text-base">
-						Received following DNS query responses for
+						{{ t('Received following DNS query responses for') }}
 						<span class="font-semibold text-ink-gray-7">{{ newDomain }}</span
 						>.
 					</p>
@@ -48,7 +48,7 @@
 						class="space-y-2"
 					>
 						<p class="text-base">
-							<span class="font-semibold text-ink-gray-7">CNAME</span>
+							<span class="font-semibold text-ink-gray-7">{{ t('CNAME') }}</span>
 						</p>
 						<div
 							class="flex flex-row items-center justify-between rounded-lg border-2 p-2"
@@ -83,14 +83,14 @@
 						name="x"
 						class="mr-2 h-5 w-5 rounded-full bg-red-100 p-1 text-red-500"
 					/>
-					DNS Verification Failed
+					{{ t('DNS Verification Failed') }}
 				</p>
 				<p class="flex text-base" v-if="dnsVerified === true">
 					<FeatherIcon
 						name="check"
 						class="mr-2 h-5 w-5 rounded-full bg-green-100 p-1 text-green-500"
 					/>
-					DNS records successfully verified. Click on Add Domain.
+					{{ t('DNS records successfully verified. Click on Add Domain.') }}
 				</p>
 				<ErrorMessage :message="$resources.checkDNS.error" />
 				<ErrorMessage :message="$resources.addDomain.error" />
@@ -106,7 +106,7 @@
 				:loading="$resources.checkDNS.loading"
 				@click="preprocessDomain()"
 			>
-				Verify DNS
+				{{ t('Verify DNS') }}
 			</Button>
 			<Button
 				v-if="dnsVerified"
@@ -120,7 +120,7 @@
 					})
 				"
 			>
-				Add Domain
+				{{ t('Add Domain') }}
 			</Button>
 		</template>
 	</Dialog>

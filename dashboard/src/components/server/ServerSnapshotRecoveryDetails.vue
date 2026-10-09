@@ -3,7 +3,7 @@
 		class="flex h-60 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 		v-if="$resources?.snapshotRecovery?.loading"
 	>
-		<Spinner class="w-4" /> Loading ...
+		<Spinner class="w-4" /> {{ t('Loading ...') }}
 	</div>
 	<div>
 		<ObjectList :options="siteOptions" />
@@ -13,6 +13,7 @@
 <script>
 import { Spinner } from 'frappe-ui';
 import ObjectList from '../ObjectList.vue';
+import { t } from '../../utils/language';
 export default {
 	name: 'ServerSnapshotRecoveryDetails',
 	props: {
@@ -50,7 +51,7 @@ export default {
 				data: () => this.sites,
 				columns: [
 					{
-						label: 'Site',
+						label: t('Site'),
 						fieldname: 'site',
 						width: 0.5,
 						type: 'Text',
@@ -63,14 +64,14 @@ export default {
 						},
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						width: 0.3,
 						type: 'Badge',
 						align: 'center',
 					},
 					{
-						label: 'Database',
+						label: t('Database'),
 						fieldname: 'database_backup_available',
 						width: 0.3,
 						type: 'Icon',
@@ -80,7 +81,7 @@ export default {
 						},
 					},
 					{
-						label: 'Public Files',
+						label: t('Public Files'),
 						fieldname: 'public_files_backup_available',
 						width: 0.3,
 						type: 'Icon',
@@ -90,7 +91,7 @@ export default {
 						},
 					},
 					{
-						label: 'Private Files',
+						label: t('Private Files'),
 						fieldname: 'private_files_backup_available',
 						width: 0.3,
 						type: 'Icon',
@@ -109,28 +110,28 @@ export default {
 							group: 'Download',
 							items: [
 								{
-									label: 'Download Database',
+									label: t('Download Database'),
 									onClick: () => {
 										return this.download(row, 'database');
 									},
 									condition: () => row.database_backup_available,
 								},
 								{
-									label: 'Download Public Files',
+									label: t('Download Public Files'),
 									onClick: () => {
 										return this.download(row, 'public');
 									},
 									condition: () => row.public_files_backup_available,
 								},
 								{
-									label: 'Download Private Files',
+									label: t('Download Private Files'),
 									onClick: () => {
 										return this.download(row, 'private');
 									},
 									condition: () => row.private_files_backup_available,
 								},
 								{
-									label: 'Download Encryption Key',
+									label: t('Download Encryption Key'),
 									onClick: () => {
 										return this.download(row, 'encryption_key');
 									},

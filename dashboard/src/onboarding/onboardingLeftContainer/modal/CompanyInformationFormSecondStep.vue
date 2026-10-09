@@ -2,6 +2,7 @@
 import { FormControl } from 'frappe-ui'
 import { computed } from 'vue'
 import type { PartnerOnboardingDoc } from '@/onboarding/usePartnerOnboarding'
+import { t } from '../../../utils/language'
 
 const emit = defineEmits(['continue'])
 const props = defineProps<{
@@ -9,19 +10,19 @@ const props = defineProps<{
 }>()
 
 const verticalOptions = [
-	{ label: 'Manufacturing', value: 'Manufacturing' },
-	{ label: 'Retail', value: 'Retail' },
-	{ label: 'Services', value: 'Services' },
-	{ label: 'Banking and Finance', value: 'Banking and Finance' },
-	{ label: 'Distribution and Trading', value: 'Distribution and Trading' },
-	{ label: 'Hospitality', value: 'Hospitality' },
-	{ label: 'Real Estate', value: 'Real Estate' },
-	{ label: 'Automotive', value: 'Automotive' },
-	{ label: 'Government', value: 'Government' },
-	{ label: 'Education', value: 'Education' },
-	{ label: 'Healthcare', value: 'Healthcare' },
-	{ label: 'Non-profit', value: 'Non-profit' },
-	{ label: 'Other', value: 'Other' },
+	{ label: t('Manufacturing'), value: 'Manufacturing' },
+	{ label: t('Retail'), value: 'Retail' },
+	{ label: t('Services'), value: 'Services' },
+	{ label: t('Banking and Finance'), value: 'Banking and Finance' },
+	{ label: t('Distribution and Trading'), value: 'Distribution and Trading' },
+	{ label: t('Hospitality'), value: 'Hospitality' },
+	{ label: t('Real Estate'), value: 'Real Estate' },
+	{ label: t('Automotive'), value: 'Automotive' },
+	{ label: t('Government'), value: 'Government' },
+	{ label: t('Education'), value: 'Education' },
+	{ label: t('Healthcare'), value: 'Healthcare' },
+	{ label: t('Non-profit'), value: 'Non-profit' },
+	{ label: t('Other'), value: 'Other' },
 ]
 
 const customerRangeOptions = [
@@ -60,15 +61,15 @@ defineExpose({ tryContinue })
 	>
 		<div class="flex flex-col gap-1">
 			<div class="flex items-center justify-between gap-2">
-				<span class="text-xs text-ink-gray-6">Verticals served</span>
-				<span class="text-xs text-ink-gray-5">Optional</span>
+				<span class="text-xs text-ink-gray-6">{{ t('Verticals served') }}</span>
+				<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 			</div>
 			<FormControl
 				v-model="verticalsServed"
 				type="select"
 				size="sm"
 				variant="outline"
-				placeholder="Select"
+				:placeholder="t('Select')"
 				:options="verticalOptions"
 				multiple
 			/>
@@ -77,30 +78,30 @@ defineExpose({ tryContinue })
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">No. of customers</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('No. of customers') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.customer_count_range"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:options="customerRangeOptions"
 				/>
 			</div>
 
 			<div class="flex flex-col gap-1">
 				<div class="flex items-center justify-between gap-2">
-					<span class="text-xs text-ink-gray-6">No. of ERPNext customers</span>
-					<span class="text-xs text-ink-gray-5">Optional</span>
+					<span class="text-xs text-ink-gray-6">{{ t('No. of ERPNext customers') }}</span>
+					<span class="text-xs text-ink-gray-5">{{ t('Optional') }}</span>
 				</div>
 				<FormControl
 					v-model="props.form.erpnext_customer_count_range"
 					type="select"
 					size="sm"
 					variant="outline"
-					placeholder="Select"
+					:placeholder="t('Select')"
 					:options="customerRangeOptions"
 				/>
 			</div>

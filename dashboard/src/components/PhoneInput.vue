@@ -32,7 +32,7 @@
 						<input
 							v-model="searchQuery"
 							type="text"
-							placeholder="Search country..."
+							:placeholder="t('Search country...')"
 							class="mb-1 w-full rounded border border-outline-gray-1 px-2 py-1.5 text-sm focus:border-outline-gray-3 focus:outline-none"
 							@click.stop
 						/>
@@ -57,7 +57,7 @@
 							v-if="filteredCountries.length === 0"
 							class="px-2 py-1.5 text-sm text-ink-gray-5"
 						>
-							No countries found
+							{{ t('No countries found') }}
 						</div>
 					</div>
 				</template>

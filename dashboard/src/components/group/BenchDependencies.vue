@@ -2,6 +2,7 @@
 import { icon, renderDialog } from '@/utils/components';
 import { createListResource, FeatherIcon, ListView, Tooltip } from 'frappe-ui';
 import { computed, defineAsyncComponent, h } from 'vue';
+import { t } from '../../utils/language';
 
 defineOptions({ name: 'BenchDependencies' });
 
@@ -28,21 +29,21 @@ const dependencyListResource = createListResource({
 
 const columns = computed(() => [
 	{
-		label: 'Dependency',
+		label: t('Dependency'),
 		fieldname: 'dependency',
 		format(_: any, row: any) {
 			return row.title;
 		},
 	},
 	{
-		label: 'Version',
+		label: t('Version'),
 		fieldname: 'version',
 		suffix(row: any) {
 			if (!row.is_custom) {
 				return;
 			}
 
-			return h('div', { title: 'Custom version' }, [
+			return h('div', { title: t('Custom version') }, [
 				h(icon('alert-circle', 'w-3 h-3')),
 			]);
 		},
@@ -58,7 +59,7 @@ const columns = computed(() => [
 		align: 'right',
 		actions: (row: any) => [
 			{
-				label: 'Edit',
+				label: t('Edit'),
 				onClick() {
 					let DependencyEditorDialog = defineAsyncComponent(
 						() => import('../../components/group/DependencyEditorDialog.vue'),
@@ -86,12 +87,12 @@ const columns = computed(() => [
 		class="text-right"
 	>
 		<Button
-			label="Refresh"
+			:label="t('Refresh')"
 			@click="dependencyListResource.reload()"
 			:loading="dependencyListResource.list?.loading"
 		>
 			<template #icon>
-				<Tooltip text="Refresh">
+				<Tooltip :text="t('Refresh')">
 					<lucide-refresh-ccw class="h-4 w-4" />
 				</Tooltip>
 			</template>
@@ -122,7 +123,7 @@ const columns = computed(() => [
 				class="text-center text-sm leading-10 text-ink-gray-5 pb-[1.75rem]"
 				v-if="dependencyListResource.list?.loading"
 			>
-				Loading...
+				{{ t('Loading...') }}
 			</div>
 			<div
 				v-else-if="dependencyListResource?.list?.error"
@@ -134,7 +135,7 @@ const columns = computed(() => [
 				v-else
 				class="text-center text-sm leading-10 text-ink-gray-5 pb-[1.75rem]"
 			>
-				No dependencies to show
+				{{ t('No dependencies to show') }}
 			</div>
 		</div>
 
@@ -151,7 +152,7 @@ const columns = computed(() => [
 				@click="dependencyListResource.next()"
 				:loading="dependencyListResource?.list?.loading"
 			>
-				Load more
+				{{ t('Load more') }}
 			</Button>
 		</div>
 

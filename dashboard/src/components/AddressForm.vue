@@ -8,13 +8,13 @@
 		/>
 		<div class="mt-4" v-show="address.country == 'India'">
 			<FormControl
-				label="I have GSTIN"
+				:label="t('I have GSTIN')"
 				type="checkbox"
 				v-model="gstApplicable"
 			/>
 			<FormControl
 				class="mt-2"
-				label="GSTIN"
+				:label="t('GSTIN')"
 				v-if="gstApplicable"
 				type="text"
 				v-model="address.gstin"
@@ -28,6 +28,7 @@
 import Form from '@/components/Form.vue';
 import { indianStates } from '@/utils/billing.js';
 import { DashboardError } from '../utils/error';
+import { t } from '../utils/language';
 
 export default {
 	name: 'AddressForm',
@@ -138,33 +139,33 @@ export default {
 			return [
 				{
 					fieldtype: 'Select',
-					label: 'Country',
+					label: t('Country'),
 					fieldname: 'country',
 					options: this.countryList,
 					required: 1,
 				},
 				{
 					fieldtype: 'Data',
-					label: 'Address',
+					label: t('Address'),
 					fieldname: 'address',
 					required: 1,
 				},
 				{
 					fieldtype: 'Data',
-					label: 'City',
+					label: t('City'),
 					fieldname: 'city',
 					required: 1,
 				},
 				{
 					fieldtype: this.address.country === 'India' ? 'Select' : 'Data',
-					label: 'State / Province / Region',
+					label: t('State / Province / Region'),
 					fieldname: 'state',
 					required: 1,
 					options: this.address.country === 'India' ? this.indianStates : null,
 				},
 				{
 					fieldtype: 'Data',
-					label: 'Postal Code',
+					label: t('Postal Code'),
 					fieldname: 'postal_code',
 					required: 1,
 				},

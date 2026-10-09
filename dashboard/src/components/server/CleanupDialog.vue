@@ -11,14 +11,14 @@
 				v-if="$resources?.cleanupSpaceEstimation?.loading"
 				class="flex h-80 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Analyzing ...
+				<Spinner class="w-4" /> {{ t('Analyzing ...') }}
 			</div>
 
 			<div
 				v-else-if="$resources?.cleanupSpaceEstimation?.error"
 				class="flex h-80 w-full items-center justify-center text-red-600"
 			>
-				Failed to fetch cleanup data.
+				{{ t('Failed to fetch cleanup data.') }}
 			</div>
 			<div v-else-if="parsedData" class="flex flex-col gap-4 text-ink-gray-8">
 				<AlertBanner
@@ -39,19 +39,19 @@
 				</AlertBanner>
 				<div class="rounded-md">
 					<p>
-						This action will <strong>permanently remove</strong> the following:
+						{{ t('This action will') }} <strong>permanently remove</strong> the following:
 					</p>
 					<ul class="list-disc ml-5 mt-3 space-y-2">
 						<li>
-							<strong>Archived folders</strong> — contain recently archived
+							<strong>{{ t('Archived folders') }}</strong> — contain recently archived
 							benches and sites.
 						</li>
 						<li>
-							<strong>Docker images & containers</strong> — all unused Docker
+							<strong>{{ t('Docker images & containers') }}</strong> — all unused Docker
 							images and containers will be removed.
 						</li>
 						<li>
-							<strong>Temporary files</strong> — cleanup will remove previously
+							<strong>{{ t('Temporary files') }}</strong> — cleanup will remove previously
 							created temporary files.
 						</li>
 					</ul>

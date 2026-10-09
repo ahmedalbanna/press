@@ -12,6 +12,7 @@ import SidebarItem from '@/onboarding/modal/SidebarItem.vue'
 import { showOnboardingToast } from '@/onboarding/toast'
 import { usePartnerOnboarding } from '@/onboarding/usePartnerOnboarding'
 import LucideXIcon from '~icons/lucide/x'
+import { t } from '../../utils/language'
 
 const open = defineModel<boolean>({ default: false })
 const registered = ref(false)
@@ -24,27 +25,27 @@ const onboarding = usePartnerOnboarding(inject('team') as any)
 const partnerOnboardingSteps = [
 	{
 		id: 0,
-		title: 'Frappe partnerships',
+		title: t('Frappe partnerships'),
 		component: FrappePartnerships,
 	},
 	{
 		id: 1,
-		title: 'Benefits',
+		title: t('Benefits'),
 		component: PartnerBenefits,
 	},
 	{
 		id: 2,
-		title: 'Eligibility',
+		title: t('Eligibility'),
 		component: Eligibility,
 	},
 	{
 		id: 3,
-		title: 'Tiers',
+		title: t('Tiers'),
 		component: PartnerPlans,
 	},
 	{
 		id: 4,
-		title: 'Registration',
+		title: t('Registration'),
 		component: PartnerRegistration,
 	},
 ]
@@ -132,7 +133,7 @@ watch(
 					type="submit"
 					form="registration-form"
 					:loading="onboarding.saving.value"
-					label="Save"
+					:label="t('Save')"
 				/>
 			</div>
 		</template>
@@ -169,7 +170,7 @@ watch(
 						class="mb-6 flex items-center justify-between"
 					>
 						<h3 class="text-2xl font-semibold text-ink-gray-8">
-							Interested in partnering with us?
+							{{ t('Interested in partnering with us?') }}
 						</h3>
 						<button
 							type="button"
@@ -199,7 +200,7 @@ watch(
 						<Button
 							variant="outline"
 							link="https://docs.frappe.io/partner-guide/why-partner"
-							>Learn more</Button
+							>{{ t('Learn more') }}</Button
 						>
 						<div class="flex items-center gap-2">
 							<Button
@@ -207,10 +208,10 @@ watch(
 								variant="subtle"
 								@click="previousStep"
 							>
-								Back
+								{{ t('Back') }}
 							</Button>
 							<Button v-if="!isLastStep" variant="solid" @click="nextStep">
-								Next
+								{{ t('Next') }}
 							</Button>
 							<Button
 								v-if="isLastStep"
@@ -219,7 +220,7 @@ watch(
 								form="registration-form"
 								:loading="onboarding.saving.value"
 							>
-								Proceed
+								{{ t('Proceed') }}
 							</Button>
 						</div>
 					</div>

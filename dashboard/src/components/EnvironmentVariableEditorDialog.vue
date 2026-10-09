@@ -19,8 +19,8 @@
 	>
 		<template v-slot:body-content>
 			<div class="space-y-4">
-				<FormControl type="text" label="Key" v-model="key" autocomplete="off" />
-				<FormControl label="Value" v-model="value" autocomplete="off" />
+				<FormControl type="text" :label="t('Key')" v-model="key" autocomplete="off" />
+				<FormControl :label="t('Value')" v-model="value" autocomplete="off" />
 				<ErrorMessage class="mt-2" :message="error" />
 				<div class="flex items-center">
 					<lucide-info class="mr-2 text-ink-gray-5" />

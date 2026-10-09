@@ -44,7 +44,7 @@
 					<FormControl
 						variant="outline"
 						type="checkbox"
-						label="Backup Public & Private Files"
+						:label="t('Backup Public & Private Files')"
 						v-model="includeFiles"
 						:disabled="isPhysical"
 					>

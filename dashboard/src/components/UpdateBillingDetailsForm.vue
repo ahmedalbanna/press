@@ -1,5 +1,5 @@
 <template>
-	<FormControl class="mt-4" v-model="billing_name" label="Billing Name" />
+	<FormControl class="mt-4" v-model="billing_name" :label="t('Billing Name')" />
 	<AddressForm
 		ref="address-form"
 		class="mt-4"
@@ -16,7 +16,7 @@
 			:loading="$resources.updateBillingInformation.loading"
 			@click="$resources.updateBillingInformation.submit"
 		>
-			Update Billing Details
+			{{ t('Update Billing Details') }}
 		</Button>
 	</div>
 </template>

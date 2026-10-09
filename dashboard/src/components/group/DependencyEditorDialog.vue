@@ -20,7 +20,7 @@
 					<FormControl
 						type="data"
 						:label="`Custom ${dependency.title}`"
-						placeholder="Please enter a custom version"
+						:placeholder="t('Please enter a custom version')"
 						description="Please ensure entered version of this dependency exists before setting it"
 						v-model="customVersion"
 					/>
@@ -32,7 +32,7 @@
 					type="select"
 					:disabled="useCustomVersion"
 					:label="dependency.title"
-					placeholder="Please select a version"
+					:placeholder="t('Please select a version')"
 					:options="dependencyOptions"
 					v-model="selectedDependencyVersion"
 				/>
@@ -41,10 +41,10 @@
 				<div class="flex items-center gap-2">
 					<FormControl
 						type="checkbox"
-						label="Use Custom Version"
+						:label="t('Use Custom Version')"
 						v-model="useCustomVersion"
 					/>
-					<Tooltip text="View documentation">
+					<Tooltip :text="t('View documentation')">
 						<a
 							class="no-underline"
 							target="_blank"

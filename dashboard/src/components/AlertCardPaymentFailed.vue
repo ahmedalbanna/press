@@ -1,7 +1,7 @@
 <template>
 	<AlertBanner :title="bannerMessage" type="warning">
 		<a class="ml-auto" :href="stripeUrl" target="_blank">
-			<Button variant="outline">Pay Now</Button>
+			<Button variant="outline">{{ t('Pay Now') }}</Button>
 		</a>
 	</AlertBanner>
 </template>

@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
 							class="size-1.5 rounded-full shrink-0 mr-0.5"
 							:class="data.active_benches ? 'bg-surface-green-3' : 'bg-surface-amber-3'"
 						/>
-						{{ data.active_benches ? 'Active' : 'Awaiting Deploy' }}
+						{{ data.active_benches ? t('Active') : t('Awaiting Deploy') }}
 					</Badge>
 
 					<button

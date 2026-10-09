@@ -38,11 +38,11 @@
 			</AnalyticsCard>
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/bench-analytics"
-				title="CPU"
+				:title="t('CPU')"
 			>
 				<LineChart
 					type="time"
-					title="CPU"
+					:title="t('CPU')"
 					:key="cpuData"
 					:data="cpuData"
 					unit="seconds"
@@ -78,7 +78,7 @@
 			>
 				<LineChart
 					type="time"
-					title="CPU"
+					:title="t('CPU')"
 					:key="outgoingNetwork"
 					:data="outgoingNetwork"
 					unit="bytes"
@@ -114,7 +114,7 @@
 			>
 				<LineChart
 					type="time"
-					title="CPU"
+					:title="t('CPU')"
 					:key="writeBytesFs"
 					:data="writeBytesFs"
 					unit="bytes"

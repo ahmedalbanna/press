@@ -57,7 +57,7 @@ const showTooltip = computed(() => {
 					{{ companyName }}
 				</p>
 				<div class="mt-1 flex items-center gap-2">
-					<span class="text-p-sm text-ink-gray-5">Partner application</span>
+					<span class="text-p-sm text-ink-gray-5">{{ t('Partner application') }}</span>
 					<Badge variant="subtle" :theme="statusTheme" size="sm">
 						{{ statusLabel }}
 					</Badge>
@@ -71,7 +71,7 @@ const showTooltip = computed(() => {
 			size="md"
 			variant="outline"
 			theme="red"
-			label="Unregister"
+			:label="t('Unregister')"
 			@click="openUnregisterConfirmationDialog = true"
 		>
 			<template #prefix>

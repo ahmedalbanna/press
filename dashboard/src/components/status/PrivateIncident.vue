@@ -4,7 +4,7 @@
 		<div v-if="isHistory" class="mb-6" :class="{ invisible: hasNoIncidents }">
 			<FormControl
 				type="text"
-				placeholder="Search past incidents..."
+				:placeholder="t('Search past incidents...')"
 				v-model="searchQuery"
 				:prefix-icon="'search'"
 			>
@@ -21,7 +21,7 @@
 			:class="{ invisible: hasNoIncidents }"
 		>
 			<div class="flex items-center gap-2">
-				<span class="text-base">Active Incidents</span>
+				<span class="text-base">{{ t('Active Incidents') }}</span>
 				<Badge
 					class="rounded-sm"
 					:label="incidentCount.data"
@@ -33,7 +33,7 @@
 				<template #prefix>
 					<LucideRefreshCw class="size-4" />
 				</template>
-				Refresh
+				{{ t('Refresh') }}
 			</Button>
 		</div>
 
@@ -42,7 +42,7 @@
 			class="flex gap-3 justify-center items-center p-20 border rounded fade-in"
 		>
 			<LucideSpinner class="size-4 animate-spin" />
-			Loading...
+			{{ t('Loading...') }}
 		</div>
 
 		<!-- Empty state -->
@@ -102,6 +102,7 @@ import LucideRefreshCw from '~icons/lucide/refresh-cw';
 import LucideSpinner from '~icons/lucide/loader-circle';
 import IncidentCard from './IncidentCard.vue';
 import Pagination from '@/components/common/Pagination.vue';
+import { t } from '../../utils/language';
 
 const currentPage = ref(1);
 const limit = 10;
@@ -137,20 +138,20 @@ const incidentTrees = computed(() =>
 		if (incident?.creation) {
 			timelineSteps.push({
 				type: 'timeline-step',
-				label: 'Created',
+				label: t('Created'),
 				time: formatDate(incident.creation),
 			});
 		}
 		if (incident?.confirmed_at) {
 			timelineSteps.push({
-				label: 'Confirmed',
+				label: t('Confirmed'),
 				time: formatDate(incident.confirmed_at),
 			});
 		}
 		if (incident?.resolved_at) {
 			timelineSteps.push({
 				type: 'timeline-step',
-				label: 'Resolved',
+				label: t('Resolved'),
 				time: formatDate(incident.resolved_at),
 			});
 		}

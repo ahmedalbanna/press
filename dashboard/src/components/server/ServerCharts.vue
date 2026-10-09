@@ -17,7 +17,7 @@
 				v-model="duration"
 			/>
 			<div v-if="duration === 'custom'" class="flex flex-col gap-1.5">
-				<div class="text-xs text-ink-gray-5">Start</div>
+				<div class="text-xs text-ink-gray-5">{{ t('Start') }}</div>
 				<DateTimePicker
 					class="w-52"
 					type="datetime"
@@ -56,11 +56,11 @@
 
 			<AnalyticsCard
 				docs="https://docs.frappe.io/cloud/servers/guidelines-for-choosing-a-server-plan#cpu"
-				title="CPU"
+				:title="t('CPU')"
 			>
 				<LineChart
 					type="time"
-					title="CPU"
+					:title="t('CPU')"
 					:key="cpuData"
 					:data="cpuData"
 					unit="%"
@@ -915,13 +915,13 @@ export default {
 					value: this.$server.doc.name,
 				},
 				{
-					label: 'Database Server',
+					label: t('Database Server'),
 					value: !this.$server.doc.is_unified_server
 						? this.$server.doc.database_server
 						: false,
 				},
 				{
-					label: 'Replication Server',
+					label: t('Replication Server'),
 					value: this.$server.doc.replication_server,
 				},
 			].filter((v) => v.value)

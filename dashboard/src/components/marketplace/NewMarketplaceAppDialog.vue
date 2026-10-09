@@ -31,7 +31,7 @@
 					class="flex text-base text-ink-gray-7"
 				>
 					<LoadingIndicator class="mr-2 w-4" />
-					Validating app...
+					{{ t('Validating app...') }}
 				</div>
 				<div
 					v-if="appValidated"
@@ -44,7 +44,7 @@
 							:stroke-width="3"
 						/>
 						<span>
-							Found <strong>{{ this.app.title }}</strong> ({{ this.app.name }}).
+							{{ t('Found') }} <strong>{{ this.app.title }}</strong> ({{ this.app.name }}).
 							We will automatically find the compatible Frappe version for this
 							app.
 						</span>
@@ -64,7 +64,7 @@
 							href="https://frappecloud.com/marketplace/terms"
 							class="font-medium text-blue-600 hover:underline"
 						>
-							Read our Terms and Policy
+							{{ t('Read our Terms and Policy') }}
 						</Link>
 					</div>
 				</div>

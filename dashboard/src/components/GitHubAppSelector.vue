@@ -7,7 +7,7 @@
 			<Button
 				variant="solid"
 				icon-left="github"
-				label="Connect To GitHub"
+				:label="t('Connect To GitHub')"
 				:link="installationLink"
 			/>
 		</div>
@@ -15,7 +15,7 @@
 			<Button
 				variant="solid"
 				icon-left="github"
-				label="Re-authorize GitHub"
+				:label="t('Re-authorize GitHub')"
 				@click="$resources.clearAccessToken.submit()"
 				:loading="$resources.clearAccessToken.loading"
 			/>
@@ -30,7 +30,7 @@
 	<div v-else class="space-y-4">
 		<FormControl
 			type="combobox"
-			label="Choose GitHub User / Organization"
+			:label="t('Choose GitHub User / Organization')"
 			:options="
 				options.installations.map((i) => ({
 					label: i.login,
@@ -65,15 +65,15 @@
 			</template>
 		</FormControl>
 		<span class="text-sm text-ink-gray-6">
-			Don't see your organization?
+			{{ t('Don\'t see your organization?') }}
 			<Link :href="installationLink" class="font-medium">
-				Add from GitHub
+				{{ t('Add from GitHub') }}
 			</Link>
 		</span>
 		<FormControl
 			type="combobox"
 			v-if="selectedGithubUserData"
-			label="Choose GitHub Repository"
+			:label="t('Choose GitHub Repository')"
 			:options="
 				(selectedGithubUserData.repos || []).map((r) => ({
 					label: r.name,
@@ -101,14 +101,14 @@
 		</FormControl>
 
 		<p v-if="selectedGithubUserData" class="!mt-2 text-sm text-ink-gray-6">
-			Don't see your repository here?
+			{{ t('Don\'t see your repository here?') }}
 			<Link :href="selectedGithubUserData.url" class="font-medium">
-				Add from GitHub
+				{{ t('Add from GitHub') }}
 			</Link>
 		</p>
 
 		<div v-if="selectedGithubRepository" class="space-y-1.5">
-			<div class="text-xs text-ink-gray-5">Choose Branch</div>
+			<div class="text-xs text-ink-gray-5">{{ t('Choose Branch') }}</div>
 			<Combobox
 				v-if="selectedGithubRepository"
 				allow-custom-value

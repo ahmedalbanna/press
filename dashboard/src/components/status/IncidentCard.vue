@@ -75,7 +75,7 @@ const props = defineProps<Props>();
 					<LucideClock class="size-3.5" />
 					<span
 						class="text-sm font-semibold uppercase tracking-widest text-ink-gray-6"
-						>Timeline</span
+						>{{ t('Timeline') }}</span
 					>
 				</div>
 
@@ -104,7 +104,7 @@ const props = defineProps<Props>();
 				<div class="mb-4 flex items-center gap-1.5">
 					<LucideZap class="size-3.5" />
 					<span class="text-sm font-semibold uppercase tracking-widest">
-						Investigation
+						{{ t('Investigation') }}
 					</span>
 					<Badge :label="data.investigation.status" class="ml-auto" />
 				</div>
@@ -144,7 +144,7 @@ const props = defineProps<Props>();
 								class="flex items-center gap-1.5 text-ink-gray-5"
 							>
 								<LucideBan class="size-3" />
-								<span class="text-sm">Unable To Investigate</span>
+								<span class="text-sm">{{ t('Unable To Investigate') }}</span>
 							</div>
 
 							<div
@@ -152,7 +152,7 @@ const props = defineProps<Props>();
 								class="flex shrink-0 items-center gap-1.5 text-ink-amber-3"
 							>
 								<LucideAlert class="size-3" />
-								<span class="text-sm">Likely Cause</span>
+								<span class="text-sm">{{ t('Likely Cause') }}</span>
 							</div>
 
 							<div
@@ -160,7 +160,7 @@ const props = defineProps<Props>();
 								class="flex shrink-0 items-center gap-1 text-ink-green-3"
 							>
 								<LucideCheck class="size-3" />
-								<span class="text-sm">Passed</span>
+								<span class="text-sm">{{ t('Passed') }}</span>
 							</div>
 						</div>
 					</details>
@@ -177,7 +177,7 @@ const props = defineProps<Props>();
 				>
 					<LucideWrench class="size-3.5" />
 					<span class="text-sm font-semibold uppercase tracking-widest">
-						Action Taken
+						{{ t('Action Taken') }}
 					</span>
 					<LucideChevronRight
 						class="ml-auto size-3.5 transition-transform group-open/actions:rotate-90"

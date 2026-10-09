@@ -19,11 +19,11 @@
 	>
 		<template v-slot:body-content>
 			<p class="mb-5 text-sm text-ink-gray-8">
-				Help us improve your experience by sharing your thoughts.
+				{{ t('Help us improve your experience by sharing your thoughts.') }}
 			</p>
 			<div class="mt-3">
 				<span class="mb-2 block text-sm leading-4 text-ink-gray-6">
-					Please rate your experience
+					{{ t('Please rate your experience') }}
 				</span>
 				<StarRatingInput v-model="rating" />
 			</div>
@@ -33,7 +33,7 @@
 				:options="options"
 				size="md"
 				variant="outline"
-				placeholder="Select a reason"
+				:placeholder="t('Select a reason')"
 				v-model="feedback"
 				required
 			/>
@@ -41,7 +41,7 @@
 				class="mt-4"
 				type="textarea"
 				variant="outline"
-				placeholder="I am leaving AlbannaTech because..."
+				:placeholder="t('I am leaving AlbannaTech because...')"
 				size="md"
 				v-model="note"
 			/>

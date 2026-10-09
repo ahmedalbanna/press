@@ -23,6 +23,7 @@
 import { toast } from 'vue-sonner';
 import PerformanceReport from './PerformanceReport.vue';
 import SiteDatabaseProcess from './SiteDatabaseProcess.vue';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'SiteMariaDBProcessList',
@@ -56,28 +57,28 @@ export default {
 				data: () => this.$resources.processList.data,
 				columns: [
 					{
-						label: 'ID',
+						label: t('ID'),
 						fieldname: 'id',
 						width: '4rem',
 					},
 					{
-						label: 'Time',
+						label: t('Time'),
 						fieldname: 'time',
 						width: '6rem',
 						align: 'right',
 					},
 					{
-						label: 'Command',
+						label: t('Command'),
 						fieldname: 'command',
 						width: '6rem',
 					},
 					{
-						label: 'State',
+						label: t('State'),
 						fieldname: 'state',
 						width: '8rem',
 					},
 					{
-						label: 'Query',
+						label: t('Query'),
 						fieldname: 'query',
 						class: 'font-mono',
 					},
@@ -88,7 +89,7 @@ export default {
 				},
 				secondaryAction: () => {
 					return {
-						label: 'Refresh',
+						label: t('Refresh'),
 						icon: 'refresh-ccw',
 						loading: this.$resources.processList.loading,
 						onClick: () => this.$resources.processList.reload(),

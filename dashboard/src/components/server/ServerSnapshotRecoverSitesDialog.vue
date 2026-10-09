@@ -12,19 +12,19 @@
 							icon="chevron-left"
 							variant="outline"
 							@click="showRecoverSitePrompt = false"
-							>Back</Button
+							>{{ t('Back') }}</Button
 						>
-						<p class="text-base">Select Sites to Recover</p>
+						<p class="text-base">{{ t('Select Sites to Recover') }}</p>
 					</div>
 					<div class="w-full">
 						<p
 							class="rounded mb-4 p-2 text-sm text-ink-gray-7 bg-surface-gray-2 border"
 						>
-							AlbannaTech will start temporary servers from the snapshot and
+							{{ t('AlbannaTech will start temporary servers from the snapshot and') }}
 							<b>backup the selected sites from the snapshot</b>. You will be
 							able to download the backup files for next <b>48 hours</b> once
 							the recovery gets completed. <br /><br />
-							You <b>will not be charged</b> for this recovery process.
+							{{ t('You') }}<b>will not be charged</b> for this recovery process.
 						</p>
 					</div>
 					<div>
@@ -44,7 +44,7 @@
 						:disabled="selectedSitesForRecovery.length < 1"
 						:loading="$resources.snapshot.recoverSites.loading"
 						@click="recoverSites"
-						>Recover Site & Backup</Button
+						>{{ t('Recover Site & Backup') }}</Button
 					>
 				</div>
 				<!-- Server Snapshot Recovery Details -->
@@ -54,9 +54,9 @@
 							icon="chevron-left"
 							variant="outline"
 							@click="selectedSnapshotRecoveryId = null"
-							>Back</Button
+							>{{ t('Back') }}</Button
 						>
-						<p class="text-base">Recovery Details</p>
+						<p class="text-base">{{ t('Recovery Details') }}</p>
 					</div>
 					<ServerSnapshotRecoveryDetails :name="selectedSnapshotRecoveryId" />
 				</div>
@@ -75,6 +75,7 @@ import { confirmDialog, icon } from '../../utils/components';
 import RestoreSnapshotIcon from '~icons/lucide/database-backup';
 import ServerSnapshotRecoveryDetails from './ServerSnapshotRecoveryDetails.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'ServerSnapshotDetailsDialog',
@@ -130,7 +131,7 @@ export default {
 				orderBy: 'creation desc',
 				columns: [
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'creation',
 						width: 0.5,
 						type: 'Text',
@@ -139,14 +140,14 @@ export default {
 						},
 					},
 					{
-						label: 'Record ID',
+						label: t('Record ID'),
 						fieldname: 'name',
 						width: 0.2,
 						type: 'Text',
 						align: 'left',
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						width: 0.3,
 						type: 'Badge',
@@ -155,7 +156,7 @@ export default {
 				],
 				primaryAction: ({ documentResource: record }) => {
 					return {
-						label: 'Recover Sites',
+						label: t('Recover Sites'),
 						slots: {
 							prefix: icon(RestoreSnapshotIcon),
 						},
@@ -183,7 +184,7 @@ export default {
 				selectable: true,
 				columns: [
 					{
-						label: 'Site',
+						label: t('Site'),
 						fieldname: 'name',
 						width: 1,
 						type: 'Text',

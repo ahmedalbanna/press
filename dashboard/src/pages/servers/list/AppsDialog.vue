@@ -172,7 +172,7 @@ const filteredApps = computed(() => {
 					href="https://docs.frappe.io/cloud/installing-an-app#sites-on-private-bench-groups"
 				>
 					<LucideInfo class="size-4" />
-					Looking for Marketplace Apps?
+					{{ t('Looking for Marketplace Apps?') }}
 				</a>
 				<Button
 					variant="solid"

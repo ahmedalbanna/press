@@ -20,6 +20,7 @@ import { renderDialog } from '../../utils/components';
 import router from '../../router';
 import ObjectList from '../ObjectList.vue';
 import { getToastErrorMessage } from '../../utils/toast';
+import { t } from '../../utils/language';
 
 export default {
 	props: {
@@ -111,7 +112,7 @@ export default {
 				}
 			};
 			return {
-				label: 'App',
+				label: t('App'),
 				fieldname: 'app',
 				fieldtype: 'ListSelection',
 				emptyStateMessage:
@@ -121,20 +122,20 @@ export default {
 						: ''),
 				columns: [
 					{
-						label: 'Title',
+						label: t('Title'),
 						fieldname: 'title',
 						class: 'font-medium',
 						width: 2,
 						format: (value, row) => value || row.app_title,
 					},
 					{
-						label: 'Repo',
+						label: t('Repo'),
 						fieldname: 'repository_owner',
 						class: 'text-ink-gray-6',
 						width: '10rem',
 					},
 					{
-						label: 'Branch',
+						label: t('Branch'),
 						fieldname: 'branch',
 						class: 'text-ink-gray-6',
 						width: '10rem',
@@ -147,7 +148,7 @@ export default {
 						width: '5rem',
 						Button({ row }) {
 							return {
-								label: 'Install',
+								label: t('Install'),
 								onClick: () => {
 									handleInstall(row);
 								},

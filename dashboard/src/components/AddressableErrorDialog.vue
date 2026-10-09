@@ -37,7 +37,7 @@
 		<template v-slot:actions>
 			<div class="flex justify-end gap-5">
 				<Link v-if="doc.assistance_url" class="cursor-pointer" @click="help">
-					Help
+					{{ t('Help') }}
 				</Link>
 
 				<Button
@@ -46,7 +46,7 @@
 					class="w-40"
 					@click="done"
 				>
-					Done
+					{{ t('Done') }}
 				</Button>
 			</div>
 		</template>

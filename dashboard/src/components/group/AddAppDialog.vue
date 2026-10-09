@@ -10,7 +10,7 @@
 			<div class="flex">
 				<div>
 					<TextInput
-						placeholder="Search"
+						:placeholder="t('Search')"
 						class="w-[20rem]"
 						:debounce="500"
 						v-model="searchQuery"
@@ -46,7 +46,7 @@
 					>
 						<template #prefix>
 							<lucide-github class="h-4 w-4" />
-							Add from GitHub
+							{{ t('Add from GitHub') }}
 						</template>
 					</Button>
 				</div>
@@ -117,10 +117,10 @@
 						class="text-center text-sm leading-10 text-ink-gray-5"
 						v-if="isLoading"
 					>
-						Loading...
+						{{ t('Loading...') }}
 					</div>
 					<div v-else class="text-center text-sm leading-10 text-ink-gray-5">
-						No apps available to add
+						{{ t('No apps available to add') }}
 					</div>
 				</div>
 			</div>
@@ -149,6 +149,7 @@ import { toast } from 'vue-sonner';
 import { h } from 'vue';
 import { getToastErrorMessage } from '../../utils/toast';
 import NewAppDialog from '../NewAppDialog.vue';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'AddAppDialog',
@@ -214,7 +215,7 @@ export default {
 		columns() {
 			return [
 				{
-					label: 'Title',
+					label: t('Title'),
 					key: 'title',
 					class: 'font-medium',
 					prefix(row) {
@@ -235,7 +236,7 @@ export default {
 					},
 				},
 				{
-					label: 'Repository',
+					label: t('Repository'),
 					key: 'repo',
 					class: 'text-ink-gray-6',
 					width: '15rem',
@@ -245,7 +246,7 @@ export default {
 					},
 				},
 				{
-					label: 'Branch',
+					label: t('Branch'),
 					type: 'select',
 					key: 'sources',
 					width: '15rem',
@@ -266,12 +267,12 @@ export default {
 						if (row.no_public_releases)
 							return h(Badge, {
 								class: 'ml-auto',
-								label: 'No Public Releases',
+								label: t('No Public Releases'),
 								theme: 'red',
 							});
 						else if (row.compatible)
 							return h(Button, {
-								label: 'Add',
+								label: t('Add'),
 								iconLeft: this.addedApps.includes(row) ? 'check' : 'plus',
 
 								disabled: !row.compatible,
@@ -284,7 +285,7 @@ export default {
 						else
 							return h(Badge, {
 								class: 'ml-auto',
-								label: 'Not Compatible',
+								label: t('Not Compatible'),
 								theme: 'red',
 							});
 					},

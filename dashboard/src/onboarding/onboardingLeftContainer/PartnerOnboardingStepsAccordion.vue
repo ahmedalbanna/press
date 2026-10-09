@@ -22,6 +22,7 @@ import LucideChevronDown from '~icons/lucide/chevron-down'
 import LucideCircleCheck from '~icons/lucide/circle-check'
 import LucideCircleDashed from '~icons/lucide/circle-dashed'
 import LucideLock from '~icons/lucide/lock'
+import { t } from '../../utils/language'
 
 const openStep = ref('step-profile')
 const team = inject('team')
@@ -94,7 +95,7 @@ const isRegistrationComplete = computed(() => {
 const steps = computed(() => [
 	{
 		value: 'step-register',
-		title: 'Register as a Frappe Partner',
+		title: t('Register as a Frappe Partner'),
 		required: true,
 		status: isRegistrationComplete.value ? 'completed' : 'pending',
 		description: null,
@@ -112,7 +113,7 @@ const steps = computed(() => [
 	},
 	{
 		value: 'step-profile',
-		title: 'Complete your company profile',
+		title: t('Complete your company profile'),
 		required: true,
 		status: onboarding.isProfileComplete.value ? 'completed' : 'pending',
 		description:
@@ -129,7 +130,7 @@ const steps = computed(() => [
 	},
 	{
 		value: 'step-certificates',
-		title: 'Link at least two Frappe School certificates',
+		title: t('Link at least two Frappe School certificates'),
 		required: true,
 		status: onboarding.isCertificateRequirementComplete.value
 			? 'completed'
@@ -138,7 +139,7 @@ const steps = computed(() => [
 			'Link two Framework or ERPNext certificates from Frappe School. We will send a verification email to each certificate holder to confirm the link.',
 		linkPrefix: "Don't have certification?",
 		link: {
-			text: 'Browse upcoming batches',
+			text: t('Browse upcoming batches'),
 			url: 'https://school.frappe.io/lms/batches',
 		},
 		summaryRight: onboarding.isCertificateRequirementComplete.value
@@ -307,7 +308,7 @@ async function submitForApproval() {
 									<span class="text-ink-red-4"> *</span>
 								</template>
 								<template v-else>
-									<span class="font-normal text-ink-gray-5"> Optional</span>
+									<span class="font-normal text-ink-gray-5"> {{ t('Optional') }}</span>
 								</template>
 							</span>
 						</span>
@@ -390,7 +391,7 @@ async function submitForApproval() {
 			class="max-w-prose rounded border border-outline-gray-2 bg-surface-red-2 p-4"
 		>
 			<p class="text-p-base font-medium text-ink-red-4">
-				Your application was rejected
+				{{ t('Your application was rejected') }}
 			</p>
 			<p class="mt-1 text-p-base text-ink-gray-7">
 				Review the feedback, make the required changes, and start a new

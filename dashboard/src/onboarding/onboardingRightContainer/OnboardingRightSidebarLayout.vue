@@ -1,25 +1,26 @@
 <script setup>
 import OnboardingRightSidebarHeader from '@/onboarding/onboardingRightContainer/OnboardingRightSidebarHeader.vue'
+import { t } from '../../utils/language'
 
 const resources = [
 	{
-		title: 'Benefits of becoming a partner',
+		title: t('Benefits of becoming a partner'),
 		link: 'https://docs.frappe.io/partner-guide/why-partner',
 	},
 	{
-		title: 'Partner program guide',
+		title: t('Partner program guide'),
 		link: 'https://docs.frappe.io/partner-guide/guide-for-new-partners',
 	},
 	{
-		title: 'Certifications guide',
+		title: t('Certifications guide'),
 		link: 'https://docs.frappe.io/school/partner-certification',
 	},
 	{
-		title: 'Getting started with AlbannaTech',
+		title: t('Getting started with AlbannaTech'),
 		link: 'https://frappe.io/cloud',
 	},
 	{
-		title: 'Partnership tiers guide',
+		title: t('Partnership tiers guide'),
 		link: 'https://frappe.io/partners/plans',
 	},
 ]
@@ -34,7 +35,7 @@ const resources = [
 	>
 		<!-- Title: Resources -->
 		<div class="px-4 py-3">
-			<p class="text-p-sm font-medium text-ink-gray-5">Resources</p>
+			<p class="text-p-sm font-medium text-ink-gray-5">{{ t('Resources') }}</p>
 		</div>
 
 		<div class="px-1.5">
@@ -56,7 +57,7 @@ const resources = [
 
 		<div class="mt-auto border-t border-outline-gray-1 px-4 py-3">
 			<p class="text-p-sm leading-5 text-ink-gray-6">
-				Questions? Contact
+				{{ t('Questions? Contact') }}
 				<a
 					href="mailto:sales@frappe.io"
 					class="font-medium text-ink-gray-8 underline"

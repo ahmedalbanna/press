@@ -84,14 +84,14 @@
 				/>
 
 				<p class="text-base leading-relaxed" v-if="!cpu_and_memory_only_resize">
-					<b>Note :</b>
+					<b>{{ t('Note :') }}</b>
 					You won't be able to downgrade this server to a plan with a smaller
 					disk size.<br />
 					If you only want to upgrade CPU and memory without changing the disk
 					size, keep this option checked.
 				</p>
 				<p v-else class="text-base leading-relaxed">
-					To view plans that include disk upgrades, uncheck this option.
+					{{ t('To view plans that include disk upgrades, uncheck this option.') }}
 				</p>
 			</div>
 
@@ -169,6 +169,7 @@
 import { Checkbox, getCachedDocumentResource, Spinner } from 'frappe-ui'
 import { confirmDialog } from '../../utils/components'
 import ServerPlansCards from './ServerPlansCards.vue'
+import { t } from '../../utils/language'
 
 export default {
 	components: { ServerPlansCards, Checkbox, Spinner },
@@ -239,7 +240,7 @@ export default {
 				// Hide the Change Plan dialog so the confirmation isn't stacked on top of it.
 				this.show = false
 				return confirmDialog({
-					title: 'Downgrade Server Plan',
+					title: t('Downgrade Server Plan'),
 					message: `
 						Are you sure you want to downgrade this server's plan from
 						<b>${fromPlan}</b> to <b>${toPlan}</b>?<br><br>
@@ -251,7 +252,7 @@ export default {
 						before downgrading.
 					`,
 					primaryAction: {
-						label: 'Downgrade Plan',
+						label: t('Downgrade Plan'),
 						variant: 'solid',
 						theme: 'red',
 						onClick: ({ hide }) => this.submitPlanChange().then(hide),

@@ -10,7 +10,7 @@
 					<lucide-arrow-left class="h-4 w-4" />
 				</template>
 			</Button>
-			<h2 class="text-lg font-medium text-ink-gray-9">Audit Trail</h2>
+			<h2 class="text-lg font-medium text-ink-gray-9">{{ t('Audit Trail') }}</h2>
 		</div>
 
 		<ObjectList class="mt-4" :options="options" />
@@ -24,6 +24,7 @@ import dayjs from '../../utils/dayjs'
 import { bytes, date } from '../../utils/format'
 import { getDocResource } from '../../utils/resource'
 import ObjectList from '../ObjectList.vue'
+import { t } from '../../utils/language'
 
 const DEFAULT_RANGE_DAYS = 30
 // The build tells the page when it is done, so nothing is asked for on a timer
@@ -97,8 +98,7 @@ export default {
 			// are someone else's network, so the trail is put together in the background
 			if (this.preparing) {
 				return {
-					title:
-						'Putting the trail together. This page will fill in on its own.',
+					title: t('Putting the trail together. This page will fill in on its own.'),
 					type: 'info',
 					id: `${this.name}-preparing`,
 				}
@@ -139,13 +139,13 @@ export default {
 					{
 						// Every row is a day, and a day recovered from the bucket has no
 						// clock time to show, so all of them read as one date
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'date',
 						width: 1,
 						format: (value) => date(value, 'ddd, ll'),
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						width: '150px',
 						align: 'center',
@@ -154,19 +154,19 @@ export default {
 							({ Success: 'green', Failure: 'red' })[value] || 'gray',
 					},
 					{
-						label: 'Database',
+						label: t('Database'),
 						fieldname: 'database',
 						width: 0.5,
 						format: (value) => (value ? bytes(value) : ''),
 					},
 					{
-						label: 'Public Files',
+						label: t('Public Files'),
 						fieldname: 'public',
 						width: 0.5,
 						format: (value) => (value ? bytes(value) : ''),
 					},
 					{
-						label: 'Private Files',
+						label: t('Private Files'),
 						fieldname: 'private',
 						width: 0.5,
 						format: (value) => (value ? bytes(value) : ''),
@@ -174,7 +174,7 @@ export default {
 					{
 						// Often the only thing left on an old day, and then it is the
 						// whole basis for calling that day a backup
-						label: 'Config',
+						label: t('Config'),
 						fieldname: 'config',
 						width: 0.5,
 						format: (value) => (value ? bytes(value) : ''),
@@ -183,14 +183,14 @@ export default {
 				filterControls: () => [
 					{
 						type: 'date',
-						label: 'From',
+						label: t('From'),
 						fieldname: 'startDate',
 						local: true,
 						default: this.startDate,
 					},
 					{
 						type: 'date',
-						label: 'To',
+						label: t('To'),
 						fieldname: 'endDate',
 						local: true,
 						default: this.endDate,
@@ -203,13 +203,13 @@ export default {
 				},
 				actions: () => [
 					{
-						label: 'Refresh',
+						label: t('Refresh'),
 						icon: 'refresh-ccw',
 						loading: this.$resources.history.loading || this.preparing,
 						onClick: () => this.rebuild(),
 					},
 					{
-						label: 'Export as CSV',
+						label: t('Export as CSV'),
 						icon: 'download',
 						onClick: () => this.exportCSV(),
 					},

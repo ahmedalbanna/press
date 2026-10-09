@@ -53,22 +53,22 @@ const formatCurrency = (amount) => {
 
 <template>
 	<div>
-		<p class="text-p-base text-ink-gray-6 mb-4">Our partnership tiers:</p>
+		<p class="text-p-base text-ink-gray-6 mb-4">{{ t('Our partnership tiers:') }}</p>
 		<!-- column name -->
 		<div
 			class="flex items-center justify-between px-3 py-2 bg-surface-gray-1 rounded-md"
 		>
 			<div class="flex items-center gap-1.5 w-1/3">
-				<span class="text-p-base font-medium text-ink-gray-5"> Tier </span>
+				<span class="text-p-base font-medium text-ink-gray-5"> {{ t('Tier') }} </span>
 			</div>
 			<div class="flex items-center justify-end gap-1.5 w-1/3">
 				<span class="text-p-base font-medium text-ink-gray-5 text-right">
-					Min sales/month
+					{{ t('Min sales/month') }}
 				</span>
 			</div>
 			<div class="flex items-center justify-end gap-1.5 w-1/3">
 				<span class="text-p-base font-medium text-ink-gray-5 text-right">
-					Hosting discount
+					{{ t('Hosting discount') }}
 				</span>
 			</div>
 		</div>
@@ -118,7 +118,7 @@ const formatCurrency = (amount) => {
 			</div>
 			<!-- no data state -->
 			<div v-else class="flex items-center justify-center px-4 py-3">
-				<p class="text-p-base text-ink-gray-6">No partner tiers found</p>
+				<p class="text-p-base text-ink-gray-6">{{ t('No partner tiers found') }}</p>
 			</div>
 		</div>
 	</div>

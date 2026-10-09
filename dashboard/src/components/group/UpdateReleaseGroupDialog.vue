@@ -10,7 +10,7 @@
 			<AlertBanner
 				v-if="benchDocResource.doc.are_builds_suspended"
 				class="mb-4"
-				title="<b>Builds Suspended:</b> updates will be scheduled to run when builds resume."
+				title="<b>{{ t('Builds Suspended:') }}</b> updates will be scheduled to run when builds resume."
 				type="warning"
 			/>
 			<AlertBanner
@@ -30,7 +30,7 @@
 				)
 			"
 				class="mb-4"
-				title="A mandatory update is available. Please select the update to proceed."
+				:title="t('A mandatory update is available. Please select the update to proceed.')"
 				type="info"
 			/>
 			<!-- Update Steps -->
@@ -47,19 +47,19 @@
 						@update:selections="handleAppSelection"
 					/>
 					<p v-else class="text-center text-base text-ink-gray-6">
-						No apps to update
+						{{ t('No apps to update') }}
 					</p>
 				</div>
 
 				<!-- Remove Apps Step -->
 				<div v-else-if="step === 'removed-apps'">
-					<h2 class="mb-4 text-lg font-medium">These apps will be removed</h2>
+					<h2 class="mb-4 text-lg font-medium">{{ t('These apps will be removed') }}</h2>
 					<GenericList class="max-h-[500px]" :options="removedAppOptions" />
 				</div>
 
 				<!-- Select Site Step -->
 				<div v-else-if="step === 'select-sites'">
-					<h2 class="mb-4 text-lg font-medium">Select sites to update</h2>
+					<h2 class="mb-4 text-lg font-medium">{{ t('Select sites to update') }}</h2>
 					<GenericList
 						class="max-h-[500px]"
 						v-if="benchDocResource.doc.deploy_information.sites.length"
@@ -70,7 +70,7 @@
 						class="text-center text-base font-medium text-ink-gray-6"
 						v-else-if="!benchDocResource.doc.deploy_information.sites.length"
 					>
-						No active sites to update
+						{{ t('No active sites to update') }}
 					</p>
 				</div>
 
@@ -90,12 +90,12 @@
 								from it — no full image rebuild needed.
 							</p>
 							<ul class="ml-1 list-inside list-disc space-y-1 text-ink-gray-7">
-								<li>Much faster than a regular deploy</li>
+								<li>{{ t('Much faster than a regular deploy') }}</li>
 								<li>
 									New benches are created and sites are migrated, just like a
 									regular deploy
 								</li>
-								<li>Assets are only rebuilt if UI files changed</li>
+								<li>{{ t('Assets are only rebuilt if UI files changed') }}</li>
 								<li>
 									Python dependencies are only reinstalled if dependency files
 									changed
@@ -113,7 +113,7 @@
 						class="flex items-center gap-1.5 text-sm text-ink-blue-3 hover:underline"
 					>
 						<lucide-external-link class="h-3.5 w-3.5" />
-						Learn more in the documentation
+						{{ t('Learn more in the documentation') }}
 					</a>
 				</div>
 
@@ -123,7 +123,7 @@
 					class="flex flex-col gap-4"
 				>
 					<div class="flex items-center gap-2">
-						<h2 class="text-lg font-medium">Build might fail</h2>
+						<h2 class="text-lg font-medium">{{ t('Build might fail') }}</h2>
 						<a
 							href="https://docs.frappe.io/cloud/common-issues/build-might-fail"
 							target="_blank"
@@ -138,7 +138,7 @@
 					></p>
 					<div class="mt-4">
 						<FormControl
-							label="I understand, run deploy anyway"
+							:label="t('I understand, run deploy anyway')"
 							type="checkbox"
 							v-model="ignoreWillFailCheck"
 						/>
@@ -147,11 +147,11 @@
 
 				<div v-if="canUpdateInPlace" class="flex gap-2">
 					<FormControl
-						label="Use in place update"
+						:label="t('Use in place update')"
 						type="checkbox"
 						v-model="useInPlaceUpdate"
 					/>
-					<Tooltip text="View documentation">
+					<Tooltip :text="t('View documentation')">
 						<a
 							href="https://docs.frappe.io/cloud/in-place-updates"
 							target="_blank"
@@ -171,15 +171,15 @@
 				</div>
 				<Button
 					v-if="canShowBack && step !== 'patch-deploy-info'"
-					label="Back"
+					:label="t('Back')"
 					@click="back"
 				/>
-				<Button v-if="canShowNext" variant="solid" label="Next" @click="next" />
+				<Button v-if="canShowNext" variant="solid" :label="t('Next')" @click="next" />
 				<div v-if="step === 'patch-deploy-info'" class="flex gap-2">
-					<Button label="Back" @click="back" />
+					<Button :label="t('Back')" @click="back" />
 					<Button
 						variant="solid"
-						label="Proceed with Patch Deploy"
+						:label="t('Proceed with Patch Deploy')"
 						:loading="$resources.patchDeploy.loading"
 						@click="$resources.patchDeploy.submit()"
 					/>
@@ -188,7 +188,7 @@
 					<Button
 						v-if="deployInformation.can_run_patch_build"
 						variant="outline"
-						label="Deploy as Patch"
+						:label="t('Deploy as Patch')"
 						@click="deployAsPatch"
 					/>
 					<Button
@@ -214,6 +214,7 @@ import GenericList from '../../components/GenericList.vue'
 import { getTeam } from '../../data/team'
 import { DashboardError } from '../../utils/error'
 import AlertBanner from '../AlertBanner.vue'
+import { t } from '../../utils/language'
 
 export default {
 	name: 'UpdateReleaseGroupDialog',
@@ -272,12 +273,12 @@ export default {
 				selectable: !!this.lastDeploy,
 				columns: [
 					{
-						label: 'App',
+						label: t('App'),
 						fieldname: 'title',
 						width: 1.75,
 					},
 					{
-						label: 'From',
+						label: t('From'),
 						fieldname: 'current_hash',
 						type: 'Component',
 						component({ row: app }) {
@@ -293,7 +294,7 @@ export default {
 						},
 					},
 					{
-						label: 'To',
+						label: t('To'),
 						fieldname: 'next_release',
 						type: 'Component',
 						component({ row: app }) {
@@ -365,7 +366,7 @@ export default {
 						},
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'title',
 						type: 'Badge',
 						format(value, row) {
@@ -384,7 +385,7 @@ export default {
 						},
 					},
 					{
-						label: 'Changes',
+						label: t('Changes'),
 						type: 'Button',
 						width: 0.5,
 						align: 'right',
@@ -409,7 +410,7 @@ export default {
 							if (!url) return null
 
 							return {
-								label: 'View',
+								label: t('View'),
 								variant: 'ghost',
 								onClick() {
 									window.open(url, '_blank')
@@ -428,11 +429,11 @@ export default {
 				data: appData,
 				columns: [
 					{
-						label: 'App',
+						label: t('App'),
 						fieldname: 'title',
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'name',
 						type: 'Badge',
 						format() {
@@ -458,11 +459,11 @@ export default {
 				selectable: true,
 				columns: [
 					{
-						label: 'Site',
+						label: t('Site'),
 						fieldname: 'name',
 					},
 					{
-						label: 'Skip failed patches',
+						label: t('Skip failed patches'),
 						fieldname: 'skip_failing_patches',
 						width: 0.5,
 						type: 'Component',
@@ -477,7 +478,7 @@ export default {
 						},
 					},
 					{
-						label: 'Skip backup',
+						label: t('Skip backup'),
 						fieldname: 'skip_backups',
 						width: 0.3,
 						type: 'Component',

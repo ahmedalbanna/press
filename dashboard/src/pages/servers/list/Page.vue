@@ -36,16 +36,16 @@ const servers = createListResource({
 })
 
 const regionOptions = [
-	{ label: 'Bahrain', value: 'Bahrain' },
-	{ label: 'Cape Town', value: 'Cape Town' },
-	{ label: 'Frankfurt', value: 'Frankfurt' },
-	{ label: 'KSA', value: 'KSA' },
-	{ label: 'London', value: 'London' },
-	{ label: 'Mumbai', value: 'Mumbai' },
-	{ label: 'Singapore', value: 'Singapore' },
-	{ label: 'UAE', value: 'UAE' },
-	{ label: 'Virginia', value: 'Virginia' },
-	{ label: 'Zurich', value: 'Zurich' },
+	{ label: t('Bahrain'), value: 'Bahrain' },
+	{ label: t('Cape Town'), value: 'Cape Town' },
+	{ label: t('Frankfurt'), value: 'Frankfurt' },
+	{ label: t('KSA'), value: 'KSA' },
+	{ label: t('London'), value: 'London' },
+	{ label: t('Mumbai'), value: 'Mumbai' },
+	{ label: t('Singapore'), value: 'Singapore' },
+	{ label: t('UAE'), value: 'UAE' },
+	{ label: t('Virginia'), value: 'Virginia' },
+	{ label: t('Zurich'), value: 'Zurich' },
 ]
 
 const statusOptions = [

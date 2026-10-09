@@ -2,9 +2,9 @@
 	<div class="grid grid-cols-2 gap-6">
 		<div class="min-h-[240px] rounded-lg border p-4">
 			<div class="flex items-center justify-between">
-				<div class="text-xl font-semibold">Sites</div>
+				<div class="text-xl font-semibold">{{ t('Sites') }}</div>
 				<Button variant="ghost" :route="{ name: 'Site List' }">
-					View all
+					{{ t('View all') }}
 				</Button>
 			</div>
 			<div class="mt-4">
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<div class="rounded-lg border p-4">
-			<div class="text-xl font-semibold">Bench</div>
+			<div class="text-xl font-semibold">{{ t('Bench') }}</div>
 		</div>
 	</div>
 </template>

@@ -23,7 +23,7 @@
 				</span>
 			</div>
 			<Button size="sm" variant="outline" theme="gray" class="mt-1">
-				Install Now
+				{{ t('Install Now') }}
 			</Button>
 		</div>
 	</div>

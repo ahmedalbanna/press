@@ -35,7 +35,7 @@
 							v-model="createOffsiteBackup"
 						/>
 						<span class="block text-xs text-ink-gray-5 ml-[1.4rem]"
-							>Recoverable up to 6 months</span
+							>{{ t('Recoverable up to 6 months') }}</span
 						>
 					</div>
 					<div>
@@ -45,7 +45,7 @@
 							v-model="forceDrop"
 						/>
 						<span class="block text-xs text-ink-gray-5 ml-[1.4rem]"
-							>Drop the site even if there are pending operations</span
+							>{{ t('Drop the site even if there are pending operations') }}</span
 						>
 					</div>
 				</div>
