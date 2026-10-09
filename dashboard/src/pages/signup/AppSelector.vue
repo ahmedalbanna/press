@@ -51,7 +51,7 @@
 				</div>
 				<Button
 					class="mt-4 w-full"
-					:label="selectedApp ? `Install ${selectedApp.title}` : 'Install app'"
+					:label="selectedApp ? tr('Install {app}', { app: selectedApp.title }) : t('Install app')"
 					variant="solid"
 					:disabled="!selectedApp"
 					@click="openInstallAppPage(selectedApp)"
@@ -59,7 +59,7 @@
 			</div>
 			<template #footer>
 				<span class="ml-4 text-base font-normal text-ink-gray-6">
-					{{ 'Skip creating a site? ' }}
+					{{ t('Skip creating a site? ') }}
 				</span>
 				<router-link
 					class="text-base font-normal text-ink-gray-9 underline hover:text-ink-gray-7"
@@ -67,7 +67,7 @@
 						name: 'Site List',
 					}"
 				>
-					Go to Dashboard
+					{{ t('Go to Dashboard') }}
 				</router-link>
 			</template>
 		</LoginBox>

@@ -4,13 +4,13 @@
 		v-if="$resources.signupSettings.loading"
 	>
 		<Spinner class="mr-2 w-4" />
-		<p class="text-ink-gray-8">Loading</p>
+		<p class="text-ink-gray-8">{{ t('Loading') }}</p>
 	</div>
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<LoginBox
 				title="Welcome back"
-				:subtitle="`Login to your ${saasProduct?.title} site`"
+				:subtitle="tr('Login to your {product} site', { product: saasProduct?.title })"
 				:class="{ 'pointer-events-none': $resources.signup?.loading }"
 				:logo="saasProduct?.logo"
 			>
@@ -18,7 +18,7 @@
 					<form class="flex flex-col" @submit.prevent="">
 						<FormControl
 							class="w-full"
-							label="Email"
+							:label="t('Email')"
 							type="email"
 							placeholder="johndoe@mail.com"
 							variant="outline"
@@ -29,9 +29,9 @@
 						<FormControl
 							v-if="isLoginWithEmail"
 							class="mt-4 w-full"
-							label="Verification Code"
+							:label="t('Verification Code')"
 							type="text"
-							placeholder="5 digit verification code"
+							:placeholder="t('5 digit verification code')"
 							variant="outline"
 							v-model="code"
 							required
@@ -57,9 +57,9 @@
 								class="w-full font-medium"
 								type="button"
 							>
-								Login with email
+								{{ t('Login with email') }}
 							</Button>
-							<p v-if="isGoogleOAuthEnabled">or</p>
+							<p v-if="isGoogleOAuthEnabled">{{ t('or') }}</p>
 							<Button
 								v-if="isGoogleOAuthEnabled"
 								variant="subtle"
@@ -70,7 +70,7 @@
 							>
 								<div class="flex flex-row items-center gap-1">
 									<GoogleIconSolid class="w-4" />
-									Login with Google
+									{{ t('Login with Google') }}
 								</div>
 							</Button>
 						</div>
@@ -83,7 +83,7 @@
 								type="full"
 								@click="$resources.loginUsingCode.submit()"
 							>
-								Verify
+								{{ t('Verify') }}
 							</Button>
 							<Button
 								:loading="$resources.loginUsingCode?.loading"
@@ -92,7 +92,7 @@
 								type="button"
 								@click="$resources.sendVerificationCodeForLogin.submit()"
 							>
-								Didn't get email? Resend
+								{{ t("Didn't get email? Resend") }}
 							</Button>
 						</div>
 					</form>
@@ -105,7 +105,7 @@
 								params: $route.params,
 							}"
 						>
-							New member? Create a new account.
+							{{ t('New member? Create a new account.') }}
 						</router-link>
 					</div>
 				</template>
@@ -118,6 +118,7 @@ import { Spinner } from 'frappe-ui';
 import LoginBox from '../../components/auth/SaaSLoginBox.vue';
 import GoogleIconSolid from '@/components/icons/GoogleIconSolid.vue';
 import { toast } from 'vue-sonner';
+import { t } from '@/utils/language';
 
 export default {
 	name: 'SaaSSignup',
@@ -177,7 +178,7 @@ export default {
 				auto: false,
 				onSuccess() {
 					this.isLoginWithEmail = true;
-					toast.success('Verification code sent to your email');
+					toast.success(t('Verification code sent to your email'));
 				},
 			};
 		},

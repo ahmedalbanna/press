@@ -4,7 +4,7 @@
 		v-if="$resources.signupSettings.loading"
 	>
 		<Spinner class="mr-2 w-4" />
-		<p class="text-ink-gray-8">Loading</p>
+		<p class="text-ink-gray-8">{{ t('Loading') }}</p>
 	</div>
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
@@ -21,7 +21,7 @@
 					>
 						<!-- Fields -->
 						<FormControl
-							label="Email"
+							:label="t('Email')"
 							type="email"
 							placeholder="johndoe@mail.com"
 							variant="outline"
@@ -32,9 +32,9 @@
 						/>
 						<FormControl
 							class="mt-5"
-							label="Country"
+							:label="t('Country')"
 							type="select"
-							placeholder="Select your country"
+							:placeholder="t('Select your country')"
 							autocomplete="country"
 							variant="outline"
 							:options="countries"
@@ -48,19 +48,19 @@
 									v-model="terms_accepted"
 									class="mr-0.5 py-1 align-baseline"
 								/>
-								I agree to Frappe&nbsp;
+								{{ t('I agree to the') }}&nbsp;
 								<Link href="https://frappecloud.com/terms" target="_blank">
-									Terms of Service </Link
+									{{ t('Terms of Service') }} </Link
 								>,&nbsp;
 								<Link href="https://frappecloud.com/privacy" target="_blank">
-									Privacy Policy
+									{{ t('Privacy Policy') }}
 								</Link>
-								&nbsp;&&nbsp;
+								{{ t(' and ') }}
 								<Link
 									href="https://frappecloud.com/cookie-policy"
 									target="_blank"
 								>
-									Cookie Policy
+									{{ t('Cookie Policy') }}
 								</Link>
 							</label>
 						</div>
@@ -77,7 +77,7 @@
 								class="w-full font-medium"
 								type="submit"
 							>
-								Create Account
+								{{ t('Create Account') }}
 							</Button>
 						</div>
 					</form>

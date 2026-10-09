@@ -25,7 +25,7 @@
 				<!-- title -->
 				<div class="mb-7.5 text-center">
 					<p class="mb-2 text-2xl font-semibold leading-6 text-ink-gray-9">
-						{{ title }}
+						{{ tr(title) }}
 					</p>
 					<p
 						class="break-words text-base font-normal leading-[21px] text-ink-gray-7"
@@ -35,9 +35,9 @@
 							v-if="typeof subtitle === 'object'"
 							v-for="line in subtitle"
 						>
-							{{ line }}<br />
+							{{ tr(line) }}<br />
 						</template>
-						<template v-else>{{ subtitle }}</template>
+						<template v-else>{{ tr(subtitle) }}</template>
 					</p>
 				</div>
 				<slot></slot>

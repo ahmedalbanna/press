@@ -4,7 +4,7 @@
 		v-if="$resources.signupSettings.loading"
 	>
 		<Spinner class="mr-2 w-4" />
-		<p class="text-ink-gray-8">Loading</p>
+		<p class="text-ink-gray-8">{{ t('Loading') }}</p>
 	</div>
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
@@ -21,9 +21,9 @@
 					>
 						<!-- Fields -->
 						<FormControl
-							label="Country"
+							:label="t('Country')"
 							type="select"
-							placeholder="Select your country"
+							:placeholder="t('Select your country')"
 							autocomplete="country"
 							variant="outline"
 							:options="countries"
@@ -32,7 +32,7 @@
 						/>
 						<div class="mt-5 flex flex-row gap-5">
 							<FormControl
-								label="First Name"
+								:label="t('First Name')"
 								type="text"
 								placeholder="John"
 								variant="outline"
@@ -40,7 +40,7 @@
 								required
 							/>
 							<FormControl
-								label="Last Name"
+								:label="t('Last Name')"
 								type="text"
 								placeholder="Doe"
 								variant="outline"
@@ -50,7 +50,7 @@
 						</div>
 						<FormControl
 							class="mt-5"
-							label="Email"
+							:label="t('Email')"
 							type="email"
 							placeholder="johndoe@mail.com"
 							variant="outline"
@@ -65,19 +65,19 @@
 									v-model="terms_accepted"
 									class="mr-0.5 py-1 align-baseline"
 								/>
-								I agree to Frappe&nbsp;
+								{{ t('I agree to the') }}&nbsp;
 								<Link href="https://frappecloud.com/terms" target="_blank">
-									Terms of Service </Link
+									{{ t('Terms of Service') }} </Link
 								>,&nbsp;
 								<Link href="https://frappecloud.com/privacy" target="_blank">
-									Privacy Policy
+									{{ t('Privacy Policy') }}
 								</Link>
-								&nbsp;&&nbsp;
+								{{ t(' and ') }}
 								<Link
 									href="https://frappecloud.com/cookie-policy"
 									target="_blank"
 								>
-									Cookie Policy
+									{{ t('Cookie Policy') }}
 								</Link>
 							</label>
 						</div>
@@ -94,9 +94,9 @@
 								class="w-full font-medium"
 								type="submit"
 							>
-								Create Account
+								{{ t('Create Account') }}
 							</Button>
-							<p v-if="isGoogleOAuthEnabled">or</p>
+							<p v-if="isGoogleOAuthEnabled">{{ t('or') }}</p>
 							<Button
 								v-if="isGoogleOAuthEnabled"
 								:loading="$resources.signupWithOAuth?.loading"
@@ -107,7 +107,7 @@
 							>
 								<div class="flex flex-row items-center gap-1">
 									<GoogleIconSolid class="w-4" />
-									Sign up with Google
+									{{ t('Sign up with Google') }}
 								</div>
 							</Button>
 						</div>
@@ -120,7 +120,7 @@
 								params: $route.params,
 							}"
 						>
-							Already have an account? Log in.
+							{{ t('Already have an account? Log in.') }}
 						</router-link>
 					</div>
 				</template>
@@ -130,6 +130,7 @@
 </template>
 <script>
 import { Spinner } from 'frappe-ui';
+import { t } from '@/utils/language';
 import LoginBox from '../../components/auth/SaaSLoginBox.vue';
 import GoogleIconSolid from '@/components/icons/GoogleIconSolid.vue';
 
@@ -176,7 +177,7 @@ export default {
 				},
 				validate() {
 					if (!this.terms_accepted) {
-						throw new Error('Please accept the terms of service');
+						throw new Error(t('Please accept the terms of service'));
 					}
 				},
 				onSuccess(account_request) {

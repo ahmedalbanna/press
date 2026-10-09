@@ -16,9 +16,9 @@
 				<form class="mt-6 flex flex-col" @submit.prevent="createSite">
 					<div class="w-full space-y-1.5">
 						<div class="flex items-center gap-2">
-							<label class="block text-xs text-ink-gray-5"> Site name </label>
+							<label class="block text-xs text-ink-gray-5">{{ t('Site name') }}</label>
 							<Tooltip
-								text="You will be able to access your site via your site name"
+								:text="t('You will be able to access your site via your site name')"
 							>
 								<lucide-info class="h-4 w-4 text-ink-gray-5" />
 							</Tooltip>
@@ -42,8 +42,7 @@
 						</div>
 						<div class="mt-1">
 							<div v-if="!subdomain" class="text-xs text-ink-gray-5">
-								Enter a site name (5-32 chars, lowercase letters, numbers,
-								hyphens).
+								{{ t('Enter a site name (5-32 chars, lowercase letters, numbers, hyphens).') }}
 							</div>
 							<ErrorMessage v-else :message="subdomainError" />
 						</div>
@@ -57,9 +56,9 @@
 							$resources.createSite?.loading
 						"
 						variant="solid"
-						label="Create site"
+						:label="t('Create site')"
 						:loading="findingClosestServer || $resources.createSite?.loading"
-						:loadingText="'Creating site...'"
+						:loading-text="t('Creating site...')"
 						type="submit"
 					/>
 				</form>

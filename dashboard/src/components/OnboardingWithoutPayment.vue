@@ -21,7 +21,7 @@
 					<p
 						class="text-center text-lg font-medium leading-5 tracking-tight text-ink-gray-9"
 					>
-						Choose an app below to create your first site.
+						{{ t('Choose an app below to create your first site.') }}
 					</p>
 				</div>
 				<div
@@ -36,7 +36,7 @@
 		<div class="flex w-full">
 			<Button
 				class="mx-auto mt-4"
-				label="Skip to Dashboard"
+				:label="t('Skip to Dashboard')"
 				variant="ghost"
 				icon-right="arrow-right"
 				:route="{ name: 'Site List' }"

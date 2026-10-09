@@ -17,13 +17,13 @@
 				<template v-slot:default>
 					<div class="flex h-40 flex-col justify-center">
 						<div class="text-base leading-5 text-ink-gray-8">
-							<p>It looks like something went wrong!</p>
+							<p>{{ t('It looks like something went wrong!') }}</p>
 							<p class="">
-								Contact
+								{{ t('Contact') }}
 								<a href="mailto:support@frappe.io" class="underline">
 									support@frappe.io
 								</a>
-								to resolve the issue
+								{{ t('to resolve the issue') }}
 							</p>
 						</div>
 					</div>
@@ -47,13 +47,13 @@
 						<Progress
 							size="lg"
 							:value="progressCount"
-							:label="currentBuildStep"
+							:label="t(currentBuildStep)"
 						/>
 						<div
 							class="flex w-full items-center space-x-2 pt-4 text-sm text-ink-gray-6"
 						>
 							<lucide-info class="h-4 w-4" />
-							<span>{{ currentHelpText }}</span>
+							<span>{{ t(currentHelpText) }}</span>
 						</div>
 					</div>
 				</template>

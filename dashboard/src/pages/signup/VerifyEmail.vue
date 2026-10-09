@@ -4,14 +4,14 @@
 		v-if="$resources.signupSettings.loading"
 	>
 		<Spinner class="mr-2 w-4" />
-		<p class="text-ink-gray-8">Loading</p>
+		<p class="text-ink-gray-8">{{ t('Loading') }}</p>
 	</div>
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<SaaSLoginBox
 				title="Verify your email"
 				:subtitle="[
-					`We sent you an email to ${email}`,
+					tr('We sent you an email to {email}', { email }),
 					'Check your inbox for next steps',
 				]"
 				:logo="saasProduct?.logo"
@@ -22,10 +22,10 @@
 						@submit.prevent="$resources.verifyCode.submit"
 					>
 						<FormControl
-							label="Verification Code"
+							:label="t('Verification Code')"
 							type="text"
 							variant="outline"
-							placeholder="5 digit verification code"
+							:placeholder="t('5 digit verification code')"
 							maxlength="5"
 							v-model="code"
 							required
@@ -38,20 +38,20 @@
 								$resources.verifyCode?.loading ||
 								$resources.setupAccount?.loading
 							"
-							loading-text="Verifying..."
+							:loading-text="t('Verifying...')"
 							type="submit"
 						>
-							Verify
+							{{ t('Verify') }}
 						</Button>
 						<Button
 							class="mt-2"
 							variant="outline"
 							type="button"
-							loading-text="Resending mail..."
+							:loading-text="t('Resending mail...')"
 							:loading="$resources.resendOTP?.loading"
 							@click="$resources.resendOTP.submit()"
 						>
-							Didn't get email? Resend
+							{{ t("Didn't get email? Resend") }}
 						</Button>
 					</form>
 				</template>
@@ -61,6 +61,7 @@
 </template>
 <script>
 import { toast } from 'vue-sonner';
+import { t } from '@/utils/language';
 import SaaSLoginBox from '../../components/auth/SaaSLoginBox.vue';
 
 export default {
@@ -113,10 +114,10 @@ export default {
 				},
 				onSuccess() {
 					this.otp = '';
-					toast.success('Resent OTP to your email');
+					toast.success(t('Resent OTP to your email'));
 				},
 				onerror() {
-					toast.error('Failed to resend OTP');
+					toast.error(t('Failed to resend OTP'));
 				},
 			};
 		},

@@ -1,11 +1,14 @@
+ and , و
 / month,/ شهرياً
 1 Day,يوم واحد
 1 issue found in,تم العثور على مشكلة واحدة في
 1 month,شهر واحد
 12 Hours,12 ساعة
+"14 days free trial, no credit card required.",تجربة مجانية لمدة 14 يومًا، دون الحاجة إلى بطاقة ائتمان.
 2FA Code from your Authenticator App,رمز 2FA من تطبيق المصادقة الخاص بك
 3 Days,3 أيام
 3 Hours,3 ساعات
+5 digit verification code,رمز التحقق المكوّن من 5 أرقام
 6 Hours,6 ساعات
 7 Days,7 أيام
 <b>Note:</b> This action is rate limited. Please allow some time for dns changes (if any) to propagate before retrying.,<b>ملاحظة:</b> هذا الإجراء محدود المعدل. يُرجى الانتظار بعض الوقت حتى تنتشر تغييرات DNS (إن وجدت) قبل إعادة المحاولة.
@@ -95,6 +98,7 @@ AlbannaTech makes it easy to manage sites and apps like ERPNext in an,AlbannaTec
 Alert: Your site {0} will be archived in {1} days,تنبيه: سيتم أرشفة موقعك {0} خلال {1} يوم
 Alerts for resource consumption,تنبيهات لاستهلاك الموارد
 All,الكل
+All Frappe apps are open-source,جميع تطبيقات Frappe مفتوحة المصدر
 All Roles,جميع الأدوار
 All attempts to back up your site {0} have failed.,فشلت جميع محاولات النسخ الاحتياطي لموقعك {0}.
 All fields are required,جميع الحقول مطلوبة
@@ -111,7 +115,10 @@ Allow Partner Access,السماح بالوصول للشريك
 Allow Server Creation,السماح بإنشاء الخوادم
 Allow Site Creation,السماح بإنشاء المواقع
 Allow Webhook Configuration,السماح بتكوين Webhook
+Allow my details to be shared with a local partner,السماح بمشاركة بياناتي مع شريك محلي
+Almost there,اقتربنا من الانتهاء
 Already have an account? ,هل لديك حساب بالفعل؟ 
+Already have an account? Log in.,لديك حساب بالفعل؟ سجّل الدخول.
 Alternate Payment Methods,طرق دفع بديلة
 Amount,المبلغ
 Amount (Minimum Amount: {amount}),المبلغ (الحد الأدنى: {amount})
@@ -313,10 +320,12 @@ Changed From,تغيير من
 Changed To,إلى
 Changes,التغييرات
 Check results,نتائج الفحوصات
+Check your inbox for next steps,تفقد بريدك الوارد للخطوات التالية
 Choose Release Group,اختر مجموعة الإصدار
 Choose Scheduled Time,اختر الوقت المجدول
 Choose Server,اختر الخادم
 Choose active card,اختر البطاقة النشطة
+Choose an app below to create your first site.,اختر تطبيقًا أدناه لإنشاء موقعك الأول.
 City,المدينة
 Cleanup Server,تنظيف الخادم
 Clear,مسح
@@ -350,6 +359,8 @@ Configuration,التكوين
 Configure,تهيئة
 Configure Permissions,تكوين الأذونات
 Configure User,تكوين المستخدم
+Configuring your setup,جاري تهيئة إعداداتك
+Configuring your site,جاري تهيئة موقعك
 Confirm,تأكيد
 Confirm Password,تأكيد كلمة المرور
 Confirm Payment Mode,تأكيد طريقة الدفع
@@ -357,6 +368,7 @@ Confirm by clicking the button below.,أكّد موافقتك بالنقر عل�
 Confirming payment,جاري تأكيد الدفع
 Connected,متصل
 Consistent,متسق
+Contact,تواصل مع
 Contact Support,تواصل مع الدعم
 Containerised deployments,نشرات مجزأة
 Continue,متابعة
@@ -364,6 +376,7 @@ Continue Onboarding,متابعة الإعداد الأولي
 Continue with Google,المتابعة مع Google
 Continue with password,المتابعة باستخدام كلمة المرور
 Continue with verification code,المتابعة باستخدام رمز التحقق
+Cookie Policy,سياسة ملفات تعريف الارتباط
 Copy,نسخ
 Copy Recovery Codes,نسخ رموز الاسترداد
 Copy SSH Command,نسخ أمر SSH
@@ -381,7 +394,9 @@ Create Server,إنشاء خادم
 Create Site,إنشاء موقع
 Create User,إنشاء المستخدم
 Create a new account.,إنشاء حساب جديد.
+Create account,إنشاء حساب
 Create new,إنشاء جديد
+Create site,إنشاء موقع
 Create your first site,إنشاء موقعك الأول
 Create your {app} trial site,إنشاء موقعك التجريبي لـ {app}
 Created At,تاريخ الإنشاء
@@ -389,7 +404,9 @@ Created By,أنشأها
 Created On,تاريخ الإنشاء
 Created by,أنشئ بواسطة
 Created on,تاريخ الإنشاء
+Creating site...,جاري إنشاء الموقع...
 Creating site... This may take a while...,جاري إنشاء الموقع... قد يستغرق ذلك بعض الوقت...
+Creating your site,جاري إنشاء موقعك
 Credit Balance,الرصيد المتبقي
 Credit balance,الرصيد المتبقي
 Credit or Debit Card,بطاقة ائتمان أو خصم
@@ -448,6 +465,7 @@ Deployment,نشر
 Deploys,النشرات
 Description,الوصف
 Dev Tools,أدوات المطور
+Didn't get email? Resend,لم يصلك البريد؟ أعد الإرسال
 Disable,تعطيل
 Disable 2FA,تعطيل المصادقة الثنائية
 Disable Account,تعطيل الحساب
@@ -527,6 +545,7 @@ Enter Payment Gateway,أدخل بوابة الدفع
 Enter Security Credential,أدخل بيانات الاعتماد الأمنية
 Enter Short Code,أدخل الرمز المختصر
 Enter Taxes and Charges,أدخل الضرائب والرسوم
+"Enter a site name (5-32 chars, lowercase letters, numbers, hyphens).",أدخل اسم موقع (5-32 حرفًا، أحرف صغيرة وأرقام وشرطات).
 Enter amount in {currency},أدخل المبلغ بـ {currency}
 Enter email address of the team for transfer of site ownership,أدخل عنوان البريد الإلكتروني للفريق لنقل ملكية الموقع
 Enter new title for the role,أدخل عنواناً جديداً للدور
@@ -569,6 +588,7 @@ Failed to initiate database user deletion,فشل بدء حذف مستخدم قا
 Failed to load payment gateway. Please refresh and try again.,تعذر تحميل بوابة الدفع. يُرجى تحديث الصفحة والمحاولة مرة أخرى.
 Failed to mark you as a developer,تعذر تسجيلك كمطور
 Failed to remove Partner. Please try again.,تعذرت إزالة الشريك. يرجى المحاولة مرة أخرى.
+Failed to resend OTP,تعذرت إعادة إرسال رمز التحقق
 Failed to send verification code.,تعذر إرسال رمز التحقق.
 Failed to update webhook. Please try again,تعذر تحديث Webhook. يرجى المحاولة مرة أخرى.
 Failed to verify authorization,تعذر التحقق من التفويض
@@ -588,12 +608,14 @@ Filter,تصفية
 Finalize Invoices,تسوية الفواتير
 Finalize Unsettled Invoices,تسوية الفواتير غير المدفوعة
 Find a Partner,البحث عن شريك
+Find anything with the Awesome bar,اعثر على أي شيء باستخدام شريط البحث
 Finish,إنهاء
 Finish onboarding to start using Benches.,أكمل الإعداد الأولي لبدء استخدام الأرصفة.
 Finished,منتهي
 Finished On,انتهى في
 Firewall,جدار الحماية
 First Name,الاسم الأول
+First name,الاسم الأول
 "Fix all the issues, then publish a new release (push to your source branch).",قم بإصلاح جميع المشكلات، ثم انشر إصداراً جديداً (ادفع إلى فرع المصدر).
 Flag,تمييز
 Follow,متابعة
@@ -628,8 +650,10 @@ Get Started,ابدأ الآن
 Get Support,الحصول على الدعم
 Get an email every month until you review your recovery codes,احصل على بريد إلكتروني شهرياً حتى تراجع رموز الاسترداد الخاصة بك
 Get started and explore the easiest way to run ERPNext and Frappe apps on AlbannaTech,ابدأ واستكشف أسهل طريقة لتشغيل تطبيقات ERPNext و Frappe على AlbannaTech
+Get started in minutes,ابدأ في دقائق
 Global,عالمي
 Go Live,نشر مباشر
+Go to Dashboard,الذهاب إلى لوحة التحكم
 Go to invoices,الانتقال إلى الفواتير
 Go to site dashboard,الانتقال إلى لوحة تحكم الموقع
 "Good news, your approval request for the app release",خبر جيد، تم قبول طلب الموافقة على إصدار التطبيق
@@ -658,6 +682,7 @@ Host this site on your dedicated server,استضافة هذا الموقع عل�
 How tier upgrades work,كيف تعمل ترقية الفئات
 How to fix,خطوات الإصلاح
 How to fix?,كيف يتم الإصلاح؟
+I agree to the,أوافق على
 I am okay if my details are shared with local partner,أوافق على مشاركة بياناتي مع الشريك المحلي
 I have GSTIN,لدي رقم GSTIN
 "If no action is taken, your site will be archived after 3 weeks.",في حال عدم اتخاذ أي إجراء، سيتم أرشفة موقعك بعد 3 أسابيع.
@@ -695,6 +720,8 @@ Insights,الرؤى
 Install,تثبيت
 Install App,تثبيت تطبيق
 Install Local Compliance App?,تثبيت تطبيق الامتثال المحلي؟
+Install app,تثبيت التطبيق
+Install {app},تثبيت {app}
 Installation,تثبيت
 Installed on,مثبّت على
 Installing,قيد التثبيت
@@ -735,6 +762,7 @@ Invoices,فواتير
 Invoices finalized successfully,تمت تسوية الفواتير بنجاح
 Isolated benches as separate environments,أرصفة معزولة كبيئات منفصلة
 It has been a year since you last reviewed your two-factor authentication recovery codes.,مرّ عام منذ آخر مرة راجعت فيها رموز استرداد المصادقة الثنائية.
+It looks like something went wrong!,يبدو أن خطأً ما قد حدث!
 It might take up to 2 hours for the payment to reflect against your invoices.,قد يستغرق ظهور الدفع مقابل فواتيرك حتى ساعتين.
 JSON,JSON
 Jobs in progress,الوظائف قيد التنفيذ
@@ -748,6 +776,7 @@ Language,اللغة
 ({month})","الشهر الماضي
 ({month})"
 Last Name,اسم العائلة
+Last name,اسم العائلة
 Last paid invoice,آخر فاتورة مدفوعة
 Last paid invoice ≥ {amount},آخر فاتورة مدفوعة ≥ {amount}
 Latest Updates Fetched for {title},تم جلب أحدث التحديثات لـ {title}
@@ -758,8 +787,8 @@ Learn about Cleanup Server,تعرف على تنظيف الخادم
 Learn about Forcefully Purge Binlogs,تعرف على حذف سجلات Binlog بالقوة
 Leave,مغادرة
 Less,أقل
-Let's set up your account,لنجهّز حسابك
-Let's set up your site,لنجهّز موقعك
+Let's set up your account,لنقم بإعداد حسابك
+Let's set up your site,لنقم بإعداد موقعك
 Light Mode,الوضع الفاتح
 Limits,الحدود
 Link Partner Account,ربط حساب الشريك
@@ -786,6 +815,9 @@ Login As Administrator,تسجيل الدخول كمسؤول
 Login Verification Email,رسالة تأكيد تسجيل الدخول
 Login as Administrator,تسجيل الدخول كمسؤول
 Login to AlbannaTech,تسجيل الدخول إلى AlbannaTech
+Login to your {product} site,سجّل الدخول إلى موقعك على {product}
+Login with Google,الدخول عبر Google
+Login with email,الدخول بالبريد الإلكتروني
 Logout,تسجيل الخروج
 Low,منخفض
 M-Pesa Phone Number,رقم هاتف M-Pesa
@@ -866,6 +898,7 @@ New Server,خادم جديد
 New Site,موقع جديد
 New Snapshot,لقطة جديدة
 New member? ,عضو جديد؟ 
+New member? Create a new account.,عضو جديد؟ أنشئ حسابًا جديدًا.
 New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.,تبدأ الفرق الجديدة في الفئة الأساسية مع حد إنفاق افتراضي. يلزم إضافة طريقة دفع أو شراء رصيد مُسبق للبقاء في الفئة الأساسية أو أعلى منها.
 Next,التالي
 Next Version,الإصدار التالي
@@ -1012,6 +1045,7 @@ Plan name is required,اسم الخطة مطلوب
 Plan updated successfully,تم تحديث الخطة بنجاح
 Play,المهمة
 Plays,المهام
+Please accept the terms of service,يرجى الموافقة على شروط الخدمة
 "Please add credits to your account, or update your payment method and add a card with sufficient balance from your AlbannaTech dashboard:",يرجى إضافة رصيد إلى حسابك، أو تحديث طريقة الدفع وإضافة بطاقة برصيد كافٍ من لوحة تحكم AlbannaTech:
 Please agree to the above consent to create site,يُرجى الموافقة على الموافقة المذكورة أعلاه لإنشاء الموقع
 "Please cancel your existing mandate and set up a new one with a higher limit, or pay this invoice now. If you need help,",يرجى إلغاء التفويض الحالي وإنشاء تفويض جديد بحد أعلى، أو سداد هذه الفاتورة الآن. إذا احتجت مساعدة،
@@ -1062,6 +1096,7 @@ Primary,الأساسي
 Primary domain set,تم تعيين النطاق الأساسي
 Print Format,تنسيق الطباعة
 Priority,أولوية
+Privacy Policy,سياسة الخصوصية
 Private,خاص
 Private Files,الملفات الخاصة
 Private IP,عنوان IP خاص
@@ -1154,6 +1189,8 @@ Requested,مطلوب
 Requests,الطلبات
 Require all team members to enable 2FA,مطالبة جميع أعضاء الفريق بتفعيل المصادقة الثنائية
 Requirements,المتطلبات
+Resending mail...,جاري إعادة إرسال البريد...
+Resent OTP to your email,تمت إعادة إرسال رمز التحقق إلى بريدك
 Reset,إعادة تعيين
 Reset 2FA,إعادة تعيين 2FA
 Reset Password,إعادة تعيين كلمة المرور
@@ -1231,6 +1268,7 @@ Select an app to get started,اختر تطبيقاً للبدء
 Select resources,اختر الموارد
 Select the app you want to install on your site.,اختر التطبيق الذي تريد تثبيته على موقعك.
 Select the webhook events,اختر أحداث Webhook
+Select your country,اختر بلدك
 Send,إرسال
 Send verification code,إرسال رمز التحقق
 Sending Invite...,جاري إرسال الدعوة...
@@ -1291,6 +1329,8 @@ Share Feedback,مشاركة الملاحظات
 Shared,مشترك
 Shared Server,خادم مشترك
 Show,إظهار
+Sign up,إنشاء حساب
+Sign up with Google,التسجيل عبر Google
 Signup,إنشاء حساب
 Signup to your AlbannaTech account,إنشاء حساب AlbannaTech جديد
 Simple,بسيط
@@ -1332,6 +1372,7 @@ Site Version,إصدار الموقع
 Site creation failed,فشل إنشاء الموقع
 Site creation failed. You can restore the site from a backup (from another site) or drop this site to create a new one. The site will be automatically dropped after {days} days if not restored.,فشل إنشاء الموقع. يمكنك استعادة الموقع من نسخة احتياطية (من موقع آخر) أو حذف هذا الموقع لإنشاء موقع جديد. سيتم حذف الموقع تلقائياً بعد {days} أيام إذا لم يتم استعادته.
 "Site monitoring is disabled, which means we won't be able to notify you of any downtime. Please re-enable monitoring at your earliest convenience.",مراقبة الموقع معطلة، مما يعني أننا لن نتمكن من إخطارك بأي انقطاع. يرجى إعادة تفعيل المراقبة في أقرب فرصة.
+Site name,اسم الموقع
 Site name does not match,اسم الموقع غير مطابق
 Site name does not match.,اسم الموقع غير مطابق.
 Site update started,بدأ تحديث الموقع
@@ -1341,9 +1382,11 @@ Sites,المواقع
 Size,الحجم
 Skip,تخطي
 Skip Failing Patches,تخطي التصحيحات الفاشلة
+Skip creating a site? ,تخطي إنشاء موقع؟ 
 Skip failing patches if any,تخطي التصحيحات الفاشلة إن وجدت
 Skip patches if they fail during migration (Not recommended),تخطي التصحيحات إذا فشلت أثناء الترحيل (غير مستحسن)
 Skip taking backup for this update,تخطي النسخ الاحتياطي لهذا التحديث
+Skip to Dashboard,الانتقال إلى لوحة التحكم
 Snapshot,اللقطة
 Snapshot Name,اسم اللقطة
 Snapshots,اللقطات
@@ -1412,6 +1455,7 @@ Team Settings,إعدادات الفريق
 Team Sites,مواقع الفريق
 Team Transfer,نقل ملكية الفريق
 Terms & Policies,الشروط والسياسات
+Terms of Service,شروط الخدمة
 "Thanks,",شكراً،
 The,ويتم نقل
 The audit could not complete. Share this traceback with support if you need help.,لم يتمكن التدقيق من الإكمال. شارك هذا التتبع مع الدعم إذا كنت بحاجة إلى مساعدة.
@@ -1556,13 +1600,17 @@ Value must be a JSON object or array,يجب أن تكون القيمة كائن 
 Verification Code,رمز التحقق
 Verification Code for AlbannaTech Login,رمز التحقق لتسجيل الدخول إلى AlbannaTech
 Verification code,رمز التحقق
+Verification code sent to your email,تم إرسال رمز التحقق إلى بريدك الإلكتروني
 Verification code sent to your email.,تم إرسال رمز التحقق إلى بريدك الإلكتروني.
+Verification link or code is invalid or expired.,رابط التحقق أو الرمز غير صالح أو منتهي الصلاحية.
 Verify,تحقق
 Verify & Save Card,تحقق واحفظ البطاقة
 Verify Account,تأكيد الحساب
+Verify your email,تأكيد بريدك الإلكتروني
 Verify your email address,تحقق من بريدك الإلكتروني
 Verifying Card,جاري التحقق من البطاقة
 Verifying authorization...,جاري التحقق من التفويض...
+Verifying...,جاري التحقق...
 Version,الإصدار
 Versioning,الإصدارات
 View,عرض
@@ -1598,6 +1646,7 @@ We could not auto-debit,تعذر الخصم التلقائي لمبلغ
 We could not process the payment of,تعذر تنفيذ عملية الدفع بقيمة
 We could not start the UPI Autopay payment of,تعذر بدء عملية الدفع التلقائي عبر UPI بقيمة
 We have noticed frequent incidents on your current plan and recommend upgrading your,لاحظنا تكرار الأعطال في خطتك الحالية، ونوصي بترقية
+We sent you an email to {email},أرسلنا إليك بريدًا إلكترونيًا إلى {email}
 We tried to auto-debit,حاولنا الخصم التلقائي لمبلغ
 We tried to charge the card ending,حاولنا الخصم من البطاقة المنتهية
 "We tried to charge your default card for your AlbannaTech invoice of <strong>{0}</strong>, but the card was not recognised. To fix this, remove the card from your account and add it again from your",حاولنا الخصم من بطاقتك الافتراضية لفاتورة AlbannaTech بقيمة <strong>{0}</strong>، ولكن لم يتم التعرف على البطاقة. لحل المشكلة، يرجى إزالة البطاقة من حسابك وإضافتها مرة أخرى من
@@ -1612,6 +1661,7 @@ Webhook added successfully,تمت إضافة Webhook بنجاح
 Webhook updated successfully,تم تحديث Webhook بنجاح
 Weekly Installs,تثبيتات أسبوعية
 Welcome,مرحباً
+Welcome back,مرحبًا بعودتك
 Welcome to AlbannaTech,مرحباً بك في AlbannaTech
 What to do after a failed audit,ماذا تفعل بعد فشل التدقيق
 "With Benches, you get more control. You can choose which apps to add, which apps to update, which region to deploy to and more.",مع الأرصفة، تحصل على تحكم أكبر. يمكنك اختيار التطبيقات التي تريد إضافتها وتحديثها والمنطقة التي تريد النشر إليها والمزيد.
@@ -1622,6 +1672,7 @@ You are automatically upgraded to a higher tier when your last paid subscription
 You are receiving this mail because the storage on your server {0} is full and automatic storage expansion is disabled.,تصلك هذه الرسالة لأن مساحة التخزين على خادمك {0} ممتلئة وتم تعطيل التوسع التلقائي في مساحة التخزين.
 You aren't permitted to create new sites,غير مسموح لك بإنشاء مواقع جديدة
 You aren't permitted to view the billing page,غير مسموح لك بعرض صفحة الفوترة
+You can install more apps later,يمكنك تثبيت المزيد من التطبيقات لاحقًا
 You can log in later to enable your account. Do you want to continue?,يمكنك تسجيل الدخول لاحقاً لتفعيل حسابك. هل تريد المتابعة؟
 You can now publish apps to our Marketplace,يمكنك الآن نشر التطبيقات في متجرنا
 You can only view logs of last 24 hours,يمكنك فقط عرض سجلات آخر 24 ساعة
@@ -1638,6 +1689,7 @@ You haven't added a card for your AlbannaTech subscription. Your sites will be s
 You must be a developer to reply to reviews,يجب أن تكون مطوراً للرد على المراجعات
 You requested a verification code to log in to your AlbannaTech account. The code is valid for 10 minutes.,طلبت رمز تحقق لتسجيل الدخول إلى حساب AlbannaTech الخاص بك. الرمز صالح لمدة 10 دقائق.
 You requested a verification code to log in to your site on AlbannaTech.,طلبت رمز تحقق لتسجيل الدخول إلى موقعك على AlbannaTech.
+You will be able to access your site via your site name,ستتمكن من الوصول إلى موقعك عبر اسم موقعك
 You will be able to publish apps to our Marketplace upon confirmation.,ستتمكن من نشر التطبيقات في متجرنا بعد التأكيد.
 You will be billed for this site under the team {0},سيتم احتساب فواتير هذا الموقع على فريق {0}
 You will be charged from your credit balance for monthly subscription,سيتم الخصم من رصيدك المتبقي للاشتراك الشهري
@@ -1706,6 +1758,7 @@ database usage limit,حد مساحة قاعدة البيانات
 disk usage limit,حد مساحة القرص
 documentation,التوثيق
 expired,منتهية الصلاحية
+for a new account.,لحساب جديد.
 "for the guide. If you need help, please raise a ticket with",للإرشادات. إذا كنت بحاجة إلى مساعدة، يرجى فتح تذكرة لدى
 "for your AlbannaTech subscription, but it was declined. Please update your card details from your",لاشتراك AlbannaTech الخاص بك، لكن تم رفض العملية. يرجى تحديث بيانات بطاقتك من
 "for your AlbannaTech subscription, but the payment failed.",لاشتراك AlbannaTech الخاص بك، ولكن فشلت عملية الدفع.
@@ -1721,6 +1774,7 @@ items,عنصر
 last update,التحديث الأخير
 line,سطر
 of,من
+or,أو
 or pay manually using the link below.,أو السداد يدوياً عبر الرابط أدناه.
 "or use the actions below, then try again.",أو استخدم الإجراءات أدناه، ثم حاول مرة أخرى.
 pending,قيد المراجعة
@@ -1741,6 +1795,7 @@ this documentation,هذا التوثيق
 to a plan that better fits your needs.,إلى خطة تناسب احتياجاتك بشكل أفضل.
 to add it.,لإضافتها.
 to increase your limit.,لزيادة حدك.
+to resolve the issue,لحل المشكلة
 to resolve this.,لحل هذه المشكلة.
 to review the failed attempts and find the cause. Once you fix it you can reactivate the webhook from there.,لمراجعة المحاولات الفاشلة وتحديد السبب. بعد حل المشكلة يمكنك تفعيل الخطاف من هناك.
 to your team {0}. Click the button below to consent. Please note that consenting makes these changes:,إلى فريقك {0}. انقر الزر أدناه للموافقة. يرجى ملاحظة أن الموافقة ستؤدي إلى التغييرات التالية:

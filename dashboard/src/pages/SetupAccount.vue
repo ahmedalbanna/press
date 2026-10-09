@@ -19,7 +19,7 @@
 				<form class="mt-6 flex flex-col" @submit.prevent="submitForm">
 					<template v-if="is2FA">
 						<FormControl
-							label="2FA Code from your Authenticator App"
+							:label="t('2FA Code from your Authenticator App')"
 							placeholder="123456"
 							v-model="twoFactorCode"
 							required
@@ -35,7 +35,7 @@
 								})
 							"
 						>
-							Verify
+							{{ t('Verify') }}
 						</Button>
 						<ErrorMessage class="mt-2" :message="$resources.verify2FA.error" />
 					</template>
@@ -44,7 +44,7 @@
 							<template v-if="!userExists">
 								<div class="flex gap-2">
 									<FormControl
-										label="First name"
+										:label="t('First name')"
 										type="text"
 										v-model="firstName"
 										name="fname"
@@ -54,7 +54,7 @@
 										:disabled="Boolean(oauthSignup)"
 									/>
 									<FormControl
-										label="Last name"
+										:label="t('Last name')"
 										type="text"
 										v-model="lastName"
 										name="lname"
@@ -66,7 +66,7 @@
 								</div>
 							</template>
 							<FormControl
-								label="Email"
+								:label="t('Email')"
 								type="text"
 								:modelValue="email"
 								variant="outline"
@@ -76,14 +76,14 @@
 								type="select"
 								:options="countryOptions"
 								v-if="!isInvitation"
-								label="Country"
+								:label="t('Country')"
 								v-model="country"
 								variant="outline"
 								required
 							/>
 							<PhoneInput
 								v-if="!isInvitation"
-								label="Phone"
+								:label="t('Phone')"
 								v-model="phoneNumber"
 								:countries="countries"
 								:country="country"
@@ -105,7 +105,7 @@
 							<label
 								for="share-details-consent"
 								class="ml-2 text-base font-normal"
-								>Allow my details to be shared with a local partner</label
+								>{{ t('Allow my details to be shared with a local partner') }}</label
 							>
 						</div>
 						<ErrorMessage
@@ -122,20 +122,20 @@
 							type="submit"
 						>
 							{{
-								is2FA ? 'Verify' : isInvitation ? 'Accept' : 'Create account'
+								is2FA ? t('Verify') : isInvitation ? t('Accept') : t('Create account')
 							}}
 						</Button>
 					</template>
 				</form>
 				<div class="mt-4" v-if="!is2FA && !isInvitation">
 					<span class="text-base font-normal text-ink-gray-6">
-						{{ 'By signing up, you agree to our ' }}
+						{{ t('By signing up, you agree to our ') }}
 					</span>
 					<a
 						class="text-base font-normal text-ink-gray-9 underline hover:text-ink-gray-7"
 						href="https://frappecloud.com/policies"
 					>
-						Terms & Policies
+						{{ t('Terms & Policies') }}
 					</a>
 				</div>
 			</LoginBox>
@@ -145,9 +145,9 @@
 		class="mt-20 px-6 text-center"
 		v-else-if="!$resources.validateRequestKey.loading && !email"
 	>
-		Verification link or code is invalid or expired.
-		<Link to="/signup">Sign up</Link>
-		for a new account.
+		{{ t('Verification link or code is invalid or expired.') }}
+		<Link to="/signup">{{ t('Sign up') }}</Link>
+		{{ t('for a new account.') }}
 	</div>
 	<div v-else></div>
 </template>
