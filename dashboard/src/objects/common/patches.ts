@@ -1,6 +1,7 @@
 import { toast } from 'vue-sonner';
 import { getTeam } from '../../data/team';
 import { confirmDialog, icon, renderDialog } from '../../utils/components';
+import { t } from '../../utils/language';
 import { h } from 'vue';
 import PatchAppDialog from '../../components/group/PatchAppDialog.vue';
 import { ColumnField, FilterField, Tab } from './types';
@@ -17,7 +18,7 @@ type Status = keyof typeof statusTheme;
 
 export function getPatchesTab(forBench: boolean) {
 	return {
-		label: 'Patches',
+		label: t('Patches'),
 		icon: icon('hash'),
 		route: 'patches',
 		type: 'list',
@@ -37,7 +38,7 @@ export function getPatchesTab(forBench: boolean) {
 					},
 					{
 						type: 'select',
-						label: 'App',
+						label: t('App'),
 						fieldname: 'app',
 						class: !isMobile() ? 'w-24' : '',
 						options: [
@@ -49,7 +50,7 @@ export function getPatchesTab(forBench: boolean) {
 			columns: getPatchesTabColumns(forBench),
 			primaryAction({ listResource: apps, documentResource: doc }) {
 				return {
-					label: 'Apply Patch',
+					label: t('Apply Patch'),
 					slots: {
 						prefix: icon('plus'),
 					},
@@ -74,7 +75,7 @@ export function getPatchesTab(forBench: boolean) {
 						},
 					},
 					{
-						label: 'Apply Patch',
+						label: t('Apply Patch'),
 						condition: () => row.status !== 'In Process',
 						onClick: () => {
 							toast.promise(
@@ -91,7 +92,7 @@ export function getPatchesTab(forBench: boolean) {
 						},
 					},
 					{
-						label: 'Revert Patch',
+						label: t('Revert Patch'),
 						condition: () => row.status !== 'In Process',
 						onClick: () => {
 							toast.promise(
@@ -108,11 +109,11 @@ export function getPatchesTab(forBench: boolean) {
 						},
 					},
 					{
-						label: 'Delete',
+						label: t('Delete'),
 						condition: () => row.status === 'Not Applied',
 						onClick: () => {
 							confirmDialog({
-								title: 'Delete Patch',
+								title: t('Delete Patch'),
 								message: 'Are you sure you want to delete this patch?',
 								onSuccess: ({ hide }) => {
 									toast.promise(
@@ -138,12 +139,12 @@ export function getPatchesTab(forBench: boolean) {
 function getPatchesTabColumns(forBench: boolean) {
 	const columns: ColumnField[] = [
 		{
-			label: 'File Name',
+			label: t('File Name'),
 			fieldname: 'filename',
 			width: forBench ? '400px' : '200px',
 		},
 		{
-			label: 'App',
+			label: t('App'),
 			fieldname: 'app',
 			width: 0.4,
 		},
@@ -155,12 +156,12 @@ function getPatchesTabColumns(forBench: boolean) {
 			width: 0.4,
 		},
 		{
-			label: 'Bench',
+			label: t('Bench'),
 			fieldname: 'bench',
 			width: 0.8,
 		},
 		{
-			label: 'Patch URL',
+			label: t('Patch URL'),
 			fieldname: 'url',
 			width: forBench ? undefined : '300px',
 			format(value) {

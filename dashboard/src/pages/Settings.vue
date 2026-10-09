@@ -30,18 +30,19 @@ import TabsWithRouter from '../components/TabsWithRouter.vue'
 import { session } from '../data/session'
 import { getTeam } from '../data/team'
 import { icon } from '../utils/components'
+import { t } from '../utils/language'
 
 let $team = getTeam()
 let $session = session || {}
 
 const tabs = [
 	{
-		label: 'Profile',
+		label: t('Profile'),
 		icon: LucideUser,
 		routeName: 'SettingsProfile',
 	},
 	{
-		label: 'Team',
+		label: t('Team'),
 		icon: LucideUsers,
 		routeName: 'SettingsTeam',
 		condition: () =>
@@ -50,7 +51,7 @@ const tabs = [
 			$session.isSystemUser,
 	},
 	{
-		label: 'Roles',
+		label: t('Roles'),
 		icon: LucideLock,
 		routeName: 'SettingsPermission',
 		childrenRoutes: [
@@ -63,13 +64,13 @@ const tabs = [
 			$session.isSystemUser,
 	},
 	{
-		label: 'Developer',
+		label: t('Developer'),
 		icon: LucideCode,
 		routeName: 'SettingsDeveloper',
 	},
 
 	{
-		label: 'Partner Admin',
+		label: t('Partner Admin'),
 		icon: LucideShield,
 		routeName: 'SettingsPartnerAdmin',
 		condition: () => Boolean($team.doc.is_desk_user),

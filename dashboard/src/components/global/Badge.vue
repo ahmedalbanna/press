@@ -1,6 +1,6 @@
 <template>
 	<FrappeUIBadge :size="size" :theme="_color">
-		{{ label }}
+		{{ t(label) }}
 		<template #prefix>
 			<slot name="prefix"></slot>
 		</template>
@@ -12,6 +12,7 @@
 
 <script>
 import { Badge as FrappeUIBadge } from 'frappe-ui';
+import { t } from '../../utils/language';
 
 export default {
 	name: 'Badge',

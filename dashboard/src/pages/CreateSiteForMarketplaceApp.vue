@@ -13,7 +13,7 @@
 
 		<div class="m-12 mx-auto max-w-2xl px-5">
 			<div v-if="$resources.app.loading" class="py-4 text-base text-ink-gray-6">
-				Loading...
+				{{ t('Loading...') }}
 			</div>
 			<div v-else class="space-y-6">
 				<div class="mb-12 flex">
@@ -34,7 +34,7 @@
 				>
 					<lucide-alert-circle class="inline-block h-5 w-5" />
 					<p>
-						Failed to install the app.
+						{{ t('Failed to install the app.') }}
 						<router-link class="underline" :to="failureRoute">
 							{{
 								$resources.siteGroupDeploy.doc?.status === 'Bench Deploy Failed'
@@ -81,6 +81,7 @@
 <script>
 import { Breadcrumbs } from 'frappe-ui';
 import Header from '../components/Header.vue';
+import { t } from '../utils/language'
 
 export default {
 	props: {
@@ -183,7 +184,7 @@ export default {
 			return [
 				{
 					id: 0,
-					title: 'Initializing',
+					title: t('Initializing'),
 					description: 'Initializing the setup',
 					status: 'Pending',
 					icon: () => {

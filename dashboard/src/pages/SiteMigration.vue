@@ -14,7 +14,7 @@
 			<template #prefix>
 				<lucide-arrow-left class="inline-block h-4 w-4" />
 			</template>
-			All Migrations
+			{{ t('All Migrations') }}
 		</Button>
 
 		<div class="mt-3">
@@ -47,7 +47,7 @@
 				<div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-7">
 					<div>
 						<div class="text-sm font-medium text-ink-gray-5">
-							Destination Bench
+							{{ t('Destination Bench') }}
 						</div>
 						<div
 							class="mt-2 text-sm font-medium"
@@ -62,7 +62,7 @@
 					</div>
 					<div>
 						<div class="text-sm font-medium text-ink-gray-5">
-							Destination Server
+							{{ t('Destination Server') }}
 						</div>
 						<div
 							class="mt-2 text-sm font-medium"
@@ -75,19 +75,19 @@
 						<div class="mt-2 text-sm text-ink-gray-9" v-else>-</div>
 					</div>
 					<div>
-						<div class="text-sm font-medium text-ink-gray-5">Creation</div>
+						<div class="text-sm font-medium text-ink-gray-5">{{ t('Creation') }}</div>
 						<div class="mt-2 text-sm text-ink-gray-9">
 							{{ $format.date(siteAction.creation, 'lll') }}
 						</div>
 					</div>
 					<div>
-						<div class="text-sm font-medium text-ink-gray-5">Creator</div>
+						<div class="text-sm font-medium text-ink-gray-5">{{ t('Creator') }}</div>
 						<div class="mt-2 text-sm text-ink-gray-9">
 							{{ siteAction.owner }}
 						</div>
 					</div>
 					<div>
-						<div class="text-sm font-medium text-ink-gray-5">Duration</div>
+						<div class="text-sm font-medium text-ink-gray-5">{{ t('Duration') }}</div>
 						<div class="mt-2 text-sm text-ink-gray-9">
 							{{
 								siteAction.duration
@@ -97,7 +97,7 @@
 						</div>
 					</div>
 					<div>
-						<div class="text-sm font-medium text-ink-gray-5">Start</div>
+						<div class="text-sm font-medium text-ink-gray-5">{{ t('Start') }}</div>
 						<div class="mt-2 text-sm text-ink-gray-9">
 							{{
 								siteAction.start ? $format.date(siteAction.start, 'lll') : '-'
@@ -126,6 +126,7 @@ import { toast } from 'vue-sonner';
 import JobStep from '../components/JobStep.vue';
 import AlertAddressableError from '../components/AlertAddressableError.vue';
 import AlertBanner from '../components/AlertBanner.vue';
+import { t } from '../utils/language'
 
 export default {
 	name: 'SiteAction',
@@ -179,7 +180,7 @@ export default {
 		dropdownOptions() {
 			return [
 				{
-					label: 'View in Desk',
+					label: t('View in Desk'),
 					icon: 'external-link',
 					condition: () => this.$team.doc?.is_desk_user,
 					onClick: () => {
@@ -190,7 +191,7 @@ export default {
 					},
 				},
 				{
-					label: 'Start Now',
+					label: t('Start Now'),
 					icon: 'play',
 					condition: () => this.siteAction?.status === 'Scheduled',
 					onClick: () => {
@@ -216,7 +217,7 @@ export default {
 					},
 				},
 				{
-					label: 'Cancel',
+					label: t('Cancel'),
 					icon: 'x',
 					condition: () => this.siteAction?.status === 'Scheduled',
 					onClick: () => {

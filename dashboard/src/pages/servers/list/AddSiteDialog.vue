@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Button, Checkbox, createResource, Dialog, TextInput } from 'frappe-ui'
+import { t } from '../../../utils/language'
 import { computed, reactive, ref } from 'vue'
 import router from '@/router'
 
@@ -99,11 +100,11 @@ const submitForm = () => {
 </script>
 
 <template>
-	<Dialog v-model="show" :options="{ title: 'Add Site', size: '2xl' }">
+	<Dialog v-model="show" :options="{ title: t('Add Site'), size: '2xl' }">
 		<template #body-content>
 			<template v-if="formType == 'addApps'">
 				<div class="flex items-center gap-x-2 mb-5 flex-wrap leading-relaxed">
-					<span class="font-medium">Add apps from your bench</span>
+					<span class="font-medium">{{ t('Add apps from your bench') }}</span>
 					<LucideBoxes class="size-3.5" />
 					{{ bench.title }}
 
@@ -118,7 +119,7 @@ const submitForm = () => {
 				</div>
 
 				<TextInput
-					placeholder="Search for any Frappe app"
+					:placeholder="t('Search for any Frappe app')"
 					v-model="searchQuery"
 					:debounce="500"
 				>
@@ -154,9 +155,9 @@ const submitForm = () => {
 			</template>
 
 			<template v-else>
-				<label> Name your new site </label>
+				<label> {{ t('Name your new site') }} </label>
 				<TextInput
-					placeholder="Enter site name"
+					:placeholder="t('Enter site name')"
 					v-model="subdomain"
 					variant="outline"
 					class="mt-3"
@@ -174,7 +175,7 @@ const submitForm = () => {
 
 				<div class="leading-relaxed mt-5">
 					<span class="font-medium"
-						>Product warranty enabled for this site
+						>{{ t('Product warranty enabled for this site') }}
 					</span>
 
 					<p class="text-ink-gray-5">
@@ -199,10 +200,10 @@ const submitForm = () => {
 					<template #prefix>
 						<LucideChevronLeft class="size-4" />
 					</template>
-					Back
+					{{ t('Back') }}
 				</Button>
 
-				<Button class="ml-auto" @click="show = false"> Cancel </Button>
+				<Button class="ml-auto" @click="show = false"> {{ t('Cancel') }} </Button>
 
 				<Button
 					variant="solid"

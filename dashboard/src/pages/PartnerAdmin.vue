@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { getTeam } from '@/data/team';
+import { t } from '../utils/language'
 
 const $team = getTeam();
 defineOptions({ name: 'PartnerAdmin' });
 
 const tabs = [
-	{ label: 'Partner List', route: { name: 'PartnerList' } },
-	{ label: 'Certificates', route: { name: 'CertificateList' } },
-	{ label: 'Leads', route: { name: 'PartnerAdminLeads' } },
-	{ label: 'Resources', route: { name: 'PartnerAdminResources' } },
-	{ label: 'Audits', route: { name: 'PartnerAdminAudits' } },
+	{ label: t('Partner List'), route: { name: 'PartnerList' } },
+	{ label: t('Certificates'), route: { name: 'CertificateList' } },
+	{ label: t('Leads'), route: { name: 'PartnerAdminLeads' } },
+	{ label: t('Resources'), route: { name: 'PartnerAdminResources' } },
+	{ label: t('Audits'), route: { name: 'PartnerAdminAudits' } },
 ];
 </script>
 

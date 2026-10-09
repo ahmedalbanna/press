@@ -4,7 +4,7 @@
 			<template #prefix>
 				<lucide-arrow-left class="inline-block h-4 w-4" />
 			</template>
-			All plays
+			{{ t('All plays') }}
 		</Button>
 
 		<div class="mt-3">
@@ -35,25 +35,25 @@
 				<div>
 					<div class="mt-4 grid grid-cols-5 gap-4">
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Creation</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Creation') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ $format.date(play.creation, 'lll') }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Creator</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Creator') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ play.owner }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Duration</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Duration') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ $format.duration(play.duration) }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Start</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Start') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ $format.date(play.start, 'lll') }}
 							</div>
@@ -79,6 +79,7 @@ import { FeatherIcon, Tooltip } from 'frappe-ui';
 import { duration } from '../utils/format';
 import { getObject } from '../objects';
 import JobStep from '../components/JobStep.vue';
+import { t } from '../utils/language'
 
 export default {
 	name: 'PlayPage',
@@ -114,7 +115,7 @@ export default {
 		dropdownOptions() {
 			return [
 				{
-					label: 'View in Desk',
+					label: t('View in Desk'),
 					icon: 'external-link',
 					condition: () => this.$team.doc?.is_desk_user,
 					onClick: () => {

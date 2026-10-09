@@ -28,7 +28,7 @@
 					<template #prefix>
 						<lucide-sparkle class="h-4 w-4" />
 					</template>
-					View in Log Browser
+					{{ t('View in Log Browser') }}
 				</Button>
 				<Button
 					@click="$resources.log.reload()"
@@ -45,7 +45,7 @@
 			class="mt-5 flex rounded bg-surface-gray-7 dark:bg-surface-gray-1 p-4 text-sm text-ink-gray-2 dark:text-ink-gray-8"
 		>
 			<span v-if="$resources.log.loading" class="flex items-center gap-2">
-				<Spinner /> Loading...
+				<Spinner /> {{ t('Loading...') }}
 			</span>
 
 			<pre v-else class="flex-1 min-w-0 overflow-auto">{{

@@ -2,8 +2,8 @@
 	<div class="flex h-screen overflow-hidden">
 		<div class="w-full overflow-auto">
 			<LoginBox
-				title="Let's set up your site"
-				subtitle="Enter site name to set up your site"
+				:title="t('Let\'s set up your site')"
+				:subtitle="t('Enter site name to set up your site')"
 			>
 				<template v-slot:logo v-if="saasProduct">
 					<div class="flex space-x-2">

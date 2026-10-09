@@ -9,6 +9,7 @@ import { h } from 'vue';
 import { FeatherIcon, Tooltip } from 'frappe-ui';
 import { icon } from '../utils/components';
 import ObjectList from '../components/ObjectList.vue';
+import { t } from '../utils/language'
 export default {
 	name: 'PartnerAdminCertificates',
 	components: {
@@ -21,7 +22,7 @@ export default {
 				fields: ['free', 'certificate_link'],
 				columns: [
 					{
-						label: 'Member Name',
+						label: t('Member Name'),
 						fieldname: 'partner_member_name',
 						width: 0.6,
 						class: 'truncate',
@@ -31,7 +32,7 @@ export default {
 						},
 					},
 					{
-						label: 'Member Email',
+						label: t('Member Email'),
 						fieldname: 'partner_member_email',
 						width: 0.6,
 						class: 'truncate',
@@ -41,7 +42,7 @@ export default {
 						},
 					},
 					{
-						label: 'Issued On',
+						label: t('Issued On'),
 						fieldname: 'issue_date',
 						width: 0.5,
 						format(value) {
@@ -53,7 +54,7 @@ export default {
 						},
 					},
 					{
-						label: 'Course',
+						label: t('Course'),
 						fieldname: 'course',
 						format(value) {
 							return value == 'frappe-developer-certification'
@@ -63,7 +64,7 @@ export default {
 						width: 0.5,
 					},
 					{
-						label: 'Partner',
+						label: t('Partner'),
 						fieldname: 'team',
 						width: 0.6,
 						class: 'truncate',
@@ -73,13 +74,13 @@ export default {
 						},
 					},
 					{
-						label: 'Version',
+						label: t('Version'),
 						fieldname: 'version',
 						width: 0.3,
 						align: 'center',
 					},
 					{
-						label: 'Free',
+						label: t('Free'),
 						fieldname: 'free',
 						type: 'Component',
 						align: 'center',
@@ -89,7 +90,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Free Certification',
+										text: t('Free Certification'),
 									},
 									() =>
 										h(FeatherIcon, {
@@ -101,13 +102,13 @@ export default {
 						},
 					},
 					{
-						label: 'Certificate Link',
+						label: t('Certificate Link'),
 						type: 'Button',
 						align: 'center',
 						width: 0.5,
 						Button({ row }) {
 							return {
-								label: 'View',
+								label: t('View'),
 								slots: {
 									prefix: icon('external-link'),
 								},
@@ -124,15 +125,15 @@ export default {
 						{
 							type: 'data',
 							fieldname: 'search-text',
-							label: 'Search',
+							label: t('Search'),
 						},
 						{
 							type: 'select',
 							fieldname: 'course',
-							label: 'Course',
+							label: t('Course'),
 							options: [
-								{ label: 'Framework', value: 'frappe-developer-certification' },
-								{ label: 'ERPNext', value: 'erpnext-distribution' },
+								{ label: t('Framework'), value: 'frappe-developer-certification' },
+								{ label: t('ERPNext'), value: 'erpnext-distribution' },
 							],
 						},
 					];

@@ -13,7 +13,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/sites/version-upgrade"
 			>
-				Upgrade Now
+				{{ t('Upgrade Now') }}
 			</Button>
 		</DismissableBanner>
 		<AlertBanner
@@ -26,7 +26,7 @@
 				variant="outline"
 				link="https://docs.frappe.io/cloud/benches/updating_a_bench#bench-provisioning-amp-queueing"
 			>
-				Know More
+				{{ t('Know More') }}
 			</Button>
 		</AlertBanner>
 		<ObjectList class="mt-3" :options="listOptions" />
@@ -51,6 +51,7 @@ import {
 } from '../objects/common'
 import { getBenchOptions, showBenchLogs } from '../utils/benchOptions'
 import { icon } from '../utils/components'
+import { t } from '../utils/language'
 
 export default {
 	name: 'ReleaseGroupBenchSites',
@@ -144,19 +145,19 @@ export default {
 				emptyStateMessage: 'No benches found',
 				columns: [
 					{
-						label: 'Bench',
+						label: t('Bench'),
 						fieldname: 'name',
 						class: 'font-medium',
 						suffix: getBenchTitleSuffix,
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: '150px',
 					},
 					{
-						label: 'Region',
+						label: t('Region'),
 						fieldname: 'cluster',
 						width: 0.75,
 						format: (value, row) => row.cluster_title || value || '',
@@ -253,7 +254,7 @@ export default {
 		// /groups/<group>/sites?bench=<bench>&log=web.error.log
 		newSiteAction() {
 			return {
-				label: 'New Site',
+				label: t('New Site'),
 				slots: {
 					prefix: icon('plus', 'w-4 h-4'),
 				},

@@ -12,16 +12,16 @@
 
 		<div class="m-12 mx-auto max-w-2xl px-5">
 			<div v-if="!siteGroupDeployName" class="py-4 text-base text-ink-gray-6">
-				<p>Missing deployment information.</p>
+				<p>{{ t('Missing deployment information.') }}</p>
 				<router-link to="/sites/new" class="mt-2 text-blue-600 underline">
-					Go back to site creation
+					{{ t('Go back to site creation') }}
 				</router-link>
 			</div>
 			<div v-else-if="isLoading" class="py-4 text-base text-ink-gray-6">
-				Loading...
+				{{ t('Loading...') }}
 			</div>
 			<div v-else class="space-y-6">
-				<h1 class="text-2xl font-semibold">Creating Your Site</h1>
+				<h1 class="text-2xl font-semibold">{{ t('Creating Your Site') }}</h1>
 
 				<div
 					v-if="hasFailed"
@@ -29,7 +29,7 @@
 				>
 					<lucide-alert-circle class="inline-block h-5 w-5" />
 					<p>
-						Failed to create the site.
+						{{ t('Failed to create the site.') }}
 						<router-link class="underline" :to="failureRoute">
 							{{ failureLinkText }}
 						</router-link>
@@ -83,6 +83,7 @@
 <script>
 import { Breadcrumbs } from 'frappe-ui';
 import Header from '../components/Header.vue';
+import { t } from '../utils/language'
 
 const STATUS = {
 	PENDING: 'Pending',
@@ -232,7 +233,7 @@ export default {
 			return [
 				{
 					id: 0,
-					title: 'Initializing',
+					title: t('Initializing'),
 					icon: this.getStepIcon(0, pos),
 				},
 				{

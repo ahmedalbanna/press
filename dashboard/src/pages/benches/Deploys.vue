@@ -119,12 +119,12 @@ function handleDeploy() {
 			</template>
 		</Button>
 
-		<div class="font-medium" v-if='mode == "older"'>Older Deploys</div>
+		<div class="font-medium" v-if='mode == "older"'>{{ t('Older Deploys') }}</div>
 
 		<Select
 			:options="statusOptions"
 			@update:modelValue="handleStatusChange"
-			placeholder="Select Status"
+			:placeholder="t('Select Status')"
 			class="max-w-[130px]"
 			:class="mode == 'newer'? 'mr-auto' : 'ml-auto'"
 		/>
@@ -141,7 +141,7 @@ function handleDeploy() {
 
 		<Button @click="handleDeploy">
 			<template #prefix> <LucideRocket class="size-4" /></template>
-			Deploy
+			{{ t('Deploy') }}
 		</Button>
 	</div>
 
@@ -151,15 +151,15 @@ function handleDeploy() {
 				class="bg-surface-gray-2  text-ink-gray-4  sticky top-0 z-10 table-header-group"
 			>
 				<div class="table-row" role="row">
-					<div class="rounded-l table-cell">Deploy</div>
-					<div class="table-cell">Status</div>
+					<div class="rounded-l table-cell">{{ t('Deploy') }}</div>
+					<div class="table-cell">{{ t('Status') }}</div>
 
 					<template v-if="mode === 'older'">
-						<div class="table-cell">Duration</div>
-						<div class="table-cell rounded-r">Deployed By</div>
+						<div class="table-cell">{{ t('Duration') }}</div>
+						<div class="table-cell rounded-r">{{ t('Deployed By') }}</div>
 					</template>
 
-					<div class="table-cell rounded-r" v-else>Deployed By</div>
+					<div class="table-cell rounded-r" v-else>{{ t('Deployed By') }}</div>
 				</div>
 			</div>
 
@@ -180,7 +180,7 @@ function handleDeploy() {
 					<div class="table-cell" role="cell">
 						<Badge :label="item.status" :theme="badgeThemes[item.status]">
 							<template #suffix v-if="item.addressable_notification">
-								<Tooltip text="Attention required!">
+								<Tooltip :text="t('Attention required!')">
 									<LucideAlertCircle class="size-3" />
 								</Tooltip>
 							</template>
@@ -208,7 +208,7 @@ function handleDeploy() {
 			class="ml-auto mt-3"
 			@click="mode == 'older'? deployBuilds.next() : pipelines.next()"
 		>
-			Load more
+			{{ t('Load more') }}
 		</Button>
 	</div>
 </template>

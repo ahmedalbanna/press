@@ -27,15 +27,16 @@
 import Header from '../components/Header.vue';
 import { Breadcrumbs } from 'frappe-ui';
 import TabsWithRouter from '../components/TabsWithRouter.vue';
+import { t } from '../utils/language'
 
 const tabs = [
 	{
-		label: 'Ongoing Incidents',
+		label: t('Ongoing Incidents'),
 		icon: LucideTriangleAlert,
 		routeName: 'OngoingIncidents',
 	},
 	{
-		label: 'Incident History',
+		label: t('Incident History'),
 		icon: LucideArchive,
 		routeName: 'IncidentHistory',
 	},

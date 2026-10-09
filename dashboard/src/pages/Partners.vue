@@ -29,6 +29,7 @@
 import { Breadcrumbs, Tabs } from 'frappe-ui'
 import Header from '../components/Header.vue'
 import TabsWithRouter from '../components/TabsWithRouter.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'Partner',
@@ -43,17 +44,17 @@ export default {
 			currentTab: 0,
 			tabs: [
 				{
-					label: 'Overview',
+					label: t('Overview'),
 					route: { name: 'PartnerOverview' },
 					condition: () => Boolean(this.$team.doc.erpnext_partner),
 				},
 				{
-					label: 'Website Details',
+					label: t('Website Details'),
 					route: { name: 'PartnerWebsiteDetails' },
 					condition: () => Boolean(this.$team.doc.erpnext_partner),
 				},
 				{
-					label: 'Dashboard',
+					label: t('Dashboard'),
 					route: { name: 'PartnerDashboard' },
 					condition: () =>
 						Boolean(
@@ -63,7 +64,7 @@ export default {
 						),
 				},
 				{
-					label: 'Customers',
+					label: t('Customers'),
 					route: { name: 'PartnerCustomers' },
 					condition: () =>
 						Boolean(
@@ -73,7 +74,7 @@ export default {
 						),
 				},
 				{
-					label: 'Leads',
+					label: t('Leads'),
 					route: { name: 'PartnerLeads' },
 					condition: () =>
 						Boolean(
@@ -83,7 +84,7 @@ export default {
 						),
 				},
 				{
-					label: 'Certifications',
+					label: t('Certifications'),
 					route: { name: 'PartnerCertificates' },
 					condition: () =>
 						Boolean(
@@ -92,7 +93,7 @@ export default {
 						),
 				},
 				{
-					label: 'Resources',
+					label: t('Resources'),
 					route: { name: 'PartnerResources' },
 					condition: () =>
 						Boolean(
@@ -101,7 +102,7 @@ export default {
 						),
 				},
 				{
-					label: 'Contributions',
+					label: t('Contributions'),
 					route: { name: 'PartnerContributions' },
 					condition: () =>
 						Boolean(
@@ -111,7 +112,7 @@ export default {
 						),
 				},
 				{
-					label: 'Audits',
+					label: t('Audits'),
 					route: { name: 'PartnerAudits' },
 					condition: () =>
 						Boolean(
@@ -120,7 +121,7 @@ export default {
 						),
 				},
 				{
-					label: 'Local Payment Setup',
+					label: t('Local Payment Setup'),
 					route: { name: 'LocalPaymentSetup' },
 					condition: () =>
 						Boolean(
@@ -132,7 +133,7 @@ export default {
 						),
 				},
 				{
-					label: 'Partner Payout',
+					label: t('Partner Payout'),
 					route: { name: 'PartnerPayout' },
 					condition: () =>
 						Boolean(

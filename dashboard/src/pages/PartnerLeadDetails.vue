@@ -13,7 +13,7 @@
 					<Button
 						v-if="$session.isSystemUser"
 						:variant="'subtle'"
-						label="View in Desk"
+						:label="t('View in Desk')"
 						@click="openIndDesk()"
 					/>
 				</div>
@@ -26,6 +26,7 @@
 import Header from '../components/Header.vue';
 import { Breadcrumbs, Tabs } from 'frappe-ui';
 import TabsWithRouter from '../components/TabsWithRouter.vue';
+import { t } from '../utils/language'
 export default {
 	name: 'PartnerLeadDetails',
 	components: {
@@ -47,9 +48,9 @@ export default {
 		return {
 			currentTab: 0,
 			tabs: [
-				{ label: 'Overview', route: { name: 'LeadOverview' } },
-				{ label: 'Follow-up', route: { name: 'LeadDealDetails' } },
-				{ label: 'Activities', route: { name: 'LeadActivities' } },
+				{ label: t('Overview'), route: { name: 'LeadOverview' } },
+				{ label: t('Follow-up'), route: { name: 'LeadDealDetails' } },
+				{ label: t('Activities'), route: { name: 'LeadActivities' } },
 			],
 		};
 	},

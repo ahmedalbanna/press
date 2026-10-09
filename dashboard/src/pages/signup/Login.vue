@@ -9,7 +9,7 @@
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<LoginBox
-				title="Welcome back"
+				:title="t('Welcome back')"
 				:subtitle="tr('Login to your {product} site', { product: saasProduct?.title })"
 				:class="{ 'pointer-events-none': $resources.signup?.loading }"
 				:logo="saasProduct?.logo"

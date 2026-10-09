@@ -9,8 +9,8 @@
 		}"
 	>
 		<LoginBox
-			title="Select an app to get started"
-			subtitle="Select the app you want to install on your site."
+			:title="t('Select an app to get started')"
+			:subtitle="t('Select the app you want to install on your site.')"
 		>
 			<div v-if="$resources.availableApps.loading">
 				<div class="flex h-40 justify-center">

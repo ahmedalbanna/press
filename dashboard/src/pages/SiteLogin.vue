@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen overflow-hidden">
-		<LoginBox title="Log in to your site on AlbannaTech" :subtitle="subtitle">
+		<LoginBox :title="t('Log in to your site on AlbannaTech')" :subtitle="subtitle">
 			<template v-slot:default>
 				<div>
 					<div v-if="sitePrePicked">
@@ -8,18 +8,18 @@
 							<div class="flex items-center justify-center space-x-2 text-base">
 								<FeatherIcon name="alert-triangle" class="mr-2 h-4 w-4" />
 								<p>
-									Something went wrong while attempting to log in to your site
+									{{ t('Something went wrong while attempting to log in to your site') }}
 								</p>
 							</div>
 							<div class="mx-4 mt-4 space-x-4">
 								<Button
-									label="Try again"
+									:label="t('Try again')"
 									icon-left="refresh-cw"
 									:loading="login.loading"
 									@click="loginToSite(pickedSite)"
 								/>
 								<Button
-									label="View your sites"
+									:label="t('View your sites')"
 									icon-left="list"
 									:route="{
 										name: 'Site Login',
@@ -34,13 +34,13 @@
 							<div class="flex items-center justify-center space-x-2 text-base">
 								<FeatherIcon name="alert-circle" class="mr-2 h-4 w-4" />
 								<div>
-									<p>You are about to log in to your site</p>
+									<p>{{ t('You are about to log in to your site') }}</p>
 									<span class="font-semibold">{{ pickedSiteDomain }}</span>
 								</div>
 							</div>
 							<div class="mx-4 mt-8 space-x-4">
 								<Button
-									label="Log in"
+									:label="t('Log in')"
 									icon-left="log-in"
 									variant="solid"
 									:loading="login.loading"
@@ -59,7 +59,7 @@
 					</div>
 					<form v-else-if="!sites.fetched">
 						<FormControl
-							label="Email"
+							:label="t('Email')"
 							type="email"
 							class="w-full"
 							:class="{
@@ -70,14 +70,14 @@
 						/>
 						<FormControl
 							v-if="showOTPField"
-							label="Verification Code"
+							:label="t('Verification Code')"
 							v-model="otp"
 							placeholder="123456"
 							class="mt-2"
 						/>
 						<div v-if="showOTPField">
 							<Button
-								label="Verify"
+								:label="t('Verify')"
 								:disabled="otp.length !== 6"
 								:loading="
 									sites.loading ||
@@ -105,7 +105,7 @@
 						</div>
 						<Button
 							v-else
-							label="Submit"
+							:label="t('Submit')"
 							:disabled="email.length === 0"
 							:loading="
 								sites.loading ||
@@ -131,7 +131,7 @@
 						</div>
 						<div class="mt-8 flex w-full justify-center space-x-4">
 							<Button
-								label="View your sites"
+								:label="t('View your sites')"
 								icon-left="list"
 								@click="
 									() => {
@@ -147,7 +147,7 @@
 						<div v-if="sites.data.length === 0">
 							<div class="text-center text-base leading-6 text-ink-gray-7">
 								<div>No sites found for {{ email }}</div>
-								<Link :to="{ name: 'Signup' }">Sign up</Link> to create a new
+								<Link :to="{ name: 'Signup' }">{{ t('Sign up') }}</Link> to create a new
 								site
 							</div>
 						</div>
@@ -184,18 +184,18 @@
 				<div class="flex w-full flex-col px-4 justify-center pb-8">
 					<div v-if="sites.fetched">
 						<span class="text-base font-normal text-ink-gray-6">
-							Switch to a different account?
+							{{ t('Switch to a different account?') }}
 						</span>
 						<span
 							class="text-base font-normal text-ink-gray-9 underline hover:text-ink-gray-7 cursor-pointer"
 							@click="goBack"
 						>
-							Logout
+							{{ t('Logout') }}
 						</span>
 					</div>
 					<div>
 						<span class="text-base font-normal text-ink-gray-6">
-							Manage your sites?
+							{{ t('Manage your sites?') }}
 						</span>
 						<router-link
 							class="text-base font-normal text-ink-gray-9 underline hover:text-ink-gray-7"
@@ -203,7 +203,7 @@
 								name: 'Login',
 							}"
 						>
-							Go to AlbannaTech dashboard
+							{{ t('Go to AlbannaTech dashboard') }}
 						</router-link>
 					</div>
 				</div>

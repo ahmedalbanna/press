@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
+import { t } from '../../../utils/language'
 import { Dialog, TextInput, Button, Checkbox, createResource } from 'frappe-ui'
 import ServerIcon from './ServerIcon.vue'
 
@@ -117,7 +118,7 @@ const filteredApps = computed(() => {
 <template>
 	<Dialog
 		v-model="show"
-		:options="{ title: 'Deploy apps to your bench', size:'2xl' }"
+		:options="{ title: t('Deploy apps to your bench'), size:'2xl' }"
 	>
 		<template #body-content>
 			<div class="flex gap-2 items-center mb-5 text-sm">
@@ -129,7 +130,7 @@ const filteredApps = computed(() => {
 			</div>
 
 			<TextInput
-				placeholder="Search for any Frappe app"
+				:placeholder="t('Search for any Frappe app')"
 				v-model="searchQuery"
 				class="w-[calc(50%-8px)]"
 			>

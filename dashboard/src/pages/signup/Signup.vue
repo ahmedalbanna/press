@@ -9,7 +9,7 @@
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<LoginBox
-				title="Get started in minutes"
+				:title="t('Get started in minutes')"
 				subtitle="14 days free trial, no credit card required."
 				:class="{ 'pointer-events-none': $resources.signup?.loading }"
 				:logo="saasProduct?.logo"
@@ -34,7 +34,7 @@
 							<FormControl
 								:label="t('First Name')"
 								type="text"
-								placeholder="John"
+								:placeholder="t('John')"
 								variant="outline"
 								v-model="first_name"
 								required
@@ -42,7 +42,7 @@
 							<FormControl
 								:label="t('Last Name')"
 								type="text"
-								placeholder="Doe"
+								:placeholder="t('Doe')"
 								variant="outline"
 								v-model="last_name"
 								required

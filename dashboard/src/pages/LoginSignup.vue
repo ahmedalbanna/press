@@ -148,7 +148,7 @@
 									:loading="$resources.resetPassword.loading"
 									variant="solid"
 								>
-									Reset Password
+									{{ t('Reset Password') }}
 								</Button>
 							</template>
 
@@ -200,7 +200,7 @@
 										:loading="$session.login.loading"
 										type="submit"
 									>
-										Log In
+										{{ t('Log In') }}
 									</Button>
 								</template>
 
@@ -224,7 +224,7 @@
 												variant="solid"
 												@click="verifyOTPAndLogin"
 											>
-												Submit verification code
+												{{ t('Submit verification code') }}
 											</Button>
 											<Button
 												class="w-full"
@@ -285,7 +285,7 @@
 									variant="solid"
 									type="submit"
 								>
-									Sign up with email
+									{{ t('Sign up with email') }}
 								</Button>
 							</template>
 
@@ -365,7 +365,7 @@
 								:loading="$resources.verifyOTP.loading"
 								@click="$resources.verifyOTP.submit()"
 							>
-								Verify
+								{{ t('Verify') }}
 							</Button>
 							<Button
 								class="mt-2"
@@ -391,7 +391,7 @@
 									class="text-base font-normal text-ink-gray-9 underline hover:text-ink-gray-7"
 									href="https://frappecloud.com/policies"
 								>
-									Terms & Policies
+									{{ t('Terms & Policies') }}
 								</a>
 							</div>
 							<div>
@@ -458,7 +458,7 @@
 						:loading="$resources.reactivateAccount.loading"
 						@click="$resources.reactivateAccount.submit()"
 					>
-						Reactivate
+						{{ t('Reactivate') }}
 					</Button>
 				</div>
 			</template>

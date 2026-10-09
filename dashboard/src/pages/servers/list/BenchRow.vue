@@ -8,6 +8,7 @@ import {
 	Spinner,
 	Tooltip,
 } from 'frappe-ui'
+import { t } from '../../../utils/language'
 import {
 	computed,
 	defineAsyncComponent,
@@ -139,13 +140,13 @@ const addSite = (e, bench) => {
 
 const benchOptions = (bench) => [
 	{
-		label: 'Add Site',
+		label: t('Add Site'),
 		icon: 'plus-circle',
 		onClick: () => addSite(null, bench),
 	},
-	{ label: 'App Marketplace', route: '/apps', icon: LucideStore },
+	{ label: t('App Marketplace'), route: '/apps', icon: LucideStore },
 	{
-		label: 'Bench Actions',
+		label: t('Bench Actions'),
 		route: {
 			name: 'Release Group Detail Actions',
 			params: { name: bench.name },
@@ -153,7 +154,7 @@ const benchOptions = (bench) => [
 		icon: LucideSlidersVertical,
 	},
 	{
-		label: 'Drop bench',
+		label: t('Drop bench'),
 		theme: 'red',
 		variant: 'subtle',
 		icon: 'trash-2',
@@ -181,12 +182,12 @@ const dropSite = (site) => {
 
 const siteOptions = (site) => [
 	{
-		label: 'Site Actions',
+		label: t('Site Actions'),
 		route: { name: 'Site Detail Actions', params: { name: site.name } },
 		icon: LucideSlidersVertical,
 	},
 	{
-		label: 'Drop site',
+		label: t('Drop site'),
 		theme: 'red',
 		variant: 'subtle',
 		icon: 'trash-2',
@@ -247,7 +248,7 @@ onBeforeUnmount(() => {
 				/>
 
 				<div class="flex gap-2 items-center w-fit">
-					<Tooltip text="Go to bench dashboard">
+					<Tooltip :text="t('Go to bench dashboard')">
 						<router-link
 							class="hover:underline flex gap-2"
 							:to="{ name: 'Release Group Detail', params: { name: data.name } }"
@@ -299,7 +300,7 @@ onBeforeUnmount(() => {
 				>
 					<Spinner class="!size-3.5" />
 
-					<template v-if="!benchDeployStatus">Deploy in queue</template>
+					<template v-if="!benchDeployStatus">{{ t('Deploy in queue') }}</template>
 
 					<template v-else>
 						{{ benchDeployStatus }}
@@ -320,7 +321,7 @@ onBeforeUnmount(() => {
 		<div class="p-10 flex" v-if="sites?.list?.loading && !sites?.data?.length">
 			<span class="flex gap-2 items-center m-auto">
 				<Spinner />
-				Loading...
+				{{ t('Loading...') }}
 			</span>
 		</div>
 
@@ -329,9 +330,9 @@ onBeforeUnmount(() => {
 			class="row-grid mx-4 py-2 items-center text-sm text-ink-gray-5"
 		>
 			<span />
-			<span class="ml-6">Site</span>
-			<span>Status</span>
-			<span>Modified / Created on</span>
+			<span class="ml-6">{{ t('Site') }}</span>
+			<span>{{ t('Status') }}</span>
+			<span>{{ t('Modified / Created on') }}</span>
 			<span />
 		</div>
 
@@ -349,7 +350,7 @@ onBeforeUnmount(() => {
 				<template #prefix>
 					<LucidePlus class="size-4" />
 				</template>
-				Add site
+				{{ t('Add site') }}
 			</Button>
 		</div>
 
@@ -365,7 +366,7 @@ onBeforeUnmount(() => {
 		>
 			<span />
 
-			<Tooltip text="Go to site dashboard">
+			<Tooltip :text="t('Go to site dashboard')">
 				<router-link
 					class="flex gap-2 w-fit items-center hover:underline text-ink-gray-8 pl-6"
 					:to="{ name: 'Site Detail', params: { name: site.name } }"
@@ -416,7 +417,7 @@ onBeforeUnmount(() => {
 				@click="sites.next()"
 				:loading="sites.list?.loading"
 			>
-				Load more
+				{{ t('Load more') }}
 			</Button>
 		</div>
 	</Collapsable>

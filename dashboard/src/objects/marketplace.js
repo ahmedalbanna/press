@@ -28,11 +28,11 @@ export default {
 	},
 	list: {
 		route: "/apps",
-		title: "Marketplace",
+		title: t("Marketplace"),
 		fields: ["image", "title", "status", "description"],
 		columns: [
 			{
-				label: "App",
+				label: t("App"),
 				fieldname: "title",
 				class: "font-medium",
 				width: 0.3,
@@ -54,20 +54,20 @@ export default {
 				},
 			},
 			{
-				label: "Status",
+				label: t("Status"),
 				type: "Badge",
 				fieldname: "status",
 				width: 0.3,
 			},
 			{
-				label: "Description",
+				label: t("Description"),
 				fieldname: "description",
 				width: "40rem",
 			},
 		],
 		primaryAction() {
 			return {
-				label: "New App",
+				label: t("New App"),
 				variant: "solid",
 				slots: {
 					prefix: icon("plus"),
@@ -100,7 +100,7 @@ export default {
 		},
 		tabs: [
 			{
-				label: "Analytics",
+				label: t("Analytics"),
 				icon: icon("bar-chart-2"),
 				route: "analytics",
 				type: "Component",
@@ -112,7 +112,7 @@ export default {
 				},
 			},
 			{
-				label: "Listing",
+				label: t("Listing"),
 				icon: icon("shopping-cart"),
 				route: "listing",
 				type: "Component",
@@ -124,7 +124,7 @@ export default {
 				},
 			},
 			{
-				label: "Versions",
+				label: t("Versions"),
 				icon: icon("package"),
 				route: "versions",
 				type: "list",
@@ -140,24 +140,24 @@ export default {
 					],
 					columns: [
 						{
-							label: "Version",
+							label: t("Version"),
 							fieldname: "version",
 							width: 0.5,
 						},
 						{
-							label: "Source",
+							label: t("Source"),
 							fieldname: "source",
 							width: 0.5,
 						},
 						{
-							label: "Repository",
+							label: t("Repository"),
 							width: 0.5,
 							format: (value, row) => {
 								return `${row.repository_owner}/${row.repository}`;
 							},
 						},
 						{
-							label: "Branch",
+							label: t("Branch"),
 							fieldname: "branch",
 							type: "Badge",
 							width: 0.5,
@@ -165,7 +165,7 @@ export default {
 					],
 					primaryAction({ listResource: versions, documentResource: app }) {
 						return {
-							label: "New Version",
+							label: t("New Version"),
 							slots: {
 								prefix: icon("plus"),
 							},
@@ -183,16 +183,16 @@ export default {
 											default: () =>
 												h(ObjectList, {
 													options: {
-														label: "Version",
+														label: t("Version"),
 														fieldname: "version",
 														fieldtype: "ListSelection",
 														columns: [
 															{
-																label: "Version",
+																label: t("Version"),
 																fieldname: "version",
 															},
 															{
-																label: "Branch",
+																label: t("Branch"),
 																type: "Component",
 																component({ row }) {
 																	if (!row.selectedOption) {
@@ -216,7 +216,7 @@ export default {
 																width: "5rem",
 																Button({ row, listResource: versionsOptions }) {
 																	return {
-																		label: "Add",
+																		label: t("Add"),
 																		onClick() {
 																			if (app.addVersion.loading) return;
 
@@ -277,7 +277,7 @@ export default {
 					rowActions({ row, listResource: versions, documentResource: app }) {
 						return [
 							{
-								label: "Show Releases",
+								label: t("Show Releases"),
 								slots: {
 									prefix: icon("plus"),
 								},
@@ -286,7 +286,7 @@ export default {
 								},
 							},
 							{
-								label: "Change Branch",
+								label: t("Change Branch"),
 								onClick() {
 									renderDialog(
 										h(ChangeAppBranchDialog, {
@@ -302,7 +302,7 @@ export default {
 								},
 							},
 							{
-								label: "Remove Version",
+								label: t("Remove Version"),
 								onClick() {
 									toast.promise(
 										app.removeVersion.submit({ version: row.version }),
@@ -322,7 +322,7 @@ export default {
 				},
 			},
 			{
-				label: "Audit Reports",
+				label: t("Audit Reports"),
 				icon: icon("clipboard"),
 				route: "audit-reports",
 				type: "Component",
@@ -335,7 +335,7 @@ export default {
 				},
 			},
 			{
-				label: "Pricing",
+				label: t("Pricing"),
 				icon: icon("dollar-sign"),
 				route: "pricing",
 				type: "list",
@@ -347,11 +347,11 @@ export default {
 					fields: ["name", "title", "price_inr", "price_usd", "enabled"],
 					columns: [
 						{
-							label: "Title",
+							label: t("Title"),
 							fieldname: "title",
 						},
 						{
-							label: "Enabled",
+							label: t("Enabled"),
 							type: "Badge",
 							fieldname: "enabled",
 							format: (value) => {
@@ -359,14 +359,14 @@ export default {
 							},
 						},
 						{
-							label: "Price (INR)",
+							label: t("Price (INR)"),
 							fieldname: "price_inr",
 							format: (value) => {
 								return currency(value, "INR");
 							},
 						},
 						{
-							label: "Price (USD)",
+							label: t("Price (USD)"),
 							fieldname: "price_usd",
 							format: (value) => {
 								return currency(value, "USD");
@@ -375,7 +375,7 @@ export default {
 					],
 					primaryAction({ listResource: plans, documentResource: app }) {
 						return {
-							label: "New Plan",
+							label: t("New Plan"),
 							slots: {
 								prefix: icon("plus"),
 							},
@@ -394,7 +394,7 @@ export default {
 					rowActions({ row, listResource: plans, documentResource: app }) {
 						return [
 							{
-								label: "Edit",
+								label: t("Edit"),
 								onClick() {
 									renderDialog(
 										h(PlansDialog, {
@@ -412,7 +412,7 @@ export default {
 				},
 			},
 			{
-				label: "Subscriptions",
+				label: t("Subscriptions"),
 				icon: icon("users"),
 				route: "subscription",
 				type: "list",
@@ -429,7 +429,7 @@ export default {
 						return [
 							{
 								type: "select",
-								label: "Status",
+								label: t("Status"),
 								class: !isMobile() ? "w-24" : "",
 								fieldname: "enabled",
 								options: ["", "Active", "Disabled"],
@@ -438,12 +438,12 @@ export default {
 					},
 					columns: [
 						{
-							label: "Site",
+							label: t("Site"),
 							fieldname: "site",
 							width: 0.6,
 						},
 						{
-							label: "Status",
+							label: t("Status"),
 							type: "Badge",
 							fieldname: "enabled",
 							width: 0.3,
@@ -452,7 +452,7 @@ export default {
 							},
 						},
 						{
-							label: "Price",
+							label: t("Price"),
 							fieldname: "price",
 							width: 0.3,
 							format: (value) => {
@@ -460,7 +460,7 @@ export default {
 							},
 						},
 						{
-							label: "Active For",
+							label: t("Active For"),
 							fieldname: "active_for",
 							width: 0.3,
 							format: (value) => {
@@ -474,7 +474,7 @@ export default {
 		actions({ documentResource: app }) {
 			return [
 				{
-					label: "View in Marketplace",
+					label: t("View in Marketplace"),
 					slots: {
 						prefix: icon("external-link"),
 					},
@@ -487,7 +487,7 @@ export default {
 					},
 				},
 				{
-					label: "Guidelines",
+					label: t("Guidelines"),
 					slots: {
 						icon: icon("help-circle"),
 					},
@@ -500,7 +500,7 @@ export default {
 					},
 				},
 				{
-					label: "Complete Listing",
+					label: t("Complete Listing"),
 					variant: "solid",
 					slots: {
 						prefix: icon("alert-circle"),
@@ -521,11 +521,11 @@ export default {
 				},
 				,
 				{
-					label: "Options",
+					label: t("Options"),
 					condition: () => app.doc.status === "Draft",
 					options: [
 						{
-							label: "Delete",
+							label: t("Delete"),
 							icon: icon("trash-2"),
 							condition: () => app.doc.status === "Draft",
 							onClick() {
@@ -570,7 +570,7 @@ function showReleases(row, app) {
 				default: () =>
 					h(ObjectList, {
 						options: {
-							label: "Version",
+							label: t("Version"),
 							type: "list",
 							doctype: "App Release",
 							filters: {
@@ -581,7 +581,7 @@ function showReleases(row, app) {
 							orderBy: "creation desc",
 							columns: [
 								{
-									label: "Commit Message",
+									label: t("Commit Message"),
 									fieldname: "message",
 									class: "truncate",
 									width: 0.4,
@@ -592,7 +592,7 @@ function showReleases(row, app) {
 									},
 								},
 								{
-									label: "Hash",
+									label: t("Hash"),
 									fieldname: "hash",
 									class: "w-24",
 									type: "Badge",
@@ -603,13 +603,13 @@ function showReleases(row, app) {
 									},
 								},
 								{
-									label: "Author",
+									label: t("Author"),
 									fieldname: "author",
 									width: 0.15,
 									align: "center",
 								},
 								{
-									label: "Status",
+									label: t("Status"),
 									fieldname: "status",
 									type: "Badge",
 									width: 0.15,

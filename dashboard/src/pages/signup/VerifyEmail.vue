@@ -9,7 +9,7 @@
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<SaaSLoginBox
-				title="Verify your email"
+				:title="t('Verify your email')"
 				:subtitle="[
 					tr('We sent you an email to {email}', { email }),
 					'Check your inbox for next steps',

@@ -1,8 +1,8 @@
 <template>
 	<LoginBox
 		v-if="!$resources.validateResetKey.loading && email"
-		title="Reset Password"
-		subtitle="Set a new password for your account"
+		:title="t('Reset Password')"
+		:subtitle="t('Set a new password for your account')"
 	>
 		<form class="flex flex-col" @submit.prevent="handleSubmit">
 			<div v-if="ask2FA">
@@ -15,7 +15,7 @@
 			</div>
 			<div v-else class="space-y-4">
 				<FormControl
-					label="Email"
+					:label="t('Email')"
 					class="pointer-events-none"
 					:modelValue="email"
 					name="email"
@@ -23,7 +23,7 @@
 					disabled
 				/>
 				<FormControl
-					label="Password"
+					:label="t('Password')"
 					type="password"
 					v-model="password"
 					name="password"
@@ -31,7 +31,7 @@
 					required
 				/>
 				<FormControl
-					label="Confirm Password"
+					:label="t('Confirm Password')"
 					type="password"
 					v-model="confirmPassword"
 					name="confirm_password"
@@ -59,7 +59,7 @@
 				"
 				type="submit"
 			>
-				Submit
+				{{ t('Submit') }}
 			</Button>
 		</form>
 	</LoginBox>
@@ -67,7 +67,7 @@
 		class="mt-20 px-6 text-center"
 		v-else-if="!$resources.validateResetKey.loading && !email"
 	>
-		Account Key <strong>{{ requestKey }}</strong> is invalid or expired. Go back
+		{{ t('Account Key') }} <strong>{{ requestKey }}</strong> is invalid or expired. Go back
 		to <router-link class="underline" to="/login">login</router-link>.
 	</div>
 </template>

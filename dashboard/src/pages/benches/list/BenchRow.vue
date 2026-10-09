@@ -8,6 +8,7 @@ import {
 	Spinner,
 	Tooltip,
 } from 'frappe-ui'
+import { t } from '../../../utils/language'
 
 import {
 	computed,
@@ -179,13 +180,13 @@ function openAddSiteDialog() {
 
 const groupOptions = [
 	{
-		label: 'Add Site',
+		label: t('Add Site'),
 		icon: 'plus-circle',
 		onClick: openAddSiteDialog,
 	},
-	{ label: 'App Marketplace', route: '/apps', icon: LucideStore },
+	{ label: t('App Marketplace'), route: '/apps', icon: LucideStore },
 	{
-		label: 'Bench Actions',
+		label: t('Bench Actions'),
 		route: {
 			name: 'Release Group Detail Actions',
 			params: { name: props.data.name },
@@ -193,7 +194,7 @@ const groupOptions = [
 		icon: LucideSlidersVertical,
 	},
 	{
-		label: 'Drop bench',
+		label: t('Drop bench'),
 		theme: 'red',
 		variant: 'subtle',
 		icon: 'trash-2',
@@ -203,7 +204,7 @@ const groupOptions = [
 
 const siteOptions = (site: any) => [
 	{
-		label: 'Site Actions',
+		label: t('Site Actions'),
 		route: { name: 'Site Detail Actions', params: { name: site.name } },
 		icon: LucideSlidersVertical,
 	},
@@ -224,7 +225,7 @@ const siteOptions = (site: any) => [
 				/>
 
 				<div class="flex gap-2 items-center min-w-0">
-					<Tooltip text="Go to bench dashboard">
+					<Tooltip :text="t('Go to bench dashboard')">
 						<router-link
 							class="hover:underline flex gap-2 items-center font-medium min-w-0"
 							:to="{ name: 'Release Group Detail', params: { name: data.name } }"
@@ -271,7 +272,7 @@ const siteOptions = (site: any) => [
 					@click.stop
 				>
 					<Spinner class="!size-3.5" />
-					<template v-if="!benchDeployStatus">Deploy in queue</template>
+					<template v-if="!benchDeployStatus">{{ t('Deploy in queue') }}</template>
 					<template v-else>
 						{{ benchDeployStatus }}
 						<LucideExternalLink class="size-3.5" />
@@ -299,17 +300,17 @@ const siteOptions = (site: any) => [
 			<span />
 			<span class="pl-6 flex items-center gap-2 text-sm text-ink-gray-5">
 				<Spinner class="size-4" />
-				Loading sites
+				{{ t('Loading sites') }}
 			</span>
 		</div>
 
 		<template v-else-if="sites.data?.length">
 			<div class="bench-grid px-2 py-2 text-xs text-ink-gray-5 items-center">
 				<span />
-				<span class="pl-6">Site</span>
-				<span>Status</span>
-				<span>Server</span>
-				<span>Region</span>
+				<span class="pl-6">{{ t('Site') }}</span>
+				<span>{{ t('Status') }}</span>
+				<span>{{ t('Server') }}</span>
+				<span>{{ t('Region') }}</span>
 				<span />
 			</div>
 
@@ -384,7 +385,7 @@ const siteOptions = (site: any) => [
 					:loading="sites.list?.loading"
 					@click="sites.next()"
 				>
-					Load more
+					{{ t('Load more') }}
 				</Button>
 			</div>
 		</template>
@@ -401,7 +402,7 @@ const siteOptions = (site: any) => [
 				@click.stop="openAddSiteDialog"
 			>
 				<template #prefix><LucidePlus class="size-4" /></template>
-				Add site
+				{{ t('Add site') }}
 			</Button>
 		</div>
 	</Collapsable>

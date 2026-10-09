@@ -5,6 +5,7 @@
 </template>
 <script>
 import ObjectList from '../components/ObjectList.vue';
+import { t } from '../utils/language'
 export default {
 	name: 'PartnerList',
 	components: {
@@ -35,21 +36,21 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Company',
+						label: t('Company'),
 						fieldname: 'company',
 					},
 					{
-						label: 'Partner Email',
+						label: t('Partner Email'),
 						fieldname: 'email',
 						width: 0.8,
 					},
 					{
-						label: 'Country',
+						label: t('Country'),
 						fieldname: 'country',
 						width: 0.5,
 					},
 					{
-						label: 'Tier',
+						label: t('Tier'),
 						fieldname: 'tier',
 						width: 0.5,
 					},
@@ -61,28 +62,28 @@ export default {
 					return [
 						{
 							type: 'data',
-							label: 'Partner',
+							label: t('Partner'),
 							fieldname: 'company',
 						},
 						{
 							type: 'data',
-							label: 'Partner Email',
+							label: t('Partner Email'),
 							fieldname: 'email',
 						},
 						{
 							type: 'data',
-							label: 'Country',
+							label: t('Country'),
 							fieldname: 'country',
 						},
 						{
 							type: 'select',
-							label: 'Tier',
+							label: t('Tier'),
 							fieldname: 'tier',
 							options: ['', 'Entry', 'Emerging', 'Bronze', 'Silver', 'Gold'],
 						},
 						{
 							type: 'checkbox',
-							label: 'Active Partners',
+							label: t('Active Partners'),
 							fieldname: 'active_only',
 						},
 					];

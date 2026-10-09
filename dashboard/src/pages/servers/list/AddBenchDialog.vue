@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { t } from '../../../utils/language'
 import { Dialog, TextInput, Button, createResource } from 'frappe-ui'
 import ServerIcon from './ServerIcon.vue'
 
@@ -69,7 +70,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-	<Dialog v-model="show" size="lg" :options="{ title: 'Add Bench' }">
+	<Dialog v-model="show" size="lg" :options="{ title: t('Add Bench') }">
 		<template #body-content>
 			<div class="flex items-center gap-2 mb-5">
 				<ServerIcon :provider="server.provider" />
@@ -78,17 +79,17 @@ const onSubmit = () => {
 
 			<form class="flex flex-col" @submit.prevent="onSubmit">
 				<span class="text-ink-gray-5 mb-2">
-					Bench name <span class="text-ink-red-4">*</span>
+					{{ t('Bench name') }} <span class="text-ink-red-4">*</span>
 				</span>
 
 				<TextInput
-					placeholder="Enter Bench name"
+					:placeholder="t('Enter Bench name')"
 					v-model="formData.title"
 					required
 				/>
 
 				<span class="mb-2 mt-5">
-					Select version <span class="text-ink-red-4">*</span>
+					{{ t('Select version') }} <span class="text-ink-red-4">*</span>
 				</span>
 
 				<div class="flex gap-2 items-center flex-wrap">
@@ -115,7 +116,7 @@ const onSubmit = () => {
 						type="submit"
 						:loading="createBench.loading"
 					>
-						Add Bench
+						{{ t('Add Bench') }}
 					</Button>
 				</div>
 			</form>

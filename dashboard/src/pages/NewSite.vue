@@ -34,7 +34,7 @@
 			v-if="$resources.options.loading || $resources.isLimitExceeded.loading"
 			class="py-4 text-base text-ink-gray-6"
 		>
-			Loading...
+			{{ t('Loading...') }}
 		</div>
 		<div v-if="$route.name === 'NewBenchSite' && !bench">
 			<div class="py-4 text-base text-ink-gray-6">{{ t('Something went wrong') }}</div>
@@ -142,7 +142,7 @@
 				/>
 				<div v-if="shouldShowDedicatedServerDropdown">
 					<h2 class="text-base font-medium leading-6 text-ink-gray-9 mb-2">
-						Select Dedicated Server
+						{{ t('Select Dedicated Server') }}
 					</h2>
 					<FormControl
 						required
@@ -167,7 +167,7 @@
 				class="flex flex-col"
 			>
 				<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-					Select Provider
+					{{ t('Select Provider') }}
 				</h2>
 				<div class="mt-2 w-full space-y-2">
 					<div class="grid grid-cols-2 gap-3">
@@ -206,7 +206,7 @@
 				"
 			>
 				<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-					Select Region
+					{{ t('Select Region') }}
 				</h2>
 				<div class="mt-2 w-full space-y-2">
 					<div class="grid grid-cols-2 gap-3">
@@ -240,14 +240,14 @@
 			>
 				<div class="flex items-center justify-between">
 					<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-						Select Plan
+						{{ t('Select Plan') }}
 					</h2>
 					<div>
 						<Button link="https://frappecloud.com/pricing" variant="ghost">
 							<template #prefix>
 								<lucide-help-circle class="h-4 w-4 text-ink-gray-7" />
 							</template>
-							Help
+							{{ t('Help') }}
 						</Button>
 					</div>
 				</div>
@@ -270,11 +270,14 @@
 						class="flex items-center rounded bg-blue-50 p-2 text-p-base font-medium text-blue-800"
 					>
 						<lucide-info class="h-4 w-8 text-blue-600" />
-						<span class="ml-4">
-							Your site will be created on a
-							<strong>private bench</strong>.<br />You can install custom apps
-							and have full control over the bench.
-						</span>
+						<span
+							class="ml-4"
+							v-html="
+								t('Your site will be created on a') +
+								' <strong>private bench</strong>.<br />' +
+								t('You can install custom apps and have full control over the bench.')
+							"
+						></span>
 					</div>
 				</div>
 				<div
@@ -286,7 +289,7 @@
 					>
 						<lucide-badge-check class="h-4 w-8 text-ink-gray-6" />
 						<span class="ml-4">
-							<strong>Support</strong>
+							<strong>{{ t('Support') }}</strong>
 							covers only issues of Frappe apps and not functional queries. You
 							can raise a support ticket for AlbannaTech issues for all plans.
 						</span>
@@ -296,7 +299,7 @@
 			<div v-if="selectedVersion && plan && cluster">
 				<div class="flex justify-between items-center">
 					<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-						Enter Subdomain
+						{{ t('Enter Subdomain') }}
 					</h2>
 					<Tooltip
 						v-if="this.domain !== this.options.domain"
@@ -309,7 +312,7 @@
 					<div class="col-span-2 flex w-full">
 						<input
 							class="dark:[color-scheme:dark] z-10 h-7 w-full flex-1 rounded rounded-r-none border border-[--surface-gray-2] bg-surface-gray-2 py-1.5 pl-2 pr-2 text-base text-ink-gray-8 placeholder-ink-gray-4 transition-colors hover:border-outline-gray-modals hover:bg-surface-gray-3 focus:border-outline-gray-4 focus:bg-surface-white focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3"
-							placeholder="Subdomain"
+							:placeholder="t('Subdomain')"
 							v-model="subdomain"
 						/>
 						<div
@@ -324,7 +327,7 @@
 						v-if="$resources.subdomainExists.loading"
 						class="text-base text-ink-gray-6"
 					>
-						Checking...
+						{{ t('Checking...') }}
 					</div>
 					<template
 						v-else-if="
@@ -381,7 +384,7 @@
 						: this.t(this.t('Creating site... This may take a while...'))
 					"
 				>
-					Create site
+					{{ t('Create site') }}
 				</Button>
 			</div>
 		</div>

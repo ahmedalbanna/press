@@ -4,6 +4,7 @@ import { getTeam } from '../../data/team';
 import router from '../../router';
 import { confirmDialog, icon, renderDialog } from '../../utils/components';
 import { planTitle } from '../../utils/format';
+import { t } from '../../utils/language';
 import type {
 	ColumnField,
 	DialogConfig,
@@ -17,7 +18,7 @@ import { getToastErrorMessage } from '../../utils/toast';
 
 export function getAppsTab(forSite: boolean) {
 	return {
-		label: 'Apps',
+		label: t('Apps'),
 		icon: icon('grid'),
 		route: 'apps',
 		type: 'list',
@@ -54,7 +55,7 @@ function getAppsTabList(forSite: boolean) {
 					},
 					{
 						type: 'select',
-						label: 'Owner',
+						label: t('Owner'),
 						class: !isMobile() ? 'w-24' : '',
 						fieldname: 'repository_owner',
 						options: [
@@ -87,7 +88,7 @@ function getAppsTabColumns(forSite: boolean) {
 				return h(
 					'div',
 					{
-						title: 'App has been patched',
+						title: t('App has been patched'),
 						class: 'rounded-full bg-surface-gray-2 p-1',
 					},
 					h(icon('hash', 'w-3 h-3'))
@@ -121,7 +122,7 @@ function getAppsTabColumns(forSite: boolean) {
 			},
 		},
 		{
-			label: 'Commit',
+			label: t('Commit'),
 			fieldname: 'hash',
 			type: 'Badge',
 			width: 1,
@@ -133,7 +134,7 @@ function getAppsTabColumns(forSite: boolean) {
 			},
 		},
 		{
-			label: 'Commit Message',
+			label: t('Commit Message'),
 			fieldname: 'commit_message',
 			width: '30rem',
 		},
@@ -189,7 +190,7 @@ const siteAppListOptions: Partial<TabList> = {
 				},
 			},
 			{
-				label: 'Change Plan',
+				label: t('Change Plan'),
 				condition: () => row.plan_info && row.plans.length > 1,
 				onClick() {
 					let SiteAppPlanChangeDialog = defineAsyncComponent(

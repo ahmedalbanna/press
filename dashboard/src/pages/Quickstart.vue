@@ -101,7 +101,7 @@ onMounted(() => {
 		<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-8 w-auto mb-6" />
 
 		<h2 class="text-2xl font-semibold text-ink-gray-9">
-			Where do you want to go?
+			{{ t('Where do you want to go?') }}
 		</h2>
 
 		<p class="mt-1 text-p-base text-ink-gray-5 mb-8">
@@ -166,7 +166,7 @@ onMounted(() => {
 		</Button>
 
 		<Button :route="{ name: 'Site List' }" class="w-full mt-2">
-			Go to Cloud Dashboard
+			{{ t('Go to Cloud Dashboard') }}
 		</Button>
 
 		<div
@@ -178,7 +178,7 @@ onMounted(() => {
 				href="https://frappe.io/contact-us"
 				target="_blank"
 			>
-				Contact us
+				{{ t('Contact us') }}
 			</a>
 			<span>·</span>
 			<a
@@ -186,7 +186,7 @@ onMounted(() => {
 				href="https://support.frappe.io/helpdesk/my-tickets/new"
 				target="_blank"
 			>
-				Support
+				{{ t('Support') }}
 			</a>
 		</div>
 	</div>

@@ -10,7 +10,7 @@
 			<div>
 				<label class="block">
 					<span class="block text-xs text-ink-gray-6">
-						Credit or Debit Card
+						{{ t('Credit or Debit Card') }}
 					</span>
 					<div
 						class="form-input mt-2 block h-[unset] w-full py-2 pl-3"
@@ -20,7 +20,7 @@
 				</label>
 				<FormControl
 					class="mt-4"
-					label="Name on Card"
+					:label="t('Name on Card')"
 					type="text"
 					v-model="cardHolderName"
 				/>
@@ -29,7 +29,7 @@
 			<div class="mt-6 flex items-center justify-between">
 				<StripeLogo />
 				<Button variant="solid" @click="submit" :loading="addingCard">
-					Save Card
+					{{ t('Save Card') }}
 				</Button>
 			</div>
 		</div>

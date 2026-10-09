@@ -9,7 +9,7 @@
 	<div class="flex h-screen overflow-hidden sm:bg-surface-gray-1" v-else>
 		<div class="w-full overflow-auto">
 			<LoginBox
-				title="Get started in minutes"
+				:title="t('Get started in minutes')"
 				subtitle="14 days free trial, no credit card required."
 				:class="{ 'pointer-events-none': $resources.setupAccount?.loading }"
 				:logo="saasProduct?.logo"

@@ -24,7 +24,7 @@
 	>
 		<LucideAlertTriangle class="mx-auto mb-4 h-6 w-6 text-red-600" />
 		<p>
-			Your spending limit has been exceeded. Please
+			{{ t('Your spending limit has been exceeded. Please') }}
 			<a href="https://support.frappe.io" target="_blank">contact support</a>
 			to increase your limit.
 		</p>
@@ -50,7 +50,7 @@
 			<div class="w-full lg:min-w-[42rem] lg:max-w-[42rem] space-y-8">
 				<div class="flex flex-col" v-if="$team.doc?.hybrid_servers_enabled">
 					<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-						Choose Server Type
+						{{ t('Choose Server Type') }}
 					</h2>
 					<div class="mt-2 w-full space-y-2">
 						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -78,7 +78,7 @@
 
 				<div v-if="serverType" class="flex flex-col">
 					<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-						Enter Name For Your Server<span class="text-red-500">&nbsp;*</span>
+						{{ t('Enter Name For Your Server') }}<span class="text-red-500">&nbsp;*</span>
 					</h2>
 					<div class="mt-2">
 						<FormControl
@@ -93,7 +93,7 @@
 					<div class="flex flex-col" v-if="allProviders.length">
 						<div class="flex items-center justify-between items-center">
 							<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-								Select Provider
+								{{ t('Select Provider') }}
 							</h2>
 							<div>
 								<Button
@@ -162,7 +162,7 @@
 						v-if="serverProvider && regionsForProvider.length"
 					>
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-							Select Region
+							{{ t('Select Region') }}
 						</h2>
 						<div class="mt-2 w-full space-y-2">
 							<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -193,7 +193,7 @@
 						class="flex flex-col space-y-2 text-sm text-ink-gray-6 w-full"
 					>
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-							Deployment Mode
+							{{ t('Deployment Mode') }}
 						</h2>
 
 						<div class="mt-2 w-full space-y-2">
@@ -242,7 +242,7 @@
 					>
 						<div class="flex items-center justify-between">
 							<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-								Service Type
+								{{ t('Service Type') }}
 							</h2>
 							<div>
 								<Button
@@ -304,13 +304,13 @@
 										v-if="!unifiedServer"
 										class="text-base font-semibold leading-6 text-ink-gray-9"
 									>
-										Select Application Server Plan
+										{{ t('Select Application Server Plan') }}
 									</h2>
 									<h2
 										v-else
 										class="text-base font-semibold leading-6 text-ink-gray-9"
 									>
-										Select Unified Server Plan
+										{{ t('Select Unified Server Plan') }}
 									</h2>
 
 									<div v-if="!unifiedServer">
@@ -409,7 +409,7 @@
 							<AlertBanner
 								v-if="onSharedInstance"
 								type="warning"
-								title="A shared instance can have variable performance, and we give only limited support for it. We do not recommend it for production workloads. <a href='https://docs.frappe.io/cloud/servers/instance-types#limited-support' target='_blank' style='font-weight: bold; text-decoration: underline;'>Read what this means</a>."
+								title="A shared instance can have variable performance, and we give only limited support for it. We do not recommend it for production workloads. <a href='https://docs.frappe.io/cloud/servers/instance-types#limited-support' target='_blank' style='font-weight: bold; text-decoration: underline;'>{{ t('Read what this means') }}</a>."
 							/>
 
 							<!-- App Server Plans -->
@@ -438,7 +438,7 @@
 							<div class="flex flex-col space-y-2">
 								<div class="flex flex-row justify-between items-center">
 									<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
-										Select Database Server Plan
+										{{ t('Select Database Server Plan') }}
 									</h2>
 									<div>
 										<Button
@@ -571,11 +571,14 @@
 						<h2 class="text-base font-semibold leading-6 text-ink-gray-9">
 							{{ t('Add SSH Key') }}
 						</h2>
-						<span class="text-xs text-ink-gray-6">
-							Add this SSH Key to
-							<span class="font-mono">~/.ssh/authorized_keys</span>
-							file on Application and Database server</span
-						>
+						<span
+							class="text-xs text-ink-gray-6"
+							v-html="
+								tr('Add this SSH Key to {path} file on Application and Database server', {
+									path: '<span class=&quot;font-mono&quot;>~/.ssh/authorized_keys</span>',
+								})
+							"
+						></span>
 						<ClickToCopy
 							:textContent="$resources.hybridOptions.data?.ssh_key || ''"
 						/>
@@ -597,30 +600,41 @@
 					<div
 						class="my-4 rounded-md border bg-surface-gray-1 p-3 prose-sm prose"
 					>
-						<p>
-							This feature will automatically increases the storage as it
-							reaches over <b>90%</b> of its capacity.
-						</p>
+						<p
+							v-html="
+								tr(
+									'This feature will automatically increases the storage as it reaches over <b>{percent}</b> of its capacity.',
+									{ percent: '90%' },
+								)
+							"
+						></p>
 
-						<p class="py-1">
-							With this feature disabled, disk capacity
-							<strong>will not increase automatically</strong>
-							in the event your server approaches or reaches its storage limit.
-						</p>
+						<p
+							class="py-1"
+							v-html="
+								tr(
+									'With this feature disabled, disk capacity <strong>{what}</strong> in the event your server approaches or reaches its storage limit.',
+									{ what: 'will not increase automatically' },
+								)
+							"
+						></p>
 
 						<strong>{{ t('Note') }}</strong>
 
 						<ul>
 							<li v-if="this.storagePlanRate">
-								You will be charged at the rate of
-								<b>{{ this.$format.userCurrency(this.storagePlanRate) }}/mo</b>
-								for each additional GB of storage.
+								{{
+									tr(
+										'You will be charged at the rate of {rate}/mo for each additional GB of storage.',
+										{ rate: this.$format.userCurrency(this.storagePlanRate) },
+									)
+								}}
 							</li>
 							<li>
 								{{ t('We will notify you about the increase via email.') }}
 							</li>
 							<li>
-								It will be added to your invoice separately for your reference.
+								{{ t('It will be added to your invoice separately for your reference.') }}
 							</li>
 						</ul>
 					</div>
@@ -1011,24 +1025,10 @@
 		class="mx-auto mt-60 w-fit rounded-md border-2 border-dashed px-12 py-8 text-center text-ink-gray-6"
 	>
 		<LucideServer class="mx-auto mb-4 h-8 w-8" />
-		<p>Server feature isn't enabled for your account.</p>
-		<p>You need to have $200 worth of credits to enable this feature.</p>
-		<p>
-			Please add it from
-			<router-link class="underline" :to="{ name: 'BillingOverview' }"
-				>here</router-link
-			>.
-		</p>
-		<p>
-			Or you can
-			<a
-				class="underline"
-				href="https://frappecloud.com/support"
-				target="_blank"
-				>contact support</a
-			>
-			to enable it.
-		</p>
+		<p>{{ t('Server feature isn\'t enabled for your account.') }}</p>
+		<p>{{ t('You need to have $200 worth of credits to enable this feature.') }}</p>
+		<p v-html="tr('Please add it from {link}.', { link: billingLink() })"></p>
+		<p v-html="tr('Or you can {link} to enable it.', { link: supportLink() })"></p>
 	</div>
 </template>
 <script>
@@ -1039,7 +1039,7 @@ import Header from '../components/Header.vue'
 import ServerPlansCards from '../components/server/ServerPlansCards.vue'
 import { DashboardError } from '../utils/error'
 import { isSharedPlanType } from '../utils/serverPlanType'
-import { t } from '../utils/language'
+import { t, tr } from '../utils/language'
 
 // The string carries HTML with double-quoted attributes, so it cannot live in a
 // template binding without escaping. Keeping it here leaves the template clean
@@ -1286,13 +1286,13 @@ export default {
 						server_types: [
 							{
 								name: 'dedicated',
-								title: 'Dedicated Server',
+								title: t('Dedicated Server'),
 								description:
 									'A pair of dedicated servers managed and owned by frappe',
 							},
 							{
 								name: 'hybrid',
-								title: 'Hybrid Server',
+								title: t('Hybrid Server'),
 								description:
 									'A pair of dedicated servers managed by frappe and owned/provisioned by you',
 							},
@@ -1771,6 +1771,14 @@ export default {
 		},
 	},
 	methods: {
+		billingLink() {
+			return `<a class="underline" href="/dashboard/billing">${t('here')}</a>`
+		},
+		supportLink() {
+			return `<a class="underline" href="https://frappecloud.com/support" target="_blank">${t(
+				'contact support',
+			)}</a>`
+		},
 		validateIP(ip) {
 			return !ip.match(
 				/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,

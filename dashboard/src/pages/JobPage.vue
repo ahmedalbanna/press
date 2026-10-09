@@ -18,7 +18,7 @@
 			<template #prefix>
 				<lucide-arrow-left class="inline-block h-4 w-4" />
 			</template>
-			All jobs
+			{{ t('All jobs') }}
 		</Button>
 
 		<div class="mt-3">
@@ -43,7 +43,7 @@
 							:loading="$resources.job.cancelJob.loading"
 							theme="red"
 						>
-							Cancel Job
+							{{ t('Cancel Job') }}
 						</Button>
 						<Dropdown v-if="dropdownOptions.length" :options="dropdownOptions">
 							<template v-slot="{ open }">
@@ -61,25 +61,25 @@
 						class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5"
 					>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Creation</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Creation') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ $format.date(job.creation, 'lll') }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Creator</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Creator') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ job.owner }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Duration</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Duration') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ job.end ? $format.duration(job.duration) : '-' }}
 							</div>
 						</div>
 						<div>
-							<div class="text-sm font-medium text-ink-gray-5">Start</div>
+							<div class="text-sm font-medium text-ink-gray-5">{{ t('Start') }}</div>
 							<div class="mt-2 text-sm text-ink-gray-9">
 								{{ $format.date(job.start, 'lll') }}
 							</div>
@@ -109,6 +109,7 @@ import { getObject } from '../objects'
 import { confirmDialog } from '../utils/components'
 import { duration } from '../utils/format'
 import { getToastErrorMessage } from '../utils/toast'
+import { t } from '../utils/language'
 
 // Keep in sync with DASHBOARD_CANCELLABLE_JOB_TYPES in agent_job.py
 const cancellableJobTypes = [
@@ -206,7 +207,7 @@ export default {
 		dropdownOptions() {
 			return [
 				{
-					label: 'View in Desk',
+					label: t('View in Desk'),
 					icon: 'external-link',
 					condition: () => this.$team?.doc?.is_desk_user,
 					onClick: () => {
@@ -255,10 +256,10 @@ export default {
 					: ''
 
 			confirmDialog({
-				title: 'Cancel Job',
+				title: t('Cancel Job'),
 				message: `Are you sure you want to cancel this <b>${this.job.job_type}</b> job?<br><br>It will stop midway and <b>can't be resumed</b>.${warning}`,
 				primaryAction: {
-					label: 'Cancel Job',
+					label: t('Cancel Job'),
 					variant: 'solid',
 					theme: 'red',
 					onClick: ({ hide }) => {

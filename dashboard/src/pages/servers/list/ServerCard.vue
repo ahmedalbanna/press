@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { h, defineAsyncComponent, computed } from 'vue'
+import { t } from '../../../utils/language'
 import { Button, Tooltip, Dropdown, createListResource } from 'frappe-ui'
 
 import { renderDialog } from '@/utils/components'
@@ -35,7 +36,7 @@ const benches = createListResource({
 
 const serverActions = (server) => [
 	{
-		label: 'Add Bench',
+		label: t('Add Bench'),
 		icon: LucideCirclePlus,
 		onClick: () => {
 			const AddBenchDialog = defineAsyncComponent(
@@ -50,18 +51,18 @@ const serverActions = (server) => [
 		},
 	},
 	{
-		label: 'Visit Server',
+		label: t('Visit Server'),
 		icon: 'external-link',
 		route: `/servers/${server.name}`,
 	},
-	{ label: 'View Backups', icon: 'archive' },
+	{ label: t('View Backups'), icon: 'archive' },
 	{
-		label: 'Server Actions',
+		label: t('Server Actions'),
 		icon: LucideSlidersVertical,
 		route: `/servers/${server.name}/actions`,
 	},
 	{
-		label: 'Drop Server',
+		label: t('Drop Server'),
 		theme: 'red',
 		icon: 'trash-2',
 		onClick: () => onDropServer(server),
@@ -77,7 +78,7 @@ const serverActions = (server) => [
 			</Tooltip>
 
 			<div class="flex flex-wrap gap-1.5 items-center">
-				<Tooltip text="Go to server dashboard">
+				<Tooltip :text="t('Go to server dashboard')">
 					<router-link :to="`/servers/${data.name}`" class="hover:underline">
 						<span class="font-medium text-lg">{{ data?.title || data?.name }}</span>
 					</router-link>
@@ -124,19 +125,19 @@ const serverActions = (server) => [
 		<div class="row-grid px-4 pt-4 items-center text-ink-gray-5 text-sm">
 			<span />
 			<template v-if="benches?.data?.length">
-				<span>Bench</span>
-				<span>Status</span>
-				<span>Version</span>
+				<span>{{ t('Bench') }}</span>
+				<span>{{ t('Status') }}</span>
+				<span>{{ t('Version') }}</span>
 			</template>
 
 			<div v-else class="flex gap-2 items-center col-span-4">
 				<Tooltip
-					text="Add benches via the more button or benches tab to start hosting sites"
+					:text="t('Add benches via the more button or benches tab to start hosting sites')"
 					:hoverDelay="0"
 				>
 					<LucideAlertCircle class="size-4" />
 				</Tooltip>
-				<span class="text-ink-gray-5">No Benches added</span>
+				<span class="text-ink-gray-5">{{ t('No Benches added') }}</span>
 			</div>
 			<span />
 		</div>
@@ -159,7 +160,7 @@ const serverActions = (server) => [
         class='ml-auto'
 				:loading="benches.list?.loading"
 			>
-				Load more
+				{{ t('Load more') }}
 			</Button>
 		</div>
 	</section>

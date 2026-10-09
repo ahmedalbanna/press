@@ -2,6 +2,7 @@ import { defineAsyncComponent, h } from 'vue'
 import { renderDialog } from '../../utils/components'
 import dayjs, { dayjsLocal } from '../../utils/dayjs'
 import { planTitle } from '../../utils/format'
+import { t, tr } from '../../utils/language'
 import { trialDays } from '../../utils/site'
 import type {
 	BannerConfig,
@@ -44,12 +45,13 @@ export function getFrappeUpdateBanner(
 	if (days < FRAPPE_UPDATE_REMINDER_DAYS) return
 
 	return {
-		title:
-			`${subject} runs Frappe Framework code that is ${days} days old. ` +
-			'Update to get the latest fixes and security patches.',
+		title: tr(
+			'{subject} runs Frappe Framework code that is {days} days old. Update to get the latest fixes and security patches.',
+			{ subject, days },
+		),
 		type: 'warning',
 		button: {
-			label: 'Learn more',
+			label: t('Learn more'),
 			variant: 'outline',
 			link: UPDATE_BENCH_DOCS,
 		},

@@ -1,7 +1,7 @@
 <template>
 	<div class="min-h-screen bg-surface-gray-1">
 		<LoginBox>
-			<h1 class="text-base text-ink-gray-6">Manage Subscription</h1>
+			<h1 class="text-base text-ink-gray-6">{{ t('Manage Subscription') }}</h1>
 			<div class="mt-4">
 				<div class="text-xl font-medium text-ink-gray-9">
 					{{ site }}
@@ -60,7 +60,7 @@
 								<Badge
 									v-if="$resources.subscription.data.current_plan == plan.name"
 								>
-									Current Plan
+									{{ t('Current Plan') }}
 								</Badge>
 								<CheckCircleIcon
 									v-else-if="selectedPlan == plan"
@@ -84,7 +84,7 @@
 								variant="solid"
 								@click="currentStep = 2"
 							>
-								Next
+								{{ t('Next') }}
 							</Button>
 							<Button
 								v-else-if="
@@ -95,7 +95,7 @@
 								:loading="$resources.setSubscriptionPlan.loading"
 								@click="$resources.setSubscriptionPlan.submit()"
 							>
-								Change plan
+								{{ t('Change plan') }}
 							</Button>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 					<div
 						class="rounded-sm bg-surface-gray-2 p-2 text-sm font-medium text-ink-gray-7"
 					>
-						Step 2: Setup billing
+						{{ t('Step 2: Setup billing') }}
 					</div>
 					<StripeCard
 						class="mt-4"

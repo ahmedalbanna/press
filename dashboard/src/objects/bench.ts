@@ -4,6 +4,7 @@ import { defineAsyncComponent, h } from 'vue'
 import LucideAppWindow from '~icons/lucide/app-window'
 import { getTeam, switchToTeam } from '../data/team'
 import { icon } from '../utils/components'
+import { t, tr } from '../utils/language'
 import {
 	clusterOptions,
 	getSitesTabColumns,
@@ -60,7 +61,7 @@ function getDetail() {
 							},
 						},
 						{
-							label: 'Impersonate Team',
+							label: t('Impersonate Team'),
 							icon: defineAsyncComponent(
 								() => import('~icons/lucide/venetian-mask'),
 							),
@@ -176,9 +177,9 @@ function getInPlaceUpdatesSuffix(row: Row) {
 		String(row.inplace_update_docker_image).split('-').at(-1),
 	)
 
-	let title = 'Bench has been updated in place'
+	let title = t('Bench has been updated in place')
 	if (!Number.isNaN(count) && count > 1) {
-		title += ` ${count} times`
+		title += ' ' + tr('{count} times', { count })
 	}
 
 	return h(
@@ -195,7 +196,7 @@ function getAppPatchSuffix(row: Row) {
 	return h(
 		'div',
 		{
-			title: 'Apps in this bench may have been patched',
+			title: t('Apps in this bench may have been patched'),
 			class: 'rounded-full bg-surface-gray-2 p-1',
 		},
 		h(icon('hash', 'w-3 h-3')),
@@ -304,7 +305,7 @@ export function getSitesTab() {
 export function getProcessesTab() {
 	const url = 'press.api.bench.get_processes'
 	return {
-		label: 'Processes',
+		label: t('Processes'),
 		icon: icon('cpu'),
 		route: 'processes',
 		type: 'list',

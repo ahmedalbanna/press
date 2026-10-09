@@ -8,7 +8,7 @@
 			<!-- Filters Section -->
 			<div class="pt-[20px]">
 				<div class="bg-surface-white rounded-lg shadow p-4 mb-6">
-					<h2 class="text-lg mb-4">Filters</h2>
+					<h2 class="text-lg mb-4">{{ t('Filters') }}</h2>
 					<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 						<div>
 							<FormControl
@@ -16,9 +16,9 @@
 								:options="partners"
 								size="sm"
 								variant="subtle"
-								placeholder="Select Partner"
+								:placeholder="t('Select Partner')"
 								:disabled="false"
-								label="Partner"
+								:label="t('Partner')"
 								v-model="partnerInput"
 								class="mb-5"
 							/>
@@ -29,8 +29,8 @@
 								:options="paymentGateways"
 								size="sm"
 								variant="subtle"
-								placeholder="Select Gateway"
-								label="Payment Gateway"
+								:placeholder="t('Select Gateway')"
+								:label="t('Payment Gateway')"
 								v-model="paymentGateway"
 								class="mb-5"
 							/>
@@ -40,7 +40,7 @@
 								type="date"
 								size="sm"
 								variant="subtle"
-								label="From date"
+								:label="t('From date')"
 								v-model="from_date"
 								class="mb-5"
 							/>
@@ -50,7 +50,7 @@
 								type="date"
 								size="sm"
 								variant="subtle"
-								label="To date"
+								:label="t('To date')"
 								v-model="to_date"
 								class="mb-5"
 							/>
@@ -63,7 +63,7 @@
 							:loading="fetchPayoutTransactions"
 							:disabled="!Boolean(partnerInput && paymentGateway)"
 						>
-							Fetch Transactions
+							{{ t('Fetch Transactions') }}
 						</Button>
 						<Button
 							variant="solid"
@@ -71,7 +71,7 @@
 							:loading="reconciliationInProgress"
 							:disabled="Boolean(transactions.length === 0)"
 						>
-							Submit Payout
+							{{ t('Submit Payout') }}
 						</Button>
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 				v-if="transactions.length > 0"
 				class="bg-surface-white rounded-lg shadow p-4 mb-6"
 			>
-				<h2 class="text-lg mb-4">Fetched Transactions</h2>
+				<h2 class="text-lg mb-4">{{ t('Fetched Transactions') }}</h2>
 				<ObjectList :options="transactionOptions" />
 			</div>
 
@@ -90,10 +90,10 @@
 				class="bg-surface-white rounded-lg shadow p-4 mb-6"
 				v-if="transactions.length > 0"
 			>
-				<h2 class="text-lg mb-4">Summary</h2>
+				<h2 class="text-lg mb-4">{{ t('Summary') }}</h2>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 					<div class="bg-surface-gray-1 p-3 rounded">
-						<div class="text-sm text-ink-gray-5">Total Amount</div>
+						<div class="text-sm text-ink-gray-5">{{ t('Total Amount') }}</div>
 						<div class="text-xl font-semibold">
 							{{ formatCurrency(total_amount) }}
 						</div>
@@ -107,7 +107,7 @@
 						</div>
 					</div>
 					<div class="bg-surface-gray-1 p-3 rounded">
-						<div class="text-sm text-ink-gray-5">Net Amount</div>
+						<div class="text-sm text-ink-gray-5">{{ t('Net Amount') }}</div>
 						<div class="text-xl font-semibold">
 							{{ formatCurrency(net_amount) }}
 						</div>
@@ -130,6 +130,7 @@ import {
 import { toast } from 'vue-sonner'
 import Header from '../components/Header.vue'
 import ObjectList from '../components/ObjectList.vue'
+import { t } from '../utils/language'
 
 export default {
 	components: {
@@ -173,14 +174,14 @@ export default {
 		transactionOptions() {
 			return {
 				columns: [
-					{ label: 'Transaction ID', fieldname: 'name' },
+					{ label: t('Transaction ID'), fieldname: 'name' },
 					{
-						label: 'Amount (USD)',
+						label: t('Amount (USD)'),
 						fieldname: 'amount',
 						format: (val) => this.formatCurrency(val),
 					},
 					{
-						label: 'Posting Date',
+						label: t('Posting Date'),
 						fieldname: 'posting_date',
 						format: (val) =>
 							Intl.DateTimeFormat('en-US', {
@@ -196,8 +197,8 @@ export default {
 		},
 		breadcrumbs() {
 			return [
-				{ label: 'Partner Payment Payout', route: '/partners/payment-payout' },
-				{ label: 'New Payment Payout', route: '/payment-payout/New' },
+				{ label: t('Partner Payment Payout'), route: '/partners/payment-payout' },
+				{ label: t('New Payment Payout'), route: '/payment-payout/New' },
 			]
 		},
 	},

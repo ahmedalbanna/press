@@ -159,8 +159,9 @@ export default {
 			}
 			if (site.doc.fatal_site_update && site.doc.status === 'Broken') {
 				return {
-					title:
+					title: t(
 						'The last update failed and the site could not be recovered. Contact support to bring it back.',
+					),
 					type: 'error',
 				}
 			}
@@ -345,8 +346,9 @@ export default {
 					banner({ documentResource: site }) {
 						if (site.doc.broken_domain_error) {
 							return {
-								title:
+								title: t(
 									'There was an error fetching an https certificate for your domain.',
+								),
 								type: 'error',
 								button: {
 									label: t('View Error'),
@@ -626,7 +628,7 @@ export default {
 					},
 					secondaryAction({ listResource: configs }) {
 						return {
-							label: 'Preview',
+							label: t('Preview'),
 							slots: {
 								prefix: icon('eye'),
 							},

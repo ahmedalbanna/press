@@ -3,7 +3,7 @@
 		<div class="w-full overflow-auto">
 			<LoginBox
 				v-if="siteRequestDoc?.status === 'Error'"
-				title="Site creation failed"
+				:title="t('Site creation failed')"
 				:subtitle="siteRequestDoc?.domain || siteRequestDoc?.site"
 			>
 				<template v-slot:logo v-if="saasProduct">
@@ -31,7 +31,7 @@
 			</LoginBox>
 			<LoginBox
 				v-else
-				title="Let's set up your site"
+				:title="t('Let\'s set up your site')"
 				:subtitle="siteRequestDoc?.domain || siteRequestDoc?.site"
 			>
 				<template v-slot:logo v-if="saasProduct">

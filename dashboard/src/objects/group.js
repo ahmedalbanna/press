@@ -177,7 +177,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: "What's this?",
+										text: t("What's this?"),
 										placement: 'top',
 										class: 'rounded-full bg-surface-gray-2 p-1',
 									},
@@ -516,7 +516,7 @@ export default {
 					},
 					secondaryAction({ listResource: configs }) {
 						return {
-							label: 'Preview',
+							label: t('Preview'),
 							slots: {
 								prefix: icon('eye'),
 							},

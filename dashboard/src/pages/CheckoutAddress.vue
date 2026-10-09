@@ -14,14 +14,14 @@
 		<div>
 			<FormControl
 				class="mb-2"
-				label="Billing Name"
+				:label="t('Billing Name')"
 				v-model="billingName"
 				required
 			/>
-			<FormControl class="mb-2" label="Address" v-model="address" />
+			<FormControl class="mb-2" :label="t('Address')" v-model="address" />
 			<FormControl
 				class="mb-2"
-				label="Country"
+				:label="t('Country')"
 				type="select"
 				v-model="country"
 				:options="countries"
@@ -31,7 +31,7 @@
 				<FormControl
 					v-if="country === 'India'"
 					class="mb-2 w-1/3"
-					label="State/Province/Region"
+					:label="t('State/Province/Region')"
 					type="select"
 					v-model="state"
 					:options="indianStates"
@@ -40,14 +40,14 @@
 				<FormControl
 					v-else
 					class="mb-2"
-					label="State/Province/Region"
+					:label="t('State/Province/Region')"
 					v-model="state"
 					required
 				/>
-				<FormControl class="mb-2" label="City" type="text" v-model="city" />
+				<FormControl class="mb-2" :label="t('City')" type="text" v-model="city" />
 				<FormControl
 					class="mb-2"
-					label="Postal Code"
+					:label="t('Postal Code')"
 					v-model="postalCode"
 					required
 				/>
@@ -55,7 +55,7 @@
 
 			<div v-show="currency === 'INR'">
 				<span class="mb-2 block text-sm leading-4 text-ink-gray-7">
-					GSTIN(only for Indian customers)
+					{{ t('GSTIN(only for Indian customers)') }}
 				</span>
 				<FormControl
 					v-if="gstApplicable"
@@ -80,7 +80,7 @@
 						gstin = '';
 					"
 				>
-					Add a GSTIN
+					{{ t('Add a GSTIN') }}
 				</Button>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 			:loading="$resources.updateBillingDetails.loading"
 			@click="$resources.updateBillingDetails.submit()"
 		>
-			Update Billing Details
+			{{ t('Update Billing Details') }}
 		</Button>
 	</div>
 </template>

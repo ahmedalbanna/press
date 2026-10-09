@@ -1,5 +1,6 @@
 import { icon } from '../../../utils/components';
 import { date } from '../../../utils/format';
+import { t } from '../../../utils/language';
 import { Tab } from '../../common/types';
 
 export function getLogsTab(forSite: boolean) {
@@ -7,7 +8,7 @@ export function getLogsTab(forSite: boolean) {
 	const url = forSite ? 'press.api.site.logs' : 'press.api.bench.logs';
 
 	return {
-		label: 'Logs',
+		label: t('Logs'),
 		icon: icon('file-text'),
 		route: 'logs',
 		childrenRoutes: [childRoute],
@@ -47,7 +48,7 @@ export function getLogsTab(forSite: boolean) {
 					}
 				},
 				{
-					label: 'Modified On',
+					label: t('Modified On'),
 					fieldname: 'modified',
 					format(value) {
 						return value ? date(value, 'lll') : '';

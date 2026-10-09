@@ -40,7 +40,7 @@
 			<div>
 				<div class="flex items-center justify-between">
 					<h2 class="text-sm font-medium leading-6 text-ink-gray-9">
-						Select Frappe Framework Version
+						{{ t('Select Frappe Framework Version') }}
 					</h2>
 				</div>
 				<div class="mt-2">
@@ -69,7 +69,7 @@
 				v-if="options?.clusters.length && benchVersion && !server"
 			>
 				<h2 class="text-sm font-medium leading-6 text-ink-gray-9">
-					Select Region
+					{{ t('Select Region') }}
 				</h2>
 				<div class="mt-2 w-full space-y-2">
 					<div class="grid grid-cols-2 gap-3">
@@ -99,7 +99,7 @@
 			</div>
 			<div v-if="benchVersion && (benchRegion || server)" class="flex flex-col">
 				<h2 class="text-sm font-medium leading-6 text-ink-gray-9">
-					Enter Bench Title
+					{{ t('Enter Bench Title') }}
 				</h2>
 				<div class="mt-2">
 					<FormControl v-model="benchTitle" type="text" />
@@ -119,12 +119,12 @@
 				>
 					<lucide-info class="mr-4 inline-block h-6 w-6" />
 					<div>
-						You can only create USD 25 or higher plan sites in the bench.
+						{{ t('You can only create USD 25 or higher plan sites in the bench.') }}
 						<a
 							href="https://docs.frappe.io/cloud/benches#pricing"
 							target="_blank"
 							class="underline"
-							>Why?</a
+							>{{ t('Why?') }}</a
 						>
 					</div>
 				</div>
@@ -151,7 +151,7 @@
 					"
 					:loading="$resources.createBench.loading"
 				>
-					Create Bench
+					{{ t('Create Bench') }}
 				</Button>
 			</div>
 		</div>
@@ -163,6 +163,7 @@ import Header from '../components/Header.vue';
 import ObjectList from '../components/ObjectList.vue';
 import Summary from '../components/Summary.vue';
 import { DashboardError } from '../utils/error';
+import { t } from '../utils/language'
 
 export default {
 	name: 'NewReleaseGroup',
@@ -261,21 +262,21 @@ export default {
 		summaryOptions() {
 			return [
 				{
-					label: 'Frappe Framework Version',
+					label: t('Frappe Framework Version'),
 					value: this.benchVersion,
 				},
 				{
-					label: 'Region',
+					label: t('Region'),
 					value: this.benchRegion,
 					condition: () => !this.server,
 				},
 				{
-					label: 'Server',
+					label: t('Server'),
 					value: this.server,
 					condition: () => this.server,
 				},
 				{
-					label: 'Title',
+					label: t('Title'),
 					value: this.benchTitle,
 				},
 			];

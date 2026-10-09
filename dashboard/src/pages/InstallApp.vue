@@ -15,7 +15,7 @@
 				v-if="$resources.installAppOptions.loading"
 				class="py-4 text-base text-ink-gray-6"
 			>
-				Loading...
+				{{ t('Loading...') }}
 			</div>
 			<div v-else class="space-y-6">
 				<div class="mb-12 flex">
@@ -35,7 +35,7 @@
 						<div v-if="plans.length">
 							<div class="flex items-center justify-between">
 								<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-									Select Plan
+									{{ t('Select Plan') }}
 								</h2>
 							</div>
 							<div class="mt-2">
@@ -45,7 +45,7 @@
 
 						<div v-if="options.private_groups.length">
 							<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-								Select Bench
+								{{ t('Select Bench') }}
 								<span class="text-sm text-ink-gray-5"> (Optional) </span>
 							</h2>
 							<div class="mt-2 w-full space-y-2">
@@ -70,7 +70,7 @@
 
 					<div>
 						<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-							Select Region
+							{{ t('Select Region') }}
 						</h2>
 						<div class="mt-2 w-full space-y-2">
 							<div class="grid grid-cols-2 gap-3">
@@ -101,13 +101,13 @@
 
 					<div>
 						<h2 class="text-base font-medium leading-6 text-ink-gray-9">
-							Enter Subdomain
+							{{ t('Enter Subdomain') }}
 						</h2>
 						<div class="mt-2 items-center">
 							<div class="col-span-2 flex w-full">
 								<input
 									class="dark:[color-scheme:dark] z-10 h-7 w-full flex-1 rounded rounded-r-none border border-[--surface-gray-2] bg-surface-gray-2 py-1.5 pl-2 pr-2 text-base text-ink-gray-8 placeholder-ink-gray-4 transition-colors hover:border-outline-gray-modals hover:bg-surface-gray-3 focus:border-outline-gray-4 focus:bg-surface-white focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3"
-									placeholder="Subdomain"
+									:placeholder="t('Subdomain')"
 									v-model="subdomain"
 								/>
 								<div
@@ -124,7 +124,7 @@
 								v-if="$resources.subdomainExists.loading"
 								class="text-sm text-ink-gray-6"
 							>
-								Checking...
+								{{ t('Checking...') }}
 							</div>
 							<template
 								v-else-if="
@@ -169,7 +169,7 @@
 				</div>
 				<div class="flex space-x-1">
 					<div class="text-sm text-ink-gray-6">
-						Want to install <b>{{ appDoc.title }}</b> on an existing Site or
+						{{ t('Want to install') }} <b>{{ appDoc.title }}</b> on an existing Site or
 						Bench?
 					</div>
 					<a
@@ -177,7 +177,7 @@
 						href="https://docs.frappe.io/cloud/installing-an-app"
 						target="_blank"
 					>
-						Read documentation
+						{{ t('Read documentation') }}
 					</a>
 				</div>
 			</div>
