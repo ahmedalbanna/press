@@ -134,7 +134,7 @@ const helpDropdownOptions = computed(() => [
 						:class="[open ? 'md:bg-white/10 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
-						<img src="/albannatech-logo-light.svg" alt="AlbannaTech" class="h-8 w-auto hidden md:flex shrink-0" />
+						<img src="/albannatech-mark.svg" alt="AlbannaTech" class="h-8 w-8 hidden md:flex shrink-0" />
 						<LucideUser class="size-3.5 -mr-1.5 md:hidden text-gray-300" />
 
 						<div
