@@ -23,6 +23,7 @@ import {
 	nextTick,
 } from 'vue';
 import { useAxisChartOptions } from 'frappe-ui';
+import { t } from '../../../utils/language';
 
 const props = defineProps({
 	data: {
@@ -43,11 +44,11 @@ const options = computed(() => {
 			xAxis: {
 				key: 'timestamp',
 				type: 'time',
-				title: 'Day',
+				title: t('Day'),
 				timeGrain: 'minute',
 			},
 			yAxis: {
-				title: 'Count',
+				title: t('Count'),
 			},
 			stacked: true,
 			series: [

@@ -261,7 +261,7 @@ const downloadCSV = async () => {
 				v-if="props.data?.length == 0"
 				class="flex min-h-[20vh] items-center justify-center"
 			>
-				<div>No results to display</div>
+				<div>{{ t('No results to display') }}</div>
 			</div>
 		</div>
 
@@ -274,7 +274,7 @@ const downloadCSV = async () => {
 				iconLeft="download"
 				variant="ghost"
 				v-if="enableCSVExport"
-				>Download as CSV</Button
+				>{{ t('Download as CSV') }}</Button
 			>
 			<div v-else></div>
 			<!-- blank div added to prevent broken layout -->
@@ -284,7 +284,7 @@ const downloadCSV = async () => {
 			>
 				<div class="flex flex-shrink-0 items-center justify-end gap-3">
 					<div class="flex flex-shrink-0 items-center gap-2 border-r-2 pr-3">
-						<p class="text-sm text-ink-gray-6">Per Page</p>
+						<p class="text-sm text-ink-gray-6">{{ t('Per Page') }}</p>
 						<select
 							class="form-select block !py-0.5 text-sm"
 							v-model="pageSize"
@@ -309,7 +309,7 @@ const downloadCSV = async () => {
 							:disabled="!table.getCanPreviousPage()"
 							iconLeft="arrow-left"
 						>
-							Prev
+							{{ t('Prev') }}
 						</Button>
 						<Button
 							variant="ghost"
@@ -317,7 +317,7 @@ const downloadCSV = async () => {
 							:disabled="!table.getCanNextPage()"
 							iconRight="arrow-right"
 						>
-							Next
+							{{ t('Next') }}
 						</Button>
 					</div>
 				</div>

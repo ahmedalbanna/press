@@ -1,7 +1,7 @@
 <template>
 	<Codemirror
 		v-model="query"
-		placeholder="Code goes here..."
+		:placeholder="t('Code goes here...')"
 		:style="{ height: '280px' }"
 		:autofocus="true"
 		:indent-with-tab="true"

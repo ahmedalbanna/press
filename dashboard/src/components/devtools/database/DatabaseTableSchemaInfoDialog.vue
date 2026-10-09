@@ -14,6 +14,7 @@
 import { Badge } from 'frappe-ui';
 import ObjectList from '../../ObjectList.vue';
 import { h } from 'vue';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'DatabaseTableSchemaInfoDialog',
@@ -27,18 +28,18 @@ export default {
 				data: () => this.columns || [],
 				columns: [
 					{
-						label: 'Column',
+						label: t('Column'),
 						fieldname: 'column',
 						width: 0.5,
 					},
 					{
-						label: 'Data Type',
+						label: t('Data Type'),
 						fieldname: 'data_type',
 						width: 0.2,
 						align: 'center',
 					},
 					{
-						label: 'Nullable',
+						label: t('Nullable'),
 						fieldname: 'is_nullable',
 						width: 0.2,
 						format(value) {
@@ -47,7 +48,7 @@ export default {
 						align: 'center',
 					},
 					{
-						label: 'Default',
+						label: t('Default'),
 						fieldname: 'default',
 						width: 0.3,
 						align: 'center',

@@ -1,5 +1,5 @@
 <template>
-	<p v-if="isKilled">Process Killed</p>
+	<p v-if="isKilled">{{ t('Process Killed') }}</p>
 	<Button
 		v-else
 		@click="killProcess"
@@ -8,7 +8,7 @@
 		iconLeft="x"
 		variant="ghost"
 		class="w-full"
-		>Kill</Button
+		>{{ t('Kill') }}</Button
 	>
 </template>
 <script>

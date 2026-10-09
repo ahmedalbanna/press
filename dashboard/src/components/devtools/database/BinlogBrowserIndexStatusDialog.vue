@@ -12,7 +12,7 @@
 				v-if="$resources?.binlogs?.loading"
 				class="flex w-full items-center justify-center gap-2 py-32 text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Loading
+				<Spinner class="w-4" /> {{ t('Loading') }}
 			</div>
 			<div v-else>
 				<ObjectList
@@ -36,7 +36,7 @@
 								100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							</option>
 						</select>
-						<p class="text-sm text-ink-gray-6">Per Page</p>
+						<p class="text-sm text-ink-gray-6">{{ t('Per Page') }}</p>
 					</div>
 					<div class="flex flex-shrink-0 items-center gap-2">
 						<p class="tnum text-sm text-ink-gray-6">
@@ -49,7 +49,7 @@
 								:disabled="!hasPreviousPage"
 								iconLeft="arrow-left"
 							>
-								Prev
+								{{ t('Prev') }}
 							</Button>
 							<Button
 								variant="ghost"
@@ -57,7 +57,7 @@
 								:disabled="!hasNextPage"
 								iconRight="arrow-right"
 							>
-								Next
+								{{ t('Next') }}
 							</Button>
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 					@click.prevent="$resources?.indexBinlogs?.submit()"
 					:loading="$resources?.indexBinlogs?.loading"
 				>
-					Index Binlogs
+					{{ t('Index Binlogs') }}
 				</Button>
 			</div>
 		</template>
@@ -94,6 +94,7 @@
 <script>
 import { Dialog } from 'frappe-ui';
 import { date } from '../../../utils/format';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'BinlogBrowserIndexStatusDialog',
@@ -174,11 +175,11 @@ export default {
 				data: () => this.paginatedBinlogs,
 				columns: [
 					{
-						label: 'Name',
+						label: t('Name'),
 						fieldname: 'name',
 					},
 					{
-						label: 'Size',
+						label: t('Size'),
 						fieldname: 'size_mb',
 						class: 'text-ink-gray-6',
 						format(value) {
@@ -186,7 +187,7 @@ export default {
 						},
 					},
 					{
-						label: 'Indexed',
+						label: t('Indexed'),
 						fieldname: 'indexed',
 						width: 0.25,
 						type: 'Icon',
@@ -195,7 +196,7 @@ export default {
 						},
 					},
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						fieldname: 'file_modification_time',
 						align: 'right',
 						format(value) {
@@ -206,12 +207,12 @@ export default {
 				selectable: true,
 				showTooltip: false,
 				emptyState: {
-					title: 'No binlogs found',
+					title: t('No binlogs found'),
 					description: 'Database server has no binlogs',
 				},
 				actions: () => [
 					{
-						label: 'Refresh',
+						label: t('Refresh'),
 						icon: 'refresh-ccw',
 						loading: this.$resources?.binlogs?.loading,
 						onClick: () => this.fetchBinlogStatus(),

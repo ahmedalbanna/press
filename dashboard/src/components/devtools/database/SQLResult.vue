@@ -12,7 +12,7 @@
 					@click="toggleSQLQuerySection"
 				></Button>
 				<p class="cursor-pointer" @click="toggleSQLQuerySection">
-					View SQL Query
+					{{ t('View SQL Query') }}
 				</p>
 			</div>
 			<pre class="m-3 text-sm leading-normal" v-if="isSQLQueryVisible">{{
@@ -24,7 +24,7 @@
 	<div v-else class="output-container">
 		<pre class="mb-4 text-sm leading-normal">{{ result.query }}</pre>
 		<p class="mb-2">{{ result.row_count }} rows affected</p>
-		<p>Query executed successfully</p>
+		<p>{{ t('Query executed successfully') }}</p>
 	</div>
 </template>
 <style scoped>

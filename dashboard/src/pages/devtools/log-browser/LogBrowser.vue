@@ -43,7 +43,7 @@
 							filters: { status: 'Active' },
 							initialData: [{ label: site, value: site }],
 						}"
-						placeholder="Select a site"
+						:placeholder="t('Select a site')"
 						:modelValue="site"
 						@update:modelValue="
 							(site) => {
@@ -68,7 +68,7 @@
 								},
 							],
 						}"
-						placeholder="Select a bench"
+						:placeholder="t('Select a bench')"
 						:modelValue="bench"
 						@update:modelValue="
 							(bench) => {
@@ -80,7 +80,7 @@
 							}
 						"
 					/>
-					<Tooltip text="This is an experimental feature">
+					<Tooltip :text="t('This is an experimental feature')">
 						<div class="rounded-md bg-surface-pink-1 p-1.5">
 							<lucide-flask-conical class="h-4 w-4 text-purple-500" />
 						</div>
@@ -113,7 +113,7 @@
 						class="flex h-full min-h-[90vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 					>
 						<Spinner class="h-4 w-4" />
-						<span> Fetching the log... </span>
+						<span> {{ t('Fetching the log...') }} </span>
 					</div>
 					<ErrorMessage
 						v-else-if="$resources.log.error"
@@ -124,7 +124,7 @@
 						v-else
 						class="flex h-full min-h-[90vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 					>
-						Select a log to view
+						{{ t('Select a log to view') }}
 					</div>
 				</div>
 			</div>

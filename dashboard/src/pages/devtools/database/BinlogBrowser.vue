@@ -21,12 +21,12 @@
 				</div>
 
 				<div class="flex flex-row gap-2">
-					<Tooltip text="This is an experimental feature">
+					<Tooltip :text="t('This is an experimental feature')">
 						<div class="rounded-md bg-surface-pink-1 p-1.5">
 							<lucide-flask-conical class="h-4 w-4 text-purple-500" />
 						</div>
 					</Tooltip>
-					<Tooltip text="View documentation">
+					<Tooltip :text="t('View documentation')">
 						<div class="rounded-md bg-surface-gray-2 p-1.5">
 							<a
 								href="https://docs.frappe.io/cloud/binlog-browser"
@@ -46,14 +46,14 @@
 						@click.prevent="() => (show_binlog_index_status_dialog = true)"
 					>
 						<div class="flex flex-row items-center gap-1">
-							<lucide-package-search class="h-4 w-4" /> Binlogs
+							<lucide-package-search class="h-4 w-4" /> {{ t('Binlogs') }}
 						</div>
 					</Button>
 
 					<LinkControl
 						class="cursor-pointer"
 						:options="{ doctype: 'Site', filters: { status: 'Active' } }"
-						placeholder="Select a site"
+						:placeholder="t('Select a site')"
 						v-model="site"
 					/>
 				</div>
@@ -64,14 +64,14 @@
 				v-if="!site"
 				class="flex h-full min-h-[80vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 			>
-				Select a site to get started
+				{{ t('Select a site to get started') }}
 			</div>
 			<div
 				v-else-if="!binlog_index_state_loaded"
 				class="flex h-full min-h-[80vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 			>
 				<Spinner class="w-4" />
-				Loading Binlog Browser...
+				{{ t('Loading Binlog Browser...') }}
 			</div>
 			<div class="mt-2 flex flex-col" v-else>
 				<!-- Time and Query Selector -->
@@ -90,7 +90,7 @@
 							]"
 							size="sm"
 							variant="outline"
-							placeholder="Query Type"
+							:placeholder="t('Query Type')"
 							v-model="type"
 							:disabled="isProcessingQueries"
 						/>
@@ -100,13 +100,13 @@
 							class="w-[18rem]"
 							size="sm"
 							variant="outline"
-							placeholder="Table Name (% allowed)"
+							:placeholder="t('Table Name (% allowed)')"
 							v-model="tableName"
 							:disabled="isProcessingQueries"
 						/>
 
 						<div class="w-full flex flex-row items-center gap-2">
-							<div class="text-base">Event Size</div>
+							<div class="text-base">{{ t('Event Size') }}</div>
 							<FormControl
 								class="w-[8rem]"
 								type="select"
@@ -128,7 +128,7 @@
 								variant="outline"
 								:disabled="isProcessingQueries"
 								v-model="event_size_comparator"
-								placeholder="Comparator"
+								:placeholder="t('Comparator')"
 							/>
 							<FormControl
 								v-if="event_size_comparator"
@@ -148,7 +148,7 @@
 							<DateTimePicker
 								v-model="start"
 								variant="outline"
-								placeholder="Start Time"
+								:placeholder="t('Start Time')"
 								:disabled="isProcessingQueries"
 								:disableTextInput="true"
 								:clearable="false"
@@ -160,7 +160,7 @@
 							<DateTimePicker
 								v-model="end"
 								variant="outline"
-								placeholder="End Time"
+								:placeholder="t('End Time')"
 								:disabled="isProcessingQueries"
 								:disableTextInput="true"
 								:clearable="false"
@@ -181,7 +181,7 @@
 							type="text"
 							size="sm"
 							variant="outline"
-							placeholder="Search Phrase (Optional)"
+							:placeholder="t('Search Phrase (Optional)')"
 							class="w-[12rem]"
 							v-model="searchString"
 							:disabled="isProcessingQueries"
@@ -200,7 +200,7 @@
 							loadingText="Searching"
 							iconLeft="search"
 						>
-							Search
+							{{ t('Search') }}
 						</Button>
 					</div>
 
@@ -210,7 +210,7 @@
 							v-if="this.$resources?.searchBinlogs?.loading"
 							class="flex h-80 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 						>
-							<Spinner class="w-4" /> Searching for binlogs...
+							<Spinner class="w-4" /> {{ t('Searching for binlogs...') }}
 						</div>
 						<BinlogResultTable
 							v-else
@@ -252,7 +252,7 @@
 		>
 			<div class="flex gap-2 text-base text-ink-gray-8 items-center">
 				<Spinner class="w-4" />
-				Building timeline...
+				{{ t('Building timeline...') }}
 			</div>
 		</div>
 
@@ -263,13 +263,12 @@
 			<div class="flex flex-col items-center gap-3 text-center px-6 max-w-lg">
 				<lucide-construction class="h-8 w-8 text-ink-gray-8 mb-1" />
 				<h2 class="text-xl font-semibold text-ink-gray-9">
-					Binlog Browser Temporarily Unavailable
+					{{ t('Binlog Browser Temporarily Unavailable') }}
 				</h2>
 				<p class="text-ink-gray-6">
-					We are indexing new binlogs. This can take up to
-					<strong>5 minutes</strong>.
+					{{ t('We are indexing new binlogs. This can take up to 5 minutes.') }}
 					<br />
-					You can wait or come back later.
+					{{ t('You can wait or come back later.') }}
 				</p>
 			</div>
 		</div>
@@ -286,37 +285,40 @@
 						site_hosted_on_shared_server || database_server_memory < 8 * 1024
 					"
 				>
-					Binlog Browser Not Available
+					{{ t('Binlog Browser Not Available') }}
 				</h2>
 				<h2 class="text-xl font-semibold text-ink-gray-9" v-else>
-					Binlog Indexing Disabled
+					{{ t('Binlog Indexing Disabled') }}
 				</h2>
 				<p class="text-ink-gray-6" v-if="site_hosted_on_shared_server">
-					Binlog Browser is only available for sites on dedicated servers.
+					{{ t('Binlog Browser is only available for sites on dedicated servers.') }}
 					<br />
-					This site is currently on shared hosting.
+					{{ t('This site is currently on shared hosting.') }}
 				</p>
 				<p class="text-ink-gray-6" v-else-if="database_server_memory < 8 * 1024">
 					<span
-						>This feature requires at least <strong>8 GB RAM</strong> on the db
-						server.</span
-					>
+						v-html="t('This feature requires at least 8 GB RAM on the db server.')"
+					></span>
 					<br />
-					Currently, the server has only
-					<strong>{{ Math.round(database_server_memory / 1024) }} GB RAM</strong
-					>.
+					<span
+						v-html="
+							tr('Currently, the server has only {ram} GB RAM.', {
+								ram: Math.round(database_server_memory / 1024),
+							})
+						"
+					></span>
 				</p>
 				<p class="text-ink-gray-6" v-else>
-					Follow the
+					{{ t('Follow the') }}
 					<a
 						href="https://docs.frappe.io/cloud/database-server-actions#enable--disable-binlog-indexer"
 						class="text-blue-600 underline"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						documentation
-					</a>
-					to enable Binlog Indexing.
+						{{ t('documentation') }}</a
+					>
+					{{ t('to enable Binlog Indexing.') }}
 				</p>
 			</div>
 		</div>
@@ -345,6 +347,7 @@ import {
 import { formatValue } from '../../../utils/format';
 import LinkControl from '../../../components/LinkControl.vue';
 import BinlogResultTable from '../../../components/devtools/database/BinlogResultTable.vue';
+import { t, tr } from '../../../utils/language';
 
 export default {
 	name: 'BinlogBrowser',

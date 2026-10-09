@@ -21,7 +21,7 @@
 							status: ['in', ['Active', 'Suspended', 'Broken', 'Inactive']],
 						},
 					}"
-					placeholder="Select a site"
+					:placeholder="t('Select a site')"
 					v-model="site"
 				/>
 				<Button
@@ -32,7 +32,7 @@
 					:loading="
 						site && (refreshingDatabaseUsage || !isRequiredInformationReceived)
 					"
-					>Refresh</Button
+					>{{ t('Refresh') }}</Button
 				>
 			</div>
 		</div>
@@ -44,17 +44,17 @@
 			<div>
 				<div class="flex flex-row items-center justify-between">
 					<p class="text-base font-medium text-ink-gray-8">
-						Database Size Breakup
+						{{ t('Database Size Breakup') }}
 					</p>
 					<div class="flex flex-row gap-2">
 						<Button @click="this.showTableSchemaSizeDetailsDialog = true">
-							View Details
+							{{ t('View Details') }}
 						</Button>
 						<Button
 							@click="(_) => optimizeTable()"
 							:loading="this.$resources.optimizeTable.loading"
 						>
-							Optimize Tables
+							{{ t('Optimize Tables') }}
 						</Button>
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 							class="h-2 w-2 rounded-full"
 							style="background-color: #e86c13"
 						></div>
-						<span class="text-sm text-ink-gray-8">Data Size</span
+						<span class="text-sm text-ink-gray-8">{{ t('Data Size') }}</span
 						><span class="ml-auto text-sm text-ink-gray-8">{{
 							formatSizeInMB(this.databaseSizeBreakup.data_size)
 						}}</span>
@@ -107,7 +107,7 @@
 							class="h-2 w-2 rounded-full"
 							style="background-color: #34bae3"
 						></div>
-						<span class="text-sm text-ink-gray-8">Index Size</span
+						<span class="text-sm text-ink-gray-8">{{ t('Index Size') }}</span
 						><span class="ml-auto text-sm text-ink-gray-8"
 							>{{ formatSizeInMB(this.databaseSizeBreakup.index_size) }}
 						</span>
@@ -119,7 +119,7 @@
 							class="h-2 w-2 rounded-full"
 							style="background-color: #ffbf00"
 						></div>
-						<span class="text-sm text-ink-gray-8">Claimable Space</span
+						<span class="text-sm text-ink-gray-8">{{ t('Claimable Space') }}</span
 						><span class="ml-auto text-sm text-ink-gray-8"
 							>{{ formatSizeInMB(this.databaseSizeBreakup.claimable_size) }}
 						</span>
@@ -131,7 +131,7 @@
 							class="h-2 w-2 rounded-full"
 							style="background-color: #e2e2e2"
 						></div>
-						<span class="text-sm text-ink-gray-8">Free Space</span
+						<span class="text-sm text-ink-gray-8">{{ t('Free Space') }}</span
 						><span class="ml-auto text-sm text-ink-gray-8"
 							>{{ formatSizeInMB(this.databaseSizeBreakup.free_size) }}
 						</span>
@@ -139,7 +139,7 @@
 				</div>
 				<!-- Message -->
 				<AlertBanner
-					title="Do you want to cleanup the reclaimable space ?"
+					:title="t('Do you want to cleanup the reclaimable space ?')"
 					type="info"
 					:showIcon="false"
 					class="my-3"
@@ -149,7 +149,7 @@
 						variant="outline"
 						link="https://docs.frappe.io/cloud/sites/monitoring#how-to-check-for-reclaimable-space"
 					>
-						Documentation
+						{{ t('Documentation') }}
 					</Button>
 				</AlertBanner>
 			</div>
@@ -157,7 +157,7 @@
 			<!-- Database Processes -->
 			<ToggleContent
 				class="mt-3"
-				label="Database Processes"
+				:label="t('Database Processes')"
 				subLabel="Analyze the processes of the database"
 			>
 				<template #actions>
@@ -167,7 +167,7 @@
 							loading-text="Refreshing"
 							icon-left="rotate-ccw"
 							@click.stop="this.$resources.databaseProcesses.submit()"
-							>Refresh</Button
+							>{{ t('Refresh') }}</Button
 						>
 					</div>
 				</template>
@@ -176,7 +176,7 @@
 						v-if="this.$resources.databaseProcesses.loading"
 						class="flex h-60 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 					>
-						<Spinner class="w-4" /> Loading Database Processes
+						<Spinner class="w-4" /> {{ t('Loading Database Processes') }}
 					</div>
 					<ResultTable
 						v-else
@@ -200,7 +200,7 @@
 			<!-- Database Locks -->
 			<ToggleContent
 				class="mt-3"
-				label="Database Locks"
+				:label="t('Database Locks')"
 				subLabel="Analyze the lock waits of the database"
 			>
 				<template #actions>
@@ -210,14 +210,14 @@
 							@click.stop="() => {}"
 						>
 							<Switch v-model="autoRefreshDatabaseLocks" />
-							<p class="text-base text-ink-gray-7">Auto Refresh</p>
+							<p class="text-base text-ink-gray-7">{{ t('Auto Refresh') }}</p>
 						</div>
 						<Button
 							:loading="this.$resources.databaseLocks.loading"
 							loading-text="Refreshing"
 							icon-left="rotate-ccw"
 							@click.stop="this.$resources.databaseLocks.submit()"
-							>Refresh</Button
+							>{{ t('Refresh') }}</Button
 						>
 					</div>
 				</template>
@@ -229,7 +229,7 @@
 						"
 						class="flex h-60 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 					>
-						<Spinner class="w-4" /> Loading Database Locks
+						<Spinner class="w-4" /> {{ t('Loading Database Locks') }}
 					</div>
 					<ResultTable
 						v-else
@@ -248,7 +248,7 @@
 			<!-- Queries Information -->
 			<ToggleContent
 				class="mt-3"
-				label="SQL Query Analysis"
+				:label="t('SQL Query Analysis')"
 				subLabel="Check the concerning queries that might be affecting your database performance"
 			>
 				<div class="mt-1">
@@ -285,7 +285,7 @@
 			<!-- Indexes Information -->
 			<ToggleContent
 				class="mt-3"
-				label="Database Index Analysis"
+				:label="t('Database Index Analysis')"
 				subLabel="Analyze the indexes of the database"
 			>
 				<div class="mt-1">
@@ -324,10 +324,10 @@
 											this.$resources.suggestDatabaseIndexes.loading ||
 											this.fetchingDatabaseIndex
 										"
-										>Suggest Indexes</Button
+										>{{ t('Suggest Indexes') }}</Button
 									>
 									<p class="text-base text-ink-gray-7">
-										This may take a while to analyze
+										{{ t('This may take a while to analyze') }}
 									</p>
 								</div>
 								<ResultTable
@@ -384,13 +384,13 @@
 			v-else-if="!site"
 			class="flex h-full min-h-[80vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 		>
-			Select a site to get started
+			{{ t('Select a site to get started') }}
 		</div>
 		<div
 			class="flex h-full min-h-[80vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 			v-else
 		>
-			<Spinner class="w-4" /> Loading Table Schemas
+			<Spinner class="w-4" /> {{ t('Loading Table Schemas') }}
 		</div>
 	</div>
 </template>
@@ -411,6 +411,7 @@ import DatabaseAddIndexButton from '../../../components/devtools/database/Databa
 import DatabasePerformanceSchemaDisabledNotice from '../../../components/devtools/database/DatabasePerformanceSchemaDisabledNotice.vue';
 import { confirmDialog } from '../../../utils/components';
 import { set } from '@vueuse/core';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'DatabaseAnalyzer',
@@ -686,7 +687,7 @@ export default {
 				hideControls: true,
 				columns: [
 					{
-						label: 'Table Name',
+						label: t('Table Name'),
 						fieldname: 'table_name',
 						width: 0.5,
 						type: 'Component',
@@ -707,12 +708,12 @@ export default {
 						},
 					},
 					{
-						label: 'Size (MB)',
+						label: t('Size (MB)'),
 						fieldname: 'total_size_mb',
 						width: 0.5,
 					},
 					{
-						label: 'No of Columns',
+						label: t('No of Columns'),
 						fieldname: 'no_of_columns',
 						width: 0.5,
 					},
@@ -775,14 +776,14 @@ export default {
 			if (!result) return [];
 			let prepared_result = [
 				{
-					label: 'Slow Queries',
+					label: t('Slow Queries'),
 					columns: ['Rows Examined', 'Rows Sent', 'Calls', 'Duration', 'Query'],
 					data: result['slow_queries'].map((e) => {
 						return [e.rows_examined, e.rows_sent, e.count, e.duration, e.query];
 					}),
 				},
 				{
-					label: 'Time Consuming Queries',
+					label: t('Time Consuming Queries'),
 					columns: ['Percentage', 'Calls', 'Avg Time', 'Query'],
 					data: result['top_10_time_consuming_queries'].map((e) => {
 						return [
@@ -794,7 +795,7 @@ export default {
 					}),
 				},
 				{
-					label: 'Full Table Scan Queries',
+					label: t('Full Table Scan Queries'),
 					columns: ['Rows Examined', 'Rows Sent', 'Calls', 'Query'],
 					data: result['top_10_queries_with_full_table_scan'].map((e) => {
 						return [e['rows_examined'], e['rows_sent'], e['calls'], e['query']];
@@ -809,12 +810,12 @@ export default {
 			if (!result) return [];
 			let prepared_result = [
 				{
-					label: 'Suggested Indexes',
+					label: t('Suggested Indexes'),
 					columns: ['Table', 'Column', 'Index Name', 'Sample Query'],
 					data: [],
 				},
 				{
-					label: 'Redundant Indexes',
+					label: t('Redundant Indexes'),
 					columns: [
 						'Table Name',
 						'Dominant Index',
@@ -833,7 +834,7 @@ export default {
 					}),
 				},
 				{
-					label: 'Unused Indexes',
+					label: t('Unused Indexes'),
 					columns: ['Table Name', 'Index Name'],
 					data: result['unused_indexes'].map((e) => {
 						return [e['table_name'], e['index_name']];
@@ -947,12 +948,12 @@ export default {
 			this.showTableSchemaSizeDetailsDialog = false;
 
 			confirmDialog({
-				title: 'Optimize Database Tables',
+				title: t('Optimize Database Tables'),
 				message: tableName
 					? `Do you want to optimize the table <strong>${tableName}</strong> to reclaim space ?<br>`
 					: `AlbannaTech will find tables where reclaimable space exceeds 100 MB or 20% of the table size.<br>Are you sure you want to optimize the database tables ?<br>`,
 				primaryAction: {
-					label: 'Optimize',
+					label: t('Optimize'),
 					variant: 'solid',
 					onClick: ({ hide }) => {
 						hide();

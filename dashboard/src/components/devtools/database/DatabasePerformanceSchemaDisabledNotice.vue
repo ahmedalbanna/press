@@ -2,7 +2,7 @@
 	<div class="flex h-60 flex-col items-center justify-center gap-1">
 		<template v-if="isDedicatedServer">
 			<p class="text-base text-ink-gray-7">
-				Please refer to the
+				{{ t('Please refer to the') }}
 				<a
 					href="https://docs.frappe.io/cloud/database-server-actions#performance-schema"
 					target="_blank"
@@ -11,7 +11,7 @@
 				>
 			</p>
 			<p class="text-base text-ink-gray-7">
-				For any other concern, raise a support ticket on
+				{{ t('For any other concern, raise a support ticket on') }}
 				<a href="https://support.frappe.io/" target="_blank" class="underline"
 					>support.frappe.io</a
 				>
@@ -19,10 +19,10 @@
 		</template>
 		<template v-else>
 			<p class="text-base text-ink-gray-7">
-				Performance Schema is disabled on shared hosting
+				{{ t('Performance Schema is disabled on shared hosting') }}
 			</p>
 			<p class="text-base text-ink-gray-7">
-				This feature is only available on a
+				{{ t('This feature is only available on a') }}
 				<a
 					href="https://frappe.io/cloud/servers"
 					target="_blank"

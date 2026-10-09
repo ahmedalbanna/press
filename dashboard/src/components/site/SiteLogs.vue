@@ -7,6 +7,7 @@ import { h } from 'vue';
 import LucideSparkleIcon from '~icons/lucide/sparkle';
 import { date } from '../../utils/format';
 import ObjectList from '../ObjectList.vue';
+import { t } from '../../utils/language'
 
 export default {
 	name: 'SiteLogs',
@@ -70,11 +71,11 @@ export default {
 					},
 					columns: [
 						{
-							label: 'Name',
+							label: t('Name'),
 							fieldname: 'name',
 						},
 						{
-							label: 'Size',
+							label: t('Size'),
 							fieldname: 'size',
 							class: 'text-ink-gray-6',
 							format(value) {
@@ -82,7 +83,7 @@ export default {
 							},
 						},
 						{
-							label: 'Modified On',
+							label: t('Modified On'),
 							fieldname: 'modified',
 							format(value) {
 								return value ? date(value, 'lll') : '';
@@ -94,7 +95,7 @@ export default {
 							slots: {
 								prefix: () => h(LucideSparkleIcon, { class: 'size-4' }),
 							},
-							label: 'View in Log Browser',
+							label: t('View in Log Browser'),
 							onClick: () => {
 								this.$router.push({
 									name: 'Log Browser',
@@ -103,7 +104,7 @@ export default {
 							},
 						},
 						{
-							label: 'Refresh',
+							label: t('Refresh'),
 							icon: 'refresh-ccw',
 							loading: this.$resources.logs.loading,
 							onClick: () => this.$resources.logs.reload(),
@@ -115,7 +116,7 @@ export default {
 					route: (row) => row.route,
 					data: () => [
 						{
-							title: 'Scheduler Logs',
+							title: t('Scheduler Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -125,7 +126,7 @@ export default {
 							},
 						},
 						{
-							title: 'Database Logs',
+							title: t('Database Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -135,7 +136,7 @@ export default {
 							},
 						},
 						{
-							title: 'Frappe Logs',
+							title: t('Frappe Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -145,7 +146,7 @@ export default {
 							},
 						},
 						{
-							title: 'PDF Logs',
+							title: t('PDF Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -155,7 +156,7 @@ export default {
 							},
 						},
 						{
-							title: 'IPython Logs',
+							title: t('IPython Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -165,7 +166,7 @@ export default {
 							},
 						},
 						{
-							title: 'Wkhtmltopdf Logs',
+							title: t('Wkhtmltopdf Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -175,7 +176,7 @@ export default {
 							},
 						},
 						{
-							title: 'Other Logs',
+							title: t('Other Logs'),
 							route: {
 								name: 'Site Logs',
 								params: {
@@ -187,7 +188,7 @@ export default {
 					],
 					columns: [
 						{
-							label: 'Title',
+							label: t('Title'),
 							fieldname: 'title',
 							width: 0.3,
 						},
@@ -197,7 +198,7 @@ export default {
 							slots: {
 								prefix: () => h(LucideSparkleIcon, { class: 'size-4' }),
 							},
-							label: 'View in Log Browser',
+							label: t('View in Log Browser'),
 							onClick: () => {
 								this.$router.push({
 									name: 'Log Browser',

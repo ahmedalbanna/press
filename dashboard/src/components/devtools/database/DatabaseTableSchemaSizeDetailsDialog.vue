@@ -14,6 +14,7 @@
 import { h } from 'vue';
 import ObjectList from '../../ObjectList.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'DatabaseTableSchemaSizeDetails',
@@ -59,7 +60,7 @@ export default {
 				hideControls: true,
 				columns: [
 					{
-						label: 'Table Name',
+						label: t('Table Name'),
 						fieldname: 'table_name',
 						width: '180px',
 						align: 'left',
@@ -81,27 +82,27 @@ export default {
 						},
 					},
 					{
-						label: 'Total Size (MB)',
+						label: t('Total Size (MB)'),
 						fieldname: 'total_size',
 						align: 'center',
 					},
 					{
-						label: 'Data Size (MB)',
+						label: t('Data Size (MB)'),
 						fieldname: 'data_size',
 						align: 'center',
 					},
 					{
-						label: 'Index Size (MB)',
+						label: t('Index Size (MB)'),
 						fieldname: 'index_size',
 						align: 'center',
 					},
 					{
-						label: 'Claimable Space (MB)',
+						label: t('Claimable Space (MB)'),
 						fieldname: 'data_free',
 						align: 'center',
 					},
 					{
-						label: 'Optimize Table',
+						label: t('Optimize Table'),
 						fieldname: 'table_name',
 						type: 'Component',
 						align: 'center',
@@ -121,7 +122,7 @@ export default {
 						},
 					},
 					{
-						label: 'View Schema',
+						label: t('View Schema'),
 						fieldname: 'table_name',
 						type: 'Component',
 						align: 'center',

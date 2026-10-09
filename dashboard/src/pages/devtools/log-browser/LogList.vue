@@ -2,7 +2,7 @@
 	<div class="m-4 mr-0 flex h-full w-1/4 flex-col">
 		<FormControl
 			class="mb-4 mr-4"
-			label="Search log files"
+			:label="t('Search log files')"
 			v-model="searchLogQuery"
 		>
 			<template #prefix>
@@ -15,13 +15,13 @@
 				class="mt-20 flex justify-center space-x-2 text-sm text-ink-gray-7"
 			>
 				<Spinner class="w-4" />
-				<span> Fetching logs... </span>
+				<span> {{ t('Fetching logs...') }} </span>
 			</div>
 			<div
 				v-else-if="logs.length === 0"
 				class="mt-20 flex justify-center text-sm text-ink-gray-7"
 			>
-				No logs found
+				{{ t('No logs found') }}
 			</div>
 			<template v-else v-for="log in logs">
 				<div

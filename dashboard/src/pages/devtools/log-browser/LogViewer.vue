@@ -6,7 +6,7 @@
 					<div class="space-x-2">
 						<FormControl
 							type="select"
-							label="Filter By Level"
+							:label="t('Filter By Level')"
 							:options="[
 								{ label: 'All', value: '' },
 								{ label: 'Info', value: 'Info' },
@@ -22,7 +22,7 @@
 					<div class="flex space-x-2">
 						<FormControl
 							type="select"
-							label="Sort By"
+							:label="t('Sort By')"
 							:options="[
 								{ label: 'Sort By', disabled: true },
 								{ label: 'Newest First', value: 'desc' },
@@ -34,7 +34,7 @@
 						/>
 						<FormControl
 							class="w-80"
-							label="Search log"
+							:label="t('Search log')"
 							v-model="searchLogQuery"
 						>
 							<template #prefix>
@@ -157,7 +157,7 @@
 
 						<div v-if="table.getRowModel().rows.length === 0" class="p-8">
 							<p class="text-center text-sm text-ink-gray-5">
-								No log entries found
+								{{ t('No log entries found') }}
 							</p>
 						</div>
 					</div>
@@ -175,7 +175,7 @@
 									:disabled="!table.getCanPreviousPage()"
 									iconLeft="arrow-left"
 								>
-									Prev
+									{{ t('Prev') }}
 								</Button>
 								<Button
 									variant="ghost"
@@ -183,7 +183,7 @@
 									:disabled="!table.getCanNextPage()"
 									iconRight="arrow-right"
 								>
-									Next
+									{{ t('Next') }}
 								</Button>
 							</div>
 						</div>

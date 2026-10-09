@@ -1,6 +1,6 @@
 <template>
 	<Button v-if="isJobRunning" @click="viewJob" variant="ghost" class="w-full"
-		>View Job</Button
+		>{{ t('View Job') }}</Button
 	>
 	<Button
 		v-else
@@ -10,7 +10,7 @@
 		iconLeft="plus"
 		variant="ghost"
 		class="w-full"
-		>Add DB Index</Button
+		>{{ t('Add DB Index') }}</Button
 	>
 </template>
 <script>

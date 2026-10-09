@@ -6,7 +6,7 @@
 		}"
 	>
 		<template #body-content>
-			<p class="mb-2 text-sm text-ink-gray-7">Select Table</p>
+			<p class="mb-2 text-sm text-ink-gray-7">{{ t('Select Table') }}</p>
 			<div class="flex flex-row gap-2">
 				<FormControl
 					class="w-full"
@@ -34,21 +34,21 @@
 					class="grow"
 					variant="outline"
 					@click="viewTop100Rows"
-					>View Top 100 Rows</Button
+					>{{ t('View Top 100 Rows') }}</Button
 				>
 				<Button
 					iconLeft="play"
 					class="grow"
 					variant="outline"
 					@click="viewLast100Rows"
-					>View Last 100 Rows</Button
+					>{{ t('View Last 100 Rows') }}</Button
 				>
 				<Button
 					iconLeft="play"
 					class="grow"
 					variant="outline"
 					@click="viewAllRows"
-					>View All Rows</Button
+					>{{ t('View All Rows') }}</Button
 				>
 			</div>
 			<ObjectList :options="listOptions" v-if="selectedSchema" />
@@ -61,6 +61,7 @@ import { FormControl } from 'frappe-ui';
 import ObjectList from '../../ObjectList.vue';
 import { icon } from '../../../utils/components';
 import { toast } from 'vue-sonner';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'DatabaseTableSchemaDialog',
@@ -119,7 +120,7 @@ export default {
 				hideControls: true,
 				columns: [
 					{
-						label: 'Column',
+						label: t('Column'),
 						fieldname: 'column',
 						width: 0.5,
 						type: 'Component',
@@ -140,19 +141,19 @@ export default {
 						},
 					},
 					{
-						label: 'Data Type',
+						label: t('Data Type'),
 						fieldname: 'data_type',
 						width: 0.2,
 						align: 'center',
 					},
 					{
-						label: 'Default',
+						label: t('Default'),
 						fieldname: 'default',
 						width: 0.3,
 						align: 'center',
 					},
 					{
-						label: 'Nullable',
+						label: t('Nullable'),
 						fieldname: 'is_nullable',
 						width: 0.15,
 						type: 'Icon',
@@ -162,7 +163,7 @@ export default {
 						align: 'center',
 					},
 					{
-						label: 'Is Indexed',
+						label: t('Is Indexed'),
 						width: 0.15,
 						align: 'center',
 						type: 'Component',

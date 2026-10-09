@@ -37,7 +37,7 @@
 						doctype: 'Site',
 						filters: { status: ['!=', 'Archived'] },
 					}"
-					placeholder="Select a site"
+					:placeholder="t('Select a site')"
 					v-model="site"
 				/>
 				<Button
@@ -52,8 +52,8 @@
 							})
 					"
 				>
-					<span class="md:hidden">Schema</span>
-					<span class="hidden md:inline">Refresh Schema</span>
+					<span class="md:hidden">{{ t('Schema') }}</span>
+					<span class="hidden md:inline">{{ t('Refresh Schema') }}</span>
 				</Button>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 			v-if="!site"
 			class="flex h-full min-h-[80vh] w-full items-center justify-center gap-2 text-ink-gray-7"
 		>
-			Select a site to get started
+			{{ t('Select a site to get started') }}
 		</div>
 		<div class="mt-2 flex flex-col" v-else>
 			<div class="overflow-hidden rounded border">
@@ -81,9 +81,9 @@
 						iconLeft="table"
 						@click="toggleTableSchemasDialog"
 						:disabled="!isAutoCompletionReady"
-						>Tables</Button
+						>{{ t('Tables') }}</Button
 					>
-					<Button iconLeft="file-text" @click="toggleLogsDialog">Logs</Button>
+					<Button iconLeft="file-text" @click="toggleLogsDialog">{{ t('Logs') }}</Button>
 				</div>
 
 				<div class="flex gap-2">
@@ -94,14 +94,14 @@
 						iconLeft="play"
 						variant="outline"
 					>
-						Run Selected Query
+						{{ t('Run Selected Query') }}
 					</Button>
 					<Button
 						@click="() => runSQLQuery()"
 						:loading="$resources.runSQLQuery.loading"
 						iconLeft="play"
 						variant="solid"
-						>Run Query</Button
+						>{{ t('Run Query') }}</Button
 					>
 				</div>
 			</div>
@@ -112,10 +112,10 @@
 				<div v-if="errorMessage" class="output-container">
 					<pre class="mb-4 text-sm" v-if="failedQuery">{{ failedQuery }}</pre>
 					{{ prettifySQLError(errorMessage) }}<br /><br />
-					Query execution failed
+					{{ t('Query execution failed') }}
 				</div>
 				<div v-else-if="data.length == 0" class="output-container">
-					No output received
+					{{ t('No output received') }}
 				</div>
 				<div v-else-if="data.length == 1">
 					<SQLResult :result="data[0]" />
@@ -164,6 +164,7 @@ import DatabaseTableSchemaDialog from '../../../components/devtools/database/Dat
 import SQLResult from '../../../components/devtools/database/SQLResult.vue';
 import LinkControl from '../../../components/LinkControl.vue';
 import { getToastErrorMessage } from '../../../utils/toast';
+import { t } from '../../../utils/language';
 
 export default {
 	name: 'DatabaseSQLPlayground',
@@ -271,7 +272,7 @@ export default {
 				};
 			}
 			return {
-				self: { label: 'SQL Schema', type: 'schema' },
+				self: { label: t('SQL Schema'), type: 'schema' },
 				children: childrenSchemas,
 			};
 		},
@@ -331,13 +332,13 @@ export default {
 			}
 
 			confirmDialog({
-				title: 'Run SQL Query',
+				title: t('Run SQL Query'),
 				message: `
 You are currently using <strong>Read-Write</strong> mode. All the changes by your SQL Query will be committed to the database.
 <br><br>
 Are you sure you want to run the query?`,
 				primaryAction: {
-					label: 'Run Query',
+					label: t('Run Query'),
 					variant: 'solid',
 					onClick: ({ hide }) => {
 						this.runSQLQuery(true, run_selected_query);
@@ -351,14 +352,14 @@ Are you sure you want to run the query?`,
 				return;
 			}
 			confirmDialog({
-				title: 'Verify Query',
+				title: t('Verify Query'),
 				message: `
 Are you sure you want to run the query?
 <br>
 <pre class="mt-2 max-h-52 overflow-y-auto whitespace-pre-wrap rounded bg-surface-gray-1 px-2 py-1.5 text-sm text-ink-gray-7">${this.selectedQuery}</pre>
 				`,
 				primaryAction: {
-					label: 'Run Query',
+					label: t('Run Query'),
 					variant: 'solid',
 					onClick: ({ hide }) => {
 						this.runSQLQuery(false, true);

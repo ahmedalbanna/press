@@ -9,26 +9,26 @@
 			<ObjectList :options="listOptions" v-if="!selectedRow" />
 			<div v-else>
 				<div class="flex flex-row items-center justify-between">
-					<Button icon="arrow-left" @click="selectedRow = null">Back</Button>
+					<Button icon="arrow-left" @click="selectedRow = null">{{ t('Back') }}</Button>
 					<Button variant="outline" iconLeft="play" @click="rerunQuery"
-						>Re-run Query</Button
+						>{{ t('Re-run Query') }}</Button
 					>
 				</div>
 				<div class="mt-4">
-					<p class="text-sm text-ink-gray-6">Query</p>
+					<p class="text-sm text-ink-gray-6">{{ t('Query') }}</p>
 					<pre
 						class="mt-1.5 max-h-52 overflow-y-auto whitespace-pre-wrap rounded bg-surface-gray-1 px-2 py-1.5 text-sm text-ink-gray-6"
 						>{{ selectedRow.query }}</pre
 					>
 				</div>
 				<div class="mt-3">
-					<p class="text-sm text-ink-gray-6">Timestamp</p>
+					<p class="text-sm text-ink-gray-6">{{ t('Timestamp') }}</p>
 					<p class="mt-1.5 text-sm text-ink-gray-7">
 						{{ new Date(selectedRow.creation).toLocaleString() }}
 					</p>
 				</div>
 				<div class="mt-3">
-					<p class="text-sm text-ink-gray-6">Committed in DB</p>
+					<p class="text-sm text-ink-gray-6">{{ t('Committed in DB') }}</p>
 					<p class="mt-1.5 text-sm text-ink-gray-7">
 						{{ selectedRow.committed ? 'Yes' : 'No' }}
 					</p>
@@ -39,6 +39,7 @@
 </template>
 <script>
 import ObjectList from '../../ObjectList.vue';
+import { t } from '../../../utils/language';
 export default {
 	name: 'DatabaseSQLPlaygroundLog',
 	props: ['site'],
@@ -65,7 +66,7 @@ export default {
 				emptyStateMessage: 'No Logs found.',
 				columns: [
 					{
-						label: 'Query',
+						label: t('Query'),
 						width: 2,
 						fieldname: 'query',
 						format(value) {
@@ -76,7 +77,7 @@ export default {
 						},
 					},
 					{
-						label: 'Timestamp',
+						label: t('Timestamp'),
 						width: 1,
 						align: 'center',
 						fieldname: 'creation',
@@ -85,7 +86,7 @@ export default {
 						},
 					},
 					{
-						label: 'Committed',
+						label: t('Committed'),
 						fieldname: 'committed',
 						align: 'center',
 						width: 0.5,

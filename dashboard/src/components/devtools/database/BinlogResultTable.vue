@@ -195,15 +195,15 @@ watch(
 				v-if="loadingData"
 				class="absolute bottom-0 left-0 right-0 top-0 flex w-full items-center justify-center gap-2 bg-surface-white text-base text-ink-gray-8 min-h-80"
 			>
-				<Spinner class="w-4" /> Crunching data...
+				<Spinner class="w-4" /> {{ t('Crunching data...') }}
 			</div>
 			<div
 				v-if="props.data?.length == 0"
 				class="flex flex-col h-80 items-center justify-center text-ink-gray-8 text-base gap-1"
 			>
-				<p>No results to display</p>
+				<p>{{ t('No results to display') }}</p>
 				<br />
-				<p>Try adjusting your search criteria or filters</p>
+				<p>{{ t('Try adjusting your search criteria or filters') }}</p>
 			</div>
 			<table
 				v-else
@@ -296,7 +296,7 @@ watch(
 					<option value="25">25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 					<option value="50">50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 				</select>
-				<p class="text-sm text-ink-gray-6">Per Page</p>
+				<p class="text-sm text-ink-gray-6">{{ t('Per Page') }}</p>
 			</div>
 
 			<div class="flex flex-shrink-0 items-center gap-2">
@@ -310,7 +310,7 @@ watch(
 						:disabled="!isPreviousPageAvailable || loadingData"
 						iconLeft="arrow-left"
 					>
-						Prev
+						{{ t('Prev') }}
 					</Button>
 					<Button
 						variant="ghost"
@@ -318,7 +318,7 @@ watch(
 						:disabled="!isNextPageAvailable || loadingData"
 						iconRight="arrow-right"
 					>
-						Next
+						{{ t('Next') }}
 					</Button>
 				</div>
 			</div>
