@@ -6,7 +6,7 @@ import { session } from '@/data/session'
 import { getTeam } from '@/data/team'
 import { mobileNav, partnerRegistrationModalOpen } from '@/data/ui'
 import { isMobile } from '@/utils/device'
-import { setTheme } from '@/utils/useTheme'
+import { setTheme, themeName } from '@/utils/useTheme'
 import { setLanguage, getLanguage, t } from '@/utils/language'
 import LucideBookText from '~icons/lucide/book-text'
 import LucideChevronDown from '~icons/lucide/chevron-down'
@@ -83,7 +83,11 @@ const userDropdownOptions = computed(() => [
 		label: t('Theme'),
 		icon: LucideMoon,
 		submenu: [
-			{ label: t('Light Mode'), icon: 'sun', onClick: () => setTheme('light') },
+			{
+				label: t('Light Mode'),
+				icon: themeName.value === 'light' ? 'check' : 'sun',
+				onClick: () => setTheme('light'),
+			},
 			// dropdown component as per this frappe-ui version doesnt support suffix slot
 			// so make the icon itself icon+label+beta badge
 			{ icon: DarkModeLabel, onClick: () => setTheme('dark') },
@@ -94,8 +98,16 @@ const userDropdownOptions = computed(() => [
 		label: t('Language'),
 		icon: LucideGlobe,
 		submenu: [
-			{ label: t('English'), icon: 'check', onClick: () => setLanguage('en') },
-			{ label: 'العربية', icon: 'check', onClick: () => setLanguage('ar') },
+			{
+				label: t('English'),
+				icon: getLanguage() === 'en' ? 'check' : '',
+				onClick: () => setLanguage('en'),
+			},
+			{
+				label: 'العربية',
+				icon: getLanguage() === 'ar' ? 'check' : '',
+				onClick: () => setLanguage('ar'),
+			},
 		],
 	},
 
@@ -119,39 +131,40 @@ const helpDropdownOptions = computed(() => [
 <template>
 	<aside
 		class="relative flex md:min-h-screen p-2 gap-1 flex-col border-r transition-[width]
-    bg-[#0F172A] overflow-x-hidden"
+    bg-surface-menu-bar overflow-x-hidden"
 		:class='collapsed ? " md:w-12" : "w-full md:w-[256px]"'
 	>
 		<div
 			class="flex gap-2 items-center border-y md:border-0 p-2 md:p-0 -m-2 md:m-0 h-[44px] md:h-auto"
 		>
-			<img src="/albannatech-logo-light.svg" alt="AlbannaTech" class="h-6 w-auto md:hidden mr-auto" />
+			<img src="/albannatech-logo.svg" alt="AlbannaTech" class="h-6 w-auto md:hidden mr-auto dark:hidden" />
+			<img src="/albannatech-logo-light.svg" alt="AlbannaTech" class="h-6 w-auto mr-auto hidden dark:block md:hidden" />
 
 			<Dropdown :options="userDropdownOptions">
 				<template v-slot="{ open }">
 					<button
-						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 text-white bg-white/10 md:bg-transparent   hover:bg-white/10"
-						:class="[open ? 'md:bg-white/10 shadow-sm' : ''
+						class="flex gap-2 w-fit md:w-full p-1.5 items-center rounded md:mb-1 text-ink-gray-1 bg-surface-gray-2 md:bg-transparent   hover:bg-surface-gray-2"
+						:class="[open ? 'md:bg-surface-gray-2 shadow-sm' : ''
               , collapsed? 'md:p-0': 'md:p-1'] "
 					>
 						<img src="/albannatech-mark.svg" alt="AlbannaTech" class="h-8 w-8 hidden md:flex shrink-0" />
-						<LucideUser class="size-3.5 -mr-1.5 md:hidden text-gray-300" />
+						<LucideUser class="size-3.5 -mr-1.5 md:hidden text-ink-gray-6" />
 
 						<div
 							class="flex flex-col gap-0.5 ml-1 min-w-0 md:m-0"
 							:class="collapsedCss"
 						>
-						<div class="text-base font-medium hidden md:flex text-white">
+						<div class="text-base font-medium hidden md:flex text-ink-gray-1">
 							AlbannaTech
 						</div>
 
-						<div class="text-sm text-left text-gray-300 truncate">
+						<div class="text-sm text-left text-ink-gray-6 truncate">
 							{{ $team?.get.loading ? $t('Loading...') : $team?.doc?.user }}
 						</div>
 						</div>
 
 					<LucideChevronDown
-						class="md:ml-auto size-4 shrink-0 text-gray-300"
+						class="md:ml-auto size-4 shrink-0 text-ink-gray-6"
 						:class="collapsedCss"
 					/>
 					</button>
@@ -159,7 +172,7 @@ const helpDropdownOptions = computed(() => [
 			</Dropdown>
 
 			<button
-				class="p-2 md:hidden bg-white/10 rounded"
+				class="p-2 md:hidden bg-surface-gray-2 rounded"
 				@click="mobileNav = !mobileNav"
 			>
 				<lucide-x v-if="mobileNav" class="size-3" />
@@ -194,7 +207,7 @@ const helpDropdownOptions = computed(() => [
 				class="flex gap-1 justify-between items-center"
 			>
 				<Dropdown :options="helpDropdownOptions">
-					<Button variant="ghost" class="text-gray-300">
+					<Button variant="ghost" class="text-ink-gray-6">
 						<template #prefix v-if="!collapsed">
 							<LucideCircleQuestionMark class="size-4" />
 						</template>
@@ -207,7 +220,7 @@ const helpDropdownOptions = computed(() => [
 
 				<Button
 					variant="ghost"
-					class="hidden md:flex text-gray-300"
+					class="hidden md:flex text-ink-gray-6"
 					:class='collapsed ? "mb-2" : ""'
 					@click="collapsePanel"
 				>

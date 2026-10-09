@@ -18,7 +18,7 @@ defineProps<Props>();
   <details class="group peer" :open='isActive'>
     <Item is="summary" :icon :name>
       <template #suffix>
-        <LucideChevronRight :class='collapsedCss' class="text-gray-400 size-4 transition-transform duration-200 group-open:rotate-90" />
+        <LucideChevronRight :class='collapsedCss' class="text-ink-gray-6 size-4 transition-transform duration-200 group-open:rotate-90" />
       </template>
     </Item>
   </details>
