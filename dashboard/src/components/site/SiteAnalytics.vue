@@ -461,7 +461,7 @@
 					</Tooltip>
 					<TabButtons
 						class="ml-auto"
-						:buttons="[{ label: 'Denormalized' }, { label: 'Normalized' }]"
+						:buttons="[{ label: t('Denormalized') }, { label: t('Normalized') }]"
 						v-model="slowLogsFrequencyType"
 					/>
 				</template>
@@ -494,7 +494,7 @@
 					</Tooltip>
 					<TabButtons
 						class="ml-auto"
-						:buttons="[{ label: 'Denormalized' }, { label: 'Normalized' }]"
+						:buttons="[{ label: t('Denormalized') }, { label: t('Normalized') }]"
 						v-model="slowLogsDurationType"
 					/>
 				</template>

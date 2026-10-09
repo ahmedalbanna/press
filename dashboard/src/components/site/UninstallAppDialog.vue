@@ -5,7 +5,7 @@
 			title: `Uninstall ${app.title || app.app_title}`,
 			actions: [
 				{
-					label: 'Uninstall',
+					label: t('Uninstall'),
 					variant: 'solid',
 					theme: 'red',
 					onClick: handleConfirm,

@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="show"
 		@close="resetValues"
-		:options="{ title: 'Upgrade Site Version' }"
+		:options="{ title: t('Upgrade Site Version') }"
 	>
 		<template #body-content>
 			<div

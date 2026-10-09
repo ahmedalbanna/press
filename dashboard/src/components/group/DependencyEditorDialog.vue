@@ -4,7 +4,7 @@
 			title: `Edit ${dependency.title}`,
 			actions: [
 				{
-					label: 'Update',
+					label: t('Update'),
 					variant: 'solid',
 					loading: groupDocResource?.updateDependency?.loading,
 					onClick: updateDependency,

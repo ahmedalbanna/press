@@ -53,7 +53,7 @@ async function onClickSave() {
 <template>
 	<Dialog
 		:options="{
-			title: 'Configure compute allocation',
+			title: t('Configure compute allocation'),
 			size: 'xl',
 		}"
 		v-model="open"

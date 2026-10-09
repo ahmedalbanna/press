@@ -8,8 +8,8 @@
 					<!-- Title -->
 					<Breadcrumbs
 						:items="[
-							{ label: 'Dev Tools', route: { name: 'Log Browser' } }, // Dev tools has no seperate page as its own, so it doesn't need a different route
-							{ label: 'Log Browser', route: { name: 'Log Browser' } },
+							{ label: t('Dev Tools'), route: { name: 'Log Browser' } }, // Dev tools has no seperate page as its own, so it doesn't need a different route
+							{ label: t('Log Browser'), route: { name: 'Log Browser' } },
 						]"
 					/>
 				</div>
@@ -19,15 +19,15 @@
 						type="select"
 						:options="[
 							{
-								label: 'Select Mode',
+								label: t('Select Mode'),
 								disabled: true,
 							},
 							{
-								label: 'Bench',
+								label: t('Bench'),
 								value: 'bench',
 							},
 							{
-								label: 'Site',
+								label: t('Site'),
 								value: 'site',
 							},
 						]"

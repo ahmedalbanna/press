@@ -131,7 +131,7 @@
 		<Dialog
 			:show="showPartnerContributionDialog"
 			v-model="showPartnerContributionDialog"
-			:options="{ size: '5xl', title: 'Contributions of this month' }"
+			:options="{ size: '5xl', title: t('Contributions of this month') }"
 		>
 			<template #body-content>
 				<PartnerContribution :partnerEmail="team.doc.partner_email" />

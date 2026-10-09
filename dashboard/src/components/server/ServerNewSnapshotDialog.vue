@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Create Snapshot', size: 'xl' }">
+	<Dialog v-model="show" :options="{ title: t('Create Snapshot'), size: 'xl' }">
 		<template #body-content>
 			<div
 				class="prose prose-sm rounded mt-4 p-2 text-sm text-ink-gray-7 bg-surface-gray-2 border"

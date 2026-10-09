@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'On-Prem Failover Setup',
+			title: t('On-Prem Failover Setup'),
 			size: '3xl',
 		}"
 		v-model="show"

@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="show"
 		:options="{
-			title: 'Install app on your site',
+			title: t('Install app on your site'),
 			size: '4xl',
 		}"
 	>

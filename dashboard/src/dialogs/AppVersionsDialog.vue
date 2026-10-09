@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'App Versions',
+			title: t('App Versions'),
 			size: '2xl',
 		}"
 		v-model="show"
@@ -11,13 +11,13 @@
 				v-if="$resources?.showAppVersions?.loading"
 				class="flex h-80 w-full items-center justify-center gap-2 text-base text-ink-gray-7"
 			>
-				<Spinner class="w-4" /> Fetching app versions ...
+				<Spinner class="w-4" /> {{ t('Fetching app versions ...') }}
 			</div>
 			<div
 				v-else-if="$resources?.showAppVersions?.error"
 				class="flex h-80 w-full items-center justify-center text-red-600"
 			>
-				Failed to fetch app versions
+				{{ t('Failed to fetch app versions') }}
 			</div>
 			<ListView
 				v-else
@@ -65,7 +65,7 @@
 				@click="onRedeploy()"
 				class="mt-4 w-full rounded"
 			>
-				Redeploy
+				{{ t('Redeploy') }}
 			</Button>
 		</template>
 	</Dialog>
@@ -81,6 +81,7 @@ import {
 	Spinner,
 } from 'frappe-ui';
 import { toast } from 'vue-sonner';
+import { t } from '../utils/language';
 export default {
 	name: 'AppVersionsDialog',
 	props: ['group', 'dc_name', 'status', 'isPipeline'],
@@ -109,23 +110,23 @@ export default {
 		columns() {
 			return [
 				{
-					label: 'App',
+					label: t('App'),
 					key: 'name',
 					width: 2,
 				},
 				{
-					label: 'Commit',
+					label: t('Commit'),
 					key: 'hash',
 					width: 2,
 					class: 'font-mono',
 				},
 				{
-					label: 'Branch',
+					label: t('Branch'),
 					key: 'branch',
 					width: 2,
 				},
 				{
-					label: 'Repository',
+					label: t('Repository'),
 					key: 'repository',
 					width: 2,
 				},

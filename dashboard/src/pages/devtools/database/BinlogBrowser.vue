@@ -14,8 +14,8 @@
 				<div class="flex flex-row items-center gap-2">
 					<Breadcrumbs
 						:items="[
-							{ label: 'Dev Tools', route: '/binlog-browser' },
-							{ label: 'Binlog Browser', route: '/binlog-browser' },
+							{ label: t('Dev Tools'), route: '/binlog-browser' },
+							{ label: t('Binlog Browser'), route: '/binlog-browser' },
 						]"
 					/>
 				</div>
@@ -81,12 +81,12 @@
 							class="w-[13rem]"
 							type="select"
 							:options="[
-								{ label: 'All Query', value: 'ALL' },
-								{ label: 'Insert Query', value: 'INSERT' },
-								{ label: 'Update Query', value: 'UPDATE' },
-								{ label: 'Delete Query', value: 'DELETE' },
-								{ label: 'Select Query', value: 'SELECT' },
-								{ label: 'Other Query', value: 'OTHER' },
+								{ label: t('All Query'), value: 'ALL' },
+								{ label: t('Insert Query'), value: 'INSERT' },
+								{ label: t('Update Query'), value: 'UPDATE' },
+								{ label: t('Delete Query'), value: 'DELETE' },
+								{ label: t('Select Query'), value: 'SELECT' },
+								{ label: t('Other Query'), value: 'OTHER' },
 							]"
 							size="sm"
 							variant="outline"

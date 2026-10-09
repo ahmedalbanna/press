@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'New Audit Request' }">
+	<Dialog v-model="show" :options="{ title: t('New Audit Request') }">
 		<template #body-content>
 			<div
 				class="text-base mb-4 text-yellow-600 bg-yellow-100 p-4 rounded leading-normal"
@@ -15,8 +15,8 @@
 					v-model="audit_type"
 					:label="t('Audit Type')"
 					:options="[
-						{ label: 'Online', value: 'Online' },
-						{ label: 'In-Person', value: 'In-Person' },
+						{ label: t('Online'), value: 'Online' },
+						{ label: t('In-Person'), value: 'In-Person' },
 					]"
 					class="mt-4"
 				/>

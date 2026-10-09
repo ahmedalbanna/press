@@ -1,6 +1,6 @@
 <template>
 	<Dialog
-		:options="{ title: 'Database Audit Logs', size: '3xl' }"
+		:options="{ title: t('Database Audit Logs'), size: '3xl' }"
 		v-model="show"
 	>
 		<template #body-content>

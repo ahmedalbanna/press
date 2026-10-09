@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Change Plan',
+			title: t('Change Plan'),
 			size: '5xl',
 			actions: [
 				{
-					label: 'Change plan',
+					label: t('Change plan'),
 					variant: 'solid',
 					onClick: changePlan,
 					disabled:

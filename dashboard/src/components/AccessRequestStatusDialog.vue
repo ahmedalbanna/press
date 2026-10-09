@@ -2,10 +2,10 @@
 	<Dialog
 		v-model="open"
 		:options="{
-			title: 'Access Status',
+			title: t('Access Status'),
 			actions: [
 				{
-					label: 'Request Another',
+					label: t('Request Another'),
 					variant: 'subtle',
 					iconRight: 'arrow-right',
 					onClick: () => {

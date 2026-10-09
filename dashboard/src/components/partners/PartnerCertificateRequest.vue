@@ -3,7 +3,7 @@
 		<Dialog
 			:show="show"
 			v-model="show"
-			:options="{ title: 'Apply for Certification' }"
+			:options="{ title: t('Apply for Certification') }"
 		>
 			<template #body-content>
 				<div v-if="!showMessage">

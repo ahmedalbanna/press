@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Table Size',
+			title: t('Table Size'),
 			size: '7xl',
 		}"
 	>

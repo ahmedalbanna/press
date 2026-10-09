@@ -8,11 +8,11 @@
 							type="select"
 							:label="t('Filter By Level')"
 							:options="[
-								{ label: 'All', value: '' },
-								{ label: 'Info', value: 'Info' },
-								{ label: 'Warning', value: 'warning' },
-								{ label: 'Error', value: 'error' },
-								{ label: 'Critical', value: 'critical' },
+								{ label: t('All'), value: '' },
+								{ label: t('Info'), value: 'Info' },
+								{ label: t('Warning'), value: 'warning' },
+								{ label: t('Error'), value: 'error' },
+								{ label: t('Critical'), value: 'critical' },
 							]"
 							class="w-24"
 							v-if="columns.includes('level')"
@@ -24,9 +24,9 @@
 							type="select"
 							:label="t('Sort By')"
 							:options="[
-								{ label: 'Sort By', disabled: true },
-								{ label: 'Newest First', value: 'desc' },
-								{ label: 'Oldest First', value: 'asc' },
+								{ label: t('Sort By'), disabled: true },
+								{ label: t('Newest First'), value: 'desc' },
+								{ label: t('Oldest First'), value: 'asc' },
 							]"
 							class="w-32"
 							v-if="columns.includes('time')"

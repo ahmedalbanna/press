@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Take Backup',
+			title: t('Take Backup'),
 			actions: [
 				{
-					label: 'Start Backup',
+					label: t('Start Backup'),
 					loading: this.site?.backup?.loading,
 					variant: 'solid',
 					onClick: scheduleBackup,

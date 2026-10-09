@@ -104,7 +104,7 @@ function onClickSave() {
 <template>
 	<Dialog
 		:options="{
-			title: 'Manage Product Warranty',
+			title: t('Manage Product Warranty'),
 			size: 'xl',
 		}"
 		v-model="open"

@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'New Comment', size: '2xl' }">
+	<Dialog v-model="show" :options="{ title: t('New Comment'), size: '2xl' }">
 		<template #body-content>
 			<div>
 				<!-- New Comment -->

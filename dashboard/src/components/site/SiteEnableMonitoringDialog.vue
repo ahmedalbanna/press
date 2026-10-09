@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Monitoring & Alerts are Disabled',
+			title: t('Monitoring & Alerts are Disabled'),
 			size: '2xl',
 		}"
 		v-model="showDialog"

@@ -1,7 +1,7 @@
 <template>
 	<Header class="sticky top-0 z-10 bg-surface-white">
 		<div class="flex items-center space-x-2">
-			<Breadcrumbs :items="[{ label: 'Status', route: '/status' }]" />
+			<Breadcrumbs :items="[{ label: t('Status'), route: '/status' }]" />
 		</div>
 	</Header>
 	<div>

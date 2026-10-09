@@ -38,6 +38,7 @@
 <script>
 import { ErrorMessage, FormControl } from 'frappe-ui';
 import LinkControl from '../components/LinkControl.vue';
+import { t } from '../utils/language';
 
 export default {
 	name: 'ConfirmDialog',
@@ -113,7 +114,7 @@ export default {
 	computed: {
 		primaryActionProps() {
 			return {
-				label: 'Confirm',
+				label: t('Confirm'),
 				variant: 'solid',
 				...this.primaryAction,
 				loading: this.isLoading,

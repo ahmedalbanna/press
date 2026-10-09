@@ -3,7 +3,7 @@
 		<FormControl
 			class="flex-[4]"
 			:class="label ? 'mt-5' : ''"
-			:label="hideLabel ? '' : label ? label : 'Date'"
+			:label="hideLabel ? '' : label ? label: t('Date')"
 			type="select"
 			variant="outline"
 			:options="dayOptions"
@@ -13,7 +13,7 @@
 		<FormControl
 			class="flex-[3]"
 			:class="label ? 'mt-5' : ''"
-			:label="hideLabel ? '' : label ? label : 'Hour'"
+			:label="hideLabel ? '' : label ? label: t('Hour')"
 			type="select"
 			variant="outline"
 			:options="hourOptions"
@@ -23,7 +23,7 @@
 		<FormControl
 			class="flex-[3]"
 			:class="label ? 'mt-5' : ''"
-			:label="hideLabel ? '' : label ? label : 'Minute'"
+			:label="hideLabel ? '' : label ? label: t('Minute')"
 			type="select"
 			variant="outline"
 			:options="minuteOptions"

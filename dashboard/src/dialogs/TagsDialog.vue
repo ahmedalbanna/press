@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="showDialog" :options="{ title: 'Add Tag' }">
+	<Dialog v-model="showDialog" :options="{ title: t('Add Tag') }">
 		<template #body-content>
 			<div class="space-y-2">
 				<FormControl

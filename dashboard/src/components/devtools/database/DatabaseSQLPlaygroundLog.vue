@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Query Logs',
+			title: t('Query Logs'),
 			size: '2xl',
 		}"
 	>

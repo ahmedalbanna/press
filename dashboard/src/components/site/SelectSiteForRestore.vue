@@ -2,10 +2,10 @@
 	<Dialog
 		v-model="showDialog"
 		:options="{
-			title: 'Restore Backup on Another Site',
+			title: t('Restore Backup on Another Site'),
 			actions: [
 				{
-					label: 'Restore',
+					label: t('Restore'),
 					variant: 'solid',
 					theme: 'red',
 					disabled:

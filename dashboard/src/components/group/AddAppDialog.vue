@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add Marketplace App',
+			title: t('Add Marketplace App'),
 			size: '6xl',
 		}"
 		v-model="showDialog"

@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Auto Scale Triggers',
+			title: t('Auto Scale Triggers'),
 			size: '2xl',
 		}"
 		v-model="show"
@@ -167,7 +167,7 @@ export default {
 
 			confirmDialog({
 				title: t('Add Autoscaling Trigger'),
-				message: 'Create a new autoscaling rule for this server.',
+				message: t('Create a new autoscaling rule for this server.'),
 				fields: [
 					{
 						label: t('Metric'),

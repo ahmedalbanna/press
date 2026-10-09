@@ -3,7 +3,7 @@
 		<div class="grid grid-cols-4 gap-5">
 			<NumberChart
 				:config="{
-					title: 'Current Tier',
+					title: t('Current Tier'),
 					value: partnerDetails.data?.partner_type || '',
 				}"
 				class="border rounded-md"
@@ -11,7 +11,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'Certification',
+					title: t('Certification'),
 					value: partnerDetails.data?.custom_number_of_certified_members || 0,
 				}"
 				class="border rounded-md"
@@ -19,7 +19,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'PMM Rating',
+					title: t('PMM Rating'),
 					value: partnerDetails.data?.custom_process_maturity_level || '0',
 				}"
 				class="border rounded-md"
@@ -27,7 +27,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'Contribution',
+					title: t('Contribution'),
 					value: currentMonthContribution.data || 0,
 					prefix: team.doc.currency == 'INR' ? '₹' : '$',
 				}"
@@ -38,16 +38,16 @@
 			<AxisChart
 				:config="{
 					data: axisConfigData,
-					title: 'Partner Revenue Contribution',
-					subtitle: 'Data for the last 12 months',
+					title: t('Partner Revenue Contribution'),
+					subtitle: t('Data for the last 12 months'),
 					xAxis: {
 						key: 'date',
 						type: 'time',
-						title: 'Month',
+						title: t('Month'),
 						timeGrain: 'month',
 					},
 					yAxis: {
-						title: 'Amount',
+						title: t('Amount'),
 					},
 					stacked: true,
 					series: [
@@ -64,7 +64,7 @@
 				<DonutChart
 					:config="{
 						data: sitePlanData,
-						title: 'Site Plan Distribution',
+						title: t('Site Plan Distribution'),
 						categoryColumn: 'plans',
 						valueColumn: 'count',
 					}"
@@ -74,7 +74,7 @@
 				<DonutChart
 					:config="{
 						data: partnerCustomerData,
-						title: 'Partner Team Distribution',
+						title: t('Partner Team Distribution'),
 						categoryColumn: 'team',
 						valueColumn: 'amount',
 					}"

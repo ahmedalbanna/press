@@ -3,7 +3,7 @@
 		<Dialog
 			:show="show"
 			v-model="show"
-			:options="{ title: 'Link Certificate' }"
+			:options="{ title: t('Link Certificate') }"
 		>
 			<template #body-content>
 				<p class="pb-3 text-p-base">{{ t('Enter the details to link a certificate.') }}</p>

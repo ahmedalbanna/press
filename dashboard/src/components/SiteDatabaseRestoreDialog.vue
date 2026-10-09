@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="showRestoreDialog"
 		:disableOutsideClickToClose="true"
-		:options="{ title: 'Restore' }"
+		:options="{ title: t('Restore') }"
 	>
 		<template v-slot:body-content>
 			<div class="space-y-4">

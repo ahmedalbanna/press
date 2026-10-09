@@ -4,7 +4,7 @@
 			<FBreadcrumbs
 				:items="[
 					{
-						label: 'Install App',
+						label: t('Install App'),
 						route: { name: 'InstallApp', params: { app: app } },
 					},
 				]"
@@ -194,7 +194,7 @@ export default {
 							return 'check';
 						}
 					},
-					message: 'This should take a few minutes',
+					message: t('This should take a few minutes'),
 				},
 				{
 					id: 1,
@@ -213,7 +213,7 @@ export default {
 							return 'clock';
 						}
 					},
-					message: 'This should take a few minutes',
+					message: t('This should take a few minutes'),
 				},
 				{
 					id: 2,
@@ -231,7 +231,7 @@ export default {
 							return 'clock';
 						}
 					},
-					message: 'This should take a few minutes',
+					message: t('This should take a few minutes'),
 				},
 			];
 		},

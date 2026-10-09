@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'New Lead', size: '2xl' }">
+	<Dialog v-model="show" :options="{ title: t('New Lead'), size: '2xl' }">
 		<template #body-content>
 			<div class="flex flex-col gap-5">
 				<div

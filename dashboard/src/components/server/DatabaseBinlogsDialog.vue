@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Database Binlogs',
+			title: t('Database Binlogs'),
 			size: '2xl',
 		}"
 		v-model="show"

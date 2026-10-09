@@ -76,10 +76,13 @@ Add DB Index,إضافة فهرس قاعدة بيانات
 Add Database User,إضافة مستخدم قاعدة البيانات
 Add Domain,إضافة نطاق
 Add Environment Variable,إضافة متغير بيئة
+Add Firewall Rule,إضافة قاعدة جدار حماية
 Add Followup,إضافة متابعة
 Add Key,إضافة مفتاح
 Add Lead,إضافة عميل محتمل
+Add Lost Reason,إضافة سبب خسارة
 Add M-Pesa Credentials,إضافة بيانات اعتماد M-Pesa
+Add Marketplace App,إضافة تطبيق من السوق
 Add Member,إضافة عضو
 Add Money,إضافة رصيد
 Add New SSH Key,إضافة مفتاح SSH جديد
@@ -96,11 +99,14 @@ Add Tag,إضافة علامة
 Add Trigger,إضافة محفز
 Add User,إضافة مستخدم
 Add Webhook,إضافة Webhook
+Add Won Details,إضافة تفاصيل الشراء
 Add a GSTIN,أضف رقم GSTIN
 Add a logo,أضف شعاراً
+Add a new Marketplace App,إضافة تطبيق سوق جديد
 Add a new SSH Key to your account,أضف مفتاح SSH جديدًا إلى حسابك
 Add a payment mode,أضف طريقة دفع
 "Add a payment mode to start creating sites, benches, and more.",أضف وسيلة دفع لبدء إنشاء المواقع والأرصفة والمزيد.
+Add app from GitHub,إضافة تطبيق من GitHub
 Add apps from your bench,أضف تطبيقات من الرصيف
 Add at least one card before changing the payment mode.,أضف بطاقة واحدة على الأقل قبل تغيير طريقة الدفع.
 Add benches via the more button or benches tab to start hosting sites,أضف أرصفة عبر زر المزيد أو تبويب الأرصفة لبدء استضافة المواقع
@@ -115,6 +121,7 @@ Add new card,إضافة بطاقة جديدة
 Add payment mode,إضافة وسيلة دفع
 Add relevant links for your app,أضف روابط ذات صلة بتطبيقك
 Add site,إضافة موقع
+Add tag,إضافة وسم
 Add this SSH Key to,أضف مفتاح SSH هذا إلى
 Add version support for {app},إضافة دعم الإصدار لـ {app}
 Add your billing details and payment method to activate your subscription. You won't be charged until your trial ends on {date}.,أضف تفاصيل الفوترة وطريقة الدفع لتفعيل اشتراكك. لن يتم تحصيل أي رسوم حتى ينتهي اشتراكك التجريبي في {date}.
@@ -144,6 +151,7 @@ All,الكل
 All Auto Scales,كل عمليات التوسع التلقائي
 All Frappe apps are open-source,جميع تطبيقات Frappe مفتوحة المصدر
 All Migrations,كل الترحيلات
+All Query,كل الاستعلامات
 All Release Groups,كل مجموعات الإصدار
 All Roles,جميع الأدوار
 All Servers,كل الخوادم
@@ -156,6 +164,7 @@ All jobs,كل المهام
 All notifications marked as read,تم تعيين كل الإشعارات كمقروءة
 All plays,كل عمليات التشغيل
 All the data from your site will be lost. Are you sure you want to reset your database?,ستفقد كل بيانات موقعك. هل تريد بالتأكيد إعادة تعيين قاعدة بياناتك؟
+Allow,سماح
 Allow Apps Access,السماح بالوصول إلى التطبيقات
 Allow Bench Creation,السماح بإنشاء الأرصفة
 Allow Billing Access,السماح بالوصول إلى الفوترة
@@ -168,6 +177,7 @@ Allow Server Creation,السماح بإنشاء الخوادم
 Allow Site Creation,السماح بإنشاء المواقع
 Allow Webhook Configuration,السماح بتكوين Webhook
 Allow my details to be shared with a local partner,السماح بمشاركة بياناتي مع شريك محلي
+Allow this data to be accessed,السماح بالوصول إلى هذه البيانات
 Almost there,اقتربنا من الانتهاء
 Already have an account? ,هل لديك حساب بالفعل؟ 
 Already have an account? Log in.,لديك حساب بالفعل؟ سجّل الدخول.
@@ -197,6 +207,7 @@ App Removed,تم إزالة التطبيق
 App Server,خادم التطبيقات
 App Server IP Addresses,عناوين IP لخادم التطبيقات
 App Server IPs,عناوين IP لخادم التطبيق
+App Versions,إصدارات التطبيق
 App has been patched,تم ترقيع التطبيق
 App {title} added,تم إضافة التطبيق {title}
 App {title} updated,تم تحديث التطبيق {title}
@@ -232,7 +243,9 @@ Are you sure you want to delete the config <b>{key}</b>?,هل تريد حذف ا
 Are you sure you want to delete the database user ?<br>,هل تريد حذف مستخدم قاعدة البيانات؟<br>
 Are you sure you want to delete the environment variable <b>{key}</b>?,هل تريد حذف متغير البيئة <b>{key}</b>؟
 Are you sure you want to delete this app?,هل تريد حذف هذا التطبيق؟
+Are you sure you want to delete this followup from ,هل أنت متأكد أنك تريد حذف هذه المتابعة من 
 Are you sure you want to delete this role?,هل أنت متأكد أنك تريد حذف هذا الدور؟
+Are you sure you want to delete this screenshot? This action cannot be undone.,هل أنت متأكد أنك تريد حذف لقطة الشاشة هذه؟ لا يمكن التراجع عن هذا الإجراء.
 Are you sure you want to delete this snapshot? This will delete the snapshot and all associated recovered data.,هل تريد حذف هذه اللقطة؟ سيؤدي ذلك إلى حذف اللقطة وكل البيانات المستعادة المرتبطة بها.
 Are you sure you want to drop the bench <b>{bench}</b>?,هل أنت متأكد أنك تريد حذف الرصيف <b>{bench}</b>؟
 Are you sure you want to drop your servers?,هل أنت متأكد أنك تريد حذف خوادمك؟
@@ -282,6 +295,7 @@ Authorized,مصرح
 Auto Add-on Storage,تخزين إضافي تلقائي
 Auto Refresh,تحديث تلقائي
 Auto Scale,التحجيم التلقائي
+Auto Scale Triggers,محفزات التوسع التلقائي
 Automated Billing,الفوترة التلقائية
 Automatic billing is enabled,تم تفعيل الفوترة التلقائية
 Automatic billing setup completed,تم إعداد الفوترة التلقائية
@@ -362,6 +376,7 @@ Binlog Browser,متصفح البينلوغ
 Binlog Browser Not Available,مستعرض السجلات الثنائية غير متاح
 Binlog Browser Temporarily Unavailable,مستعرض السجلات الثنائية غير متاح مؤقتًا
 Binlog Browser is only available for sites on dedicated servers.,مستعرض السجلات الثنائية متاح فقط للمواقع على الخوادم المخصصة.
+Binlog Index Status,حالة فهرسة السجلات الثنائية
 Binlog Indexing Disabled,تم تعطيل فهرسة السجلات الثنائية
 Binlogs,السجلات الثنائية
 Block,حظر
@@ -374,6 +389,7 @@ Branch Deleted,تم حذف الفرع
 Branch Name,اسم الفرع
 Breakdown Type,نوع التفصيل
 Broken,معطل
+Browse Schema,استعراض المخطط
 Browse upcoming batches,استعرض الدفعات القادمة
 Budget Alert Details:,تفاصيل تنبيه الميزانية:
 Budget Alert for {0},تنبيه ميزانية {0}
@@ -450,6 +466,8 @@ Certificate Type,نوع الشهادة
 Certificate fetch scheduled. Please wait a few minutes.,تم جدولة جلب الشهادة. يُرجى الانتظار بضع دقائق.
 Certificate type,نوع الشهادة
 Certificates,الشهادات
+Certification,الشهادة
+Certification Request Status,حالة طلب الشهادة
 Certification link status,حالة ربط الشهادة
 Certifications,الشهادات
 Certifications guide,دليل الشهادات
@@ -458,6 +476,7 @@ Certified Members,الأعضاء المعتمدون
 Change,تغيير
 Change Bench / Server / Region options moved to Migrations Tab,تم نقل خيارات تغيير البنش / الخادم / المنطقة إلى تبويب الترحيلات
 Change Branch,تغيير الفرع
+Change Branch for ,تغيير الفرع لـ 
 Change Password,تغيير كلمة المرور
 Change Payment Method,تغيير طريقة الدفع
 Change Payment Mode,تغيير طريقة الدفع
@@ -555,11 +574,14 @@ Conducted By,أجراه
 Conducted On,تاريخ الإجراء
 Config,الإعدادات
 Config Name,اسم الإعداد
+Config Preview,معاينة الإعداد
 Config Value,قيمة الإعداد
 Configuration,التكوين
 Configure,تهيئة
 Configure Auto Increase Storage,إعداد الزيادة التلقائية للتخزين
+Configure Auto Update,إعداد التحديث التلقائي
 Configure Automated Scaling,إعداد التوسع التلقائي
+Configure Database Audit Trail,إعداد مسار تدقيق قاعدة البيانات
 Configure Permissions,تكوين الأذونات
 Configure User,تكوين المستخدم
 Configure compute allocation,تخصيص موارد الحوسبة
@@ -593,6 +615,7 @@ Continue with verification code,المتابعة باستخدام رمز الت�
 Continue your journey,واصل رحلتك
 Contribution,المساهمة
 Contributions,المساهمات
+Contributions of this month,مساهمات هذا الشهر
 Conversion Date,تاريخ التحويل
 Cookie Policy,سياسة ملفات تعريف الارتباط
 Copy,نسخ
@@ -624,6 +647,7 @@ Create Sites,إنشاء مواقع
 Create Snapshot,إنشاء لقطة
 Create User,إنشاء المستخدم
 Create a new account.,إنشاء حساب جديد.
+Create a new autoscaling rule for this server.,إنشاء قاعدة توسع تلقائي جديدة لهذا الخادم.
 Create account,إنشاء حساب
 Create an offsite backup,إنشاء نسخة احتياطية خارجية
 Create new,إنشاء جديد
@@ -640,6 +664,7 @@ Created On,تاريخ الإنشاء
 Created by,أنشئ بواسطة
 Created on,تاريخ الإنشاء
 Creating Servers,جارٍ إنشاء الخوادم
+Creating Site,جارٍ إنشاء الموقع
 Creating Your Site,جارٍ إنشاء موقعك
 Creating site...,جاري إنشاء الموقع...
 Creating site... This may take a while...,جاري إنشاء الموقع... قد يستغرق ذلك بعض الوقت...
@@ -649,6 +674,7 @@ Creator,المنشئ
 Credit Balance,الرصيد المتبقي
 Credit balance,الرصيد المتبقي
 Credit or Debit Card,بطاقة ائتمان أو خصم
+Credits Transferred Successfully,تم تحويل الأرصدة بنجاح
 Critical,حرج
 Crunching data...,جارٍ تحليل البيانات...
 Currency,العملة
@@ -659,6 +685,7 @@ Current Password,كلمة المرور الحالية
 Current Plan,الخطة الحالية
 Current Progress,التقدم الحالي
 Current Status,الحالة الحالية
+Current Tier,الفئة الحالية
 Current Version,الإصدار الحالي
 Current billing amount so far,إجمالي الفوترة حتى الآن
 Current subscribed amount,مبلغ الاشتراك الحالي
@@ -686,15 +713,21 @@ Dashboard,لوحة التحكم
 Data Size,حجم البيانات
 Data Size (MB),حجم البيانات (ميجابايت)
 Data Type,نوع البيانات
+Data for the last 12 months,بيانات آخر 12 شهرًا
 Data will appear here once activity is tracked,ستظهر البيانات هنا بعد تتبع النشاط
 Database,قاعدة البيانات
 Database Actions,إجراءات قاعدة البيانات
 Database Analyzer,محلل قاعدة البيانات
+Database Audit Logs,سجلات تدقيق قاعدة البيانات
 Database Backup,نسخة احتياطية لقاعدة البيانات
+Database Binlogs,سجلات قاعدة البيانات الثنائية
+Database Configuration,إعدادات قاعدة البيانات
 Database Connections,اتصالات قاعدة البيانات
+Database Credential,بيانات اعتماد قاعدة البيانات
 Database Index Analysis,تحليل فهارس قاعدة البيانات
 Database Locks,أقفال قاعدة البيانات
 Database Logs,سجلات قاعدة البيانات
+Database Process,عملية قاعدة البيانات
 Database Processes,عمليات قاعدة البيانات
 Database Server,خادم قاعدة البيانات
 Database Server Actions,إجراءات خادم قاعدة البيانات
@@ -730,6 +763,7 @@ Delete Database User,حذف مستخدم قاعدة البيانات
 Delete Environment Variable,حذف متغير البيئة
 Delete Followup,حذف المتابعة
 Delete Patch,حذف الترقيع
+Delete Query,حذف الاستعلام
 Delete Screenshot,حذف لقطة الشاشة
 Delete Snapshot,حذف اللقطة
 Delete User,حذف المستخدم
@@ -738,6 +772,8 @@ Deleting config...,جاري حذف الإعداد...
 Deleting environment variable...,جاري حذف متغير البيئة...
 Deleting snapshot...,جاري حذف اللقطة...
 Demo/Making,تجريبي / قيد الإنشاء
+Denormalized,غير موحّد
+Deny,رفض
 Dependencies,التبعيات
 Dependency,التبعية
 Deploy,نشر
@@ -815,9 +851,11 @@ Download Public Files,تنزيل الملفات العامة
 Download as CSV,تنزيل كملف CSV
 Draft,مسودة
 Drop,حذف
+Drop Active Servers,حذف الخوادم النشطة
 Drop Bench,حذف الرصيف
 Drop Server,حذف الخادم
 Drop Servers,حذف الخوادم
+Drop Site,حذف الموقع
 Drop bench,حذف الرصيف
 Drop both the application and database servers,حذف خادمي التطبيقات وقاعدة البيانات معًا
 Drop server,حذف الخادم
@@ -841,6 +879,7 @@ Edit Scheduled Update,تعديل التحديث المجدول
 Edit Secret,تعديل السر
 Edit Update,تعديل التحديث
 Edit Webhook,تعديل Webhook
+Edit registration,تعديل التسجيل
 Editing scheduled update...,جاري تعديل التحديث المجدول...
 Education,التعليم
 Eligibility,الأهلية
@@ -940,6 +979,7 @@ Error saving M-Pesa credentials,خطأ في حفظ بيانات اعتماد M-P
 Error saving Payment Gateway settings,خطأ في حفظ إعدادات بوابة الدفع
 Error saving Payment Gateway settings: {error},خطأ في حفظ إعدادات بوابة الدفع: {error}
 Error submitting payments: {error},خطأ أثناء إرسال المدفوعات: {error}
+Evaluation Summary,ملخص التقييم
 Event,الحدث
 Event Size,حجم الحدث
 Exchange Rate,سعر الصرف
@@ -966,6 +1006,7 @@ Failed to drop bench,تعذر حذف الرصيف
 Failed to drop servers,تعذر حذف الخوادم
 Failed to edit scheduled update,فشل تعديل التحديث المجدول
 Failed to enable monitoring,تعذر تفعيل المراقبة
+Failed to fetch app versions,تعذر جلب إصدارات التطبيق
 Failed to fetch cleanup data.,تعذر جلب بيانات التنظيف.
 Failed to initiate database user deletion,فشل بدء حذف مستخدم قاعدة البيانات
 Failed to install the app.,تعذر تثبيت التطبيق.
@@ -990,6 +1031,7 @@ Fetch Recovery Codes,جلب رموز الاسترداد
 Fetch Transactions,جلب المعاملات
 Fetched Transactions,المعاملات المجلوبة
 Fetching Latest Updates for {title}...,جاري جلب أحدث التحديثات لـ {title}...
+Fetching app versions ...,جارٍ جلب إصدارات التطبيق...
 Fetching certificate...,جاري جلب الشهادة...
 Fetching logs...,جاري جلب السجلات...
 Fetching table schemas,جاري جلب مخططات الجداول
@@ -1127,6 +1169,7 @@ Hosted on,مستضاف على
 Hosting,الاستضافة
 Hosting discount,خصم الاستضافة
 Hot,ساخن
+Hour,الساعة
 How tier upgrades work,كيف تعمل ترقية الفئات
 How to fix,خطوات الإصلاح
 How to fix?,كيف يتم الإصلاح؟
@@ -1192,16 +1235,19 @@ Industry,القطاع
 Info,معلومات
 Initializing,جارٍ التهيئة
 Initiator Name,اسم المُشرِّع
+Insert Query,إدراج استعلام
 Insights,الرؤى
 Install,تثبيت
 Install App,تثبيت تطبيق
 Install Local Compliance App?,تثبيت تطبيق الامتثال المحلي؟
 Install Now,ثبّت الآن
 Install app,تثبيت التطبيق
+Install app on your site,ثبّت التطبيق على موقعك
 Install {app},تثبيت {app}
 Installation,تثبيت
 Installed on,مثبّت على
 Installing,قيد التثبيت
+Installing apps and setting up your site,جارٍ تثبيت التطبيقات وإعداد موقعك
 Installs,التثبيتات
 Instance Type,نوع النسخة
 Instance Type:,نوع الجهاز:
@@ -1230,6 +1276,7 @@ Invoice Amount,مبلغ الفاتورة
 Invoice Cancelled,فاتورة ملغاة
 Invoice Created,تم إنشاء الفاتورة
 Invoice Date,تاريخ الفاتورة
+Invoice Details,تفاصيل الفاتورة
 Invoice Due Date,تاريخ استحقاق الفاتورة
 Invoice ID,معرّف الفاتورة
 Invoice Name,اسم الفاتورة
@@ -1275,6 +1322,7 @@ Language,اللغة
 Last 1 hour,آخر ساعة
 Last 15 days,آخر 15 يومًا
 Last 3 days,آخر 3 أيام
+Last 6 Month's Contribution,مساهمة آخر 6 أشهر
 Last 6 hours,آخر 6 ساعات
 Last 7 days,آخر 7 أيام
 "Last Month
@@ -1288,6 +1336,7 @@ Last paid invoice ≥ {amount},آخر فاتورة مدفوعة ≥ {amount}
 Latest Deployed,آخر إصدار منشور
 Latest Updates Fetched for {title},تم جلب أحدث التحديثات لـ {title}
 Launch,إطلاق
+Lead Details,تفاصيل العميل المحتمل
 Lead ID,معرّف العميل المحتمل
 Lead Name,اسم العميل المحتمل
 Lead Owner,مالك العميل المحتمل
@@ -1429,14 +1478,17 @@ Min sales,أقل مبيعات
 Min sales/month,أقل مبيعات/شهر
 Minimum Storage Increase (GB),أقل زيادة للتخزين (جيجابايت)
 Minor,ثانوي
+Minute,الدقيقة
 Missing deployment information.,معلومات النشر مفقودة.
 Mobile number,رقم الهاتف المحمول
 Mode,الوضع
 Mode of payment,طريقة الدفع
 Modified / Created on,آخر تعديل / تاريخ الإنشاء
 Modified On,آخر تعديل
+Monitoring & Alerts are Disabled,المراقبة والتنبيهات معطّلة
 Monitoring and alerting has been disabled for your site <strong>{0}</strong>. Reason:,تم تعطيل المراقبة والتنبيه لموقعك <strong>{0}</strong>. السبب:
 Monitoring is enabled already. No action is required from your end.,المراقبة مفعّلة بالفعل. لا يلزم أي إجراء منك.
+Month,الشهر
 "Month To Date
 ({month})","من بداية الشهر حتى تاريخه
 ({month})"
@@ -1478,9 +1530,11 @@ Net Amount,صافي المبلغ
 Network,الشبكة
 New,جديد
 New App,تطبيق جديد
+New Audit Request,طلب تدقيق جديد
 New Bench,بنش جديد
 New Comment,تعليق جديد
 New Email,بريد إلكتروني جديد
+New Lead,عميل محتمل جديد
 New Password,كلمة المرور الجديدة
 New Payment Payout,دفعة جديدة للشريك
 New Payout,دفعة جديدة
@@ -1492,6 +1546,7 @@ New Version,إصدار جديد
 New member? ,عضو جديد؟ 
 New member? Create a new account.,عضو جديد؟ أنشئ حسابًا جديدًا.
 New teams start at the base tier with a default spending limit. Adding a payment method or buying prepaid credits is required to remain at or above the base tier.,تبدأ الفرق الجديدة في الفئة الأساسية مع حد إنفاق افتراضي. يلزم إضافة طريقة دفع أو شراء رصيد مُسبق للبقاء في الفئة الأساسية أو أعلى منها.
+Newest First,الأحدث أولًا
 Next,التالي
 Next Version,الإصدار التالي
 Next change available after,التغيير التالي متاح بعد
@@ -1555,6 +1610,7 @@ Non-profit,غير ربحي
 None,لا شيء
 Normal,عادي
 Normalized,موحّد
+Normalized Query,استعلام موحّد
 Not Applicable,غير قابل للتطبيق
 Not Compatible,غير متوافق
 Not Deployed,لم يتم النشر
@@ -1568,10 +1624,12 @@ Note,ملاحظة
 Note :,ملاحظة:
 Note:,ملاحظة:
 Note: Use this as last resort if site is broken and inaccessible,ملاحظة: استخدم هذا كحل أخير إذا كان الموقع معطلاً ولا يمكن الوصول إليه
+Note: You should have a,ملاحظة: يجب أن يكون لديك
 "Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
 "Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
 Notes,ملاحظات
 Nothing to show,لا شيء لعرضه
+Notification Configuration,إعداد الإشعارات
 Notification Settings,إعدادات الإشعارات
 Notifications,الإشعارات
 Now,الآن
@@ -1586,7 +1644,9 @@ Offsite,خارجي
 Offsite Backups,النسخ الاحتياطية الخارجية
 Old,قديم
 Older Deploys,عمليات النشر الأقدم
+Oldest First,الأقدم أولًا
 On Hold,معلق
+On-Prem Failover Setup,إعداد التحويل للخادم المحلي
 On-Prem Reachable,الخادم المحلي قابل للوصول
 On-Prem SSHable,الخادم المحلي يدعم SSH
 On-Prem Server Setup Guide,دليل إعداد الخادم المحلي
@@ -1613,6 +1673,7 @@ Organization Name,اسم المؤسسة
 Other,أخرى
 Other Custom Apps on Bench Group (Optional),تطبيقات مخصصة أخرى على مجموعة الرصيف (اختياري)
 Other Logs,سجلات أخرى
+Other Query,استعلامات أخرى
 Other Reason,سبب آخر
 Other Reason (specify),سبب آخر (حدّد)
 Other branches,فروع أخرى
@@ -1625,6 +1686,7 @@ Overview,نظرة عامة
 Owned by,المالك
 Owner,المالك
 PDF Logs,سجلات PDF
+PMM Rating,تقييم PMM
 Page Access,وصول الصفحات
 Page not found,الصفحة غير موجودة
 Pageviews,مشاهدات الصفحات
@@ -1636,6 +1698,7 @@ Partner Admin,إدارة الشركاء
 Partner Approval,موافقة الشريك
 Partner Approval Request,طلب موافقة شريك
 Partner Email,بريد الشريك
+Partner Lead,عميل محتمل للشريك
 Partner List,قائمة الشركاء
 Partner Listing,قائمة الشركاء
 Partner Management,إدارة الشركاء
@@ -1645,6 +1708,8 @@ Partner Payments Payouts,مدفوعات الشركاء
 Partner Payout,دفعة الشريك
 Partner Permissions,أذونات الشريك
 Partner Referral Code,رمز إحالة الشريك
+Partner Revenue Contribution,مساهمة إيرادات الشريك
+Partner Team Distribution,توزيع فريق الشريك
 Partner Total,إجمالي الشريك
 Partner Website,موقع الشريك
 Partner application,طلب الشراكة
@@ -1845,6 +1910,7 @@ Protocol,البروتوكول
 Provide New Bench Name,أدخل اسم البنش الجديد
 Provide a valid webhook endpoint,أدخل نقطة نهاية Webhook صالحة
 Provisioning private bench and creating site...,جاري تجهيز البنش الخاص وإنشاء الموقع...
+Provisioning your private bench environment,جارٍ تجهيز بيئة رصيفك الخاصة
 Public,عام
 Public Files,الملفات العامة
 Public IP,عنوان IP عام
@@ -1859,6 +1925,7 @@ Quantity,الكمية
 Queries,الاستعلامات
 Query,استعلام
 Query Deadlocks,الطرق المسدودة في الاستعلامات
+Query Logs,سجلات الاستعلامات
 Query Report Durations,مدد تقارير الاستعلامات
 Query Type,نوع الاستعلام
 Query executed successfully,تم تنفيذ الاستعلام بنجاح
@@ -1874,10 +1941,12 @@ Re-attempt the recovery manually?,هل تريد إعادة محاولة الاس
 Re-authorize GitHub,إعادة تفويض GitHub
 Re-run Query,إعادة تنفيذ الاستعلام
 Reactivate,إعادة التفعيل
+Reactivate Account,إعادة تفعيل الحساب
 Read,قراءة
 Read Bytes,بايتات القراءة
-Read Only,للقراءة فقط
+Read Only,قراءة فقط
 Read Write,قراءة وكتابة
+Read and write queries,استعلامات القراءة والكتابة
 Read documentation,اقرأ الوثائق
 Read more,اقرأ المزيد
 Read only access to all the tables,وصول للقراءة فقط إلى جميع الجداول
@@ -1914,6 +1983,7 @@ Record ID,معرّف السجل
 Record an audit trail,تسجيل مسار تدقيق
 Recover Site & Backup,استعادة الموقع والنسخة الاحتياطية
 Recover Sites,استعادة المواقع
+Recover Sites From Snapshot,استعادة المواقع من لقطة
 Recoverable up to 6 months,قابل للاستعادة حتى 6 أشهر
 Recovered,تمت الاستعادة
 Recovering,جارٍ الاستعادة
@@ -1923,6 +1993,7 @@ Recovery Details,تفاصيل الاستعادة
 Recovery codes have been reset.,تمت إعادة تعيين رموز الاسترداد.
 Recovery from snapshot {0} has completed.,تم الاسترجاع من لقطة {0}.
 Recurring Charges,الرسوم المتكررة
+Redeploy,إعادة النشر
 Redeploy Without Cache,إعادة النشر بدون ذاكرة مؤقتة
 Redirect Domain,إعادة توجيه النطاق
 Redirect removed,تم إزالة إعادة التوجيه
@@ -1994,7 +2065,9 @@ Report,إبلاغ
 Reports,التقارير
 Repository,المستودع
 "Repository not found. If it is private, add it from the",لم يتم العثور على المستودع. إذا كان خاصًا، فأضفه من
+Request,طلب
 Request Access,طلب الوصول
+Request Another,طلب آخر
 Request Audit,طلب تدقيق
 Request Count by Path,عدد الطلبات حسب المسار
 Request Log Report,تقرير سجل الطلبات
@@ -2031,6 +2104,7 @@ Restart,إعادة تشغيل
 Restart Bench,إعادة تشغيل الرصيف
 Restore,استعادة
 Restore Backup,استعادة النسخة الاحتياطية
+Restore Backup on Another Site,استعادة نسخة احتياطية على موقع آخر
 Restore Backup on another Site,استعادة النسخة على موقع آخر
 Restore Physical Backup,استعادة النسخة الفيزيائية
 Restore Tables,استعادة الجداول
@@ -2147,13 +2221,16 @@ Select Frappe Framework Version,اختر إصدار Frappe Framework
 Select Gateway,اختر البوابة
 Select Migration Option,اختر خيار الترحيل
 Select Migration Type,اختر نوع الترحيل
+Select Mode,اختر الوضع
 Select Partner,اختر الشريك
 Select Payment Gateway,اختر بوابة الدفع
 Select Payment Partner,اختر شريك الدفع
 Select Plan,اختر الخطة
 Select Private Apps,اختر التطبيقات الخاصة
 Select Provider,اختر المزود
+Select Query,استعلام تحديد
 Select Region,اختر المنطقة
+Select Secondary Application Server Plan,اختر خطة خادم التطبيقات الثانوي
 Select Server,اختر الخادم
 Select Server Type,اختر نوع الخادم
 Select Sites to Recover,اختر المواقع المراد استعادتها
@@ -2254,6 +2331,7 @@ Setup Account,إعداد الحساب
 Setup Autopay,إعداد الدفع التلقائي
 Setup Key,مفتاح الإعداد
 Setup Secondary Application Server,إعداد خادم التطبيقات الثانوي
+Setup Secondary Server,إعداد الخادم الثانوي
 Setup Site,إعداد الموقع
 Setup UPI Autopay,إعداد الدفع التلقائي عبر UPI
 Share,مشاركة
@@ -2302,6 +2380,7 @@ Site Name,اسم الموقع
 Site Notification,إشعارات الموقع
 Site Performance,أداء الموقع
 Site Plan,خطة الموقع
+Site Plan Distribution,توزيع خطط المواقع
 Site SSL,شهادة SSL للموقع
 Site Settings,إعدادات الموقع
 Site Status,حالة الموقع
@@ -2362,6 +2441,7 @@ Spoke To,تحدث مع
 Standard,قياسي
 Standby,استعداد
 Start,بدء
+Start Backup,بدء النسخ الاحتياطي
 Start Cleanup,بدء التنظيف
 Start Now,ابدأ الآن
 Start Time,وقت البدء
@@ -2389,6 +2469,7 @@ Stop Replication Setup,إيقاف إعداد النسخ المتماثل
 Storage,التخزين
 Storage (GB),التخزين (جيجابايت)
 Storage Breakdown,تفصيل التخزين
+Storage can auto increase only once in 6 hours.,يمكن زيادة التخزين تلقائيًا مرة واحدة فقط كل 6 ساعات.
 Stored logs are billed at,تُحتسب السجلات المخزنة بسعر
 String,نص
 Subdomain,النطاق الفرعي
@@ -2415,6 +2496,7 @@ Sync,مزامنة
 Table,الجدول
 Table Name,اسم الجدول
 Table Name (% allowed),اسم الجدول (يُسمح بـ %)
+Table Size,حجم الجدول
 Table restore started,بدأت استعادة الجداول
 Tables,الجداول
 Tag,الوسم
@@ -2448,6 +2530,7 @@ Team Sites,مواقع الفريق
 Team Size,حجم الفريق
 Team Transfer,نقل ملكية الفريق
 Teardown,التفكيك
+Tell us why you are leaving,أخبرنا بسبب مغادرتك
 Temporary files,الملفات المؤقتة
 Terms & Policies,الشروط والسياسات
 Terms of Service,شروط الخدمة
@@ -2493,6 +2576,7 @@ This request has been accepted.,تم قبول هذا الطلب.
 This request has been forfeited.,تم التخلي عن هذا الطلب.
 This request has been rejected.,تم رفض هذا الطلب.
 This request has been revoked.,تم إلغاء هذا الطلب.
+This should take a few minutes,يجب أن يستغرق هذا بضع دقائق
 This site,هذا الموقع
 "This site has custom domains pointing to an A record. After the migration, update them to <strong>{inbound_ip}</strong>, or switch them to a CNAME record pointing to <strong>{site}</strong>. Until then those domains will not resolve. <a href=""https://docs.frappe.io/cloud/sites/custom-domains"" target=""_blank"" class=""underline"">Read more</a>","لهذا الموقع نطاقات مخصصة تشير إلى سجل A. بعد الترحيل، قم بتحديثها إلى <strong>{inbound_ip}</strong>، أو بدّلها إلى سجل CNAME يشير إلى <strong>{site}</strong>. حتى ذلك الحين لن يتم حل تلك النطاقات. <a href=""https://docs.frappe.io/cloud/sites/custom-domains"" target=""_blank"" class=""underline"">اقرأ المزيد</a>"
 This site is archived. It cannot be used again.,هذا الموقع مؤرشف. لا يمكن استخدامه مرة أخرى.
@@ -2541,6 +2625,7 @@ Total Cost,التكلفة الإجمالية
 Total Discount Amount,إجمالي الخصم
 Total Earnings,إجمالي الأرباح
 Total Installs,إجمالي التثبيتات
+Total Leads,إجمالي العملاء المحتملين
 Total Payout,إجمالي الدفعات
 Total Size (MB),الحجم الكلي (ميجابايت)
 Total Without Discount,الإجمالي بدون خصم
@@ -2614,12 +2699,14 @@ Update Billing Settings,تحديث إعدادات الفوترة
 Update Binlog Retention,تحديث مدة الاحتفاظ بالسجلات الثنائية
 Update Binlog Size Limit,تحديث حد حجم السجلات الثنائية
 Update Card,تحديث البطاقة
+Update Engagement Stage,تحديث مرحلة التفاعل
 Update Followup Details,تحديث تفاصيل المتابعة
 Update InnoDB Buffer Pool Size,تحديث حجم تجميع ذاكرة InnoDB
 Update Lead details,تحديث تفاصيل العميل المحتمل
 Update Max DB Connections,تحديث أقصى عدد اتصالات قاعدة البيانات
 Update Now,تحديث الآن
 Update Profile Information,تحديث معلومات الملف الشخصي
+Update Query,تحديث استعلام
 Update Scheduled,التحديث مجدول
 Update Settings,تحديث الإعدادات
 Update Website Info,تحديث معلومات الموقع
@@ -2636,6 +2723,7 @@ Upgrade,ترقية
 Upgrade Now,الترقية الآن
 Upgrade Plan,ترقية الخطة
 Upgrade Site Plan,ترقية خطة الموقع
+Upgrade Site Version,ترقية إصدار الموقع
 Upgrade your plan,ترقية خطتك
 Upgrade your site to a major version,قم بترقية موقعك إلى إصدار رئيسي
 "Upgrading can reduce incidents and improve your experience. If you have questions, our support team is happy to help.",الترقية تقلل الأعطال وتحسن تجربتك. وإذا كان لديك أي استفسار، فريق الدعم لدينا جاهز للمساعدة.
@@ -2788,6 +2876,7 @@ Won,مكتسب
 Worldwide,عالمي
 Write Bytes,بايتات الكتابة
 Write Reply,كتابة رد
+Write queries,استعلامات الكتابة
 Write your comment here...,اكتب تعليقك هنا...
 Yanked,تم سحبه
 Yes,نعم
@@ -2824,6 +2913,7 @@ You requested a verification code to log in to your site on AlbannaTech.,طلب�
 You will be able to access your site via your site name,ستتمكن من الوصول إلى موقعك عبر اسم موقعك
 You will be able to publish apps to our Marketplace upon confirmation.,ستتمكن من نشر التطبيقات في متجرنا بعد التأكيد.
 You will be billed for this site under the team {0},سيتم احتساب فواتير هذا الموقع على فريق {0}
+You will be charged at the rate of,سيتم تحصيل الرسوم بسعر
 You will be charged from your credit balance for monthly subscription,سيتم الخصم من رصيدك المتبقي للاشتراك الشهري
 You will be downloading the {file} backup of the site <b>{site}</b> that was created on {date}.,ستقوم بتنزيل النسخة الاحتياطية {file} للموقع <b>{site}</b> التي أُنشئت في {date}.
 You will still be charged for it.,سيستمر تحصيل الرسوم عليك.
@@ -2899,6 +2989,7 @@ disk usage limit,حد مساحة القرص
 documentation,التوثيق
 expired,منتهية الصلاحية
 for a new account.,لحساب جديد.
+for each additional GB of storage.,لكل جيجابايت إضافي من التخزين.
 "for the guide. If you need help, please raise a ticket with",للإرشادات. إذا كنت بحاجة إلى مساعدة، يرجى فتح تذكرة لدى
 "for your AlbannaTech subscription, but it was declined. Please update your card details from your",لاشتراك AlbannaTech الخاص بك، لكن تم رفض العملية. يرجى تحديث بيانات بطاقتك من
 "for your AlbannaTech subscription, but the payment failed.",لاشتراك AlbannaTech الخاص بك، ولكن فشلت عملية الدفع.

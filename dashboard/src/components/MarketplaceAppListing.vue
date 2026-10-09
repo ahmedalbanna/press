@@ -280,8 +280,7 @@ export default {
 					onClick: () => {
 						confirmDialog({
 							title: t('Delete Screenshot'),
-							message:
-								'Are you sure you want to delete this screenshot? This action cannot be undone.',
+							message: t('Are you sure you want to delete this screenshot? This action cannot be undone.'),
 							primaryAction: {
 								label: t('Delete'),
 								variant: 'solid',

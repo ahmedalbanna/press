@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Add Lost Reason' }">
+	<Dialog v-model="show" :options="{ title: t('Add Lost Reason') }">
 		<template #body-content>
 			<div class="flex flex-col gap-5">
 				<FormControl

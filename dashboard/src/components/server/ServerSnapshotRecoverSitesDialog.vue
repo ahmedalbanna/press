@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		v-model="show"
-		:options="{ title: 'Recover Sites From Snapshot', size: '2xl' }"
+		:options="{ title: t('Recover Sites From Snapshot'), size: '2xl' }"
 	>
 		<template #body-content>
 			<div class="flex flex-col">

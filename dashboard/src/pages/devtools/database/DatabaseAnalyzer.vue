@@ -7,8 +7,8 @@
 				<!-- Title -->
 				<Breadcrumbs
 					:items="[
-						{ label: 'Dev Tools', route: '/database-analyzer' },
-						{ label: 'Database Analyzer', route: '/database-analyzer' },
+						{ label: t('Dev Tools'), route: '/database-analyzer' },
+						{ label: t('Database Analyzer'), route: '/database-analyzer' },
 					]"
 				/>
 			</div>

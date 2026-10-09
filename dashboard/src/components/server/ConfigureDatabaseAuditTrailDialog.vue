@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-		title: 'Configure Database Audit Trail',
+		title: t('Configure Database Audit Trail'),
 		actions: [
 			{
-				label: 'Save',
+				label: t('Save'),
 				variant: 'solid',
 				loading: $resources.configureAuditTrail.loading,
 				disabled: !hasChanges || isPending,
@@ -41,8 +41,8 @@
 						:label="t('Capture Mode')"
 						type="select"
 						:options="[
-						{ label: 'Write queries', value: 'write' },
-						{ label: 'Read and write queries', value: 'read-write' },
+						{ label: t('Write queries'), value: 'write' },
+						{ label: t('Read and write queries'), value: 'read-write' },
 					]"
 						size="sm"
 						variant="subtle"

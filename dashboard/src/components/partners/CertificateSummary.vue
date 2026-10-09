@@ -2,7 +2,7 @@
 	<div>
 		<Dialog
 			v-model="show"
-			:options="{ title: 'Evaluation Summary', size: 'xl' }"
+			:options="{ title: t('Evaluation Summary'), size: 'xl' }"
 		>
 			<template #body-content>
 				<div :class="`bg-${color}-50 p-4 rounded-lg`">

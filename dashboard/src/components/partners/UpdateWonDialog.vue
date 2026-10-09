@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Add Won Details' }">
+	<Dialog v-model="show" :options="{ title: t('Add Won Details') }">
 		<template #body-content>
 			<div class="flex flex-col gap-5">
 				<FormControl
@@ -8,9 +8,9 @@
 					type="select"
 					name="resource_type"
 					:options="[
-						{ label: 'Site', value: 'Site' },
-						{ label: 'Server Name', value: 'Server' },
-						{ label: 'Account Email ID', value: 'Team' },
+						{ label: t('Site'), value: 'Site' },
+						{ label: t('Server Name'), value: 'Server' },
+						{ label: t('Account Email ID'), value: 'Team' },
 					]"
 					:required="true"
 				/>

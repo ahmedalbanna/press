@@ -5,7 +5,7 @@
 			v-model="invoiceDialog"
 			:options="{
 				size: '4xl',
-				title: 'Invoice Details',
+				title: t('Invoice Details'),
 			}"
 		>
 			<template #body-content>

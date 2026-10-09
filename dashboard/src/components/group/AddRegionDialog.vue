@@ -2,10 +2,10 @@
 	<Dialog
 		v-model="showDialog"
 		:options="{
-			title: 'Add Region',
+			title: t('Add Region'),
 			actions: [
 				{
-					label: 'Add Region',
+					label: t('Add Region'),
 					variant: 'solid',
 					loading: groupDocResource.addRegion.loading,
 					disabled: !selectedRegion,

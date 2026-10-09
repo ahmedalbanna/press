@@ -2,15 +2,15 @@
 	<Dialog
 		v-model="open"
 		:options="{
-			title: 'Access Request',
+			title: t('Access Request'),
 			actions: [
 				{
-					label: 'Cancel',
+					label: t('Cancel'),
 					variant: 'outline',
 					onClick: () => (open = false),
 				},
 				{
-					label: 'Request',
+					label: t('Request'),
 					variant: 'solid',
 					onClick: () => request.submit(),
 				},

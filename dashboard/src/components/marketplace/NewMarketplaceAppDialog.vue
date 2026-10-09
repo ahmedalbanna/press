@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add a new Marketplace App',
+			title: t('Add a new Marketplace App'),
 			size: 'xl',
 			actions: [
 				{
-					label: 'Add App',
+					label: t('Add App'),
 					variant: 'solid',
 					disabled: !appValidated || !this.app.is_public,
 					onClick: addApp,

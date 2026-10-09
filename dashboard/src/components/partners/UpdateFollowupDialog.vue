@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Update Followup Details' }">
+	<Dialog v-model="show" :options="{ title: t('Update Followup Details') }">
 		<template #body-content>
 			<div class="flex flex-col gap-4">
 				<div

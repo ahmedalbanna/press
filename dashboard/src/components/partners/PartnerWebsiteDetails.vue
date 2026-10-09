@@ -88,7 +88,7 @@
 		<Dialog
 			:show="showUpdateWebsiteInfo"
 			v-model="showUpdateWebsiteInfo"
-			:options="{ title: 'Update Website Info', size: '4xl' }"
+			:options="{ title: t('Update Website Info'), size: '4xl' }"
 		>
 			<template #body-content>
 				<WebsiteInfoDialog

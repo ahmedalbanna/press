@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Lead Details', size: '2xl' }">
+	<Dialog v-model="show" :options="{ title: t('Lead Details'), size: '2xl' }">
 		<template #body-content>
 			<LeadDetailsForm
 				@success="() => emit('success')"

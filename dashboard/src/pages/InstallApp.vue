@@ -4,7 +4,7 @@
 			<FBreadcrumbs
 				:items="[
 					{
-						label: 'Create Site',
+						label: t('Create Site'),
 					},
 				]"
 			/>

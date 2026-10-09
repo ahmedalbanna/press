@@ -3,7 +3,7 @@
 		<Dialog
 			:show="show"
 			v-model="show"
-			:options="{ title: 'Certification Request Status' }"
+			:options="{ title: t('Certification Request Status') }"
 			size="xl"
 		>
 			<template #body-content>

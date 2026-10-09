@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Configure Auto Update' }">
+	<Dialog v-model="show" :options="{ title: t('Configure Auto Update') }">
 		<template #body-content>
 			<div class="flex flex-col gap-4">
 				<Switch

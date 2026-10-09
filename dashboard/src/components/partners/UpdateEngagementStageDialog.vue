@@ -1,5 +1,5 @@
 <template>
-	<Dialog v-model="show" :options="{ title: 'Update Engagement Stage' }">
+	<Dialog v-model="show" :options="{ title: t('Update Engagement Stage') }">
 		<template #body-content>
 			<div class="flex flex-col gap-5">
 				<FormControl

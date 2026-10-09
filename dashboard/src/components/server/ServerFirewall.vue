@@ -45,17 +45,17 @@
 				data: () => firewall.doc.rules,
 				columns: [
 					{
-						label: 'Source',
+						label: t('Source'),
 						fieldname: 'source',
 						format: (value: string) => value || '—',
 					},
 					{
-						label: 'Port',
+						label: t('Port'),
 						fieldname: 'port',
 						format: (value: string) => value || '—',
 					},
-					{ label: 'Protocol', fieldname: 'protocol' },
-					{ label: 'Action', fieldname: 'action' },
+					{ label: t('Protocol'), fieldname: 'protocol' },
+					{ label: t('Action'), fieldname: 'action' },
 					{
 						label: '',
 						format: (_: any, row: any) => {
@@ -71,7 +71,7 @@
 				],
 				rowActions: ({ row }: any) => [
 					{
-						label: 'Remove',
+						label: t('Remove'),
 						onClick: () => {
 							firewall.doc.rules = firewall.doc.rules.filter(
 								(rule: any) =>

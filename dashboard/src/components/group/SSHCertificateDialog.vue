@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'SSH Access',
+			title: t('SSH Access'),
 			size: 'xl',
 		}"
 		v-model="show"

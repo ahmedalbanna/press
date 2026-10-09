@@ -357,7 +357,7 @@ function onDropServer() {
 			: `<div class="prose text-base">Are you sure you want to drop your servers?<br><br>Following servers will be dropped<ul><li>${server.doc.title} (<b>${server.doc.name}</b>)</li><li>${databaseServer.doc.title} (<b>${server.doc.database_server}</b>)</li></ul><br>This action cannot be undone.</div>`,
 		fields: [
 			{
-				label: "Please type either server's name or title to confirm",
+				label: t("Please type either server's name or title to confirm"),
 				fieldname: 'confirmServerName',
 			},
 		],
@@ -516,7 +516,13 @@ function onUpdateInnodbBufferPoolSize() {
 	if (!server.updateInnodbBufferPoolSize) return
 	confirmDialog({
 		title: t('Update InnoDB Buffer Pool Size'),
-		message: `Are you sure you want to change the InnoDB Buffer Pool Size of the database server <b>${server.doc.name}</b> ? <br><br> Recommended Buffer Pool Size is <b>${server.doc.mariadb_variables_recommended_values.innodb_buffer_pool_size} MB</b>`,
+		message: tr(
+				'Are you sure you want to change the InnoDB Buffer Pool Size of the database server <b>{server}</b> ? <br><br> Recommended Buffer Pool Size is <b>{size} MB</b>',
+				{
+					server: server.doc.name,
+					size: server.doc.mariadb_variables_recommended_values.innodb_buffer_pool_size,
+				},
+			),
 		fields: [
 			{
 				label: t('Enter the new InnoDB Buffer Pool Size (MB)'),
@@ -600,7 +606,13 @@ function onUpdateBinlogRetention() {
 	if (!server.updateBinlogRetention) return
 	confirmDialog({
 		title: t('Update Binlog Retention'),
-		message: `Are you sure you want to change the Binlog Retention of the database server <b>${server.doc.name}</b> ? <br><br> Recommended Binlog Retention is <b>${server.doc.mariadb_variables_recommended_values.expire_logs_days} days</b>`,
+		message: tr(
+				'Are you sure you want to change the Binlog Retention of the database server <b>{server}</b> ? <br><br> Recommended Binlog Retention is <b>{days} days</b>',
+				{
+					server: server.doc.name,
+					days: server.doc.mariadb_variables_recommended_values.expire_logs_days,
+				},
+			),
 		fields: [
 			{
 				label: t('Enter the new Binlog Retention (days)'),

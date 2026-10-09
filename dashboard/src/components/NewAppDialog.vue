@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add app from GitHub',
+			title: t('Add app from GitHub'),
 			size: 'xl',
 			actions: [
 				{

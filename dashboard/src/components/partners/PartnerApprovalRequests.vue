@@ -149,7 +149,7 @@ export default {
 								row.approved_by_frappe === 0
 							) {
 								return h(Badge, {
-									label: "Waiting for Frappe's approval",
+									label: t("Waiting for Frappe's approval"),
 									theme: 'blue',
 									variant: 'subtle',
 									size: 'md',

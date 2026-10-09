@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Normalized Query',
+			title: t('Normalized Query'),
 			size: '2xl',
 		}"
 		v-model="show"

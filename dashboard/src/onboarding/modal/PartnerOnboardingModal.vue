@@ -120,7 +120,7 @@ watch(
 		:disable-outside-click-to-close="true"
 		:options="{
 			size: '2xl',
-			title: 'Edit registration',
+			title: t('Edit registration'),
 		}"
 	>
 		<template #body-content>
@@ -146,7 +146,7 @@ watch(
 		:disable-outside-click-to-close="true"
 		:options="{
 			size: '4xl',
-			title: 'Interested in partnering with us?',
+			title: t('Interested in partnering with us?'),
 		}"
 	>
 		<template #body>

@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Tell us why you are leaving',
+			title: t('Tell us why you are leaving'),
 			actions: [
 				{
-					label: 'Submit',
+					label: t('Submit'),
 					variant: 'solid',
 					loading: $resources.submitFeedback.loading,
 					onClick: () => {

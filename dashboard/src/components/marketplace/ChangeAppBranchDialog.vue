@@ -2,10 +2,10 @@
 	<Dialog
 		v-if="source"
 		:options="{
-			title: 'Change Branch for ' + version + ' of ' + app,
+			title: t('Change Branch for ') + version + ' of ' + app,
 			actions: [
 				{
-					label: 'Change Branch',
+					label: t('Change Branch'),
 					variant: 'solid',
 					loading: $resources.changeBranch.loading,
 					onClick: () => changeBranch(),

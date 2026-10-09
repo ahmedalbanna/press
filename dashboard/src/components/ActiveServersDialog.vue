@@ -1,5 +1,5 @@
 <template>
-	<Dialog :options="{ title: 'Drop Active Servers' }" v-model="showDialog">
+	<Dialog :options="{ title: t('Drop Active Servers') }" v-model="showDialog">
 		<template #body-content>
 			<div class="prose text-base">
 				{{ t('Please drop the following active servers before disabling the account:') }}

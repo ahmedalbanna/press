@@ -75,8 +75,7 @@ const leadfollowups = computed(() => {
 					onClick: () => {
 						confirmDialog({
 							title: t('Delete Followup'),
-							message:
-								'Are you sure you want to delete this followup from ' +
+							message: t('Are you sure you want to delete this followup from ') +
 								row.followup_by +
 								'?',
 							primaryAction: {

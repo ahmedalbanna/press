@@ -3,8 +3,8 @@
 		<Header>
 			<Breadcrumbs
 				:items="[
-					{ label: 'Servers', route: '/servers' },
-					{ label: 'New Server', route: '/servers/new' },
+					{ label: t('Servers'), route: '/servers' },
+					{ label: t('New Server'), route: '/servers/new' },
 				]"
 			/>
 		</Header>

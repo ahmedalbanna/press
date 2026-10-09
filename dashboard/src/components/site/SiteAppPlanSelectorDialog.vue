@@ -5,7 +5,7 @@
 			size: '3xl',
 			actions: [
 				{
-					label: 'Select Plan',
+					label: t('Select Plan'),
 					variant: 'solid',
 					disabled: !selectedPlan,
 					onClick: () => {

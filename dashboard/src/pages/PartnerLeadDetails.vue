@@ -4,8 +4,8 @@
 			<Header>
 				<FBreadcrumbs
 					:items="[
-						{ label: 'Partnership', route: { name: 'PartnerLeads' } },
-						{ label: 'Partner Lead', route: { name: 'PartnerLeads' } },
+						{ label: t('Partnership'), route: { name: 'PartnerLeads' } },
+						{ label: t('Partner Lead'), route: { name: 'PartnerLeads' } },
 						{ label: lead.doc?.organization_name, route: '#' },
 					]"
 				/>

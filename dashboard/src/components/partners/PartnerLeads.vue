@@ -3,7 +3,7 @@
 		<div class="grid grid-cols-4 gap-5 pb-4">
 			<NumberChart
 				:config="{
-					title: 'Total Leads',
+					title: t('Total Leads'),
 					value: $resources.leadStats.data?.total || 0,
 				}"
 				class="border rounded-md"
@@ -11,7 +11,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'Open',
+					title: t('Open'),
 					value: $resources.leadStats.data?.open || 0,
 				}"
 				class="border rounded-md"
@@ -19,7 +19,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'Won',
+					title: t('Won'),
 					value: $resources.leadStats.data?.won || 0,
 				}"
 				class="border rounded-md"
@@ -27,7 +27,7 @@
 
 			<NumberChart
 				:config="{
-					title: 'Lost',
+					title: t('Lost'),
 					value: $resources.leadStats.data?.lost || 0,
 				}"
 				class="border rounded-md"

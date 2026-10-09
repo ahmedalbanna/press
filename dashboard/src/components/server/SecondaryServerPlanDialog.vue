@@ -1,11 +1,11 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Select Secondary Application Server Plan',
+			title: t('Select Secondary Application Server Plan'),
 			size: '5xl',
 			actions: [
 				{
-					label: 'Setup Secondary Server',
+					label: t('Setup Secondary Server'),
 					variant: 'solid',
 					onClick: setupSecondaryServer,
 					disabled: !$resources.secondaryServerPlans.data?.length,

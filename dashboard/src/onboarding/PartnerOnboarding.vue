@@ -48,7 +48,7 @@ onMounted(() => {
 		<div class="sticky top-0 z-10 shrink-0">
 			<Header>
 				<Breadcrumbs
-					:items="[{ label: 'Partnership', route: { name: 'Partnership' } }]"
+					:items="[{ label: t('Partnership'), route: { name: 'Partnership' } }]"
 				/>
 			</Header>
 		</div>

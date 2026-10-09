@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Database Process',
+			title: t('Database Process'),
 			size: 'xl',
 		}"
 		v-model="show"

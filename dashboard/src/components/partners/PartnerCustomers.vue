@@ -5,7 +5,7 @@
 			v-model="contributionDialog"
 			:options="{
 				size: '3xl',
-				title: 'Last 6 Month\'s Contribution',
+					title: t('Last 6 Month\'s Contribution'),
 			}"
 		>
 			<template #body-content>
@@ -25,7 +25,7 @@
 		</Dialog>
 		<Dialog
 			v-model="transferCreditsDialog"
-			:options="{ title: 'Transfer Credits' }"
+			:options="{ title: t('Transfer Credits') }"
 		>
 			<template #body-content>
 				<p class="pb-3 text-p-base">
@@ -57,7 +57,7 @@
 		</Dialog>
 		<Dialog
 			v-model="showConfirmationDialog"
-			:options="{ title: 'Credits Transferred Successfully' }"
+			:options="{ title: t('Credits Transferred Successfully') }"
 		>
 			<template #body-content>
 				<p class="text-p-base">
@@ -72,7 +72,7 @@
 		<Dialog
 			v-model="showApprovalRequestsDialog"
 			:options="{
-				title: 'Customer Approval Requests',
+				title: t('Customer Approval Requests'),
 				size: '6xl',
 			}"
 		>

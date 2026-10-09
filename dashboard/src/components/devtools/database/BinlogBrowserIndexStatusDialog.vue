@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Binlog Index Status',
+			title: t('Binlog Index Status'),
 			size: '2xl',
 		}"
 		v-model="show"

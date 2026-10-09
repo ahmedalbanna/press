@@ -3,9 +3,9 @@
 		<Header>
 			<FBreadcrumbs
 				:items="[
-					{ label: 'Sites', route: '/sites' },
-					{ label: 'New Site', route: '/sites/new' },
-					{ label: 'Creating Site' },
+					{ label: t('Sites'), route: '/sites' },
+					{ label: t('New Site'), route: '/sites/new' },
+					{ label: t('Creating Site') },
 				]"
 			/>
 		</Header>
@@ -244,13 +244,13 @@ export default {
 						pos,
 						STATUS.BENCH_DEPLOY_FAILED,
 					),
-					message: 'Provisioning your private bench environment',
+					message: t('Provisioning your private bench environment'),
 				},
 				{
 					id: 2,
 					title: pos > 4 ? 'Site Created' : 'Creating Site',
 					icon: this.getStepIcon(4, pos, STATUS.SITE_CREATION_FAILED),
-					message: 'Installing apps and setting up your site',
+					message: t('Installing apps and setting up your site'),
 				},
 			];
 		},

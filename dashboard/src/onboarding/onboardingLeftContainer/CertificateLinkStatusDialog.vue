@@ -84,7 +84,7 @@ async function resend(requestName: string) {
 		:model-value="open"
 		@update:model-value="setOpen"
 		:disable-outside-click-to-close="true"
-		:options="{ size: '2xl', title: 'Certification link status' }"
+		:options="{ size: '2xl', title: t('Certification link status') }"
 	>
 		<template #body-header>
 			<div class="flex items-start justify-between gap-4">

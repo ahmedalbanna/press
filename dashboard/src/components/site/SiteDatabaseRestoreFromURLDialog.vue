@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Restore from an existing site',
+			title: t('Restore from an existing site'),
 		}"
 		v-model="showRestoreDialog"
 	>

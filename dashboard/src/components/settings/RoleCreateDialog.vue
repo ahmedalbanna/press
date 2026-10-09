@@ -3,12 +3,12 @@
 		:model-value="modelValue"
 		@update:model-value="(value: boolean) => emit('update:modelValue', value)"
 		:options="{
-			title: 'Create',
-			message: 'Create a new role.',
+			title: t('Create'),
+			message: t('Create a new role.'),
 			size: '2xl',
 			actions: [
 				{
-					label: 'Submit',
+					label: t('Submit'),
 					variant: 'solid',
 					onClick: () => emit('create', title, users, resources),
 				},

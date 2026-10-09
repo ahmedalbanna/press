@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Config Preview',
+			title: t('Config Preview'),
 		}"
 		v-model="showDialog"
 	>

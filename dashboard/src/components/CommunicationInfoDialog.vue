@@ -1,6 +1,6 @@
 <template>
 	<Dialog
-		:options="{ title: 'Notification Configuration', size: '3xl' }"
+		:options="{ title: t('Notification Configuration'), size: '3xl' }"
 		v-model="showDialog"
 	>
 		<template #body-content>

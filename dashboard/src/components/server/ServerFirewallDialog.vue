@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add Firewall Rule',
+			title: t('Add Firewall Rule'),
 			size: 'lg',
 			icon: {
 				name: 'shield',
@@ -9,7 +9,7 @@
 			},
 			actions: [
 				{
-					label: 'Submit',
+					label: t('Submit'),
 					variant: 'solid',
 					onClick: onSubmit,
 				},
@@ -42,11 +42,11 @@
 					type="select"
 					:options="[
 						{
-							label: 'TCP',
+							label: t('TCP'),
 							value: 'TCP',
 						},
 						{
-							label: 'UDP',
+							label: t('UDP'),
 							value: 'UDP',
 						},
 					]"
@@ -59,11 +59,11 @@
 					type="select"
 					:options="[
 						{
-							label: 'Deny',
+							label: t('Deny'),
 							value: 'Deny',
 						},
 						{
-							label: 'Allow',
+							label: t('Allow'),
 							value: 'Allow',
 						},
 					]"

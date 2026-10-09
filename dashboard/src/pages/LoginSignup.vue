@@ -436,7 +436,7 @@
 
 		<Dialog
 			v-model="showReactivateAccountDialog"
-			:options="{ title: 'Reactivate Account', size :'sm' }"
+			:options="{ title: t('Reactivate Account'), size :'sm' }"
 			@close="cancelReactivation"
 		>
 			<template v-slot:body-content>

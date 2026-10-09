@@ -1,7 +1,7 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Browse Schema',
+			title: t('Browse Schema'),
 			size: '2xl',
 		}"
 	>

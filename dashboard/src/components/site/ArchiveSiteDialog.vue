@@ -2,10 +2,10 @@
 	<Dialog
 		v-model="showDialog"
 		:options="{
-			title: 'Drop Site',
+			title: t('Drop Site'),
 			actions: [
 				{
-					label: 'Drop Site',
+					label: t('Drop Site'),
 					variant: 'solid',
 					theme: 'red',
 					onClick: handleConfirm,

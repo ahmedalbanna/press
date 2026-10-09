@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Add tag',
+			title: t('Add tag'),
 			actions: [
 				{
-					label: 'Add',
+					label: t('Add'),
 					variant: 'solid',
 					onClick: () =>
 						addNewTag(

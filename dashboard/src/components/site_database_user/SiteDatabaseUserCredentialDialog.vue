@@ -1,6 +1,6 @@
 <template>
 	<Dialog
-		:options="{ title: 'Database Credential', size: '2xl' }"
+		:options="{ title: t('Database Credential'), size: '2xl' }"
 		v-model="showDialog"
 	>
 		<template #body-content>

@@ -222,7 +222,7 @@ import Badge from '../global/Badge.vue'
 import ServerLoadAverage from './ServerLoadAverage.vue'
 import ServerPlansDialog from './ServerPlansDialog.vue'
 import StorageBreakdownDialog from './StorageBreakdownDialog.vue'
-import { t } from '../../utils/language'
+import { t, tr } from '../../utils/language'
 
 export default {
 	props: ['server'],
@@ -554,23 +554,25 @@ export default {
 										onClick: () => {
 											confirmDialog({
 												title: t('Increase Storage'),
-												message: `Enter the disk size you want to increase to the server <b>${
-													doc.title || doc.name
-												}</b>
-									<div class="rounded mt-4 p-2 text-sm text-ink-gray-7 bg-surface-gray-2 border">
-									You will be charged at the rate of
-									<strong>
-										${this.$format.userCurrency(doc.storage_plan[priceField])}/mo
-									</strong>
-									for each additional GB of storage.
-									${
-										additionalStorageIncrementRecommendation
-											? `<br /> <br />Recommended storage increment: <strong>${additionalStorageIncrementRecommendation} GiB</strong>`
-											: ''
-									}
-									</div>
-									<p class="mt-4 text-sm text-ink-gray-7"><strong>Note</strong>: You can increase the storage size of the server only once in 6 hours.
-										</div>`,
+												message: tr(
+													'Enter the disk size you want to increase to the server <b>{server}</b><div class="rounded mt-4 p-2 text-sm text-ink-gray-7 bg-surface-gray-2 border">{charged}<strong>{rate}/mo</strong>{perGB}{increment}</div><p class="mt-4 text-sm text-ink-gray-7"><strong>{noteLabel}</strong>: {noteText}</p>',
+													{
+														server: doc.title || doc.name,
+														charged: t('You will be charged at the rate of'),
+														rate: this.$format.userCurrency(doc.storage_plan[priceField]),
+														perGB: t('for each additional GB of storage.'),
+														increment: additionalStorageIncrementRecommendation
+															? tr('{sep}Recommended storage increment: {value} GiB', {
+																	sep: '<br /> <br />',
+																	value: additionalStorageIncrementRecommendation,
+																})
+															: '',
+														noteLabel: t('Note'),
+														noteText: t(
+															'You can increase the storage size of the server only once in 6 hours.',
+														),
+													},
+												),
 												fields: [
 													{
 														fieldname: 'storage',
@@ -642,7 +644,7 @@ export default {
 											Disabling this feature may result in <strong>service degradation or downtime</strong> if storage is exhausted.
 										</li>
 										<li>
-											Storage can auto increase only once in <strong>6 hours</strong>.
+											{{ t('Storage can auto increase only once in 6 hours.') }}
 										</li>
 									</ul>
 `,

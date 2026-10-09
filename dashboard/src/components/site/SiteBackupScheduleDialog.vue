@@ -2,12 +2,12 @@
 	<Dialog
 		v-model="show"
 		:options="{
-			title: 'Backup Schedule',
+			title: t('Backup Schedule'),
 			actions: managed
 				? []
 				: [
 						{
-							label: 'Save',
+							label: t('Save'),
 							variant: 'solid',
 							disabled: !loaded,
 							loading: $site?.updateBackupSchedule?.loading,

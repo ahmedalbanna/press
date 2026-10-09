@@ -6,7 +6,7 @@
 					server
 						? [
 								{
-									label: 'Servers',
+									label: t('Servers'),
 									route: '/servers',
 								},
 								{
@@ -14,13 +14,13 @@
 									route: `/servers/${server}`,
 								},
 								{
-									label: 'New Bench',
+									label: t('New Bench'),
 									route: '/groups/new',
 								},
 							]
 						: [
-								{ label: 'Benches', route: '/groups' },
-								{ label: 'New Bench', route: '/groups/new' },
+								{ label: t('Benches'), route: '/groups' },
+								{ label: t('New Bench'), route: '/groups/new' },
 							]
 				"
 			/>

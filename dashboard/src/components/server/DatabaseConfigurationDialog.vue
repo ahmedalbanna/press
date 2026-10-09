@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="showDialog"
 		:modelValue="true"
-		:options="{ title: 'Database Configuration', size: '3xl' }"
+		:options="{ title: t('Database Configuration'), size: '3xl' }"
 	>
 		<template v-slot:body-content>
 			<div

@@ -7,8 +7,8 @@
 				<!-- Title -->
 				<Breadcrumbs
 					:items="[
-						{ label: 'Dev Tools', route: '/sql-playground' }, // Dev tools has no seperate page as its own, so it doesn't need a different route
-						{ label: 'SQL Playground', route: '/sql-playground' },
+						{ label: t('Dev Tools'), route: '/sql-playground' }, // Dev tools has no seperate page as its own, so it doesn't need a different route
+						{ label: t('SQL Playground'), route: '/sql-playground' },
 					]"
 				/>
 				<!-- Actions -->
@@ -17,11 +17,11 @@
 					type="select"
 					:options="[
 						{
-							label: 'Read Only&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+							label: t('Read Only&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'),
 							value: 'read-only',
 						},
 						{
-							label: 'Read Write&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+							label: t('Read Write&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'),
 							value: 'read-write',
 						},
 					]"

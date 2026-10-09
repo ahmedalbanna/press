@@ -2,7 +2,7 @@
 	<Dialog
 		v-model="showDialog"
 		:modelValue="true"
-		:options="{ title: 'Add Domain' }"
+		:options="{ title: t('Add Domain') }"
 	>
 		<template v-slot:body-content>
 			<div class="space-y-4">
