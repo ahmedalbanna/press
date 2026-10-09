@@ -1,6 +1,6 @@
 <template>
 	<AlertBanner
-		title="Your card has expired. Please update your payment details to avoid site suspension."
+		:title="t('Your card has expired. Please update your payment details to avoid site suspension.')"
 		type="warning"
 	>
 		<Button class="ml-auto" route="/billing" variant="outline">
@@ -10,6 +10,7 @@
 </template>
 <script>
 import AlertBanner from './AlertBanner.vue'
+import { t } from '../utils/language'
 
 export default {
 	name: 'AlertCardExpired',

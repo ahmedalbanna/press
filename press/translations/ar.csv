@@ -620,6 +620,7 @@ Download Database,تنزيل قاعدة البيانات
 Download Invoice,تنزيل الفاتورة
 Download Private,تنزيل الخاص
 Download Public,تنزيل العام
+Download as CSV,تنزيل كملف CSV
 Draft,مسودة
 Drop,حذف
 Drop Bench,حذف الرصيف
@@ -1965,8 +1966,10 @@ Unread,غير المقروءة
 Unsubscribe,إلغاء الاشتراك
 Update,تحديث
 Update Available,تحديث متاح
+Update Billing Address,تحديث عنوان الفوترة
 Update Billing Details,تحديث بيانات الفوترة
 Update Billing Settings,تحديث إعدادات الفوترة
+Update Card,تحديث البطاقة
 Update Now,تحديث الآن
 Update Profile Information,تحديث معلومات الملف الشخصي
 Update Scheduled,التحديث مجدول
@@ -2141,6 +2144,7 @@ Your account will be disabled,سيتم تعطيل حسابك
 Your account will be enabled,سيتم تفعيل حسابك
 Your active sites will be suspended immediately and will be deleted after a week.,سيتم تعليق مواقعك النشطة فوراً وسيتم حذفها بعد أسبوع.
 Your app is sent for review to our team. Please wait for the review to be completed.,تم إرسال تطبيقك للمراجعة من قبل فريقنا. يرجى الانتظار حتى تكتمل المراجعة.
+Your card has expired. Please update your payment details to avoid site suspension.,انتهت صلاحية بطاقتك. يرجى تحديث بيانات الدفع لتجنب تعليق الموقع.
 Your card was declined. It might be due to insufficient funds or you might've exceeded your daily limit. Please try with another card or contact your bank.,تم رفض بطاقتك. قد يكون السبب عدم كفاية الأموال أو تجاوز الحد اليومي. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.
 "Your card was declined. It might be due to restrictions on your card, like international transactions or online payments. Please try with another card or contact your bank.",تم رفض بطاقتك. قد يكون السبب قيوداً على بطاقتك، مثل المعاملات الدولية أو المدفوعات عبر الإنترنت. يُرجى تجربة بطاقة أخرى أو التواصل مع البنك.
 Your card will be charged for monthly subscription,سيتم خصم الاشتراك الشهري من بطاقتك

@@ -619,6 +619,11 @@ const billing: Dictionary = {
 		en: 'Error saving M-Pesa credentials',
 		ar: 'خطأ في حفظ بيانات اعتماد M-Pesa',
 	},
+	'You aren\'t permitted to view the billing page': { en: 'You aren\'t permitted to view the billing page', ar: 'غير مسموح لك بعرض صفحة الفوترة' },
+	'Update Billing Address': { en: 'Update Billing Address', ar: 'تحديث عنوان الفوترة' },
+	'Download as CSV': { en: 'Download as CSV', ar: 'تنزيل كملف CSV' },
+	'Your card has expired. Please update your payment details to avoid site suspension.': { en: 'Your card has expired. Please update your payment details to avoid site suspension.', ar: 'انتهت صلاحية بطاقتك. يرجى تحديث بيانات الدفع لتجنب تعليق الموقع.' },
+	'Update Card': { en: 'Update Card', ar: 'تحديث البطاقة' },
 };
 
 export default billing;

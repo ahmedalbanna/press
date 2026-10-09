@@ -6,7 +6,7 @@
 				class="shrink-0"
 				@click="$resources.downloadInvoiceAsCSV.submit"
 			>
-				<span class="text-sm">Download as CSV</span>
+				<span class="text-sm">{{ t('Download as CSV') }}</span>
 			</Button>
 		</div>
 		<div v-if="doc" class="overflow-x-auto">
@@ -152,6 +152,7 @@
 </template>
 <script>
 import { getPlans } from '../data/plans'
+import { t } from '../utils/language'
 
 export default {
 	name: 'InvoiceTable',

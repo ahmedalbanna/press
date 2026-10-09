@@ -1,10 +1,10 @@
 <template>
 	<Dialog
 		:options="{
-			title: 'Update Billing Address',
+			title: t('Update Billing Address'),
 			actions: [
 				{
-					label: 'Submit',
+					label: t('Submit'),
 					variant: 'solid',
 					loading: $resources.updateBillingInformation.loading,
 					onClick: () => $resources.updateBillingInformation.submit(),
@@ -39,6 +39,7 @@
 <script>
 import { toast } from 'vue-sonner'
 import { validateBillingName } from '../utils/billing'
+import { t } from '../utils/language'
 import { DashboardError } from '../utils/error'
 import AddressForm from './AddressForm.vue'
 
