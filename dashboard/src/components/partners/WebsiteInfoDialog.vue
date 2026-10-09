@@ -21,7 +21,7 @@
 			<Button
 				class="w-full"
 				variant="solid"
-				label="Update Website Info"
+				:label="t('Update Website Info')"
 				@click="_updateWebsiteInfo()"
 			/>
 		</div>
@@ -31,6 +31,7 @@
 import { FormControl, createResource } from 'frappe-ui';
 import { computed } from 'vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language'
 
 const websiteInfo = defineModel();
 const emit = defineEmits(['success']);
@@ -58,13 +59,13 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldname: 'partner_website',
-					label: 'Website URL',
+					label: t('Website URL'),
 					fieldtype: 'Data',
 					required: true,
 				},
 				{
 					fieldname: 'phone_number',
-					label: 'Contact',
+					label: t('Contact'),
 					fieldtype: 'Data',
 				},
 			],
@@ -75,12 +76,12 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldname: 'custom_journey_blog_link',
-					label: 'Journey Blog Link',
+					label: t('Journey Blog Link'),
 					fieldtype: 'Data',
 				},
 				{
 					fieldname: 'custom_foundation_date',
-					label: 'Foundation Date',
+					label: t('Foundation Date'),
 					fieldtype: 'Date',
 				},
 			],
@@ -91,12 +92,12 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldname: 'custom_team_size',
-					label: 'Team Size',
+					label: t('Team Size'),
 					fieldtype: 'Int',
 				},
 				{
 					fieldname: 'custom_successful_projects_count',
-					label: 'Successfull Projects',
+					label: t('Successfull Projects'),
 					fieldtype: 'Int',
 				},
 			],
@@ -107,7 +108,7 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldname: 'address',
-					label: 'Address',
+					label: t('Address'),
 					fieldtype: 'Text',
 				},
 			],
@@ -118,12 +119,12 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldname: 'introduction',
-					label: 'Introduction',
+					label: t('Introduction'),
 					fieldtype: 'Text',
 				},
 				{
 					fieldname: 'customers',
-					label: 'Customers',
+					label: t('Customers'),
 					fieldtype: 'Text',
 				},
 			],

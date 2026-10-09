@@ -38,7 +38,7 @@
 				<div class="rounded-lg text-base text-ink-gray-9 border">
 					<div class="p-4">
 						<div class="flex items-center justify-between pb-2">
-							<div class="font-semibold text-lg sm:text-xl">Company Information</div>
+							<div class="font-semibold text-lg sm:text-xl">{{ t('Company Information') }}</div>
 							<Button
 								variant="subtle"
 								@click="
@@ -47,7 +47,7 @@
 									}
 								"
 							>
-								Edit
+								{{ t('Edit') }}
 							</Button>
 						</div>
 						<div class="my-1 h-px bg-surface-gray-2" />
@@ -65,7 +65,7 @@
 											variant="outline"
 											theme="blue"
 											size="lg"
-											label="Starter Pack"
+											:label="t('Starter Pack')"
 										/>
 									</div>
 									<div v-else class="text-base font-medium py-2 sm:text-lg">
@@ -80,7 +80,7 @@
 				<div class="rounded-lg text-base text-ink-gray-9 border">
 					<div class="p-4">
 						<div class="flex items-center justify-between pb-2">
-							<div class="font-semibold text-lg sm:text-xl">Contact Info</div>
+							<div class="font-semibold text-lg sm:text-xl">{{ t('Contact Info') }}</div>
 						</div>
 						<div class="my-1 h-px bg-surface-gray-2" />
 						<div class="pt-2">
@@ -101,7 +101,7 @@
 				<div class="rounded-lg text-base text-ink-gray-9 border">
 					<div class="p-4">
 						<div class="flex items-center justify-between pb-2">
-							<div class="font-semibold text-lg sm:text-xl">Deal Info</div>
+							<div class="font-semibold text-lg sm:text-xl">{{ t('Deal Info') }}</div>
 						</div>
 						<div class="my-1 h-px bg-surface-gray-2" />
 						<div class="pt-2">
@@ -125,7 +125,7 @@
 							</div>
 							<!-- <div class="my-1 h-px bg-surface-gray-2" /> -->
 							<div class="pt-2">
-								<div class="text-sm text-ink-gray-6">Requirement</div>
+								<div class="text-sm text-ink-gray-6">{{ t('Requirement') }}</div>
 								<div class="text-base leading-6 font-normal py-2">
 									<div v-html="lead?.requirement"></div>
 								</div>
@@ -197,6 +197,7 @@ import DropdownItem from '../billing/DropdownItem.vue';
 import UpdateEngagementStageDialog from './UpdateEngagementStageDialog.vue';
 import UpdateLostDialog from './UpdateLostDialog.vue';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language'
 export default {
 	name: 'PartnerLeadOverview',
 	components: {
@@ -249,37 +250,37 @@ export default {
 	computed: {
 		company_info() {
 			return [
-				{ label: 'Company Name', value: this.lead?.organization_name },
-				{ label: 'Lead Source', value: this.lead?.lead_source },
-				{ label: 'Lead Type', value: this.lead?.lead_type },
-				{ label: 'Industry', value: this.lead?.domain },
+				{ label: t('Company Name'), value: this.lead?.organization_name },
+				{ label: t('Lead Source'), value: this.lead?.lead_source },
+				{ label: t('Lead Type'), value: this.lead?.lead_type },
+				{ label: t('Industry'), value: this.lead?.domain },
 				{
-					label: 'Conversion Date',
+					label: t('Conversion Date'),
 					value: this.lead?.conversion_date,
 					condition: this.lead?.status === 'Won',
 				},
 				{
-					label: 'Lost Reason',
+					label: t('Lost Reason'),
 					value: this.lead?.lost_reason,
 					condition: this.lead?.status === 'Lost',
 				},
 				{
-					label: 'Other Reason',
+					label: t('Other Reason'),
 					value: this.lead?.lost_reason_specify,
 					condition:
 						this.lead?.status === 'Lost' && this.lead?.lost_reason === 'Other',
 				},
 				{
-					label: 'Partner',
+					label: t('Partner'),
 					value: this.lead?.company_name,
 					condition: this.$team.doc.is_desk_user,
 				},
 				{
-					label: 'Lead Owner',
+					label: t('Lead Owner'),
 					value: this.lead?.lead_owner,
 				},
 				{
-					label: 'Plan Type',
+					label: t('Plan Type'),
 					value: this.lead?.is_starter_pack,
 					condition: this.lead?.is_starter_pack !== undefined,
 				},
@@ -288,36 +289,36 @@ export default {
 		contact_info() {
 			return [
 				{
-					label: 'Full Name',
+					label: t('Full Name'),
 					value: this.lead?.full_name || this.lead?.lead_name,
 				},
-				{ label: 'Email', value: this.lead?.email },
-				{ label: 'Country', value: this.lead?.country },
-				{ label: 'State', value: this.lead?.state },
-				{ label: 'Territory', value: this.lead?.territory },
-				{ label: 'Contact', value: this.lead?.contact_no },
+				{ label: t('Email'), value: this.lead?.email },
+				{ label: t('Country'), value: this.lead?.country },
+				{ label: t('State'), value: this.lead?.state },
+				{ label: t('Territory'), value: this.lead?.territory },
+				{ label: t('Contact'), value: this.lead?.contact_no },
 			];
 		},
 		deal_info() {
 			return [
 				{
-					label: 'Plan Proposed',
+					label: t('Plan Proposed'),
 					value: this.lead?.plan_proposed,
 					condition: ['Won', 'In Process'].includes(this.lead?.status),
 				},
-				{ label: 'Probability', value: this.lead?.probability },
+				{ label: t('Probability'), value: this.lead?.probability },
 				{
-					label: 'Expected Close Date',
+					label: t('Expected Close Date'),
 					value: this.lead?.estimated_closure_date,
 					condition: this.lead?.status === 'In Process',
 				},
 				{
-					label: 'Hosting',
+					label: t('Hosting'),
 					value: this.lead?.hosting,
 					condition: this.lead?.status === 'Won',
 				},
 				{
-					label: 'Site URL',
+					label: t('Site URL'),
 					value: this.lead?.site_url,
 					condition: this.lead?.status === 'Won',
 				},
@@ -329,121 +330,121 @@ export default {
 		statusOptions() {
 			return [
 				{
-					label: 'Open',
+					label: t('Open'),
 					value: 'Open',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Open',
+							label: t('Open'),
 							onClick: () => {
 								this._updateStatus('Open');
 							},
 						}),
 				},
 				{
-					label: 'Qualification',
+					label: t('Qualification'),
 					value: 'Qualification',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Qualification',
+							label: t('Qualification'),
 							onClick: () => {
 								this._updateStatus('Qualification');
 							},
 						}),
 				},
 				{
-					label: 'Demo/Making',
+					label: t('Demo/Making'),
 					value: 'Demo/Making',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Demo/Making',
+							label: t('Demo/Making'),
 							onClick: () => {
 								this._updateStatus('Demo/Making');
 							},
 						}),
 				},
 				{
-					label: 'Follow Up',
+					label: t('Follow Up'),
 					value: 'Follow Up',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Follow Up',
+							label: t('Follow Up'),
 							onClick: () => {
 								this._updateStatus('Follow Up');
 							},
 						}),
 				},
 				{
-					label: 'Proposal/Quotation',
+					label: t('Proposal/Quotation'),
 					value: 'Proposal/Quotation',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Proposal/Quotation',
+							label: t('Proposal/Quotation'),
 							onClick: () => {
 								this._updateStatus('Proposal/Quotation');
 							},
 						}),
 				},
 				{
-					label: 'Negotiation',
+					label: t('Negotiation'),
 					value: 'Negotiation',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Negotiation',
+							label: t('Negotiation'),
 							onClick: () => {
 								this._updateStatus('Negotiation');
 							},
 						}),
 				},
 				{
-					label: 'Ready to Close',
+					label: t('Ready to Close'),
 					value: 'Ready to Close',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Ready to Close',
+							label: t('Ready to Close'),
 							onClick: () => {
 								this._updateStatus('Ready to Close');
 							},
 						}),
 				},
 				{
-					label: 'Won',
+					label: t('Won'),
 					value: 'Won',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Won',
+							label: t('Won'),
 							onClick: () => {
 								this._updateStatus('Won');
 							},
 						}),
 				},
 				{
-					label: 'Lost',
+					label: t('Lost'),
 					value: 'Lost',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Lost',
+							label: t('Lost'),
 							onClick: () => {
 								this._updateStatus('Lost');
 							},
 						}),
 				},
 				{
-					label: 'Junk',
+					label: t('Junk'),
 					value: 'Junk',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Junk',
+							label: t('Junk'),
 							onClick: () => {
 								this._updateStatus('Junk');
 							},
 						}),
 				},
 				{
-					label: 'Closed',
+					label: t('Closed'),
 					value: 'Closed',
 					component: () =>
 						h(DropdownItem, {
-							label: 'Closed',
+							label: t('Closed'),
 							onClick: () => {
 								this._updateStatus('Closed');
 							},

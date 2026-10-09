@@ -12,6 +12,7 @@ import { confirmDialog, renderDialog } from '../../utils/components'
 import { date } from '../../utils/format'
 import ObjectList from '../ObjectList.vue'
 import UpdateFollowupDialog from './UpdateFollowupDialog.vue'
+import { t } from '../../utils/language'
 
 const route = useRoute()
 
@@ -25,7 +26,7 @@ const leadfollowups = computed(() => {
 		},
 		columns: [
 			{
-				label: 'Date',
+				label: t('Date'),
 				fieldname: 'date',
 				width: '100px',
 				format(value) {
@@ -33,23 +34,23 @@ const leadfollowups = computed(() => {
 				},
 			},
 			{
-				label: 'Followup By',
+				label: t('Followup By'),
 				fieldname: 'followup_by',
 				width: '180px',
 			},
 			{
-				label: 'Communication',
+				label: t('Communication'),
 				fieldname: 'communication_type',
 				width: '120px',
 			},
 			{
-				label: 'Spoke To',
+				label: t('Spoke To'),
 				fieldname: 'spoke_to',
 				width: '180px',
 				class: 'truncate',
 			},
 			{
-				label: 'Notes',
+				label: t('Notes'),
 				fieldname: 'discussion',
 				class: 'break-all',
 				width: '220px',
@@ -58,7 +59,7 @@ const leadfollowups = computed(() => {
 		rowActions: ({ row }) => {
 			return [
 				{
-					label: 'Update',
+					label: t('Update'),
 					onClick: () => {
 						return renderDialog(
 							h(UpdateFollowupDialog, {
@@ -70,16 +71,16 @@ const leadfollowups = computed(() => {
 					},
 				},
 				{
-					label: 'Remove',
+					label: t('Remove'),
 					onClick: () => {
 						confirmDialog({
-							title: 'Delete Followup',
+							title: t('Delete Followup'),
 							message:
 								'Are you sure you want to delete this followup from ' +
 								row.followup_by +
 								'?',
 							primaryAction: {
-								label: 'Delete',
+								label: t('Delete'),
 								variant: 'solid',
 								theme: 'red',
 								onClick: ({ hide }) => {
@@ -98,7 +99,7 @@ const leadfollowups = computed(() => {
 		},
 		primaryAction: () => {
 			return {
-				label: 'Add Followup',
+				label: t('Add Followup'),
 				variant: 'solid',
 				slots: {
 					prefix: 'plus',

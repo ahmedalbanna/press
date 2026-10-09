@@ -23,7 +23,7 @@
 			<Button
 				class="w-full"
 				variant="solid"
-				label="Update Lead details"
+				:label="t('Update Lead details')"
 				@click="_updateLeadInfo"
 			/>
 		</div>
@@ -35,6 +35,7 @@ import { toast } from 'vue-sonner';
 import { computed, ref } from 'vue';
 import { DashboardError } from '../../utils/error';
 import { useRoute } from 'vue-router';
+import { t } from '../../utils/language'
 
 const emit = defineEmits(['success']);
 const route = useRoute();
@@ -66,9 +67,9 @@ const domainList = computed(() => {
 
 const probability = computed(() => {
 	return [
-		{ label: 'Hot', value: 'Hot' },
-		{ label: 'Warm', value: 'Warm' },
-		{ label: 'Cold', value: 'Cold' },
+		{ label: t('Hot'), value: 'Hot' },
+		{ label: t('Warm'), value: 'Warm' },
+		{ label: t('Cold'), value: 'Cold' },
 	];
 });
 
@@ -200,7 +201,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'organization_name',
-					label: 'Organization Name',
+					label: t('Organization Name'),
 					required: true,
 				},
 			],
@@ -212,7 +213,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'full_name',
-					label: 'Full Name',
+					label: t('Full Name'),
 					required: true,
 				},
 			],
@@ -224,13 +225,13 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'email',
-					label: 'Email',
+					label: t('Email'),
 					required: true,
 				},
 				{
 					fieldtype: 'Data',
 					fieldname: 'contact_no',
-					label: 'Contact No.',
+					label: t('Contact No.'),
 				},
 			],
 		},
@@ -241,14 +242,14 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Select',
 					fieldname: 'country',
-					label: 'Country',
+					label: t('Country'),
 					options: countryList.value,
 					required: true,
 				},
 				{
 					fieldtype: leadInfo.value.country === 'India' ? 'Select' : 'Data',
 					fieldname: 'state',
-					label: 'State / Region',
+					label: t('State / Region'),
 					required: true,
 					options:
 						leadInfo.value.country === 'India' ? indianStates.value : null,
@@ -262,7 +263,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Select',
 					fieldname: 'domain',
-					label: 'Domain',
+					label: t('Domain'),
 					options: domainList.value,
 					required: true,
 				},
@@ -275,13 +276,13 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Select',
 					fieldname: 'probability',
-					label: 'Probability',
+					label: t('Probability'),
 					options: probability.value,
 				},
 				{
 					fieldtype: 'Select',
 					fieldname: 'plan_proposed',
-					label: 'Plan Proposed',
+					label: t('Plan Proposed'),
 					options: planList.value,
 				},
 			],
@@ -293,7 +294,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Text',
 					fieldname: 'requirement',
-					label: 'Requirements',
+					label: t('Requirements'),
 					required: true,
 				},
 			],

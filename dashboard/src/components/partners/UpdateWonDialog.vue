@@ -4,7 +4,7 @@
 			<div class="flex flex-col gap-5">
 				<FormControl
 					v-model="resource_type"
-					label="Resource Type"
+					:label="t('Resource Type')"
 					type="select"
 					name="resource_type"
 					:options="[
@@ -17,7 +17,7 @@
 				<FormControl
 					v-if="resource_type == 'Site'"
 					v-model="site_url"
-					label="Site URL"
+					:label="t('Site URL')"
 					type="data"
 					name="site_url"
 					:required="true"
@@ -26,7 +26,7 @@
 				<FormControl
 					v-if="resource_type == 'Server'"
 					v-model="server_name"
-					label="Server Name"
+					:label="t('Server Name')"
 					type="data"
 					name="server_name"
 					placeholder="e.g. f1-mumbai.frappe.cloud"
@@ -35,7 +35,7 @@
 				<FormControl
 					v-if="resource_type == 'Team'"
 					v-model="team_name"
-					label="Account Email ID"
+					:label="t('Account Email ID')"
 					type="data"
 					name="team_name"
 					placeholder="e.g. jondoe@example.com"
@@ -43,7 +43,7 @@
 				/>
 				<ErrorMessage :message="errorMessage" />
 				<Button variant="solid" @click="() => updateStatus.submit()"
-					>Submit</Button
+					>{{ t('Submit') }}</Button
 				>
 			</div>
 		</template>

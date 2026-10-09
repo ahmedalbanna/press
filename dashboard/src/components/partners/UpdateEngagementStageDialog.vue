@@ -5,21 +5,21 @@
 				<FormControl
 					:required="true"
 					v-model="proposed_plan"
-					label="Proposed Plan"
+					:label="t('Proposed Plan')"
 					type="select"
 					name="proposed_plan"
 					:options="sitePlanOptions"
 				/>
 				<FormControl
 					v-model="expected_close_date"
-					label="Expected Close Date"
+					:label="t('Expected Close Date')"
 					type="date"
 					name="expected_close_date"
 					:required="true"
 				/>
 				<ErrorMessage :message="errorMessage" />
 				<Button variant="solid" @click="() => updateStatus.submit()"
-					>Submit</Button
+					>{{ t('Submit') }}</Button
 				>
 			</div>
 		</template>

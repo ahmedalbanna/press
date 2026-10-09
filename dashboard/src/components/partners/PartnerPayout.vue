@@ -10,6 +10,7 @@ import { currency } from '../../utils/format';
 import { Button } from 'frappe-ui';
 import { icon } from '../../utils/components';
 import router from '../../router';
+import { t } from '../../utils/language'
 
 export default {
 	components: { ObjectList, Button },
@@ -25,14 +26,14 @@ export default {
 				doctype: 'Partner Payment Payout',
 				fields: ['type'],
 				columns: [
-					{ label: 'Payout ID', fieldname: 'name' },
+					{ label: t('Payout ID'), fieldname: 'name' },
 					{
-						label: 'Payment Gateway',
+						label: t('Payment Gateway'),
 						fieldname: 'payment_gateway',
 						format: (value) => value || 'N/A',
 					},
 					{
-						label: 'Posting Date',
+						label: t('Posting Date'),
 						fieldname: 'posting_date',
 						format(value) {
 							return Intl.DateTimeFormat('en-US', {
@@ -43,17 +44,17 @@ export default {
 						},
 					},
 					{
-						label: 'Total Amount',
+						label: t('Total Amount'),
 						fieldname: 'total_amount',
 						format: (value) => this.formatCurrency(value),
 					},
 					{
-						label: 'Commission',
+						label: t('Commission'),
 						fieldname: 'commission',
 						format: (value) => this.formatCurrency(value),
 					},
 					{
-						label: 'Net Amount',
+						label: t('Net Amount'),
 						fieldname: 'net_amount',
 						format: (value) => this.formatCurrency(value),
 					},
@@ -65,7 +66,7 @@ export default {
 				},
 				primaryAction() {
 					return {
-						label: 'New Payout',
+						label: t('New Payout'),
 						variant: 'solid',
 
 						slots: {

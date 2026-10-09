@@ -6,13 +6,13 @@
 			:options="{ title: 'Link Certificate' }"
 		>
 			<template #body-content>
-				<p class="pb-3 text-p-base">Enter the details to link a certificate.</p>
+				<p class="pb-3 text-p-base">{{ t('Enter the details to link a certificate.') }}</p>
 				<FormControl
 					class="py-2"
 					name="certificate_type"
 					type="select"
 					:options="courseTypes"
-					label="Certificate Type"
+					:label="t('Certificate Type')"
 					v-model="certificateType"
 					@change="emailChange"
 				/>
@@ -20,7 +20,7 @@
 					class="pt-2"
 					name="user_email"
 					type="text"
-					label="User Email"
+					:label="t('User Email')"
 					v-model="userEmail"
 					@input="emailChange"
 				/>
@@ -46,7 +46,7 @@
 						class="w-full"
 						variant="solid"
 						:loading="linkCertificate.loading"
-						label="Link Certificate"
+						:label="t('Link Certificate')"
 						@click="linkCertificate.submit()"
 					/>
 				</div>
@@ -59,10 +59,11 @@
 import { defineEmits, ref } from 'vue';
 import { createResource, frappeRequest, debounce } from 'frappe-ui';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language'
 
 const courseTypes = [
-	{ label: 'Framework', value: 'frappe' },
-	{ label: 'ERPNext', value: 'erpnext' },
+	{ label: t('Framework'), value: 'frappe' },
+	{ label: t('ERPNext'), value: 'erpnext' },
 ];
 const show = ref(true);
 

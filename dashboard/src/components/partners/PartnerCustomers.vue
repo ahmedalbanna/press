@@ -14,7 +14,7 @@
 						v-if="showInvoice.status === 'Empty'"
 						class="text-base text-ink-gray-6"
 					>
-						Nothing to show
+						{{ t('Nothing to show') }}
 					</div>
 					<PartnerCustomerInvoices
 						:customerTeam="showInvoice.name"
@@ -32,7 +32,7 @@
 					Enter the equivalent amount of credits (in {{ $team.doc.currency }})
 					you wish to transfer.
 				</p>
-				<FormControl placeholder="Amount" v-model="amount" autocomplete="off" />
+				<FormControl :placeholder="t('Amount')" v-model="amount" autocomplete="off" />
 				<ErrorMessage
 					class="mt-2"
 					:message="$resources.transferCredits.error"
@@ -51,7 +51,7 @@
 						})
 					"
 				>
-					Transfer
+					{{ t('Transfer') }}
 				</Button>
 			</template>
 		</Dialog>
@@ -89,6 +89,7 @@ import { Dialog, ErrorMessage } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import { userCurrency } from '../../utils/format';
 import PartnerApprovalRequests from './PartnerApprovalRequests.vue';
+import { t } from '../../utils/language'
 
 export default {
 	name: 'PartnerCustomers',
@@ -150,30 +151,30 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Name',
+						label: t('Name'),
 						fieldname: 'billing_name',
 					},
 					{
-						label: 'Email',
+						label: t('Email'),
 						fieldname: 'email',
 					},
 					{
-						label: 'Payment Mode',
+						label: t('Payment Mode'),
 						fieldname: 'payment_mode',
 					},
 					{
-						label: 'Currency',
+						label: t('Currency'),
 						fieldname: 'currency',
 						width: 0.5,
 					},
 					{
-						label: 'Contributions',
+						label: t('Contributions'),
 						type: 'Button',
 						width: 0.5,
 						align: 'center',
 						Button: ({ row }) => {
 							return {
-								label: 'View',
+								label: t('View'),
 								onClick: () => {
 									this.showInvoice = row;
 									this.contributionDialog = true;
@@ -189,7 +190,7 @@ export default {
 						key: 'actions',
 						Button: ({ row }) => {
 							return {
-								label: 'Transfer Credits',
+								label: t('Transfer Credits'),
 								onClick: () => {
 									this.transferCreditsDialog = true;
 									this.customerTeam = row;
@@ -201,7 +202,7 @@ export default {
 				actions: () => {
 					return [
 						{
-							label: 'Customer Approval Requests',
+							label: t('Customer Approval Requests'),
 							onClick: () => {
 								this.showApprovalRequestsDialog = true;
 							},

@@ -12,6 +12,7 @@ import ObjectList from '../ObjectList.vue';
 import PartnerCertificateRequest from './PartnerCertificateRequest.vue';
 import LinkCertificate from './LinkCertificate.vue';
 import CertificationStatus from './CertificationStatus.vue';
+import { t } from '../../utils/language'
 export default {
 	name: 'PartnerCertificates',
 	components: {
@@ -35,7 +36,7 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Member Name',
+						label: t('Member Name'),
 						fieldname: 'partner_member_name',
 						width: 0.6,
 						class: 'truncate',
@@ -45,7 +46,7 @@ export default {
 						},
 					},
 					{
-						label: 'Member Email',
+						label: t('Member Email'),
 						fieldname: 'partner_member_email',
 						width: 0.8,
 						class: 'truncate',
@@ -55,7 +56,7 @@ export default {
 						},
 					},
 					{
-						label: 'Issued On',
+						label: t('Issued On'),
 						fieldname: 'issue_date',
 						width: 0.5,
 						format(value) {
@@ -67,7 +68,7 @@ export default {
 						},
 					},
 					{
-						label: 'Course',
+						label: t('Course'),
 						fieldname: 'course',
 						format(value) {
 							return value == 'frappe-developer-certification'
@@ -77,13 +78,13 @@ export default {
 						width: 0.5,
 					},
 					{
-						label: 'Version',
+						label: t('Version'),
 						fieldname: 'version',
 						width: 0.4,
 						align: 'center',
 					},
 					{
-						label: 'Free',
+						label: t('Free'),
 						fieldname: 'free',
 						type: 'Component',
 						align: 'center',
@@ -93,7 +94,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Free Certification',
+										text: t('Free Certification'),
 									},
 									() =>
 										h(FeatherIcon, {
@@ -105,12 +106,12 @@ export default {
 						},
 					},
 					{
-						label: 'Certificate Link',
+						label: t('Certificate Link'),
 						type: 'Button',
 						align: 'center',
 						Button({ row }) {
 							return {
-								label: 'View',
+								label: t('View'),
 								slots: {
 									prefix: icon('external-link'),
 								},
@@ -127,7 +128,7 @@ export default {
 				actions() {
 					return [
 						{
-							label: 'Apply for Certification',
+							label: t('Apply for Certification'),
 							slots: {
 								prefix: icon('plus'),
 							},
@@ -143,7 +144,7 @@ export default {
 							},
 						},
 						{
-							label: 'Link Certificate',
+							label: t('Link Certificate'),
 							slots: {
 								prefix: icon('link'),
 							},
@@ -163,7 +164,7 @@ export default {
 				moreActions() {
 					return [
 						{
-							label: 'Check Certification Status',
+							label: t('Check Certification Status'),
 							onClick: () => {
 								renderDialog(
 									h(CertificationStatus, {
@@ -179,10 +180,10 @@ export default {
 						{
 							type: 'select',
 							fieldname: 'course',
-							label: 'Course',
+							label: t('Course'),
 							options: [
-								{ label: 'Framework', value: 'frappe-developer-certification' },
-								{ label: 'ERPNext', value: 'erpnext-distribution' },
+								{ label: t('Framework'), value: 'frappe-developer-certification' },
+								{ label: t('ERPNext'), value: 'erpnext-distribution' },
 							],
 						},
 					];

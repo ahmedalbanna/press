@@ -38,7 +38,7 @@
 			<ObjectList :options="partnerLeadsList" />
 		</div>
 		<div v-else class="text-base text-ink-gray-6">
-			No partner leads available.
+			{{ t('No partner leads available.') }}
 		</div>
 	</div>
 </template>
@@ -48,6 +48,7 @@ import { h } from 'vue'
 import { icon, renderDialog } from '../../utils/components'
 import ObjectList from '../ObjectList.vue'
 import NewPartnerLead from './NewPartnerLead.vue'
+import { t } from '../../utils/language'
 export default {
 	name: 'PartnerLeads',
 	components: {
@@ -93,7 +94,7 @@ export default {
 				},
 				columns: [
 					{
-						label: 'Lead Name',
+						label: t('Lead Name'),
 						fieldname: 'lead_name',
 						width: 0.6,
 						class: 'truncate',
@@ -103,7 +104,7 @@ export default {
 						},
 					},
 					{
-						label: 'Organization',
+						label: t('Organization'),
 						fieldname: 'organization',
 						width: 0.6,
 						class: 'truncate',
@@ -113,24 +114,24 @@ export default {
 						},
 					},
 					{
-						label: 'Lead Source',
+						label: t('Lead Source'),
 						fieldname: 'lead_source',
 						width: 0.5,
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: 0.4,
 						align: 'center',
 					},
 					{
-						label: 'Lead ID',
+						label: t('Lead ID'),
 						fieldname: 'name',
 						width: 0.5,
 					},
 					{
-						label: 'Partner',
+						label: t('Partner'),
 						fieldname: 'partner_team',
 						width: 0.6,
 						class: 'truncate',
@@ -147,12 +148,12 @@ export default {
 						{
 							type: 'data',
 							fieldname: 'lead_name',
-							label: 'Lead Name',
+							label: t('Lead Name'),
 						},
 						{
 							type: 'select',
 							fieldname: 'status',
-							label: 'Status',
+							label: t('Status'),
 							options: [
 								'All',
 								'Open',
@@ -171,20 +172,20 @@ export default {
 						{
 							type: 'select',
 							fieldname: 'source',
-							label: 'Lead Source',
+							label: t('Lead Source'),
 							options: [
-								{ label: 'All', value: 'All' },
-								{ label: 'Partner Owned', value: 'Partner Owned' },
-								{ label: 'Passed to Partner', value: 'Passed to Partner' },
-								{ label: 'Partner Listing', value: 'Partner Listing' },
+								{ label: t('All'), value: 'All' },
+								{ label: t('Partner Owned'), value: 'Partner Owned' },
+								{ label: t('Passed to Partner'), value: 'Passed to Partner' },
+								{ label: t('Partner Listing'), value: 'Partner Listing' },
 							],
 						},
 						{
 							type: 'select',
 							fieldname: 'lead_owner',
-							label: 'Lead Owner',
+							label: t('Lead Owner'),
 							options: [
-								{ label: 'All', value: 'All' },
+								{ label: t('All'), value: 'All' },
 								...leadOwners.map((owner) => ({
 									label: owner.label,
 									value: owner.value,
@@ -194,7 +195,7 @@ export default {
 						{
 							type: 'checkbox',
 							fieldname: 'is_starter_pack',
-							label: 'Starter Pack',
+							label: t('Starter Pack'),
 						},
 					]
 				},
@@ -206,7 +207,7 @@ export default {
 				},
 				primaryAction: () => {
 					return {
-						label: 'Add Lead',
+						label: t('Add Lead'),
 						variant: 'solid',
 						slots: {
 							prefix: icon('plus'),

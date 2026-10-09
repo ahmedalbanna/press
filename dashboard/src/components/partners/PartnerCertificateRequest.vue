@@ -8,14 +8,14 @@
 			<template #body-content>
 				<div v-if="!showMessage">
 					<p class="pb-3 text-p-base">
-						Enter the details to apply for a certificate.
+						{{ t('Enter the details to apply for a certificate.') }}
 					</p>
 					<FormControl
 						class="py-2"
 						name="certificate_type"
 						type="select"
 						:options="courseTypes"
-						label="Certificate Type"
+						:label="t('Certificate Type')"
 						v-model="certificateType"
 					/>
 					<FormControl
@@ -23,7 +23,7 @@
 						name="member_name"
 						type="select"
 						:options="memberList"
-						label="Member Name"
+						:label="t('Member Name')"
 						v-model="userName"
 					/>
 
@@ -31,7 +31,7 @@
 						<Button
 							class="w-full"
 							variant="solid"
-							label="Apply for Certificate"
+							:label="t('Apply for Certificate')"
 							@click="handleApplyForCertificate()"
 						/>
 					</div>
@@ -39,7 +39,7 @@
 				</div>
 				<div v-else>
 					<p class="text-p-base">
-						You have used both of your free certifications. Please navigate to
+						{{ t('You have used both of your free certifications. Please navigate to') }}
 						<a :href="batch_link" target="_blank" class="underline">
 							this batch
 						</a>
@@ -56,10 +56,11 @@ import { defineEmits, onMounted, ref } from 'vue';
 import { createResource } from 'frappe-ui';
 import { getTeam } from '../../data/team';
 import { toast } from 'vue-sonner';
+import { t } from '../../utils/language'
 
 const courseTypes = [
-	{ label: 'Framework', value: 'frappe-developer-certification' },
-	{ label: 'ERPNext', value: 'erpnext-distribution' },
+	{ label: t('Framework'), value: 'frappe-developer-certification' },
+	{ label: t('ERPNext'), value: 'erpnext-distribution' },
 ];
 const show = ref(true);
 const errorMessage = ref('');

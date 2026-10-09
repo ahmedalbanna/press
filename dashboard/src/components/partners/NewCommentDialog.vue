@@ -5,7 +5,7 @@
 				<!-- New Comment -->
 				<TextEditor
 					editor-class="prose-sm max-w-none min-h-[4rem]"
-					placeholder="Write your comment here..."
+					:placeholder="t('Write your comment here...')"
 					ref="commentEditor"
 					:content="content"
 					:editable="true"
@@ -40,9 +40,9 @@
 							/>
 							<div class="mt-2 flex items-center justify-end space-x-2 sm:mt-0">
 								<Button variant="subtle" @click="emits('update:show', false)">
-									Cancel
+									{{ t('Cancel') }}
 								</Button>
-								<Button variant="solid" @click="saveComment()"> Submit </Button>
+								<Button variant="solid" @click="saveComment()"> {{ t('Submit') }} </Button>
 							</div>
 						</div>
 					</template>

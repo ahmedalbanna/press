@@ -19,6 +19,7 @@ import ObjectList from '../ObjectList.vue';
 import { renderDialog } from '../../utils/components';
 import CertificateSummary from './CertificateSummary.vue';
 import { session } from '../../data/session';
+import { t } from '../../utils/language'
 
 const show = ref(true);
 const $session = session || {};
@@ -45,17 +46,17 @@ const requestList = computed(() => {
 		data: () => certRequestList.data,
 		columns: [
 			{
-				label: 'Member Name',
+				label: t('Member Name'),
 				fieldname: 'member_name',
 				width: 1,
 			},
 			{
-				label: 'Certificate Type',
+				label: t('Certificate Type'),
 				fieldname: 'certificate_type',
 				width: 1,
 			},
 			{
-				label: 'Status',
+				label: t('Status'),
 				fieldname: 'status',
 				width: 0.5,
 				align: 'center',

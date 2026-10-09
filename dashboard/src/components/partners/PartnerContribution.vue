@@ -6,6 +6,7 @@
 <script>
 import GenericList from '../GenericList.vue';
 import { currency, userCurrency } from '../../utils/format';
+import { t } from '../../utils/language'
 export default {
 	name: 'PartnerContribution',
 	props: ['partnerEmail'],
@@ -47,16 +48,16 @@ export default {
 				selectable: false,
 				columns: [
 					{
-						label: 'Customer',
+						label: t('Customer'),
 						fieldname: 'customer_name',
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						width: 0.5,
 					},
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'due_date',
 						format(value) {
 							return Intl.DateTimeFormat('en-US', {
@@ -68,13 +69,13 @@ export default {
 						width: 0.6,
 					},
 					{
-						label: 'Currency',
+						label: t('Currency'),
 						fieldname: 'currency',
 						width: 0.5,
 						align: 'center',
 					},
 					{
-						label: 'Total',
+						label: t('Total'),
 						fieldname: 'total',
 						format(value, columns) {
 							if (value === 0) {
@@ -86,7 +87,7 @@ export default {
 						width: 0.6,
 					},
 					{
-						label: 'Partner Total',
+						label: t('Partner Total'),
 						fieldname: 'partner_total',
 						format(value) {
 							return userCurrency(value);

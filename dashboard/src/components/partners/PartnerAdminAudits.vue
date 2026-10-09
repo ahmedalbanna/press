@@ -5,6 +5,7 @@
 </template>
 <script>
 import ObjectList from '../ObjectList.vue';
+import { t } from '../../utils/language'
 
 export default {
 	name: 'PartnerAdminAudits',
@@ -23,7 +24,7 @@ export default {
 				],
 				columns: [
 					{
-						label: 'Partner',
+						label: t('Partner'),
 						fieldname: 'partner_team',
 						width: 0.8,
 						class: 'truncate',
@@ -33,18 +34,18 @@ export default {
 						},
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: 0.5,
 					},
 					{
-						label: 'Audit Type',
+						label: t('Audit Type'),
 						fieldname: 'mode_of_audit',
 						width: 0.5,
 					},
 					{
-						label: 'Conducted By',
+						label: t('Conducted By'),
 						fieldname: 'conducted_by',
 						width: 0.8,
 						class: 'truncate',
@@ -54,14 +55,14 @@ export default {
 						},
 					},
 					{
-						label: 'NC Count',
+						label: t('NC Count'),
 						fieldname: 'non_conformance_count',
 						width: 0.4,
 						type: 'Badge',
 						align: 'center',
 					},
 					{
-						label: 'Requested Date',
+						label: t('Requested Date'),
 						fieldname: 'proposed_audit_date',
 						width: 0.8,
 						format(value) {
@@ -74,7 +75,7 @@ export default {
 						},
 					},
 					{
-						label: 'Audit Date',
+						label: t('Audit Date'),
 						fieldname: 'audit_date',
 						width: 0.8,
 						format(value) {
@@ -92,31 +93,31 @@ export default {
 						{
 							type: 'date',
 							fieldname: 'proposed_audit_date',
-							label: 'Audit Date',
+							label: t('Audit Date'),
 						},
 						{
 							type: 'select',
 							fieldname: 'status',
-							label: 'Status',
+							label: t('Status'),
 							options: [
-								{ label: 'All', value: 'All' },
-								{ label: 'Requested', value: 'Requested' },
-								{ label: 'Scheduled', value: 'Scheduled' },
-								{ label: 'In Progress', value: 'In Progress' },
-								{ label: 'Completed', value: 'Completed' },
-								{ label: 'On Hold', value: 'On Hold' },
-								{ label: 'Cancelled', value: 'Cancelled' },
+								{ label: t('All'), value: 'All' },
+								{ label: t('Requested'), value: 'Requested' },
+								{ label: t('Scheduled'), value: 'Scheduled' },
+								{ label: t('In Progress'), value: 'In Progress' },
+								{ label: t('Completed'), value: 'Completed' },
+								{ label: t('On Hold'), value: 'On Hold' },
+								{ label: t('Cancelled'), value: 'Cancelled' },
 							],
 						},
 						{
 							type: 'select',
 							fieldname: 'mode_of_audit',
-							label: 'Audit Type',
+							label: t('Audit Type'),
 							options: [
-								{ label: 'All', value: 'All' },
-								{ label: 'In-Person', value: 'In-Person' },
-								{ label: 'Online', value: 'Online' },
-								{ label: 'Hybrid', value: 'Hybrid' },
+								{ label: t('All'), value: 'All' },
+								{ label: t('In-Person'), value: 'In-Person' },
+								{ label: t('Online'), value: 'Online' },
+								{ label: t('Hybrid'), value: 'Hybrid' },
 							],
 						},
 					];

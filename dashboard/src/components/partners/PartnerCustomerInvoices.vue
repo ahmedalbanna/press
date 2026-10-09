@@ -7,6 +7,7 @@
 import ObjectList from '../ObjectList.vue';
 import { currency } from '../../utils/format';
 import dayjs from '../../utils/dayjs';
+import { t } from '../../utils/language'
 
 export default {
 	name: 'PartnerCustomerInvoices',
@@ -26,10 +27,10 @@ export default {
 				doctype: 'Invoice',
 				fields: ['type'],
 				columns: [
-					{ label: 'Invoice', fieldname: 'name' },
-					{ label: 'Status', fieldname: 'status', type: 'Badge' },
+					{ label: t('Invoice'), fieldname: 'name' },
+					{ label: t('Status'), fieldname: 'status', type: 'Badge' },
 					{
-						label: 'Date',
+						label: t('Date'),
 						fieldname: 'due_date',
 						format(value) {
 							return Intl.DateTimeFormat('en-US', {
@@ -39,9 +40,9 @@ export default {
 							}).format(new Date(value));
 						},
 					},
-					{ label: 'Total', fieldname: 'total', format: this.formatCurrency },
+					{ label: t('Total'), fieldname: 'total', format: this.formatCurrency },
 					{
-						label: 'Amount Due',
+						label: t('Amount Due'),
 						fieldname: 'amount_due',
 						format: this.formatCurrency,
 					},

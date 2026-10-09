@@ -38,7 +38,7 @@
 					<Button
 						class="w-full"
 						variant="solid"
-						label="Update Followup Details"
+						:label="t('Update Followup Details')"
 						@click="updateFollowup.submit()"
 					/>
 				</div>
@@ -50,6 +50,7 @@
 import { createResource, Dialog, FormControl, DatePicker } from 'frappe-ui';
 import { computed, reactive, ref } from 'vue';
 import { getTeam } from '../../data/team';
+import { t } from '../../utils/language'
 
 const props = defineProps({
 	id: {
@@ -139,12 +140,12 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Date',
-					label: 'Followup Date',
+					label: t('Followup Date'),
 					fieldname: 'followup_date',
 				},
 				{
 					fieldtype: 'Select',
-					label: 'Followup By',
+					label: t('Followup By'),
 					fieldname: 'followup_by',
 					options: members.value,
 				},
@@ -156,7 +157,7 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Select',
-					label: 'Communication Type',
+					label: t('Communication Type'),
 					fieldname: 'communication_type',
 					options: communicationTypes.value,
 				},
@@ -168,12 +169,12 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Data',
-					label: 'Spoke To',
+					label: t('Spoke To'),
 					fieldname: 'spoke_to',
 				},
 				{
 					fieldtype: 'Data',
-					label: 'Designation',
+					label: t('Designation'),
 					fieldname: 'designation',
 				},
 			],
@@ -184,7 +185,7 @@ const sections = computed(() => {
 			fields: [
 				{
 					fieldtype: 'Text',
-					label: 'Discussion Notes',
+					label: t('Discussion Notes'),
 					fieldname: 'discussion',
 				},
 			],

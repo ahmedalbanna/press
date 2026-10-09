@@ -25,16 +25,16 @@
 		</div>
 		<div class="p-4 my-4 rounded border-[1.5px]">
 			<div class="flex flex-col gap-4">
-				<div class="flex font-semibold gap-2.5 text-lg">Audit Information</div>
+				<div class="flex font-semibold gap-2.5 text-lg">{{ t('Audit Information') }}</div>
 				<div class="grid grid-cols-2">
 					<div class="flex flex-col gap-1">
-						<div class="text-base text-ink-gray-6">Conducted By</div>
+						<div class="text-base text-ink-gray-6">{{ t('Conducted By') }}</div>
 						<div class="text-base text-ink-gray-8">
 							{{ ncSummaryDoc?.doc?.auditor }}
 						</div>
 					</div>
 					<div class="flex flex-col gap-1">
-						<div class="text-base text-ink-gray-6">Conducted On</div>
+						<div class="text-base text-ink-gray-6">{{ t('Conducted On') }}</div>
 						<div class="text-base text-ink-gray-8">
 							{{ formatDate(ncSummaryDoc?.doc?.audit_date) }}
 						</div>
@@ -45,17 +45,17 @@
 		<div class="p-4 my-4 rounded border-[1.5px]">
 			<div class="flex flex-col gap-4">
 				<div class="flex gap-2.5 font-semibold text-lg">
-					Closure Information
+					{{ t('Closure Information') }}
 				</div>
 				<div class="grid grid-cols-2">
 					<div class="flex flex-col gap-1">
-						<div class="text-base text-ink-gray-6">Closed By</div>
+						<div class="text-base text-ink-gray-6">{{ t('Closed By') }}</div>
 						<div class="text-base text-ink-gray-8">
 							{{ ncSummaryDoc?.doc?.closed_by }}
 						</div>
 					</div>
 					<div class="flex flex-col gap-1">
-						<div class="text-base text-ink-gray-6">Closed On</div>
+						<div class="text-base text-ink-gray-6">{{ t('Closed On') }}</div>
 						<div class="text-base text-ink-gray-8">
 							{{ formatDate(ncSummaryDoc?.doc?.closed_on) }}
 						</div>
@@ -67,7 +67,7 @@
 			v-if="ncSummaryDoc?.doc?.nc_description"
 			class="p-4 my-4 flex flex-col gap-2.5 rounded border-[1.5px]"
 		>
-			<div class="text-lg font-semibold pb-1">Description</div>
+			<div class="text-lg font-semibold pb-1">{{ t('Description') }}</div>
 			<div class="text-base text-ink-gray-8 whitespace-pre-line leading-relaxed">
 				{{ ncSummaryDoc?.doc?.nc_description }}
 			</div>
@@ -76,7 +76,7 @@
 			v-if="ncSummaryDoc?.doc?.measures_to_close_nc"
 			class="p-4 my-4 flex flex-col gap-2.5 rounded border-[1.5px]"
 		>
-			<div class="text-lg font-semibold pb-1">Measures to be taken</div>
+			<div class="text-lg font-semibold pb-1">{{ t('Measures to be taken') }}</div>
 			<div class="text-base text-ink-gray-8 whitespace-pre-line leading-relaxed">
 				{{ ncSummaryDoc?.doc?.measures_to_close_nc }}
 			</div>
@@ -89,7 +89,7 @@
 		>
 			<FeatherIcon name="file-text" class="mr-2 h-10 w-10 text-ink-gray-5" />
 			<div class="text-lg text-ink-gray-6">
-				Select a Non Conformance to view details
+				{{ t('Select a Non Conformance to view details') }}
 			</div>
 		</div>
 	</div>

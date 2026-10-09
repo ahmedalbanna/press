@@ -1,11 +1,11 @@
 <template>
 	<div class="mt-5 px-60">
 		<div class="flex justify-between px-10 pb-5">
-			<div class="font-semibold text-lg">Activity</div>
+			<div class="font-semibold text-lg">{{ t('Activity') }}</div>
 			<div>
 				<Dropdown :options="commentOptions">
 					<template #default="{ comment }">
-						<Button variant="subtle" size="md" label="New">
+						<Button variant="subtle" size="md" :label="t('New')">
 							<template #suffix>
 								<FeatherIcon
 									:name="comment ? 'chevron-up' : 'chevron-down'"
@@ -180,6 +180,7 @@ import DropdownItem from '../billing/DropdownItem.vue';
 import NewCommentDialog from './NewCommentDialog.vue';
 import { session } from '../../data/session';
 import { getTeam } from '../../data/team';
+import { t } from '../../utils/language'
 
 const route = useRoute();
 
@@ -241,22 +242,22 @@ let showNewCommentDialog = ref(false);
 const commentOptions = computed(() => {
 	return [
 		{
-			label: 'New Comment',
+			label: t('New Comment'),
 			value: 'comment',
 			component: () =>
 				h(DropdownItem, {
-					label: 'New Comment',
+					label: t('New Comment'),
 					onClick: () => {
 						showNewCommentDialog.value = true;
 					},
 				}),
 		},
 		// {
-		// 	label: 'New Email',
+		// 	label: t('New Email'),
 		// 	value: 'email',
 		// 	component: () =>
 		// 		h(DropdownItem, {
-		// 			label: 'New Email',
+		// 			label: t('New Email'),
 		// 			onClick: () => {
 		// 				console.log('Email Clicked');
 		// 			},

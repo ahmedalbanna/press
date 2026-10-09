@@ -36,6 +36,7 @@ Access Requests,طلبات الوصول
 Access Status,حالة الوصول
 Access request submitted,تم إرسال طلب الوصول
 Access to 150+ marketplace apps,الوصول إلى أكثر من 150 تطبيقاً في المتجر
+Account Email ID,البريد الإلكتروني للحساب
 Account Key,مفتاح الحساب
 Account balance,رصيد الحساب
 Account created,تم إنشاء الحساب
@@ -70,7 +71,9 @@ Add Currency Exchange,إضافة سعر صرف
 Add Database User,إضافة مستخدم قاعدة البيانات
 Add Domain,إضافة نطاق
 Add Environment Variable,إضافة متغير بيئة
+Add Followup,إضافة متابعة
 Add Key,إضافة مفتاح
+Add Lead,إضافة عميل محتمل
 Add M-Pesa Credentials,إضافة بيانات اعتماد M-Pesa
 Add Member,إضافة عضو
 Add New SSH Key,إضافة مفتاح SSH جديد
@@ -188,6 +191,9 @@ Applied Balance,الرصيد المطبق
 Applied To Invoice {invoice},تم تطبيقه على الفاتورة {invoice}
 Apply,تطبيق
 Apply Patch,تطبيق التصحيح
+Apply for Certificate,التقدم لشهادة
+Apply for Certification,التقدم للحصول على شهادة
+Approval Pending,بانتظار الموافقة
 Approval Request has already been sent to Partner,تم إرسال طلب الموافقة إلى الشريك بالفعل
 Approval Request has been sent to Partner. Please wait for Partner to accept the request,تم إرسال طلب الموافقة إلى الشريك. يرجى الانتظار حتى يقبل الشريك الطلب
 Approve,موافقة
@@ -229,8 +235,10 @@ Are you sure you want to set the domain <b>{domain}</b> as the primary domain fo
 Attempts,المحاولات
 Attention Required,يتطلب انتباهًا
 Attention required!,يتطلب انتباهك!
+Audit Date,تاريخ التدقيق
 Audit Failed,فشل التدقيق
 Audit Inconclusive,التدقيق غير حاسم
+Audit Information,معلومات التدقيق
 Audit Passed,نجح التدقيق
 Audit Passed with Warnings,نجح التدقيق مع تحذيرات
 Audit Report,تقرير التدقيق
@@ -388,10 +396,12 @@ Cards,بطاقات
 Category,فئة
 Certificate Link,رابط الشهادة
 Certificate Link Request,طلب ربط شهادة
+Certificate Type,نوع الشهادة
 Certificate fetch scheduled. Please wait a few minutes.,تم جدولة جلب الشهادة. يُرجى الانتظار بضع دقائق.
 Certificates,الشهادات
 Certifications,الشهادات
 Certified,معتمد
+Certified Members,الأعضاء المعتمدون
 Change,تغيير
 Change Bench / Server / Region options moved to Migrations Tab,تم نقل خيارات تغيير البنش / الخادم / المنطقة إلى تبويب الترحيلات
 Change Branch,تغيير الفرع
@@ -407,6 +417,7 @@ Changed By,غيّرها
 Changed From,تغيير من
 Changed To,إلى
 Changes,التغييرات
+Check Certification Status,التحقق من حالة الشهادة
 Check results,نتائج الفحوصات
 Check your inbox for next steps,تفقد بريدك الوارد للخطوات التالية
 Checking upgrade compatibility...,جاري فحص توافق الترقية...
@@ -435,14 +446,23 @@ Client IP (Optional),عنوان IP للعميل (اختياري)
 Clone,استنساخ
 Close,إغلاق
 Closed,مغلق
+Closed By,أغلق بواسطة
+Closed On,تاريخ الإغلاق
+Closure Information,معلومات الإغلاق
 Code,الرمز
 Code Quality,جودة الكود
+Cold,بارد
 Collapse,طي
 Collected,تم التحصيل
 Columns,الأعمدة
+Commission,العمولة
 Commit,الإيداع
 Commit Message,رسالة الإيداع
+Communication,التواصل
+Communication Type,نوع التواصل
 Company,الشركة
+Company Information,معلومات الشركة
+Company Name,اسم الشركة
 Compare,قارن
 Compare Features,مقارنة الميزات
 Compatibility,التوافق
@@ -453,6 +473,8 @@ Complete setup,إكمال الإعداد
 Completed,مكتمل
 Complex,معقد
 Compute,الحوسبة
+Conducted By,أجراه
+Conducted On,تاريخ الإجراء
 Config,الإعدادات
 Config Name,اسم الإعداد
 Config Value,قيمة الإعداد
@@ -472,6 +494,8 @@ Connected,متصل
 Consistent,متسق
 Consistent Snapshot,لقطة متسقة
 Contact,تواصل مع
+Contact Info,معلومات التواصل
+Contact No.,رقم التواصل
 Contact Support,تواصل مع الدعم
 Contact us,تواصل معنا
 Containerised deployments,نشرات مجزأة
@@ -482,6 +506,7 @@ Continue with password,المتابعة باستخدام كلمة المرور
 Continue with verification code,المتابعة باستخدام رمز التحقق
 Contribution,المساهمة
 Contributions,المساهمات
+Conversion Date,تاريخ التحويل
 Cookie Policy,سياسة ملفات تعريف الارتباط
 Copy,نسخ
 Copy Recovery Codes,نسخ رموز الاسترداد
@@ -497,6 +522,7 @@ Create,إنشاء
 Create A New Bench,إنشاء بنش جديد
 Create Account,إنشاء حساب
 Create Bench,إنشاء رصيف
+Create Lead,إنشاء عميل محتمل
 Create New API Key,إنشاء مفتاح واجهة برمجية جديد
 Create Release Groups,إنشاء مجموعات إصدار
 Create Role,إنشاء دور
@@ -532,8 +558,10 @@ Critical,حرج
 Currency,العملة
 Currency Exchange Added Successfully,تمت إضافة سعر الصرف بنجاح
 Current,الحالي
+Current Month Contribution,مساهمة الشهر الحالي
 Current Password,كلمة المرور الحالية
 Current Plan,الخطة الحالية
+Current Progress,التقدم الحالي
 Current Status,الحالة الحالية
 Current Version,الإصدار الحالي
 Current billing amount so far,إجمالي الفوترة حتى الآن
@@ -542,6 +570,10 @@ Custom,مخصص
 Custom Key,مفتاح مخصص
 Custom app deployment,نشر تطبيقات مخصصة
 Customer,عميل
+Customer Approval Requests,طلبات موافقة العملاء
+Customer Email,بريد العميل
+Customer Name,اسم العميل
+Customer Team,فريق العميل
 Customers,العملاء
 DB Analyzer,محلل قاعدة البيانات
 DB Connections,اتصالات قاعدة البيانات
@@ -572,6 +604,7 @@ Deactivate,إلغاء التفعيل
 Deactivate Site,تعطيل الموقع
 Deactivate site,تعطيل الموقع
 Deactivating will put the site in maintenance mode and make it inaccessible,سيؤدي التعطيل إلى وضع الموقع في وضع الصيانة وجعله غير قابل للوصول
+Deal Info,معلومات الصفقة
 "Dear User,",عزيزي المستخدم،
 Dedicated Server,خادم مخصص
 Dedicated workers,عمال مخصصون
@@ -582,6 +615,7 @@ Delete App {app},حذف التطبيق {app}
 Delete Config,حذف الإعداد
 Delete Database User,حذف مستخدم قاعدة البيانات
 Delete Environment Variable,حذف متغير البيئة
+Delete Followup,حذف المتابعة
 Delete Patch,حذف الترقيع
 Delete Snapshot,حذف اللقطة
 Delete User,حذف المستخدم
@@ -601,8 +635,10 @@ Deployment,نشر
 Deployment Mode,وضع النشر
 Deploys,النشرات
 Description,الوصف
+Designation,المسمى الوظيفي
 Destination Bench,الرصيف الوجهة
 Destination Server,الخادم الوجهة
+Details,التفاصيل
 Dev Tools,أدوات المطور
 Developer,مطوّر
 Didn't get email? Resend,لم يصلك البريد؟ أعد الإرسال
@@ -619,6 +655,7 @@ Disabled,معطل
 Disabled webhook endpoint:,خطاف الويب المعطّل:
 Discard,تجاهل
 Disconnected,غير متصل
+Discussion Notes,ملاحظات المناقشة
 Disk Full Incident on {0},حادث امتلاء القرص على {0}
 Disk I/O,قراءة وكتابة القرص
 Disk Space,مساحة القرص
@@ -653,6 +690,7 @@ Drop the site even if there are pending operations,احذف الموقع حتى 
 Drop the unified server,حذف الخادم الموحد
 Dropping bench...,جارٍ حذف الرصيف...
 Dropping...,جارٍ الحذف...
+Due Date,تاريخ الاستحقاق
 Duplicate,تكرار
 Duration,المدة
 Duration (ms),المدة (مللي ثانية)
@@ -723,6 +761,8 @@ Enter site name,أدخل اسم الموقع
 Enter site name to set up your site,أدخل اسم الموقع لإعداده
 Enter the code from the app below,أدخل الرمز من التطبيق أدناه
 Enter the code from the authenticator app below,أدخل الرمز من تطبيق المصادقة أدناه
+Enter the details to apply for a certificate.,أدخل التفاصيل للتقدم للشهادة.
+Enter the details to link a certificate.,أدخل التفاصيل لربط الشهادة.
 Enter the partner code provided by your Partner,أدخل رمز الشريك المقدم من شريكك
 Enter your 2FA code to confirm,أدخل رمز المصادقة الثنائية للتأكيد
 Enter your email address to reset your password,أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور
@@ -744,6 +784,7 @@ Event,الحدث
 Exchange Rate,سعر الصرف
 Existing Bench,بنش موجود
 Expand,توسيع
+Expected Close Date,تاريخ الإغلاق المتوقع
 Expire At,تنتهي في
 Expired,منتهي الصلاحية
 Expires On,تنتهي في
@@ -808,6 +849,8 @@ Follow,متابعة
 Follow Up,متابعة
 Follow-up,متابعة
 Following servers will be dropped,سيتم حذف الخوادم التالية
+Followup By,المتابعة بواسطة
+Followup Date,تاريخ المتابعة
 "For any concerns or questions, please contact our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
 "For any concerns or questions, please reach out to our support team at",لأي مخاوف أو استفسارات، يرجى التواصل مع فريق الدعم على
 "For any questions, email support@albannatech.com.",لأي استفسار، يرجى مراسلة support@albannatech.com.
@@ -822,6 +865,8 @@ Forecasted Month End Cost,تكلفة نهاية الشهر المتوقعة
 Forfeit,تخلي
 Forgot Password?,نسيت كلمة المرور؟
 Fork,تفرع
+Foundation Date,تاريخ التأسيس
+Frappe Approval,موافقة Frappe
 "Frappe Compute is currently experimental. <a href=""https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider"" target=""_blank"" style=""font-weight: bold; text-decoration: underline;"">Learn more</a> about what this means.",Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.
 Frappe Framework Version,إصدار Frappe Framework
 Frappe Partner,Frappe Partner
@@ -889,9 +934,12 @@ High,مرتفع
 Home,الرئيسية
 Host this site on your dedicated server,استضافة هذا الموقع على خادمك المخصص
 Hosted on,مستضاف على
+Hosting,الاستضافة
+Hot,ساخن
 How tier upgrades work,كيف تعمل ترقية الفئات
 How to fix,خطوات الإصلاح
 How to fix?,كيف يتم الإصلاح؟
+Hybrid,هجين
 Hybrid Server,خادم هجين
 I agree that the laws of the selected region apply to both me and Frappe.,أوافق على أن قوانين المنطقة المحددة تنطبق علىّ وعلى Frappe.
 I agree to the,أوافق على
@@ -922,6 +970,7 @@ In Process,قيد المعالجة
 In Progress,قيد التنفيذ
 In Review,قيد المراجعة
 In the meantime we switched your payment method to,في هذه الأثناء، قمنا بتغيير طريقة الدفع إلى
+In-Person,حضوري
 In-Place Migrate Site,ترحيل الموقع في مكانه
 Inactive,غير نشط
 Inbound IP,عنوان IP الوارد
@@ -935,6 +984,7 @@ Incomplete,غير مكتمل
 Incorrect,غير صحيح
 Individual Background Job Time (Average),زمن مهمة الخلفية الفردية (المتوسط)
 Individual Request Time (Average),زمن الطلب الفردي (المتوسط)
+Industry,القطاع
 Info,معلومات
 Initializing,جارٍ التهيئة
 Insights,الرؤى
@@ -950,6 +1000,7 @@ Instance Type:,نوع الجهاز:
 Insufficient balance for the upcoming AlbannaTech payment,الرصيد غير كافٍ لدفعة AlbannaTech القادمة
 Internal,داخلي
 International,دولي
+Introduction,مقدمة
 Invalid,غير صالح
 Invalid JSON,JSON غير صالح
 Invalid Tax Id,رقم ضريبي غير صالح
@@ -969,6 +1020,7 @@ Invoice Cancelled,فاتورة ملغاة
 Invoice Created,تم إنشاء الفاتورة
 Invoice Date,تاريخ الفاتورة
 Invoice Due Date,تاريخ استحقاق الفاتورة
+Invoice ID,معرّف الفاتورة
 Invoice Name,اسم الفاتورة
 Invoice Number,رقم الفاتورة
 Invoice Overdue,فاتورة متأخرة
@@ -993,6 +1045,7 @@ Job Type,نوع المهمة
 Jobs,المهام
 Jobs in progress,الوظائف قيد التنفيذ
 Join,انضمام
+Journey Blog Link,رابط مدونة الرحلة
 Junk,غير صالح
 Key,المفتاح
 Kill Database Process,إنهاء عملية قاعدة البيانات
@@ -1018,6 +1071,11 @@ Last paid invoice ≥ {amount},آخر فاتورة مدفوعة ≥ {amount}
 Latest Deployed,آخر إصدار منشور
 Latest Updates Fetched for {title},تم جلب أحدث التحديثات لـ {title}
 Launch,إطلاق
+Lead ID,معرّف العميل المحتمل
+Lead Name,اسم العميل المحتمل
+Lead Owner,مالك العميل المحتمل
+Lead Source,مصدر العميل المحتمل
+Lead Type,نوع العميل المحتمل
 Leads,العملاء المحتملون
 Learn About Instance Types,معرفة المزيد عن أنواع النسخ
 Learn More,معرفة المزيد
@@ -1030,6 +1088,7 @@ Let's set up your account,لنقم بإعداد حسابك
 Let's set up your site,لنقم بإعداد موقعك
 Light Mode,الوضع الفاتح
 Limits,الحدود
+Link Certificate,ربط الشهادة
 Link Partner Account,ربط حساب الشريك
 Listing,الإدراج
 Load Average,متوسط الحمل
@@ -1072,6 +1131,7 @@ Login with email,الدخول بالبريد الإلكتروني
 Logout,تسجيل الخروج
 Logs,السجلات
 Lost,خسارة
+Lost Reason,سبب الخسارة
 Low,منخفض
 M-Pesa Phone Number,رقم هاتف M-Pesa
 M-Pesa credentials saved,تم حفظ بيانات اعتماد M-Pesa
@@ -1109,6 +1169,7 @@ Master,رئيسي
 Max Amount,الحد الأقصى للمبلغ
 "Maximum amount cannot exceed ₹1,00,000","لا يمكن أن يتجاوز الحد الأقصى للمبلغ ₹1,00,000"
 Maximum amount must be at least ₹500,يجب ألا يقل الحد الأقصى للمبلغ عن ₹500
+Measures to be taken,الإجراءات الواجب اتخاذها
 Medium,متوسط
 Member Email,البريد الإلكتروني للعضو
 Member Name,اسم العضو
@@ -1153,6 +1214,7 @@ Move to a Different Server / Bench,النقل إلى خادم / بنش مختل�
 "Multi-environment (e.g. Staging, Production)",بيئات متعددة (مثل: التجهيز، الإنتاج)
 Multiple unpaid invoices,فواتير متعددة غير مدفوعة
 My Pro Plan,خطة برو الخاصة بي
+NC Count,عدد عدم المطابقات
 NOTE :,ملاحظة :
 Name,الاسم
 Name on Card,الاسم على البطاقة
@@ -1167,8 +1229,11 @@ Network,الشبكة
 New,جديد
 New App,تطبيق جديد
 New Bench,بنش جديد
+New Comment,تعليق جديد
+New Email,بريد إلكتروني جديد
 New Password,كلمة المرور الجديدة
 New Payment Payout,دفعة جديدة للشريك
+New Payout,دفعة جديدة
 New Plan,خطة جديدة
 New Server,خادم جديد
 New Site,موقع جديد
@@ -1204,6 +1269,7 @@ No individual plans needed for sites on dedicated servers,لا حاجة لخطط
 No members added to this role.,لم تتم إضافة أعضاء إلى هذا الدور.
 No members to show,لا يوجد أعضاء للعرض
 No notifications to show,لا توجد إشعارات لعرضها
+No partner leads available.,لا يوجد عملاء محتملون للشركاء.
 No payments found.,لم يتم العثور على مدفوعات.
 No plan set,لم يتم تعيين خطة
 No resources to show,لا توجد موارد للعرض
@@ -1212,6 +1278,7 @@ No results found,لم يتم العثور على نتائج
 No sites,لا توجد مواقع
 No usage data available for this month,لا توجد بيانات استخدام لهذا الشهر
 No usage yet,لا يوجد استخدام بعد
+Non Conformance List,قائمة عدم المطابقات
 None,لا شيء
 Normal,عادي
 Normalized,موحّد
@@ -1228,6 +1295,7 @@ Note:,ملاحظة:
 Note: Use this as last resort if site is broken and inaccessible,ملاحظة: استخدم هذا كحل أخير إذا كان الموقع معطلاً ولا يمكن الوصول إليه
 "Note: once approved, it can take up to a week for the release to go live on the Marketplace.",ملاحظة: بعد الموافقة، قد يستغرق نشر الإصدار في المتجر ما يصل إلى أسبوع.
 "Note: this link works only once and expires. If it has expired, please generate a new one.",ملاحظة: يعمل هذا الرابط مرة واحدة فقط وينتهي بعد فترة. إذا انتهت صلاحيته، يرجى إنشاء رابط جديد.
+Notes,ملاحظات
 Nothing to show,لا شيء لعرضه
 Notification Settings,إعدادات الإشعارات
 Notifications,الإشعارات
@@ -1252,7 +1320,11 @@ Open the authenticator app,افتح تطبيق المصادقة
 Opening payment window...,جاري فتح نافذة الدفع...
 Operational,التشغيلي
 Options,الخيارات
+Organization,المؤسسة
+Organization Name,اسم المؤسسة
 Other,أخرى
+Other Reason,سبب آخر
+Other Reason (specify),سبب آخر (حدّد)
 Outbound IP,عنوان IP الصادر
 Outgoing Network,الشبكة الصادرة
 Overview,نظرة عامة
@@ -1266,14 +1338,20 @@ Paid by Partner,مدفوع من الشريك
 Partial,جزئي
 Partner,الشريك
 Partner Admin,إدارة الشركاء
+Partner Approval,موافقة الشريك
 Partner Approval Request,طلب موافقة شريك
 Partner Email,بريد الشريك
 Partner List,قائمة الشركاء
+Partner Listing,قائمة الشركاء
 Partner Management,إدارة الشركاء
+Partner Owned,مملوك للشريك
 Partner Payment Payout,دفعة الشريك
 Partner Payments Payouts,مدفوعات الشركاء
 Partner Payout,دفعة الشريك
 Partner Permissions,أذونات الشريك
+Partner Referral Code,رمز إحالة الشريك
+Partner Total,إجمالي الشريك
+Partner Website,موقع الشريك
 Partner removed successfully,تمت إزالة الشريك بنجاح
 Partner {0} has asked to link your certificate to their AlbannaTech team account.,طلب الشريك {0} ربط شهادتك بحساب فريق AlbannaTech الخاص به.
 Partnership,الشراكة
@@ -1281,6 +1359,7 @@ Partnership Fees,رسوم الشراكة
 Pass,ناجح
 Pass to Other Partner,تمرير إلى شريك آخر
 Passed checks ({n}),الفحوصات الناجحة ({n})
+Passed to Partner,تم تمريره إلى الشريك
 Password,كلمة المرور
 Paste,لصق
 Patch URL,رابط الترقيع
@@ -1329,6 +1408,7 @@ Payment of {0} for AlbannaTech was unsuccessful.,لم تتم عملية دفع {
 Payment successful,تم الدفع بنجاح
 Payments,مدفوعات
 Payments submitted successfully,تم إرسال المدفوعات بنجاح
+Payout ID,معرّف الدفعة
 Pending,قيد الانتظار
 Per Page,لكل صفحة
 Permissions,الأذونات
@@ -1338,11 +1418,14 @@ Phone Number,رقم الهاتف
 Physical,فيزيائي
 Physical Backup,نسخة احتياطية فيزيائية
 Physical Backups,النسخ الاحتياطية الفيزيائية
+Pick a Audit Date,اختر تاريخ تدقيق
 Pick a site to log in to as {email},اختر موقعاً لتسجيل الدخول باسم {email}
 Pin,تثبيت
 Plan,الخطة
 Plan Changed Successfully,تم تغيير الخطة بنجاح
 Plan History,سعر الخطة
+Plan Proposed,الخطة المقترحة
+Plan Type,نوع الخطة
 Plan created successfully,تم إنشاء الخطة بنجاح
 Plan name is required,اسم الخطة مطلوب
 Plan updated successfully,تم تحديث الخطة بنجاح
@@ -1411,6 +1494,7 @@ Privacy Policy,سياسة الخصوصية
 Private,خاص
 Private Files,الملفات الخاصة
 Private IP,عنوان IP خاص
+Probability,الاحتمالية
 Proceed,متابعة
 Proceed to payment using Stripe,المتابعة للدفع باستخدام Stripe
 Proceed to payment using {gateway},المتابعة للدفع باستخدام {gateway}
@@ -1423,6 +1507,7 @@ Product warranty enabled for this site,تم تفعيل ضمان المنتج ل�
 Professional,احترافي
 Profile,الملف الشخصي
 Proposal/Quotation,عرض سعر / تسعير
+Proposed Plan,الخطة المقترحة
 Protocol,البروتوكول
 Provide New Bench Name,أدخل اسم البنش الجديد
 Provide a valid webhook endpoint,أدخل نقطة نهاية Webhook صالحة
@@ -1440,6 +1525,7 @@ Query,استعلام
 Query Deadlocks,الطرق المسدودة في الاستعلامات
 Query Report Durations,مدد تقارير الاستعلامات
 Queued,في قائمة الانتظار
+Raised On,تاريخ الرفع
 Ran {time},أُجري {time}
 "Range: ₹500 - ₹1,00,000","النطاق: ₹500 - ₹1,00,000"
 Rate,السعر
@@ -1537,15 +1623,19 @@ Replication server,خادم النسخ المتماثل
 Reply cannot be empty,لا يمكن أن يكون الرد فارغاً
 Report,إبلاغ
 Repository,المستودع
+Request Audit,طلب تدقيق
 Request Count by Path,عدد الطلبات حسب المسار
 Request Log Report,تقرير سجل الطلبات
+Request for Audit,طلب تدقيق
 Request frequency by site,تكرار الطلبات حسب الموقع
 Request {status},تم {status} الطلب
 Requested,مطلوب
+Requested Date,تاريخ الطلب
 Requests,الطلبات
 Requests CPU Usage,استخدام المعالج للطلبات
 Requests by IP,الطلبات حسب عنوان IP
 Require all team members to enable 2FA,مطالبة جميع أعضاء الفريق بتفعيل المصادقة الثنائية
+Requirement,المتطلب
 Requirements,المتطلبات
 Resending mail...,جاري إعادة إرسال البريد...
 Resent OTP to your email,تمت إعادة إرسال رمز التحقق إلى بريدك
@@ -1558,6 +1648,7 @@ Reset password,إعادة تعيين كلمة المرور
 Reset site,إعادة تعيين الموقع
 Reset your site database to a clean state,إعادة تعيين قاعدة بيانات موقعك إلى حالة نظيفة
 Resource,المورد
+Resource Type,نوع المورد
 Resources,الموارد
 Resources:,الموارد:
 Response Status Code,رمز حالة الاستجابة
@@ -1621,6 +1712,7 @@ Search,بحث
 Search Keywords (Optional),كلمات بحث (اختياري)
 Search bench,البحث في البنشات
 Search for any Frappe app,ابحث عن أي تطبيق Frappe
+"Search for org, lead or partner",ابحث عن مؤسسة أو عميل محتمل أو شريك
 Search result will show max 500 logs.,سيظهر البحث حداً أقصى 500 سجل.
 Search server,البحث في الخوادم
 Search sites,البحث في المواقع
@@ -1659,6 +1751,7 @@ Select Sites to Recover,اختر المواقع المراد استعادتها
 Select Start Date,اختر تاريخ البداية
 Select Status,اختر الحالة
 Select Unified Server Plan,اختر خطة الخادم الموحد
+Select a Non Conformance to view details,اختر عدم مطابقة لعرض التفاصيل
 Select a member to add,اختر عضواً للإضافة
 Select a role,اختر دوراً
 Select an app to get started,اختر تطبيقاً للبدء
@@ -1732,6 +1825,7 @@ Setup Site,إعداد الموقع
 Setup UPI Autopay,إعداد الدفع التلقائي عبر UPI
 Share,مشاركة
 Share Feedback,مشاركة الملاحظات
+Share code with customers to link with your account.,شارك الرمز مع العملاء لربطه بحسابك.
 Shared,مشترك
 Shared Server,خادم مشترك
 Show,إظهار
@@ -1817,6 +1911,7 @@ Specify feedback,حدد الملاحظات
 Spending Limit,حد الإنفاق
 Spending Limits,حدود الإنفاق
 Split,تقسيم
+Spoke To,تحدث مع
 Standard,قياسي
 Standby,استعداد
 Start,بدء
@@ -1826,9 +1921,11 @@ Start Time,وقت البدء
 Start date,تاريخ البدء
 Start time must be before end time,يجب أن يكون وقت البدء قبل وقت الانتهاء
 Starter,مبتدئ
+Starter Pack,حزمة البداية
 Starting table restore...,جاري بدء استعادة الجداول...
 State,الولاية
 State / Province / Region,الولاية / المقاطعة / المنطقة
+State / Region,الولاية / المنطقة
 State/Province/Region,الولاية / المنطقة
 Status,الحالة
 Step,الخطوة
@@ -1848,6 +1945,7 @@ Subscribe,اشتراك
 Subscription Price,سعر الاشتراك
 Subscriptions,الاشتراكات
 Success,نجاح
+Successfull Projects,المشاريع الناجحة
 Summary,الملخص
 Support,الدعم
 Supported,مدعوم
@@ -1884,10 +1982,12 @@ Team Roles,أدوار الفريق
 Team Servers,خوادم الفريق
 Team Settings,إعدادات الفريق
 Team Sites,مواقع الفريق
+Team Size,حجم الفريق
 Team Transfer,نقل ملكية الفريق
 Temporary files,الملفات المؤقتة
 Terms & Policies,الشروط والسياسات
 Terms of Service,شروط الخدمة
+Territory,النطاق
 "Thanks,",شكراً،
 The,ويتم نقل
 The audit could not complete. Share this traceback with support if you need help.,لم يتمكن التدقيق من الإكمال. شارك هذا التتبع مع الدعم إذا كنت بحاجة إلى مساعدة.
@@ -1960,6 +2060,7 @@ Total usage for this month,إجمالي الاستخدام لهذا الشهر
 Transaction ID,معرّف العملية
 Transfer,نقل
 Transfer Confirmation,تأكيد النقل
+Transfer Credits,تحويل الأرصدة
 Transfer Site Ownership,نقل ملكية الموقع
 Transfer ownership of this site to another team,نقل ملكية هذا الموقع إلى فريق آخر
 Transfer request sent to {email} successfully.,تم إرسال طلب النقل إلى {email} بنجاح.
@@ -2010,9 +2111,12 @@ Update Billing Address,تحديث عنوان الفوترة
 Update Billing Details,تحديث بيانات الفوترة
 Update Billing Settings,تحديث إعدادات الفوترة
 Update Card,تحديث البطاقة
+Update Followup Details,تحديث تفاصيل المتابعة
+Update Lead details,تحديث تفاصيل العميل المحتمل
 Update Now,تحديث الآن
 Update Profile Information,تحديث معلومات الملف الشخصي
 Update Scheduled,التحديث مجدول
+Update Website Info,تحديث معلومات الموقع
 Update billing details,تحديث بيانات الفوترة
 Update cancelled,تم إلغاء التحديث
 Update the description for your app,حدّث وصف تطبيقك
@@ -2038,6 +2142,7 @@ Use the verification code below to log in to AlbannaTech.,استخدم رمز ا
 Use this for adding A records for your site,استخدم هذا لإضافة سجلات A لموقعك
 Use this for whitelisting our server on a 3rd party service,استخدم هذا لإدراج خادمنا في القائمة البيضاء لخدمة طرف ثالث
 User,المستخدم
+User Email,بريد المستخدم
 User created successfully,تم إنشاء المستخدم بنجاح
 User type,نوع المستخدم
 User updated successfully,تم تحديث المستخدم بنجاح
@@ -2100,6 +2205,7 @@ Visit Site,زيارة الموقع
 Visit the,قم بزيارة
 Want to change the secret?,تريد تغيير السر؟
 Want to install,هل تريد تثبيت
+Warm,دافئ
 Warming Up,جارٍ الإحماء
 Warning,تحذير
 We are attempting to charge your card with <strong>{amount}</strong> to make sure the card works. This amount will be <strong>refunded</strong> back to your account.,نحاول خصم <strong>{amount}</strong> من بطاقتك للتأكد من أن البطاقة تعمل. سيتم <strong>استرداد</strong> هذا المبلغ إلى حسابك.
@@ -2127,10 +2233,13 @@ Webhook deleted successfully,تم حذف الـ Webhook بنجاح
 Webhook disabled successfully,تم تعطيل الـ Webhook بنجاح
 Webhook updated successfully,تم تحديث Webhook بنجاح
 Website Details,تفاصيل الموقع
+Website Info,معلومات الموقع
 Website Manager,مدير الموقع
+Website URL,رابط الموقع
 Weekly Installs,تثبيتات أسبوعية
 Welcome,مرحباً
 Welcome back,مرحبًا بعودتك
+Welcome back!,مرحبًا بعودتك!
 Welcome to AlbannaTech,مرحباً بك في AlbannaTech
 What to do after a failed audit,ماذا تفعل بعد فشل التدقيق
 What's this?,ما هذا؟
@@ -2144,6 +2253,7 @@ Won,مكتسب
 Worldwide,عالمي
 Write Bytes,بايتات الكتابة
 Write Reply,كتابة رد
+Write your comment here...,اكتب تعليقك هنا...
 Yes,نعم
 You are about to log in to your site,أنت على وشك تسجيل الدخول إلى موقعك
 You are automatically upgraded to a higher tier when your last paid subscription invoice meets that tier's threshold and you have at least three consecutive paid invoices.,يتم ترقية فريقك تلقائيًا إلى فئة أعلى عندما تستوفي آخر فاتورة اشتراك مدفوعة حدّ تلك الفئة وأن يكون لديك ثلاث فواتير مدفوعة متتالية على الأقل.
@@ -2165,6 +2275,7 @@ You have an unpaid invoice of {symbol} {amount}. Please clear it before disablin
 You have multiple unpaid invoices. Please pay them from the invoices page,لديك فواتير متعددة غير مدفوعة. يُرجى دفعها من صفحة الفواتير
 You have to be logged in as a <b>System Manager</b> <em>in your site</em> to download the backup.,يجب أن تكون مسجلاً الدخول كـ <b>مدير النظام</b> <em>في موقعك</em> لتنزيل النسخة الاحتياطية.
 You have unpaid invoices on your account for the following periods:,لديك فواتير غير مدفوعة على حسابك للفترات التالية:
+You have used both of your free certifications. Please navigate to,لقد استخدمت كل شهاداتك المجانية. يُرجى الانتقال إلى
 You haven't added a card for your AlbannaTech subscription. Your sites will be suspended until you update your card details in your account.,لم تُضِف بطاقة لاشتراك AlbannaTech الخاص بك. سيتم تعليق مواقعك حتى تُحدِّث بيانات بطاقتك في حسابك.
 You must be a developer to reply to reviews,يجب أن تكون مطوراً للرد على المراجعات
 You need to have $200 worth of credits to enable this feature.,تحتاج إلى رصيد بقيمة 200 دولار لتفعيل هذه الميزة.

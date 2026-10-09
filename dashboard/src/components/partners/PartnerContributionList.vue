@@ -14,7 +14,7 @@
 						v-if="showInvoice.status === 'Empty'"
 						class="text-base text-ink-gray-6"
 					>
-						Nothing to show
+						{{ t('Nothing to show') }}
 					</div>
 					<InvoiceDetail v-else :invoiceId="showInvoice.name" />
 				</template>
@@ -27,6 +27,7 @@ import ObjectList from '../ObjectList.vue';
 import { computed, ref } from 'vue';
 import InvoiceDetail from './InvoiceDetail.vue';
 import { currency } from '../../utils/format';
+import { t } from '../../utils/language'
 
 let showInvoice = ref(null);
 const invoiceDialog = ref(false);
@@ -53,11 +54,11 @@ const partnerInvoices = computed(() => {
 		},
 		columns: [
 			{
-				label: 'Customer Name',
+				label: t('Customer Name'),
 				fieldname: 'customer_name',
 			},
 			{
-				label: 'Date',
+				label: t('Date'),
 				fieldname: 'due_date',
 				format(value) {
 					if (!value) {
@@ -72,23 +73,23 @@ const partnerInvoices = computed(() => {
 				align: 'center',
 			},
 			{
-				label: 'Invoice ID',
+				label: t('Invoice ID'),
 				fieldname: 'name',
 				align: 'center',
 			},
 			{
-				label: 'Status',
+				label: t('Status'),
 				fieldname: 'status',
 				type: 'Badge',
 				align: 'center',
 			},
 			{
-				label: 'Currency',
+				label: t('Currency'),
 				fieldname: 'currency',
 				align: 'center',
 			},
 			{
-				label: 'Amount',
+				label: t('Amount'),
 				fieldname: 'total_before_discount',
 				align: 'right',
 				format(value, row) {
@@ -101,13 +102,13 @@ const partnerInvoices = computed(() => {
 				{
 					type: 'select',
 					fieldname: 'status',
-					label: 'Status',
+					label: t('Status'),
 					options: ['', 'Draft', 'Unpaid', 'Paid'],
 				},
 				{
 					type: 'date',
 					fieldname: 'due_date',
-					label: 'Due Date',
+					label: t('Due Date'),
 				},
 			];
 		},

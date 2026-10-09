@@ -24,7 +24,7 @@
 					<Button
 						class="w-full"
 						variant="solid"
-						label="Create Lead"
+						:label="t('Create Lead')"
 						@click="_newLeadInfo"
 					/>
 				</div>
@@ -42,6 +42,7 @@ import {
 import { toast } from 'vue-sonner';
 import { computed, ref } from 'vue';
 import { DashboardError } from '../../utils/error';
+import { t } from '../../utils/language'
 
 const leadInfo = ref({
 	organization_name: '',
@@ -195,13 +196,13 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'organization_name',
-					label: 'Organization Name',
+					label: t('Organization Name'),
 					required: true,
 				},
 				{
 					fieldtype: 'Select',
 					fieldname: 'domain',
-					label: 'Domain',
+					label: t('Domain'),
 					options: domainList.value,
 					required: true,
 				},
@@ -214,13 +215,13 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'lead_name',
-					label: 'Lead Name',
+					label: t('Lead Name'),
 					required: true,
 				},
 				{
 					fieldtype: 'Select',
 					fieldname: 'lead_type',
-					label: 'Lead Type',
+					label: t('Lead Type'),
 					options: leadTypeList.value,
 					required: true,
 				},
@@ -233,7 +234,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'full_name',
-					label: 'Full Name',
+					label: t('Full Name'),
 					required: true,
 				},
 			],
@@ -245,13 +246,13 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Data',
 					fieldname: 'email',
-					label: 'Email',
+					label: t('Email'),
 					required: true,
 				},
 				{
 					fieldtype: 'Data',
 					fieldname: 'contact_no',
-					label: 'Contact No.',
+					label: t('Contact No.'),
 				},
 			],
 		},
@@ -262,14 +263,14 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Select',
 					fieldname: 'country',
-					label: 'Country',
+					label: t('Country'),
 					options: countryList.value,
 					required: true,
 				},
 				{
 					fieldtype: leadInfo.value.country === 'India' ? 'Select' : 'Data',
 					fieldname: 'state',
-					label: 'State / Region',
+					label: t('State / Region'),
 					required: leadInfo.value.country === 'India' ? true : false,
 					options:
 						leadInfo.value.country === 'India' ? indianStates.value : null,
@@ -283,7 +284,7 @@ const sections = computed(() => {
 				{
 					fieldtype: 'Text',
 					fieldname: 'requirement',
-					label: 'Requirements',
+					label: t('Requirements'),
 					required: true,
 				},
 			],

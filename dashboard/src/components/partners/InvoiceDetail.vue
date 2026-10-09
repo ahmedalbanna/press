@@ -6,13 +6,13 @@
 			>
 				<thead class="bg-surface-gray-2">
 					<tr class="text-ink-gray-6">
-						<th class="rounded-l p-2 text-left font-normal">Resource</th>
-						<th class="rounded-l p-2 text-left font-normal">Description</th>
-						<th class="whitespace-nowrap p-2 text-right font-normal">Rate</th>
+						<th class="rounded-l p-2 text-left font-normal">{{ t('Resource') }}</th>
+						<th class="rounded-l p-2 text-left font-normal">{{ t('Description') }}</th>
+						<th class="whitespace-nowrap p-2 text-right font-normal">{{ t('Rate') }}</th>
 						<th class="whitespace-nowrap p-2 text-right font-normal">
-							Quantity
+							{{ t('Quantity') }}
 						</th>
-						<th class="rounded-r p-2 text-right font-normal">Amount</th>
+						<th class="rounded-r p-2 text-right font-normal">{{ t('Amount') }}</th>
 					</tr>
 				</thead>
 				<tbody>

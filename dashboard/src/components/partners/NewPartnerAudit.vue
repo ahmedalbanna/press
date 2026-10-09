@@ -8,12 +8,12 @@
 				date and share the checklist for the audit.
 			</div>
 			<div class="text-ink-gray-6 text-base">
-				Pick a Audit Date
+				{{ t('Pick a Audit Date') }}
 				<DatePicker class="mt-2" v-model="audit_date" :format="'DD-MM-YYYY'" />
 				<FormControl
 					type="select"
 					v-model="audit_type"
-					label="Audit Type"
+					:label="t('Audit Type')"
 					:options="[
 						{ label: 'Online', value: 'Online' },
 						{ label: 'In-Person', value: 'In-Person' },
@@ -25,7 +25,7 @@
 			<Button
 				class="mt-4 w-full"
 				variant="solid"
-				label="Request Audit"
+				:label="t('Request Audit')"
 				@click="
 					() => {
 						newAuditRequest.submit();

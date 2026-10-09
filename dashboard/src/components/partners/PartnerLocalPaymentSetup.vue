@@ -8,7 +8,7 @@
 			>
 				<div class="flex justify-between items-center text-sm text-ink-gray-7">
 					<div>M-Pesa Express Credentials</div>
-					<Button @click="showAddMpesaDialog = true">Edit</Button>
+					<Button @click="showAddMpesaDialog = true">{{ t('Edit') }}</Button>
 				</div>
 				<div class="overflow-hidden text-ellipsis text-base font-medium">
 					<span class="font-normal text-ink-gray-6">{{
@@ -26,11 +26,11 @@
 			<!-- Add Payment Gateway -->
 			<div class="flex flex-col gap-2 rounded-md border p-4 shadow">
 				<div class="flex justify-between items-center text-sm text-ink-gray-7">
-					<div>Payment Gateway</div>
+					<div>{{ t('Payment Gateway') }}</div>
 					<Button
 						@click="showAddPaymentGatewayDialog = true"
 						:disabled="!Boolean(mpesaSetupId)"
-						>Edit</Button
+						>{{ t('Edit') }}</Button
 					>
 				</div>
 				<div class="overflow-hidden text-ellipsis text-base font-medium">
@@ -49,11 +49,11 @@
 			<!--Submit Payment Transaction To Frappe-->
 			<div class="flex flex-col gap-2 rounded-md border p-4 shadow">
 				<div class="flex justify-between items-center text-sm text-ink-gray-7">
-					<div>Partner Payment Payout</div>
-					<Button @click="showPartnerPaymentPayout = true">Edit</Button>
+					<div>{{ t('Partner Payment Payout') }}</div>
+					<Button @click="showPartnerPaymentPayout = true">{{ t('Edit') }}</Button>
 				</div>
 				<div class="overflow-hidden text-ellipsis text-base font-medium">
-					<span class="font-normal text-ink-gray-6">Not set</span>
+					<span class="font-normal text-ink-gray-6">{{ t('Not set') }}</span>
 				</div>
 			</div>
 			<!--End of payment transaction-->

@@ -9,6 +9,7 @@ import { toast } from 'vue-sonner';
 import { FeatherIcon, Tooltip, Badge, Button } from 'frappe-ui';
 import ObjectList from '../ObjectList.vue';
 import Clock from '~icons/lucide/clock';
+import { t } from '../../utils/language'
 export default {
 	name: 'PartnerApprovalRequests',
 	components: {
@@ -21,7 +22,7 @@ export default {
 				fields: ['approved_by_partner', 'status'],
 				columns: [
 					{
-						label: 'Customer Email',
+						label: t('Customer Email'),
 						fieldname: 'customer_email',
 						width: 0.8,
 						class: 'truncate',
@@ -31,7 +32,7 @@ export default {
 						},
 					},
 					{
-						label: 'Customer Team',
+						label: t('Customer Team'),
 						fieldname: 'requested_by',
 						width: 0.8,
 						class: 'truncate',
@@ -41,7 +42,7 @@ export default {
 						},
 					},
 					{
-						label: 'Raised On',
+						label: t('Raised On'),
 						fieldname: 'creation',
 						width: 0.6,
 						format(value) {
@@ -53,7 +54,7 @@ export default {
 						},
 					},
 					{
-						label: 'Frappe Approval',
+						label: t('Frappe Approval'),
 						fieldname: 'approved_by_frappe',
 						type: 'Component',
 						align: 'center',
@@ -63,7 +64,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Approved',
+										text: t('Approved'),
 									},
 									() =>
 										h(FeatherIcon, {
@@ -75,7 +76,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Approval Pending',
+										text: t('Approval Pending'),
 									},
 									() =>
 										h(Clock, {
@@ -86,7 +87,7 @@ export default {
 						},
 					},
 					{
-						label: 'Partner Approval',
+						label: t('Partner Approval'),
 						fieldname: 'approved_by_partner',
 						type: 'Component',
 						align: 'center',
@@ -96,7 +97,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Approved',
+										text: t('Approved'),
 									},
 									() =>
 										h(FeatherIcon, {
@@ -108,7 +109,7 @@ export default {
 								return h(
 									Tooltip,
 									{
-										text: 'Approval Pending',
+										text: t('Approval Pending'),
 									},
 									() =>
 										h(Clock, {
@@ -126,7 +127,7 @@ export default {
 						component({ row, listResource }) {
 							if (row.status === 'Pending' && row.approved_by_partner === 0) {
 								return h(Button, {
-									label: 'Approve',
+									label: t('Approve'),
 									class: 'text-md',
 									variant: 'subtle',
 									onClick: () => {

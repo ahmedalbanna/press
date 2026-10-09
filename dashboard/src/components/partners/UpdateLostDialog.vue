@@ -4,7 +4,7 @@
 			<div class="flex flex-col gap-5">
 				<FormControl
 					v-model="reason"
-					label="Lost Reason"
+					:label="t('Lost Reason')"
 					name="reason"
 					type="select"
 					:options="lostReasonOptions"
@@ -12,13 +12,13 @@
 				<FormControl
 					v-if="reason === 'Other'"
 					v-model="other_reason"
-					label="Other Reason (specify)"
+					:label="t('Other Reason (specify)')"
 					type="textarea"
 					name="other_reason"
 				/>
 				<ErrorMessage :message="errorMessage" />
 				<Button variant="solid" @click="() => updateStatus.submit()"
-					>Submit</Button
+					>{{ t('Submit') }}</Button
 				>
 			</div>
 		</template>

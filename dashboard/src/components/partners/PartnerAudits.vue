@@ -9,6 +9,7 @@ import ObjectList from '../ObjectList.vue';
 import { icon, renderDialog } from '../../utils/components';
 import router from '../../router';
 import NewPartnerAudit from './NewPartnerAudit.vue';
+import { t } from '../../utils/language'
 
 const team = inject('team');
 
@@ -21,26 +22,26 @@ const partnerAuditsList = computed(() => {
 		},
 		columns: [
 			{
-				label: 'Audit Type',
+				label: t('Audit Type'),
 				fieldname: 'mode_of_audit',
 			},
 			{
-				label: 'Status',
+				label: t('Status'),
 				fieldname: 'status',
 				type: 'Badge',
 			},
 			{
-				label: 'Conducted By',
+				label: t('Conducted By'),
 				fieldname: 'conducted_by',
 			},
 			{
-				label: 'NC Count',
+				label: t('NC Count'),
 				fieldname: 'non_conformance_count',
 				type: 'Badge',
 				align: 'center',
 			},
 			{
-				label: 'Requested Date',
+				label: t('Requested Date'),
 				fieldname: 'proposed_audit_date',
 				format(value) {
 					if (!value) return '';
@@ -52,7 +53,7 @@ const partnerAuditsList = computed(() => {
 				},
 			},
 			{
-				label: 'Audit Date',
+				label: t('Audit Date'),
 				fieldname: 'audit_date',
 				format(value) {
 					if (!value) return '';
@@ -69,20 +70,20 @@ const partnerAuditsList = computed(() => {
 				{
 					type: 'date',
 					fieldname: 'proposed_audit_date',
-					label: 'Audit Date',
+					label: t('Audit Date'),
 				},
 				{
 					type: 'select',
 					fieldname: 'status',
-					label: 'Status',
+					label: t('Status'),
 					options: [
-						{ label: 'All', value: 'All' },
-						{ label: 'Requested', value: 'Requested' },
-						{ label: 'Scheduled', value: 'Scheduled' },
-						{ label: 'In Progress', value: 'In Progress' },
-						{ label: 'Completed', value: 'Completed' },
-						{ label: 'On Hold', value: 'On Hold' },
-						{ label: 'Cancelled', value: 'Cancelled' },
+						{ label: t('All'), value: 'All' },
+						{ label: t('Requested'), value: 'Requested' },
+						{ label: t('Scheduled'), value: 'Scheduled' },
+						{ label: t('In Progress'), value: 'In Progress' },
+						{ label: t('Completed'), value: 'Completed' },
+						{ label: t('On Hold'), value: 'On Hold' },
+						{ label: t('Cancelled'), value: 'Cancelled' },
 					],
 				},
 			];
@@ -90,7 +91,7 @@ const partnerAuditsList = computed(() => {
 		actions() {
 			return [
 				{
-					label: 'Request for Audit',
+					label: t('Request for Audit'),
 					slots: {
 						prefix: icon('plus'),
 					},

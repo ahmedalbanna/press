@@ -2,7 +2,7 @@
 	<div class="flex flex-col gap-5 overflow-y-auto px-10 lg:px-80 py-6">
 		<div class="flex items-center justify-between gap-4">
 			<div class="flex flex-col gap-1">
-				<div class="text-ink-gray-5">Welcome back!</div>
+				<div class="text-ink-gray-5">{{ t('Welcome back!') }}</div>
 				<div class="flex items-center gap-3">
 					<h1 class="text-3xl font-semibold">
 						{{ partnerDetails.data?.company_name }}
@@ -61,7 +61,7 @@
 					<Progress
 						size="lg"
 						:value="tierProgressValue"
-						label="Current Progress"
+						:label="t('Current Progress')"
 						:hint="false"
 					>
 						<template #hint>
@@ -77,11 +77,11 @@
 					<div class="flex-1 rounded-md bg-surface-gray-1 p-4">
 						<div class="flex items-center justify-between">
 							<div class="text-sm text-ink-gray-6">
-								Current Month Contribution
+								{{ t('Current Month Contribution') }}
 							</div>
 							<Button
 								variant="ghost"
-								label="Details"
+								:label="t('Details')"
 								@click="showPartnerContributionDialog = true"
 							/>
 						</div>
@@ -97,10 +97,10 @@
 					</div>
 					<div class="flex-1 rounded-md bg-surface-gray-1 p-4">
 						<div class="flex items-center justify-between">
-							<div class="text-sm text-ink-gray-6">Certified Members</div>
+							<div class="text-sm text-ink-gray-6">{{ t('Certified Members') }}</div>
 							<Button
 								variant="ghost"
-								label="View"
+								:label="t('View')"
 								@click="routeToCertification()"
 							/>
 						</div>
@@ -117,9 +117,9 @@
 				class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
 			>
 				<div class="flex flex-col gap-1">
-					<h3 class="font-medium text-normal">Partner Referral Code</h3>
+					<h3 class="font-medium text-normal">{{ t('Partner Referral Code') }}</h3>
 					<span class="text-sm text-ink-gray-6"
-						>Share code with customers to link with your account.</span
+						>{{ t('Share code with customers to link with your account.') }}</span
 					>
 				</div>
 				<div class="w-full sm:w-72">

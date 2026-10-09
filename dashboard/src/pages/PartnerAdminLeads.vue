@@ -5,6 +5,7 @@
 </template>
 <script>
 import ObjectList from '../components/ObjectList.vue';
+import { t } from '../utils/language'
 export default {
 	name: 'PartnerAdminLeads',
 	components: {
@@ -26,7 +27,7 @@ export default {
 				doctype: 'Partner Lead',
 				columns: [
 					{
-						label: 'Lead Name',
+						label: t('Lead Name'),
 						fieldname: 'lead_name',
 						width: 0.6,
 						class: 'truncate',
@@ -36,7 +37,7 @@ export default {
 						},
 					},
 					{
-						label: 'Organization',
+						label: t('Organization'),
 						fieldname: 'organization_name',
 						width: 0.6,
 						class: 'truncate',
@@ -46,12 +47,12 @@ export default {
 						},
 					},
 					{
-						label: 'Source',
+						label: t('Source'),
 						fieldname: 'lead_source',
 						width: 0.5,
 					},
 					{
-						label: 'Partner',
+						label: t('Partner'),
 						fieldname: 'company_name',
 						width: 0.6,
 						class: 'truncate',
@@ -61,14 +62,14 @@ export default {
 						},
 					},
 					{
-						label: 'Status',
+						label: t('Status'),
 						fieldname: 'status',
 						type: 'Badge',
 						width: 0.4,
 						align: 'center',
 					},
 					{
-						label: 'Lead ID',
+						label: t('Lead ID'),
 						fieldname: 'name',
 						width: 0.4,
 					},
@@ -78,45 +79,45 @@ export default {
 						{
 							type: 'data',
 							fieldname: 'search-text',
-							label: 'Search for org, lead or partner',
+							label: t('Search for org, lead or partner'),
 						},
 						{
 							type: 'select',
 							fieldname: 'source',
-							label: 'Source',
+							label: t('Source'),
 							options: [
-								{ label: 'All', value: 'All' },
-								{ label: 'Partner Owned', value: 'Partner Owned' },
-								{ label: 'Passed to Partner', value: 'Passed to Partner' },
-								{ label: 'Partner Listing', value: 'Partner Listing' },
+								{ label: t('All'), value: 'All' },
+								{ label: t('Partner Owned'), value: 'Partner Owned' },
+								{ label: t('Passed to Partner'), value: 'Passed to Partner' },
+								{ label: t('Partner Listing'), value: 'Partner Listing' },
 							],
 						},
 						{
 							type: 'select',
 							fieldname: 'status',
-							label: 'Status',
+							label: t('Status'),
 							options: [
-								{ label: 'All', value: 'All' },
-								{ label: 'Open', value: 'Open' },
-								{ label: 'Qualification', value: 'Qualification' },
-								{ label: 'Demo/Making', value: 'Demo/Making' },
-								{ label: 'Follow Up', value: 'Follow Up' },
-								{ label: 'Proposal/Quotation', value: 'Proposal/Quotation' },
-								{ label: 'Negotiation', value: 'Negotiation' },
-								{ label: 'Ready to Close', value: 'Ready to Close' },
-								{ label: 'In Process', value: 'In Process' },
-								{ label: 'Won', value: 'Won' },
-								{ label: 'Lost', value: 'Lost' },
-								{ label: 'Junk', value: 'Junk' },
-								{ label: 'Closed', value: 'Closed' },
+								{ label: t('All'), value: 'All' },
+								{ label: t('Open'), value: 'Open' },
+								{ label: t('Qualification'), value: 'Qualification' },
+								{ label: t('Demo/Making'), value: 'Demo/Making' },
+								{ label: t('Follow Up'), value: 'Follow Up' },
+								{ label: t('Proposal/Quotation'), value: 'Proposal/Quotation' },
+								{ label: t('Negotiation'), value: 'Negotiation' },
+								{ label: t('Ready to Close'), value: 'Ready to Close' },
+								{ label: t('In Process'), value: 'In Process' },
+								{ label: t('Won'), value: 'Won' },
+								{ label: t('Lost'), value: 'Lost' },
+								{ label: t('Junk'), value: 'Junk' },
+								{ label: t('Closed'), value: 'Closed' },
 							],
 						},
 						{
 							type: 'select',
 							fieldname: 'lead_owner',
-							label: 'Lead Owner',
+							label: t('Lead Owner'),
 							options: [
-								{ label: 'All', value: 'All' },
+								{ label: t('All'), value: 'All' },
 								...leadOwners.map((owner) => ({
 									label: owner.label,
 									value: owner.value,
@@ -126,7 +127,7 @@ export default {
 						{
 							type: 'checkbox',
 							fieldname: 'is_starter_pack',
-							label: 'Starter Pack',
+							label: t('Starter Pack'),
 						},
 					];
 				},
