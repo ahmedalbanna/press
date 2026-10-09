@@ -383,7 +383,6 @@ import BenchActionsDropdown from './BenchActionsDropdown.vue'
 import CustomAlerts from './CustomAlerts.vue'
 import DismissableBanner from './DismissableBanner.vue'
 import SiteDailyUsage from './SiteDailyUsage.vue'
-import { t, tr } from '../utils/language'
 
 export default {
 	name: 'SiteOverview',
@@ -409,8 +408,6 @@ export default {
 		}
 	},
 	methods: {
-		t,
-		tr,
 		showPlanChangeDialog() {
 			let SitePlansDialog = defineAsyncComponent(
 				() => import('../components/ManageSitePlansDialog.vue'),

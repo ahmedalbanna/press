@@ -164,7 +164,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		saveMpesaCredentials() {
 			this.$resources.createMpesaSetup.submit();
 		},

@@ -326,7 +326,6 @@ import {
 import { dayjsIST } from '../../utils/dayjs'
 import AlertBanner from '../AlertBanner.vue'
 import GenericList from '../GenericList.vue'
-import { t, tr } from '../../utils/language'
 
 export default {
 	props: ['site', 'defaultAction', 'defaultNewBenchName'],
@@ -574,8 +573,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
-		tr,
 		autoSelectMigrationOption() {
 			// Check if 'action' is passed via prop or URL params
 			const actionFromProp = this.defaultAction

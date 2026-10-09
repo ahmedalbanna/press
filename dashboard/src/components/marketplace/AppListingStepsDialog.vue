@@ -37,9 +37,7 @@ import ObjectList from '../ObjectList.vue';
 import { t } from '../../utils/language';
 
 export default {
-	methods: {
-		t,
-	},
+
 	props: ['app'],
 	components: {
 		ObjectList,

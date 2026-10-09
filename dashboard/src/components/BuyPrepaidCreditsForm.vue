@@ -104,7 +104,6 @@ import BuyPrepaidCreditsStripe from './BuyPrepaidCreditsStripe.vue';
 import BuyPrepaidCreditsRazorpay from './BuyPrepaidCreditsRazorpay.vue';
 import RazorpayLogo from '../../src/logo/RazorpayLogo.vue';
 import PayPalLogo from '../../src/logo/PayPalLogo.vue';
-import { t, tr } from '../utils/language';
 
 export default {
 	name: 'BuyPrepaidCreditsForm',
@@ -152,8 +151,6 @@ export default {
 		onSuccess() {
 			this.$emit('success');
 		},
-		t,
-		tr,
 	},
 	computed: {
 		totalAmount() {

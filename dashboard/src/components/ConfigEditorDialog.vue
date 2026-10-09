@@ -136,7 +136,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		addConfig() {
 			if (this.site) {
 				this.docResource = getCachedDocumentResource('Site', this.site)

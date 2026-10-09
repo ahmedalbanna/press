@@ -46,7 +46,6 @@
 import { Tooltip, Dialog } from 'frappe-ui';
 import DialogWrapper from './DialogWrapper.vue';
 import FilterControl from './FilterControl.vue';
-import { t } from '../utils/language';
 
 export default {
 	name: 'ObjectListFilters',

@@ -89,7 +89,6 @@ export default {
 	},
 
 	methods: {
-		t,
 		async saveExchangeRate() {
 			try {
 				const response = await this.$resources.addCurrencyExchange.submit();

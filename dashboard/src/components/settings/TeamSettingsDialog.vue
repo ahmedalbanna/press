@@ -29,12 +29,9 @@
 
 <script>
 import { Switch } from 'frappe-ui';
-import { t } from '../../utils/language'
 
 export default {
-	methods: {
-		t,
-	},
+
 	data() {
 		return {
 			show: true,

@@ -29,7 +29,6 @@
 <script setup>
 import { inject, ref } from 'vue';
 import InvoiceTable from '../InvoiceTable.vue';
-import { t } from '../../utils/language';
 
 const { upcomingInvoice } = inject('billing');
 const props = defineProps({

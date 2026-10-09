@@ -152,7 +152,6 @@
 </template>
 <script>
 import { getPlans } from '../data/plans'
-import { t, tr } from '../utils/language'
 
 export default {
 	name: 'InvoiceTable',
@@ -220,7 +219,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		fetchServer(snapshotName) {
 			return this.$resources.fetchServerName.submit(snapshotName)
 		},

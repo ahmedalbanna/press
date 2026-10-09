@@ -162,7 +162,7 @@ import { Switch, Tabs } from 'frappe-ui';
 import { toast } from 'vue-sonner';
 import UserWithAvatarCell from '../UserWithAvatarCell.vue';
 import { getToastErrorMessage } from '../../utils/toast';
-import { t, tr } from '../../utils/language';
+import { tr } from '../../utils/language';
 
 export default {
 	props: {
@@ -366,7 +366,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		addUser(user) {
 			return toast.promise(this.$resources.role.addUser.submit({ user }), {
 				loading: tr('Adding {user} to {role}', { user, role: this.role.title }),

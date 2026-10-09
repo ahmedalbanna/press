@@ -73,7 +73,7 @@ import UpcomingInvoiceDialog from './UpcomingInvoiceDialog.vue';
 import { Button, createResource } from 'frappe-ui';
 import { ref, computed, inject } from 'vue';
 import { confirmDialog } from '../../utils/components';
-import { t, tr } from '../../utils/language';
+import { t } from '../../utils/language';
 import router from '../../router';
 
 const team = inject('team');

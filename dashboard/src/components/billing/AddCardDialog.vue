@@ -24,7 +24,6 @@
 <script setup>
 import CardForm from './CardForm.vue';
 import { Dialog, FeatherIcon } from 'frappe-ui';
-import { t } from '../../utils/language';
 
 const props = defineProps({
 	showMessage: {

@@ -22,12 +22,9 @@
 <script>
 import ObjectList from '../components/ObjectList.vue';
 import PayoutTable from '../components/PayoutTable.vue';
-import { t } from '../utils/language'
 
 export default {
-	methods: {
-		t,
-	},
+
 	name: 'BillingMarketplacePayouts',
 	props: ['tab'],
 	data() {

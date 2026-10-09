@@ -135,7 +135,6 @@ import StripeLogo from '../../logo/StripeLogo.vue';
 import BuyPrepaidCreditsMpesa from './mpesa/BuyPrepaidCreditsMpesa.vue';
 import { FormControl, Button, createResource } from 'frappe-ui';
 import { ref, computed, inject, watch, onMounted } from 'vue';
-import { t, tr } from '../../utils/language';
 
 const emit = defineEmits(['success']);
 

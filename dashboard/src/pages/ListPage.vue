@@ -20,7 +20,6 @@ import BillingAlerts from '../components/BillingAlerts.vue'
 import Header from '../components/Header.vue'
 import ObjectList from '../components/ObjectList.vue'
 import { getObject } from '../objects'
-import { t } from '../utils/language'
 
 export default {
 	components: {
@@ -39,7 +38,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		getRoute(row) {
 			return {
 				name: `${this.object.doctype} Detail`,

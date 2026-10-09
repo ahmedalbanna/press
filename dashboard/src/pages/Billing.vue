@@ -22,7 +22,6 @@
 import { Breadcrumbs, Tabs } from 'frappe-ui'
 import Header from '../components/Header.vue'
 import TabsWithRouter from '../components/TabsWithRouter.vue'
-import { t } from '../utils/language'
 
 export default {
 	name: 'Billing',
@@ -37,9 +36,7 @@ export default {
 			currentTab: 0,
 		}
 	},
-	methods: {
-		t,
-	},
+
 	computed: {
 		tabs() {
 			const baseTabs = [

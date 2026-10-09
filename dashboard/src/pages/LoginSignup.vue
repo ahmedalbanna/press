@@ -476,7 +476,6 @@ import { getToastErrorMessage } from '../utils/toast'
 import { h } from 'vue'
 import { call } from 'frappe-ui'
 import CustomToast from '../components/CustomToast.vue'
-import { t } from '../utils/language'
 
 export default {
 	name: 'Signup',
@@ -742,7 +741,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		resetSignupState() {
 			if (!this.isLogin && !this.hasForgotPassword && this.otpRequested) {
 				this.otpRequested = false

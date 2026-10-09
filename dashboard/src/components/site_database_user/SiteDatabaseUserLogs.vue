@@ -201,8 +201,6 @@ export default {
 			return result
 		},
 	},
-	methods: {
-		t,
-	},
+
 };
 </script>

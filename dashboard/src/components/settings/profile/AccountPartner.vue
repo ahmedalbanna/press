@@ -138,7 +138,7 @@
 import { Card, FormControl, frappeRequest, debounce } from 'frappe-ui';
 import { DashboardError } from '../../../utils/error';
 import { toast } from 'vue-sonner';
-import { t, tr } from '../../../utils/language';
+import { t } from '../../../utils/language';
 export default {
 	name: 'AccountPartner',
 	components: {
@@ -205,7 +205,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		referralCodeChange: debounce(async function (e) {
 			let code = e.target.value;
 			this.partnerExists = false;

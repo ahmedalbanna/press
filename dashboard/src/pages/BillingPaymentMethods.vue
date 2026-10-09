@@ -174,7 +174,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		formatCurrency(value) {
 			if (value === 0) {
 				return '';

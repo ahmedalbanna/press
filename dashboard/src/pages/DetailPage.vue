@@ -73,7 +73,7 @@ import ActionButton from '../components/ActionButton.vue';
 import DetailPageError from '../components/DetailPageError.vue';
 import { Breadcrumbs } from 'frappe-ui';
 import { getObject } from '../objects';
-import { t } from '../utils/language';
+
 import TabsWithRouter from '../components/TabsWithRouter.vue';
 import AccessRequestButton from '../components/AccessRequestButton.vue';
 import PageBanner from '../components/PageBanner.vue';
@@ -136,9 +136,7 @@ export default {
 			subscribed[`${doctype}:${this.name}`] = false;
 		}
 	},
-	methods: {
-		t,
-	},
+
 	computed: {
 		object() {
 			return getObject(this.objectType);

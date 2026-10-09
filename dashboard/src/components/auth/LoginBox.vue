@@ -33,7 +33,6 @@
 
 <script>
 import { toast } from 'vue-sonner';
-import { tr } from '../../utils/language';
 
 export default {
 	name: 'LoginBox',
@@ -49,7 +48,6 @@ export default {
 		// Exposed so the template can translate the title/subtitle props. An
 		// Options API template sees only the component instance, never module
 		// imports, so binding tr here is what makes `{{ tr(title) }}` resolve.
-		tr,
 		redirectForFrappeioAuth() {
 			window.location = '/f-login';
 		},

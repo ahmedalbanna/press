@@ -138,7 +138,6 @@ import { toast } from 'vue-sonner';
 import AlertBanner from '../AlertBanner.vue';
 import SiteDatabaseColumnsSelector from './SiteDatabaseColumnsSelector.vue';
 import { DashboardError } from '../../utils/error';
-import { t } from '../../utils/language';
 
 export default {
 	name: 'SiteDatabaseAddEditUserDialog',
@@ -414,7 +413,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		fetchTableSchemas(reload = false) {
 			if (!this.site) return;
 			this.$resources.tableSchemas.submit({

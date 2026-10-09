@@ -75,7 +75,7 @@
 import { getCachedDocumentResource } from 'frappe-ui'
 import { defineAsyncComponent, h } from 'vue'
 import { renderDialog } from '../utils/components'
-import { t } from '../utils/language'
+
 import AlertBanner from './AlertBanner.vue'
 import SiteActionCell from './SiteActionCell.vue'
 
@@ -83,7 +83,7 @@ export default {
 	name: 'SiteActions',
 	props: ['site'],
 	components: { SiteActionCell, AlertBanner },
-	methods: { t },
+
 	data() {
 		return {
 			// `action` matches the keys returned by Site.get_migration_options, which
@@ -136,7 +136,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		migrationShortcutsFor(group) {
 			return this.migrationShortcuts.filter(
 				(shortcut) => shortcut.group === group,

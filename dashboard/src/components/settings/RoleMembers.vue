@@ -83,7 +83,7 @@
 import { Button, Dialog, Select } from 'frappe-ui'
 import { computed, ref } from 'vue'
 import { dayjsLocal } from '../../utils/dayjs'
-import { t } from '../../utils/language'
+
 import { teamMembers } from './data'
 
 const props = withDefaults(

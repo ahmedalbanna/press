@@ -26,7 +26,6 @@
 import BillingDetails from './BillingDetails.vue';
 import { FeatherIcon, Dialog } from 'frappe-ui';
 import { ref } from 'vue';
-import { t } from '../../utils/language';
 
 const props = defineProps({
 	showMessage: {

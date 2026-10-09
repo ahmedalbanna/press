@@ -287,8 +287,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
-		tr,
 		hideSiteDatabaseAddEditUserDialog() {
 			this.showDatabaseAddEditUserDialog = false;
 		},

@@ -38,7 +38,7 @@
 <script setup>
 import { Dialog, Switch, Button, ErrorMessage, FormControl } from 'frappe-ui';
 import { ref, inject } from 'vue';
-import { t, tr } from '../../utils/language';
+import { t } from '../../utils/language';
 
 const props = defineProps({
 	showMessage: {

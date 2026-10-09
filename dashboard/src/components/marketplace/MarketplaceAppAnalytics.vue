@@ -137,7 +137,6 @@
 import { DateTime } from 'luxon';
 import LineChart from '@/components/charts/LineChart.vue';
 import { LoadingIndicator } from 'frappe-ui';
-import { t } from '../../utils/language';
 
 export default {
 	name: 'MarketplaceAppAnalytics',
@@ -149,7 +148,6 @@ export default {
 		LoadingIndicator,
 	},
 	methods: {
-		t,
 		formatDate(data) {
 			return data.map((d) => d.date);
 		},

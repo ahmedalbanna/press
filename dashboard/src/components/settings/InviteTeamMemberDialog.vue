@@ -93,7 +93,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		inviteMember() {
 			toast.promise(
 				this.$team.inviteTeamMember.submit(

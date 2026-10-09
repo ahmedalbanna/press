@@ -30,11 +30,10 @@
 import { defineAsyncComponent } from 'vue';
 import Header from '../components/Header.vue';
 import HomeSummary from '../components/HomeSummary.vue';
-import { t } from '../utils/language';
 
 export default {
 	name: 'Home',
-	methods: { t },
+
 	components: {
 		Header,
 		HomeSummary,

@@ -323,7 +323,6 @@
 <script>
 import { defineAsyncComponent } from 'vue'
 import TextInsideCircle from './TextInsideCircle.vue'
-import { t, tr } from '../utils/language'
 
 export default {
 	name: 'Onboarding',
@@ -358,8 +357,6 @@ export default {
 		}
 	},
 	methods: {
-		t,
-		tr,
 		onBuyCreditsSuccess() {
 			this.$team.reload()
 			this.$emit('payment-mode-added')

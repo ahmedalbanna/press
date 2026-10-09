@@ -37,9 +37,7 @@ import { t } from '../../utils/language';
 import WebhookAttemptDetails from './WebhookAttemptDetails.vue';
 
 export default {
-	methods: {
-		t,
-	},
+
 	name: 'WebhookAttempts',
 	props: ['name'],
 	components: {

@@ -142,7 +142,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		async createAndSubmitPayout() {
 			try {
 				this.paymentInProgress = true;

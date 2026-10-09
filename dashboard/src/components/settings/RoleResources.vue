@@ -102,7 +102,7 @@ import { Button, FeatherIcon, MultiSelect } from 'frappe-ui'
 import { computed, ref } from 'vue'
 import { toast } from 'vue-sonner'
 import { getToastErrorMessage } from '../../utils/toast'
-import { t } from '../../utils/language'
+
 import { teamResources } from './data'
 
 type Resource = { document_type: string; document_name: string }

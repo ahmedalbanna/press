@@ -68,9 +68,7 @@ import { toast } from 'vue-sonner';
 import { t } from '../../utils/language';
 
 export default {
-	methods: {
-		t,
-	},
+
 	emits: ['success'],
 	props: ['webhook'],
 	data() {

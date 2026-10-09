@@ -409,7 +409,6 @@ import router from '../router'
 import { getCountry } from '../utils/country'
 import { DashboardError } from '../utils/error'
 import { validateSubdomain } from '../utils/site'
-import { t } from '../utils/language'
 
 export default {
 	name: 'NewSite',
@@ -1055,7 +1054,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		autoSelectVersion() {
 			if (!this.availableVersions) return null
 

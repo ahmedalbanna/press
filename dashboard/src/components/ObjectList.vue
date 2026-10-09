@@ -517,7 +517,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		reloadListView() {
 			this.$resources.list.reload()
 		},

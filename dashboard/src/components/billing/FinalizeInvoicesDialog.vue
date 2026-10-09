@@ -81,7 +81,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		date,
 	},
 };

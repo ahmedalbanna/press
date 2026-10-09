@@ -20,7 +20,7 @@ import {
 import registerGlobalComponents from './components/global/register';
 import './vendor/posthog.js';
 import { pulse } from './telemetry/pulse.js';
-import { initLanguage, t } from './utils/language';
+import { initLanguage, t, tr } from './utils/language';
 
 const request = (options) => {
 	const _options = options || {};
@@ -56,7 +56,12 @@ getInitialData().then(() => {
 
 	socket = initSocket();
 	app.config.globalProperties.$socket = socket;
+	// The translation helpers are global on purpose: every template in the
+	// app -- Options API or <script setup> -- can call t()/tr() with no
+	// import and no methods entry. Only <script> scope needs an import.
+	// press/tests/test_dashboard_translation_imports.py enforces this.
 	app.config.globalProperties.t = t;
+	app.config.globalProperties.tr = tr;
 	window.$socket = socket;
 	subscribeToJobUpdates(socket);
 

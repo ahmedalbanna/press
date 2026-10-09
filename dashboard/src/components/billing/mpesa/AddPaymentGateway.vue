@@ -149,7 +149,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		handleFileUpload(event) {
 			this.integrationLogo = event.target.files[0];
 		},

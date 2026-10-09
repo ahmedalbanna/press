@@ -18,7 +18,6 @@
 <script>
 import Configure2FA from '../components/auth/Configure2FA.vue'
 import AlertBanner from '../components/AlertBanner.vue'
-import { t, tr } from '../utils/language'
 
 export default {
 	components: {
@@ -26,8 +25,6 @@ export default {
 		AlertBanner,
 	},
 	methods: {
-		t,
-		tr,
 		handleEnabled() {
 			this.$team.reload()
 

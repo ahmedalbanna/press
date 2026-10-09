@@ -35,7 +35,6 @@
 <script>
 import AlertBanner from '../../AlertBanner.vue';
 import ClickToCopy from '../../../components/ClickToCopyField.vue';
-import { t } from '../../../utils/language'
 
 export default {
 	props: {
@@ -54,7 +53,6 @@ export default {
 		ClickToCopy,
 	},
 	methods: {
-		t,
 		downloadCodes() {
 			const blob = new Blob([this.recoveryCodesStr], {
 				type: 'text/plain',

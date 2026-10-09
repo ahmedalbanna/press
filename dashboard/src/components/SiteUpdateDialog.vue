@@ -220,7 +220,6 @@ export default {
 		},
 	},
 	methods: {
-		t,
 		scheduleUpdate() {
 			this.$site.scheduleUpdate.submit(
 				{

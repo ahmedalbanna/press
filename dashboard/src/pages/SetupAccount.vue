@@ -157,7 +157,6 @@ import LoginBox from '../components/auth/LoginBox.vue';
 import Link from '@/components/Link.vue';
 import Form from '@/components/Form.vue';
 import PhoneInput from '@/components/PhoneInput.vue';
-import { tr } from '@/utils/language';
 
 const detailsSharedProducts = [
 	'erpnext',
@@ -310,7 +309,6 @@ export default {
 		},
 	},
 	methods: {
-		tr,
 		submitForm() {
 			if (this.invitedBy) {
 				if (this.$session.isLoggedIn) {

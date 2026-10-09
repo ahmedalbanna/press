@@ -96,7 +96,7 @@ import { currency } from '../../utils/format';
 import { loadStripe } from '@stripe/stripe-js';
 import { ref, reactive, computed, inject, onMounted } from 'vue';
 import { toast } from 'vue-sonner';
-import { t, tr } from '../../utils/language';
+import { t } from '../../utils/language';
 
 const emit = defineEmits(['success']);
 const props = defineProps({
