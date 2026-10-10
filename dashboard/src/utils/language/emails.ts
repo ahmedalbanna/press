@@ -5,9 +5,9 @@ import type { Dictionary } from './types';
  *
  * The dashboard dictionaries hold the interface strings; these are the ones
  * rendered by the templates in press/templates/emails. They live here so that
- * dashboard/scripts/generate-translations.mjs can emit press/translations/ar.csv
- * from a single source -- Frappe resolves _() in an email template through that
- * catalog, so a string authored only in the catalog had no way to reach the SPA
+ * dashboard/scripts/generate-translations.mjs can fold them into
+ * press/locale/ar.po from a single source -- Frappe resolves _() in an email
+ * template through that catalog, so a string authored only in the catalog had no way to reach the SPA
  * and one authored only here had no way to reach an email.
  */
 const emails: Dictionary = {

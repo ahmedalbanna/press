@@ -8,29 +8,28 @@ and every one of them can be broken silently, so each is asserted here:
 3. `user_language` is applied around the sendmail call
 4. the rendered HTML is Arabic, not English
 
-The catalog is a CSV, so a comma inside a sentence silently shifts every
-column after it and the strings stop matching with no error anywhere. That is
-the failure mode test_email_catalog_resolves_every_marked_string guards.
+The catalog is a gettext PO file. That is better than the CSV it replaced --
+one file covers the SPA, the Desk labels and the framework chrome, and a comma
+inside a sentence can no longer shift a column -- but it moves one dependency:
+Frappe resolves `_()` from the compiled MO, so render tests need
+`compile_translations` to have run. `bench build` does that; `_ensure_mo`
+does it here too, so a fresh checkout does not need a manual step.
 """
 
 import re
 from pathlib import Path
 
 import frappe
+from babel.messages.pofile import read_po
 from frappe.tests.utils import FrappeTestCase
-from frappe.translate import get_translations_from_csv
 from frappe.utils.jinja import get_email_from_template
 
 from press.press.doctype.team.suspend_sites import suspend_sites_and_send_email
+from press.tests.translations import UNTRANSLATED_BY_CHOICE
 from press.utils.user import user_language
 
 CATALOG_LANG = "ar"
-
-# Kept in Latin on purpose: product and protocol identifiers that an Arabic
-# interface reads better untranslated than transliterated.
-UNTRANSLATED_BY_CHOICE = frozenset(
-	{"API Key", "API Secret", "SSH", "JSON", "Webhook", "Frappe Partner"}
-)
+CATALOG = Path(frappe.get_app_path("press")) / "locale" / "ar.po"
 
 # Templates whose copy is marked translatable and seeded in the catalog. Every
 # string they mark must resolve, or the Arabic render silently falls back to
@@ -315,7 +314,48 @@ def visible_text(html: str) -> str:
 	return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
 
 
+def read_catalog() -> dict[str, str]:
+	"""The committed PO, read straight from source rather than the compiled MO.
+
+	Reading the committed file means these checks run on a fresh checkout with no
+	build step, and fail on the artifact a reviewer actually signs off.
+	"""
+	with CATALOG.open("rb") as handle:
+		catalog = read_po(handle)
+	translated = {}
+	for message in catalog:
+		if not message.id or not message.string or not message.string.strip():
+			continue
+		# A msgid can appear with and without a context; the plain one is what a
+		# template's _() looks up, so it wins over the qualified entry.
+		if message.context and message.id in translated:
+			continue
+		translated[message.id] = message.string
+	return translated
+
+
+def ensure_mo_compiled() -> None:
+	"""Compile the PO to MO if the compiled copy is missing or stale.
+
+	Frappe resolves _() through the MO, so without this the render tests below
+	would pass with English text on a machine that has not run `bench build`.
+	"""
+	from frappe.gettext.translate import compile_translations, get_mo_path
+
+	mo = get_mo_path("press", CATALOG_LANG)
+	if mo.exists() and mo.stat().st_mtime > CATALOG.stat().st_mtime:
+		return
+	compile_translations("press", CATALOG_LANG, force=True)
+	from frappe.translate import clear_cache
+
+	clear_cache()
+
+
 class TestArabicEmailCatalog(FrappeTestCase):
+	def setUp(self):
+		super().setUp()
+		ensure_mo_compiled()
+
 	def tearDown(self):
 		frappe.db.rollback()
 		from frappe.translate import clear_cache
@@ -324,7 +364,7 @@ class TestArabicEmailCatalog(FrappeTestCase):
 		super().tearDown()
 
 	def _catalog(self) -> dict:
-		return get_translations_from_csv(CATALOG_LANG, "press")
+		return read_catalog()
 
 	def test_catalog_file_exists_and_is_not_empty(self):
 		self.assertTrue(self._catalog(), f"{CATALOG_LANG}.csv resolved to no entries")
@@ -338,7 +378,13 @@ class TestArabicEmailCatalog(FrappeTestCase):
 			self.assertIsNone(arabic.search(source), f"shifted column, CSV needs quoting: {source!r}")
 			self.assertTrue(translated.strip(), f"empty translation for {source!r}")
 			if source in UNTRANSLATED_BY_CHOICE:
-				self.assertEqual(translated, source, f"{source!r} should stay as-is")
+				# Vendors are entered with an RLM mark so Latin sits correctly
+				# inside Arabic copy, so compare without it.
+				self.assertEqual(
+					translated.strip("\u200f"),
+					source,
+					f"{source!r} should stay as-is",
+				)
 				continue
 			self.assertIsNotNone(arabic.search(translated), f"{source!r} has no Arabic translation")
 
