@@ -4,10 +4,13 @@
 
 import frappe
 
+from press.utils.preferences import ensure_default_languages_and_themes
+
 
 def after_install():
 	create_administrator_team()
 	create_default_cluster()
+	ensure_default_languages_and_themes()
 
 
 def create_administrator_team():

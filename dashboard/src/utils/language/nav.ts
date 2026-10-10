@@ -13,6 +13,8 @@ const nav: Dictionary = {
 	'Theme': { en: 'Theme', ar: 'المظهر' },
 	'Light Mode': { en: 'Light Mode', ar: 'الوضع الفاتح' },
 	'Dark Mode': { en: 'Dark Mode', ar: 'الوضع الداكن' },
+	'Light': { en: 'Light', ar: 'فاتح' },
+	'Dark': { en: 'Dark', ar: 'داكن' },
 	'Become a Partner': { en: 'Become a Partner', ar: 'كن شريكاً' },
 	'Docs': { en: 'Docs', ar: 'التوثيق' },
 	'Get Support': { en: 'Get Support', ar: 'الحصول على الدعم' },

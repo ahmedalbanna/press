@@ -1,0 +1,79 @@
+{
+	"actions": [],
+	"allow_rename": 1,
+	"autoname": "field:theme_name",
+	"creation": "2026-10-10 10:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": ["theme_name", "label", "enabled", "is_default", "tokens"],
+	"fields": [
+		{
+			"description": "Machine name used by the dashboard, e.g. light or dark. This becomes the data-theme attribute.",
+			"fieldname": "theme_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Theme Name",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"description": "What users see in the theme picker.",
+			"fieldname": "label",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Label",
+			"reqd": 1
+		},
+		{
+			"default": "1",
+			"description": "Uncheck to stop offering this theme without losing its token values.",
+			"fieldname": "enabled",
+			"fieldtype": "Check",
+			"in_list_view": 1,
+			"label": "Enabled"
+		},
+		{
+			"default": "0",
+			"description": "The theme a new account starts in. Only one theme can be the default.",
+			"fieldname": "is_default",
+			"fieldtype": "Check",
+			"label": "Is Default"
+		},
+		{
+			"description": "CSS custom properties applied when this theme is active. Overrides built in for a theme win over the stylesheet, so a token set here can re-skin the dashboard without a rebuild.",
+			"fieldname": "tokens",
+			"fieldtype": "Table",
+			"label": "Tokens",
+			"options": "Press Theme Token"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2026-10-10 10:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Press",
+	"name": "Press Theme",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"read": 1,
+			"role": "Press User"
+		}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "label"
+}

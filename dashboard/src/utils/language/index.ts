@@ -34,6 +34,12 @@ const translations: Dictionary = {
 interface BootGlobals {
 	user_email?: string;
 	user_language?: string;
+	available_languages?: {
+		language_code: string;
+		language_name: string;
+		english_name: string;
+		direction: string;
+	}[];
 }
 
 // Precedence: the server-side per-user preference wins, because it is the one
@@ -81,7 +87,9 @@ function saveLanguage(lang: Language) {
 	void frappeRequest({
 		url: '/api/method/press.api.account.set_language',
 		method: 'POST',
-		args: { language: lang },
+		// frappe-ui serialises `params` into the request body. Passing `args`
+		// silently sends no payload and the call 500s.
+		params: { language: lang },
 	}).catch(() => {
 		// preference stays in localStorage if the save fails
 	});
@@ -93,6 +101,18 @@ export function getLanguage(): Language {
 
 export function isRTL(): boolean {
 	return state.lang === 'ar';
+}
+
+export interface AvailableLanguage {
+	language_code: string;
+	language_name: string;
+	english_name: string;
+	direction: string;
+}
+
+// Languages offered by the account, for the picker to build its rows from.
+export function getAvailableLanguages(): AvailableLanguage[] {
+	return (window as unknown as BootGlobals).available_languages ?? [];
 }
 
 export function initLanguage() {

@@ -10,6 +10,7 @@ from press.utils import (
 	get_default_team_for_user,
 	get_disabled_team_of_user,
 	get_valid_teams_for_user,
+	preferences,
 )
 from press.utils.telemetry import pulse_boot_config
 from press.utils.user import is_desk_user, is_system_manager
@@ -40,6 +41,7 @@ def get_context_for_dev():
 
 def get_boot():
 	default_team = get_default_team_for_user(frappe.session.user)
+	account_settings = preferences.get_account_settings()
 	return frappe._dict(
 		frappe_version=frappe.__version__,
 		press_dashboard_sentry_dsn=frappe.conf.press_dashboard_sentry_dsn or "",
@@ -50,7 +52,13 @@ def get_boot():
 		site_name=frappe.local.site,
 		default_team=default_team,
 		user_email=frappe.session.user,
-		user_language=frappe.db.get_value("User", frappe.session.user, "language") or "en",
+		# The account's stored preference, which the installer backfilled from
+		# `User.language` so an account that never opened the language picker
+		# keeps the language Desk set for them.
+		user_language=account_settings.language,
+		available_languages=preferences.get_languages(),
+		user_theme=account_settings.theme,
+		available_themes=preferences.get_themes(),
 		account_disabled=bool(get_disabled_team_of_user(frappe.session.user)),
 		valid_teams=get_valid_teams_for_user(frappe.session.user),
 		chat_enabled=chat_enabled(),

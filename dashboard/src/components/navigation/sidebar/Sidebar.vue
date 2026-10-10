@@ -6,8 +6,8 @@ import { session } from '@/data/session'
 import { getTeam } from '@/data/team'
 import { mobileNav, partnerRegistrationModalOpen } from '@/data/ui'
 import { isMobile } from '@/utils/device'
-import { setTheme, themeName } from '@/utils/useTheme'
-import { setLanguage, getLanguage, t } from '@/utils/language'
+import { getAvailableThemes, setTheme, themeName } from '@/utils/useTheme'
+import { getAvailableLanguages, setLanguage, getLanguage, t } from '@/utils/language'
 import LucideBookText from '~icons/lucide/book-text'
 import LucideChevronDown from '~icons/lucide/chevron-down'
 import LucideGlobe from '~icons/lucide/globe'
@@ -15,7 +15,6 @@ import LucideSupport from '~icons/lucide/life-buoy'
 import LucideMessageSquareCode from '~icons/lucide/message-square-code'
 import LucideMoon from '~icons/lucide/moon'
 import AttentionWidget from './AttentionWidget.vue'
-import DarkModeLabel from './DarkModeLabel.vue'
 import Item from './Item.vue'
 import ItemGroup from './ItemGroup.vue'
 import NavList from './NavList.vue'
@@ -82,33 +81,21 @@ const userDropdownOptions = computed(() => [
 	{
 		label: t('Theme'),
 		icon: LucideMoon,
-		submenu: [
-			{
-				label: t('Light Mode'),
-				icon: themeName.value === 'light' ? 'check' : 'sun',
-				onClick: () => setTheme('light'),
-			},
-			// dropdown component as per this frappe-ui version doesnt support suffix slot
-			// so make the icon itself icon+label+beta badge
-			{ icon: DarkModeLabel, onClick: () => setTheme('dark') },
-		],
+		submenu: getAvailableThemes().map((theme) => ({
+			label: t(theme.label),
+			icon: themeName.value === theme.theme_name ? 'check' : 'sun',
+			onClick: () => setTheme(theme.theme_name),
+		})),
 	},
 
 	{
 		label: t('Language'),
 		icon: LucideGlobe,
-		submenu: [
-			{
-				label: t('English'),
-				icon: getLanguage() === 'en' ? 'check' : '',
-				onClick: () => setLanguage('en'),
-			},
-			{
-				label: 'العربية',
-				icon: getLanguage() === 'ar' ? 'check' : '',
-				onClick: () => setLanguage('ar'),
-			},
-		],
+		submenu: getAvailableLanguages().map((language) => ({
+			label: language.language_name,
+			icon: getLanguage() === language.language_code ? 'check' : '',
+			onClick: () => setLanguage(language.language_code),
+		})),
 	},
 
 	{

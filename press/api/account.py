@@ -34,6 +34,7 @@ from press.utils import (
 	get_disabled_team_of_user,
 	is_user_part_of_team,
 	log_error,
+	preferences,
 )
 from press.utils import otp as otp_purpose
 from press.utils import user as user_utils
@@ -396,10 +397,28 @@ def get_route_on_login():
 
 @frappe.whitelist()
 def set_language(language: str):
-	"""Save the dashboard language preference on the user profile."""
-	if language not in ("en", "ar"):
-		frappe.throw(_("Unsupported language"))
-	frappe.db.set_value("User", frappe.session.user, "language", language)
+	"""Save the dashboard language preference for the current user.
+
+	The Language doctype decides which languages are selectable, so a new
+	language can be offered from Desk without a code change.
+	"""
+	return preferences.set_language(language)
+
+
+@frappe.whitelist()
+def set_theme(theme: str):
+	"""Save the dashboard theme preference for the current user."""
+	return preferences.set_theme(theme)
+
+
+@frappe.whitelist()
+def get_account_settings():
+	"""Language, theme and the lists the pickers are built from."""
+	return {
+		**preferences.get_account_settings(),
+		"languages": preferences.get_languages(),
+		"themes": preferences.get_themes(),
+	}
 
 
 @frappe.whitelist()

@@ -708,6 +708,7 @@ DNS Verification Failed,فشل التحقق من سجلات DNS
 DNS records successfully verified. Click on Add Domain.,تم التحقق من سجلات DNS بنجاح. انقر على إضافة نطاق.
 Daily Usage,الاستخدام اليومي
 Dangerous Actions,إجراءات خطيرة
+Dark,داكن
 Dark Mode,الوضع الداكن
 Dashboard,لوحة التحكم
 Data Size,حجم البيانات
@@ -1354,6 +1355,7 @@ Leave,مغادرة
 Less,أقل
 Let's set up your account,لنقم بإعداد حسابك
 Let's set up your site,لنقم بإعداد موقعك
+Light,فاتح
 Light Mode,الوضع الفاتح
 Likely Cause,السبب المرجّح
 Limits,الحدود
