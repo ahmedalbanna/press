@@ -26,6 +26,12 @@
  * sites/assets/locale/ar/LC_MESSAGES/press.mo, and
  * press/tests/test_translation_catalog.py fails if the two disagree.
  *
+ * main.pot is *not* committed -- .gitignore excludes *.pot, as in frappe -- and
+ * ar.po alone is enough to share and to keep every existing translation, because
+ * entries it already holds take priority over anything re-extracted. Regenerate
+ * the POT first when adding a new doctype or field label; until then this warns
+ * and the new string simply has no Arabic yet.
+ *
  * Run directly (`node dashboard/scripts/generate-translations.mjs`) or via
  * `yarn build`, which wires it in ahead of the CSS builds.
  *
