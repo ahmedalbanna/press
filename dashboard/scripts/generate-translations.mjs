@@ -32,6 +32,12 @@
  * the POT first when adding a new doctype or field label; until then this warns
  * and the new string simply has no Arabic yet.
  *
+ * `bench build` compiles this file to MO but does not flush the cached
+ * translation catalog, so after adding or editing a string also run
+ * `bench --site <site> clear-cache` (or restart the web process). Without it the
+ * runtime keeps serving the previous catalog and a fresh translation looks
+ * exactly like a missing one.
+ *
  * Run directly (`node dashboard/scripts/generate-translations.mjs`) or via
  * `yarn build`, which wires it in ahead of the CSS builds.
  *
