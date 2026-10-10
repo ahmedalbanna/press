@@ -289,7 +289,11 @@ const claim = (msgid, msgctxt = "") => {
 	return byKey.get(key);
 };
 
-for (const entry of pot.entries) claim(entry.msgid, entry.msgctxt).comments = [...entry.comments];
+for (const entry of pot.entries) {
+	// `msgid ""` is the POT's header, not a string to translate.
+	if (!entry.msgid) continue;
+	claim(entry.msgid, entry.msgctxt).comments = [...entry.comments];
+}
 for (const key of Object.keys(merged)) {
 	// A msgid only the SPA uses has no POT reference, so name the source here
 	// rather than leaving a translator to guess.
@@ -298,7 +302,7 @@ for (const key of Object.keys(merged)) {
 // Anything the PO still holds but the POT no longer extracts is kept verbatim,
 // so re-extraction cannot silently drop a finished translation.
 for (const [key, entry] of prior) {
-	if (byKey.has(key)) continue;
+	if (!entry.msgid || byKey.has(key)) continue;
 	byKey.set(key, {
 		msgid: entry.msgid,
 		msgctxt: entry.msgctxt,

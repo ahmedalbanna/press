@@ -112,9 +112,7 @@ def read_dictionaries() -> dict[str, str]:
 				continue
 			match = ENTRY.match(line)
 			if match:
-				merged[unescape(unquote(match.group("key")))] = unescape(
-					unquote(match.group("ar"))
-				)
+				merged[unescape(unquote(match.group("key")))] = unescape(unquote(match.group("ar")))
 				index += 1
 				continue
 			opening = ENTRY_START.match(line)
@@ -233,11 +231,7 @@ class TestTranslationCatalogIsGenerated(FrappeTestCase):
 		catalog = read_catalog()
 		by_choice = {("", name) for name in UNTRANSLATED_BY_CHOICE}
 		by_choice.add(("Submit verification code", "Verify"))
-		accidental = {
-			key
-			for key, value in catalog.items()
-			if value == key[1] and key not in by_choice
-		}
+		accidental = {key for key, value in catalog.items() if value == key[1] and key not in by_choice}
 		self.assertEqual(
 			accidental,
 			set(),

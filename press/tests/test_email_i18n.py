@@ -25,7 +25,7 @@ from frappe.tests.utils import FrappeTestCase
 from frappe.utils.jinja import get_email_from_template
 
 from press.press.doctype.team.suspend_sites import suspend_sites_and_send_email
-from press.tests.translations import UNTRANSLATED_BY_CHOICE
+from press.tests.translations import ARABIC_IN_SOURCE, UNTRANSLATED_BY_CHOICE
 from press.utils.user import user_language
 
 CATALOG_LANG = "ar"
@@ -375,6 +375,8 @@ class TestArabicEmailCatalog(FrappeTestCase):
 		catalog = self._catalog()
 		arabic = re.compile(r"[؀-ۿ]")
 		for source, translated in catalog.items():
+			if source in ARABIC_IN_SOURCE:
+				continue
 			self.assertIsNone(arabic.search(source), f"shifted column, CSV needs quoting: {source!r}")
 			self.assertTrue(translated.strip(), f"empty translation for {source!r}")
 			if source in UNTRANSLATED_BY_CHOICE:

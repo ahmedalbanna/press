@@ -16,10 +16,21 @@ silently equals its English outside this set.
 """
 
 # Operators and markup names, not prose.
-NON_PROSE = frozenset({"!=", "HTML", "Markdown"})
+NON_PROSE = frozenset({"!=", "==", "HTML", "Markdown"})
 
 # Our own product name, which is "Press" everywhere the customer sees it.
 PRODUCT_NAME = frozenset({"Press"})
+
+# Markup that carries no words. The divs are DOM hooks for a chart and the span
+# wraps the brand name, so there is nothing to translate in any of them.
+MARKUP = frozenset(
+	{
+		'<div id="problematic_sites_report"></div>',
+		'<div id="server_downtime_report"></div>',
+		'<div id="site_downtime_report"></div>',
+		'<span class="h4">AlbannaTech</span>',
+	}
+)
 
 # Protocol, architecture and platform identifiers. An Arabic operator reads these
 # in Latin: a transliteration of "innodb" helps nobody.
@@ -72,6 +83,7 @@ VENDOR_NAMES = frozenset(
 		"Frappe Cloud",
 		"Frappe Compute",
 		"Grafana",
+		"Google Search Console",
 		"Hetzner",
 		"Kibana",
 		"Let's Encrypt",
@@ -95,4 +107,15 @@ VENDOR_NAMES = frozenset(
 	}
 )
 
-UNTRANSLATED_BY_CHOICE = NON_PROSE | PRODUCT_NAME | IDENTIFIERS | VENDOR_NAMES
+UNTRANSLATED_BY_CHOICE = NON_PROSE | PRODUCT_NAME | MARKUP | IDENTIFIERS | VENDOR_NAMES
+
+# Source strings that quote Arabic on purpose. The column-shift check exists to
+# catch Arabic landing in the English column, so a source that contains Arabic by
+# design has to be named rather than failing the check.
+ARABIC_IN_SOURCE = frozenset(
+	{
+		# Help text for Press Language.language_name: it asks for how speakers of
+		# the language call it themselves and gives العربية as the example.
+		"How speakers of the language call it themselves, e.g. العربية for Arabic.",
+	}
+)
