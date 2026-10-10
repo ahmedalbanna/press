@@ -600,7 +600,7 @@ const misc: Dictionary = {
 	},
 	'Frappe Compute is currently experimental. <a href="https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider" target="_blank" style="font-weight: bold; text-decoration: underline;">Learn more</a> about what this means.': {
 		en: 'Frappe Compute is currently experimental. <a href="https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider" target="_blank" style="font-weight: bold; text-decoration: underline;">Learn more</a> about what this means.',
-		ar: "Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا.",
+		ar: "Frappe Compute هو حالياً تجريبي. <a href=\"https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider\" target=\"_blank\" style=\"font-weight: bold; text-decoration: underline;\">اعرف المزيد</a> عن معنى هذا.",
 	},
 	Pass: { en: 'Pass', ar: 'ناجح' },
 	line: { en: 'line', ar: 'سطر' },

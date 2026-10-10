@@ -185,7 +185,7 @@ msgstr "<div id=\"site_downtime_report\"></div>"
 #. Content of the 'html_pzsv' (HTML) field in DocType 'Drip Email'
 #: press/press/doctype/drip_email/drip_email.json
 msgid "<p><strong>Condition Examples:</strong></p>\n<pre>doc.status==\"Open\"<br>account_request.country==\"Spain\"<br>doc.total &gt; 40000\n</pre>\n\n<p>App doc is available as <code>app</code>, Account Request as <code>account_request</code> and the current doc as just <code>doc</code>"
-msgstr "<p><strong>أمثلة على الشروط:</strong></p>\n<pre>doc.status==\"Open\"<br>account_request.country==\"Spain\"<br>doc.total &gt; 40000\n</pre>\n\n<p>مستند التطبيق متاح كـ <code>app</code>، وطلب الحساب كـ <code>account_request</code>، والمستند الحالي بمجرد <code>doc</code></p>"
+msgstr "<p><strong>أمثلة على الشروط:</strong></p>\n<pre>doc.status==\"Open\"<br>account_request.country==\"Spain\"<br>doc.total &gt; 40000\n</pre>\n\n<p>مستند التطبيق متاح كـ <code>app</code>، وطلب الحساب كـ <code>account_request</code>، والمستند الحالي بمجرد <code>doc</code>"
 
 #: press/www/saas/billing.js:220
 msgid "<p>You will be redirected to AlbannaTech soon.</p><p>If you haven't been redirected, <a href=\"${frappe_cloud_base_endpoint}/api/method/press.api.developer.saas.login_to_fc?token=${r.login_token}\" target=\"_blank\">Click here to login</a></p>"
@@ -11079,7 +11079,7 @@ msgstr "‏URL الأساسي لـ Frappe Compute"
 
 #. From dashboard/src/utils/language/misc.ts
 msgid "Frappe Compute is currently experimental. <a href=\"https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider\" target=\"_blank\" style=\"font-weight: bold; text-decoration: underline;\">Learn more</a> about what this means."
-msgstr "Frappe Compute هو حالياً تجريبي. <a href='https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider' target='_blank' style='font-weight: bold; text-decoration: underline;'>اعرف المزيد</a> عن معنى هذا."
+msgstr "Frappe Compute هو حالياً تجريبي. <a href=\"https://docs.frappe.io/cloud/frappe-compute/what-is-this-new-frappe-provider\" target=\"_blank\" style=\"font-weight: bold; text-decoration: underline;\">اعرف المزيد</a> عن معنى هذا."
 
 #. From dashboard/src/utils/language/common.ts
 msgid "Frappe Framework Version"
